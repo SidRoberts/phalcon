@@ -861,9 +861,9 @@ class Memory extends AbstractAdapter
     }
 
     /**
-     * Sets the default access level (`Phalcon\Enum::ALLOW` or
-     * `Phalcon\Enum::DENY`) for no arguments provided in isAllowed action if
-     * there exists func for accessKey
+     * Sets the default access level (`Phalcon\Acl\Enum::ALLOW` or
+     * `Phalcon\Acl\Enum::DENY`) for no arguments provided in isAllowed action
+     * if there exists func for accessKey
      *
      * @param int $defaultAccess
      */

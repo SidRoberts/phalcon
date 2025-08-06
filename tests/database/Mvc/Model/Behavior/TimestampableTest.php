@@ -62,8 +62,8 @@ final class TimestampableTest extends AbstractDatabaseTestCase
         $this->assertNotEmpty($invoice->inv_created_at);
 
         $secondThreshold = 60;
-        $dateFromAssign  = new Datetime($invoice->inv_created_at);
-        $dateAfterAssign = new Datetime($date);
+        $dateFromAssign  = new DateTime($invoice->inv_created_at);
+        $dateAfterAssign = new DateTime($date);
         $nInterval       = $dateFromAssign->diff($dateAfterAssign)->format('%s');
 
         $this->assertLessThan($secondThreshold, $nInterval);

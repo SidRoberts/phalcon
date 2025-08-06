@@ -21,8 +21,6 @@ use Phalcon\DataMapper\Table\AbstractTableSelect;
 use Phalcon\Tests\Support\DataMapper\Table\Invoices\InvoicesTableEvents;
 use Phalcon\Tests\Support\Storage;
 
-use function parent;
-
 class InvoicesWithEventsTableEvents extends InvoicesTableEvents
 {
     /**

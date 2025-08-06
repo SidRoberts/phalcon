@@ -1455,7 +1455,7 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
         $findParams = [
             implode(" AND ", $conditions),
             "bind" => $placeholders,
-            "di"   => $record->getDi(),
+            "di"   => $record->getDI(),
         ];
 
         $findArguments = $this->mergeFindParameters($findParams, $parameters);

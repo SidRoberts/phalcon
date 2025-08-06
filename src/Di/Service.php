@@ -34,7 +34,7 @@ use function is_string;
  *     \Phalcon\Http\Request::class
  * );
  *
- * $request = service->resolve();
+ * $request = $service->resolve();
  *```
  */
 class Service implements ServiceInterface

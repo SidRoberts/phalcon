@@ -2995,7 +2995,7 @@ class Query implements QueryInterface, InjectionAwareInterface
                         ]
                     ),
                 ];
-                //$sqlJoinPartialConditions[] = sqlEqualsJoinCondition;
+                //$sqlJoinPartialConditions[] = $sqlEqualsJoinCondition;
             }
         } else {
             /**
