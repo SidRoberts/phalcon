@@ -105,7 +105,7 @@ create table complex_default
 CREATE OR REPLACE FUNCTION update_timestamp()
 RETURNS TRIGGER AS $$
 BEGIN
-   NEW.updated = NOW(); 
+   NEW.updated = NOW();
    NEW.updated_null = NOW();
    RETURN NEW;
 END;
@@ -113,7 +113,7 @@ $$ language 'plpgsql';
             ",
             "
 CREATE TRIGGER update_timestamp BEFORE UPDATE
-ON complex_default FOR EACH ROW EXECUTE PROCEDURE 
+ON complex_default FOR EACH ROW EXECUTE PROCEDURE
 update_timestamp();
             "
         ];
