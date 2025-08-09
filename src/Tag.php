@@ -1278,12 +1278,11 @@ class Tag
         bool $onlyStart = false,
         bool $useEol = false
     ): string {
-        $params = $parameters;
         if (!is_array($parameters)) {
-            $params = [$parameters];
+            $parameters = [$parameters];
         }
 
-        $localCode = self::renderAttributes("<" . $tagName, $params);
+        $localCode = self::renderAttributes("<" . $tagName, $parameters);
 
         /**
          * Check if Doctype is XHTML
