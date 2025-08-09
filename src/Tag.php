@@ -944,20 +944,20 @@ class Tag
     public static function renderAttributes(string $code, array $attributes): string
     {
         $order = [
-            "rel"    => null,
-            "type"   => null,
-            "for"    => null,
-            "src"    => null,
-            "href"   => null,
-            "action" => null,
-            "id"     => null,
-            "name"   => null,
-            "value"  => null,
-            "class"  => null,
+            "rel",
+            "type",
+            "for",
+            "src",
+            "href",
+            "action",
+            "id",
+            "name",
+            "value",
+            "class",
         ];
 
         $attrs = [];
-        foreach ($order as $key => $value) {
+        foreach ($order as $key) {
             if (isset($attributes[$key])) {
                 $attrs[$key] = $attributes[$key];
             }
@@ -975,17 +975,19 @@ class Tag
 
         $newCode = $code;
         foreach ($attrs as $key => $value) {
-            if (is_string($key) && null !== $value) {
-                if (is_array($value) || is_resource($value)) {
-                    throw new Exception(
-                        "Value at index: '" . $key . "' type: '"
-                        . gettype($value) . "' cannot be rendered"
-                    );
-                }
-
-                $escaped = (null !== $escaper) ? $escaper->attributes($value) : $value;
-                $newCode .= " " . $key . "=\"" . $escaped . "\"";
+            if (!is_string($key) || null === $value) {
+                continue;
             }
+
+            if (is_array($value) || is_resource($value)) {
+                throw new Exception(
+                    "Value at index: '" . $key . "' type: '"
+                    . gettype($value) . "' cannot be rendered"
+                );
+            }
+
+            $escaped = (null !== $escaper) ? $escaper->attributes($value) : $value;
+            $newCode .= " " . $key . "=\"" . $escaped . "\"";
         }
 
         return $newCode;
