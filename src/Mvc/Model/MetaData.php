@@ -718,11 +718,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     final public function readMetaData(ModelInterface $model): array | null
     {
         $key = $this->getMetaDataUniqueKey($model);
-        if ($key !== null) {
-            return $this->metaData[$key];
+
+        if ($key === null) {
+            return null;
         }
 
-        return null;
+        return $this->metaData[$key];
     }
 
     /**
@@ -748,11 +749,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     final public function readMetaDataIndex(ModelInterface $model, int $index): array | string | bool | null
     {
         $key = $this->getMetaDataUniqueKey($model);
-        if ($key !== null) {
-            return $this->metaData[$key][$index];
+
+        if ($key === null) {
+            return null;
         }
 
-        return null;
+        return $this->metaData[$key][$index];
     }
 
     /**
