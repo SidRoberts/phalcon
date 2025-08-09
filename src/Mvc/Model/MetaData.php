@@ -128,11 +128,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getAttributes(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_ATTRIBUTES);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -152,11 +153,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getAutomaticCreateAttributes(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_AUTOMATIC_DEFAULT_INSERT);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -178,11 +180,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getAutomaticUpdateAttributes(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_AUTOMATIC_DEFAULT_UPDATE);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -204,11 +207,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getBindTypes(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_DATA_TYPES_BIND);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -231,11 +235,11 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     {
         $data = $this->readColumnMapIndex($model, self::MODELS_COLUMN_MAP);
 
-        if (is_array($data) || null === $data) {
-            return $data;
+        if (!is_array($data) && $data !== null) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -294,11 +298,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getDataTypes(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_DATA_TYPES);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -320,11 +325,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getDataTypesNumeric(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_DATA_TYPES_NUMERIC);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -346,11 +352,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getDefaultValues(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_DEFAULT_VALUES);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -372,11 +379,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getEmptyStringAttributes(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_EMPTY_STRING_VALUES);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -465,11 +473,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getNonPrimaryKeyAttributes(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_NON_PRIMARY_KEY);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -491,11 +500,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getNotNullAttributes(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_NOT_NULL);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -517,11 +527,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getPrimaryKeyAttributes(ModelInterface $model): array
     {
         $data = $this->readMetaDataIndex($model, self::MODELS_PRIMARY_KEY);
-        if (is_array($data)) {
-            return $data;
+
+        if (!is_array($data)) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
@@ -543,11 +554,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getReverseColumnMap(ModelInterface $model): array | null
     {
         $data = $this->readColumnMapIndex($model, self::MODELS_REVERSE_COLUMN_MAP);
-        if (is_array($data) || null === $data) {
-            return $data;
+
+        if (!is_array($data) && $data !== null) {
+            throw new CorruptedMetaData();
         }
 
-        throw new CorruptedMetaData();
+        return $data;
     }
 
     /**
