@@ -660,11 +660,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
         }
 
         $keyName = $this->getColumnMapUniqueKey($model);
-        if ($keyName !== null) {
-            return $this->columnMap[$keyName];
+
+        if ($keyName === null) {
+            return null;
         }
 
-        return null;
+        return $this->columnMap[$keyName];
     }
 
     /**
@@ -692,11 +693,12 @@ abstract class MetaData extends Injectable implements MetaDataInterface
         }
 
         $keyName = $this->getColumnMapUniqueKey($model);
-        if ($keyName !== null) {
-            return $this->columnMap[$keyName][$index];
+
+        if ($keyName === null) {
+            return null;
         }
 
-        return null;
+        return $this->columnMap[$keyName][$index];
     }
 
     /**
