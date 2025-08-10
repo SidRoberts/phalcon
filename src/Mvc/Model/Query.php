@@ -3093,15 +3093,13 @@ class Query implements QueryInterface, InjectionAwareInterface
      */
     final protected function getOrderClause(array | string $order): array
     {
-        if (!isset($order[0])) {
-            $orderColumns = [$order];
-        } else {
-            $orderColumns = $order;
+        if (!is_array($order)) {
+            $order = [$order];
         }
 
         $orderParts = [];
 
-        foreach ($orderColumns as $orderItem) {
+        foreach ($order as $orderItem) {
             $orderPartExpr = $this->getExpression($orderItem["column"]);
 
             /**
