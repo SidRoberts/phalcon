@@ -68,17 +68,17 @@ class Introspection implements StrategyInterface
         $schema = $model->getSchema();
         $table  = $model->getSource();
 
+        $completeTable = $table;
+        if (null !== $schema) {
+            $completeTable = $schema . "'.'" . $table;
+        }
+
         /**
          * Check if the mapped table exists on the database
          */
         $readConnection = $model->getReadConnection();
 
         if (!$readConnection->tableExists($table, $schema)) {
-            $completeTable = $table;
-            if (null !== $schema) {
-                $completeTable = $schema . "'.'" . $table;
-            }
-
             /**
              * The table not exists
              */
@@ -91,11 +91,6 @@ class Introspection implements StrategyInterface
         $columns = $readConnection->describeColumns($table, $schema);
 
         if (0 === count($columns)) {
-            $completeTable = $table;
-            if (null !== $schema) {
-                $completeTable = $schema . "'.'" . $table;
-            }
-
             /**
              * The table not exists
              */
