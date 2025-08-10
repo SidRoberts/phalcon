@@ -1717,26 +1717,14 @@ class Builder implements BuilderInterface, InjectionAwareInterface
          * Merge the bind params to the current ones
          */
         if (!empty($bindParams)) {
-            $currentBindParams = $this->bindParams;
-
-            if (is_array($currentBindParams)) {
-                $this->bindParams = $currentBindParams + $bindParams;
-            } else {
-                $this->bindParams = $bindParams;
-            }
+            $this->bindParams = $this->bindParams + $bindParams;
         }
 
         /**
          * Merge the bind types to the current ones
          */
         if (!empty($bindTypes)) {
-            $currentBindTypes = $this->bindTypes;
-
-            if (is_array($currentBindTypes)) {
-                $this->bindTypes = $currentBindTypes + $bindTypes;
-            } else {
-                $this->bindTypes = $bindTypes;
-            }
+            $this->bindTypes = $this->bindTypes + $bindTypes;
         }
 
         return $this;
