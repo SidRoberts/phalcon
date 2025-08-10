@@ -4447,8 +4447,6 @@ class Query implements QueryInterface, InjectionAwareInterface
         }
 
         // Replace unescaped single quotes with double single quotes
-        $escaped = preg_replace("/(?<!\\\\)'/", "''", $str);
-
-        return $escaped;
+        return preg_replace("/(?<!\\\\)'/", "''", $str);
     }
 }
