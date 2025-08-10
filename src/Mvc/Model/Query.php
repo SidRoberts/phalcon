@@ -713,8 +713,7 @@ class Query implements QueryInterface, InjectionAwareInterface
         bool $merge = false
     ): QueryInterface {
         if ($merge) {
-            $currentBindParams = $this->bindParams;
-            $this->bindParams  = $currentBindParams + $bindParams;
+            $this->bindParams = $this->bindParams + $bindParams;
         } else {
             $this->bindParams = $bindParams;
         }
