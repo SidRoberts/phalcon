@@ -2364,44 +2364,37 @@ class Query implements QueryInterface, InjectionAwareInterface
      */
     final protected function getFunctionCall(array $expr): array
     {
-        if (isset($expr["arguments"])) {
-            $arguments = $expr["arguments"];
-            $distinct  = isset($expr["distinct"]) ? 1 : 0;
-
-            if (isset($arguments[0])) {
-                // There are more than one argument
-                $functionArgs = [];
-
-                foreach ($arguments as $argument) {
-                    $functionArgs[] = $this->getCallArgument($argument);
-                }
-            } else {
-                // There is only one argument
-                $functionArgs = [
-                    $this->getCallArgument($arguments),
-                ];
-            }
-
-            if ($distinct) {
-                return [
-                    "type"      => "functionCall",
-                    "name"      => $expr["name"],
-                    "arguments" => $functionArgs,
-                    "distinct"  => $distinct,
-                ];
-            } else {
-                return [
-                    "type"      => "functionCall",
-                    "name"      => $expr["name"],
-                    "arguments" => $functionArgs,
-                ];
-            }
+        if (!isset($expr["arguments"])) {
+            return [
+                "type" => "functionCall",
+                "name" => $expr["name"],
+            ];
         }
 
-        return [
-            "type" => "functionCall",
-            "name" => $expr["name"],
+        $arguments = $expr["arguments"];
+        $distinct  = isset($expr["distinct"]) ? 1 : 0;
+
+        if (!is_array($arguments)) {
+            $arguments = [$arguments];
+        }
+
+        $functionArgs = [];
+
+        foreach ($arguments as $argument) {
+            $functionArgs[] = $this->getCallArgument($argument);
+        }
+
+        $functionCall = [
+            "type"      => "functionCall",
+            "name"      => $expr["name"],
+            "arguments" => $functionArgs,
         ];
+
+        if ($distinct) {
+            $functionCall["distinct"] = $distinct;
+        }
+
+        return $functionCall;
     }
 
     /**
