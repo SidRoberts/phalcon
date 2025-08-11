@@ -693,12 +693,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
         mixed $referencedFields,
         array $options = []
     ): RelationInterface {
-        $entityName         = mb_strtolower(get_class($model));
-        $intermediateEntity = mb_strtolower($intermediateModel);
-        $referencedEntity   = mb_strtolower($referencedModel);
-        $keyRelation        = $entityName . "$" . $referencedEntity;
-
-        $hasOneThrough = $this->hasOneThrough;
+        $entityName       = mb_strtolower(get_class($model));
+        $referencedEntity = mb_strtolower($referencedModel);
+        $keyRelation      = $entityName . "$" . $referencedEntity;
 
         $relations = $this->hasOneThrough[$keyRelation] ?? [];
 
@@ -706,7 +703,7 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
          * Check if the number of fields are the same from the model to the
          * intermediate model
          */
-        if (is_array($intermediateFields) && count($fields) != count($intermediateFields)) {
+        if (is_array($intermediateFields) && count($fields) !== count($intermediateFields)) {
             throw new ReferencedFieldsMismatch(
                 "HasOneThrough",
                 $entityName,
@@ -718,7 +715,7 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
          * Check if the number of fields are the same from the intermediate
          * model to the referenced model
          */
-        if (is_array($intermediateReferencedFields) && count($fields) != count($intermediateFields)) {
+        if (is_array($intermediateReferencedFields) && count($fields) !== count($intermediateFields)) {
             throw new ReferencedFieldsMismatch(
                 "HasOneThrough",
                 $entityName,
