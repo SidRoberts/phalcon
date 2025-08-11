@@ -109,12 +109,10 @@ class Transaction implements TransactionInterface
         bool $autoBegin = false,
         string $service = "db"
     ) {
-        $connection = $container->get($service);
-
-        $this->connection = $connection;
+        $this->connection = $container->get($service);
 
         if (true === $autoBegin) {
-            $connection->begin();
+            $this->connection->begin();
         }
     }
 
