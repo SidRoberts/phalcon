@@ -26,12 +26,14 @@ final class CountTest extends AbstractRegistryTestCase
         $data = $this->getData();
         $registry = new Registry($data);
 
-        $expected = 3;
-        $actual = $registry->toArray();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            3,
+            $registry->toArray()
+        );
 
-        $expected = 3;
-        $actual = $registry->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            3,
+            $registry->count()
+        );
     }
 }

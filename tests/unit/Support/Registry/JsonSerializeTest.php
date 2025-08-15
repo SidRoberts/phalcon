@@ -24,10 +24,12 @@ final class JsonSerializeTest extends AbstractRegistryTestCase
     public function testSupportRegistryJsonSerialize(): void
     {
         $data = $this->getData();
+
         $registry = new Registry($data);
 
-        $expected = $data;
-        $actual = $registry->jsonSerialize();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $registry->jsonSerialize()
+        );
     }
 }

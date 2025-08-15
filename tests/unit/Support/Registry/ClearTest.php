@@ -24,16 +24,19 @@ final class ClearTest extends AbstractRegistryTestCase
     public function testSupportRegistryClear(): void
     {
         $data = $this->getData();
+
         $registry = new Registry($data);
 
-        $expected = $data;
-        $actual = $registry->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $registry->toArray()
+        );
 
         $registry->clear();
 
-        $expected = 0;
-        $actual = $registry->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $registry->count()
+        );
     }
 }

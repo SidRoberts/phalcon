@@ -17,6 +17,9 @@ use Phalcon\Tests\AbstractUnitTestCase;
 
 abstract class AbstractRegistryTestCase extends AbstractUnitTestCase
 {
+    /**
+     * @return array<string, string>
+     */
     protected function getData(): array
     {
         return [

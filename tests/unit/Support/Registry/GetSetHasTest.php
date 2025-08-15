@@ -20,11 +20,12 @@ use stdClass;
 final class GetSetHasTest extends AbstractRegistryTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: mixed, 2: mixed}>
      */
     public static function getExamples(): array
     {
         $sample = new stdClass();
+
         $sample->one = 'two';
 
         return [
@@ -92,61 +93,66 @@ final class GetSetHasTest extends AbstractRegistryTestCase
         /**
          * Has
          */
-        $actual = $registry->has('three');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $registry->has('three')
+        );
 
         /**
          * Set
          */
         $registry->set('three', 'two');
 
-        $actual = $registry->has('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $registry->has('three')
+        );
 
-        $expected = 'two';
-        $actual = $registry->get('three');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $registry->get('three')
+        );
 
         /**
          * Remove
          */
         $registry->remove('three');
 
-        $actual = $registry->has('three');
-        $this->assertFalse($actual);
-
+        $this->assertFalse(
+            $registry->has('three')
+        );
 
         /**
          * Has property
          */
-        $actual = isset($registry->six);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($registry->six)
+        );
 
         /**
          * Set
          */
         $registry->six = 789;
 
-        $actual = isset($registry->six);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($registry->six)
+        );
 
-        $expected = 789;
-        $actual = $registry->six;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(789, $registry->six);
 
         /**
          * Unset
          */
         unset($registry->six);
 
-        $actual = isset($registry->six);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($registry->six)
+        );
 
         /**
          * offsetExists
          */
-        $actual = $registry->offsetExists('four');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $registry->offsetExists('four')
+        );
 
         /**
          * offsetSet
@@ -156,56 +162,60 @@ final class GetSetHasTest extends AbstractRegistryTestCase
         /**
          * offsetExists
          */
-        $actual = $registry->offsetExists('four');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $registry->offsetExists('four')
+        );
 
         /**
          * offsetGet
          */
-        $expected = 123;
-        $actual = $registry->offsetGet('four');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            123,
+            $registry->offsetGet('four')
+        );
 
         /**
          * offsetUnset
          */
         $registry->offsetUnset('four');
 
-        $actual = $registry->offsetExists('four');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $registry->offsetExists('four')
+        );
 
         /**
          * isset
          */
-        $actual = isset($registry['five']);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($registry['five'])
+        );
 
         /**
          * set
          */
         $registry['five'] = 456;
 
-        $actual = isset($registry['five']);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($registry['five'])
+        );
 
         /**
          * Get
          */
-        $expected = 456;
-        $actual = $registry['five'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(456, $registry['five']);
 
         /**
          * Unset
          */
         unset($registry['five']);
 
-        $actual = isset($registry['five']);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($registry['five'])
+        );
     }
 
     /**
-     * @since        2019-10-12
+     * @since 2019-10-12
      */
     #[DataProvider('getExamples')]
     public function testSupportRegistryGetCast(
@@ -222,7 +232,9 @@ final class GetSetHasTest extends AbstractRegistryTestCase
         /**
          * Get
          */
-        $actual = $registry->get('value', null, $cast);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $registry->get('value', null, $cast)
+        );
     }
 }
