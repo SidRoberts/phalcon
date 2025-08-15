@@ -66,10 +66,7 @@ final class RewindTest extends AbstractUnitTestCase
 
         $actual = $messages->current();
 
-        $this->assertInstanceOf(
-            Message::class,
-            $actual
-        );
+        $this->assertInstanceOf(Message::class, $actual);
 
         $this->assertSame('This is a message #1', $actual->getMessage());
         $this->assertSame('MyField1', $actual->getField());

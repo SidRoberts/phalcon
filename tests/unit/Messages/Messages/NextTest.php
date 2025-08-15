@@ -57,7 +57,6 @@ final class NextTest extends AbstractUnitTestCase
             $message
         );
 
-
         $this->assertSame('This is a message #2', $message->getMessage());
         $this->assertSame('MyField2', $message->getField());
         $this->assertSame('MyType2', $message->getType());

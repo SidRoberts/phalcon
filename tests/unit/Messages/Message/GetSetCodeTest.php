@@ -31,8 +31,9 @@ final class GetSetCodeTest extends AbstractUnitTestCase
             111
         );
 
-        $expected = 111;
-        $actual   = $message->getCode();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            111,
+            $message->getCode()
+        );
     }
 }

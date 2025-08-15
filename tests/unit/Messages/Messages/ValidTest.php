@@ -32,20 +32,17 @@ final class ValidTest extends AbstractUnitTestCase
             ]
         );
 
-
         $messages->rewind();
 
         $this->assertTrue(
             $messages->valid()
         );
 
-
         $messages->next();
 
         $this->assertTrue(
             $messages->valid()
         );
-
 
         $messages->next();
 

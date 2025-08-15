@@ -57,10 +57,7 @@ final class OffsetUnsetTest extends AbstractUnitTestCase
          */
         $message = $messages->offsetGet(0);
 
-        $this->assertInstanceOf(
-            Message::class,
-            $message
-        );
+        $this->assertInstanceOf(Message::class, $message);
 
         $this->assertSame('This is a message #2', $message->getMessage());
         $this->assertSame('MyField2', $message->getField());

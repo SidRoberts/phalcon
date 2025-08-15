@@ -53,6 +53,7 @@ final class JsonSerializeTest extends AbstractUnitTestCase
         $this->assertInstanceOf(JsonSerializable::class, $messages);
 
         $data = $messages->jsonSerialize();
+
         $this->assertIsArray($data);
 
         $this->assertCount(2, $data);
@@ -82,8 +83,9 @@ final class JsonSerializeTest extends AbstractUnitTestCase
 
         $this->assertInstanceOf(JsonSerializable::class, $messages);
 
-        $actual   = $messages->jsonSerialize();
-        $expected = [$fixture];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [$fixture],
+            $messages->jsonSerialize()
+        );
     }
 }

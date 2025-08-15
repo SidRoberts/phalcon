@@ -31,9 +31,10 @@ final class ToStringTest extends AbstractUnitTestCase
             111
         );
 
-        $expected = 'This is a message #1';
-        $actual   = $message->__toString();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'This is a message #1',
+            $message->__toString()
+        );
     }
 
     /**
@@ -49,8 +50,9 @@ final class ToStringTest extends AbstractUnitTestCase
             111
         );
 
-        $expected = 'This is a message #1';
-        $actual   = (string)$message;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'This is a message #1',
+            (string) $message
+        );
     }
 }

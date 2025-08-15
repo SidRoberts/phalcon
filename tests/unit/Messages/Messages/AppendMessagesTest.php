@@ -90,6 +90,7 @@ final class AppendMessagesTest extends AbstractUnitTestCase
         ];
 
         $messages->appendMessages($arrayMessages);
+
         $this->assertCount(6, $messages);
     }
 

@@ -50,11 +50,7 @@ final class CurrentTest extends AbstractUnitTestCase
 
         $message = $messages->current();
 
-        $this->assertInstanceOf(
-            Message::class,
-            $message
-        );
-
+        $this->assertInstanceOf(Message::class, $message);
 
         $this->assertSame('This is a message #1', $message->getMessage());
         $this->assertSame('MyField1', $message->getField());

@@ -35,7 +35,6 @@ final class JsonSerializeTest extends AbstractUnitTestCase
             ]
         );
 
-
         $this->assertInstanceOf(JsonSerializable::class, $message);
 
         $expected = [
@@ -47,7 +46,10 @@ final class JsonSerializeTest extends AbstractUnitTestCase
                 'My1' => 'Metadata1',
             ],
         ];
-        $actual   = $message->jsonSerialize();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $message->jsonSerialize()
+        );
     }
 }

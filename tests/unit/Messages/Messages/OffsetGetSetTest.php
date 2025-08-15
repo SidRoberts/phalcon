@@ -61,11 +61,12 @@ final class OffsetGetSetTest extends AbstractUnitTestCase
                 ]
             )
         );
+
         $this->assertCount(3, $messages);
 
         $message = $messages->offsetGet(2);
-        $this->assertInstanceOf(Message::class, $message);
 
+        $this->assertInstanceOf(Message::class, $message);
 
         $this->assertSame('This is a message #3', $message->getMessage());
         $this->assertSame('MyField3', $message->getField());
@@ -84,6 +85,7 @@ final class OffsetGetSetTest extends AbstractUnitTestCase
         $this->expectExceptionMessage('The message must be an object');
 
         $messages = new Messages();
+
         $messages->offsetSet(2, 'message');
     }
 }
