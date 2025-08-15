@@ -34,14 +34,15 @@ final class GetSetDescriptionTest extends AbstractUnitTestCase
         }
 
         foreach ($router->getRoutes() as $route) {
-            $expected = $routes[$route->getPattern()];
-            $actual   = $route->getDescription();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $routes[$route->getPattern()],
+                $route->getDescription()
+            );
         }
     }
 
     /**
-     * @return array
+     * @return array<string, string>
      */
     private function getExampleRoutes(): array
     {

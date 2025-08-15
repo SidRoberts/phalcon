@@ -26,6 +26,7 @@ final class GetCompiledPatternTest extends AbstractUnitTestCase
     {
         Route::reset();
         Route::delimiter('/');
+
         $route = new Route(
             '/:module/:namespace/:task/:action/:params/:delimiter'
         );
@@ -33,7 +34,9 @@ final class GetCompiledPatternTest extends AbstractUnitTestCase
         $expected = '#^/([a-zA-Z0-9\_\-]+)/([a-zA-Z0-9\_\-]+)/'
             . '([a-zA-Z0-9\_\-]+)/([a-zA-Z0-9\_\-]+)(/.*)*//$#';
 
-        $actual = $route->getCompiledPattern();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $route->getCompiledPattern()
+        );
     }
 }

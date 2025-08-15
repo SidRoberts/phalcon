@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class CompilePatternTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: string}>
      */
     public static function getExamples(): array
     {
@@ -67,9 +67,12 @@ final class CompilePatternTest extends AbstractUnitTestCase
     ): void {
         Route::reset();
         Route::delimiter('/');
+
         $route = new Route('test');
 
-        $actual = $route->compilePattern($pattern);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $route->compilePattern($pattern)
+        );
     }
 }

@@ -27,21 +27,29 @@ final class GetParametersTest extends AbstractUnitTestCase
         $router = new Router();
 
         $expected = [];
-        $actual   = $router->getParameters();
-        $this->assertSame($expected, $actual);
 
-        $expected = [];
-        $actual   = $router->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $router->getParameters()
+        );
+
+        $this->assertSame(
+            $expected,
+            $router->getParams()
+        );
 
         $router->handle("task action param1 param2");
 
         $expected = ["param1", "param2"];
-        $actual   = $router->getParameters();
-        $this->assertSame($expected, $actual);
 
-        $expected = ["param1", "param2"];
-        $actual   = $router->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $router->getParameters()
+        );
+
+        $this->assertSame(
+            $expected,
+            $router->getParams()
+        );
     }
 }

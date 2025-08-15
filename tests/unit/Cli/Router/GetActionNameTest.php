@@ -26,9 +26,10 @@ final class GetActionNameTest extends AbstractUnitTestCase
     {
         $router = new Router();
 
-        $expected = '';
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getActionName()
+        );
 
         $router->handle(
             [
@@ -36,8 +37,9 @@ final class GetActionNameTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = "test";
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "test",
+            $router->getActionName()
+        );
     }
 }

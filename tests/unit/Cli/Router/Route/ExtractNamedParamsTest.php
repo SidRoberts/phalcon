@@ -26,9 +26,11 @@ final class ExtractNamedParamsTest extends AbstractUnitTestCase
     {
         Route::reset();
         Route::delimiter('/');
+
         $route = new Route('test');
 
-        $pattern  = '{task:[a-z\-]+} {action:[a-z\-]+} this-is-a-country';
+        $pattern = '{task:[a-z\-]+} {action:[a-z\-]+} this-is-a-country';
+
         $expected = [
             '([a-z\-]+) ([a-z\-]+) this-is-a-country',
             [
@@ -37,8 +39,10 @@ final class ExtractNamedParamsTest extends AbstractUnitTestCase
             ],
         ];
 
-        $actual = $route->extractNamedParams($pattern);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $route->extractNamedParams($pattern)
+        );
     }
 
     /**
@@ -50,8 +54,9 @@ final class ExtractNamedParamsTest extends AbstractUnitTestCase
         Route::reset();
         $route = new Route('test');
 
-        $actual = $route->extractNamedParams('');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $route->extractNamedParams('')
+        );
     }
 
     /**
@@ -61,6 +66,7 @@ final class ExtractNamedParamsTest extends AbstractUnitTestCase
     public function testCliRouterRouteExtractNamedParamsInvalidFirstChar(): void
     {
         Route::reset();
+
         $route = new Route('test');
 
         // {1abc} — first char '1' is not alpha → notValid branch
@@ -78,6 +84,7 @@ final class ExtractNamedParamsTest extends AbstractUnitTestCase
     public function testCliRouterRouteExtractNamedParamsInvalidChar(): void
     {
         Route::reset();
+
         $route = new Route('test');
 
         // {a@b} — '@' is an invalid character → notValid branch

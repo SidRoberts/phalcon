@@ -26,16 +26,19 @@ final class GetSetNameTest extends AbstractUnitTestCase
     {
         Route::reset();
         Route::delimiter('/');
+
         $route = new Route('test');
 
-        $expected = '';
-        $actual   = $route->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $route->getName()
+        );
 
         $route->setName('otherRoute');
 
-        $expected = 'otherRoute';
-        $actual   = $route->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'otherRoute',
+            $route->getName()
+        );
     }
 }

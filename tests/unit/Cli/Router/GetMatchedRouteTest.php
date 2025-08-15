@@ -43,12 +43,16 @@ final class GetMatchedRouteTest extends AbstractUnitTestCase
                 'action' => 'hello2',
             ]
         );
+
         $router->handle('route2');
 
-        $expected = "route2";
-        $actual   = $router->getMatchedRoute()
-                           ->getPattern()
-        ;
-        $this->assertSame($expected, $actual);
+        $matchedRoute = $router->getMatchedRoute();
+
+        $this->assertNotNull($matchedRoute);
+
+        $this->assertSame(
+            "route2",
+            $matchedRoute->getPattern()
+        );
     }
 }

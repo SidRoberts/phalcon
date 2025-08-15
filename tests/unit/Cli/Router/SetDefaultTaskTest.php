@@ -26,21 +26,24 @@ final class SetDefaultTaskTest extends AbstractUnitTestCase
     {
         $router = new Router();
 
-        $expected = "";
-        $actual   = $router->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "",
+            $router->getTaskName()
+        );
 
         $router->handle("");
 
-        $expected = "";
-        $actual   = $router->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "",
+            $router->getTaskName()
+        );
 
         $router->setDefaultTask("test");
         $router->handle("");
 
-        $expected = "test";
-        $actual   = $router->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "test",
+            $router->getTaskName()
+        );
     }
 }

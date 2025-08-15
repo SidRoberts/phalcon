@@ -28,8 +28,9 @@ final class GetRouteIdTest extends AbstractUnitTestCase
         Route::delimiter('/');
         $route = new Route('test');
 
-        $expected = '0';
-        $actual   = $route->getRouteId();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '0',
+            $route->getRouteId()
+        );
     }
 }

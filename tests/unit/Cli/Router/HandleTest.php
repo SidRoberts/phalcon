@@ -21,6 +21,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 final class HandleTest extends AbstractUnitTestCase
 {
+    /**
+     * @throws Exception
+     */
     #[DataProvider('getExamplesDelimiter')]
     public function testCliRouterHandleRouterDelimiter(
         string $uri,
@@ -33,7 +36,9 @@ final class HandleTest extends AbstractUnitTestCase
         Route::delimiter('/');
 
         $router = new Router();
+
         $routes = $this->setupRoutes('delimiter');
+
         foreach ($routes as $pattern => $parameters) {
             $router->add($pattern, $parameters);
         }
@@ -85,7 +90,7 @@ final class HandleTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: string, 3: string, 4: array}>
      */
     public static function getExamplesDelimiter(): array
     {
@@ -205,7 +210,7 @@ final class HandleTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: string, 3: string, 4: array}>
      */
     public static function getExamplesRouter(): array
     {
@@ -352,7 +357,7 @@ final class HandleTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{uri: array, module: string, task: string, action: string, params: array}>
      */
     public static function getExamplesRouterHandle(): array
     {
@@ -443,7 +448,7 @@ final class HandleTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{uri: string, module: string, task: string, action: string, params: array}>
      */
     public static function getExamplesRouterParams(): array
     {
@@ -591,6 +596,8 @@ final class HandleTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
@@ -614,6 +621,9 @@ final class HandleTest extends AbstractUnitTestCase
         );
     }
 
+    /**
+     * @throws Exception
+     */
     #[DataProvider('getExamplesRouter')]
     public function testCliRouterHandleRouter(
         string $uri,
@@ -654,20 +664,24 @@ final class HandleTest extends AbstractUnitTestCase
     ): void {
         $router->handle($uri);
 
-        $expected = $module;
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $module,
+            $router->getModuleName()
+        );
 
-        $expected = $task;
-        $actual   = $router->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $task,
+            $router->getTaskName()
+        );
 
-        $expected = $action;
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $action,
+            $router->getActionName()
+        );
 
-        $expected = $params;
-        $actual   = $router->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $params,
+            $router->getParams()
+        );
     }
 }

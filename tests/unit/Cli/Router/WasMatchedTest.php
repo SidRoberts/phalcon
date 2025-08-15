@@ -26,8 +26,9 @@ final class WasMatchedTest extends AbstractUnitTestCase
     {
         $router = new Router();
 
-        $actual = $router->wasMatched();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $router->wasMatched()
+        );
 
         $router->add(
             'route1',
@@ -39,7 +40,8 @@ final class WasMatchedTest extends AbstractUnitTestCase
         );
         $router->handle('route1');
 
-        $actual = $router->wasMatched();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $router->wasMatched()
+        );
     }
 }

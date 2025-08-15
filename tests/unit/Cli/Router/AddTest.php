@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Cli\Router;
 
 use Phalcon\Cli\Router;
+use Phalcon\Cli\Router\Route;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class AddTest extends AbstractUnitTestCase
@@ -24,11 +25,14 @@ final class AddTest extends AbstractUnitTestCase
      */
     public function testCliRouterAdd(): void
     {
-        Router\Route::reset();
+        Route::reset();
+
         $router = new Router(false);
-        $expected = [];
-        $actual   = $router->getRoutes();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            [],
+            $router->getRoutes()
+        );
 
         $router->add(
             'route',
@@ -38,11 +42,14 @@ final class AddTest extends AbstractUnitTestCase
                 'action' => 'hello',
             ]
         );
+
         $router->handle('route');
 
         $routes = $router->getRoutes();
-        $class  = Router\Route::class;
-        $actual = $routes[0];
-        $this->assertInstanceOf($class, $actual);
+
+        $this->assertInstanceOf(
+            Route::class,
+            $routes[0]
+        );
     }
 }

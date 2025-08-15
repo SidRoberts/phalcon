@@ -26,24 +26,30 @@ final class ResetTest extends AbstractUnitTestCase
     {
         Route::reset();
         Route::delimiter('/');
+
         $route = new Route('test');
 
-        $expected = '0';
-        $actual   = $route->getRouteId();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '0',
+            $route->getRouteId()
+        );
 
-        $route    = new Route('test');
-        $route    = new Route('test');
-        $route    = new Route('test');
-        $expected = '3';
-        $actual   = $route->getRouteId();
-        $this->assertSame($expected, $actual);
+        $route = new Route('test');
+        $route = new Route('test');
+        $route = new Route('test');
+
+        $this->assertSame(
+            '3',
+            $route->getRouteId()
+        );
 
         Route::reset();
+
         $route = new Route('test');
 
-        $expected = '0';
-        $actual   = $route->getRouteId();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '0',
+            $route->getRouteId()
+        );
     }
 }

@@ -25,6 +25,7 @@ final class GetRouteByNameTest extends AbstractUnitTestCase
     public function testNamedRoutes(): void
     {
         $this->setNewCliFactoryDefault();
+
         Route::reset();
 
         $router = new Router(false);
@@ -36,13 +37,15 @@ final class GetRouteByNameTest extends AbstractUnitTestCase
                             ->setName('usersAdd')
         ;
 
-        $expected = $usersFind;
-        $actual   = $router->getRouteByName('usersFind');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $usersFind,
+            $router->getRouteByName('usersFind')
+        );
 
-        $expected = $usersAdd;
-        $actual   = $router->getRouteByName('usersAdd');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $usersAdd,
+            $router->getRouteByName('usersAdd')
+        );
     }
 
     /**
@@ -52,12 +55,14 @@ final class GetRouteByNameTest extends AbstractUnitTestCase
     public function testCliRouterGetRouteByNameNotFound(): void
     {
         $this->setNewCliFactoryDefault();
+
         Route::reset();
 
         $router = new Router(false);
         $router->add('api users find')->setName('usersFind');
 
-        $actual = $router->getRouteByName('doesNotExist');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $router->getRouteByName('doesNotExist')
+        );
     }
 }

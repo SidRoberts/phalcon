@@ -23,6 +23,9 @@ final class ConvertTest extends AbstractUnitTestCase
 {
     use DiTrait;
 
+    /**
+     * @return array<array{0: string, 1: array}>
+     */
     public static function getExamplesConverters(): array
     {
         return [
@@ -56,14 +59,12 @@ final class ConvertTest extends AbstractUnitTestCase
 
         $router = new Router();
 
-        $route1 = $router
-            ->add('{task:[a-z\-]+} {action:[a-z\-]+} this-is-a-country')
-        ;
+        $route1 = $router->add('{task:[a-z\-]+} {action:[a-z\-]+} this-is-a-country');
 
-        $taskConverter   = function ($task) {
+        $taskConverter   = function (string $task): string {
             return str_replace('-', '', $task);
         };
-        $actionConverter = function ($action) {
+        $actionConverter = function (string $action): string {
             return str_replace('-', '', $action);
         };
 
@@ -107,22 +108,28 @@ final class ConvertTest extends AbstractUnitTestCase
 
         $router->handle($route);
 
-        $actual = $router->wasMatched();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $router->wasMatched()
+        );
 
-        $expected = $paths['task'];
-        $actual   = $router->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $paths['task'],
+            $router->getTaskName()
+        );
 
-        $expected = $paths['action'];
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $paths['action'],
+            $router->getActionName()
+        );
 
         $expected = [
             'task'   => $taskConverter,
             'action' => $actionConverter,
         ];
-        $actual   = $route1->getConverters();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $route1->getConverters()
+        );
     }
 }

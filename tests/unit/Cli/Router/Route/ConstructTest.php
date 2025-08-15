@@ -27,10 +27,8 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $route = new Route('test');
 
-        $class = RouteInterface::class;
-        $this->assertInstanceOf($class, $route);
+        $this->assertInstanceOf(RouteInterface::class, $route);
 
-        $class = Route::class;
-        $this->assertInstanceOf($class, $route);
+        $this->assertInstanceOf(Route::class, $route);
     }
 }

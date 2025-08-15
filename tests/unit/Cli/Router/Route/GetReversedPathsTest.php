@@ -40,8 +40,11 @@ final class GetReversedPathsTest extends AbstractUnitTestCase
 
         $expected = array_flip($expected);
 
-        $route  = $router->add('route', $path);
-        $actual = $route->getReversedPaths();
-        $this->assertSame($expected, $actual);
+        $route = $router->add('route', $path);
+
+        $this->assertSame(
+            $expected,
+            $route->getReversedPaths()
+        );
     }
 }

@@ -30,10 +30,10 @@ final class GetSetDITest extends AbstractUnitTestCase
         $container = new Di();
 
         $router->setDI($container);
+
         $actual = $router->getDI();
 
-        $class = Di::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Di::class, $actual);
 
         $this->assertSame($container, $actual);
     }

@@ -14,45 +14,65 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Cli\Router;
 
 use Phalcon\Cli\Router;
+use Phalcon\Cli\Router\Route;
+use Phalcon\Cli\RouterInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
+    public function setUp(): void
+    {
+        Route::reset();
+    }
+
     /**
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
-    public function testCliRouterConstruct(): void
+    public function testCliRouterInstanceOfRouterInterface(): void
     {
-        Router\Route::reset();
-        $router = new Router(false);
-
-        $class  = Router::class;
-        $actual = $router;
-        $this->assertInstanceOf($class, $actual);
-
-        $expected = [];
-        $actual   = $router->getRoutes();
-        $this->assertSame($expected, $actual);
-
-        //Should contain 2 default routes.
         $router = new Router();
 
-        $class  = Router::class;
-        $actual = $router;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(RouterInterface::class, $router);
+    }
 
-        $routes   = $router->getRoutes();
-        $expected = 2;
-        $actual   = count($router->getRoutes());
-        $this->assertSame($expected, $actual);
+    /**
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2018-11-13
+     */
+    public function testCliRouterConstructNoDefaultRoutes(): void
+    {
+        $router = new Router(false);
 
-        $expected = "#^(?: )?([a-zA-Z0-9\\_\\-]+)[ ]{0,1}$#";
-        $actual   = $routes[0]->getPattern();
-        $this->assertSame($expected, $actual);
+        $this->assertInstanceOf(Router::class, $router);
 
-        $expected = "#^(?: )?([a-zA-Z0-9\\_\\-]+) ([a-zA-Z0-9\\.\\_]+)( .*)*$#";
-        $actual   = $routes[1]->getPattern();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $router->getRoutes()
+        );
+    }
+
+    /**
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2018-11-13
+     */
+    public function testCliRouterConstructDefaultRoutes(): void
+    {
+        // Should contain 2 default routes.
+        $router = new Router();
+
+        $routes = $router->getRoutes();
+
+        $this->assertCount(2, $routes);
+
+        $this->assertSame(
+            "#^(?: )?([a-zA-Z0-9\\_\\-]+)[ ]{0,1}$#",
+            $routes[0]->getPattern()
+        );
+
+        $this->assertSame(
+            "#^(?: )?([a-zA-Z0-9\\_\\-]+) ([a-zA-Z0-9\\.\\_]+)( .*)*$#",
+            $routes[1]->getPattern()
+        );
     }
 }

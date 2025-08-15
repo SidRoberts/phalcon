@@ -26,11 +26,13 @@ final class GetPatternTest extends AbstractUnitTestCase
     {
         Route::reset();
         Route::delimiter('/');
+
         $pattern = '/:module/:namespace/:task/:action/:params/:delimiter';
         $route   = new Route($pattern);
 
-        $expected = $pattern;
-        $actual   = $route->getPattern();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $pattern,
+            $route->getPattern()
+        );
     }
 }

@@ -36,8 +36,11 @@ final class GetPathsTest extends AbstractUnitTestCase
 
         $router = new Router(false);
 
-        $route  = $router->add('route', $path);
-        $actual = $route->getPaths();
-        $this->assertSame($expected, $actual);
+        $route = $router->add('route', $path);
+
+        $this->assertSame(
+            $expected,
+            $route->getPaths()
+        );
     }
 }

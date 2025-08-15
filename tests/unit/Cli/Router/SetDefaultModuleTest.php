@@ -26,21 +26,24 @@ final class SetDefaultModuleTest extends AbstractUnitTestCase
     {
         $router = new Router(false);
 
-        $expected = "";
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "",
+            $router->getModuleName()
+        );
 
         $router->handle("");
 
-        $expected = "";
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "",
+            $router->getModuleName()
+        );
 
         $router->setDefaultModule("test");
         $router->handle("");
 
-        $expected = "test";
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "test",
+            $router->getModuleName()
+        );
     }
 }

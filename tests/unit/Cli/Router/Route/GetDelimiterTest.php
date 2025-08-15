@@ -27,27 +27,32 @@ final class GetDelimiterTest extends AbstractUnitTestCase
         $store = Route::getDelimiter();
 
         Route::delimiter(Route::DEFAULT_DELIMITER);
+
         $route = new Route("test");
 
         // Default delimiter
-        $expected = " ";
-        $actual   = Route::DEFAULT_DELIMITER;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            " ",
+            Route::DEFAULT_DELIMITER
+        );
 
-        $expected = " ";
-        $actual   = $route->getDelimiter();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            " ",
+            $route->getDelimiter()
+        );
 
         $route = new Route("test");
         $route::delimiter("-");
 
-        $expected = " ";
-        $actual   = Route::DEFAULT_DELIMITER;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            " ",
+            Route::DEFAULT_DELIMITER
+        );
 
-        $expected = "-";
-        $actual   = $route->getDelimiter();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "-",
+            $route->getDelimiter()
+        );
 
         $route = new Route("test");
         $route::delimiter("-");

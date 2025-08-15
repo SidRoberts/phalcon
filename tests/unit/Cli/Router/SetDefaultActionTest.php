@@ -26,21 +26,25 @@ final class SetDefaultActionTest extends AbstractUnitTestCase
     {
         $router = new Router(false);
 
-        $expected = "";
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "",
+            $router->getActionName()
+        );
 
         $router->handle("");
 
-        $expected = "";
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "",
+            $router->getActionName()
+        );
 
         $router->setDefaultAction("test");
+
         $router->handle("");
 
-        $expected = "test";
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "test",
+            $router->getActionName()
+        );
     }
 }

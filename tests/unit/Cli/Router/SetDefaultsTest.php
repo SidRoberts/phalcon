@@ -25,38 +25,47 @@ final class SetDefaultsTest extends AbstractUnitTestCase
     public function testCliRouterSetDefaults(): void
     {
         $router = new Router(false);
+
         $router->handle();
 
-        $expected = "";
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "",
+            $router->getModuleName()
+        );
 
-        $expected = "";
-        $actual   = $router->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "",
+            $router->getTaskName()
+        );
 
-        $expected = "";
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "",
+            $router->getActionName()
+        );
 
         $defaults = [
             'module' => "testModule",
             'task'   => "testTask",
             'action' => "testAction",
         ];
+
         $router->setDefaults($defaults);
+
         $router->handle();
 
-        $expected = $defaults["module"];
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $defaults["module"],
+            $router->getModuleName()
+        );
 
-        $expected = $defaults["task"];
-        $actual   = $router->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $defaults["task"],
+            $router->getTaskName()
+        );
 
-        $expected = $defaults["action"];
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $defaults["action"],
+            $router->getActionName()
+        );
     }
 }

@@ -31,7 +31,7 @@ final class BeforeMatchTest extends AbstractUnitTestCase
         $trace = 0;
 
         $router   = new Router(false);
-        $callback = function () use (&$trace) {
+        $callback = function () use (&$trace): bool {
             $trace++;
 
             return false;
@@ -44,7 +44,7 @@ final class BeforeMatchTest extends AbstractUnitTestCase
         $router
             ->add('static route2')
             ->beforeMatch(
-                function () use (&$trace) {
+                function () use (&$trace): bool {
                     $trace++;
 
                     return true;
@@ -55,27 +55,29 @@ final class BeforeMatchTest extends AbstractUnitTestCase
 
         $router->handle();
 
-        $actual = $router->wasMatched();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $router->wasMatched()
+        );
 
 
         $router->handle('static route');
 
-        $actual = $router->wasMatched();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $router->wasMatched()
+        );
 
 
         $router->handle('static route2');
 
-        $actual = $router->wasMatched();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $router->wasMatched()
+        );
 
-        $expected = 2;
-        $actual   = $trace;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(2, $trace);
 
-        $expected = $callback;
-        $actual   = $route1->getBeforeMatch();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $callback,
+            $route1->getBeforeMatch()
+        );
     }
 }

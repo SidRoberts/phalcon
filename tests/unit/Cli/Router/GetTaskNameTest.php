@@ -26,14 +26,16 @@ final class GetTaskNameTest extends AbstractUnitTestCase
     {
         $router = new Router();
 
-        $expected = '';
-        $actual   = $router->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getTaskName()
+        );
 
         $router->handle("task action param1 param2");
 
-        $expected = "task";
-        $actual   = $router->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "task",
+            $router->getTaskName()
+        );
     }
 }

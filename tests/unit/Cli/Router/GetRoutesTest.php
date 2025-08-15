@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Cli\Router;
 
 use Phalcon\Cli\Router;
+use Phalcon\Cli\Router\Route;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
 
@@ -29,7 +30,8 @@ final class GetRoutesTest extends AbstractUnitTestCase
     {
         $this->setNewCliFactoryDefault();
 
-        Router\Route::reset();
+        Route::reset();
+
         $router = new Router(false);
 
         $expected = [];
@@ -47,7 +49,10 @@ final class GetRoutesTest extends AbstractUnitTestCase
             0 => $usersFind,
             1 => $usersAdd,
         ];
-        $actual   = $router->getRoutes();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getRoutes()
+        );
     }
 }

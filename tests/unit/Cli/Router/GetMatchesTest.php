@@ -46,7 +46,10 @@ final class GetMatchesTest extends AbstractUnitTestCase
         $router->handle('route');
 
         $expected = ["route", "route"];
-        $actual   = $router->getMatches();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getMatches()
+        );
     }
 }
