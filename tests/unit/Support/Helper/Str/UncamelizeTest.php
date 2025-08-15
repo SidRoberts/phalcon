@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class UncamelizeTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: string, 2: string}>
      */
     public static function getSources(): array
     {
@@ -57,8 +57,10 @@ final class UncamelizeTest extends AbstractUnitTestCase
         string $delimiter,
     ): void {
         $object = new Uncamelize();
-        $actual = $object($value, $delimiter);
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $object($value, $delimiter)
+        );
     }
 }

@@ -25,16 +25,21 @@ final class IsBetweenTest extends AbstractUnitTestCase
     public function testSupportHelperNumberBetween(): void
     {
         $object = new IsBetween();
-        $actual = $object(5, 1, 10);
-        $this->assertTrue($actual);
 
-        $actual = $object(1, 1, 10);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object(5, 1, 10)
+        );
 
-        $actual = $object(10, 1, 10);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object(1, 1, 10)
+        );
 
-        $actual = $object(1, 5, 10);
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $object(10, 1, 10)
+        );
+
+        $this->assertFalse(
+            $object(1, 5, 10)
+        );
     }
 }

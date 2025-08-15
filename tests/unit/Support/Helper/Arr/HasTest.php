@@ -25,18 +25,22 @@ final class HasTest extends AbstractUnitTestCase
     public function testSupportHelperArrHas(): void
     {
         $object = new Has();
+
         $collection = [
             1        => 'Phalcon',
             'suffix' => 'Framework',
         ];
 
-        $actual = $object($collection, 1);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object($collection, 1)
+        );
 
-        $actual = $object($collection, 'suffix');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object($collection, 'suffix')
+        );
 
-        $actual = $object($collection, uniqid());
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $object($collection, uniqid())
+        );
     }
 }

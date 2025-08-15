@@ -22,7 +22,7 @@ use function basename;
 final class BasenameTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: string}>
      */
     public static function getAsciiExamples(): array
     {
@@ -55,7 +55,7 @@ final class BasenameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: string}>
      */
     public static function getNonAsciiExamples(): array
     {
@@ -101,8 +101,11 @@ final class BasenameTest extends AbstractUnitTestCase
         }
 
         $object = new Basename();
-        $actual = $object($path);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($path)
+        );
     }
 
     /**
@@ -120,8 +123,9 @@ final class BasenameTest extends AbstractUnitTestCase
 
         $object = new Basename();
 
-        $expected = basename($path, $suffix);
-        $actual = $object($path, $suffix);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            basename($path, $suffix),
+            $object($path, $suffix)
+        );
     }
 }

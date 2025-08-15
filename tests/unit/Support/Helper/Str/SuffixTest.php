@@ -26,8 +26,9 @@ final class SuffixTest extends AbstractUnitTestCase
     {
         $object = new Suffix();
 
-        $expected = 'ClassConstants';
-        $actual = $object('Class', 'Constants');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'ClassConstants',
+            $object('Class', 'Constants')
+        );
     }
 }

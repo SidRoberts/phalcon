@@ -20,9 +20,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class IncrementTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: string, 2: string}>
      */
-    public static function strProvider()
+    public static function strProvider(): array
     {
         return [
             ["file", "file_1", "_"],
@@ -45,7 +45,10 @@ final class IncrementTest extends AbstractUnitTestCase
         string $separator,
     ): void {
         $object = new Increment();
-        $actual = $object($source, $separator);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($source, $separator)
+        );
     }
 }

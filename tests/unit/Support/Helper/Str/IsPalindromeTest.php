@@ -25,7 +25,9 @@ final class IsPalindromeTest extends AbstractUnitTestCase
     public function testSupportHelperStrIsPalindrome(): void
     {
         $object = new IsPalindrome();
-        $actual = $object('racecar');
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $object('racecar')
+        );
     }
 }

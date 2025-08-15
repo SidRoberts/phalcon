@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class FriendlyTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: string, 2: bool, 3: array|string, 4: string}>
      */
     public static function getExamples(): array
     {
@@ -94,11 +94,11 @@ final class FriendlyTest extends AbstractUnitTestCase
         string $text,
         string $separator,
         bool $lowercase,
-        array|string $replace,
-        string $result,
+        array | string $replace,
+        string $expected,
     ): void {
         $object = new Friendly();
-        $expected = $result;
+
         $actual = $object->__invoke(
             $text,
             $separator,

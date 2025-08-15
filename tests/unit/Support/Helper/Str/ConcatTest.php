@@ -34,8 +34,8 @@ final class ConcatTest extends AbstractUnitTestCase
             '/folder_2',
             'folder_3/',
         );
-        $expected = '/tmp/folder_1/folder_2/folder_3/';
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame('/tmp/folder_1/folder_2/folder_3/', $actual);
 
         // Test 2
         $actual = $object(
@@ -45,7 +45,7 @@ final class ConcatTest extends AbstractUnitTestCase
             '.test',
             '.34',
         );
-        $expected = '@test.test2.test.34';
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame('@test.test2.test.34', $actual);
     }
 }

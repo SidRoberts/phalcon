@@ -25,56 +25,63 @@ final class OrderTest extends AbstractUnitTestCase
     public function testSupportHelperArrOrder(): void
     {
         $object = new Order();
-        $collection = [
-            [
-                'id'   => 2,
-                'name' => 'Paul',
-            ],
-            [
-                'id'   => 3,
-                'name' => 'Peter',
-            ],
-            [
-                'id'   => 1,
-                'name' => 'John',
-            ],
-        ];
-
-        $expected = [
-            [
-                'id'   => 1,
-                'name' => 'John',
-            ],
-            [
-                'id'   => 2,
-                'name' => 'Paul',
-            ],
-            [
-                'id'   => 3,
-                'name' => 'Peter',
-            ],
-        ];
-        $actual = $object($collection, 'id');
-        $this->assertSame($expected, $actual);
-
-        $expected = [
-            [
-                'id'   => 3,
-                'name' => 'Peter',
-            ],
-            [
-                'id'   => 2,
-                'name' => 'Paul',
-            ],
-            [
-                'id'   => 1,
-                'name' => 'John',
-            ],
-        ];
-        $actual = $object($collection, 'id', $object::ORDER_DESC);
-        $this->assertSame($expected, $actual);
 
         $collection = [
+            [
+                'id'   => 2,
+                'name' => 'Paul',
+            ],
+            [
+                'id'   => 3,
+                'name' => 'Peter',
+            ],
+            [
+                'id'   => 1,
+                'name' => 'John',
+            ],
+        ];
+
+        $expected = [
+            [
+                'id'   => 1,
+                'name' => 'John',
+            ],
+            [
+                'id'   => 2,
+                'name' => 'Paul',
+            ],
+            [
+                'id'   => 3,
+                'name' => 'Peter',
+            ],
+        ];
+
+        $this->assertSame(
+            $expected,
+            $object($collection, 'id')
+        );
+
+        $expected = [
+            [
+                'id'   => 3,
+                'name' => 'Peter',
+            ],
+            [
+                'id'   => 2,
+                'name' => 'Paul',
+            ],
+            [
+                'id'   => 1,
+                'name' => 'John',
+            ],
+        ];
+
+        $this->assertSame(
+            $expected,
+            $object($collection, 'id', $object::ORDER_DESC)
+        );
+
+        $collection = [
             (object)[
                 'id'   => 2,
                 'name' => 'Paul',
@@ -103,7 +110,10 @@ final class OrderTest extends AbstractUnitTestCase
                 'name' => 'Peter',
             ],
         ];
-        $actual = $object($collection, 'id');
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $object($collection, 'id')
+        );
     }
 }

@@ -26,17 +26,19 @@ final class ToObjectTest extends AbstractUnitTestCase
     public function testSupportHelperArrArrayToObject(): void
     {
         $object = new ToObject();
+
         $source = [
             'one'   => 'two',
             'three' => 'four',
         ];
 
-
-        $expected = new stdClass();
-        $expected->one = 'two';
+        $expected        = new stdClass();
+        $expected->one   = 'two';
         $expected->three = 'four';
 
-        $actual = $object($source);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $object($source)
+        );
     }
 }

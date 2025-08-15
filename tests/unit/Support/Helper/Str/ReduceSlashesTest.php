@@ -26,20 +26,24 @@ final class ReduceSlashesTest extends AbstractUnitTestCase
     {
         $object = new ReduceSlashes();
 
-        $expected = 'app/controllers/IndexController';
-        $actual = $object('app/controllers//IndexController');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'app/controllers/IndexController',
+            $object('app/controllers//IndexController')
+        );
 
-        $expected = 'http://foo/bar/baz/buz';
-        $actual = $object('http://foo//bar/baz/buz');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'https://foo/bar/baz/buz',
+            $object('https://foo//bar/baz/buz')
+        );
 
-        $expected = 'php://memory';
-        $actual = $object('php://memory');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'php://memory',
+            $object('php://memory')
+        );
 
-        $expected = 'http/https';
-        $actual = $object('http//https');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'http/https',
+            $object('http//https')
+        );
     }
 }

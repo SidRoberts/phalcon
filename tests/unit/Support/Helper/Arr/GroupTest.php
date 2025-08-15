@@ -62,8 +62,10 @@ final class GroupTest extends AbstractUnitTestCase
             ],
         ];
 
-        $actual = $object($collection, 'age');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $object($collection, 'age')
+        );
     }
 
     /**
@@ -79,8 +81,11 @@ final class GroupTest extends AbstractUnitTestCase
             3 => ['one', 'two'],
             5 => ['three'],
         ];
-        $actual = $object($collection, 'strlen');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($collection, 'strlen')
+        );
     }
 
     /**
@@ -108,7 +113,10 @@ final class GroupTest extends AbstractUnitTestCase
             'Peter' => [$peter],
             'Paul'  => [$paul],
         ];
-        $actual = $object($collection, 'name');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($collection, 'name')
+        );
     }
 }

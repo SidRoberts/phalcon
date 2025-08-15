@@ -59,8 +59,10 @@ final class BlackListTest extends AbstractUnitTestCase
             ' key-6 ' => 'value-6',
             'key-8'   => 'value-8',
         ];
-        $actual = $object->__invoke($value, $blackList);
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $object->__invoke($value, $blackList)
+        );
     }
 }

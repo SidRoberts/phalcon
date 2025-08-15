@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class DecrementTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: string, 2: string}>
      */
     public static function getExamples()
     {
@@ -44,7 +44,10 @@ final class DecrementTest extends AbstractUnitTestCase
         string $separator,
     ): void {
         $object = new Decrement();
-        $actual = $object($source, $separator);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($source, $separator)
+        );
     }
 }

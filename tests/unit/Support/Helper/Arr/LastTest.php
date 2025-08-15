@@ -27,14 +27,16 @@ final class LastTest extends AbstractUnitTestCase
     public function testSupportHelperArrLast(): void
     {
         $object = new Last();
+
         $collection = [
             'Phalcon',
             'Framework',
         ];
 
-        $expected = 'Framework';
-        $actual = $object($collection);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Framework',
+            $object($collection)
+        );
     }
 
     /**
@@ -44,18 +46,19 @@ final class LastTest extends AbstractUnitTestCase
     public function testSupportHelperArrLastFunction(): void
     {
         $object = new Last();
+
         $collection = [
             'Phalcon',
             'Framework',
         ];
 
-        $expected = 'Phalcon';
         $actual = $object(
             $collection,
-            function ($element) {
+            function ($element): bool {
                 return strlen($element) < 8;
             },
         );
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame('Phalcon', $actual);
     }
 }

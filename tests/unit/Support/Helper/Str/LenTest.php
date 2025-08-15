@@ -25,11 +25,16 @@ final class LenTest extends AbstractUnitTestCase
     public function testSupportHelperStrLen(): void
     {
         $object = new Len();
-        $actual = $object('hello');
-        $this->assertSame(5, $actual);
 
-        $actual = $object('1234');
-        $this->assertSame(4, $actual);
+        $this->assertSame(
+            5,
+            $object('hello')
+        );
+
+        $this->assertSame(
+            4,
+            $object('1234')
+        );
     }
 
     /**
@@ -39,10 +44,15 @@ final class LenTest extends AbstractUnitTestCase
     public function testSupportHelperStrLenMultiBytesEncoding(): void
     {
         $object = new Len();
-        $actual = $object('привет мир!');
-        $this->assertSame(11, $actual);
 
-        $actual = $object('männer');
-        $this->assertSame(6, $actual);
+        $this->assertSame(
+            11,
+            $object('привет мир!')
+        );
+
+        $this->assertSame(
+            6,
+            $object('männer')
+        );
     }
 }

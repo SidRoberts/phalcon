@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class CamelizeTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: string, 2: ?string, 3: bool}>
      */
     public static function getSources(): array
     {
@@ -67,7 +67,9 @@ final class CamelizeTest extends AbstractUnitTestCase
     ): void {
         $object = new Camelize();
 
-        $actual = $object($value, $delimiter, $lowercase);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $object($value, $delimiter, $lowercase)
+        );
     }
 }

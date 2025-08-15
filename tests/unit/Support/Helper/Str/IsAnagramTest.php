@@ -25,7 +25,13 @@ final class IsAnagramTest extends AbstractUnitTestCase
     public function testSupportHelperStrIsAnagram(): void
     {
         $object = new IsAnagram();
-        $actual = $object('rail safety', 'fairy tales');
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $object('rail safety', 'fairy tales')
+        );
+
+        $this->assertFalse(
+            $object('this is not an', 'anagram of this')
+        );
     }
 }

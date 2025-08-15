@@ -26,8 +26,9 @@ final class PrefixTest extends AbstractUnitTestCase
     {
         $object = new Prefix();
 
-        $expected = 'ClassConstants';
-        $actual = $object('Constants', 'Class');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'ClassConstants',
+            $object('Constants', 'Class')
+        );
     }
 }

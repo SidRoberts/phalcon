@@ -26,6 +26,7 @@ final class DynamicTest extends AbstractUnitTestCase
     public function testSupportHelperStrDynamic(): void
     {
         $object = new Dynamic();
+
         $actual = $object->__invoke('{Hi|Hello}, my name is Bob!');
 
         $this->assertStringNotContainsString('{', $actual);
@@ -44,6 +45,7 @@ final class DynamicTest extends AbstractUnitTestCase
     public function testSupportHelperStrDynamicCustomDelimiter(): void
     {
         $object = new Dynamic();
+
         $actual = $object->__invoke('(Hi|Hello), my name is Bob!', '(', ')');
 
         $this->assertStringNotContainsString('{', $actual);
@@ -62,6 +64,7 @@ final class DynamicTest extends AbstractUnitTestCase
     public function testSupportHelperStrDynamicCustomSeparator(): void
     {
         $object = new Dynamic();
+
         $actual = $object->__invoke('{Hi=Hello}, my name is Bob!', '{', '}', '=');
 
         $this->assertStringNotContainsString('{', $actual);
@@ -106,7 +109,9 @@ final class DynamicTest extends AbstractUnitTestCase
         $this->expectExceptionMessage(
             "Syntax error in string '{{Hi/Hello}'",
         );
+
         $object = new Dynamic();
+
         $object->__invoke('{{Hi/Hello}');
     }
 }

@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class UcwordsTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: string}>
      */
     public static function getData(): array
     {
@@ -81,8 +81,10 @@ final class UcwordsTest extends AbstractUnitTestCase
         string $expected,
     ): void {
         $object = new Ucwords();
-        $actual = $object($text);
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $object($text)
+        );
     }
 }

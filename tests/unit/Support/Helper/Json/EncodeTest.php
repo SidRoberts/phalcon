@@ -29,13 +29,16 @@ final class EncodeTest extends AbstractUnitTestCase
     public function testSupportHelperJsonEncode(): void
     {
         $object = new Encode();
+
         $data = [
             'one' => 'two',
             'three',
         ];
-        $expected = '{"one":"two","0":"three"}';
-        $actual = $object($data);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            '{"one":"two","0":"three"}',
+            $object($data)
+        );
     }
 
     /**
@@ -48,6 +51,7 @@ final class EncodeTest extends AbstractUnitTestCase
         $this->expectExceptionMessage(
             "Malformed UTF-8 characters, possibly incorrectly encoded",
         );
+
         $data = pack("H*", 'c32e');
         (new Encode())($data);
     }
@@ -62,6 +66,7 @@ final class EncodeTest extends AbstractUnitTestCase
         $this->expectExceptionMessage(
             "Malformed UTF-8 characters, possibly incorrectly encoded",
         );
+
         $data = pack("H*", 'c32e');
         (new Encode())($data, JSON_HEX_TAG);
     }

@@ -22,7 +22,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class CaseTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: class-string<PascalCase>, 1: string, 2: string, 3: ?string}>
      */
     public static function getSources(): array
     {
@@ -112,7 +112,9 @@ final class CaseTest extends AbstractUnitTestCase
     ): void {
         $object = new $class();
 
-        $actual = $object($value, $delimiter);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $object($value, $delimiter)
+        );
     }
 }

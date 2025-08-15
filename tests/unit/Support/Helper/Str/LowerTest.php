@@ -26,17 +26,20 @@ final class LowerTest extends AbstractUnitTestCase
     {
         $object = new Lower();
 
-        $expected = 'hello';
-        $actual = $object('hello');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'hello',
+            $object('hello')
+        );
 
-        $expected = 'hello';
-        $actual = $object('HELLO');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'hello',
+            $object('HELLO')
+        );
 
-        $expected = '1234';
-        $actual = $object('1234');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '1234',
+            $object('1234')
+        );
     }
 
     /**
@@ -47,29 +50,34 @@ final class LowerTest extends AbstractUnitTestCase
     {
         $object = new Lower();
 
-        $expected = 'привет мир!';
-        $actual = $object('привет мир!');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'привет мир!',
+            $object('привет мир!')
+        );
 
-        $expected = 'привет мир!';
-        $actual = $object('ПриВЕт Мир!');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'привет мир!',
+            $object('ПриВЕт Мир!')
+        );
 
-        $expected = 'привет мир!';
-        $actual = $object('ПРИВЕТ МИР!');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'привет мир!',
+            $object('ПРИВЕТ МИР!')
+        );
 
+        $this->assertSame(
+            'männer',
+            $object('männer')
+        );
 
-        $expected = 'männer';
-        $actual = $object('männer');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'männer',
+            $object('mÄnnER')
+        );
 
-        $expected = 'männer';
-        $actual = $object('mÄnnER');
-        $this->assertSame($expected, $actual);
-
-        $expected = 'männer';
-        $actual = $object('MÄNNER');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'männer',
+            $object('MÄNNER')
+        );
     }
 }

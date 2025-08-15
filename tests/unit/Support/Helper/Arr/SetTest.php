@@ -30,8 +30,11 @@ final class SetTest extends AbstractUnitTestCase
         $expected = [
             0 => 'Phalcon',
         ];
-        $actual = $object($collection, 'Phalcon');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($collection, 'Phalcon')
+        );
     }
 
     /**
@@ -46,8 +49,11 @@ final class SetTest extends AbstractUnitTestCase
         $expected = [
             1 => 'Phalcon',
         ];
-        $actual = $object($collection, 'Phalcon', 1);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($collection, 'Phalcon', 1)
+        );
     }
 
     /**
@@ -64,8 +70,11 @@ final class SetTest extends AbstractUnitTestCase
         $expected = [
             1 => 'Framework',
         ];
-        $actual = $object($collection, 'Framework', 1);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($collection, 'Framework', 1)
+        );
     }
 
     /**
@@ -80,7 +89,10 @@ final class SetTest extends AbstractUnitTestCase
         $expected = [
             'suffix' => 'Framework',
         ];
-        $actual = $object($collection, 'Framework', 'suffix');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($collection, 'Framework', 'suffix')
+        );
     }
 }

@@ -24,12 +24,12 @@ final class DirFromFileTest extends AbstractUnitTestCase
      */
     public function testSupportHelperStrFolderFromFile(): void
     {
-        $fileName = 'abcdef12345.jpg';
         $object = new DirFromFile();
 
-        $expected = 'ab/cd/ef/12/3/';
-        $actual = $object($fileName);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'ab/cd/ef/12/3/',
+            $object('abcdef12345.jpg')
+        );
     }
 
     /**
@@ -38,11 +38,11 @@ final class DirFromFileTest extends AbstractUnitTestCase
      */
     public function testSupportHelperStrFolderFromFileEmptyString(): void
     {
-        $fileName = '';
         $object = new DirFromFile();
 
-        $expected = '/';
-        $actual = $object($fileName);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '/',
+            $object('')
+        );
     }
 }

@@ -27,13 +27,16 @@ final class FirstTest extends AbstractUnitTestCase
     public function testSupportHelperArrFirst(): void
     {
         $object = new First();
+
         $collection = [
             'Phalcon',
             'Framework',
         ];
-        $expected = 'Phalcon';
-        $actual = $object($collection);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            'Phalcon',
+            $object($collection)
+        );
     }
 
     /**
@@ -43,17 +46,19 @@ final class FirstTest extends AbstractUnitTestCase
     public function testSupportHelperArrFirstFunction(): void
     {
         $object = new First();
+
         $collection = [
             'Phalcon',
             'Framework',
         ];
-        $expected = 'Framework';
+
         $actual = $object(
             $collection,
-            function ($element) {
+            function (string $element): bool {
                 return strlen($element) > 8;
             },
         );
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame('Framework', $actual);
     }
 }

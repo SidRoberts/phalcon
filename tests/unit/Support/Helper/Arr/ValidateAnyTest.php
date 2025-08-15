@@ -25,13 +25,16 @@ final class ValidateAnyTest extends AbstractUnitTestCase
     public function testSupportHelperArrValidateAny(): void
     {
         $object = new ValidateAny();
+
         $collection = [1, 2, 3, 4, 5];
+
         $actual = $object(
             $collection,
-            function ($element) {
+            function ($element): bool {
                 return $element < 2;
             },
         );
+
         $this->assertTrue($actual);
     }
 }

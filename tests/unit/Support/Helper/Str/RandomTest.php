@@ -22,7 +22,7 @@ use function strlen;
 final class RandomTest extends AbstractUnitTestCase
 {
     /**
-     * @return int[][]
+     * @return array<array{0: int}>
      */
     public static function oneToTenProvider(): array
     {
@@ -41,7 +41,7 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return int[][]
+     * @return array<array{0: int}>
      */
     public static function randomDistinctProvider(): array
     {

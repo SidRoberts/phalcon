@@ -26,14 +26,14 @@ final class CountVowelsTest extends AbstractUnitTestCase
     {
         $object = new CountVowels();
 
-        $source = 'Luke, I am your father!';
-        $expected = 9;
-        $actual = $object($source);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            9,
+            $object('Luke, I am your father!')
+        );
 
-        $source = '';
-        $expected = 0;
-        $actual = $object($source);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $object('')
+        );
     }
 }

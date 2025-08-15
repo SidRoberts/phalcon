@@ -26,6 +26,7 @@ final class WhiteListTest extends AbstractUnitTestCase
     public function testSupportHelperArrWhiteList(): void
     {
         $object = new Whitelist();
+
         $value = [
             'value-1',
             ' key '  => 'value-2',
@@ -55,8 +56,10 @@ final class WhiteListTest extends AbstractUnitTestCase
             7        => 'value-5',
             'key-3 ' => 'value-7',
         ];
-        $actual = $object($value, $whiteList);
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $object($value, $whiteList)
+        );
     }
 }

@@ -25,14 +25,16 @@ final class FirstKeyTest extends AbstractUnitTestCase
     public function testSupportHelperArrFirstKey(): void
     {
         $object = new FirstKey();
+
         $collection = [
             1 => 'Phalcon',
             3 => 'Framework',
         ];
 
-        $expected = 1;
-        $actual = $object($collection);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $object($collection)
+        );
     }
 
     /**
@@ -42,18 +44,19 @@ final class FirstKeyTest extends AbstractUnitTestCase
     public function testSupportHelperArrFirstKeyFunction(): void
     {
         $object = new FirstKey();
+
         $collection = [
             1 => 'Phalcon',
             3 => 'Framework',
         ];
 
-        $expected = 3;
         $actual = $object(
             $collection,
-            function ($element) {
+            function ($element): bool {
                 return strlen($element) > 8;
             },
         );
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(3, $actual);
     }
 }

@@ -25,10 +25,13 @@ final class IsUpperTest extends AbstractUnitTestCase
     public function testSupportHelperStrIsUpper(): void
     {
         $object = new IsUpper();
-        $actual = $object('PHALCON FRAMEWORK');
-        $this->assertTrue($actual);
 
-        $actual = $object('Phalcon Framework');
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $object('PHALCON FRAMEWORK')
+        );
+
+        $this->assertFalse(
+            $object('Phalcon Framework')
+        );
     }
 }

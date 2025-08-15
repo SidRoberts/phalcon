@@ -73,7 +73,10 @@ final class ChunkTest extends AbstractUnitTestCase
                 'k6' => 6,
             ],
         ];
-        $actual = $object($source, 2, true);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($source, 2, true)
+        );
     }
 }

@@ -25,10 +25,13 @@ final class IsLowerTest extends AbstractUnitTestCase
     public function testSupportHelperStrIsLower(): void
     {
         $object = new IsLower();
-        $actual = $object('phalcon framework');
-        $this->assertTrue($actual);
 
-        $actual = $object('Phalcon Framework');
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $object('phalcon framework')
+        );
+
+        $this->assertFalse(
+            $object('Phalcon Framework')
+        );
     }
 }

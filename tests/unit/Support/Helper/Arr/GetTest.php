@@ -21,11 +21,12 @@ use stdClass;
 final class GetTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: mixed, 2: mixed}>
      */
     public static function getExamples(): array
     {
         $sample = new stdClass();
+
         $sample->one = 'two';
 
         return [
@@ -93,12 +94,15 @@ final class GetTest extends AbstractUnitTestCase
         mixed $expected,
     ): void {
         $object = new Get();
+
         $collection = [
             'value' => $value,
         ];
 
-        $actual = $object($collection, 'value', null, $cast);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $object($collection, 'value', null, $cast)
+        );
     }
 
     /**
@@ -108,14 +112,16 @@ final class GetTest extends AbstractUnitTestCase
     public function testSupportHelperArrGetDefault(): void
     {
         $object = new Get();
+
         $collection = [
             1        => 'Phalcon',
             'suffix' => 'Framework',
         ];
 
-        $expected = 'Error';
-        $actual = $object($collection, uniqid(), 'Error');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Error',
+            $object($collection, uniqid(), 'Error')
+        );
     }
 
     /**
@@ -125,14 +131,16 @@ final class GetTest extends AbstractUnitTestCase
     public function testSupportHelperArrGetNumeric(): void
     {
         $object = new Get();
+
         $collection = [
             1        => 'Phalcon',
             'suffix' => 'Framework',
         ];
 
-        $expected = 'Phalcon';
-        $actual = $object($collection, 1, 'Error');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Phalcon',
+            $object($collection, 1, 'Error')
+        );
     }
 
     /**
@@ -142,13 +150,15 @@ final class GetTest extends AbstractUnitTestCase
     public function testSupportHelperArrGetString(): void
     {
         $object = new Get();
+
         $collection = [
             1        => 'Phalcon',
             'suffix' => 'Framework',
         ];
 
-        $expected = 'Framework';
-        $actual = $object($collection, 'suffix', 'Error');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Framework',
+            $object($collection, 'suffix', 'Error')
+        );
     }
 }

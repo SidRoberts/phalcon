@@ -25,14 +25,18 @@ final class EndsWithTest extends AbstractUnitTestCase
     public function testSupportHelperStrEndsWith(): void
     {
         $object = new EndsWith();
-        $actual = $object('Hello', 'o');
-        $this->assertTrue($actual);
 
-        $actual = $object('Hello', 'lo');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'o')
+        );
 
-        $actual = $object('Hello', 'Hello');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'lo')
+        );
+
+        $this->assertTrue(
+            $object('Hello', 'Hello')
+        );
     }
 
     /**
@@ -42,14 +46,18 @@ final class EndsWithTest extends AbstractUnitTestCase
     public function testSupportHelperStrEndsWithCaseInsensitive(): void
     {
         $object = new EndsWith();
-        $actual = $object('Hello', 'O');
-        $this->assertTrue($actual);
 
-        $actual = $object('Hello', 'LO');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'O')
+        );
 
-        $actual = $object('Hello', 'hello');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'LO')
+        );
+
+        $this->assertTrue(
+            $object('Hello', 'hello')
+        );
     }
 
     /**
@@ -59,14 +67,18 @@ final class EndsWithTest extends AbstractUnitTestCase
     public function testSupportHelperStrEndsWithCaseSensitive(): void
     {
         $object = new EndsWith();
-        $actual = $object('Hello', 'hello', true);
-        $this->assertTrue($actual);
 
-        $actual = $object('Hello', 'hello', false);
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $object('Hello', 'hello', true)
+        );
 
-        $actual = $object('Hello', 'O', false);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $object('Hello', 'hello', false)
+        );
+
+        $this->assertFalse(
+            $object('Hello', 'O', false)
+        );
     }
 
     /**
@@ -76,8 +88,10 @@ final class EndsWithTest extends AbstractUnitTestCase
     public function testSupportHelperStrEndsWithEmpty(): void
     {
         $object = new EndsWith();
-        $actual = $object('', '');
-        $this->assertFalse($actual);
+
+        $this->assertFalse(
+            $object('', '')
+        );
     }
 
     /**
@@ -87,7 +101,9 @@ final class EndsWithTest extends AbstractUnitTestCase
     public function testSupportHelperStrEndsWithEmptySearchString(): void
     {
         $object = new EndsWith();
-        $actual = $object('', 'hello');
-        $this->assertFalse($actual);
+
+        $this->assertFalse(
+            $object('', 'hello')
+        );
     }
 }

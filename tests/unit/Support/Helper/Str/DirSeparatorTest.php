@@ -32,13 +32,15 @@ final class DirSeparatorTest extends AbstractUnitTestCase
 
         $object = new DirSeparator();
 
-        $expected = '/home/phalcon/';
-        $actual = $object('/home/phalcon');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '/home/phalcon/',
+            $object('/home/phalcon')
+        );
 
-        $expected = '/home/phalcon/';
-        $actual = $object('/home/phalcon//');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '/home/phalcon/',
+            $object('/home/phalcon//')
+        );
     }
 
     /**
@@ -54,8 +56,9 @@ final class DirSeparatorTest extends AbstractUnitTestCase
         $fileName = '';
         $object = new DirSeparator();
 
-        $expected = "/";
-        $actual = $object($fileName);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "/",
+            $object($fileName)
+        );
     }
 }

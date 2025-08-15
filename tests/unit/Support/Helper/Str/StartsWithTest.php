@@ -26,14 +26,17 @@ final class StartsWithTest extends AbstractUnitTestCase
     {
         $object = new StartsWith();
 
-        $actual = $object('Hello', 'H');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'H')
+        );
 
-        $actual = $object('Hello', 'He');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'He')
+        );
 
-        $actual = $object('Hello', 'Hello');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'Hello')
+        );
     }
 
     /**
@@ -44,14 +47,17 @@ final class StartsWithTest extends AbstractUnitTestCase
     {
         $object = new StartsWith();
 
-        $actual = $object('Hello', 'h');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'h')
+        );
 
-        $actual = $object('Hello', 'he');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'he')
+        );
 
-        $actual = $object('Hello', 'hello');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'hello')
+        );
     }
 
     /**
@@ -62,14 +68,17 @@ final class StartsWithTest extends AbstractUnitTestCase
     {
         $object = new StartsWith();
 
-        $actual = $object('Hello', 'hello', true);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $object('Hello', 'hello', true)
+        );
 
-        $actual = $object('Hello', 'hello', false);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $object('Hello', 'hello', false)
+        );
 
-        $actual = $object('Hello', 'h', false);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $object('Hello', 'h', false)
+        );
     }
 
     /**
@@ -80,8 +89,9 @@ final class StartsWithTest extends AbstractUnitTestCase
     {
         $object = new StartsWith();
 
-        $actual = $object('', '');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $object('', '')
+        );
     }
 
     /**
@@ -92,7 +102,8 @@ final class StartsWithTest extends AbstractUnitTestCase
     {
         $object = new StartsWith();
 
-        $actual = $object('', 'hello');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $object('', 'hello')
+        );
     }
 }

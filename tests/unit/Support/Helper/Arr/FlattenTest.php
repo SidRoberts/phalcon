@@ -27,9 +27,10 @@ final class FlattenTest extends AbstractUnitTestCase
         $object = new Flatten();
         $source = [1, [2], [[3], 4], 5];
 
-        $expected = [1, 2, [3], 4, 5];
-        $actual = $object($source);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [1, 2, [3], 4, 5],
+            $object($source)
+        );
     }
 
     /**
@@ -41,8 +42,9 @@ final class FlattenTest extends AbstractUnitTestCase
         $object = new Flatten();
         $source = [1, [2], [[3], 4], 5];
 
-        $expected = [1, 2, 3, 4, 5];
-        $actual = $object($source, true);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [1, 2, 3, 4, 5],
+            $object($source, true)
+        );
     }
 }

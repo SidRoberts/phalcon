@@ -25,6 +25,7 @@ final class SliceLeftTest extends AbstractUnitTestCase
     public function testSupportHelperArrSliceLeft(): void
     {
         $object = new SliceLeft();
+
         $collection = [
             'Phalcon',
             'Framework',
@@ -35,15 +36,21 @@ final class SliceLeftTest extends AbstractUnitTestCase
         $expected = [
             'Phalcon',
         ];
-        $actual = $object($collection, 1);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($collection, 1)
+        );
 
         $expected = [
             'Phalcon',
             'Framework',
             'for',
         ];
-        $actual = $object($collection, 3);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($collection, 3)
+        );
     }
 }

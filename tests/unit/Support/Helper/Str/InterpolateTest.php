@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class InterpolateTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: string, 2: array}>
      */
     public static function getExamples(): array
     {
@@ -75,7 +75,11 @@ final class InterpolateTest extends AbstractUnitTestCase
         string $format,
         array $context,
     ): void {
-        $actual = (new Interpolate())($format, $context);
-        $this->assertSame($expected, $actual);
+        $object = new Interpolate();
+
+        $this->assertSame(
+            $expected,
+            $object($format, $context)
+        );
     }
 }

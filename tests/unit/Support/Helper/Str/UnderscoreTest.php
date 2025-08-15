@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class UnderscoreTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: string}>
      */
     public static function getExamples(): array
     {
@@ -54,7 +54,10 @@ final class UnderscoreTest extends AbstractUnitTestCase
         string $expected,
     ): void {
         $object = new Underscore();
-        $actual = $object($text);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object($text)
+        );
     }
 }

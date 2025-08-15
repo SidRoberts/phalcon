@@ -80,7 +80,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class NewInstanceTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: class-string}>
      */
     public static function getExamples(): array
     {
@@ -148,8 +148,11 @@ final class NewInstanceTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @param string       $method
+     * @param class-string $className
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getExamples')]
     public function testSupportHelperFactoryNewInstance(
@@ -158,22 +161,25 @@ final class NewInstanceTest extends AbstractUnitTestCase
     ): void {
         $factory = new HelperFactory();
 
-        $expected = $className;
-        $actual = $factory->newInstance($method);
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(
+            $className,
+            $factory->newInstance($method)
+        );
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     public function testSupportHelperFactoryNewInstanceException(): void
     {
         $name = uniqid('service-');
+
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Service ' . $name . ' is not registered');
 
         $factory = new HelperFactory();
+
         $factory->newInstance($name);
     }
 }

@@ -25,14 +25,19 @@ final class IncludesTest extends AbstractUnitTestCase
     public function testSupportHelperStrIncludes(): void
     {
         $object = new Includes();
+
         $source = 'Mary had a little lamb';
-        $actual = $object($source, 'lamb');
-        $this->assertTrue($actual);
 
-        $actual = $object($source, 'unknown');
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $object($source, 'lamb')
+        );
 
-        $actual = $object($source, 'Mary');
-        $this->assertTrue($actual);
+        $this->assertFalse(
+            $object($source, 'unknown')
+        );
+
+        $this->assertTrue(
+            $object($source, 'Mary')
+        );
     }
 }
