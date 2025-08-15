@@ -27,14 +27,17 @@ final class GetSetGroupTest extends AbstractUnitTestCase
     {
         $route = new Route('test');
 
-        $actual = $route->getGroup();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $route->getGroup()
+        );
 
         $group = new Group();
+
         $route->setGroup($group);
 
-        $expected = $group;
-        $actual   = $route->getGroup();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $group,
+            $route->getGroup()
+        );
     }
 }

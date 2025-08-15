@@ -28,28 +28,33 @@ final class CompilePatternTest extends AbstractUnitTestCase
         $route       = '/my-simple-route';
         $simpleRoute = new Route($route);
 
-        $expected = $route;
-        $actual   = $simpleRoute->getCompiledPattern();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $route,
+            $simpleRoute->getCompiledPattern()
+        );
 
         /**
          * Placeholder
          */
-        $route            = '/:module/:namespace/:controller/:action/:params/:int';
-        $placeholderRoute = new Route($route);
+        $placeholderRoute = new Route(
+            '/:module/:namespace/:controller/:action/:params/:int'
+        );
 
-        $expected = '#^/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)(/.*)*/([0-9]+)$#u';
-        $actual   = $placeholderRoute->getCompiledPattern();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '#^/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)(/.*)*/([0-9]+)$#u',
+            $placeholderRoute->getCompiledPattern()
+        );
 
         /**
          * Custom regex
          */
-        $route      = '/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)(/.*)*/([0-9]+)';
-        $regexRoute = new Route($route);
+        $regexRoute = new Route(
+            '/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)(/.*)*/([0-9]+)'
+        );
 
-        $expected = '#^/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)(/.*)*/([0-9]+)$#u';
-        $actual   = $regexRoute->getCompiledPattern();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '#^/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)/([\\w0-9\\_\\-]+)(/.*)*/([0-9]+)$#u',
+            $regexRoute->getCompiledPattern()
+        );
     }
 }

@@ -28,14 +28,17 @@ final class GetSetNameTest extends AbstractUnitTestCase
     {
         $route = new Route('test');
 
-        $actual = $route->getName();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $route->getName()
+        );
 
         $name = uniqid();
+
         $route->setName($name);
 
-        $expected = $name;
-        $actual   = $route->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $name,
+            $route->getName()
+        );
     }
 }

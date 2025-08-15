@@ -29,8 +29,9 @@ final class ConstructTest extends AbstractUnitTestCase
         $pattern = uniqid();
         $route   = new Route($pattern);
 
-        $expected = $pattern;
-        $actual   = $route->getPattern();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $pattern,
+            $route->getPattern()
+        );
     }
 }

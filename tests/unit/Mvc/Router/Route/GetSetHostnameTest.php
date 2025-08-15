@@ -28,14 +28,17 @@ final class GetSetHostnameTest extends AbstractUnitTestCase
     {
         $route = new Route('test');
 
-        $actual = $route->getHostname();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $route->getHostname()
+        );
 
         $name = uniqid();
+
         $route->setHostname($name);
 
-        $expected = $name;
-        $actual   = $route->getHostname();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $name,
+            $route->getHostname()
+        );
     }
 }
