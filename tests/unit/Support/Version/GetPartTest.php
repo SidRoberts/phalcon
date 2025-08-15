@@ -38,32 +38,39 @@ final class GetPartTest extends AbstractUnitTestCase
         $id = $version->getId();
 
         // The major version is the first digit
-        $expected = (string)$id[0];
-        $actual = $version->getPart(Version::VERSION_MAJOR);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            (string)$id[0],
+            $version->getPart(Version::VERSION_MAJOR)
+        );
 
         // The medium version is the second and third digits
         // This is int to string because we might end up with "00"
-        $expected = (string)intval($id[1] . $id[2]);
-        $actual = $version->getPart(Version::VERSION_MEDIUM);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            (string)intval($id[1] . $id[2]),
+            $version->getPart(Version::VERSION_MEDIUM)
+        );
 
         // The minor version is the fourth and fifth digits
-        $expected = (string)intval($id[3] . $id[4]);
-        $actual = $version->getPart(Version::VERSION_MINOR);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            (string)intval($id[3] . $id[4]),
+            $version->getPart(Version::VERSION_MINOR)
+        );
 
-        $expected = $this->numberToSpecial((string)$id[5]);
-        $actual = $version->getPart(Version::VERSION_SPECIAL);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $this->numberToSpecial((string)$id[5]),
+            $version->getPart(Version::VERSION_SPECIAL)
+        );
 
         $special = $this->numberToSpecial((string)$id[6]);
-        $expected = (string)(($special) ? $id[6] : 0);
-        $actual = $version->getPart(Version::VERSION_SPECIAL_NUMBER);
-        $this->assertSame($expected, $actual);
 
-        $expected = $version->get();
-        $actual = $version->getPart(7);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            (string)(($special) ? $id[6] : 0),
+            $version->getPart(Version::VERSION_SPECIAL_NUMBER)
+        );
+
+        $this->assertSame(
+            $version->get(),
+            $version->getPart(7)
+        );
     }
 }

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Support\Version;
 
+use Phalcon\Support\Version;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Support\Fake\VersionTrait;
 use Phalcon\Tests\Unit\Support\Version\Fake\FakeVersionAlpha;
@@ -21,14 +22,12 @@ use Phalcon\Tests\Unit\Support\Version\Fake\FakeVersionRc;
 use Phalcon\Tests\Unit\Support\Version\Fake\FakeVersionStable;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-use function is_string;
-
 final class GetIdTest extends AbstractUnitTestCase
 {
     use VersionTrait;
 
     /**
-     * @return string[][]
+     * @return array<array{0: class-string<Version>, 1: string}>
      */
     public static function getExamples(): array
     {
@@ -53,6 +52,9 @@ final class GetIdTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<Version> $class
+     * @param string                $expected
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -64,7 +66,9 @@ final class GetIdTest extends AbstractUnitTestCase
         $version = new $class();
 
         $actual = $version->getId();
-        $this->assertTrue(is_string($actual));
+
+        $this->assertIsString($actual);
+
         $this->assertSame($expected, $actual);
     }
 }
