@@ -28,8 +28,9 @@ final class GetStaticTest extends AbstractUnitTestCase
 
         $url->setStaticBaseUri('https://phalcon.io');
 
-        $expected = 'https://phalcon.io/en/team';
-        $actual   = $url->getStatic('/en/team');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'https://phalcon.io/en/team',
+            $url->getStatic('/en/team')
+        );
     }
 }

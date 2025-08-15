@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class GetTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: ?string}>
      */
     public static function getExamples(): array
     {
@@ -58,8 +58,10 @@ final class GetTest extends AbstractUnitTestCase
 
         $url->setBaseUri('https://phalcon.io');
 
-        $actual = $url->get($name);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $url->get($name)
+        );
     }
 
     /**

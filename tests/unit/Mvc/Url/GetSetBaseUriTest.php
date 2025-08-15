@@ -27,10 +27,12 @@ final class GetSetBaseUriTest extends AbstractUnitTestCase
         $url = new Url();
 
         $path = 'https://phalcon.io';
+
         $url->setBaseUri($path);
 
-        $expected = $path;
-        $actual   = $url->getBaseUri();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $path,
+            $url->getBaseUri()
+        );
     }
 }

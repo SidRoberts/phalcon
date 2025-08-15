@@ -79,7 +79,7 @@ final class SetBaseUriTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: array<mixed>, 2: string}>
      */
     public static function getUrlToSetBaseUri(): array
     {
@@ -141,7 +141,7 @@ final class SetBaseUriTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array
+     * @return array<array{0: string, 1: string|null, 2: string}>
      */
     public static function getUrlToSetServer(): array
     {
@@ -162,7 +162,7 @@ final class SetBaseUriTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: string}>
      */
     public static function getUrlToSetWithoutDi(): array
     {
@@ -207,7 +207,7 @@ final class SetBaseUriTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: array, 3: string}>
      */
     public static function getUrlToSetWithoutDiTwoParam(): array
     {
@@ -239,15 +239,18 @@ final class SetBaseUriTest extends AbstractUnitTestCase
     #[DataProvider('getUrlToSetServer')]
     public function shouldGetCorrectUrlWithServer(
         string $phpSelf,
-        string $name,
+        string | null $name,
         string $expected
     ): void {
         $_SERVER['PHP_SELF'] = $phpSelf;
-        $url                 = $this->getService('url');
 
-        $actual = $url->get($name);
+        /** @var UrlInterface */
+        $url = $this->getService('url');
 
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $url->get($name)
+        );
     }
 
     /**
@@ -262,12 +265,15 @@ final class SetBaseUriTest extends AbstractUnitTestCase
         string $name,
         string $expected
     ): void {
+        /** @var UrlInterface */
         $url = $this->getService('url');
 
         $url->setBaseUri($baseUrl);
-        $actual = $url->get($name);
 
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $url->get($name)
+        );
     }
 
     /**
@@ -282,16 +288,22 @@ final class SetBaseUriTest extends AbstractUnitTestCase
         array $params,
         string $expected
     ): void {
+        /** @var UrlInterface */
         $url = $this->getService('url');
 
         $url->setBaseUri($baseUrl);
 
-        $actual = $url->get($name, $params);
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $url->get($name, $params)
+        );
     }
 
     /**
+     * @param string       $baseuri
+     * @param array<mixed> $param
+     * @param string       $expected
+     *
      * @author Nikolaos Dimopoulos <nikos@phalcon.io>
      * @since  2014-09-04
      */
@@ -301,18 +313,21 @@ final class SetBaseUriTest extends AbstractUnitTestCase
         array $param,
         string $expected
     ): void {
+        /** @var UrlInterface */
         $url = $this->getService('url');
 
         $url->setBaseUri($baseUri);
-        $actual = $url->get($param);
 
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $url->get($param)
+        );
     }
 
     /**
      * Depends on the RouterTrait
      */
-    private function setupRoutes()
+    private function setupRoutes(): void
     {
         $router     = new Router(false);
         $routerData = $this->getDataToSetDi();

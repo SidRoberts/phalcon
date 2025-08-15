@@ -48,8 +48,9 @@ final class GetSetStaticBaseUriTest extends AbstractUnitTestCase
 
         $url->setBaseUri($expected);
 
-        $actual = $url->getStaticBaseUri();
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $url->getStaticBaseUri()
+        );
     }
 }

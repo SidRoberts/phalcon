@@ -27,10 +27,12 @@ final class GetSetBasePathTest extends AbstractUnitTestCase
         $url = new Url();
 
         $path = '/en/team';
+
         $url->setBasePath($path);
 
-        $expected = $path;
-        $actual   = $url->getBasePath();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $path,
+            $url->getBasePath()
+        );
     }
 }

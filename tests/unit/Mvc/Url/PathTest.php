@@ -27,10 +27,10 @@ final class PathTest extends AbstractUnitTestCase
         $url = new Url();
 
         $url->setBasePath('/en');
-        $path = '/en';
 
-        $expected = '/en/team';
-        $actual   = $url->path('/team');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '/en/team',
+            $url->path('/team')
+        );
     }
 }
