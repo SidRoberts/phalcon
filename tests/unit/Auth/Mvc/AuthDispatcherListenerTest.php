@@ -64,18 +64,20 @@ final class AuthDispatcherListenerTest extends AbstractUnitTestCase
         $manager->setAccess($access);
 
         $listener = new AuthDispatcherListener($manager);
-        $result   = $listener->beforeExecuteRoute($this->event, $this->dispatcher);
 
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $listener->beforeExecuteRoute($this->event, $this->dispatcher)
+        );
     }
 
     public function testReturnsTrueWhenNoActiveAccess(): void
     {
         $manager  = new Manager(new AccessLocator(new Container()));
         $listener = new AuthDispatcherListener($manager);
-        $result   = $listener->beforeExecuteRoute($this->event, $this->dispatcher);
 
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $listener->beforeExecuteRoute($this->event, $this->dispatcher)
+        );
     }
 
     public function testThrowsWhenDeniedAndNoRedirectTarget(): void
@@ -85,10 +87,12 @@ final class AuthDispatcherListenerTest extends AbstractUnitTestCase
 
         $manager = new Manager(new AccessLocator(new Container()));
         $access  = new FakeAccess($manager);
+
         $access->setAllowed(false);
         $manager->setAccess($access);
 
         $listener = new AuthDispatcherListener($manager);
+
         $listener->beforeExecuteRoute($this->event, $this->dispatcher);
     }
 }

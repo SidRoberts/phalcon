@@ -31,14 +31,17 @@ final class GetSetAttributesTest extends AbstractUnitTestCase
         string $type,
         string $content
     ): void {
-        $asset    = new Inline($type, $content);
+        $asset = new Inline($type, $content);
+
         $expected = [
             'data-key' => 'phalcon',
         ];
 
         $asset->setAttributes($expected);
-        $actual = $asset->getAttributes();
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $asset->getAttributes()
+        );
     }
 }

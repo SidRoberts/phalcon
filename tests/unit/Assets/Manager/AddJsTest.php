@@ -50,14 +50,13 @@ final class AddJsTest extends AbstractUnitTestCase
         $collection = $manager->get('js');
 
         foreach ($collection as $resource) {
-            $expected = 'js';
-            $actual   = $resource->getType();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                'js',
+                $resource->getType()
+            );
         }
 
-        $expected = 2;
-        $actual   = count($collection);
-        $this->assertSame($expected, $actual);
+        $this->assertCount(2, $collection);
     }
 
     /**
@@ -110,6 +109,9 @@ final class AddJsTest extends AbstractUnitTestCase
             . "src=\"{$pathData}assets/assets-version-3.js\"></script>"
         );
 
-        $this->assertSame($expected, $manager->outputJs());
+        $this->assertSame(
+            $expected,
+            $manager->outputJs()
+        );
     }
 }

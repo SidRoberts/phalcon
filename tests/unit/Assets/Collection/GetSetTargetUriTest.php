@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Collection;
 
 use Phalcon\Assets\Collection;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetTargetUriTest extends AbstractUnitTestCase
 {
@@ -26,9 +25,14 @@ final class GetSetTargetUriTest extends AbstractUnitTestCase
     public function testAssetsCollectionGetTargetUri(): void
     {
         $collection = new Collection();
-        $targetUri  = 'dist';
+
+        $targetUri = 'dist';
+
         $collection->setTargetUri($targetUri);
 
-        $this->assertSame($targetUri, $collection->getTargetUri());
+        $this->assertSame(
+            $targetUri,
+            $collection->getTargetUri()
+        );
     }
 }

@@ -108,6 +108,7 @@ final class ModelTest extends AbstractUnitTestCase
     public function testValidateCredentialsAcceptsCorrectPassword(): void
     {
         $user = $this->adapter->retrieveById(1);
+
         $this->assertNotNull($user);
 
         $this->assertTrue(
@@ -118,6 +119,7 @@ final class ModelTest extends AbstractUnitTestCase
     public function testValidateCredentialsRejectsWrongPassword(): void
     {
         $user = $this->adapter->retrieveById(1);
+
         $this->assertNotNull($user);
 
         $this->assertFalse(

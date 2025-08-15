@@ -60,8 +60,11 @@ final class GetContentTest extends AbstractUnitTestCase
 
         $expected = file_get_contents(supportDir($source));
         $expected = str_replace("\r\n", PHP_EOL, $expected);
-        $actual   = $asset->getContent(supportDir());
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $asset->getContent(supportDir())
+        );
     }
 
     /**
@@ -77,6 +80,7 @@ final class GetContentTest extends AbstractUnitTestCase
         $this->expectExceptionMessage($message);
 
         $asset = new FakeAssetFileExists('css', $file);
+
         $asset->getContent(supportDir());
     }
 
@@ -92,6 +96,7 @@ final class GetContentTest extends AbstractUnitTestCase
         $this->expectExceptionMessage($message);
 
         $asset = new FakeAssetFileGetContents('css', $file);
+
         $asset->getContent(supportDir());
     }
 }

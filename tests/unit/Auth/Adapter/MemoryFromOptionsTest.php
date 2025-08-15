@@ -35,7 +35,10 @@ final class MemoryFromOptionsTest extends AbstractUnitTestCase
         $adapter = Memory::fromOptions($this->security, []);
 
         $this->assertInstanceOf(Memory::class, $adapter);
-        $this->assertNull($adapter->retrieveById(1));
+
+        $this->assertNull(
+            $adapter->retrieveById(1)
+        );
     }
 
     public function testFromOptionsBuildsMemoryWithUsers(): void
@@ -63,6 +66,9 @@ final class MemoryFromOptionsTest extends AbstractUnitTestCase
         $adapter = Memory::fromOptions($this->security, ['users' => 'not-an-array']);
 
         $this->assertInstanceOf(Memory::class, $adapter);
-        $this->assertNull($adapter->retrieveById(1));
+
+        $this->assertNull(
+            $adapter->retrieveById(1)
+        );
     }
 }

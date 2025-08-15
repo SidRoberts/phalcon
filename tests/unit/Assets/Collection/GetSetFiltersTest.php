@@ -16,7 +16,6 @@ namespace Phalcon\Tests\Unit\Assets\Collection;
 use Phalcon\Assets\Collection;
 use Phalcon\Assets\Filters\None;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetFiltersTest extends AbstractUnitTestCase
 {
@@ -30,6 +29,10 @@ final class GetSetFiltersTest extends AbstractUnitTestCase
         $filters    = [new None(), new None(),];
 
         $collection->setFilters($filters);
-        $this->assertSame($filters, $collection->getFilters());
+
+        $this->assertSame(
+            $filters,
+            $collection->getFilters()
+        );
     }
 }

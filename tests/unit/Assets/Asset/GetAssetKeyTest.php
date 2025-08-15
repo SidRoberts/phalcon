@@ -35,8 +35,9 @@ final class GetAssetKeyTest extends AbstractUnitTestCase
     ): void {
         $asset = new Asset($type, $path);
 
-        $assetKey = hash("sha256", $type . ':' . $path);
-        $actual   = $asset->getAssetKey();
-        $this->assertSame($assetKey, $actual);
+        $this->assertSame(
+            hash("sha256", $type . ':' . $path),
+            $asset->getAssetKey()
+        );
     }
 }

@@ -33,8 +33,9 @@ final class GetRealTargetPathTest extends AbstractUnitTestCase
     ): void {
         $asset = new Css($path);
 
-        $expected = $path;
-        $actual   = $asset->getRealTargetPath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $path,
+            $asset->getRealTargetPath()
+        );
     }
 }

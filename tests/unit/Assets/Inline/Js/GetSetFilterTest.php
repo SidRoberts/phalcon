@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Inline\Js;
 
 use Phalcon\Assets\Inline\Js;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetFilterTest extends AbstractUnitTestCase
 {
@@ -26,12 +25,15 @@ final class GetSetFilterTest extends AbstractUnitTestCase
     public function testAssetsInlineJsGetSetFilter(): void
     {
         $asset  = new Js('<script>alert("Hello");</script>');
-        $actual = $asset->getFilter();
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $asset->getFilter()
+        );
 
         $asset->setFilter(false);
 
-        $actual = $asset->getFilter();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $asset->getFilter()
+        );
     }
 }

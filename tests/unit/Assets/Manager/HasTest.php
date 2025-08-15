@@ -31,8 +31,9 @@ final class HasTest extends AbstractUnitTestCase
         $manager->addCss('/css/style1.css');
         $manager->addCss('/css/style2.css');
 
-        $actual = $manager->has('css');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->has('css')
+        );
     }
 
     /**
@@ -43,7 +44,8 @@ final class HasTest extends AbstractUnitTestCase
     {
         $manager = new Manager(new TagFactory(new Escaper()));
 
-        $actual = $manager->has('some-non-existent-collection');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->has('some-non-existent-collection')
+        );
     }
 }

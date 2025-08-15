@@ -64,7 +64,8 @@ final class AccessLocatorTest extends AbstractUnitTestCase
     public function testNewInstanceReturnsAuth(): void
     {
         $factory = new AccessLocator($this->container);
-        $access  = $factory->newInstance('auth');
+
+        $access = $factory->newInstance('auth');
 
         $this->assertInstanceOf(Auth::class, $access);
     }
@@ -72,7 +73,8 @@ final class AccessLocatorTest extends AbstractUnitTestCase
     public function testNewInstanceReturnsGuest(): void
     {
         $factory = new AccessLocator($this->container);
-        $access  = $factory->newInstance('guest');
+
+        $access = $factory->newInstance('guest');
 
         $this->assertInstanceOf(Guest::class, $access);
     }
@@ -80,6 +82,7 @@ final class AccessLocatorTest extends AbstractUnitTestCase
     public function testRegisterAddsMapping(): void
     {
         $factory = new AccessLocator($this->container);
+
         $factory->register('custom', FakeAccess::class);
 
         $access = $factory->newInstance('custom');
@@ -92,6 +95,7 @@ final class AccessLocatorTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $factory = new AccessLocator($this->container);
+
         $factory->register('bad', stdClass::class);
     }
 
@@ -100,6 +104,7 @@ final class AccessLocatorTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $factory = new AccessLocator($this->container);
+
         $factory->newInstance('unknown_access');
     }
 }

@@ -33,8 +33,9 @@ final class GetSetTypeTest extends AbstractUnitTestCase
     ): void {
         $asset = new Css($path, $local);
 
-        $expected = 'css';
-        $actual   = $asset->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'css',
+            $asset->getType()
+        );
     }
 }

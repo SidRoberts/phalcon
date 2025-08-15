@@ -16,12 +16,11 @@ namespace Phalcon\Tests\Unit\Assets\Asset;
 use Phalcon\Assets\Asset;
 use Phalcon\Tests\AbstractUnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetTypeTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{type: string, path: string, newType: string}>
      */
     public static function providerAssets(): array
     {
@@ -52,8 +51,10 @@ final class GetSetTypeTest extends AbstractUnitTestCase
         $asset = new Asset($type, $path);
 
         $asset->setType($newType);
-        $expected = $newType;
-        $actual   = $asset->getType();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $newType,
+            $asset->getType()
+        );
     }
 }

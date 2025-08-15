@@ -26,15 +26,18 @@ final class HasTest extends AbstractUnitTestCase
     public function testAssetsCollectionHas(): void
     {
         $collection = new Collection();
-        $asset1     = new Asset('js', 'js/jquery.js');
-        $asset2     = new Asset('js', 'js/jquery-ui.js');
+
+        $asset1 = new Asset('js', 'js/jquery.js');
+        $asset2 = new Asset('js', 'js/jquery-ui.js');
 
         $collection->add($asset1);
 
-        $actual = $collection->has($asset1);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->has($asset1)
+        );
 
-        $actual = $collection->has($asset2);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->has($asset2)
+        );
     }
 }

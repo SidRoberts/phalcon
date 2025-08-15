@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Asset\Js;
 
 use Phalcon\Assets\Asset\Js;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class IsSetAutoVersionTest extends AbstractUnitTestCase
 {
@@ -26,12 +25,15 @@ final class IsSetAutoVersionTest extends AbstractUnitTestCase
     public function testAssetsAssetJsIsSetAutoVersion(): void
     {
         $asset  = new Js('js/jquery.js');
-        $actual = $asset->isAutoVersion();
-        $this->assertFalse($actual);
+
+        $this->assertFalse(
+            $asset->isAutoVersion()
+        );
 
         $asset->setAutoVersion(true);
 
-        $actual = $asset->isAutoVersion();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $asset->isAutoVersion()
+        );
     }
 }

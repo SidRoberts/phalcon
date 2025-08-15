@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Collection;
 
 use Phalcon\Assets\Collection;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetAttributesTest extends AbstractUnitTestCase
 {
@@ -26,14 +25,22 @@ final class GetSetAttributesTest extends AbstractUnitTestCase
     public function testAssetsCollectionGetSetAttributes(): void
     {
         $collection = new Collection();
+
         $attributes = [
             'data-name' => 'phalcon',
             'data-type' => 'book',
         ];
 
-        $this->assertSame([], $collection->getAttributes());
+        $this->assertSame(
+            [],
+            $collection->getAttributes()
+        );
+
         $collection->setAttributes($attributes);
 
-        $this->assertSame($attributes, $collection->getAttributes());
+        $this->assertSame(
+            $attributes,
+            $collection->getAttributes()
+        );
     }
 }

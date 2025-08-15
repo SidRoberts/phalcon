@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Inline\Js;
 
 use Phalcon\Assets\Inline\Js;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetContentTest extends AbstractUnitTestCase
 {
@@ -28,7 +27,9 @@ final class GetContentTest extends AbstractUnitTestCase
         $content = '<script>alert("Hello");</script>';
         $asset   = new Js($content);
 
-        $actual = $asset->getContent();
-        $this->assertSame($content, $actual);
+        $this->assertSame(
+            $content,
+            $asset->getContent()
+        );
     }
 }

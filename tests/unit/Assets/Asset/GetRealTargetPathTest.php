@@ -37,9 +37,10 @@ final class GetRealTargetPathTest extends AbstractUnitTestCase
     ): void {
         $asset = new Asset($type, $path, $local);
 
-        $expected = $path;
-        $actual   = $asset->getRealTargetPath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $path,
+            $asset->getRealTargetPath()
+        );
     }
 
     /**
@@ -83,8 +84,9 @@ final class GetRealTargetPathTest extends AbstractUnitTestCase
         $file  = 'assets/assets/1198.css';
         $asset = new FakeAssetFileExistsPositive('css', $file);
 
-        $expected = supportDir($file);
-        $actual   = $asset->getRealTargetPath(supportDir());
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            supportDir($file),
+            $asset->getRealTargetPath(supportDir())
+        );
     }
 }

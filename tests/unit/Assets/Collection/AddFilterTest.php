@@ -26,19 +26,16 @@ final class AddFilterTest extends AbstractUnitTestCase
     public function testAssetsCollectionAddFilter(): void
     {
         $collection = new Collection();
+
         $collection->addFilter(new None());
         $collection->addFilter(new None());
 
         $filters = $collection->getFilters();
 
         foreach ($filters as $filter) {
-            $class  = None::class;
-            $actual = $filter;
-            $this->assertInstanceOf($class, $actual);
+            $this->assertInstanceOf(None::class, $filter);
         }
 
-        $expected = 2;
-        $actual   = count($filters);
-        $this->assertSame($expected, $actual);
+        $this->assertCount(2, $filters);
     }
 }

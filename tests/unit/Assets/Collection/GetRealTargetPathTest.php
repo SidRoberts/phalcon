@@ -33,6 +33,7 @@ final class GetRealTargetPathTest extends AbstractUnitTestCase
         $constructRealPath = realpath($basePath . $targetPath);
 
         $collection->setTargetPath($targetPath);
+
         $realBasePath = $collection->getRealTargetPath($basePath);
 
         $this->assertSame($constructRealPath, $realBasePath);
@@ -54,6 +55,7 @@ final class GetRealTargetPathTest extends AbstractUnitTestCase
         $constructRealPath = realpath($basePath . $targetPath);
 
         $collection->setTargetPath($targetPath);
+
         $realBasePath = $collection->getRealTargetPath($basePath);
 
         $this->assertSame($constructRealPath, $realBasePath);

@@ -26,8 +26,9 @@ final class FilterTest extends AbstractUnitTestCase
     {
         $filter = new None();
 
-        $expected = ' ';
-        $actual   = $filter->filter(' ');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            ' ',
+            $filter->filter(' ')
+        );
     }
 }

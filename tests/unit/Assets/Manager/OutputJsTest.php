@@ -256,6 +256,7 @@ final class OutputJsTest extends AbstractUnitTestCase
         $jsFile = supportDir('assets/assets/jquery.js');
 
         $manager = new Manager(new TagFactory(new Escaper()));
+
         $manager->useImplicitOutput(false);
 
         $manager->collection('js')
@@ -270,8 +271,11 @@ final class OutputJsTest extends AbstractUnitTestCase
 
         $expected = '<script type="application/javascript" '
             . 'src="//phalcon.io/js/jquery.js"></script>' . PHP_EOL;
-        $actual   = $manager->outputJs('js');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $manager->outputJs('js')
+        );
 
         $this->assertFileExists(outputDir("tests/assets/$file"));
         $this->safeDeleteFile(outputDir("tests/assets/$file"));

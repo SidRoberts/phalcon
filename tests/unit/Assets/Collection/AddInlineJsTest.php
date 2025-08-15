@@ -25,10 +25,12 @@ final class AddInlineJsTest extends AbstractUnitTestCase
     public function testAssetsCollectionAddInlineJs(): void
     {
         $collection = new Collection();
+
         $collection->addInlineJs("alert('an amazing test');");
 
-        $expected = 1;
-        $actual   = count($collection->getCodes());
-        $this->assertSame($expected, $actual);
+        $this->assertCount(
+            1,
+            $collection->getCodes()
+        );
     }
 }

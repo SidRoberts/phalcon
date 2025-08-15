@@ -34,12 +34,15 @@ final class IsSetIsLocalTest extends AbstractUnitTestCase
     ): void {
         $asset = new Asset($type, $path);
 
-        $actual = $asset->isLocal();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $asset->isLocal()
+        );
 
         $asset->setIsLocal($local);
 
-        $actual = $asset->isLocal();
-        $this->assertSame($local, $actual);
+        $this->assertSame(
+            $local,
+            $asset->isLocal()
+        );
     }
 }

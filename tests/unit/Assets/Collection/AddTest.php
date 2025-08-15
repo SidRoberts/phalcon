@@ -26,18 +26,18 @@ final class AddTest extends AbstractUnitTestCase
     public function testAssetsCollectionAdd(): void
     {
         $collection = new Collection();
+
         $collection->add(new Asset('js', 'js/jquery.js'));
         $collection->add(new Asset('js', 'js/jquery-ui.js'));
 
-        $expected = 'js';
         foreach ($collection as $asset) {
-            $actual = $asset->getType();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                'js',
+                $asset->getType()
+            );
         }
 
-        $expected = 2;
-        $actual   = count($collection);
-        $this->assertSame($expected, $actual);
+        $this->assertCount(2, $collection);
     }
 
     /**
@@ -54,8 +54,9 @@ final class AddTest extends AbstractUnitTestCase
             $collection->add(new Asset('js', 'js/jquery-ui.js'));
         }
 
-        $expected = 2;
-        $actual   = count($collection->getAssets());
-        $this->assertSame($expected, $actual);
+        $this->assertCount(
+            2,
+            $collection->getAssets()
+        );
     }
 }

@@ -29,11 +29,8 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $manager = new Manager(new TagFactory(new Escaper()));
 
-        $class  = Manager::class;
-        $actual = $manager;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Manager::class, $manager);
 
-        $class = InjectionAwareInterface::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(InjectionAwareInterface::class, $manager);
     }
 }

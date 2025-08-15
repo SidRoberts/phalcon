@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Asset\Js;
 
 use Phalcon\Assets\Asset\Js;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetVersionTest extends AbstractUnitTestCase
 {
@@ -29,8 +28,10 @@ final class GetSetVersionTest extends AbstractUnitTestCase
 
         $version = '4.1.0-rc.3';
         $asset->setVersion($version);
-        $actual = $asset->getVersion();
 
-        $this->assertSame($version, $actual);
+        $this->assertSame(
+            $version,
+            $asset->getVersion()
+        );
     }
 }

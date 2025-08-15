@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Collection;
 
 use Phalcon\Assets\Collection;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class IsSetAutoVersionTest extends AbstractUnitTestCase
 {
@@ -26,9 +25,15 @@ final class IsSetAutoVersionTest extends AbstractUnitTestCase
     public function testAssetsCollectionIsSetAutoVersion(): void
     {
         $collection = new Collection();
-        $this->assertFalse($collection->isAutoVersion());
+
+        $this->assertFalse(
+            $collection->isAutoVersion()
+        );
 
         $collection->setAutoVersion(true);
-        $this->assertTrue($collection->isAutoVersion());
+
+        $this->assertTrue(
+            $collection->isAutoVersion()
+        );
     }
 }

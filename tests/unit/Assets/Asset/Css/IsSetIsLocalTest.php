@@ -35,8 +35,10 @@ final class IsSetIsLocalTest extends AbstractUnitTestCase
         $asset = new Css($path, $local);
 
         $asset->setIsLocal($newLocal);
-        $expected = $newLocal;
-        $actual   = $asset->isLocal();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $newLocal,
+            $asset->isLocal()
+        );
     }
 }

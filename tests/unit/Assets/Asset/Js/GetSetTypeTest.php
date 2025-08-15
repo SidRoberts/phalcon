@@ -33,8 +33,9 @@ final class GetSetTypeTest extends AbstractUnitTestCase
     ): void {
         $asset = new Js($path, $local);
 
-        $expected = 'js';
-        $actual   = $asset->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'js',
+            $asset->getType()
+        );
     }
 }

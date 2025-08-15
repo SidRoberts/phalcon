@@ -26,9 +26,11 @@ final class FilterTest extends AbstractUnitTestCase
     {
         $jsMin = new JsMin();
 
-        $source   = "// nothing special here\nvar a = 1;";
-        $expected = 'var a=1';
-        $actual   = $jsMin->filter($source);
-        $this->assertSame($expected, $actual);
+        $source = "// nothing special here\nvar a = 1;";
+
+        $this->assertSame(
+            "var a=1",
+            $jsMin->filter($source)
+        );
     }
 }

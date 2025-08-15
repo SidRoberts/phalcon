@@ -32,11 +32,15 @@ final class GetSetTargetUriTest extends AbstractUnitTestCase
         string $path,
         bool $local
     ): void {
-        $asset     = new Asset($type, $path, $local);
+        $asset = new Asset($type, $path, $local);
+
         $targetUri = '/new/path';
 
         $asset->setTargetUri($targetUri);
-        $actual = $asset->getTargetUri();
-        $this->assertSame($targetUri, $actual);
+
+        $this->assertSame(
+            $targetUri,
+            $asset->getTargetUri()
+        );
     }
 }

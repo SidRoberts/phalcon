@@ -149,9 +149,9 @@ final class MemoryTest extends AbstractUnitTestCase
 
         $this->assertNotNull($user);
 
-        $result = $adapter->validateCredentials($user, ['password' => 'secret123']);
-
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->validateCredentials($user, ['password' => 'secret123'])
+        );
     }
 
     public function testValidateCredentialsRejectsWrongPassword(): void
@@ -171,9 +171,9 @@ final class MemoryTest extends AbstractUnitTestCase
 
         $this->assertNotNull($user);
 
-        $result = $adapter->validateCredentials($user, ['password' => 'wrongpassword']);
-
-        $this->assertFalse($result);
+        $this->assertFalse(
+            $adapter->validateCredentials($user, ['password' => 'wrongpassword'])
+        );
     }
 
     public function testValidateCredentialsReturnsFalseWhenNoPasswordKey(): void
@@ -193,9 +193,9 @@ final class MemoryTest extends AbstractUnitTestCase
 
         $this->assertNotNull($user);
 
-        $result = $adapter->validateCredentials($user, ['email' => 'alice@example.com']);
-
-        $this->assertFalse($result);
+        $this->assertFalse(
+            $adapter->validateCredentials($user, ['email' => 'alice@example.com'])
+        );
     }
 
     public function testRetrieveByCredentialsReturnsNullWhenOnlyPasswordKey(): void
@@ -229,7 +229,9 @@ final class MemoryTest extends AbstractUnitTestCase
             ])
         );
 
-        $this->assertNull($adapter->retrieveByCredentials([]));
+        $this->assertNull(
+            $adapter->retrieveByCredentials([])
+        );
     }
 
     public function testRetrieveByCredentialsSkipsRowMissingLookupKey(): void

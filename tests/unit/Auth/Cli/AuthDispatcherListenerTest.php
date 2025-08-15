@@ -58,6 +58,7 @@ final class AuthDispatcherListenerTest extends AbstractUnitTestCase
     {
         $manager = new Manager(new AccessLocator(new Container()));
         $access  = new FakeAccess($manager);
+
         $access->setAllowed(true);
         $manager->setAccess($access);
 
@@ -75,10 +76,12 @@ final class AuthDispatcherListenerTest extends AbstractUnitTestCase
 
         $manager = new Manager(new AccessLocator(new Container()));
         $access  = new FakeAccess($manager);
+
         $access->setAllowed(false);
         $manager->setAccess($access);
 
         $listener = new AuthDispatcherListener($manager);
+
         $listener->beforeExecuteRoute($this->event, $this->dispatcher);
     }
 }

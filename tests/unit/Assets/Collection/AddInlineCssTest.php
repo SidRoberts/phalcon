@@ -25,10 +25,12 @@ final class AddInlineCssTest extends AbstractUnitTestCase
     public function testAssetsCollectionAddInlineCss(): void
     {
         $collection = new Collection();
+
         $collection->addInlineCss(".awesome{color: #8fc6bc}");
 
-        $expected = 1;
-        $actual   = count($collection->getCodes());
-        $this->assertSame($expected, $actual);
+        $this->assertCount(
+            1,
+            $collection->getCodes()
+        );
     }
 }

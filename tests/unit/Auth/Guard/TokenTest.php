@@ -37,14 +37,16 @@ final class TokenTest extends AbstractUnitTestCase
 
         $this->adapter = new Memory(
             $security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'        => 1,
-                    'email'     => 'a@b',
-                    'password'  => 'unused',
-                    'api_token' => 'abcdef123',
-                ],
-            ])
+                    [
+                        'id'        => 1,
+                        'email'     => 'a@b',
+                        'password'  => 'unused',
+                        'api_token' => 'abcdef123',
+                    ],
+                ]
+            )
         );
 
         $this->request = new FakeRequest();
@@ -100,7 +102,9 @@ final class TokenTest extends AbstractUnitTestCase
             new TokenGuardConfig('api_token', 'api_token')
         );
 
-        $this->assertNull($guard->getTokenForRequest());
+        $this->assertNull(
+            $guard->getTokenForRequest()
+        );
     }
 
     public function testUserResolvesViaAdapter(): void
@@ -138,7 +142,9 @@ final class TokenTest extends AbstractUnitTestCase
             new TokenGuardConfig('api_token', 'api_token')
         );
 
-        $this->assertTrue($guard->validate(['api_token' => 'abcdef123']));
+        $this->assertTrue(
+            $guard->validate(['api_token' => 'abcdef123'])
+        );
     }
 
     public function testValidateRejectsUnknownToken(): void
@@ -172,6 +178,7 @@ final class TokenTest extends AbstractUnitTestCase
         );
 
         $other = new FakeRequest();
+
         $other->setQueryFake('api_token', 'abcdef123');
 
         $guard->setRequest($other);

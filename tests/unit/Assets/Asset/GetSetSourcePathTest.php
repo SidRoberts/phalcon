@@ -32,12 +32,15 @@ final class GetSetSourcePathTest extends AbstractUnitTestCase
         string $path,
         bool $local
     ): void {
-        $asset      = new Asset($type, $path, $local);
+        $asset = new Asset($type, $path, $local);
+
         $sourcePath = '/new/path';
 
         $asset->setSourcePath($sourcePath);
-        $actual = $asset->getSourcePath();
 
-        $this->assertSame($sourcePath, $actual);
+        $this->assertSame(
+            $sourcePath,
+            $asset->getSourcePath()
+        );
     }
 }

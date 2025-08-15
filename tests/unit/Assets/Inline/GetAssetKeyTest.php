@@ -33,10 +33,7 @@ final class GetAssetKeyTest extends AbstractUnitTestCase
         string $type,
         string $content
     ): void {
-        $asset = new Inline(
-            $type,
-            $content
-        );
+        $asset = new Inline($type, $content);
 
         $expected = hash(
             "sha256",

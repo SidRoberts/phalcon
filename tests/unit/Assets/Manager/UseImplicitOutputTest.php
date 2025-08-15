@@ -17,7 +17,6 @@ use Phalcon\Assets\Manager;
 use Phalcon\Html\Escaper;
 use Phalcon\Html\TagFactory;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 use function sprintf;
 
@@ -32,6 +31,7 @@ final class UseImplicitOutputTest extends AbstractUnitTestCase
     public function testAssetsManagerUseImplicitOutput(): void
     {
         $manager = new Manager(new TagFactory(new Escaper()));
+
         $manager->collection('footer')
                 ->addCss('/css/style1.css')
         ;
@@ -48,7 +48,10 @@ final class UseImplicitOutputTest extends AbstractUnitTestCase
 
         $manager->useImplicitOutput(false);
 
-        $this->assertSame($expected, $manager->outputCss('footer'));
+        $this->assertSame(
+            $expected,
+            $manager->outputCss('footer')
+        );
     }
 
     /**
@@ -74,6 +77,9 @@ final class UseImplicitOutputTest extends AbstractUnitTestCase
             '<script type="application/javascript" src="http:://cdn.example.com/js/script2.js"></script>'
         );
 
-        $this->assertSame($expected, $manager->outputJs('header'));
+        $this->assertSame(
+            $expected,
+            $manager->outputJs('header')
+        );
     }
 }

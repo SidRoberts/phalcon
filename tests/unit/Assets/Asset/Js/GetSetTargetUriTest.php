@@ -31,11 +31,15 @@ final class GetSetTargetUriTest extends AbstractUnitTestCase
         string $path,
         bool $local
     ): void {
-        $asset    = new Js($path, $local);
+        $asset = new Js($path, $local);
+
         $expected = '/phalcon/path';
+
         $asset->setTargetUri($expected);
 
-        $actual = $asset->getTargetUri();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $asset->getTargetUri()
+        );
     }
 }

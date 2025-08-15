@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Inline\Js;
 
 use Phalcon\Assets\Inline\Js;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
@@ -27,9 +26,10 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $asset = new Js('<script>alert("Hello");</script>');
 
-        $expected = 'js';
-        $actual   = $asset->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'js',
+            $asset->getType()
+        );
     }
 
     /**
@@ -43,8 +43,11 @@ final class ConstructTest extends AbstractUnitTestCase
         $expected = [
             'type' => 'application/javascript',
         ];
-        $actual   = $asset->getAttributes();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -57,13 +60,16 @@ final class ConstructTest extends AbstractUnitTestCase
             'data' => 'phalcon',
         ];
 
-        $asset  = new Js(
+        $asset = new Js(
             '<script>alert("Hello");</script>',
             true,
             $attributes
         );
-        $actual = $asset->getAttributes();
-        $this->assertSame($attributes, $actual);
+
+        $this->assertSame(
+            $attributes,
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -72,9 +78,11 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testAssetsInlineJsConstructFilter(): void
     {
-        $asset  = new Js('<script>alert("Hello");</script>');
-        $actual = $asset->getFilter();
-        $this->assertTrue($actual);
+        $asset = new Js('<script>alert("Hello");</script>');
+
+        $this->assertTrue(
+            $asset->getFilter()
+        );
     }
 
     /**
@@ -83,8 +91,10 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testAssetsInlineJsConstructFilterSet(): void
     {
-        $asset  = new Js('<script>alert("Hello");</script>', false);
-        $actual = $asset->getFilter();
-        $this->assertFalse($actual);
+        $asset = new Js('<script>alert("Hello");</script>', false);
+
+        $this->assertFalse(
+            $asset->getFilter()
+        );
     }
 }

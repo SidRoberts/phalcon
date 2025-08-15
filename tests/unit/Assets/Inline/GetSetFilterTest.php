@@ -31,13 +31,16 @@ final class GetSetFilterTest extends AbstractUnitTestCase
         string $type,
         string $content
     ): void {
-        $asset  = new Inline($type, $content);
-        $actual = $asset->getFilter();
-        $this->assertTrue($actual);
+        $asset = new Inline($type, $content);
+
+        $this->assertTrue(
+            $asset->getFilter()
+        );
 
         $asset->setFilter(false);
 
-        $actual = $asset->getFilter();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $asset->getFilter()
+        );
     }
 }

@@ -43,6 +43,7 @@ final class SessionFromOptionsTest extends AbstractUnitTestCase
         );
 
         $this->container = new Container();
+
         $this->container->set(RequestInterface::class, fn () => new FakeRequest());
         $this->container->set(CookiesInterface::class, fn () => new FakeCookies());
         $this->container->set(SessionManagerInterface::class, fn () => new FakeSessionManager());

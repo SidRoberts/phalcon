@@ -40,13 +40,15 @@ final class AuthTest extends AbstractUnitTestCase
 
         $this->adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->security->hash('secret'),
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->security->hash('secret'),
+                    ],
+                ]
+            )
         );
     }
 
@@ -77,6 +79,7 @@ final class AuthTest extends AbstractUnitTestCase
         $manager->addGuard('web', $guard, true);
 
         $user = $this->adapter->retrieveById(1);
+
         $this->assertNotNull($user);
 
         $guard->login($user);
@@ -90,21 +93,26 @@ final class AuthTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
 
         $access = new Auth($manager);
 
-        $this->assertFalse($access->allowedIf());
+        $this->assertFalse(
+            $access->allowedIf()
+        );
     }
 
     public function testIsAllowedHonorsExceptActions(): void
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
 
         // Not logged in — allowedIf() is false
         $access = new Auth($manager);
+
         $access->setExceptActions(['login']);
 
         $this->assertTrue($access->isAllowed('login'));
@@ -115,9 +123,11 @@ final class AuthTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
 
         $user = $this->adapter->retrieveById(1);
+
         $this->assertNotNull($user);
 
         $guard->login($user);

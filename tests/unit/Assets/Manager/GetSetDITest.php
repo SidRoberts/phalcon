@@ -18,7 +18,6 @@ use Phalcon\Di\Di;
 use Phalcon\Html\Escaper;
 use Phalcon\Html\TagFactory;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetDITest extends AbstractUnitTestCase
 {
@@ -31,10 +30,12 @@ final class GetSetDITest extends AbstractUnitTestCase
         $container = new Di();
 
         $manager = new Manager(new TagFactory(new Escaper()));
+
         $manager->setDI($container);
 
-        $expected = $container;
-        $actual   = $manager->getDI();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $container,
+            $manager->getDI()
+        );
     }
 }

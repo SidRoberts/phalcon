@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Asset\Js;
 
 use Phalcon\Assets\Asset\Js;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 use function supportDir;
 
@@ -34,9 +33,10 @@ final class GetRealSourcePathTest extends AbstractUnitTestCase
         $file  = supportDir('assets/assets/jquery.js');
         $asset = new Js($file);
 
-        $expected = $file;
-        $actual   = $asset->getRealSourcePath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $file,
+            $asset->getRealSourcePath()
+        );
     }
 
     /**
@@ -45,9 +45,11 @@ final class GetRealSourcePathTest extends AbstractUnitTestCase
      */
     public function testAssetsAssetJsGetRealSourcePathLocalDoesNotExist(): void
     {
-        $asset  = new Js('js/jquery.js');
-        $actual = $asset->getRealSourcePath();
-        $this->assertEmpty($actual);
+        $asset = new Js('js/jquery.js');
+
+        $this->assertEmpty(
+            $asset->getRealSourcePath()
+        );
     }
 
     /**
@@ -59,8 +61,9 @@ final class GetRealSourcePathTest extends AbstractUnitTestCase
         $path  = 'https://phalcon.ld/js/jquery.js';
         $asset = new Js($path, false);
 
-        $expected = $path;
-        $actual   = $asset->getRealSourcePath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $path,
+            $asset->getRealSourcePath()
+        );
     }
 }

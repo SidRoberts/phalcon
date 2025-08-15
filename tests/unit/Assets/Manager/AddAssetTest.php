@@ -18,7 +18,6 @@ use Phalcon\Assets\Manager;
 use Phalcon\Html\Escaper;
 use Phalcon\Html\TagFactory;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class AddAssetTest extends AbstractUnitTestCase
 {
@@ -31,7 +30,11 @@ final class AddAssetTest extends AbstractUnitTestCase
         $manager = new Manager(new TagFactory(new Escaper()));
 
         $manager->addAsset(new Css('/css/style1.css'));
-        $this->assertCount(1, $manager->get('css'));
+
+        $this->assertCount(
+            1,
+            $manager->get('css')
+        );
     }
 
     /**
@@ -45,6 +48,9 @@ final class AddAssetTest extends AbstractUnitTestCase
         $manager->addCss('/css/style2.css');
         $manager->addAsset(new Css('/css/style1.css'));
 
-        $this->assertCount(2, $manager->get('css'));
+        $this->assertCount(
+            2,
+            $manager->get('css')
+        );
     }
 }

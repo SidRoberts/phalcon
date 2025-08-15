@@ -31,13 +31,16 @@ final class GetSetFilterTest extends AbstractUnitTestCase
         string $path,
         bool $local
     ): void {
-        $asset  = new Js($path, $local);
-        $actual = $asset->getFilter();
-        $this->assertTrue($actual);
+        $asset = new Js($path, $local);
+
+        $this->assertTrue(
+            $asset->getFilter()
+        );
 
         $asset->setFilter(false);
 
-        $actual = $asset->getFilter();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $asset->getFilter()
+        );
     }
 }

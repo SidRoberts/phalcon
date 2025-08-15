@@ -26,9 +26,13 @@ final class FilterTest extends AbstractUnitTestCase
     {
         $cssMin = new CssMin();
 
-        $source   = '{}}';
-        $expected = $source;
-        $actual   = $cssMin->filter($source);
-        $this->assertSame($expected, $actual);
+        $source = "body {
+        background: green;
+    }";
+
+        $this->assertSame(
+            'body{background:green}',
+            $cssMin->filter($source)
+        );
     }
 }

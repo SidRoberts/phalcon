@@ -37,7 +37,10 @@ final class GetSetAttributesTest extends AbstractUnitTestCase
         ];
 
         $asset->setAttributes($attributes);
-        $actual = $asset->getAttributes();
-        $this->assertSame($attributes, $actual);
+
+        $this->assertSame(
+            $attributes,
+            $asset->getAttributes()
+        );
     }
 }

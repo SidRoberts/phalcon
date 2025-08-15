@@ -35,8 +35,10 @@ final class GetSetSourcePathTest extends AbstractUnitTestCase
         $expected = '/phalcon/path';
 
         $asset->setSourcePath($expected);
-        $actual = $asset->getSourcePath();
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $asset->getSourcePath()
+        );
     }
 }

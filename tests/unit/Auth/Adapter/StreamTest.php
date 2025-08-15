@@ -45,6 +45,7 @@ final class StreamTest extends AbstractUnitTestCase
     public function testRetrieveByCredentialsMatchesUserFromInjectedArray(): void
     {
         $adapter = new FakeStreamAdapter($this->security);
+
         $adapter->setUsers(
             [
                 [
@@ -64,6 +65,7 @@ final class StreamTest extends AbstractUnitTestCase
     public function testRetrieveByCredentialsReturnsNullOnMiss(): void
     {
         $adapter = new FakeStreamAdapter($this->security);
+
         $adapter->setUsers(
             [
                 [
@@ -82,6 +84,7 @@ final class StreamTest extends AbstractUnitTestCase
     public function testRetrieveByIdReturnsUserFromInjectedArray(): void
     {
         $adapter = new FakeStreamAdapter($this->security);
+
         $adapter->setUsers(
             [
                 [
@@ -101,6 +104,7 @@ final class StreamTest extends AbstractUnitTestCase
     public function testRetrieveByIdReturnsNullOnMiss(): void
     {
         $adapter = new FakeStreamAdapter($this->security);
+
         $adapter->setUsers(
             [
                 [
@@ -117,6 +121,7 @@ final class StreamTest extends AbstractUnitTestCase
     public function testValidateCredentialsAcceptsCorrectPassword(): void
     {
         $adapter = new FakeStreamAdapter($this->security);
+
         $adapter->setUsers(
             [
                 [
@@ -131,14 +136,15 @@ final class StreamTest extends AbstractUnitTestCase
 
         $this->assertNotNull($user);
 
-        $result = $adapter->validateCredentials($user, ['password' => 'mypassword']);
-
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->validateCredentials($user, ['password' => 'mypassword'])
+        );
     }
 
     public function testValidateCredentialsRejectsWrongPassword(): void
     {
         $adapter = new FakeStreamAdapter($this->security);
+
         $adapter->setUsers(
             [
                 [
@@ -153,9 +159,9 @@ final class StreamTest extends AbstractUnitTestCase
 
         $this->assertNotNull($user);
 
-        $result = $adapter->validateCredentials($user, ['password' => 'wrongpassword']);
-
-        $this->assertFalse($result);
+        $this->assertFalse(
+            $adapter->validateCredentials($user, ['password' => 'wrongpassword'])
+        );
     }
 
     public function testThrowsWhenFileDoesNotExist(): void
@@ -164,6 +170,7 @@ final class StreamTest extends AbstractUnitTestCase
         $this->expectExceptionMessageMatches('/does not exist/');
 
         $adapter = new FakeStreamAdapter($this->security);
+
         $adapter->setFileExists(false);
 
         $adapter->retrieveById(1);
@@ -175,6 +182,7 @@ final class StreamTest extends AbstractUnitTestCase
         $this->expectExceptionMessageMatches('/cannot read/');
 
         $adapter = new FakeStreamAdapter($this->security);
+
         $adapter->setRawContents(false);
 
         $adapter->retrieveById(1);
@@ -186,6 +194,7 @@ final class StreamTest extends AbstractUnitTestCase
         $this->expectExceptionMessageMatches('/not valid JSON/');
 
         $adapter = new FakeStreamAdapter($this->security);
+
         $adapter->setRawContents('{not really json');
 
         $adapter->retrieveById(1);
@@ -197,6 +206,7 @@ final class StreamTest extends AbstractUnitTestCase
         $this->expectExceptionMessageMatches('/does not contain a JSON array/');
 
         $adapter = new FakeStreamAdapter($this->security);
+
         $adapter->setRawContents('"a string, not an array"');
 
         $adapter->retrieveById(1);

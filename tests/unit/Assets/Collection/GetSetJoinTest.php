@@ -26,12 +26,14 @@ final class GetSetJoinTest extends AbstractUnitTestCase
     {
         $collection = new Collection();
 
-        $actual = $collection->getJoin();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->getJoin()
+        );
 
         $collection->join(false);
 
-        $actual = $collection->getJoin();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->getJoin()
+        );
     }
 }

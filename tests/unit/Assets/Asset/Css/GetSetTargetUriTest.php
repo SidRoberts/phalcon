@@ -33,9 +33,12 @@ final class GetSetTargetUriTest extends AbstractUnitTestCase
     ): void {
         $asset    = new Css($path, $local);
         $expected = '/phalcon/path';
+
         $asset->setTargetUri($expected);
 
-        $actual = $asset->getTargetUri();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $asset->getTargetUri()
+        );
     }
 }

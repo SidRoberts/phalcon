@@ -25,11 +25,14 @@ final class GetSetTargetPathTest extends AbstractUnitTestCase
     public function testAssetsCollectionGetSetTargetPath(): void
     {
         $collection = new Collection();
+
         $targetPath = '/assets';
+
         $collection->setTargetPath($targetPath);
 
-        $expected = $targetPath;
-        $actual   = $collection->getTargetPath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $targetPath,
+            $collection->getTargetPath()
+        );
     }
 }

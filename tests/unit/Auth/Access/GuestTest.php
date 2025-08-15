@@ -40,13 +40,15 @@ final class GuestTest extends AbstractUnitTestCase
 
         $this->adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->security->hash('secret'),
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->security->hash('secret'),
+                    ],
+                ]
+            )
         );
     }
 
@@ -78,7 +80,9 @@ final class GuestTest extends AbstractUnitTestCase
 
         $access = new Guest($manager);
 
-        $this->assertTrue($access->allowedIf());
+        $this->assertTrue(
+            $access->allowedIf()
+        );
     }
 
     public function testAllowedIfWhenAuthenticated(): void
@@ -88,12 +92,15 @@ final class GuestTest extends AbstractUnitTestCase
         $manager->addGuard('web', $guard, true);
 
         $user = $this->adapter->retrieveById(1);
+
         $this->assertNotNull($user);
 
         $guard->login($user);
 
         $access = new Guest($manager);
 
-        $this->assertFalse($access->allowedIf());
+        $this->assertFalse(
+            $access->allowedIf()
+        );
     }
 }

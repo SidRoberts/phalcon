@@ -54,10 +54,10 @@ final class OutputCssWithUrlTest extends AbstractUnitTestCase
         $manager->addCss('css/style.css');
         $manager->useImplicitOutput(false);
 
-        $expected = '<link rel="stylesheet" type="text/css" href="/my_app/css/style.css" />' . PHP_EOL;
-        $actual   = $manager->outputCss();
-
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '<link rel="stylesheet" type="text/css" href="/my_app/css/style.css" />' . PHP_EOL,
+            $manager->outputCss()
+        );
     }
 
     /**
@@ -75,9 +75,9 @@ final class OutputCssWithUrlTest extends AbstractUnitTestCase
         $manager->addCss('css/style.css');
         $manager->useImplicitOutput(false);
 
-        $expected = '<link rel="stylesheet" type="text/css" href="/css/style.css" />' . PHP_EOL;
-        $actual   = $manager->outputCss();
-
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '<link rel="stylesheet" type="text/css" href="/css/style.css" />' . PHP_EOL,
+            $manager->outputCss()
+        );
     }
 }

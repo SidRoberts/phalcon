@@ -32,12 +32,15 @@ final class GetSetFilterTest extends AbstractUnitTestCase
         string $path
     ): void {
         $asset  = new Asset($type, $path);
-        $actual = $asset->getFilter();
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $asset->getFilter()
+        );
 
         $asset->setFilter(false);
 
-        $actual = $asset->getFilter();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $asset->getFilter()
+        );
     }
 }

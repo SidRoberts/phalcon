@@ -24,8 +24,8 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testAssetsCollectionConstruct(): void
     {
-        $class  = Collection::class;
-        $actual = new Collection();
-        $this->assertInstanceOf($class, $actual);
+        $collection = new Collection();
+
+        $this->assertInstanceOf(Collection::class, $collection);
     }
 }

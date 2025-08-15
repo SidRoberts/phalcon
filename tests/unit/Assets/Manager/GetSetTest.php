@@ -21,7 +21,6 @@ use Phalcon\Assets\Manager;
 use Phalcon\Html\Escaper;
 use Phalcon\Html\TagFactory;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetTest extends AbstractUnitTestCase
 {
@@ -35,7 +34,9 @@ final class GetSetTest extends AbstractUnitTestCase
         $collection = new Collection();
 
         $manager->set('hangout', $collection);
+
         $actual = $manager->get('hangout');
+
         $this->assertInstanceOf(Collection::class, $actual);
         $this->assertInstanceOf(Countable::class, $actual);
         $this->assertInstanceOf(IteratorAggregate::class, $actual);
@@ -53,6 +54,7 @@ final class GetSetTest extends AbstractUnitTestCase
         );
 
         $manager = new Manager(new TagFactory(new Escaper()));
+
         $manager->get('some-non-existent-collection');
     }
 }

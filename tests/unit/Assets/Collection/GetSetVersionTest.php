@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Collection;
 
 use Phalcon\Assets\Collection;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetVersionTest extends AbstractUnitTestCase
 {
@@ -26,9 +25,14 @@ final class GetSetVersionTest extends AbstractUnitTestCase
     public function testAssetsCollectionGetSetVersion(): void
     {
         $collection = new Collection();
-        $version    = '1.0';
+
+        $version = '1.0';
+
         $collection->setVersion($version);
 
-        $this->assertSame($version, $collection->getVersion());
+        $this->assertSame(
+            $version,
+            $collection->getVersion()
+        );
     }
 }

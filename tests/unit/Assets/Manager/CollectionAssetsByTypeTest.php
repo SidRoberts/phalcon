@@ -31,6 +31,7 @@ final class CollectionAssetsByTypeTest extends AbstractUnitTestCase
     public function testAssetsManagerCollectionAssetsByType(): void
     {
         $manager = new Manager(new TagFactory(new Escaper()));
+
         $assets  = [
             new Css('/scripts/style1.css'),
             new Css('/scripts/style2.css'),
@@ -41,18 +42,8 @@ final class CollectionAssetsByTypeTest extends AbstractUnitTestCase
 
         $filtered = $manager->collectionAssetsByType($assets, 'css');
 
-        $expected = 3;
-        $actual   = count($filtered);
-        $this->assertSame($expected, $actual);
+        $this->assertCount(3, $filtered);
 
-        foreach ($filtered as $asset) {
-            $class  = Css::class;
-            $actual = $asset;
-            $this->assertInstanceOf($class, $actual);
-            $class = Asset::class;
-            $this->assertInstanceOf($class, $actual);
-            $class = AssetInterface::class;
-            $this->assertInstanceOf($class, $actual);
-        }
+        $this->assertContainsOnlyInstancesOf(Css::class, $filtered);
     }
 }

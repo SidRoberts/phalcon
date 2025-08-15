@@ -36,18 +36,14 @@ final class GetCollectionsTest extends AbstractUnitTestCase
 
         $collections = $manager->getCollections();
 
-        $expected = 2;
-        $actual   = count($collections);
-        $this->assertSame($expected, $actual);
+        $this->assertCount(2, $collections);
 
         foreach ($collections as $collection) {
-            $class  = Collection::class;
-            $actual = $collection;
-            $this->assertInstanceOf($class, $actual);
-            $class = Countable::class;
-            $this->assertInstanceOf($class, $actual);
-            $class = IteratorAggregate::class;
-            $this->assertInstanceOf($class, $actual);
+            $this->assertInstanceOf(Collection::class, $collection);
+
+            $this->assertInstanceOf(Countable::class, $collection);
+
+            $this->assertInstanceOf(IteratorAggregate::class, $collection);
         }
     }
 }

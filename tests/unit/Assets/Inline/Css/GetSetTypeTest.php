@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Inline\Css;
 
 use Phalcon\Assets\Inline\Css;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetTypeTest extends AbstractUnitTestCase
 {
@@ -29,8 +28,10 @@ final class GetSetTypeTest extends AbstractUnitTestCase
         $newType = 'js';
 
         $asset->setType($newType);
-        $actual = $asset->getType();
 
-        $this->assertSame($newType, $actual);
+        $this->assertSame(
+            $newType,
+            $asset->getType()
+        );
     }
 }

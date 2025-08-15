@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Asset\Css;
 
 use Phalcon\Assets\Asset\Css;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetRealSourcePathTest extends AbstractUnitTestCase
 {
@@ -25,9 +24,11 @@ final class GetRealSourcePathTest extends AbstractUnitTestCase
      */
     public function testAssetsAssetCssGetRealSourcePathLocal(): void
     {
-        $asset  = new Css('css/docs.css');
-        $actual = $asset->getRealSourcePath();
-        $this->assertEmpty($actual);
+        $asset = new Css('css/docs.css');
+
+        $this->assertEmpty(
+            $asset->getRealSourcePath()
+        );
     }
 
     /**
@@ -39,7 +40,9 @@ final class GetRealSourcePathTest extends AbstractUnitTestCase
         $path  = 'https://phalcon.ld/css/docs.css';
         $asset = new Css($path, false);
 
-        $actual = $asset->getRealSourcePath();
-        $this->assertSame($path, $actual);
+        $this->assertSame(
+            $path,
+            $asset->getRealSourcePath()
+        );
     }
 }

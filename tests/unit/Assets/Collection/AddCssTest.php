@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Collection;
 
 use Phalcon\Assets\Collection;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class AddCssTest extends AbstractUnitTestCase
 {
@@ -26,13 +25,15 @@ final class AddCssTest extends AbstractUnitTestCase
     public function testAssetsCollectionAddCss(): void
     {
         $collection = new Collection();
+
         $collection->addCss('css/docs.css');
         $collection->addCss('https://assets.phalcon.io/phalcon/css/core.css');
 
-        $expected = 'css';
         foreach ($collection as $asset) {
-            $actual = $asset->getType();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                'css',
+                $asset->getType()
+            );
         }
 
         $this->assertCount(2, $collection);

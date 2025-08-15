@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Inline\Css;
 
 use Phalcon\Assets\Inline\Css;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
@@ -27,9 +26,10 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $asset = new Css('p {color: #000099}');
 
-        $expected = 'css';
-        $actual   = $asset->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'css',
+            $asset->getType()
+        );
     }
 
     /**
@@ -43,8 +43,11 @@ final class ConstructTest extends AbstractUnitTestCase
         $expected = [
             'type' => 'text/css',
         ];
-        $actual   = $asset->getAttributes();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -57,13 +60,16 @@ final class ConstructTest extends AbstractUnitTestCase
             'data' => 'phalcon',
         ];
 
-        $asset  = new Css(
+        $asset = new Css(
             'p {color: #000099}',
             true,
             $attributes
         );
-        $actual = $asset->getAttributes();
-        $this->assertSame($attributes, $actual);
+
+        $this->assertSame(
+            $attributes,
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -72,9 +78,11 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testAssetsInlineCssConstructFilter(): void
     {
-        $asset  = new Css('p {color: #000099}');
-        $actual = $asset->getFilter();
-        $this->assertTrue($actual);
+        $asset = new Css('p {color: #000099}');
+
+        $this->assertTrue(
+            $asset->getFilter()
+        );
     }
 
     /**
@@ -83,8 +91,10 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testAssetsInlineCssConstructFilterSet(): void
     {
-        $asset  = new Css('p {color: #000099}', false);
-        $actual = $asset->getFilter();
-        $this->assertFalse($actual);
+        $asset = new Css('p {color: #000099}', false);
+
+        $this->assertFalse(
+            $asset->getFilter()
+        );
     }
 }

@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Inline;
 
 use Phalcon\Assets\Inline;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
@@ -28,9 +27,10 @@ final class ConstructTest extends AbstractUnitTestCase
         $content = 'p {color: #000099}';
         $asset   = new Inline('css', $content);
 
-        $expected = 'css';
-        $actual   = $asset->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'css',
+            $asset->getType()
+        );
     }
 
     /**
@@ -42,9 +42,10 @@ final class ConstructTest extends AbstractUnitTestCase
         $content = 'p {color: #000099}';
         $asset   = new Inline('css', $content);
 
-        $expected = [];
-        $actual   = $asset->getAttributes();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -65,8 +66,10 @@ final class ConstructTest extends AbstractUnitTestCase
             $attributes
         );
 
-        $actual = $asset->getAttributes();
-        $this->assertSame($attributes, $actual);
+        $this->assertSame(
+            $attributes,
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -77,8 +80,10 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $content = 'p {color: #000099}';
         $asset   = new Inline('css', $content);
-        $actual  = $asset->getFilter();
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $asset->getFilter()
+        );
     }
 
     /**
@@ -89,8 +94,10 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $content = 'p {color: #000099}';
         $asset   = new Inline('css', $content, false);
-        $actual  = $asset->getFilter();
-        $this->assertFalse($actual);
+
+        $this->assertFalse(
+            $asset->getFilter()
+        );
     }
 
     /**
@@ -102,9 +109,10 @@ final class ConstructTest extends AbstractUnitTestCase
         $content = '<script>alert("Hello");</script>';
         $asset   = new Inline('js', $content);
 
-        $expected = 'js';
-        $actual   = $asset->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'js',
+            $asset->getType()
+        );
     }
 
     /**
@@ -116,9 +124,10 @@ final class ConstructTest extends AbstractUnitTestCase
         $content = '<script>alert("Hello");</script>';
         $asset   = new Inline('js', $content);
 
-        $expected = [];
-        $actual   = $asset->getAttributes();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -133,8 +142,10 @@ final class ConstructTest extends AbstractUnitTestCase
         ];
         $asset      = new Inline('js', $content, true, $attributes);
 
-        $actual = $asset->getAttributes();
-        $this->assertSame($attributes, $actual);
+        $this->assertSame(
+            $attributes,
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -145,8 +156,10 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $content = '<script>alert("Hello");</script>';
         $asset   = new Inline('js', $content);
-        $actual  = $asset->getFilter();
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $asset->getFilter()
+        );
     }
 
     /**
@@ -157,7 +170,9 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $content = '<script>alert("Hello");</script>';
         $asset   = new Inline('js', $content, false);
-        $actual  = $asset->getFilter();
-        $this->assertFalse($actual);
+
+        $this->assertFalse(
+            $asset->getFilter()
+        );
     }
 }

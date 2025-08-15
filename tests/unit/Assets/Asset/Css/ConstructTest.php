@@ -30,9 +30,10 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $asset = new Css('css/docs.css');
 
-        $expected = [];
-        $actual   = $asset->getAttributes();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -52,8 +53,10 @@ final class ConstructTest extends AbstractUnitTestCase
             $attributes
         );
 
-        $actual = $asset->getAttributes();
-        $this->assertSame($attributes, $actual);
+        $this->assertSame(
+            $attributes,
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -62,9 +65,11 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testAssetsAssetCssConstructFilter(): void
     {
-        $asset  = new Css('css/docs.css');
-        $actual = $asset->getFilter();
-        $this->assertTrue($actual);
+        $asset = new Css('css/docs.css');
+
+        $this->assertTrue(
+            $asset->getFilter()
+        );
     }
 
     /**
@@ -73,9 +78,11 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testAssetsAssetCssConstructFilterSet(): void
     {
-        $asset  = new Css('css/docs.css', true, false);
-        $actual = $asset->getFilter();
-        $this->assertFalse($actual);
+        $asset = new Css('css/docs.css', true, false);
+
+        $this->assertFalse(
+            $asset->getFilter()
+        );
     }
 
     /**
@@ -89,8 +96,9 @@ final class ConstructTest extends AbstractUnitTestCase
     ): void {
         $asset = new Css($path, $local);
 
-        $expected = $local;
-        $actual   = $asset->isLocal();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $local,
+            $asset->isLocal()
+        );
     }
 }

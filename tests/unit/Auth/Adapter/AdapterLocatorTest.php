@@ -46,6 +46,7 @@ final class AdapterLocatorTest extends AbstractUnitTestCase
     public function testNewInstanceReturnsMemory(): void
     {
         $factory = new AdapterLocator($this->container);
+
         $adapter = $factory->newInstance('memory');
 
         $this->assertInstanceOf(Memory::class, $adapter);
@@ -55,6 +56,7 @@ final class AdapterLocatorTest extends AbstractUnitTestCase
     public function testNewInstanceReturnsStream(): void
     {
         $factory = new AdapterLocator($this->container);
+
         $adapter = $factory->newInstance('stream');
 
         $this->assertInstanceOf(Stream::class, $adapter);
@@ -73,6 +75,7 @@ final class AdapterLocatorTest extends AbstractUnitTestCase
     public function testRegisterAddsMapping(): void
     {
         $factory = new AdapterLocator($this->container);
+
         $factory->register('alt', Memory::class);
 
         $this->assertInstanceOf(Memory::class, $factory->newInstance('alt'));
@@ -83,6 +86,7 @@ final class AdapterLocatorTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $factory = new AdapterLocator($this->container);
+
         $factory->register('bad', stdClass::class);
     }
 
@@ -91,6 +95,7 @@ final class AdapterLocatorTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $factory = new AdapterLocator($this->container);
+
         $factory->newInstance('unknown_adapter');
     }
 }

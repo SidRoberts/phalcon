@@ -25,11 +25,14 @@ final class GetSetPrefixTest extends AbstractUnitTestCase
     public function testAssetsCollectionGetSetPrefix(): void
     {
         $collection = new Collection();
-        $prefix     = 'phly_';
+
+        $prefix = 'phly_';
+
         $collection->setPrefix($prefix);
 
-        $expected = $prefix;
-        $actual   = $collection->getPrefix();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $prefix,
+            $collection->getPrefix()
+        );
     }
 }

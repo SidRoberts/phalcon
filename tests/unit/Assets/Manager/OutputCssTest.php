@@ -22,7 +22,6 @@ use Phalcon\Tests\Support\Traits\DiTrait;
 use Phalcon\Tests\Unit\Assets\Fake\TrimFilter;
 use Phalcon\Tests\Unit\Assets\Fake\UppercaseFilter;
 
-use function file_get_contents;
 use function outputDir;
 
 use const PHP_EOL;
@@ -69,12 +68,9 @@ final class OutputCssTest extends AbstractUnitTestCase
 
         $manager->outputCss('css');
 
-        $needle  = 'A{TEXT-DECORATION:NONE;}B{FONT-WEIGHT:BOLD;}';
-        $content = file_get_contents($fileName);
-        $this->assertStringContainsString(
-            $needle,
-            $content
-        );
+        $needle = 'A{TEXT-DECORATION:NONE;}B{FONT-WEIGHT:BOLD;}';
+
+        $this->assertFileContentsContains($fileName, $needle);
 
         $this->safeDeleteFile($fileName);
     }
@@ -99,7 +95,10 @@ final class OutputCssTest extends AbstractUnitTestCase
 
         $manager->useImplicitOutput(false);
 
-        $this->assertSame($expected, $manager->outputCss());
+        $this->assertSame(
+            $expected,
+            $manager->outputCss()
+        );
     }
 
     /**

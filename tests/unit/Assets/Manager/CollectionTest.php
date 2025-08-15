@@ -31,36 +31,26 @@ final class CollectionTest extends AbstractUnitTestCase
     {
         $manager = new Manager(new TagFactory(new Escaper()));
 
-        $class  = Collection::class;
-        $actual = $manager->collection('hangout1');
-        $this->assertInstanceOf($class, $actual);
-        $class = Countable::class;
-        $this->assertInstanceOf($class, $actual);
-        $class = IteratorAggregate::class;
-        $this->assertInstanceOf($class, $actual);
+        $collection = $manager->collection('hangout1');
 
-        $class  = Collection::class;
-        $actual = $manager->collection('hangout2');
-        $this->assertInstanceOf($class, $actual);
-        $class = Countable::class;
-        $this->assertInstanceOf($class, $actual);
-        $class = IteratorAggregate::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Collection::class, $collection);
+        $this->assertInstanceOf(Countable::class, $collection);
+        $this->assertInstanceOf(IteratorAggregate::class, $collection);
+
+        $collection = $manager->collection('hangout2');
+
+        $this->assertInstanceOf(Collection::class, $collection);
+        $this->assertInstanceOf(Countable::class, $collection);
+        $this->assertInstanceOf(IteratorAggregate::class, $collection);
 
         $collections = $manager->getCollections();
 
-        $expected = 2;
-        $actual   = count($collections);
-        $this->assertSame($expected, $actual);
+        $this->assertCount(2, $collections);
 
         foreach ($collections as $collection) {
-            $class  = Collection::class;
-            $actual = $collection;
-            $this->assertInstanceOf($class, $actual);
-            $class = Countable::class;
-            $this->assertInstanceOf($class, $actual);
-            $class = IteratorAggregate::class;
-            $this->assertInstanceOf($class, $actual);
+            $this->assertInstanceOf(Collection::class, $collection);
+            $this->assertInstanceOf(Countable::class, $collection);
+            $this->assertInstanceOf(IteratorAggregate::class, $collection);
         }
     }
 }

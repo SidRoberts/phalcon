@@ -34,9 +34,12 @@ final class GetSetTargetPathTest extends AbstractUnitTestCase
         $asset = new Js($path, $local);
 
         $targetPath = '/phalcon/path';
-        $asset->setTargetPath($targetPath);
-        $actual = $asset->getTargetPath();
 
-        $this->assertSame($targetPath, $actual);
+        $asset->setTargetPath($targetPath);
+
+        $this->assertSame(
+            $targetPath,
+            $asset->getTargetPath()
+        );
     }
 }

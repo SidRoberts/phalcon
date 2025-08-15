@@ -59,8 +59,8 @@ final class ManagerOutputTest extends AbstractUnitTestCase
         $collection->addCss($cssFile);
         // No collection-level filters → no-filter else path → calculatePrefixedPath called
 
-        $actual      = $manager->output($collection, 'css');
-        $modTime     = filemtime($cssFile);
+        $actual  = $manager->output($collection, 'css');
+        $modTime = filemtime($cssFile);
 
         $this->assertStringContainsString('?ver=' . $modTime, $actual);
     }

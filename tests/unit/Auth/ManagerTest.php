@@ -43,13 +43,15 @@ final class ManagerTest extends AbstractUnitTestCase
 
         $this->adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->security->hash('secret'),
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->security->hash('secret'),
+                    ],
+                ]
+            )
         );
     }
 
@@ -89,6 +91,7 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $manager = $this->buildManager();
         $guard   = $this->buildGuard();
+
         $manager->addGuard('web', $guard, true);
         $manager->addAccessList(['auth' => Auth::class]);
         $manager->access('auth');
@@ -99,6 +102,7 @@ final class ManagerTest extends AbstractUnitTestCase
     public function testAccessInstantiatesCustomGate(): void
     {
         $manager = $this->buildManager();
+
         $manager->addAccessList(['admin' => FakeAccess::class]);
         $manager->access('admin');
 
@@ -108,6 +112,7 @@ final class ManagerTest extends AbstractUnitTestCase
     public function testAccessResolvesDefaultWithoutExplicitRegistration(): void
     {
         $manager = $this->buildManager();
+
         $manager->access('auth');
 
         $this->assertInstanceOf(Auth::class, $manager->getAccess());
@@ -118,6 +123,7 @@ final class ManagerTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $manager = $this->buildManager();
+
         $manager->access('nonexistent');
     }
 
@@ -126,6 +132,7 @@ final class ManagerTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $manager = $this->buildManager();
+
         $manager->addAccessList(['x' => 'NoSuchClass\\DoesNotExist']);
         $manager->access('x');
     }
@@ -133,6 +140,7 @@ final class ManagerTest extends AbstractUnitTestCase
     public function testAddAccessListMerges(): void
     {
         $manager = $this->buildManager();
+
         $manager->addAccessList(['auth' => Auth::class]);
         $manager->addAccessList(['admin' => FakeAccess::class]);
 
@@ -148,6 +156,7 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard);
 
         $this->assertArrayHasKey('web', $manager->getGuards());
@@ -157,6 +166,7 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
 
         $this->assertSame($guard, $manager->getDefaultGuard());
@@ -166,6 +176,7 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
 
         $this->assertSame($guard->check(), $manager->check());
@@ -176,6 +187,7 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
         $manager->addAccessList(['auth' => Auth::class]);
         $manager->access('auth');
@@ -189,6 +201,7 @@ final class ManagerTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $manager = $this->buildManager();
+
         $manager->except('login');
     }
 
@@ -196,6 +209,7 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard);
 
         $this->assertSame($guard, $manager->guard('web'));
@@ -205,6 +219,7 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
 
         $this->assertSame($guard, $manager->guard());
@@ -215,6 +230,7 @@ final class ManagerTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $manager = $this->buildManager();
+
         $manager->guard('nonexistent');
     }
 
@@ -223,6 +239,7 @@ final class ManagerTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $manager = $this->buildManager();
+
         $manager->guard();
     }
 
@@ -230,15 +247,19 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
 
-        $this->assertNull($manager->id());
+        $this->assertNull(
+            $manager->id()
+        );
     }
 
     public function testOnlySetsOnActiveAccess(): void
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
         $manager->addAccessList(['auth' => Auth::class]);
         $manager->access('auth');
@@ -252,6 +273,7 @@ final class ManagerTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $manager = $this->buildManager();
+
         $manager->only('admin');
     }
 
@@ -259,6 +281,7 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
 
         $this->assertNull($manager->user());
@@ -268,6 +291,7 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
 
         $this->assertFalse($manager->check());
@@ -277,12 +301,17 @@ final class ManagerTest extends AbstractUnitTestCase
     {
         $guard   = $this->buildGuard();
         $manager = $this->buildManager();
+
         $manager->addGuard('web', $guard, true);
 
-        $this->assertTrue($manager->attempt([
-            'email'    => 'alice@example.com',
-            'password' => 'secret',
-        ]));
+        $this->assertTrue(
+            $manager->attempt(
+                [
+                    'email'    => 'alice@example.com',
+                    'password' => 'secret',
+                ]
+            )
+        );
     }
 
     public function testAttemptThrowsWhenGuardNotStateful(): void
@@ -306,10 +335,14 @@ final class ManagerTest extends AbstractUnitTestCase
         $manager = $this->buildManager();
         $manager->addGuard('web', $guard, true);
 
-        $this->assertTrue($manager->validate([
-            'email'    => 'alice@example.com',
-            'password' => 'secret',
-        ]));
+        $this->assertTrue(
+            $manager->validate(
+                [
+                    'email'    => 'alice@example.com',
+                    'password' => 'secret',
+                ]
+            )
+        );
     }
 
     public function testLogoutForwardsToDefaultGuard(): void
@@ -318,10 +351,12 @@ final class ManagerTest extends AbstractUnitTestCase
         $manager = $this->buildManager();
         $manager->addGuard('web', $guard, true);
 
-        $manager->attempt([
-            'email'    => 'alice@example.com',
-            'password' => 'secret',
-        ]);
+        $manager->attempt(
+            [
+                'email'    => 'alice@example.com',
+                'password' => 'secret',
+            ]
+        );
 
         $this->assertTrue($manager->check());
 

@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Asset\Js;
 
 use Phalcon\Assets\Asset\Js;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 use function hash;
 
@@ -27,11 +26,14 @@ final class GetAssetKeyTest extends AbstractUnitTestCase
      */
     public function testAssetsAssetJsGetAssetKey(): void
     {
-        $path     = 'js/jquery.js';
-        $asset    = new Js($path);
-        $expected = hash("sha256", 'js:' . $path);
-        $actual   = $asset->getAssetKey();
+        $path  = 'js/jquery.js';
+        $asset = new Js($path);
 
-        $this->assertSame($expected, $actual);
+        $expected = hash("sha256", 'js:' . $path);
+
+        $this->assertSame(
+            $expected,
+            $asset->getAssetKey()
+        );
     }
 }

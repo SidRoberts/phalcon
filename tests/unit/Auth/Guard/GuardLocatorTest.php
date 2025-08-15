@@ -91,6 +91,7 @@ final class GuardLocatorTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $factory = new GuardLocator($this->container);
+
         $factory->register('bad', stdClass::class);
     }
 
@@ -99,6 +100,7 @@ final class GuardLocatorTest extends AbstractUnitTestCase
         $this->expectException(Exception::class);
 
         $factory = new GuardLocator($this->container);
+
         $factory->newInstance('unknown_guard');
     }
 }

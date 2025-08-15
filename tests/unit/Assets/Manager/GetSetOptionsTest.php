@@ -18,12 +18,11 @@ use Phalcon\Html\Escaper;
 use Phalcon\Html\TagFactory;
 use Phalcon\Tests\AbstractUnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetOptionsTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: array, 1: array, 2: array}>
      */
     public static function getExamples(): array
     {
@@ -74,7 +73,9 @@ final class GetSetOptionsTest extends AbstractUnitTestCase
             $manager->setOptions($set);
         }
 
-        $actual = $manager->getOptions();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $manager->getOptions()
+        );
     }
 }

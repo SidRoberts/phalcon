@@ -32,12 +32,15 @@ final class GetSetTargetPathTest extends AbstractUnitTestCase
         string $path,
         bool $local
     ): void {
-        $asset      = new Asset($type, $path, $local);
+        $asset = new Asset($type, $path, $local);
+
         $targetPath = '/new/path';
 
         $asset->setTargetPath($targetPath);
 
-        $actual = $asset->getTargetPath();
-        $this->assertSame($targetPath, $actual);
+        $this->assertSame(
+            $targetPath,
+            $asset->getTargetPath()
+        );
     }
 }

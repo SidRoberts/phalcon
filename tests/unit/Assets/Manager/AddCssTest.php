@@ -17,7 +17,6 @@ use Phalcon\Assets\Manager;
 use Phalcon\Html\Escaper;
 use Phalcon\Html\TagFactory;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class AddCssTest extends AbstractUnitTestCase
 {
@@ -34,14 +33,14 @@ final class AddCssTest extends AbstractUnitTestCase
 
         $collection = $manager->get('css');
 
-        $expected = 'css';
         foreach ($collection as $resource) {
-            $actual = $resource->getType();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                'css',
+                $resource->getType()
+            );
         }
 
-        $expected = 2;
-        $this->assertCount($expected, $collection);
+        $this->assertCount(2, $collection);
     }
 
     /**
@@ -60,9 +59,15 @@ final class AddCssTest extends AbstractUnitTestCase
             ;
         }
 
-        $expected = 1;
-        $this->assertCount($expected, $manager->getCss());
-        $this->assertCount($expected, $manager->getJs());
+        $this->assertCount(
+            1,
+            $manager->getCss()
+        );
+
+        $this->assertCount(
+            1,
+            $manager->getJs()
+        );
 
         for ($i = 0; $i < 2; $i++) {
             $manager
@@ -71,8 +76,14 @@ final class AddCssTest extends AbstractUnitTestCase
             ;
         }
 
-        $expected = 3;
-        $this->assertCount($expected, $manager->getCss());
-        $this->assertCount($expected, $manager->getJs());
+        $this->assertCount(
+            3,
+            $manager->getCss()
+        );
+
+        $this->assertCount(
+            3,
+            $manager->getJs()
+        );
     }
 }

@@ -23,7 +23,7 @@ final class GetRealSourcePathTest extends AbstractUnitTestCase
     use AssetsTrait;
 
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: string}>
      */
     public static function localProvider(): array
     {
@@ -40,7 +40,7 @@ final class GetRealSourcePathTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: string}>
      */
     public static function remoteProvider(): array
     {
@@ -65,9 +65,11 @@ final class GetRealSourcePathTest extends AbstractUnitTestCase
         string $type,
         string $path
     ): void {
-        $asset  = new Asset($type, $path);
-        $actual = $asset->getRealSourcePath();
-        $this->assertEmpty($actual);
+        $asset = new Asset($type, $path);
+
+        $this->assertEmpty(
+            $asset->getRealSourcePath()
+        );
     }
 
     /**
@@ -99,8 +101,9 @@ final class GetRealSourcePathTest extends AbstractUnitTestCase
 
         $asset = new Asset($type, $path, false);
 
-        $expected = $path;
-        $actual   = $asset->getRealSourcePath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $path,
+            $asset->getRealSourcePath()
+        );
     }
 }

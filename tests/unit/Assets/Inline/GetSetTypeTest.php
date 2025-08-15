@@ -33,10 +33,12 @@ final class GetSetTypeTest extends AbstractUnitTestCase
         string $newType
     ): void {
         $asset = new Inline($type, $content);
+
         $asset->setType($newType);
 
-        $expected = $newType;
-        $actual   = $asset->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $newType,
+            $asset->getType()
+        );
     }
 }

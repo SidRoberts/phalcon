@@ -30,9 +30,10 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $asset = new Js('js/jquery.js');
 
-        $expected = [];
-        $actual   = $asset->getAttributes();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -52,9 +53,10 @@ final class ConstructTest extends AbstractUnitTestCase
             $attributes
         );
 
-        $expected = $attributes;
-        $actual   = $asset->getAttributes();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $attributes,
+            $asset->getAttributes()
+        );
     }
 
     /**
@@ -65,8 +67,9 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $asset = new Js('js/jquery.js');
 
-        $actual = $asset->getFilter();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $asset->getFilter()
+        );
     }
 
     /**
@@ -77,8 +80,9 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $asset = new Js('js/jquery.js', true, false);
 
-        $actual = $asset->getFilter();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $asset->getFilter()
+        );
     }
 
     /**
@@ -92,9 +96,9 @@ final class ConstructTest extends AbstractUnitTestCase
     ): void {
         $asset = new Js($path, $local);
 
-        $expected = $local;
-        $actual   = $asset->isLocal();
-
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $local,
+            $asset->isLocal()
+        );
     }
 }

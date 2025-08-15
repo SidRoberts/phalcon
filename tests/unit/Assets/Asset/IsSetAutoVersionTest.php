@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Asset;
 
 use Phalcon\Assets\Asset;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class IsSetAutoVersionTest extends AbstractUnitTestCase
 {
@@ -27,12 +26,14 @@ final class IsSetAutoVersionTest extends AbstractUnitTestCase
     {
         $asset = new Asset('css', 'css/docs.css');
 
-        $actual = $asset->isAutoVersion();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $asset->isAutoVersion()
+        );
 
         $asset->setAutoVersion(true);
 
-        $actual = $asset->isAutoVersion();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $asset->isAutoVersion()
+        );
     }
 }

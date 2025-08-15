@@ -33,9 +33,11 @@ final class GetSetPathTest extends AbstractUnitTestCase
     ): void {
         $asset = new Asset($type, $path);
 
-        $expected = $path;
         $asset->setPath($path);
-        $actual = $asset->getPath();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $path,
+            $asset->getPath()
+        );
     }
 }

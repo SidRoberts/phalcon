@@ -35,9 +35,12 @@ final class GetRealTargetUriTest extends AbstractUnitTestCase
         string $expected
     ): void {
         $asset = new Asset($type, $path, $local);
+
         $asset->setTargetUri($targetUri);
 
-        $actual = $asset->getRealTargetUri();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $asset->getRealTargetUri()
+        );
     }
 }

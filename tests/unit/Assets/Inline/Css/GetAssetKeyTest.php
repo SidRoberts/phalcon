@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Inline\Css;
 
 use Phalcon\Assets\Inline\Css;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 use function hash;
 
@@ -30,8 +29,9 @@ final class GetAssetKeyTest extends AbstractUnitTestCase
         $content = 'p {color: #000099}';
         $asset   = new Css($content);
 
-        $expected = hash("sha256", 'css:' . $content);
-        $actual   = $asset->getAssetKey();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            hash("sha256", 'css:' . $content),
+            $asset->getAssetKey()
+        );
     }
 }

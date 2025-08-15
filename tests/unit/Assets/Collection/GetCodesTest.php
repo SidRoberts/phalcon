@@ -16,7 +16,6 @@ namespace Phalcon\Tests\Unit\Assets\Collection;
 use Phalcon\Assets\Collection;
 use Phalcon\Assets\Inline\Css;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetCodesTest extends AbstractUnitTestCase
 {
@@ -28,11 +27,19 @@ final class GetCodesTest extends AbstractUnitTestCase
     {
         $collection = new Collection();
         $inline     = new Css(".test{color: #8fc6bc}");
+
         $collection->addInline($inline);
 
         $codes = $collection->getCodes();
 
-        $this->assertCount(1, $collection->getCodes());
-        $this->assertSame(end($codes), $inline);
+        $this->assertCount(
+            1,
+            $collection->getCodes()
+        );
+
+        $this->assertSame(
+            end($codes),
+            $inline
+        );
     }
 }

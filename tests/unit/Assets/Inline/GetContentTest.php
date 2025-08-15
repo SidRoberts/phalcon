@@ -33,8 +33,9 @@ final class GetContentTest extends AbstractUnitTestCase
     ): void {
         $asset = new Inline($type, $content);
 
-        $expected = $content;
-        $actual   = $asset->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $content,
+            $asset->getContent()
+        );
     }
 }

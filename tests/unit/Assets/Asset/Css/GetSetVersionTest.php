@@ -15,7 +15,6 @@ namespace Phalcon\Tests\Unit\Assets\Asset\Css;
 
 use Phalcon\Assets\Asset\Css;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetVersionTest extends AbstractUnitTestCase
 {
@@ -28,9 +27,12 @@ final class GetSetVersionTest extends AbstractUnitTestCase
         $asset = new Css('css/docs.css');
 
         $version = '4.1.0-rc.3';
-        $asset->setVersion($version);
-        $actual = $asset->getVersion();
 
-        $this->assertSame($version, $actual);
+        $asset->setVersion($version);
+
+        $this->assertSame(
+            $version,
+            $asset->getVersion()
+        );
     }
 }

@@ -78,10 +78,12 @@ final class SessionTest extends AbstractUnitTestCase
     {
         $guard = $this->buildGuard();
 
-        $result = $guard->attempt([
-            'email'    => 'alice@example.com',
-            'password' => 'secret',
-        ]);
+        $result = $guard->attempt(
+            [
+                'email'    => 'alice@example.com',
+                'password' => 'secret',
+            ]
+        );
 
         $this->assertTrue($result);
         $this->assertTrue($guard->check());
@@ -92,10 +94,12 @@ final class SessionTest extends AbstractUnitTestCase
     {
         $guard = $this->buildGuard();
 
-        $result = $guard->attempt([
-            'email'    => 'alice@example.com',
-            'password' => 'wrong-password',
-        ]);
+        $result = $guard->attempt(
+            [
+                'email'    => 'alice@example.com',
+                'password' => 'wrong-password',
+            ]
+        );
 
         $this->assertFalse($result);
         $this->assertFalse($guard->check());
@@ -105,10 +109,12 @@ final class SessionTest extends AbstractUnitTestCase
     {
         $guard = $this->buildGuard();
 
-        $result = $guard->attempt([
-            'email'    => 'nobody@example.com',
-            'password' => 'secret',
-        ]);
+        $result = $guard->attempt(
+            [
+                'email'    => 'nobody@example.com',
+                'password' => 'secret',
+            ]
+        );
 
         $this->assertFalse($result);
         $this->assertFalse($guard->check());
@@ -164,6 +170,7 @@ final class SessionTest extends AbstractUnitTestCase
         $captured = [];
 
         $eventsManager = new EventsManager();
+
         $eventsManager->attach(
             'auth:beforeLogin',
             function () use (&$captured): void {
@@ -285,6 +292,7 @@ final class SessionTest extends AbstractUnitTestCase
         $guard->validate(['email' => 'alice@example.com', 'password' => 'secret']);
 
         $user = $guard->getLastUserAttempted();
+
         $this->assertNotNull($user);
         $this->assertSame(1, $user->getAuthIdentifier());
     }

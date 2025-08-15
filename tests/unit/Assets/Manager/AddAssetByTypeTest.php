@@ -19,7 +19,6 @@ use Phalcon\Assets\Manager;
 use Phalcon\Html\Escaper;
 use Phalcon\Html\TagFactory;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class AddAssetByTypeTest extends AbstractUnitTestCase
 {
@@ -34,12 +33,12 @@ final class AddAssetByTypeTest extends AbstractUnitTestCase
         $manager->addAssetByType('css', new Css('/css/style1.css'));
         $manager->addAssetByType('css', new Css('/css/style2.css'));
 
-
         $collection = $manager->get('css');
-        $expected   = 'css';
+
         foreach ($collection as $resource) {
             $actual = $resource->getType();
-            $this->assertSame($expected, $actual);
+
+            $this->assertSame('css', $actual);
         }
 
         $this->assertCount(2, $collection);

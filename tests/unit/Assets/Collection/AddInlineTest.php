@@ -16,7 +16,6 @@ namespace Phalcon\Tests\Unit\Assets\Collection;
 use Phalcon\Assets\Collection;
 use Phalcon\Assets\Inline;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class AddInlineTest extends AbstractUnitTestCase
 {
@@ -28,6 +27,7 @@ final class AddInlineTest extends AbstractUnitTestCase
     {
         $collection = new Collection();
         $inline     = new Inline('js', "alert('an amazing test');");
+
         $collection->addInline($inline);
 
         $codes = $collection->getCodes();
