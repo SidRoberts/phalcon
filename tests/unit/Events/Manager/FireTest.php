@@ -52,6 +52,7 @@ final class FireTest extends AbstractUnitTestCase
         $actual   = $component->getEventsManager()
                               ->getResponses()
         ;
+
         $this->assertSame($expected, $actual);
     }
 
@@ -66,9 +67,10 @@ final class FireTest extends AbstractUnitTestCase
         $this->expectExceptionMessage('Invalid event type unknown');
 
         $manager = new Manager();
+
         $manager->attach(
             'someEvent',
-            function () {
+            function (): bool {
                 return true;
             }
         );
@@ -83,8 +85,10 @@ final class FireTest extends AbstractUnitTestCase
     public function testEventsManagerFireNoEvents(): void
     {
         $manager = new Manager();
-        $actual  = $manager->fire('someEvent', new stdClass());
-        $this->assertNull($actual);
+
+        $this->assertNull(
+            $manager->fire('someEvent', new stdClass())
+        );
     }
 
     /**
@@ -164,6 +168,7 @@ final class FireTest extends AbstractUnitTestCase
         $actual   = $component->getEventsManager()
                               ->getResponses()
         ;
+
         $this->assertSame($expected, $actual);
     }
 }

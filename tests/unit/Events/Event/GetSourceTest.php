@@ -27,13 +27,15 @@ final class GetSourceTest extends AbstractUnitTestCase
     {
         $event = new Event('some-type:beforeSome', $this);
 
-        $expected = $this;
-        $actual   = $event->getSource();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $this,
+            $event->getSource()
+        );
 
         $event = new Event('some-type:beforeSome');
 
-        $actual = $event->getSource();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $event->getSource()
+        );
     }
 }

@@ -25,21 +25,26 @@ final class DetachAllTest extends AbstractUnitTestCase
     public function testEventsManagerDetachAll(): void
     {
         $eventType = 'some:upload';
-        $manager   = new Manager();
+
+        $manager = new Manager();
+
         $manager->attach(
             $eventType,
-            function () {
+            function (): bool {
                 return true;
             }
         );
 
-        $actual = $manager->getListeners($eventType);
-        $this->assertCount(1, $actual);
+        $this->assertCount(
+            1,
+            $manager->getListeners($eventType)
+        );
 
         $manager->detachAll();
 
-        $actual = $manager->hasListeners($eventType);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->hasListeners($eventType)
+        );
     }
 
     /**
@@ -48,33 +53,41 @@ final class DetachAllTest extends AbstractUnitTestCase
      */
     public function testEventsManagerDetachAllWithType(): void
     {
-        $uploadType = 'some:upload';
+        $uploadType   = 'some:upload';
         $downloadType = 'some:download';
+
         $manager = new Manager();
+
         $manager->attach(
             $uploadType,
-            function () {
+            function (): bool {
                 return true;
             }
         );
 
         $manager->attach(
             $downloadType,
-            function () {
+            function (): bool {
                 return true;
             }
         );
 
-        $actual = $manager->hasListeners($uploadType);
-        $this->assertTrue($actual);
-        $actual = $manager->hasListeners($downloadType);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->hasListeners($uploadType)
+        );
+
+        $this->assertTrue(
+            $manager->hasListeners($downloadType)
+        );
 
         $manager->detachAll($uploadType);
 
-        $actual = $manager->hasListeners($uploadType);
-        $this->assertFalse($actual);
-        $actual = $manager->hasListeners($downloadType);
-        $this->assertTrue($actual);
+        $this->assertFalse(
+            $manager->hasListeners($uploadType)
+        );
+
+        $this->assertTrue(
+            $manager->hasListeners($downloadType)
+        );
     }
 }

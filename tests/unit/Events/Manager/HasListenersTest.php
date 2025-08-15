@@ -25,17 +25,20 @@ final class HasListenersTest extends AbstractUnitTestCase
     public function testEventsManagerHasListeners(): void
     {
         $manager = new Manager();
-        $actual  = $manager->hasListeners('some');
-        $this->assertFalse($actual);
+
+        $this->assertFalse(
+            $manager->hasListeners('some')
+        );
 
         $manager->attach(
             'some:upload',
-            function () {
+            function (): bool {
                 return true;
             }
         );
 
-        $actual = $manager->hasListeners('some:upload');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->hasListeners('some:upload')
+        );
     }
 }

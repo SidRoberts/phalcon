@@ -26,15 +26,20 @@ final class IsCollectingTest extends AbstractUnitTestCase
     {
         $manager = new Manager();
 
-        $actual = $manager->isCollecting();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->isCollecting()
+        );
 
         $manager->collectResponses(true);
-        $actual = $manager->isCollecting();
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $manager->isCollecting()
+        );
 
         $manager->collectResponses(false);
-        $actual = $manager->isCollecting();
-        $this->assertFalse($actual);
+
+        $this->assertFalse(
+            $manager->isCollecting()
+        );
     }
 }

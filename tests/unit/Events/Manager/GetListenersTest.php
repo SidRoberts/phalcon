@@ -36,17 +36,15 @@ final class GetListenersTest extends AbstractUnitTestCase
 
         $eventsManager->attach('log', $first);
         $eventsManager->attach('log', $second);
+
         $logListeners = $component->getEventsManager()
                                   ->getListeners('log')
         ;
+
         $this->assertCount(2, $logListeners);
 
-        $expected = OneListener::class;
-        $actual   = $logListeners[0];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(OneListener::class, $logListeners[0]);
 
-        $expected = TwoListener::class;
-        $actual   = $logListeners[1];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(TwoListener::class, $logListeners[1]);
     }
 }

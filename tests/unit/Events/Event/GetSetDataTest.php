@@ -26,8 +26,9 @@ final class GetSetDataTest extends AbstractUnitTestCase
     {
         $event = new Event('some-type:beforeSome', $this);
 
-        $actual = $event->getData();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $event->getData()
+        );
     }
 
     /**
@@ -38,9 +39,11 @@ final class GetSetDataTest extends AbstractUnitTestCase
     {
         $data     = [1, 2, 3];
         $event    = new Event('some-type:beforeSome', $this, $data);
-        $expected = $data;
-        $actual   = $event->getData();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $data,
+            $event->getData()
+        );
     }
 
     /**
@@ -49,15 +52,19 @@ final class GetSetDataTest extends AbstractUnitTestCase
      */
     public function testEventsEventGetSetDataEmpty(): void
     {
-        $data     = [1, 2, 3];
-        $event    = new Event('some-type:beforeSome', $this, $data);
-        $expected = $data;
-        $actual   = $event->getData();
-        $this->assertSame($expected, $actual);
+        $data  = [1, 2, 3];
+        $event = new Event('some-type:beforeSome', $this, $data);
+
+        $this->assertSame(
+            $data,
+            $event->getData()
+        );
 
         $event->setData();
-        $actual = $event->getData();
-        $this->assertNull($actual);
+
+        $this->assertNull(
+            $event->getData()
+        );
     }
 
     /**
@@ -66,16 +73,20 @@ final class GetSetDataTest extends AbstractUnitTestCase
      */
     public function testEventsEventGetSetDataOverwrite(): void
     {
-        $data     = [1, 2, 3];
-        $event    = new Event('some-type:beforeSome', $this, $data);
-        $expected = $data;
-        $actual   = $event->getData();
-        $this->assertSame($expected, $actual);
+        $data  = [1, 2, 3];
+        $event = new Event('some-type:beforeSome', $this, $data);
+
+        $this->assertSame(
+            $data,
+            $event->getData()
+        );
 
         $newData = [4, 5, 6];
         $event->setData($newData);
-        $expected = $newData;
-        $actual   = $event->getData();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $newData,
+            $event->getData()
+        );
     }
 }

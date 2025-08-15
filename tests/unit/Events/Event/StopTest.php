@@ -29,7 +29,7 @@ final class StopTest extends AbstractUnitTestCase
         $number        = 0;
         $eventsManager = new Manager();
 
-        $propagationListener = function (Event $event, $component, $data) use (&$number) {
+        $propagationListener = function (Event $event, $component, $data) use (&$number): void {
             $number++;
 
             $event->stop();

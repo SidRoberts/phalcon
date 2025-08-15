@@ -39,11 +39,13 @@ final class AttachTest extends AbstractUnitTestCase
         $logListeners = $component->getEventsManager()
                                   ->getListeners('log')
         ;
+
         $this->assertCount(1, $logListeners);
 
-        $expected = OneListener::class;
-        $actual   = $logListeners[0];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(
+            OneListener::class,
+            $logListeners[0]
+        );
 
         $component->getEventsManager()
                   ->attach('log', $second)
@@ -51,15 +53,18 @@ final class AttachTest extends AbstractUnitTestCase
         $logListeners = $component->getEventsManager()
                                   ->getListeners('log')
         ;
+
         $this->assertCount(2, $logListeners);
 
-        $expected = OneListener::class;
-        $actual   = $logListeners[0];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(
+            OneListener::class,
+            $logListeners[0]
+        );
 
-        $expected = TwoListener::class;
-        $actual   = $logListeners[1];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(
+            TwoListener::class,
+            $logListeners[1]
+        );
 
         $component->getEventsManager()
                   ->detachAll('log')
@@ -67,6 +72,7 @@ final class AttachTest extends AbstractUnitTestCase
         $logListeners = $component->getEventsManager()
                                   ->getListeners('log')
         ;
+
         $this->assertEmpty($logListeners);
 
         $component->getEventsManager()
@@ -75,11 +81,10 @@ final class AttachTest extends AbstractUnitTestCase
         $logListeners = $component->getEventsManager()
                                   ->getListeners('log')
         ;
+
         $this->assertCount(1, $logListeners);
 
-        $expected = TwoListener::class;
-        $actual   = $logListeners[0];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(TwoListener::class, $logListeners[0]);
     }
 
     /**

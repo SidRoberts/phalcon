@@ -20,12 +20,13 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class IsValidHandlerTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: bool, 1: mixed}>
      */
     public static function getExamples(): array
     {
         $objectHandler  = new Manager();
-        $closureHandler = function () {
+
+        $closureHandler = function (): bool {
             return true;
         };
 
@@ -64,7 +65,9 @@ final class IsValidHandlerTest extends AbstractUnitTestCase
     ): void {
         $manager = new Manager();
 
-        $actual = $manager->isValidHandler($handler);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $manager->isValidHandler($handler)
+        );
     }
 }

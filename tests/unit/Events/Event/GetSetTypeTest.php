@@ -26,16 +26,19 @@ final class GetSetTypeTest extends AbstractUnitTestCase
     {
         $type    = 'some-type:beforeSome';
         $newType = 'some-type:afterSome';
+
         $event   = new Event($type, $this);
 
-        $expected = $type;
-        $actual   = $event->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $type,
+            $event->getType()
+        );
 
         $event->setType($newType);
 
-        $expected = $newType;
-        $actual   = $event->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $newType,
+            $event->getType()
+        );
     }
 }

@@ -28,12 +28,10 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $event = new Event('test', $this);
 
-        $class = EventInterface::class;
-        $this->assertInstanceOf($class, $event);
+        $this->assertInstanceOf(EventInterface::class, $event);
 
         $event = new Event('test');
 
-        $class = EventInterface::class;
-        $this->assertInstanceOf($class, $event);
+        $this->assertInstanceOf(EventInterface::class, $event);
     }
 }

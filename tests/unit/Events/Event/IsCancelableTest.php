@@ -27,12 +27,14 @@ final class IsCancelableTest extends AbstractUnitTestCase
         $type  = 'some-type:beforeSome';
         $event = new Event($type, $this);
 
-        $actual = $event->isCancelable();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $event->isCancelable()
+        );
 
         $event = new Event($type, $this, [], false);
 
-        $actual = $event->isCancelable();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $event->isCancelable()
+        );
     }
 }

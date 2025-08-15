@@ -32,14 +32,20 @@ final class ComponentManagerTest extends AbstractUnitTestCase
         $manager   = new Manager();
         $component = new ComponentWithEvents();
 
-        $actual = method_exists($component, 'getEventsManager');
-        $this->assertTrue($actual);
-        $actual = method_exists($component, 'setEventsManager');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            method_exists($component, 'getEventsManager')
+        );
+
+        $this->assertTrue(
+            method_exists($component, 'setEventsManager')
+        );
 
         $component->setEventsManager($manager);
-        $actual = $component->getEventsManager();
-        $this->assertSame($manager, $actual);
+
+        $this->assertSame(
+            $manager,
+            $component->getEventsManager()
+        );
     }
 
     /**

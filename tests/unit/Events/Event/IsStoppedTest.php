@@ -27,12 +27,14 @@ final class IsStoppedTest extends AbstractUnitTestCase
         $type  = 'some-type:beforeSome';
         $event = new Event($type, $this);
 
-        $actual = $event->isStopped();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $event->isStopped()
+        );
 
         $event->stop();
 
-        $actual = $event->isStopped();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $event->isStopped()
+        );
     }
 }

@@ -26,17 +26,20 @@ final class EnablePrioritiesTest extends AbstractUnitTestCase
     {
         $manager = new Manager();
 
-        $actual = $manager->arePrioritiesEnabled();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->arePrioritiesEnabled()
+        );
 
         $manager->enablePriorities(true);
 
-        $actual = $manager->arePrioritiesEnabled();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->arePrioritiesEnabled()
+        );
 
         $manager->enablePriorities(false);
 
-        $actual = $manager->arePrioritiesEnabled();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->arePrioritiesEnabled()
+        );
     }
 }

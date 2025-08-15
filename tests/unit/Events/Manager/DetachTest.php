@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Events\Manager;
 
-use Phalcon\Events\Exception;
 use Phalcon\Events\Manager;
 use Phalcon\Tests\AbstractUnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -22,7 +21,7 @@ use stdClass;
 final class DetachTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: bool}>
      */
     public static function booleanProvider(): array
     {
