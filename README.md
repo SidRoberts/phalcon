@@ -1,3 +1,13 @@
+# ⚠️ About this Fork
+
+This fork of **Phalcon** is currently undergoing a **massive refactor**.
+
+Expect many small commits and the commit history will be **extremely volatile**.
+
+When Phalcon 6 is ready, these commits will be cherry-picked onto many different branches and made into pull requests.
+
+---
+
 # phalcon
 Phalcon Framework
 
