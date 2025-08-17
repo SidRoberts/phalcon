@@ -40,9 +40,10 @@ final class GetJsonRawBodyTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = json_decode($input, true);
-        $actual   = $request->getJsonRawBody(true);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            json_decode($input, true),
+            $request->getJsonRawBody(true)
+        );
 
         $this->unregisterStream();
     }
@@ -55,7 +56,9 @@ final class GetJsonRawBodyTest extends AbstractHttpBase
     {
         // Empty
         $request = $this->getRequestObject();
-        $actual  = $request->getRawBody();
-        $this->assertEmpty($actual);
+
+        $this->assertEmpty(
+            $request->getRawBody()
+        );
     }
 }

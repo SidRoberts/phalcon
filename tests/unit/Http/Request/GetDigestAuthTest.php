@@ -35,7 +35,10 @@ final class GetDigestAuthTest extends AbstractHttpBase
             'nonce'  => 'abcdef',
             'opaque' => '123456789',
         ];
-        $actual   = $request->getDigestAuth();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->getDigestAuth()
+        );
     }
 }

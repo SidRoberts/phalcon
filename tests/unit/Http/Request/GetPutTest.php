@@ -38,14 +38,17 @@ final class GetPutTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $actual = $request->hasPut('fruit');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->hasPut('fruit')
+        );
 
-        $actual = $request->hasPut('quantity');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->hasPut('quantity')
+        );
 
-        $actual = $request->hasPut('unknown');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $request->hasPut('unknown')
+        );
 
         $data = file_get_contents(Http::STREAM);
 
@@ -59,8 +62,10 @@ final class GetPutTest extends AbstractHttpBase
 
         $this->assertSame($expected, $actual);
 
-        $actual = $request->getPut();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->getPut()
+        );
 
         $this->unregisterStream();
     }
@@ -96,8 +101,10 @@ final class GetPutTest extends AbstractHttpBase
 
         $this->assertSame($expected, $actual);
 
-        $actual = $request->getPut();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->getPut()
+        );
 
         $this->unregisterStream();
     }

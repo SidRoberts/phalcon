@@ -38,7 +38,10 @@ final class GetClientCharsetsTest extends AbstractHttpBase
                 'quality' => 0.8,
             ],
         ];
-        $actual   = $request->getClientCharsets();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->getClientCharsets()
+        );
     }
 }

@@ -270,8 +270,11 @@ final class AuthHeaderTest extends AbstractHttpBase
         $expected = [
             'Authorization' => 'Negotiate a87421000492aa874209af8bc028',
         ];
-        $actual   = $request->getHeaders();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->getHeaders()
+        );
     }
 
     /**
@@ -298,8 +301,11 @@ final class AuthHeaderTest extends AbstractHttpBase
             'Fired-Before' => 'beforeAuthorizationResolve',
             'Fired-After'  => 'afterAuthorizationResolve',
         ];
-        $actual   = $request->getHeaders();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->getHeaders()
+        );
     }
 
     #[DataProvider('authProvider')]
@@ -312,8 +318,10 @@ final class AuthHeaderTest extends AbstractHttpBase
 
         $_SERVER = $server;
 
-        $actual = $request->$function();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->$function()
+        );
     }
 
     /**
@@ -330,7 +338,10 @@ final class AuthHeaderTest extends AbstractHttpBase
         $expected = [
             'Authorization' => 'Enigma Secret',
         ];
-        $actual   = $request->getHeaders();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->getHeaders()
+        );
     }
 }

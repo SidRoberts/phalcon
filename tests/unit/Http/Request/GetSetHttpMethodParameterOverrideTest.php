@@ -26,12 +26,14 @@ final class GetSetHttpMethodParameterOverrideTest extends AbstractUnitTestCase
     {
         $request = new Request();
 
-        $actual = $request->getHttpMethodParameterOverride();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $request->getHttpMethodParameterOverride()
+        );
 
         $request->setHttpMethodParameterOverride(true);
 
-        $actual = $request->getHttpMethodParameterOverride();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->getHttpMethodParameterOverride()
+        );
     }
 }

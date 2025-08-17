@@ -57,7 +57,10 @@ final class GetAcceptableContentTest extends AbstractHttpBase
                 'quality' => 0.8,
             ],
         ];
-        $actual   = $request->getAcceptableContent();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->getAcceptableContent()
+        );
     }
 }

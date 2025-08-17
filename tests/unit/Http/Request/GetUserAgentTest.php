@@ -28,9 +28,10 @@ final class GetUserAgentTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = Http::TEST_USER_AGENT;
-        $actual   = $request->getUserAgent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::TEST_USER_AGENT,
+            $request->getUserAgent()
+        );
     }
 
     /**
@@ -41,7 +42,8 @@ final class GetUserAgentTest extends AbstractHttpBase
     {
         $request = $this->getRequestObject();
 
-        $actual = $request->getUserAgent();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $request->getUserAgent()
+        );
     }
 }

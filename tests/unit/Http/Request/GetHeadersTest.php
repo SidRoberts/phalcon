@@ -37,7 +37,9 @@ final class GetHeadersTest extends AbstractHttpBase
             'Auth'    => true,
         ];
 
-        $actual = $request->getHeaders();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->getHeaders()
+        );
     }
 }

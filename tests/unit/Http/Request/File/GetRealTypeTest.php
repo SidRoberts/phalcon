@@ -44,8 +44,9 @@ final class GetRealTypeTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 'image/jpeg';
-        $actual   = $file->getRealType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'image/jpeg',
+            $file->getRealType()
+        );
     }
 }

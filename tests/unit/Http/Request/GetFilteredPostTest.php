@@ -22,7 +22,7 @@ use function ucfirst;
 final class GetFilteredPostTest extends AbstractHttpBase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: array, 3: array, 4: string, 5: int|string}>
      */
     public static function getExamples(): array
     {
@@ -77,13 +77,15 @@ final class GetFilteredPostTest extends AbstractHttpBase
         $_GET  = ['no-id' => '24'];
         $_POST = ['no-id' => '24'];
 
-        $expected = 24;
-        $actual   = $request->getFilteredQuery('id', 24);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            24,
+            $request->getFilteredQuery('id', 24)
+        );
 
-        $expected = 24;
-        $actual   = $request->getFilteredPost('id', 24);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            24,
+            $request->getFilteredPost('id', 24)
+        );
     }
 
     /**
@@ -115,7 +117,10 @@ final class GetFilteredPostTest extends AbstractHttpBase
         }
 
         $method = 'getFiltered' . ucfirst($method);
-        $actual = $request->$method($name);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->$method($name)
+        );
     }
 }

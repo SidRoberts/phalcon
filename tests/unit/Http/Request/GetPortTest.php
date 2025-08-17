@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class GetPortTest extends AbstractHttpBase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: int}>
      */
     public static function getExamples(): array
     {
@@ -72,7 +72,9 @@ final class GetPortTest extends AbstractHttpBase
             unset($_SERVER['https']);
         }
 
-        $actual = $request->getPort();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->getPort()
+        );
     }
 }

@@ -28,8 +28,9 @@ final class HasFilesTest extends AbstractHttpBase
     {
         $request = $this->getRequestObject();
 
-        $actual = $request->hasFiles();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $request->hasFiles()
+        );
 
         $_FILES = [
             'test' => [
@@ -41,7 +42,8 @@ final class HasFilesTest extends AbstractHttpBase
             ],
         ];
 
-        $actual = $request->hasFiles();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->hasFiles()
+        );
     }
 }

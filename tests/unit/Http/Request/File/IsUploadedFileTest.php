@@ -37,7 +37,8 @@ final class IsUploadedFileTest extends AbstractUnitTestCase
             ]
         );
 
-        $actual = $file->isUploadedFile();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $file->isUploadedFile()
+        );
     }
 }

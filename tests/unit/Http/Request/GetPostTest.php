@@ -36,15 +36,18 @@ final class GetPostTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $actual = $request->hasPost($key);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->hasPost($key)
+        );
 
-        $actual = $request->hasPost($unknown);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $request->hasPost($unknown)
+        );
 
-        $expected = $value;
-        $actual   = $request->getPost($key);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $request->getPost($key)
+        );
     }
 
     /**
@@ -77,8 +80,10 @@ final class GetPostTest extends AbstractHttpBase
 
         $this->assertSame($expected, $actual);
 
-        $actual = $request->getPost();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->getPost()
+        );
 
         $this->unregisterStream();
     }
@@ -96,14 +101,13 @@ final class GetPostTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = $value;
-        $actual   = $request->getPost(
+        $actual = $request->getPost(
             $key,
             'trim',
             'zero value',
             true
         );
-        $this->assertSame($expected, $actual);
+        $this->assertSame($value, $actual);
     }
 
     /**
@@ -117,9 +121,10 @@ final class GetPostTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = $default;
-        $actual   = $request->getPost($unknown, null, $default);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $default,
+            $request->getPost($unknown, null, $default)
+        );
     }
 
     /**
@@ -135,12 +140,14 @@ final class GetPostTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = $value;
-        $actual   = $request->getPost($key, 'trim');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $request->getPost($key, 'trim')
+        );
 
-        $expected = strtolower($value);
-        $actual   = $request->getPost($key, ['trim', 'lower']);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            strtolower($value),
+            $request->getPost($key, ['trim', 'lower'])
+        );
     }
 }

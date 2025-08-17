@@ -23,7 +23,7 @@ use function uniqid;
 final class IsValidHttpMethodTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: bool}>
      */
     public static function getExamples(): array
     {
@@ -126,7 +126,9 @@ final class IsValidHttpMethodTest extends AbstractUnitTestCase
     ): void {
         $request = new Request();
 
-        $actual = $request->isValidHttpMethod($method);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->isValidHttpMethod($method)
+        );
     }
 }

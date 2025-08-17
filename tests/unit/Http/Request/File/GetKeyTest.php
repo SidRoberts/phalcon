@@ -38,8 +38,9 @@ final class GetKeyTest extends AbstractUnitTestCase
             'abcde'
         );
 
-        $expected = 'abcde';
-        $actual   = $file->getKey();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'abcde',
+            $file->getKey()
+        );
     }
 }

@@ -34,13 +34,13 @@ final class GetFilteredPatchTest extends AbstractHttpBase
         $_SERVER['REQUEST_METHOD'] = Http::METHOD_PATCH;
 
         $request = $this->getRequestObject();
-        $request
-            ->setParameterFilters('id', ['absint'], ['patch'])
-        ;
 
-        $expected = 24;
-        $actual   = $request->getFilteredPut('id', 24);
-        $this->assertSame($expected, $actual);
+        $request->setParameterFilters('id', ['absint'], ['patch']);
+
+        $this->assertSame(
+            24,
+            $request->getFilteredPut('id', 24)
+        );
 
         $this->unregisterStream();
     }

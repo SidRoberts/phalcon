@@ -37,8 +37,9 @@ final class GetNameTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 'test';
-        $actual   = $file->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'test',
+            $file->getName()
+        );
     }
 }

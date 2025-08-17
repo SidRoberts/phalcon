@@ -27,29 +27,34 @@ final class GetBestCharsetTest extends AbstractHttpBase
 
         $_SERVER['HTTP_ACCEPT_CHARSET'] = 'iso-8859-5,unicode-1-1;q=0.8';
 
-        $accept   = $request->getClientCharsets();
-        $expected = 2;
-        $this->assertCount($expected, $accept);
+        $clientCharsets = $request->getClientCharsets();
+
+        $this->assertCount(2, $clientCharsets);
 
 
-        $expected = 'iso-8859-5';
-        $actual   = $accept[0]['charset'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'iso-8859-5',
+            $clientCharsets[0]['charset']
+        );
 
-        $expected = 1.0;
-        $actual   = $accept[0]['quality'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1.0,
+            $clientCharsets[0]['quality']
+        );
 
-        $expected = 'unicode-1-1';
-        $actual   = $accept[1]['charset'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'unicode-1-1',
+            $clientCharsets[1]['charset']
+        );
 
-        $expected = 0.8;
-        $actual   = $accept[1]['quality'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0.8,
+            $clientCharsets[1]['quality']
+        );
 
-        $expected = 'iso-8859-5';
-        $actual   = $request->getBestCharset();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'iso-8859-5',
+            $request->getBestCharset()
+        );
     }
 }

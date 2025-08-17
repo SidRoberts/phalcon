@@ -37,8 +37,9 @@ final class GetErrorTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 0;
-        $actual   = $file->getError();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $file->getError()
+        );
     }
 }

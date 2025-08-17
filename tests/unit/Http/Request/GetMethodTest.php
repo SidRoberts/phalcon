@@ -29,9 +29,10 @@ final class GetMethodTest extends AbstractHttpBase
         // Default
         $request = $this->getRequestObject();
 
-        $expected = Http::METHOD_GET;
-        $actual   = $request->getMethod();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::METHOD_GET,
+            $request->getMethod()
+        );
     }
 
     /**
@@ -44,9 +45,10 @@ final class GetMethodTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = Http::METHOD_POST;
-        $actual   = $request->getMethod();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::METHOD_POST,
+            $request->getMethod()
+        );
     }
 
     /**
@@ -60,9 +62,10 @@ final class GetMethodTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = Http::METHOD_TRACE;
-        $actual   = $request->getMethod();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::METHOD_TRACE,
+            $request->getMethod()
+        );
     }
 
     /**
@@ -77,9 +80,10 @@ final class GetMethodTest extends AbstractHttpBase
         $request = $this->getRequestObject();
         $request->setHttpMethodParameterOverride(true);
 
-        $expected = Http::METHOD_CONNECT;
-        $actual   = $request->getMethod();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::METHOD_CONNECT,
+            $request->getMethod()
+        );
     }
 
     /**
@@ -93,8 +97,9 @@ final class GetMethodTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = Http::METHOD_GET;
-        $actual   = $request->getMethod();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::METHOD_GET,
+            $request->getMethod()
+        );
     }
 }

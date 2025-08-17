@@ -28,29 +28,33 @@ final class IsMethodTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $actual = $request->isMethod(Http::METHOD_POST);
-        $this->assertTrue($actual);
-
-        $actual = $request->isMethod(
-            [
-                Http::METHOD_GET,
-                Http::METHOD_POST,
-            ]
+        $this->assertTrue(
+            $request->isMethod(Http::METHOD_POST)
         );
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $request->isMethod(
+                [
+                    Http::METHOD_GET,
+                    Http::METHOD_POST,
+                ]
+            )
+        );
 
 
         $_SERVER['REQUEST_METHOD'] = Http::METHOD_GET;
 
-        $actual = $request->isMethod(Http::METHOD_GET);
-        $this->assertTrue($actual);
-
-        $actual = $request->isMethod(
-            [
-                Http::METHOD_GET,
-                Http::METHOD_POST,
-            ]
+        $this->assertTrue(
+            $request->isMethod(Http::METHOD_GET)
         );
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $request->isMethod(
+                [
+                    Http::METHOD_GET,
+                    Http::METHOD_POST,
+                ]
+            )
+        );
     }
 }

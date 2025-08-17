@@ -31,9 +31,10 @@ final class GetClientAddressTest extends AbstractHttpBase
 
         $request = new Request();
 
-        $expected = Http::TEST_IP_THREE;
-        $actual   = $request->getClientAddress();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::TEST_IP_THREE,
+            $request->getClientAddress()
+        );
     }
 
     /**
@@ -46,8 +47,9 @@ final class GetClientAddressTest extends AbstractHttpBase
 
         $request = new Request();
 
-        $actual = $request->getClientAddress();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $request->getClientAddress()
+        );
     }
 
     /**
@@ -60,9 +62,10 @@ final class GetClientAddressTest extends AbstractHttpBase
 
         $request = new Request();
 
-        $expected = Http::TEST_IP_IPV6;
-        $actual   = $request->getClientAddress();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::TEST_IP_IPV6,
+            $request->getClientAddress()
+        );
     }
 
     /**
@@ -78,11 +81,13 @@ final class GetClientAddressTest extends AbstractHttpBase
         $_SERVER['HTTP_X_FORWARDED_FOR'] = '10.4.6.1,25.25.25.25';
 
         $request = new Request();
+
         $request->setDI($container);
 
-        $expected = '25.25.25.25';
-        $actual   = $request->getClientAddress(true);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '25.25.25.25',
+            $request->getClientAddress(true)
+        );
     }
 
     /**
@@ -100,8 +105,11 @@ final class GetClientAddressTest extends AbstractHttpBase
         ]);
 
         $expected = ['25.25.25.0/24'];
-        $actual   = $request->getTrustedProxies();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->getTrustedProxies()
+        );
     }
 
     /**
@@ -116,14 +124,17 @@ final class GetClientAddressTest extends AbstractHttpBase
         $_SERVER['HTTP_X_FORWARDED_FOR'] = '8.8.8.8,25.25.25.1';
 
         $request = new Request();
+
         $request->setDI($container);
+
         $request->setTrustedProxies([
             '25.25.25.0/24'
         ]);
 
-        $expected = '8.8.8.8';
-        $actual   = $request->getClientAddress(true);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '8.8.8.8',
+            $request->getClientAddress(true)
+        );
     }
 
     /**
@@ -184,8 +195,9 @@ final class GetClientAddressTest extends AbstractHttpBase
         $request->setDI($container);
         $request->setTrustedProxyHeader('HTTP_CLIENT_IP');
 
-        $expected = Http::TEST_IP_TWO;
-        $actual   = $request->getClientAddress(true);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::TEST_IP_TWO,
+            $request->getClientAddress(true)
+        );
     }
 }

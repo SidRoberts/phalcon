@@ -26,7 +26,7 @@ final class ConstructTest extends AbstractUnitTestCase
     public function testHttpRequestConstruct(): void
     {
         $actual = new Request();
-        $class  = RequestInterface::class;
-        $this->assertInstanceOf($class, $actual);
+
+        $this->assertInstanceOf(RequestInterface::class, $actual);
     }
 }

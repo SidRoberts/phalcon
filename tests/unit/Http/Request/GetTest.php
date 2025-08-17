@@ -42,38 +42,44 @@ final class GetTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $actual = $request->has($key);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $request->has($key)
+        );
 
         $_REQUEST[$key] = $value;
 
-        $actual = $request->has($key);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->has($key)
+        );
 
-        $expected = $value;
-        $actual   = $request->get($key);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $request->get($key)
+        );
 
         /**
          * Get - different methods
          */
-        $expected = 'hello';
-        $actual   = $request->get('string-key', 'string');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'hello',
+            $request->get('string-key', 'string')
+        );
 
-        $expected = 'hello';
-        $actual   = $request->get(
+        $actual = $request->get(
             'string-key',
             'string',
             null,
             true,
             true
         );
-        $this->assertSame($expected, $actual);
+        $this->assertSame('hello', $actual);
 
         $expected = ['string' => 'world'];
-        $actual   = $request->get('array-key', 'string');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->get('array-key', 'string')
+        );
 
         $expected = ['string' => 'world'];
         $actual   = $request->get(
@@ -85,22 +91,27 @@ final class GetTest extends AbstractHttpBase
         );
         $this->assertSame($expected, $actual);
 
-        $expected = 1;
-        $actual   = $request->get('id', 'int', 100);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $request->get('id', 'int', 100)
+        );
 
-        $expected = 1;
-        $actual   = $request->get('num', 'int', 100);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $request->get('num', 'int', 100)
+        );
 
-        $actual = $request->get('age', 'int', 100);
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $request->get('age', 'int', 100)
+        );
 
-        $actual = $request->get('phone', 'int', 100);
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $request->get('phone', 'int', 100)
+        );
 
-        $expected = 100;
-        $actual   = $request->get('phone', 'int', 100, true);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            100,
+            $request->get('phone', 'int', 100, true)
+        );
     }
 }

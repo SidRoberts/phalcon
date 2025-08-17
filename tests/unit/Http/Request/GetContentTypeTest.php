@@ -29,8 +29,9 @@ final class GetContentTypeTest extends AbstractHttpBase
 
         $request = new Request();
 
-        $expected = Http::CONTENT_TYPE_XHTML_XML;
-        $actual   = $request->getContentType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_XHTML_XML,
+            $request->getContentType()
+        );
     }
 }

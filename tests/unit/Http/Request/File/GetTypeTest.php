@@ -37,8 +37,9 @@ final class GetTypeTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = Http::CONTENT_TYPE_PLAIN;
-        $actual   = $file->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_PLAIN,
+            $file->getType()
+        );
     }
 }

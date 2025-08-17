@@ -30,9 +30,10 @@ final class GetServerAddressTest extends AbstractHttpBase
 
         $_SERVER['SERVER_ADDR'] = Http::TEST_IP_ONE;
 
-        $expected = Http::TEST_IP_ONE;
-        $actual   = $request->getServerAddress();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::TEST_IP_ONE,
+            $request->getServerAddress()
+        );
     }
 
     /**
@@ -43,8 +44,9 @@ final class GetServerAddressTest extends AbstractHttpBase
     {
         $request = $this->getRequestObject();
 
-        $expected = gethostbyname('localhost');
-        $actual   = $request->getServerAddress();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            gethostbyname('localhost'),
+            $request->getServerAddress()
+        );
     }
 }

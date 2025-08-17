@@ -38,12 +38,17 @@ final class GetPatchTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $actual = $request->hasPatch('fruit');
-        $this->assertTrue($actual);
-        $actual = $request->hasPatch('quantity');
-        $this->assertTrue($actual);
-        $actual = $request->hasPatch('unknown');
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $request->hasPatch('fruit')
+        );
+
+        $this->assertTrue(
+            $request->hasPatch('quantity')
+        );
+
+        $this->assertFalse(
+            $request->hasPatch('unknown')
+        );
 
         $data = file_get_contents(Http::STREAM);
 
@@ -56,8 +61,10 @@ final class GetPatchTest extends AbstractHttpBase
         ];
         $this->assertSame($expected, $actual);
 
-        $actual = $request->getPatch();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->getPatch()
+        );
 
         $this->unregisterStream();
     }
@@ -91,8 +98,10 @@ final class GetPatchTest extends AbstractHttpBase
         );
         $this->assertSame($expected, $actual);
 
-        $actual = $request->getPatch();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->getPatch()
+        );
 
         $this->unregisterStream();
     }

@@ -33,13 +33,13 @@ final class GetFilteredPutTest extends AbstractHttpBase
         $_SERVER['REQUEST_METHOD'] = Http::METHOD_PUT;
 
         $request = $this->getRequestObject();
-        $request
-            ->setParameterFilters('id', ['absint'], ['put'])
-        ;
 
-        $expected = 24;
-        $actual   = $request->getFilteredPut('id', 24);
-        $this->assertSame($expected, $actual);
+        $request->setParameterFilters('id', ['absint'], ['put']);
+
+        $this->assertSame(
+            24,
+            $request->getFilteredPut('id', 24)
+        );
 
         $this->unregisterStream();
     }

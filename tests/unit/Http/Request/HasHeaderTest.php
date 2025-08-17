@@ -29,13 +29,16 @@ final class HasHeaderTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $actual = $request->hasHeader('HTTP_FOO');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->hasHeader('HTTP_FOO')
+        );
 
-        $actual = $request->hasHeader('AUTH');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->hasHeader('AUTH')
+        );
 
-        $actual = $request->hasHeader('HTTP_BLA_BLA');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->hasHeader('HTTP_BLA_BLA')
+        );
     }
 }

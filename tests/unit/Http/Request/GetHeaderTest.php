@@ -31,9 +31,10 @@ final class GetHeaderTest extends AbstractHttpBase
 
         $request = new Request();
 
-        $expected = $value;
-        $actual   = $request->getHeader('ABCDEF');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $request->getHeader('ABCDEF')
+        );
     }
 
     /**
@@ -44,8 +45,10 @@ final class GetHeaderTest extends AbstractHttpBase
     {
         $request = new Request();
 
-        $name   = uniqid('name-');
-        $actual = $request->getHeader($name);
-        $this->assertEmpty($actual);
+        $name = uniqid('name-');
+
+        $this->assertEmpty(
+            $request->getHeader($name)
+        );
     }
 }

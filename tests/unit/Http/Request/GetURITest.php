@@ -29,9 +29,10 @@ final class GetURITest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = $uri;
-        $actual   = $request->getURI();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $uri,
+            $request->getURI()
+        );
     }
 
     /**
@@ -42,8 +43,9 @@ final class GetURITest extends AbstractHttpBase
     {
         $request = $this->getRequestObject();
 
-        $actual = $request->getURI();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $request->getURI()
+        );
     }
 
     /**
@@ -57,8 +59,9 @@ final class GetURITest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = Http::TEST_URI;
-        $actual   = $request->getURI(true);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::TEST_URI,
+            $request->getURI(true)
+        );
     }
 }

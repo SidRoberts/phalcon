@@ -33,36 +33,43 @@ final class GetBestLanguageTest extends AbstractHttpBase
 
         $firstAccept = $accept[0];
 
-        $expected = 'es';
-        $actual   = $firstAccept['language'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'es',
+            $firstAccept['language']
+        );
 
-        $expected = 1.0;
-        $actual   = $firstAccept['quality'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1.0,
+            $firstAccept['quality']
+        );
 
         $fourthAccept = $accept[3];
 
-        $expected = 'en-us';
-        $actual   = $fourthAccept['language'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'en-us',
+            $fourthAccept['language']
+        );
 
-        $expected = 0.3;
-        $actual   = $fourthAccept['quality'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0.3,
+            $fourthAccept['quality']
+        );
 
         $lastAccept = $accept[4];
 
-        $expected = 'de-de';
-        $actual   = $lastAccept['language'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'de-de',
+            $lastAccept['language']
+        );
 
-        $expected = 0.9;
-        $actual   = $lastAccept['quality'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0.9,
+            $lastAccept['quality']
+        );
 
-        $expected = 'es';
-        $actual   = $request->getBestLanguage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'es',
+            $request->getBestLanguage()
+        );
     }
 }

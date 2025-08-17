@@ -37,8 +37,9 @@ final class GetTempNameTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = supportDir('/assets/images/example-jpg.jpg');
-        $actual   = $file->getTempName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            supportDir('/assets/images/example-jpg.jpg'),
+            $file->getTempName()
+        );
     }
 }

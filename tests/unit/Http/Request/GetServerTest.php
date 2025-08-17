@@ -32,14 +32,17 @@ final class GetServerTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $actual = $request->hasServer($key);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->hasServer($key)
+        );
 
-        $actual = $request->hasServer($unknown);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $request->hasServer($unknown)
+        );
 
-        $expected = $value;
-        $actual   = $request->getServer($key);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $request->getServer($key)
+        );
     }
 }

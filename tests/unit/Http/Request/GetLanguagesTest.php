@@ -49,7 +49,10 @@ final class GetLanguagesTest extends AbstractHttpBase
                 'quality'  => 0.9,
             ],
         ];
-        $actual   = $request->getLanguages();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->getLanguages()
+        );
     }
 }

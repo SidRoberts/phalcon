@@ -56,7 +56,8 @@ final class GetRawBodyTest extends AbstractHttpBase
         // Empty
         $request = $this->getRequestObject();
 
-        $actual = $request->getRawBody();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $request->getRawBody()
+        );
     }
 }

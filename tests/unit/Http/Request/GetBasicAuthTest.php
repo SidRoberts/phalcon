@@ -33,8 +33,11 @@ final class GetBasicAuthTest extends AbstractHttpBase
             'username' => 'darth',
             'password' => 'vader',
         ];
-        $actual   = $request->getBasicAuth();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->getBasicAuth()
+        );
 
         /**
          * @issue https://github.com/phalcon/cphalcon/issues/16668
@@ -50,8 +53,11 @@ final class GetBasicAuthTest extends AbstractHttpBase
             'username' => 'darth',
             'password' => null,
         ];
-        $actual   = $request->getBasicAuth();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $request->getBasicAuth()
+        );
 
         unset($_SERVER['PHP_AUTH_USER']);
         unset($_SERVER['PHP_AUTH_PW']);
@@ -65,7 +71,8 @@ final class GetBasicAuthTest extends AbstractHttpBase
     {
         $request = new Request();
 
-        $actual = $request->getBasicAuth();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $request->getBasicAuth()
+        );
     }
 }

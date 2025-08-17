@@ -19,7 +19,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class GetPreferredIsoLocaleVariantTest extends AbstractHttpBase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: string}>
      */
     public static function getExamples(): array
     {
@@ -68,7 +68,9 @@ final class GetPreferredIsoLocaleVariantTest extends AbstractHttpBase
 
         $_SERVER['HTTP_ACCEPT_LANGUAGE'] = $header;
 
-        $actual = $request->getPreferredIsoLocaleVariant();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->getPreferredIsoLocaleVariant()
+        );
     }
 }

@@ -28,9 +28,10 @@ final class GetServerNameTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = Http::TEST_DOMAIN;
-        $actual   = $request->getServerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::TEST_DOMAIN,
+            $request->getServerName()
+        );
     }
 
     /**
@@ -41,8 +42,9 @@ final class GetServerNameTest extends AbstractHttpBase
     {
         $request = $this->getRequestObject();
 
-        $expected = Http::HOST_LOCALHOST;
-        $actual   = $request->getServerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::HOST_LOCALHOST,
+            $request->getServerName()
+        );
     }
 }

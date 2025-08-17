@@ -30,20 +30,24 @@ final class IsStrictHostCheckTest extends AbstractHttpBase
         $request = $this->getRequestObject();
         $request->setStrictHostCheck();
 
-        $expected = Http::HOST_LOCALHOST;
-        $actual   = $request->getHttpHost();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::HOST_LOCALHOST,
+            $request->getHttpHost()
+        );
 
-        $actual = $request->isStrictHostCheck();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->isStrictHostCheck()
+        );
 
         $request->setStrictHostCheck(false);
 
-        $expected = $host;
-        $actual   = $request->getHttpHost();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $host,
+            $request->getHttpHost()
+        );
 
-        $actual = $request->isStrictHostCheck();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $request->isStrictHostCheck()
+        );
     }
 }

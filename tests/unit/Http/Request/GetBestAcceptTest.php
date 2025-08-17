@@ -33,8 +33,9 @@ final class GetBestAcceptTest extends AbstractHttpBase
 
         $request = new Request();
 
-        $expected = Http::CONTENT_TYPE_HTML;
-        $actual   = $request->getBestAccept();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_HTML,
+            $request->getBestAccept()
+        );
     }
 }

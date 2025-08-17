@@ -125,12 +125,14 @@ final class NumFilesTest extends AbstractHttpBase
         $request = $this->getRequestObject();
         $_FILES  = json_decode(json_encode($files), true);
 
-        $expected = $all;
-        $actual   = $request->numFiles();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $all,
+            $request->numFiles()
+        );
 
-        $expected = $onlySuccessful;
-        $actual   = $request->numFiles(true);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $onlySuccessful,
+            $request->numFiles(true)
+        );
     }
 }

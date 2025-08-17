@@ -41,17 +41,14 @@ final class GetUploadedFilesTest extends AbstractHttpBase
         $all        = $request->getUploadedFiles();
         $successful = $request->getUploadedFiles(true);
 
-        $expected = 5;
-        $actual   = $all;
-        $this->assertCount($expected, $actual);
+        $this->assertCount(5, $all);
 
-        $expected = 4;
-        $actual   = $successful;
-        $this->assertCount($expected, $actual);
+        $this->assertCount(4, $successful);
 
         for ($counter = 0; $counter <= 4; ++$counter) {
-            $actual = $all[$counter]->isUploadedFile();
-            $this->assertFalse($actual);
+            $this->assertFalse(
+                $all[$counter]->isUploadedFile()
+            );
         }
 
         $data = [
@@ -63,68 +60,104 @@ final class GetUploadedFilesTest extends AbstractHttpBase
         ];
 
         for ($counter = 0; $counter <= 4; ++$counter) {
-            $expected = $data[$counter];
-            $actual   = $all[$counter]->getKey();
-
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $data[$counter],
+                $all[$counter]->getKey()
+            );
         }
 
-        $expected = 'f0';
-        $actual   = $all[0]->getName();
-        $this->assertSame($expected, $actual);
-        $expected = 'f1';
-        $actual   = $all[1]->getName();
-        $this->assertSame($expected, $actual);
-        $expected = 'f2';
-        $actual   = $all[2]->getName();
-        $this->assertSame($expected, $actual);
-        $expected = 'f3';
-        $actual   = $all[3]->getName();
-        $this->assertSame($expected, $actual);
-        $expected = 'f4';
-        $actual   = $all[4]->getName();
-        $this->assertSame($expected, $actual);
 
-        $expected = 't0';
-        $actual   = $all[0]->getTempName();
-        $this->assertSame($expected, $actual);
-        $expected = 't1';
-        $actual   = $all[1]->getTempName();
-        $this->assertSame($expected, $actual);
-        $expected = 't2';
-        $actual   = $all[2]->getTempName();
-        $this->assertSame($expected, $actual);
-        $expected = 't3';
-        $actual   = $all[3]->getTempName();
-        $this->assertSame($expected, $actual);
-        $expected = 't4';
-        $actual   = $all[4]->getTempName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'f0',
+            $all[0]->getName()
+        );
 
-        $expected = 'f0';
-        $actual   = $successful[0]->getName();
-        $this->assertSame($expected, $actual);
-        $expected = 'f1';
-        $actual   = $successful[1]->getName();
-        $this->assertSame($expected, $actual);
-        $expected = 'f2';
-        $actual   = $successful[2]->getName();
-        $this->assertSame($expected, $actual);
-        $expected = 'f3';
-        $actual   = $successful[3]->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'f1',
+            $all[1]->getName()
+        );
 
-        $expected = 't0';
-        $actual   = $successful[0]->getTempName();
-        $this->assertSame($expected, $actual);
-        $expected = 't1';
-        $actual   = $successful[1]->getTempName();
-        $this->assertSame($expected, $actual);
-        $expected = 't2';
-        $actual   = $successful[2]->getTempName();
-        $this->assertSame($expected, $actual);
-        $expected = 't3';
-        $actual   = $successful[3]->getTempName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'f2',
+            $all[2]->getName()
+        );
+
+        $this->assertSame(
+            'f3',
+            $all[3]->getName()
+        );
+
+        $this->assertSame(
+            'f4',
+            $all[4]->getName()
+        );
+
+
+        $this->assertSame(
+            't0',
+            $all[0]->getTempName()
+        );
+
+        $this->assertSame(
+            't1',
+            $all[1]->getTempName()
+        );
+
+        $this->assertSame(
+            't2',
+            $all[2]->getTempName()
+        );
+
+        $this->assertSame(
+            't3',
+            $all[3]->getTempName()
+        );
+
+        $this->assertSame(
+            't4',
+            $all[4]->getTempName()
+        );
+
+
+        $this->assertSame(
+            'f0',
+            $successful[0]->getName()
+        );
+
+        $this->assertSame(
+            'f1',
+            $successful[1]->getName()
+        );
+
+        $this->assertSame(
+            'f2',
+            $successful[2]->getName()
+        );
+
+        $this->assertSame(
+            'f3',
+            $successful[3]->getName()
+        );
+
+
+        $this->assertSame(
+            't0',
+            $successful[0]->getTempName()
+        );
+
+        $this->assertSame(
+            't1',
+            $successful[1]->getTempName()
+        );
+
+        $this->assertSame(
+            't2',
+            $successful[2]->getTempName()
+        );
+
+        $this->assertSame(
+            't3',
+            $successful[3]->getTempName()
+        );
     }
 }

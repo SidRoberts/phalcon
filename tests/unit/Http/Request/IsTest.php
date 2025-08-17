@@ -19,7 +19,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class IsTest extends AbstractHttpBase
 {
     /**
-     * @return array|array[]
+     * @return array<array{0: array, 1: bool, 2: string}>
      */
     public static function getExamples(): array
     {
@@ -203,8 +203,10 @@ final class IsTest extends AbstractHttpBase
         $_SERVER = array_merge($_SERVER, $server);
 
         $request = $this->getRequestObject();
-        $actual  = $request->$method();
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $request->$method()
+        );
     }
 }

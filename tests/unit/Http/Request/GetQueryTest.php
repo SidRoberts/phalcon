@@ -33,15 +33,18 @@ final class GetQueryTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $actual = $request->hasQuery($key);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $request->hasQuery($key)
+        );
 
-        $actual = $request->hasQuery($unknown);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $request->hasQuery($unknown)
+        );
 
-        $expected = $value;
-        $actual   = $request->getQuery($key);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $request->getQuery($key)
+        );
     }
 
     /**
@@ -56,9 +59,10 @@ final class GetQueryTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = '0';
-        $actual   = $request->getQuery($key, 'trim', 'zero value', true);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '0',
+            $request->getQuery($key, 'trim', 'zero value', true)
+        );
     }
 
     /**
@@ -70,9 +74,10 @@ final class GetQueryTest extends AbstractHttpBase
         $key     = uniqid('key-');
         $request = $this->getRequestObject();
 
-        $expected = 'default';
-        $actual   = $request->getQuery($key, null, 'default');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'default',
+            $request->getQuery($key, null, 'default')
+        );
     }
 
     /**
@@ -87,12 +92,14 @@ final class GetQueryTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = $value;
-        $actual   = $request->getQuery($key, 'trim');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $request->getQuery($key, 'trim')
+        );
 
-        $expected = strtolower($value);
-        $actual   = $request->getQuery($key, ['trim', 'lower']);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            strtolower($value),
+            $request->getQuery($key, ['trim', 'lower'])
+        );
     }
 }

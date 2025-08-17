@@ -37,8 +37,9 @@ final class GetSizeTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $file->getSize();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $file->getSize()
+        );
     }
 }

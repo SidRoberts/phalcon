@@ -26,9 +26,11 @@ final class GetSchemeTest extends AbstractHttpBase
         $request = $this->getRequestObject();
 
         $_SERVER['HTTPS'] = 'on';
-        $actual           = $request->getScheme();
 
-        $this->assertSame('https', $actual);
+        $this->assertSame(
+            'https',
+            $request->getScheme()
+        );
     }
 
     /**
@@ -39,8 +41,9 @@ final class GetSchemeTest extends AbstractHttpBase
     {
         $request = $this->getRequestObject();
 
-        $expected = 'http';
-        $actual   = $request->getScheme();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'http',
+            $request->getScheme()
+        );
     }
 }

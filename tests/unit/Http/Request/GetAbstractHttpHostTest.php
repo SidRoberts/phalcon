@@ -21,7 +21,7 @@ use UnexpectedValueException;
 final class GetAbstractHttpHostTest extends AbstractHttpBase
 {
     /**
-     * @return array[]
+     * @return array<array{0: array<string, mixed>, 1: array}>
      */
     public static function getExamples(): array
     {
@@ -110,7 +110,7 @@ final class GetAbstractHttpHostTest extends AbstractHttpBase
     }
 
     /**
-     * @return array|string[]
+     * @return array<array{0: string}>
      */
     public static function getExamplesInvalid(): array
     {
@@ -155,8 +155,10 @@ final class GetAbstractHttpHostTest extends AbstractHttpBase
         $request = new Request();
 
         foreach ($data as $expected) {
-            $actual = $request->getHttpHost();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $expected,
+                $request->getHttpHost()
+            );
         }
     }
 

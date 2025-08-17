@@ -38,8 +38,9 @@ final class GetExtensionTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = Http::STREAM_NAME;
-        $actual   = $file->getExtension();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::STREAM_NAME,
+            $file->getExtension()
+        );
     }
 }

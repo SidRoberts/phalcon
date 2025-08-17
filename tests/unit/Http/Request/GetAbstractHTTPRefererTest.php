@@ -30,9 +30,10 @@ final class GetAbstractHTTPRefererTest extends AbstractHttpBase
 
         $request = $this->getRequestObject();
 
-        $expected = $referrer;
-        $actual   = $request->getHTTPReferer();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $referrer,
+            $request->getHTTPReferer()
+        );
     }
 
     /**
@@ -43,7 +44,8 @@ final class GetAbstractHTTPRefererTest extends AbstractHttpBase
     {
         $request = $this->getRequestObject();
 
-        $actual = $request->getHTTPReferer();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $request->getHTTPReferer()
+        );
     }
 }
