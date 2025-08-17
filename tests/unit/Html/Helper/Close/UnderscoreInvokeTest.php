@@ -27,19 +27,24 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
         $escaper = new Escaper();
         $helper  = new Close($escaper);
 
-        $expected = "</image>";
-        $actual   = $helper("image");
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "</image>",
+            $helper("image")
+        );
 
         $factory  = new TagFactory($escaper);
         $locator  = $factory->newInstance('close');
-        $expected = "</image>";
-        $actual   = $locator("image");
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            "</image>",
+            $locator("image")
+        );
 
         $factory  = new TagFactory($escaper);
-        $expected = "</image>";
-        $actual   = $factory->close("image");
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            "</image>",
+            $factory->close("image")
+        );
     }
 }

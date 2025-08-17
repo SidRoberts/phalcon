@@ -23,11 +23,12 @@ use function uniqid;
 final class UnderscoreInvokeTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: string, 2: array, 3: bool}>
      */
     public static function getExamples(): array
     {
         $text = uniqid();
+
         return [
             [
                 '<label></label>',
@@ -67,6 +68,8 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -85,11 +88,13 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
 
         $factory = new TagFactory($escaper);
         $locator = $factory->newInstance('label');
-        $actual  = $locator($label, $attributes, $raw);
+
+        $actual = $locator($label, $attributes, $raw);
         $this->assertSame($expected, $actual);
 
         $factory = new TagFactory($escaper);
-        $actual  = $factory->label($label, $attributes, $raw);
+
+        $actual = $factory->label($label, $attributes, $raw);
         $this->assertSame($expected, $actual);
     }
 }

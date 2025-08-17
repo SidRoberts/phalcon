@@ -28,7 +28,8 @@ final class HasTest extends AbstractUnitTestCase
         $escaper = new Escaper();
         $factory = new TagFactory($escaper);
 
-        $actual = $factory->has('a');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $factory->has('a')
+        );
     }
 }

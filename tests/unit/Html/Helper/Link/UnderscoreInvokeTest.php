@@ -22,7 +22,7 @@ use const PHP_EOL;
 final class UnderscoreInvokeTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: array, 1: string, 2: string, 3: string}>
      */
     public static function getExamples(): array
     {
@@ -35,7 +35,7 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
                 '    ',
                 PHP_EOL,
                 "    <link rel=\"prev\" href=\"https://phalcon.io/page/1\" />" . PHP_EOL
-                . "    <link rel=\"next\" href=\"https://phalcon.io/page/2\" />" . PHP_EOL,
+                    . "    <link rel=\"next\" href=\"https://phalcon.io/page/2\" />" . PHP_EOL,
             ],
             [
                 [
@@ -45,7 +45,7 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
                 '--',
                 '+',
                 "--<link rel=\"prev\" href=\"https://phalcon.io/page/1\" />+"
-                . "--<link rel=\"next\" href=\"https://phalcon.io/page/2\" />+",
+                    . "--<link rel=\"next\" href=\"https://phalcon.io/page/2\" />+",
             ],
             [
                 [

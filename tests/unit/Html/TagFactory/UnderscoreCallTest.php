@@ -28,8 +28,9 @@ final class UnderscoreCallTest extends AbstractUnitTestCase
         $escaper = new Escaper();
         $factory = new TagFactory($escaper);
 
-        $expected = '<body>';
-        $actual   = $factory->body();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '<body>',
+            $factory->body()
+        );
     }
 }

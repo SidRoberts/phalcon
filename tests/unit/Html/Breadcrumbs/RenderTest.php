@@ -25,6 +25,7 @@ final class RenderTest extends AbstractUnitTestCase
     public function testHtmlBreadcrumbsRender(): void
     {
         $breadcrumbs = new Breadcrumbs();
+
         $breadcrumbs
             ->add('Home', '/')
             ->add('Phalcon Team')
@@ -49,6 +50,7 @@ final class RenderTest extends AbstractUnitTestCase
     public function testHtmlBreadcrumbsRenderHome(): void
     {
         $breadcrumbs = new Breadcrumbs();
+
         $breadcrumbs
             ->add('Home', '/')
         ;

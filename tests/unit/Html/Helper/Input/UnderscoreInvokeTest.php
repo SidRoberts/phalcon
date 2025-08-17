@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Html\Helper\Input;
 
 use Phalcon\Html\Escaper;
+use Phalcon\Html\Exception;
+use Phalcon\Html\Helper\AbstractHelper;
 use Phalcon\Html\Helper\Doctype;
 use Phalcon\Html\Helper\Input\Generic;
 use Phalcon\Html\Helper\Input\Textarea;
@@ -27,7 +29,7 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
      * Returns [typeString => [serviceName, typeString]] pairs used to
      * instantiate a Generic helper and verify rendering across all input types.
      *
-     * @return array
+     * @return array<string, array{0: string, 1: class-string<AbstractHelper>}>
      */
     public static function getClasses(): array
     {
@@ -55,7 +57,7 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array
+     * @return array<array{0: string, 2: ?string, 3: array, 4: mixed, 5: string}>
      */
     public static function getExamples(): array
     {
@@ -102,6 +104,8 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */

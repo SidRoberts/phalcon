@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Unit\Html\TagFactory;
 
 use Phalcon\Html\Escaper;
 use Phalcon\Html\Exception;
+use Phalcon\Html\Helper\AbstractHelper;
 use Phalcon\Html\Helper\Anchor;
 use Phalcon\Html\Helper\Base;
 use Phalcon\Html\Helper\Body;
@@ -48,6 +49,8 @@ final class NewInstanceTest extends AbstractUnitTestCase
 {
     /**
      * Returns the example data
+     *
+     * @return array<array{0: string, 1: class-string<AbstractHelper>}>
      */
     public static function getData(): array
     {
@@ -101,11 +104,13 @@ final class NewInstanceTest extends AbstractUnitTestCase
     public function testFilterTagFactoryNewInstanceException(): void
     {
         $name = uniqid();
+
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Service ' . $name . ' is not registered');
 
         $escaper = new Escaper();
         $factory = new TagFactory($escaper);
+
         $factory->newInstance($name);
     }
 
@@ -116,15 +121,19 @@ final class NewInstanceTest extends AbstractUnitTestCase
     public function testFilterTagFactoryNewInstanceExceptionProxy(): void
     {
         $name = uniqid();
+
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Service ' . $name . ' is not registered');
 
         $escaper = new Escaper();
         $factory = new TagFactory($escaper);
+
         $factory->$name();
     }
 
     /**
+     * @param class-string<AbstractHelper> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */

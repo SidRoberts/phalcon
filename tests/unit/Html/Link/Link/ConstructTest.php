@@ -27,7 +27,6 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $link = new Link('payment', 'https://dev.phalcon.ld');
 
-        $class = LinkInterface::class;
-        $this->assertInstanceOf($class, $link);
+        $this->assertInstanceOf(LinkInterface::class, $link);
     }
 }

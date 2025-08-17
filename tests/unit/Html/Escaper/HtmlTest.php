@@ -26,9 +26,10 @@ final class HtmlTest extends AbstractUnitTestCase
     {
         $escaper = new Escaper();
 
-        $expected = '&lt;h1&gt;&lt;/h1&gt;';
-        $actual   = $escaper->html('<h1></h1>');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '&lt;h1&gt;&lt;/h1&gt;',
+            $escaper->html('<h1></h1>')
+        );
     }
 
     /**
@@ -37,14 +38,18 @@ final class HtmlTest extends AbstractUnitTestCase
      */
     public function testEscaperHtmlNull(): void
     {
-        $escaper  = new Escaper();
-        $expected = '';
-        $actual   = $escaper->html(null);
-        $this->assertSame($expected, $actual);
+        $escaper = new Escaper();
 
-        $escaper  = new Escaper();
-        $expected = '0';
-        $actual   = $escaper->html('0');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $escaper->html(null)
+        );
+
+        $escaper = new Escaper();
+
+        $this->assertSame(
+            '0',
+            $escaper->html('0')
+        );
     }
 }

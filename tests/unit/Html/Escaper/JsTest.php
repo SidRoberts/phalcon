@@ -44,7 +44,9 @@ final class JsTest extends AbstractUnitTestCase
             . 'l.appendChild(h);'
             . '}}';
 
-        $actual = $escaper->js($source);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $escaper->js($source)
+        );
     }
 }

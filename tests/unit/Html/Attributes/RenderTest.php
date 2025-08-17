@@ -41,8 +41,9 @@ final class RenderTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 'type="text" name="q" value="" class="form-control" ';
-        $actual   = $attributes->render();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'type="text" name="q" value="" class="form-control" ',
+            $attributes->render()
+        );
     }
 }

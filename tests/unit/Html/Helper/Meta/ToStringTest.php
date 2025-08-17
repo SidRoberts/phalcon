@@ -30,8 +30,9 @@ final class ToStringTest extends AbstractUnitTestCase
 
         $result = $helper();
 
-        $actual = (string)$result;
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            (string) $result
+        );
     }
 
     /**

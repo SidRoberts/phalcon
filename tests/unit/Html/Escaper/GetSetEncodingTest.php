@@ -28,8 +28,9 @@ final class GetSetEncodingTest extends AbstractUnitTestCase
 
         $escaper->setEncoding('UTF-8');
 
-        $expected = 'UTF-8';
-        $actual   = $escaper->getEncoding();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'UTF-8',
+            $escaper->getEncoding()
+        );
     }
 }

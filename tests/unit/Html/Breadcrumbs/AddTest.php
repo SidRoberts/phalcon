@@ -25,6 +25,7 @@ final class AddTest extends AbstractUnitTestCase
     public function testHtmlBreadcrumbsAdd(): void
     {
         $breadcrumbs = new Breadcrumbs();
+
         $breadcrumbs->add('Home', '/');
 
         $this->assertSame(

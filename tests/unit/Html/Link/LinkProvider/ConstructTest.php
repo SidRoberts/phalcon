@@ -32,7 +32,6 @@ final class ConstructTest extends AbstractUnitTestCase
         ];
         $link  = new LinkProvider($links);
 
-        $class = LinkProviderInterface::class;
-        $this->assertInstanceOf($class, $link);
+        $this->assertInstanceOf(LinkProviderInterface::class, $link);
     }
 }

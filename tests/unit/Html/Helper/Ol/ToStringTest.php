@@ -30,7 +30,8 @@ final class ToStringTest extends AbstractUnitTestCase
 
         $result = $helper('', PHP_EOL, ['id' => 'carsList']);
 
-        $actual = (string)$result;
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            (string) $result
+        );
     }
 }

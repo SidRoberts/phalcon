@@ -27,7 +27,7 @@ use const ENT_XML1;
 final class AttributesTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: int, 1: string, 2: mixed}>
      */
     public static function escaperEscapeHtmlAttrProvider(): array
     {
@@ -97,6 +97,10 @@ final class AttributesTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param int    $flags
+     * @param string $expected
+     * @param mixed  $text
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -107,10 +111,13 @@ final class AttributesTest extends AbstractUnitTestCase
         mixed $text
     ): void {
         $escaper = new Escaper();
+
         $escaper->setFlags($flags);
 
-        $actual = $escaper->attributes($text);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $escaper->attributes($text)
+        );
     }
 
     /**
@@ -120,11 +127,16 @@ final class AttributesTest extends AbstractUnitTestCase
     public function testEscaperAttributesWithArrayValue(): void
     {
         $escaper = new Escaper();
+
         $escaper->setFlags(ENT_HTML5);
 
-        $input    = ['text' => ['Ferrari', 'Ford', 'Dodge']];
-        $expected = 'text="Ferrari Ford Dodge"';
-        $actual   = $escaper->attributes($input);
-        $this->assertSame($expected, $actual);
+        $input = [
+            'text' => ['Ferrari', 'Ford', 'Dodge'],
+        ];
+
+        $this->assertSame(
+            'text="Ferrari Ford Dodge"',
+            $escaper->attributes($input)
+        );
     }
 }

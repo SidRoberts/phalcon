@@ -123,8 +123,10 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
         ;
 
         $factory = new TagFactory($escaper, [], $response);
-        $actual  = $factory->preload('/my-style.css', 'style');
 
-        $this->assertSame('<link rel="preload" href="/my-style.css" as="style" />', $actual);
+        $this->assertSame(
+            '<link rel="preload" href="/my-style.css" as="style" />',
+            $factory->preload('/my-style.css', 'style')
+        );
     }
 }

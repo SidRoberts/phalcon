@@ -28,16 +28,18 @@ final class GetSetSeparatorTest extends AbstractUnitTestCase
         $escaper     = new Escaper();
         $breadcrumbs = new Breadcrumbs($escaper);
 
-        $expected = '<li>/</li>';
-        $actual   = $breadcrumbs->getSeparator();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '<li>/</li>',
+            $breadcrumbs->getSeparator()
+        );
 
         $separator = ' -:- ';
 
         $breadcrumbs->setSeparator($separator);
 
-        $expected = $separator;
-        $actual   = $breadcrumbs->getSeparator();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $separator,
+            $breadcrumbs->getSeparator()
+        );
     }
 }

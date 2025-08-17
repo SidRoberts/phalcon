@@ -26,6 +26,7 @@ final class ConstructTest extends AbstractUnitTestCase
     public function testHtmlAttributesConstruct(): void
     {
         $attributes = new Attributes();
+
         $this->assertInstanceOf(Attributes::class, $attributes);
         $this->assertInstanceOf(Collection::class, $attributes);
     }

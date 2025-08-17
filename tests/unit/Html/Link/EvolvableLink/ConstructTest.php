@@ -27,7 +27,6 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $link = new EvolvableLink();
 
-        $class = EvolvableLinkInterface::class;
-        $this->assertInstanceOf($class, $link);
+        $this->assertInstanceOf(EvolvableLinkInterface::class, $link);
     }
 }

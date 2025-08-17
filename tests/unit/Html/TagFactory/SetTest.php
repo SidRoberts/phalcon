@@ -31,8 +31,8 @@ final class SetTest extends AbstractUnitTestCase
         $factory = new TagFactory($escaper);
 
         $service = $factory->newInstance('a');
-        $class   = Anchor::class;
-        $this->assertInstanceOf($class, $service);
+
+        $this->assertInstanceOf(Anchor::class, $service);
 
         /**
          * Overriding 'a' with 'base'
@@ -40,7 +40,7 @@ final class SetTest extends AbstractUnitTestCase
         $factory->set('a', fn() => new Base($escaper));
 
         $service = $factory->newInstance('a');
-        $class   = Base::class;
-        $this->assertInstanceOf($class, $service);
+
+        $this->assertInstanceOf(Base::class, $service);
     }
 }

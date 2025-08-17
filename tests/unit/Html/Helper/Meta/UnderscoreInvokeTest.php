@@ -23,7 +23,15 @@ use const PHP_EOL;
 final class UnderscoreInvokeTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{
+     *     0: string,
+     *     1: string,
+     *     2: array<string, string>,
+     *     3: array{0: string, 1: string},
+     *     4: array{0: string, 1: string},
+     *     5: array{0: string, 1: string},
+     *     6: string
+     * }>
      */
     public static function getExamples(): array
     {
@@ -47,9 +55,9 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
                     "https://phalcon.io",
                 ],
                 "    <meta charset=\"utf-8\">" . PHP_EOL
-                . "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">" . PHP_EOL
-                . "    <meta name=\"generator\" content=\"Phalcon\">" . PHP_EOL
-                . "    <meta property=\"org:url\" content=\"https://phalcon.io\">" . PHP_EOL,
+                    . "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">" . PHP_EOL
+                    . "    <meta name=\"generator\" content=\"Phalcon\">" . PHP_EOL
+                    . "    <meta property=\"org:url\" content=\"https://phalcon.io\">" . PHP_EOL,
             ],
             [
                 '--',
@@ -70,14 +78,24 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
                     "https://phalcon.io",
                 ],
                 "--<meta charset=\"utf-8\">+"
-                . "--<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">+"
-                . "--<meta name=\"generator\" content=\"Phalcon\">+"
-                . "--<meta property=\"org:url\" content=\"https://phalcon.io\">+",
+                    . "--<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">+"
+                    . "--<meta name=\"generator\" content=\"Phalcon\">+"
+                    . "--<meta property=\"org:url\" content=\"https://phalcon.io\">+",
             ],
         ];
     }
 
     /**
+     * @param string                      $indent
+     * @param string                      $delimiter
+     * @param array<string, string>       $add
+     * @param array{0: string, 1: string} $http
+     * @param array{0: string, 1: string} $name
+     * @param array{0: string, 1: string} $property
+     * @param string                      $expected
+     *
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -101,8 +119,10 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
             ->addProperty($property[0], $property[1])
         ;
 
-        $actual = (string)$result;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            (string)$result
+        );
 
         $factory = new TagFactory($escaper);
         $locator = $factory->newInstance('meta');
@@ -113,7 +133,9 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
             ->addProperty($property[0], $property[1])
         ;
 
-        $actual = (string)$result;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            (string)$result
+        );
     }
 }

@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class UnderscoreInvokeTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: array}>
      */
     public static function getExamples(): array
     {
@@ -50,6 +50,8 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */

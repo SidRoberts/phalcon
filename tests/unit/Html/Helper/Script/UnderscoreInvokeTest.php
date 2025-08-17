@@ -23,7 +23,7 @@ use const PHP_EOL;
 final class UnderscoreInvokeTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: string, 2: array, 3: string}>
      */
     public static function getExamples(): array
     {
@@ -68,6 +68,8 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -82,22 +84,28 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
         $helper  = new Script($escaper);
 
         $result = $helper($indent, $delimiter);
+
         foreach ($add as $addItem) {
             $result->add($addItem[0], $addItem[1]);
         }
 
-        $actual = (string)$result;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            (string)$result
+        );
 
         $factory = new TagFactory($escaper);
         $locator = $factory->newInstance('script');
 
         $result = $locator($indent, $delimiter);
+
         foreach ($add as $addItem) {
             $result->add($addItem[0], $addItem[1]);
         }
 
-        $actual = (string)$result;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            (string)$result
+        );
     }
 }

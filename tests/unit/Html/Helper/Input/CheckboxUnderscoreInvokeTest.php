@@ -23,7 +23,7 @@ final class CheckboxUnderscoreInvokeTest extends AbstractUnitTestCase
     /**
      * @param string $type
      *
-     * @return array
+     * @return array<array{0: string, 1: mixed, 2: array, 3: ?array, 4: string}>
      */
     public static function getExamples(string $type): array
     {
@@ -160,7 +160,7 @@ final class CheckboxUnderscoreInvokeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array
+     * @return array<array{0: string, 1: mixed, 2: array, 3: ?array, 4: string}>
      */
     public static function getExamplesCheckbox(): array
     {
@@ -168,7 +168,7 @@ final class CheckboxUnderscoreInvokeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array
+     * @return array<array{0: string, 1: mixed, 2: array, 3: ?array, 4: string}>
      */
     public static function getExamplesRadio(): array
     {

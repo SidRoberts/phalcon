@@ -57,6 +57,8 @@ final class SerializeTest extends AbstractUnitTestCase
     {
         $serializer = new Header();
 
-        $this->assertNull($serializer->serialize([]));
+        $this->assertNull(
+            $serializer->serialize([])
+        );
     }
 }

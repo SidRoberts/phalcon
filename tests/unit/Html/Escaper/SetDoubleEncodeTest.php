@@ -28,14 +28,16 @@ final class SetDoubleEncodeTest extends AbstractUnitTestCase
 
         $source = '<h1>&amp;</h1>';
 
-        $expected = '&lt;h1&gt;&amp;amp;&lt;/h1&gt;';
-        $actual   = $escaper->html($source);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '&lt;h1&gt;&amp;amp;&lt;/h1&gt;',
+            $escaper->html($source)
+        );
 
         $escaper->setDoubleEncode(false);
 
-        $expected = '&lt;h1&gt;&amp;&lt;/h1&gt;';
-        $actual   = $escaper->html($source);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '&lt;h1&gt;&amp;&lt;/h1&gt;',
+            $escaper->html($source)
+        );
     }
 }

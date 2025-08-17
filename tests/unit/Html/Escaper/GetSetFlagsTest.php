@@ -62,8 +62,9 @@ final class GetSetFlagsTest extends AbstractUnitTestCase
         $actual = $escaper->setHtmlQuoteType(ENT_HTML401);
         $this->assertInstanceOf(EscaperInterface::class, $actual);
 
-        $expected = ENT_HTML401;
-        $actual   = $escaper->getFlags();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            ENT_HTML401,
+            $escaper->getFlags()
+        );
     }
 }

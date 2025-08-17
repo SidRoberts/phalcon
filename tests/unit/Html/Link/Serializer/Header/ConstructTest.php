@@ -27,7 +27,6 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $serializer = new Header();
 
-        $class = SerializerInterface::class;
-        $this->assertInstanceOf($class, $serializer);
+        $this->assertInstanceOf(SerializerInterface::class, $serializer);
     }
 }

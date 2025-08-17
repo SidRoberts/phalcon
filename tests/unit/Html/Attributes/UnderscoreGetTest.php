@@ -33,9 +33,6 @@ final class UnderscoreGetTest extends AbstractUnitTestCase
 
         $attributes = new Attributes($data);
 
-        $this->assertSame(
-            'form-control',
-            $attributes->class
-        );
+        $this->assertSame('form-control', $attributes->class);
     }
 }

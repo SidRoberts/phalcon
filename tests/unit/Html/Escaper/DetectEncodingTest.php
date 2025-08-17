@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class DetectEncodingTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: string}>
      */
     public static function escaperDetectEncodingProvider(): array
     {
@@ -53,7 +53,9 @@ final class DetectEncodingTest extends AbstractUnitTestCase
     ): void {
         $escaper = new Escaper();
 
-        $actual = $escaper->detectEncoding($source);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $escaper->detectEncoding($source)
+        );
     }
 }

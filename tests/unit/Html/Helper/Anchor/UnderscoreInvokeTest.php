@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class UnderscoreInvokeTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: array, 2: bool}>
      */
     public static function getExamples(): array
     {
@@ -88,6 +88,8 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -105,11 +107,13 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
 
         $factory = new TagFactory($escaper);
         $locator = $factory->newInstance('a');
-        $actual  = $locator('/myurl', 'click<>me', $attributes, $raw);
+
+        $actual = $locator('/myurl', 'click<>me', $attributes, $raw);
         $this->assertSame($expected, $actual);
 
         $factory = new TagFactory($escaper);
-        $actual  = $factory->a('/myurl', 'click<>me', $attributes, $raw);
+
+        $actual = $factory->a('/myurl', 'click<>me', $attributes, $raw);
         $this->assertSame($expected, $actual);
     }
 }
