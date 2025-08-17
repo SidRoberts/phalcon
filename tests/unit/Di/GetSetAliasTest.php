@@ -106,6 +106,7 @@ final class GetSetAliasTest extends AbstractUnitTestCase
         );
 
         $container = new Di();
+
         $container->setAlias('nonexistent', 'myAlias');
     }
 

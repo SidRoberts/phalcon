@@ -28,14 +28,12 @@ final class GetSetDefinitionTest extends AbstractUnitTestCase
     {
         $service = new Service(Escaper::class, false);
 
-        $expected = Escaper::class;
-        $actual   = $service->getDefinition();
-        $this->assertSame($expected, $actual);
+        $actual = $service->getDefinition();
+        $this->assertSame(Escaper::class, $actual);
 
         $service->setDefinition(Collection::class);
 
-        $expected = Collection::class;
-        $actual   = $service->getDefinition();
-        $this->assertSame($expected, $actual);
+        $actual = $service->getDefinition();
+        $this->assertSame(Collection::class, $actual);
     }
 }

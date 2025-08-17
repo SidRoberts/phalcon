@@ -80,8 +80,7 @@ final class UnderscoreGetTest extends AbstractUnitTestCase
         $component  = $container->get('component');
         $persistent = $component->persistent;
 
-        $class = stdClass::class;
-        $this->assertInstanceOf($class, $persistent);
+        $this->assertInstanceOf(stdClass::class, $persistent);
     }
 
     /**
@@ -104,21 +103,22 @@ final class UnderscoreGetTest extends AbstractUnitTestCase
         $actual    = $component->getDI();
         $this->assertSame($container, $actual);
 
-        $class  = stdClass::class;
-        $actual = $component->std;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(stdClass::class, $component->std);
 
         $expected = spl_object_hash($container);
         $actual   = spl_object_hash($component->di);
         $this->assertSame($expected, $actual);
 
-        $actual = isset($component->di);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($component->di)
+        );
 
-        $actual = isset($component->component);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($component->component)
+        );
 
-        $actual = isset($component->std);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($component->std)
+        );
     }
 }

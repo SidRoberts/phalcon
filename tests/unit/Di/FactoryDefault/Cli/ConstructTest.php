@@ -38,6 +38,10 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string $class
+     *
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2019-09-09
      */
@@ -54,7 +58,9 @@ final class ConstructTest extends AbstractUnitTestCase
             $params = null;
         }
 
-        $actual = $container->get($service, $params);
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            $class,
+            $container->get($service, $params)
+        );
     }
 }

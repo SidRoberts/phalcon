@@ -41,35 +41,28 @@ final class IsResolvedResolveTest extends AbstractUnitTestCase
             }
         );
 
-        $actual = $container->getService('resolved')
-                            ->isResolved()
-        ;
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $container->getService('resolved')->isResolved()
+        );
 
-        $actual = $container->getService('notResolved')
-                            ->isResolved()
-        ;
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $container->getService('notResolved')->isResolved()
+        );
 
         $container->get('resolved');
 
-        $actual = $container->getService('resolved')
-                            ->isResolved()
-        ;
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $container->getService('resolved')->isResolved()
+        );
 
-        $actual = $container->getService('notResolved')
-                            ->isResolved()
-        ;
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $container->getService('notResolved')->isResolved()
+        );
 
-        $container->getService('notResolved')
-                  ->resolve()
-        ;
+        $container->getService('notResolved')->resolve();
 
-        $actual = $container->getService('notResolved')
-                            ->isResolved()
-        ;
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $container->getService('notResolved')->isResolved()
+        );
     }
 }

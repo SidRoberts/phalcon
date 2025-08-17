@@ -24,24 +24,24 @@ final class GetSetDefaultResetTest extends AbstractUnitTestCase
      */
     public function testDiGetSetDefaultReset(): void
     {
-        $class  = Di::class;
         $actual = Di::getDefault();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Di::class, $actual);
 
         $container = Di::getDefault();
-        $class     = Di::class;
-        $this->assertInstanceOf($class, $container);
+
+        $this->assertInstanceOf(Di::class, $container);
 
         // delete it
         Di::reset();
 
-        $actual = Di::getDefault();
-        $this->assertNull($actual);
+        $this->assertNull(
+            Di::getDefault()
+        );
 
         // set it again
         Di::setDefault($container);
 
         $actual = Di::getDefault();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Di::class, $actual);
     }
 }

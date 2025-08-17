@@ -27,14 +27,13 @@ final class RegisterTest extends AbstractUnitTestCase
     public function testDiRegister(): void
     {
         $container = new Di();
+
         $container->register(new SomeServiceProvider());
 
-        $expected = 'bar';
-        $actual   = $container->get('foo');
-        $this->assertSame($expected, $actual);
+        $actual = $container->get('foo');
+        $this->assertSame('bar', $actual);
 
-        $expected = SomeComponent::class;
-        $actual   = $container->get('fooAction');
-        $this->assertInstanceOf($expected, $actual);
+        $actual = $container->get('fooAction');
+        $this->assertInstanceOf(SomeComponent::class, $actual);
     }
 }

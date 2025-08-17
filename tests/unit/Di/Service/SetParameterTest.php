@@ -37,23 +37,27 @@ final class SetParameterTest extends AbstractUnitTestCase
         $expected = [
             'className' => Escaper::class,
         ];
-        $actual   = $service->getDefinition();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $service->getDefinition()
+        );
 
         $actual = $service->setParameter(1, ['one']);
 
-        $class = ServiceInterface::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(ServiceInterface::class, $actual);
 
-        $class = Service::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Service::class, $actual);
 
         $expected = [
             'className' => Escaper::class,
             'arguments' => [1 => ['one']],
         ];
-        $actual   = $service->getDefinition();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $service->getDefinition()
+        );
     }
 
     /**
@@ -68,6 +72,7 @@ final class SetParameterTest extends AbstractUnitTestCase
         );
 
         $service = new Service(Escaper::class);
+
         $service->setParameter(1, [1]);
     }
 
@@ -93,8 +98,11 @@ final class SetParameterTest extends AbstractUnitTestCase
                 0 => ['one'],
             ],
         ];
-        $actual   = $service->getDefinition();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $service->getDefinition()
+        );
 
         $service->setParameter(0, ['seven']);
 
@@ -102,7 +110,10 @@ final class SetParameterTest extends AbstractUnitTestCase
             'className' => Escaper::class,
             'arguments' => [0 => ['seven']],
         ];
-        $actual   = $service->getDefinition();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $service->getDefinition()
+        );
     }
 }

@@ -28,13 +28,14 @@ final class GetInternalEventsManagerTest extends AbstractUnitTestCase
     {
         $di = new Di();
 
-        $actual = $di->getInternalEventsManager();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $di->getInternalEventsManager()
+        );
 
         $di->setInternalEventsManager(new Manager());
 
-        $class  = ManagerInterface::class;
         $actual = $di->getInternalEventsManager();
-        $this->assertInstanceOf($class, $actual);
+
+        $this->assertInstanceOf(ManagerInterface::class, $actual);
     }
 }

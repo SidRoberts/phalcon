@@ -28,12 +28,13 @@ final class AttemptTest extends AbstractUnitTestCase
     {
         $di = new Di();
 
-        $actual = $di->attempt('nonexistingservice', Escaper::class);
+        $this->assertInstanceOf(
+            Service::class,
+            $di->attempt('nonexistingservice', Escaper::class)
+        );
 
-        $this->assertInstanceOf(Service::class, $actual);
-
-        $actual = $di->attempt('nonexistingservice', Escaper::class);
-
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $di->attempt('nonexistingservice', Escaper::class)
+        );
     }
 }

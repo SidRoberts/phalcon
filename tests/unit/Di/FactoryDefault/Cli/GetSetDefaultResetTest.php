@@ -39,16 +39,15 @@ final class GetSetDefaultResetTest extends AbstractUnitTestCase
         Di::reset();
 
         // Get a new container
-        $new = Di::getDefault();
-
-        $this->assertNull($new);
+        $this->assertNull(
+            Di::getDefault()
+        );
 
         // set it again
         Di::setDefault($container);
 
-        $class  = Di::class;
         $actual = Di::getDefault();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Di::class, $actual);
 
         $containerHash = spl_object_hash($container);
         $currentHash   = spl_object_hash($actual);

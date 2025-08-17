@@ -36,8 +36,7 @@ final class OffsetSetTest extends AbstractUnitTestCase
 
         $container['collection'] = new Collection();
 
-        $class  = Collection::class;
         $actual = $container->offsetGet('collection');
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Collection::class, $actual);
     }
 }

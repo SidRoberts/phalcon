@@ -34,8 +34,9 @@ final class BuildTest extends AbstractUnitTestCase
             'Argument at position 0 must have a type'
         );
 
-        $container  = new Di();
-        $builder    = new Builder();
+        $container = new Di();
+        $builder   = new Builder();
+
         $definition = [
             'className' => Escaper::class,
             'arguments' => [
@@ -74,8 +75,9 @@ final class BuildTest extends AbstractUnitTestCase
             'Unknown service type in parameter on position 0'
         );
 
-        $container  = new Di();
-        $builder    = new Builder();
+        $container = new Di();
+        $builder   = new Builder();
+
         $definition = [
             'className' => Escaper::class,
             'arguments' => [
@@ -157,16 +159,11 @@ final class BuildTest extends AbstractUnitTestCase
 
         $instance = $builder->build($container, $definition);
 
-        $class = PropertiesComponent::class;
-        $this->assertInstanceOf($class, $instance);
+        $this->assertInstanceOf(PropertiesComponent::class, $instance);
 
-        $expected = 'one';
-        $actual   = $instance->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame('one', $instance->getName());
 
-        $expected = 444;
-        $actual   = $instance->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(444, $instance->getType());
     }
 
     /**
@@ -272,16 +269,17 @@ final class BuildTest extends AbstractUnitTestCase
 
         $instance = $builder->build($container, $definition);
 
-        $class = PropertiesComponent::class;
-        $this->assertInstanceOf($class, $instance);
+        $this->assertInstanceOf(PropertiesComponent::class, $instance);
 
-        $expected = 'one';
-        $actual   = $instance->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'one',
+            $instance->getName()
+        );
 
-        $expected = 555;
-        $actual   = $instance->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            555,
+            $instance->getType()
+        );
     }
 
     /**
@@ -359,24 +357,27 @@ final class BuildTest extends AbstractUnitTestCase
 
         $instance = $builder->build($container, $definition);
 
-        $class = PropertiesComponent::class;
-        $this->assertInstanceOf($class, $instance);
+        $this->assertInstanceOf(PropertiesComponent::class, $instance);
 
-        $expected = 'one';
-        $actual   = $instance->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'one',
+            $instance->getName()
+        );
 
-        $expected = 2;
-        $actual   = $instance->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            2,
+            $instance->getType()
+        );
 
-        $expected = 'set-one';
-        $actual   = $instance->propertyName;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'set-one',
+            $instance->propertyName
+        );
 
-        $expected = 100;
-        $actual   = $instance->propertyType;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            100,
+            $instance->propertyType
+        );
     }
 
     /**
@@ -523,8 +524,9 @@ final class BuildTest extends AbstractUnitTestCase
      */
     public function testDiServiceBuilderBuildPassedParameters(): void
     {
-        $container  = new Di();
-        $builder    = new Builder();
+        $container = new Di();
+        $builder   = new Builder();
+
         $definition = [
             'className' => PropertiesComponent::class,
             'arguments' => [
@@ -539,23 +541,27 @@ final class BuildTest extends AbstractUnitTestCase
             ],
         ];
 
-        $class     = PropertiesComponent::class;
         $component = $builder->build($container, $definition);
-        $this->assertInstanceOf($class, $component);
 
-        $expected = 'one';
-        $actual   = $component->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertInstanceOf(PropertiesComponent::class, $component);
 
-        $expected = 2;
-        $actual   = $component->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'one',
+            $component->getName()
+        );
 
-        $actual = $component->getEscaper();
-        $this->assertNull($actual);
+        $this->assertSame(
+            2,
+            $component->getType()
+        );
 
-        $actual = $component->getService();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $component->getEscaper()
+        );
+
+        $this->assertNull(
+            $component->getService()
+        );
     }
 
     /**
@@ -564,8 +570,9 @@ final class BuildTest extends AbstractUnitTestCase
      */
     public function testDiServiceBuilderBuildPassedParametersWithInstance(): void
     {
-        $container  = new Di();
-        $builder    = new Builder();
+        $container = new Di();
+        $builder   = new Builder();
+
         $definition = [
             'className' => PropertiesComponent::class,
             'arguments' => [
@@ -584,24 +591,28 @@ final class BuildTest extends AbstractUnitTestCase
             ],
         ];
 
-        $class     = PropertiesComponent::class;
         $component = $builder->build($container, $definition);
-        $this->assertInstanceOf($class, $component);
 
-        $expected = 'one';
-        $actual   = $component->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertInstanceOf(PropertiesComponent::class, $component);
 
-        $expected = 2;
-        $actual   = $component->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'one',
+            $component->getName()
+        );
 
-        $class  = Escaper::class;
-        $actual = $component->getEscaper();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertSame(
+            2,
+            $component->getType()
+        );
 
-        $actual = $component->getService();
-        $this->assertNull($actual);
+        $this->assertInstanceOf(
+            Escaper::class,
+            $component->getEscaper()
+        );
+
+        $this->assertNull(
+            $component->getService()
+        );
     }
 
     /**
@@ -613,6 +624,7 @@ final class BuildTest extends AbstractUnitTestCase
         $container = new Di();
         $builder   = new Builder();
         $service   = new ServiceComponent('two', 3);
+
         $container->set('newService', $service, true);
 
         $definition = [
@@ -637,33 +649,39 @@ final class BuildTest extends AbstractUnitTestCase
             ],
         ];
 
-        $class     = PropertiesComponent::class;
         $component = $builder->build($container, $definition);
-        $this->assertInstanceOf($class, $component);
 
-        $expected = 'one';
-        $actual   = $component->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertInstanceOf(PropertiesComponent::class, $component);
 
-        $expected = 2;
-        $actual   = $component->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'one',
+            $component->getName()
+        );
 
-        $class  = Escaper::class;
-        $actual = $component->getEscaper();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertSame(
+            2,
+            $component->getType()
+        );
 
-        $class   = ServiceComponent::class;
-        $service = $component->getService();
-        $this->assertInstanceOf($class, $service);
+        $this->assertInstanceOf(
+            Escaper::class,
+            $component->getEscaper()
+        );
 
-        $expected = 'two';
-        $actual   = $service->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertInstanceOf(
+            ServiceComponent::class,
+            $component->getService()
+        );
 
-        $expected = 3;
-        $actual   = $service->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $service->getName()
+        );
+
+        $this->assertSame(
+            3,
+            $service->getType()
+        );
     }
 
     /**
@@ -706,15 +724,16 @@ final class BuildTest extends AbstractUnitTestCase
 
         $instance = $builder->build($container, $definition, ['one', 2]);
 
-        $class = PropertiesComponent::class;
-        $this->assertInstanceOf($class, $instance);
+        $this->assertInstanceOf(PropertiesComponent::class, $instance);
 
-        $expected = 'one';
-        $actual   = $instance->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'one',
+            $instance->getName()
+        );
 
-        $expected = 2;
-        $actual   = $instance->getType();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            2,
+            $instance->getType()
+        );
     }
 }

@@ -24,11 +24,12 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testDiConstruct(): void
     {
-        $class  = Di::class;
         $actual = Di::getDefault();
-        $this->assertInstanceOf($class, $actual);
+
+        $this->assertInstanceOf(Di::class, $actual);
 
         $actual = Di::getDefault();
-        $this->assertInstanceOf($class, $actual);
+
+        $this->assertInstanceOf(Di::class, $actual);
     }
 }

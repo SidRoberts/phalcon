@@ -27,12 +27,14 @@ final class OffsetExistsTest extends AbstractUnitTestCase
     {
         $container = new Di();
 
-        $actual = isset($container['escaper']);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($container['escaper'])
+        );
 
         $container->set('escaper', Escaper::class);
 
-        $actual = isset($container['escaper']);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($container['escaper'])
+        );
     }
 }

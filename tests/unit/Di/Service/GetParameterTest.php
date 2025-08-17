@@ -33,8 +33,9 @@ final class GetParameterTest extends AbstractUnitTestCase
             false
         );
 
-        $actual = $service->getParameter(1);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $service->getParameter(1)
+        );
     }
 
     /**
@@ -53,15 +54,18 @@ final class GetParameterTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $service->getParameter(0);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $service->getParameter(0)
+        );
 
-        $expected = 'two';
-        $actual   = $service->getParameter(1);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $service->getParameter(1)
+        );
 
-        $actual = $service->getParameter(2);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $service->getParameter(2)
+        );
     }
 }

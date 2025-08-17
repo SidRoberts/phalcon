@@ -23,7 +23,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class SetTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string, 1: mixed, 2: class-string}>
      */
     public static function getExamples(): array
     {
@@ -51,6 +51,10 @@ final class SetTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string $class
+     *
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2019-09-09
      */
@@ -81,9 +85,10 @@ final class SetTest extends AbstractUnitTestCase
         $container->set('alias', Escaper::class);
         $container->set(Escaper::class, $escaper);
 
-        $class  = Escaper::class;
-        $actual = $container->get('alias');
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            Escaper::class,
+            $container->get('alias')
+        );
     }
 
     /**
@@ -97,23 +102,29 @@ final class SetTest extends AbstractUnitTestCase
         // set non shared service
         $container->set('escaper', Escaper::class);
 
-        $class  = Escaper::class;
-        $actual = $container->get('escaper');
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            Escaper::class,
+            $container->get('escaper')
+        );
 
         $escaper = $container->getService('escaper');
-        $actual  = $escaper->isShared();
-        $this->assertFalse($actual);
+
+        $this->assertFalse(
+            $escaper->isShared()
+        );
 
         // set shared service
         $container->set('collection', Collection::class, true);
 
-        $class  = Collection::class;
-        $actual = $container->get('collection');
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            Collection::class,
+            $container->get('collection')
+        );
 
         $collection = $container->getService('collection');
-        $actual     = $collection->isShared();
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $collection->isShared()
+        );
     }
 }

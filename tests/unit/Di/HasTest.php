@@ -27,12 +27,14 @@ final class HasTest extends AbstractUnitTestCase
     {
         $container = new Di();
 
-        $actual = $container->has('escaper');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $container->has('escaper')
+        );
 
         $container->set('escaper', Escaper::class);
 
-        $actual = $container->has('escaper');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $container->has('escaper')
+        );
     }
 }

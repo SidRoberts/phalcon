@@ -30,12 +30,14 @@ final class OffsetUnsetTest extends AbstractUnitTestCase
 
         $container->set('escaper', $escaper);
 
-        $actual = $container->has('escaper');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $container->has('escaper')
+        );
 
         unset($container['escaper']);
 
-        $actual = $container->has('escaper');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $container->has('escaper')
+        );
     }
 }

@@ -31,10 +31,9 @@ final class GetRawTest extends AbstractUnitTestCase
         // existing service
         $container->set('escaper', Escaper::class);
 
-        $expected = Escaper::class;
-        $actual   = $container->getRaw('escaper');
+        $actual = $container->getRaw('escaper');
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(Escaper::class, $actual);
     }
 
     /**

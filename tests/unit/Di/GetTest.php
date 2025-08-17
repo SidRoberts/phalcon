@@ -36,20 +36,18 @@ final class GetTest extends AbstractUnitTestCase
         // set a service and get it to check
         $service = $container->set('escaper', Escaper::class);
 
-        $class = ServiceInterface::class;
-        $this->assertInstanceOf($class, $service);
+        $this->assertInstanceOf(ServiceInterface::class, $service);
 
-        $class = Service::class;
-        $this->assertInstanceOf($class, $service);
+        $this->assertInstanceOf(Service::class, $service);
 
-        $actual = $service->isShared();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $service->isShared()
+        );
 
         // get escaper service
         $actual = $container->get('escaper');
 
-        $class = Escaper::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Escaper::class, $actual);
 
         $expected = spl_object_hash(new Escaper());
         $actual   = spl_object_hash($actual);
@@ -102,6 +100,7 @@ final class GetTest extends AbstractUnitTestCase
         $this->expectExceptionMessage("Service 'broken' cannot be resolved");
 
         $container = new Di();
+
         $container->set('broken', 42);
         $container->get('broken');
     }
@@ -118,15 +117,17 @@ final class GetTest extends AbstractUnitTestCase
         $escaper = new Escaper();
         $service = $container->set('escaper', $escaper, true);
 
-        $actual = $service->isShared();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $service->isShared()
+        );
 
         // get escaper service - twice to cache it
         $actual = $container->get('escaper');
         $actual = $container->get('escaper');
 
-        $expected = spl_object_hash($escaper);
-        $actual   = spl_object_hash($actual);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            spl_object_hash($escaper),
+            spl_object_hash($actual)
+        );
     }
 }

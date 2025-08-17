@@ -30,18 +30,32 @@ final class LoadFromYamlTest extends AbstractUnitTestCase
         $container = new Di();
 
         // load yaml
-        $container->loadFromYaml(supportDir('assets/Di/services.yml'));
+        $container->loadFromYaml(
+            supportDir('assets/Di/services.yml')
+        );
 
         // there are 3
-        $this->assertCount(3, $container->getServices());
+        $this->assertCount(
+            3,
+            $container->getServices()
+        );
 
         // check some services
         $actual = $container->get('config');
+
         $this->assertInstanceOf(Config::class, $actual);
         $this->assertInstanceOf(ConfigInterface::class, $actual);
 
-        $this->assertTrue($container->has('config'));
-        $this->assertTrue($container->has('unit-test'));
-        $this->assertTrue($container->has('component'));
+        $this->assertTrue(
+            $container->has('config')
+        );
+
+        $this->assertTrue(
+            $container->has('unit-test')
+        );
+
+        $this->assertTrue(
+            $container->has('component')
+        );
     }
 }

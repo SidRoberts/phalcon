@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace Phalcon\Tests\Unit\Di;
 
 use Phalcon\Di\Di;
@@ -22,7 +24,6 @@ use stdClass;
 use UnitTester;
 
 use function dataDir;
-use function is_string;
 
 /**
  * Tests the \Phalcon\Di component
@@ -73,13 +74,15 @@ class DiCest
             }
         );
 
-        $class  = Escaper::class;
-        $actual = $this->phDi->get('escape4');
-        $I->assertInstanceOf($class, $actual);
+        $I->assertInstanceOf(
+            Escaper::class,
+            $this->phDi->get('escape4')
+        );
 
-        $class  = stdClass::class;
-        $actual = $this->phDi->get('escape4');
-        $I->assertInstanceOf($class, $actual);
+        $I->assertInstanceOf(
+            stdClass::class,
+            $this->phDi->get('escape4')
+        );
     }
 
     /**
@@ -210,7 +213,7 @@ class DiCest
 
         $this->phDi->set('response', $response);
 
-         Injection of parameters in the constructor
+        // Injection of parameters in the constructor
         $this->phDi->set(
             'simpleConstructor',
             [
@@ -224,7 +227,7 @@ class DiCest
             ]
         );
 
-         Injection of simple setters
+        // Injection of simple setters
         $this->phDi->set(
             'simpleSetters',
             [
@@ -243,7 +246,7 @@ class DiCest
             ]
         );
 
-         Injection of properties
+        // Injection of properties
         $this->phDi->set(
             'simpleProperties',
             [
@@ -260,7 +263,7 @@ class DiCest
             ]
         );
 
-         Injection of parameters in the constructor resolving the service parameter
+        // Injection of parameters in the constructor resolving the service parameter
         $this->phDi->set(
             'complexConstructor',
             [
@@ -274,7 +277,7 @@ class DiCest
             ]
         );
 
-         Injection of simple setters resolving the service parameter
+        // Injection of simple setters resolving the service parameter
         $this->phDi->set(
             'complexSetters',
             [
@@ -293,7 +296,7 @@ class DiCest
             ]
         );
 
-         Injection of properties resolving the service parameter
+        // Injection of properties resolving the service parameter
         $this->phDi->set(
             'complexProperties',
             [
@@ -313,7 +316,9 @@ class DiCest
 
         $component = $this->phDi->get('simpleConstructor');
 
-        $I->assertTrue(is_string($component->getResponse()));
+        $I->assertIsString(
+            $component->getResponse()
+        );
 
         $I->assertSame(
             'response',
@@ -323,7 +328,9 @@ class DiCest
 
         $component = $this->phDi->get('simpleSetters');
 
-        $I->assertTrue(is_string($component->getResponse()));
+        $I->assertIsString(
+            $component->getResponse()
+        );
 
         $I->assertSame(
             'response',
@@ -333,25 +340,25 @@ class DiCest
 
         $component = $this->phDi->get('simpleProperties');
 
-        $I->assertTrue(is_string($component->getResponse()));
+        $I->assertIsString($component->getResponse());
         $I->assertSame('response', $component->getResponse());
 
 
         $component = $this->phDi->get('complexConstructor');
 
-        $I->assertTrue(is_object($component->getResponse()));
+        $I->assertIsObject($component->getResponse());
         $I->assertSame($response, $component->getResponse());
 
 
         $component = $this->phDi->get('complexSetters');
 
-        $I->assertTrue(is_object($component->getResponse()));
+        $I->assertIsObject($component->getResponse());
         $I->assertSame($response, $component->getResponse());
 
 
         $component = $this->phDi->get('complexProperties');
 
-        $I->assertTrue(is_object($component->getResponse()));
+        $I->assertIsObject($component->getResponse());
         $I->assertSame($response, $component->getResponse());
     }
 
@@ -491,20 +498,23 @@ class DiCest
             }
         );
 
-        $actual = $container->getService('resolved')->isResolved();
-        $I->assertFalse($actual);
+        $I->assertFalse(
+            $container->getService('resolved')->isResolved()
+        );
 
-        $actual = $container->getService('notResolved')->isResolved();
-        $I->assertFalse($actual);
+        $I->assertFalse(
+            $container->getService('notResolved')->isResolved()
+        );
 
 
         $container->get('resolved');
 
-        $actual = $container->getService('resolved')->isResolved();
-        $I->assertTrue($actual);
+        $I->assertTrue(
+            $container->getService('resolved')->isResolved()
+        );
 
-        $actual = $container->getService('notResolved')->isResolved();
-        $I->assertFalse($actual);
+        $I->assertFalse(
+            $container->getService('notResolved')->isResolved()
+        );
     }
-
 }

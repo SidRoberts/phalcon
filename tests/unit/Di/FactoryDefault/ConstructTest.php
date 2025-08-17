@@ -44,7 +44,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: class-string}>
      */
     public static function getServices(): array
     {
@@ -160,12 +160,16 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $container = new FactoryDefault();
 
-        $expected = 24;
-        $actual   = count($container->getServices());
-        $this->assertSame($expected, $actual);
+        $this->assertCount(
+            24,
+            $container->getServices()
+        );
     }
 
     /**
+     * @param string       $service
+     * @param class-string $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
@@ -183,6 +187,7 @@ final class ConstructTest extends AbstractUnitTestCase
         };
 
         $actual = $container->get($service, $params);
+
         $this->assertInstanceOf($class, $actual);
     }
 }

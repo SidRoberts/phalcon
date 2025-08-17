@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class SetSharedTest extends AbstractUnitTestCase
 {
     /**
-     * @return Service[][]
+     * @return array<array{0: Service}>
      */
     public static function getExamples(): array
     {
@@ -44,16 +44,18 @@ final class SetSharedTest extends AbstractUnitTestCase
      */
     #[DataProvider('getExamples')]
     public function testDiServiceSetShared(
-        mixed $service
+        Service $service
     ): void {
         $service->setShared(true);
 
-        $actual = $service->isShared();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $service->isShared()
+        );
 
         $service->setShared(false);
 
-        $actual = $service->isShared();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $service->isShared()
+        );
     }
 }

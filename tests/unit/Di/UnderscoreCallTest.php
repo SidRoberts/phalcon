@@ -28,8 +28,9 @@ final class UnderscoreCallTest extends AbstractUnitTestCase
     {
         $container = new Di();
 
-        $actual = $container->setEscaper(Escaper::class);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $container->setEscaper(Escaper::class)
+        );
 
         $actual = $container->getEscaper();
         $this->assertInstanceOf(Escaper::class, $actual);

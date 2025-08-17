@@ -38,8 +38,7 @@ final class GetSetSharedTest extends AbstractUnitTestCase
         $container->setShared($serviceName, Escaper::class);
         $actual = $container->getShared($serviceName);
 
-        $class = Escaper::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Escaper::class, $actual);
 
         /**
          * Interface class string
@@ -48,8 +47,7 @@ final class GetSetSharedTest extends AbstractUnitTestCase
         $container->setShared($serviceName, Escaper::class);
         $actual = $container->getShared($serviceName);
 
-        $class = Escaper::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Escaper::class, $actual);
 
         /**
          * Class string
@@ -58,8 +56,7 @@ final class GetSetSharedTest extends AbstractUnitTestCase
         $container->setShared($serviceName, Escaper::class);
         $actual = $container->getShared($serviceName);
 
-        $class = Escaper::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Escaper::class, $actual);
     }
 
     /**
@@ -76,12 +73,18 @@ final class GetSetSharedTest extends AbstractUnitTestCase
         $object = $container->getShared('escaper');
 
         $expected = spl_object_hash($class);
-        $actual   = spl_object_hash($object);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            spl_object_hash($object)
+        );
 
         $objectTwo = $container->getShared('escaper');
-        $actual    = spl_object_hash($objectTwo);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            spl_object_hash($objectTwo)
+        );
     }
 
     /**
@@ -93,16 +96,23 @@ final class GetSetSharedTest extends AbstractUnitTestCase
         $container = new Di();
 
         $class = new Escaper();
+
         $container->setShared('escaper', $class);
 
         $object = $container->getShared('escaper');
 
         $expected = spl_object_hash($class);
-        $actual   = spl_object_hash($object);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            spl_object_hash($object)
+        );
 
         $objectTwo = $container->getShared('escaper');
-        $actual    = spl_object_hash($objectTwo);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            spl_object_hash($objectTwo)
+        );
     }
 }

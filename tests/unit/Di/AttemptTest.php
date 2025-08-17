@@ -28,10 +28,13 @@ final class AttemptTest extends AbstractUnitTestCase
     {
         $container = new Di();
 
-        $actual = $container->attempt('escaper', Escaper::class);
-        $this->assertInstanceOf(Service::class, $actual);
+        $this->assertInstanceOf(
+            Service::class,
+            $container->attempt('escaper', Escaper::class)
+        );
 
-        $actual = $container->attempt('escaper', Escaper::class);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $container->attempt('escaper', Escaper::class)
+        );
     }
 }

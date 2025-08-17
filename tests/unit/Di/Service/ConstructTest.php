@@ -27,7 +27,7 @@ final class ConstructTest extends AbstractUnitTestCase
     public function testDiServiceConstruct(): void
     {
         $service = new Service(Escaper::class, false);
-        $class   = ServiceInterface::class;
-        $this->assertInstanceOf($class, $service);
+
+        $this->assertInstanceOf(ServiceInterface::class, $service);
     }
 }

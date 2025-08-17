@@ -44,8 +44,7 @@ final class GetSetInternalEventsManagerTest extends AbstractUnitTestCase
 
         $instance = $container->get('escaper');
 
-        $class = Escaper::class;
-        $this->assertInstanceOf($class, $instance);
+        $this->assertInstanceOf(Escaper::class, $instance);
     }
 
     /**
@@ -56,13 +55,15 @@ final class GetSetInternalEventsManagerTest extends AbstractUnitTestCase
     {
         $container = new Di();
 
-        $actual = $container->getInternalEventsManager();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $container->getInternalEventsManager()
+        );
 
         $container->setInternalEventsManager(new Manager());
 
-        $class  = ManagerInterface::class;
-        $actual = $container->getInternalEventsManager();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            ManagerInterface::class,
+            $container->getInternalEventsManager()
+        );
     }
 }

@@ -31,16 +31,16 @@ final class GetServiceTest extends AbstractUnitTestCase
         $container = new Di();
 
         // set a service and get it to check
-        $class  = Service::class;
         $actual = $container->set('escaper', Escaper::class);
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Service::class, $actual);
 
         // get escaper service
         $escaper = $container->getService('escaper');
         $this->assertInstanceOf(Service::class, $escaper);
 
-        $actual = $escaper->isShared();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $escaper->isShared()
+        );
     }
 
     /**

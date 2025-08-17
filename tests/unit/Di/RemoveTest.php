@@ -29,12 +29,14 @@ final class RemoveTest extends AbstractUnitTestCase
 
         $container->set('escaper', Escaper::class);
 
-        $actual = $container->has('escaper');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $container->has('escaper')
+        );
 
         $container->remove('escaper');
 
-        $actual = $container->has('escaper');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $container->has('escaper')
+        );
     }
 }
