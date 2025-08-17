@@ -32,25 +32,28 @@ class AfterBindingTest extends AbstractUnitTestCase
         $di      = new FactoryDefault();
         $micro   = new Micro($di);
         $manager = new Manager();
+
         $manager->attach(
             'micro:afterBinding',
-            function (Event $event, Micro $micro) {
+            function (Event $event, Micro $micro): bool {
                 return false;
             }
         );
+
         $micro->setEventsManager($manager);
 
         $micro->get(
             '/test',
-            function () {
+            function (): string {
                 return 'test';
             }
         );
 
         $_SERVER['REQUEST_METHOD'] = 'GET';
 
-        $actual = $micro->handle('/test');
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $micro->handle('/test')
+        );
     }
 
     /**
@@ -65,14 +68,14 @@ class AfterBindingTest extends AbstractUnitTestCase
         $micro = new Micro($di);
 
         $micro->afterBinding(
-            function () {
+            function (): bool {
                 return false;
             }
         );
 
         $micro->get(
             '/test',
-            function () {
+            function (): string {
                 return 'test';
             }
         );
@@ -93,30 +96,35 @@ class AfterBindingTest extends AbstractUnitTestCase
         $micro          = new Micro($di);
         $middleware     = new MyMiddleware();
         $middlewareStop = new MyMiddlewareStop();
+
         $micro->afterBinding($middleware);
         $micro->afterBinding($middleware);
         $micro->afterBinding($middleware);
         $micro->afterBinding($middlewareStop);
         $micro->afterBinding($middleware);
+
         $micro->get(
             '/test',
-            function () {
+            function (): string {
                 return 'test';
             }
         );
 
         $_SERVER['REQUEST_METHOD'] = 'GET';
 
-        $actual = $micro->handle('/test');
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $micro->handle('/test')
+        );
 
-        $expected = 1;
-        $actual   = $middlewareStop->getNumber();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            1,
+            $middlewareStop->getNumber()
+        );
 
-        $expected = 3;
-        $actual   = $middleware->getNumber();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            3,
+            $middleware->getNumber()
+        );
     }
 
     public function testStopMiddlewareOnAfterBindingClassFirst(): void
@@ -125,52 +133,60 @@ class AfterBindingTest extends AbstractUnitTestCase
         $micro          = new Micro($di);
         $middleware     = new MyMiddleware();
         $middlewareStop = new MyMiddlewareStop();
+
         $micro->afterBinding($middlewareStop);
         $micro->afterBinding($middleware);
         $micro->afterBinding($middleware);
         $micro->afterBinding($middleware);
+
         $micro->get(
             '/test',
-            function () {
+            function (): string {
                 return 'test';
             }
         );
 
         $_SERVER['REQUEST_METHOD'] = 'GET';
 
-        $actual = $micro->handle('/test');
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $micro->handle('/test')
+        );
 
-        $expected = 1;
-        $actual   = $middlewareStop->getNumber();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            1,
+            $middlewareStop->getNumber()
+        );
 
-        $expected = 0;
-        $actual   = $middleware->getNumber();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            0,
+            $middleware->getNumber()
+        );
     }
 
     public function testStopMiddlewareOnAfterBindingClosure(): void
     {
         $di    = new FactoryDefault();
         $micro = new Micro($di);
+
         $micro->afterBinding(
-            function () use ($micro) {
+            function () use ($micro): bool {
                 $micro->stop();
 
                 return false;
             }
         );
+
         $micro->get(
             '/test',
-            function () {
+            function (): string {
                 return 'test';
             }
         );
 
         $_SERVER['REQUEST_METHOD'] = 'GET';
 
-        $actual = $micro->handle('/test');
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $micro->handle('/test')
+        );
     }
 }

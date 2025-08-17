@@ -20,6 +20,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 class IsLazyTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: bool}>
+     */
     public static function booleanProvider(): array
     {
         return [
@@ -45,7 +48,10 @@ class IsLazyTest extends AbstractUnitTestCase
 
         $collection->setHandler($httpMethodHandler, $lazy);
 
-        $this->assertEquals($lazy, $collection->isLazy());
+        $this->assertEquals(
+            $lazy,
+            $collection->isLazy()
+        );
     }
 
     /**

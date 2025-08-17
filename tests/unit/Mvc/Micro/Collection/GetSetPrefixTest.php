@@ -25,7 +25,12 @@ class GetSetPrefixTest extends AbstractUnitTestCase
     public function testMvcMicroCollectionGetSetPrefix(): void
     {
         $collection = new Collection();
+
         $collection->setPrefix('/api/v1');
-        $this->assertSame('/api/v1', $collection->getPrefix());
+
+        $this->assertSame(
+            '/api/v1',
+            $collection->getPrefix()
+        );
     }
 }

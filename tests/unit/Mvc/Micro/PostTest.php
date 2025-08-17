@@ -28,21 +28,21 @@ class PostTest extends AbstractUnitTestCase
 
         $micro->get(
             '/test',
-            function () {
+            function (): string {
                 return 'this is get';
             }
         );
 
         $micro->post(
             '/test',
-            function () {
+            function (): string {
                 return 'this is post';
             }
         );
 
         $micro->head(
             '/test',
-            function () {
+            function (): string {
                 return 'this is head';
             }
         );

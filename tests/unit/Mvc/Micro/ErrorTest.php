@@ -44,7 +44,7 @@ class ErrorTest extends AbstractUnitTestCase
         );
 
         $app->error(
-            function ($exception) use ($response) {
+            function ($exception) use ($response): bool {
                 $response->setContent(
                     'ERROR: ' . $exception->getMessage()
                 );

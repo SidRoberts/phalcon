@@ -39,9 +39,11 @@ class MicroMvcCollectionsTest extends AbstractUnitTestCase
             $controller->getEntered()
         );
 
+        $matchedRoute = $app->getRouter()->getMatchedRoute();
+
         $this->assertEquals(
             'index_route',
-            $app->getRouter()->getMatchedRoute()->getName()
+            $matchedRoute->getName()
         );
 
 
@@ -52,9 +54,11 @@ class MicroMvcCollectionsTest extends AbstractUnitTestCase
             $controller->getEntered()
         );
 
+        $matchedRoute = $app->getRouter()->getMatchedRoute();
+
         $this->assertEquals(
             'edit_route',
-            $app->getRouter()->getMatchedRoute()->getName()
+            $matchedRoute->getName()
         );
     }
 }

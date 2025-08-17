@@ -28,7 +28,10 @@ class GetActiveHandlerTest extends AbstractUnitTestCase
     public function testMvcMicroGetActiveHandler(): void
     {
         $micro = new Micro();
-        $this->assertNull($micro->getActiveHandler());
+
+        $this->assertNull(
+            $micro->getActiveHandler()
+        );
     }
 
     /**
@@ -48,6 +51,7 @@ class GetActiveHandlerTest extends AbstractUnitTestCase
         $app->handle('/');
 
         $result = $app->getActiveHandler();
+
         $this->assertIsArray($result);
 
         $handler = $result[0];

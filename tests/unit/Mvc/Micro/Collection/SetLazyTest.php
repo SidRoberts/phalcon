@@ -19,6 +19,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 class SetLazyTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: bool}>
+     */
     public static function booleanProvider(): array
     {
         return [

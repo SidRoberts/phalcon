@@ -37,26 +37,31 @@ class GetServiceTest extends AbstractUnitTestCase
         $micro     = new Micro();
         $container = new Di();
         $escaper   = new Escaper();
+
         $micro->setDi($container);
         $micro->setService('escaper', $escaper);
 
-        $expected = $escaper;
-        $actual   = $micro->getService('escaper');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $escaper,
+            $micro->getService('escaper')
+        );
 
         $dispatcher          = new Dispatcher();
         $micro['dispatcher'] = $dispatcher;
 
-        $expected = $dispatcher;
-        $actual   = $micro->getService('dispatcher');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $dispatcher,
+            $micro->getService('dispatcher')
+        );
 
         $router = new Router();
+
         $container->set('router', $router);
 
-        $expected = $router;
-        $actual   = $micro->getService('router');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $router,
+            $micro->getService('router')
+        );
     }
 
     /**
@@ -76,9 +81,7 @@ class GetServiceTest extends AbstractUnitTestCase
         );
 
         try {
-            $class   = Request::class;
-            $request = $micro->request;
-            $this->assertInstanceOf($class, $request);
+            $this->assertInstanceOf(Request::class, $micro->request);
         } catch (ErrorException $ex) {
             $error = $ex->getMessage();
         }
