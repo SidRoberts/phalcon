@@ -27,7 +27,7 @@ use const PHP_EOL;
 final class OutputTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: array|string, 1: string, 2: array, 3: array, 4: bool, 5: bool, 6: bool, 7: string}>
      */
     public static function getExamples(): array
     {
@@ -597,8 +597,8 @@ final class OutputTest extends AbstractUnitTestCase
         $flash->output();
         $actual = ob_get_contents();
         ob_end_clean();
-        $expected = '';
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame('', $actual);
     }
 
     /**
@@ -617,6 +617,7 @@ final class OutputTest extends AbstractUnitTestCase
         string $template
     ): void {
         $flash = new Direct(new Escaper());
+
         $flash
             ->setCssClasses($classes)
             ->setCssIconClasses($iconClasses)
@@ -625,6 +626,7 @@ final class OutputTest extends AbstractUnitTestCase
             ->setCustomTemplate($template)
             ->setImplicitFlush($implicit)
         ;
+
         if (true === $implicit) {
             ob_start();
             $flash->outputMessage('success', $message);

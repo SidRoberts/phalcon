@@ -34,19 +34,25 @@ final class GetSetAutoescapeTest extends AbstractUnitTestCase
     public function testFlashSessionGetSetAutoescape(): void
     {
         $session = $this->container->getShared('session');
+
         $session->start();
 
         $flash = new Session();
+
         $flash->setDI($this->container);
 
-        $actual = $flash->getAutoescape();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $flash->getAutoescape()
+        );
 
-        $actual = $flash->setAutoescape(false);
-        $this->assertInstanceOf(Session::class, $actual);
+        $this->assertInstanceOf(
+            Session::class,
+            $flash->setAutoescape(false)
+        );
 
-        $actual = $flash->getAutoescape();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $flash->getAutoescape()
+        );
 
         $session->destroy();
     }

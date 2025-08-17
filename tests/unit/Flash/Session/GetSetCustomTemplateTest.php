@@ -39,15 +39,18 @@ final class GetSetCustomTemplateTest extends AbstractUnitTestCase
         $flash = new Session();
         $flash->setDI($this->container);
 
-        $actual = $flash->getCustomTemplate();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $flash->getCustomTemplate()
+        );
 
         $template = '<span class="{cssClasses}">{message}</span>';
         $actual   = $flash->setCustomTemplate($template);
         $this->assertInstanceOf(Session::class, $actual);
 
-        $actual = $flash->getCustomTemplate();
-        $this->assertSame($template, $actual);
+        $this->assertSame(
+            $template,
+            $flash->getCustomTemplate()
+        );
 
         $session->destroy();
     }

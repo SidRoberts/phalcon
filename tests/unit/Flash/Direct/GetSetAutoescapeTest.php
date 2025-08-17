@@ -26,13 +26,16 @@ final class GetSetAutoescapeTest extends AbstractUnitTestCase
     {
         $flash = new Direct();
 
-        $actual = $flash->getAutoescape();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $flash->getAutoescape()
+        );
 
         $actual = $flash->setAutoescape(false);
+
         $this->assertInstanceOf(Direct::class, $actual);
 
-        $actual = $flash->getAutoescape();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $flash->getAutoescape()
+        );
     }
 }

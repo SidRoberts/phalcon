@@ -87,8 +87,8 @@ final class OutputTest extends AbstractUnitTestCase
         $flash->output();
         $actual = ob_get_contents();
         ob_end_clean();
-        $expected = '';
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame('', $actual);
 
         $session->destroy();
     }
@@ -135,8 +135,8 @@ final class OutputTest extends AbstractUnitTestCase
         $flash->output();
         $actual = ob_get_contents();
         ob_end_clean();
-        $expected = '';
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame('', $actual);
 
         $session->destroy();
     }

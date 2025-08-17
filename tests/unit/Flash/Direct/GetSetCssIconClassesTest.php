@@ -32,13 +32,15 @@ final class GetSetCssIconClassesTest extends AbstractUnitTestCase
             'warning' => 'alert alert-warning',
         ];
 
-        $actual = $flash->getCssIconClasses();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $flash->getCssIconClasses()
+        );
 
         $flash->setCssIconClasses($newClasses);
 
-        $expected = $newClasses;
-        $actual   = $flash->getCssIconClasses();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $newClasses,
+            $flash->getCssIconClasses()
+        );
     }
 }

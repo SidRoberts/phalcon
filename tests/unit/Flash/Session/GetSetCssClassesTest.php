@@ -60,10 +60,9 @@ final class GetSetCssClassesTest extends AbstractUnitTestCase
 
         $flash->setCssClasses($newClasses);
 
-        $expected = $newClasses;
-        $actual   = $flash->getCssClasses();
+        $actual = $flash->getCssClasses();
         ksort($actual);
-        $this->assertSame($expected, $actual);
+        $this->assertSame($newClasses, $actual);
 
         $session->destroy();
     }

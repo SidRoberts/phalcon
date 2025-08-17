@@ -26,13 +26,15 @@ final class GetSetAutomaticHtmlTest extends AbstractUnitTestCase
     {
         $flash = new Direct();
 
-        $actual = $flash->getAutomaticHtml();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $flash->getAutomaticHtml()
+        );
 
         $actual = $flash->setAutomaticHtml(false);
         $this->assertInstanceOf(Direct::class, $actual);
 
-        $actual = $flash->getAutomaticHtml();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $flash->getAutomaticHtml()
+        );
     }
 }

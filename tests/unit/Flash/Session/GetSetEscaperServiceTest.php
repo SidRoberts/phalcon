@@ -44,6 +44,7 @@ final class GetSetEscaperServiceTest extends AbstractUnitTestCase
         );
 
         $flash = new Session();
+
         $flash->getEscaperService();
     }
 

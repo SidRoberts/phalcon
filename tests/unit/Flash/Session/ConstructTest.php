@@ -49,6 +49,7 @@ final class ConstructTest extends AbstractUnitTestCase
         );
 
         $flash = new Session();
+
         $flash->getMessages();
     }
 }

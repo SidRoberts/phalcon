@@ -26,14 +26,17 @@ final class GetSetCustomTemplateTest extends AbstractUnitTestCase
     {
         $flash = new Direct();
 
-        $actual = $flash->getCustomTemplate();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $flash->getCustomTemplate()
+        );
 
         $template = '<span class="{cssClasses}">{message}</span>';
         $actual   = $flash->setCustomTemplate($template);
         $this->assertInstanceOf(Direct::class, $actual);
 
-        $actual = $flash->getCustomTemplate();
-        $this->assertSame($template, $actual);
+        $this->assertSame(
+            $template,
+            $flash->getCustomTemplate()
+        );
     }
 }

@@ -36,43 +36,54 @@ final class ClearHasTest extends AbstractUnitTestCase
     public function testFlashSessionClearHas(): void
     {
         $session = $this->container->getShared('session');
+
         $session->start();
 
         $flash = new Session();
+
         $flash->setDI($this->container);
 
         $message1 = uniqid('m-');
         $message2 = uniqid('m-');
+
         $flash->success($message1);
         $flash->error($message2);
 
-        $actual = $flash->has();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $flash->has()
+        );
 
-        $actual = $flash->has('success');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $flash->has('success')
+        );
 
-        $actual = $flash->has('error');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $flash->has('error')
+        );
 
-        $actual = $flash->has('warning');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $flash->has('warning')
+        );
 
-        $actual = $flash->has('notice');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $flash->has('notice')
+        );
 
-        $expected = [$message1];
-        $actual   = $flash->getMessages('success', false);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [$message1],
+            $flash->getMessages('success', false)
+        );
 
-        $expected = [$message2];
-        $actual   = $flash->getMessages('error', false);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [$message2],
+            $flash->getMessages('error', false)
+        );
 
         $flash->clear();
 
-        $actual = $flash->getMessages();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $flash->getMessages()
+        );
 
         $session->destroy();
     }

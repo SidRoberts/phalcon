@@ -36,6 +36,7 @@ final class GetSetEscaperServiceTest extends AbstractUnitTestCase
         );
 
         $flash = new Direct();
+
         $flash->getEscaperService();
     }
 
@@ -67,8 +68,11 @@ final class GetSetEscaperServiceTest extends AbstractUnitTestCase
     {
         $container = new Di();
         $escaper   = new Escaper();
+
         $container->setShared('escaper', $escaper);
+
         $flash = new Direct();
+
         $flash->setDI($container);
 
         $actual = $flash->getEscaperService();

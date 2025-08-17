@@ -26,6 +26,7 @@ final class ConstructTest extends AbstractUnitTestCase
     public function testFlashDirectConstruct(): void
     {
         $flash = new Direct();
+
         $this->assertInstanceOf(FlashInterface::class, $flash);
     }
 }

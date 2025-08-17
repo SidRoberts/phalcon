@@ -36,9 +36,11 @@ final class GetMessagesTest extends AbstractUnitTestCase
     public function testFlashSessionGetMessages(): void
     {
         $session = $this->container->getShared('session');
+
         $session->start();
 
         $flash = new Session();
+
         $flash->setDI($this->container);
 
         $message1 = uniqid('m-');
@@ -50,8 +52,10 @@ final class GetMessagesTest extends AbstractUnitTestCase
             'success' => [$message1],
             'error'   => [$message2],
         ];
-        $actual   = $flash->getMessages();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $flash->getMessages()
+        );
 
         $message1 = uniqid('m-');
         $message2 = uniqid('m-');
@@ -61,23 +65,31 @@ final class GetMessagesTest extends AbstractUnitTestCase
         $flash->warning($message3);
 
         $expected = [$message1];
-        $actual   = $flash->getMessages('success', false);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $flash->getMessages('success', false)
+        );
 
         $expected = [$message2];
-        $actual   = $flash->getMessages('error', false);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $flash->getMessages('error', false)
+        );
 
         $expected = [$message3];
-        $actual   = $flash->getMessages('warning', true);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $flash->getMessages('warning', true)
+        );
 
         $expected = [
             'success' => [$message1],
             'error'   => [$message2],
         ];
-        $actual   = $flash->getMessages();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $flash->getMessages()
+        );
 
         $session->destroy();
     }
@@ -89,15 +101,19 @@ final class GetMessagesTest extends AbstractUnitTestCase
     public function testFlashSessionGetMessagesNonExistentTypeReturnsEmpty(): void
     {
         $session = $this->container->getShared('session');
+
         $session->start();
 
         $flash = new Session();
+
         $flash->setDI($this->container);
         $flash->success('some message');
 
         // Request a type that has no messages
-        $actual = $flash->getMessages('error');
-        $this->assertSame([], $actual);
+        $this->assertSame(
+            [],
+            $flash->getMessages('error')
+        );
 
         $session->destroy();
     }

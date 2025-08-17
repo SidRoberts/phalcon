@@ -27,9 +27,11 @@ final class GetSetDITest extends AbstractUnitTestCase
     {
         $container = new Di();
         $flash     = new Direct();
+
         $flash->setDI($container);
 
         $actual = $flash->getDI();
+
         $this->assertSame($container, $actual);
         $this->assertInstanceOf(Di::class, $actual);
     }

@@ -34,17 +34,13 @@ final class GetSetCssIconClassesTest extends AbstractUnitTestCase
     public function testFlashSessionGetSetCssIconClasses(): void
     {
         $session = $this->container->getShared('session');
+
         $session->start();
 
         $flash = new Session();
+
         $flash->setDI($this->container);
 
-        $expected   = [
-            'error'   => 'errorMessage',
-            'success' => 'successMessage',
-            'notice'  => 'noticeMessage',
-            'warning' => 'warningMessage',
-        ];
         $newClasses = [
             'error'   => 'alert alert-error',
             'success' => 'alert alert-success',
@@ -52,14 +48,16 @@ final class GetSetCssIconClassesTest extends AbstractUnitTestCase
             'warning' => 'alert alert-warning',
         ];
 
-        $actual = $flash->getCssIconClasses();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $flash->getCssIconClasses()
+        );
 
         $flash->setCssIconClasses($newClasses);
 
-        $expected = $newClasses;
-        $actual   = $flash->getCssIconClasses();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $newClasses,
+            $flash->getCssIconClasses()
+        );
 
         $session->destroy();
     }

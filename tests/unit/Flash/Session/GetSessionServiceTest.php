@@ -40,6 +40,7 @@ final class GetSessionServiceTest extends AbstractUnitTestCase
         );
 
         $flash = new Session();
+
         $flash->getSessionService();
     }
 
@@ -54,10 +55,13 @@ final class GetSessionServiceTest extends AbstractUnitTestCase
         $session->start();
 
         $flash = new Session();
+
         $flash->setDI($this->container);
 
-        $actual = $flash->getSessionService();
-        $this->assertSame($session, $actual);
+        $this->assertSame(
+            $session,
+            $flash->getSessionService()
+        );
 
         $session->destroy();
     }

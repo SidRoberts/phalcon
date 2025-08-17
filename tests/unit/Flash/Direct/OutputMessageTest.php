@@ -23,7 +23,7 @@ use const PHP_EOL;
 final class OutputMessageTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -51,18 +51,27 @@ final class OutputMessageTest extends AbstractUnitTestCase
     public function testFlashDirectOutputMessage(string $type): void
     {
         $flash = new Direct(new Escaper());
+
         $flash->setImplicitFlush(false);
 
-        $source   = 'sample <phalcon> message';
+        $source = 'sample <phalcon> message';
+
         $expected = '<div class="' . $type . 'Message">'
             . 'sample &lt;phalcon&gt; message</div>' . PHP_EOL;
-        $actual   = $flash->outputMessage($type, $source);
-        $this->assertSame($expected, $actual);
 
-        $actual = $flash->message($type, $source);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $flash->outputMessage($type, $source)
+        );
 
-        $actual = $flash->$type($source);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $flash->message($type, $source)
+        );
+
+        $this->assertSame(
+            $expected,
+            $flash->$type($source)
+        );
     }
 }
