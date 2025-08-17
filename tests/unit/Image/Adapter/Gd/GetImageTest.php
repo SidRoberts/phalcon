@@ -30,9 +30,9 @@ final class GetImageTest extends AbstractUnitTestCase
         foreach ($this->getImages() as $image) {
             $gd = new Gd($image);
 
-            $actual = is_object($gd->getImage());
-
-            $this->assertTrue($actual);
+            $this->assertIsObject(
+                $gd->getImage()
+            );
         }
     }
 }

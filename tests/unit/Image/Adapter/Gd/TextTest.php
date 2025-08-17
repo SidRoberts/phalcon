@@ -26,7 +26,17 @@ final class TextTest extends AbstractUnitTestCase
     use GdTrait;
 
     /**
-     * @return array[]
+     * @return array<array{
+     *     0: int,
+     *     1: string,
+     *     2: bool|int,
+     *     3: bool|int,
+     *     4: int,
+     *     5: string,
+     *     6: int,
+     *     7: ?string,
+     *     8: string
+     * }>
      */
     public static function getExamples(): array
     {
@@ -136,10 +146,13 @@ final class TextTest extends AbstractUnitTestCase
             ->save($output)
         ;
 
-        $this->assertFileExists(outputDir($outputDir) . $outputImage);
+        $this->assertFileExists($output);
 
-        $this->assertTrue($this->checkImageHash($output, $hash));
-        $this->safeDeleteFile($outputImage);
+        $this->assertTrue(
+            $this->checkImageHash($output, $hash)
+        );
+
+        $this->safeDeleteFile($output);
     }
 
     /**
@@ -171,9 +184,12 @@ final class TextTest extends AbstractUnitTestCase
             ->save($output)
         ;
 
-        $this->assertFileExists(outputDir($outputDir) . $outputImage);
+        $this->assertFileExists($output);
 
-        $this->assertTrue($this->checkImageHash($output, $hash));
-        $this->safeDeleteFile($outputImage);
+        $this->assertTrue(
+            $this->checkImageHash($output, $hash)
+        );
+
+        $this->safeDeleteFile($output);
     }
 }

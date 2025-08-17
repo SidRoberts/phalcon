@@ -33,8 +33,10 @@ final class GetRealpathTest extends AbstractUnitTestCase
             $image = str_replace("/", DIRECTORY_SEPARATOR, $image);
             $gd    = new Gd($image);
 
-            $actual = $gd->getRealpath();
-            $this->assertSame($image, $actual);
+            $this->assertSame(
+                $image,
+                $gd->getRealpath()
+            );
         }
     }
 }

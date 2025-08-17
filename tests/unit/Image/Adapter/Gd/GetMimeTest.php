@@ -25,7 +25,7 @@ final class GetMimeTest extends AbstractUnitTestCase
     use GdTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string}>
      */
     public static function getExamples(): array
     {
@@ -70,7 +70,9 @@ final class GetMimeTest extends AbstractUnitTestCase
 
         $gd = new Gd($source);
 
-        $actual = $gd->getMime();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $gd->getMime()
+        );
     }
 }

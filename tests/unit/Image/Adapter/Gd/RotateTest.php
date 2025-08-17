@@ -24,7 +24,7 @@ final class RotateTest extends AbstractUnitTestCase
     use GdTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: int, 2: string}>
      */
     public static function getExamples(): array
     {
@@ -158,6 +158,8 @@ final class RotateTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
@@ -181,10 +183,11 @@ final class RotateTest extends AbstractUnitTestCase
               ->save($output)
         ;
 
-        $this->assertFileExists(outputDir($outputDir) . $resultImage);
+        $this->assertFileExists($output);
 
-        $actual = $this->checkImageHash($output, $hash);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $this->checkImageHash($output, $hash)
+        );
 
         $this->safeDeleteFile($output);
     }

@@ -35,14 +35,14 @@ final class SaveTest extends AbstractUnitTestCase
         foreach ($this->getImages() as $type => $imagePath) {
             $image = new Gd($imagePath);
 
-            $output   = outputDir($outputDir . '/' . $resultImage . $type);
-            $expected = Gd::class;
-            $actual   = $image->save($output);
-            $this->assertInstanceOf($expected, $actual);
+            $output = outputDir($outputDir . '/' . $resultImage . $type);
+            $actual = $image->save($output);
 
-            $this->assertFileExists(outputDir($outputDir) . $resultImage . $type);
+            $this->assertInstanceOf(Gd::class, $actual);
 
-            $this->safeDeleteFile($resultImage . $type);
+            $this->assertFileExists($output);
+
+            $this->safeDeleteFile($output);
         }
     }
 }

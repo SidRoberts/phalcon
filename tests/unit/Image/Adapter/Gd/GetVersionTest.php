@@ -29,10 +29,13 @@ final class GetVersionTest extends AbstractUnitTestCase
     {
         $this->checkJpegSupport();
 
-        $gd = new Gd(supportDir('assets/images/example-jpg.jpg'));
+        $gd = new Gd(
+            supportDir('assets/images/example-jpg.jpg')
+        );
 
-        $expected = '/^2.[0-9].[0-9]/';
-        $actual   = $gd->getVersion();
-        $this->assertMatchesRegularExpression($expected, $actual);
+        $this->assertMatchesRegularExpression(
+            '/^2.[0-9].[0-9]/',
+            $gd->getVersion()
+        );
     }
 }

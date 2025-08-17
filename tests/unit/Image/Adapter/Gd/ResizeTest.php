@@ -28,7 +28,7 @@ final class ResizeTest extends AbstractUnitTestCase
     use GdTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: int, 3: int, 4: string}>
      */
     public static function getExamples(): array
     {
@@ -51,7 +51,7 @@ final class ResizeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: int, 1: ?int, 2: ?int, 3: string}>
      */
     public static function getExamplesExceptions(): array
     {
@@ -142,18 +142,23 @@ final class ResizeTest extends AbstractUnitTestCase
               ->save($output)
         ;
 
-        $this->assertFileExists(outputDir($outputDir) . $file);
+        $this->assertFileExists($output);
 
-        $actual = $image->getWidth();
-        $this->assertSame($width, $actual);
+        $this->assertSame(
+            $width,
+            $image->getWidth()
+        );
 
-        $actual = $image->getHeight();
-        $this->assertSame($height, $actual);
+        $this->assertSame(
+            $height,
+            $image->getHeight()
+        );
 
-        $actual = $this->checkImageHash($output, $hash);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $this->checkImageHash($output, $hash)
+        );
 
-        $this->safeDeleteFile($file);
+        $this->safeDeleteFile($output);
     }
 
     /**
@@ -200,6 +205,7 @@ final class ResizeTest extends AbstractUnitTestCase
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage($message);
+
         $image->resize($width, $height, $master);
     }
 }

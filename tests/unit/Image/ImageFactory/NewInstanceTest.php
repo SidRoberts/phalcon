@@ -38,12 +38,12 @@ final class NewInstanceTest extends AbstractUnitTestCase
 
         $image = $factory->newInstance($name, $file);
 
-        $class = Imagick::class;
-        $this->assertInstanceOf($class, $image);
+        $this->assertInstanceOf(Imagick::class, $image);
 
-        $expected = $file;
-        $actual   = $image->getRealPath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $file,
+            $image->getRealPath()
+        );
     }
 
     /**
@@ -55,10 +55,12 @@ final class NewInstanceTest extends AbstractUnitTestCase
         $this->checkExtensionIsLoaded('imagick');
 
         $name = uniqid('service-');
+
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Service ' . $name . ' is not registered');
 
         $factory = new ImageFactory();
+
         $factory->newInstance($name, uniqid('file-'));
     }
 }

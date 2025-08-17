@@ -25,7 +25,7 @@ final class GetTypeTest extends AbstractUnitTestCase
     use ImagickTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -52,6 +52,7 @@ final class GetTypeTest extends AbstractUnitTestCase
         $image = new Imagick($source);
 
         $actual = $image->getType();
+
         $this->assertIsInt($actual);
         $this->assertGreaterThan(0, $actual);
     }

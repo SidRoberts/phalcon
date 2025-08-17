@@ -56,7 +56,9 @@ final class GetMimeTest extends AbstractUnitTestCase
     ): void {
         $image = new Imagick($source);
 
-        $actual = $image->getMime();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $image->getMime()
+        );
     }
 }

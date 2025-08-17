@@ -29,7 +29,9 @@ final class CropTest extends AbstractUnitTestCase
     {
         $this->checkJpegSupport();
 
-        $image = new Gd(supportDir('assets/images/example-jpg.jpg'));
+        $image = new Gd(
+            supportDir('assets/images/example-jpg.jpg')
+        );
 
         $outputDir = 'tests/image/gd/';
         $width     = 200;
@@ -40,21 +42,26 @@ final class CropTest extends AbstractUnitTestCase
 
         // Resize to 200 pixels on the shortest side
         $image->crop($width, $height)
-              ->save(outputDir($outputDir . '/' . $cropImage))
+              ->save($output)
         ;
 
-        $this->assertFileExists(outputDir($outputDir) . $cropImage);
+        $this->assertFileExists($output);
 
-        $actual = $image->getWidth();
-        $this->assertSame($width, $actual);
+        $this->assertSame(
+            $width,
+            $image->getWidth()
+        );
 
-        $actual = $image->getHeight();
-        $this->assertSame($height, $actual);
+        $this->assertSame(
+            $height,
+            $image->getHeight()
+        );
 
-        $actual = $this->checkImageHash($output, $hash);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $this->checkImageHash($output, $hash)
+        );
 
-        $this->safeDeleteFile($cropImage);
+        $this->safeDeleteFile($output);
     }
 
     /**
@@ -114,17 +121,22 @@ final class CropTest extends AbstractUnitTestCase
               ->save($output)
         ;
 
-        $this->assertFileExists(outputDir($outputDir) . $cropImage);
+        $this->assertFileExists($output);
 
-        $actual = $image->getWidth();
-        $this->assertSame($width, $actual);
+        $this->assertSame(
+            $width,
+            $image->getWidth()
+        );
 
-        $actual = $image->getHeight();
-        $this->assertSame($height, $actual);
+        $this->assertSame(
+            $height,
+            $image->getHeight()
+        );
 
-        $actual = $this->checkImageHash($output, $hash);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $this->checkImageHash($output, $hash)
+        );
 
-        $this->safeDeleteFile($cropImage);
+        $this->safeDeleteFile($output);
     }
 }

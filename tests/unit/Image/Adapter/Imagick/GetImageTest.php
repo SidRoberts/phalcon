@@ -33,8 +33,9 @@ final class GetImageTest extends AbstractUnitTestCase
             supportDir('assets/images/example-jpg.jpg')
         );
 
-        $class  = \Imagick::class;
-        $actual = $image->getImage();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            \Imagick::class,
+            $image->getImage()
+        );
     }
 }

@@ -46,12 +46,13 @@ final class PixelateTest extends AbstractUnitTestCase
                   ->save($output)
             ;
 
-            $this->assertFileExists(outputDir($outputDir) . $outputImage);
+            $this->assertFileExists($output);
 
-            $actual = $this->checkImageHash($output, $hash);
-            $this->assertTrue($actual);
+            $this->assertTrue(
+                $this->checkImageHash($output, $hash)
+            );
 
-            $this->safeDeleteFile($outputImage);
+            $this->safeDeleteFile($output);
         }
     }
 }

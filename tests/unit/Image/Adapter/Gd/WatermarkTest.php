@@ -55,13 +55,13 @@ final class WatermarkTest extends AbstractUnitTestCase
               ->save($output)
         ;
 
-        $this->assertFileExists(outputDir($outputDir) . $outputImage);
+        $this->assertFileExists($output);
 
         $this->assertTrue(
             $this->checkImageHash($output, $hash)
         );
 
-        $this->safeDeleteFile($outputImage);
+        $this->safeDeleteFile($output);
     }
 
     /**
@@ -95,13 +95,13 @@ final class WatermarkTest extends AbstractUnitTestCase
               ->save($output)
         ;
 
-        $this->assertFileExists(outputDir($outputDir) . $outputImage);
+        $this->assertFileExists($output);
 
         $this->assertTrue(
             $this->checkImageHash($output, $hash)
         );
 
-        $this->safeDeleteFile($outputImage);
+        $this->safeDeleteFile($output);
     }
 
     /**
@@ -132,13 +132,13 @@ final class WatermarkTest extends AbstractUnitTestCase
               ->save($output)
         ;
 
-        $this->assertFileExists(outputDir($outputDir) . $outputImage);
+        $this->assertFileExists($output);
 
         $this->assertTrue(
             $this->checkImageHash($output, $hash)
         );
 
-        $this->safeDeleteFile($outputImage);
+        $this->safeDeleteFile($output);
     }
 
     /**
@@ -169,12 +169,12 @@ final class WatermarkTest extends AbstractUnitTestCase
               ->save($output)
         ;
 
-        $this->assertFileExists(outputDir($outputDir) . $outputImage);
+        $this->assertFileExists($output);
 
         $this->assertTrue(
             $this->checkImageHash($output, $hash)
         );
 
-        $this->safeDeleteFile($outputImage);
+        $this->safeDeleteFile($output);
     }
 }

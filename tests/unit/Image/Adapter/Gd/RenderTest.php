@@ -52,6 +52,7 @@ final class RenderTest extends AbstractUnitTestCase
             );
 
             $info = getimagesizefromstring($rendered);
+
             $this->assertIsArray(
                 $info,
                 "Non-image bytes returned for {$type}"

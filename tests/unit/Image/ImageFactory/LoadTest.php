@@ -41,8 +41,7 @@ final class LoadTest extends AbstractUnitTestCase
         /** @var Imagick $image */
         $image = $factory->load($options);
 
-        $class = Imagick::class;
-        $this->assertInstanceOf($class, $image);
+        $this->assertInstanceOf(Imagick::class, $image);
 
         $expected = realpath($options->file);
         $actual   = $image->getRealpath();
@@ -61,8 +60,7 @@ final class LoadTest extends AbstractUnitTestCase
         /** @var Imagick $image */
         $image = $factory->load($options);
 
-        $class = Imagick::class;
-        $this->assertInstanceOf($class, $image);
+        $this->assertInstanceOf(Imagick::class, $image);
 
         $expected = realpath($options['file']);
         $actual   = $image->getRealpath();

@@ -25,7 +25,7 @@ final class GetHeightTest extends AbstractUnitTestCase
     use GdTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: int}>
      */
     public static function getExamples(): array
     {
@@ -70,7 +70,9 @@ final class GetHeightTest extends AbstractUnitTestCase
 
         $gd = new Gd($source);
 
-        $actual = $gd->getHeight();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $gd->getHeight()
+        );
     }
 }

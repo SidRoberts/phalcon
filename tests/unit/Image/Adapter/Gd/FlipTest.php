@@ -69,10 +69,11 @@ final class FlipTest extends AbstractUnitTestCase
                       ->save($output)
                 ;
 
-                $this->assertFileExists(outputDir($outputDir) . $resultImage);
+                $this->assertFileExists($output);
 
-                $actual = $this->checkImageHash($output, $hash);
-                $this->assertTrue($actual);
+                $this->assertTrue(
+                    $this->checkImageHash($output, $hash)
+                );
 
                 $this->safeDeleteFile($output);
             }

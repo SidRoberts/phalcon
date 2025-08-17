@@ -30,8 +30,7 @@ final class ConstructTest extends AbstractUnitTestCase
         foreach ($this->getImages() as $image) {
             $gd = new Gd($image);
 
-            $class = Gd::class;
-            $this->assertInstanceOf($class, $gd);
+            $this->assertInstanceOf(Gd::class, $gd);
         }
     }
 }
