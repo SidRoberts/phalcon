@@ -31,27 +31,31 @@ final class GetSetDateFormatTest extends AbstractUnitTestCase
          */
         $formatter = new Json();
 
-        $expected = 'c';
-        $actual   = $formatter->getDateFormat();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'c',
+            $formatter->getDateFormat()
+        );
 
         /**
          * Set in constructor
          */
         $formatter = new Json($newFormat);
 
-        $expected = $newFormat;
-        $actual   = $formatter->getDateFormat();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $newFormat,
+            $formatter->getDateFormat()
+        );
 
         /**
          * Set in setDateFormat
          */
         $formatter = new Json();
+
         $formatter->setDateFormat($newFormat);
 
-        $expected = $newFormat;
-        $actual   = $formatter->getDateFormat();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $newFormat,
+            $formatter->getDateFormat()
+        );
     }
 }

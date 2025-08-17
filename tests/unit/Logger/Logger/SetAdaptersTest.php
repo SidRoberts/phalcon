@@ -33,9 +33,10 @@ final class SetAdaptersTest extends AbstractUnitTestCase
 
         $logger = new Logger('my-logger');
 
-        $expected = 0;
-        $adapters = $logger->getAdapters();
-        $this->assertCount($expected, $adapters);
+        $this->assertCount(
+            0,
+            $logger->getAdapters()
+        );
 
         $logger->setAdapters(
             [
@@ -44,13 +45,12 @@ final class SetAdaptersTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 2;
         $adapters = $logger->getAdapters();
-        $this->assertCount($expected, $adapters);
 
-        $class = Stream::class;
-        $this->assertInstanceOf($class, $adapters['one']);
-        $this->assertInstanceOf($class, $adapters['two']);
+        $this->assertCount(2, $adapters);
+
+        $this->assertInstanceOf(Stream::class, $adapters['one']);
+        $this->assertInstanceOf(Stream::class, $adapters['two']);
 
         $this->safeDeleteFile($outputPath . $fileName1);
         $this->safeDeleteFile($outputPath . $fileName2);
@@ -76,13 +76,12 @@ final class SetAdaptersTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 2;
         $adapters = $logger->getAdapters();
-        $this->assertCount($expected, $adapters);
 
-        $class = Stream::class;
-        $this->assertInstanceOf($class, $adapters['one']);
-        $this->assertInstanceOf($class, $adapters['two']);
+        $this->assertCount(2, $adapters);
+
+        $this->assertInstanceOf(Stream::class, $adapters['one']);
+        $this->assertInstanceOf(Stream::class, $adapters['two']);
 
         $this->safeDeleteFile($outputPath . $fileName1);
         $this->safeDeleteFile($outputPath . $fileName2);

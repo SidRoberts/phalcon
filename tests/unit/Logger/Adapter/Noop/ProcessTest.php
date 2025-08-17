@@ -43,7 +43,8 @@ final class ProcessTest extends AbstractUnitTestCase
 
         $adapter->process($item);
 
-        $actual = $adapter->close();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->close()
+        );
     }
 }

@@ -40,8 +40,9 @@ final class GetContextTest extends AbstractUnitTestCase
             $context
         );
 
-        $expected = $context;
-        $actual   = $item->getContext();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $context,
+            $item->getContext()
+        );
     }
 }

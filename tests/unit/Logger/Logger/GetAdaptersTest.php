@@ -40,13 +40,12 @@ final class GetAdaptersTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 2;
         $adapters = $logger->getAdapters();
-        $this->assertCount($expected, $adapters);
 
-        $class = Stream::class;
-        $this->assertInstanceOf($class, $adapters['one']);
-        $this->assertInstanceOf($class, $adapters['two']);
+        $this->assertCount(2, $adapters);
+
+        $this->assertInstanceOf(Stream::class, $adapters['one']);
+        $this->assertInstanceOf(Stream::class, $adapters['two']);
 
         $this->safeDeleteFile($outputPath1);
         $this->safeDeleteFile($outputPath2);

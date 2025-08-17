@@ -65,7 +65,8 @@ final class AddTest extends AbstractUnitTestCase
 
         $adapter->commit();
 
-        $actual = $adapter->close();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->close()
+        );
     }
 }

@@ -38,8 +38,9 @@ final class GetLevelTest extends AbstractUnitTestCase
             $datetime
         );
 
-        $expected = Enum::DEBUG;
-        $actual   = $item->getLevel();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Enum::DEBUG,
+            $item->getLevel()
+        );
     }
 }

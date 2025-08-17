@@ -53,8 +53,10 @@ final class ProcessTest extends AbstractUnitTestCase
         $content = file_get_contents($outputPath . $fileName);
         $this->assertStringContainsString('Message 1', $content);
 
-        $actual = $adapter->close();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->close()
+        );
+
         $this->safeDeleteFile($outputPath . $fileName);
     }
 

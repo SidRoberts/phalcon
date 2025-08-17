@@ -30,11 +30,13 @@ final class BeginTest extends AbstractUnitTestCase
 
         $adapter->begin();
 
-        $actual = $adapter->inTransaction();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->inTransaction()
+        );
 
         $adapter->rollback();
         $adapter->close();
+
         $this->safeDeleteFile($outputPath . $fileName);
     }
 }

@@ -33,6 +33,7 @@ final class NewInstanceTest extends AbstractUnitTestCase
         $factory  = new AdapterFactory();
 
         $logger = $factory->newInstance('stream', $fileName);
+
         $this->assertInstanceOf(AdapterInterface::class, $logger);
     }
 
@@ -46,6 +47,7 @@ final class NewInstanceTest extends AbstractUnitTestCase
         $this->expectExceptionMessage('Service unknown is not registered');
 
         $factory = new AdapterFactory();
+
         $factory->newInstance('unknown', '123.log');
     }
 }

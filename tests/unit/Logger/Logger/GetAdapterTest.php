@@ -40,12 +40,13 @@ final class GetAdapterTest extends AbstractUnitTestCase
             ]
         );
 
-
-        $class  = Stream::class;
-        $actual = $logger->getAdapter('one');
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            Stream::class,
+            $logger->getAdapter('one')
+        );
 
         $adapter1->close();
+
         $this->safeDeleteFile($outputPath . $fileName1);
     }
 
@@ -134,6 +135,7 @@ final class GetAdapterTest extends AbstractUnitTestCase
         $this->expectExceptionMessage('Adapter does not exist for this logger');
 
         $logger = new Logger('my-logger');
+
         $logger->getAdapter('unknown');
     }
 }

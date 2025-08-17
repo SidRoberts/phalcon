@@ -44,6 +44,7 @@ final class ConstructTest extends AbstractUnitTestCase
     public function testLoggerConstruct(): void
     {
         $logger = new Logger('my-logger');
+
         $this->assertInstanceOf(LoggerInterface::class, $logger);
     }
 
@@ -74,6 +75,7 @@ final class ConstructTest extends AbstractUnitTestCase
         $this->expectExceptionMessage('No adapters specified');
 
         $logger = new Logger('my-logger');
+
         $logger->info('Some message');
     }
 
@@ -137,6 +139,7 @@ final class ConstructTest extends AbstractUnitTestCase
         $this->assertStringContainsString($expected, $contents);
 
         $adapter->close();
+
         $this->safeDeleteFile($outputPath);
     }
 }

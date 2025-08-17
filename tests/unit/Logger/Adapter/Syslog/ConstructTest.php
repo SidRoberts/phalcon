@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: array{option?: int, facility?: int}, 1: string, 2: int}>
      */
     public static function getExamples(): array
     {
@@ -49,6 +49,10 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param array{option?: int, facility?: int} $options
+     * @param string                              $property
+     * @param int                                 $expected
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -60,9 +64,11 @@ final class ConstructTest extends AbstractUnitTestCase
     ): void {
         $streamName = $this->getNewFileName('log', 'log');
 
-        $adapter  = new Syslog($streamName, $options);
-        $property = $this->getProtectedProperty($adapter, $property);
+        $adapter = new Syslog($streamName, $options);
 
-        $this->assertSame($expected, $property);
+        $this->assertSame(
+            $expected,
+            $this->getProtectedProperty($adapter, $property)
+        );
     }
 }

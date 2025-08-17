@@ -46,14 +46,13 @@ final class ProcessTest extends AbstractUnitTestCase
 
         $adapter->process($item);
 
-        $actual = $adapter->close();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->close()
+        );
     }
 
     /**
      * Tests Phalcon\Logger\Adapter\Syslog :: process() - exception
-     *
-     * @throws Exception
      */
     public function testLoggerAdapterSyslogProcessException(): void
     {
@@ -75,6 +74,7 @@ final class ProcessTest extends AbstractUnitTestCase
             Enum::DEBUG,
             $datetime
         );
+
         $adapter->process($item);
     }
 }

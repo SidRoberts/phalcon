@@ -31,27 +31,31 @@ final class GetSetFormatTest extends AbstractUnitTestCase
          */
         $formatter = new Line();
 
-        $expected = '[%date%][%level%] %message%';
-        $actual   = $formatter->getFormat();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '[%date%][%level%] %message%',
+            $formatter->getFormat()
+        );
 
         /**
          * Set with constructor
          */
         $formatter = new Line($newFormat);
 
-        $expected = $newFormat;
-        $actual   = $formatter->getFormat();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $newFormat,
+            $formatter->getFormat()
+        );
 
         /**
          * Set with setFormat()
          */
         $formatter = new Line($newFormat);
+
         $formatter->setFormat($newFormat);
 
-        $expected = $newFormat;
-        $actual   = $formatter->getFormat();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $newFormat,
+            $formatter->getFormat()
+        );
     }
 }

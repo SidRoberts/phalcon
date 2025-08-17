@@ -31,15 +31,18 @@ final class RollbackTest extends AbstractUnitTestCase
 
         $adapter->begin();
 
-        $actual = $adapter->inTransaction();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->inTransaction()
+        );
 
         $adapter->rollback();
 
-        $actual = $adapter->inTransaction();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->inTransaction()
+        );
 
         $adapter->close();
+
         $this->safeDeleteFile($outputPath . $fileName);
     }
 

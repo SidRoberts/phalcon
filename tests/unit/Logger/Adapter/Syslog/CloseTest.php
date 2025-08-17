@@ -29,8 +29,9 @@ final class CloseTest extends AbstractUnitTestCase
 
         $adapter = new Syslog($streamName);
 
-        $actual = $adapter->close();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->close()
+        );
     }
 
     /**

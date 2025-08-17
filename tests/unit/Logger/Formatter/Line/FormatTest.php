@@ -27,6 +27,8 @@ use function uniqid;
 final class FormatTest extends AbstractUnitTestCase
 {
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -51,6 +53,8 @@ final class FormatTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -75,6 +79,8 @@ final class FormatTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2022-09-11
      */
@@ -110,6 +116,8 @@ final class FormatTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -133,16 +141,12 @@ final class FormatTest extends AbstractUnitTestCase
         $parts  = explode('-', $result);
         $parts  = explode('.', $parts[2]);
 
-        $expected = 2;
-        $actual   = $parts;
-        $this->assertCount($expected, $actual);
+        $this->assertCount(2, $parts);
 
-        $expected = 0;
-        $actual   = (int)$parts[0];
-        $this->assertGreaterThan($expected, $actual);
+        $actual = (int)$parts[0];
+        $this->assertGreaterThan(0, $actual);
 
-        $expected = 0;
-        $actual   = (int)$parts[1];
-        $this->assertGreaterThan($expected, $actual);
+        $actual = (int)$parts[1];
+        $this->assertGreaterThan(0, $actual);
     }
 }

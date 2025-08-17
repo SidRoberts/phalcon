@@ -28,9 +28,10 @@ final class GetNameTest extends AbstractUnitTestCase
         $outputPath = logsDir();
         $adapter    = new Stream($outputPath . $fileName);
 
-        $expected = $outputPath . $fileName;
-        $actual   = $adapter->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $outputPath . $fileName,
+            $adapter->getName()
+        );
 
         $adapter->close();
         $this->safeDeleteFile($outputPath . $fileName);

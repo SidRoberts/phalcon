@@ -38,10 +38,14 @@ final class GetDateTimeTest extends AbstractUnitTestCase
             $datetime
         );
 
-        $expected = $datetime;
-        $actual   = $item->getDateTime();
-        $this->assertSame($expected, $actual);
-        $actual = $item->getDateTime();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $datetime,
+            $item->getDateTime()
+        );
+
+        $this->assertSame(
+            $datetime,
+            $item->getDateTime()
+        );
     }
 }

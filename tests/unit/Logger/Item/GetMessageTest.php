@@ -38,8 +38,9 @@ final class GetMessageTest extends AbstractUnitTestCase
             $datetime
         );
 
-        $expected = 'log message';
-        $actual   = $item->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'log message',
+            $item->getMessage()
+        );
     }
 }

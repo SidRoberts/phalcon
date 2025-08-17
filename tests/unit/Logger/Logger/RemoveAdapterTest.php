@@ -40,14 +40,17 @@ final class RemoveAdapterTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 2;
-        $adapters = $logger->getAdapters();
-        $this->assertCount($expected, $adapters);
+        $this->assertCount(
+            2,
+            $logger->getAdapters()
+        );
 
         $logger->removeAdapter('one');
-        $expected = 1;
-        $adapters = $logger->getAdapters();
-        $this->assertCount($expected, $adapters);
+
+        $this->assertCount(
+            1,
+            $logger->getAdapters()
+        );
 
         $this->safeDeleteFile($outputPath . $fileName1);
         $this->safeDeleteFile($outputPath . $fileName2);
@@ -72,15 +75,17 @@ final class RemoveAdapterTest extends AbstractUnitTestCase
                 ]
             );
 
-            $expected = 1;
-            $adapters = $logger->getAdapters();
-            $this->assertCount($expected, $adapters);
+            $this->assertCount(
+                1,
+                $logger->getAdapters()
+            );
 
             $logger->removeAdapter('unknown');
         } catch (Exception $ex) {
-            $expected = 'Adapter does not exist for this logger: unknown';
-            $actual   = $ex->getMessage();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                'Adapter does not exist for this logger: unknown',
+                $ex->getMessage()
+            );
         }
 
         $this->safeDeleteFile($outputPath . $fileName1);

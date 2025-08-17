@@ -26,8 +26,9 @@ final class GetNameTest extends AbstractUnitTestCase
     {
         $logger = new Logger('my-name');
 
-        $expected = 'my-name';
-        $actual   = $logger->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'my-name',
+            $logger->getName()
+        );
     }
 }

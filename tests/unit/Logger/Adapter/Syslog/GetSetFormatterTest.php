@@ -29,6 +29,7 @@ final class GetSetFormatterTest extends AbstractUnitTestCase
         $streamName = $this->getNewFileName('log', 'log');
 
         $adapter = new Syslog($streamName);
+
         $adapter->setFormatter(new Line());
 
         $this->assertInstanceOf(FormatterInterface::class, $adapter->getFormatter());

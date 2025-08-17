@@ -41,14 +41,17 @@ final class AddAdapterTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $logger->getAdapters();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            1,
+            $logger->getAdapters()
+        );
 
         $logger->addAdapter('two', $adapter2);
-        $expected = 2;
-        $actual   = $logger->getAdapters();
-        $this->assertCount($expected, $actual);
+
+        $this->assertCount(
+            2,
+            $logger->getAdapters()
+        );
 
         $logger->debug('Hello');
 

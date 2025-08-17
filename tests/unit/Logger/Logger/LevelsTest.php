@@ -30,7 +30,7 @@ use function strtoupper;
 final class LevelsTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -68,15 +68,13 @@ final class LevelsTest extends AbstractUnitTestCase
                ->close()
         ;
 
-        $content = file_get_contents($fileName);
-
         // Check if the $logString is in the log file
-        $this->assertStringContainsString($logString, $content);
+        $this->assertFileContentsContains($fileName, $logString);
 
         // Check if the level is in the log file
-        $this->assertStringContainsString(
-            '[' . $level . ']',
-            $content
+        $this->assertFileContentsContains(
+            $fileName,
+            '[' . $level . ']'
         );
 
         // Check time content
@@ -89,7 +87,7 @@ final class LevelsTest extends AbstractUnitTestCase
             $content,
             $matches
         );
-        $this->assertSame(2, count($matches));
+        $this->assertCount(2, $matches);
 
         // Get Extract time
         $date             = end($matches);

@@ -46,8 +46,9 @@ final class CloseTest extends AbstractUnitTestCase
         );
         $adapter->process($item);
 
-        $actual = $adapter->close();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->close()
+        );
 
         $this->assertFileExists($outputPath . $fileName);
 

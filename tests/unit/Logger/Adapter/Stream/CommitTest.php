@@ -31,15 +31,18 @@ final class CommitTest extends AbstractUnitTestCase
 
         $adapter->begin();
 
-        $actual = $adapter->inTransaction();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->inTransaction()
+        );
 
         $adapter->commit();
 
-        $actual = $adapter->inTransaction();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->inTransaction()
+        );
 
         $adapter->close();
+
         $this->safeDeleteFile($outputPath . $fileName);
     }
 
@@ -54,15 +57,17 @@ final class CommitTest extends AbstractUnitTestCase
         try {
             $adapter = new Stream($outputPath . $fileName);
 
-            $actual = $adapter->inTransaction();
-            $this->assertFalse($actual);
+            $this->assertFalse(
+                $adapter->inTransaction()
+            );
 
             $adapter->commit();
             $adapter->close();
         } catch (Exception $ex) {
-            $expected = 'There is no active transaction';
-            $actual   = $ex->getMessage();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                'There is no active transaction',
+                $ex->getMessage()
+            );
         }
 
         $this->safeDeleteFile($outputPath . $fileName);

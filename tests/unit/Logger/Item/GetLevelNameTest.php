@@ -38,6 +38,9 @@ final class GetLevelNameTest extends AbstractUnitTestCase
             $datetime
         );
 
-        $this->assertSame('debug', $item->getLevelName());
+        $this->assertSame(
+            'debug',
+            $item->getLevelName()
+        );
     }
 }

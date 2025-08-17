@@ -78,15 +78,14 @@ final class LoadTest extends AbstractUnitTestCase
 
         $logger = $factory->load($options);
 
-        $class = Logger::class;
-        $this->assertInstanceOf($class, $logger);
+        $this->assertInstanceOf(Logger::class, $logger);
 
-        $class = LoggerInterface::class;
-        $this->assertInstanceOf($class, $logger);
+        $this->assertInstanceOf(LoggerInterface::class, $logger);
 
-        $expected = 2;
-        $actual   = $logger->getAdapters();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            2,
+            $logger->getAdapters()
+        );
     }
 
     /**
@@ -100,15 +99,14 @@ final class LoadTest extends AbstractUnitTestCase
 
         $logger = $factory->load($options);
 
-        $class = Logger::class;
-        $this->assertInstanceOf($class, $logger);
+        $this->assertInstanceOf(Logger::class, $logger);
 
-        $class = LoggerInterface::class;
-        $this->assertInstanceOf($class, $logger);
+        $this->assertInstanceOf(LoggerInterface::class, $logger);
 
-        $expected = 2;
-        $actual   = $logger->getAdapters();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            2,
+            $logger->getAdapters()
+        );
     }
 
     /**
@@ -122,22 +120,23 @@ final class LoadTest extends AbstractUnitTestCase
 
         $logger = $factory->load($options);
 
-        $class = Logger::class;
-        $this->assertInstanceOf($class, $logger);
+        $this->assertInstanceOf(Logger::class, $logger);
 
-        $class = LoggerInterface::class;
-        $this->assertInstanceOf($class, $logger);
+        $this->assertInstanceOf(LoggerInterface::class, $logger);
 
-        $expected = 2;
-        $actual   = $logger->getAdapters();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            2,
+            $logger->getAdapters()
+        );
 
-        $class  = Stream::class;
-        $actual = $logger->getAdapter('main');
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            Stream::class,
+            $logger->getAdapter('main')
+        );
 
-        $class  = Stream::class;
-        $actual = $logger->getAdapter('admin');
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            Stream::class,
+            $logger->getAdapter('admin')
+        );
     }
 }
