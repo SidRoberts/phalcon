@@ -28,15 +28,16 @@ final class ArrayAccessTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterCsvWithArrayAccess(): void
     {
-
         $language = $this->getCsvConfig()['ru'];
 
         $translator = new Csv(new InterpolatorFactory(), $language);
 
-        $actual = isset($translator['Hello!']);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($translator['Hello!'])
+        );
 
-        $actual = isset($translator['Hi there!']);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($translator['Hi there!'])
+        );
     }
 }

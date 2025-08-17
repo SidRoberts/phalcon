@@ -26,13 +26,26 @@ trait TranslateNativeArrayHelperTrait
      */
     public static function getQueryOneVariable(): array
     {
-
-        return [['en',
-            ['hello-key' => 'Hello my friend',],],
-            ['es',
-                ['hello-key' => 'Hola my friend',],],
-            ['fr',
-                ['hello-key' => 'Bonjour my friend',],],];
+        return [
+            [
+                'en',
+                [
+                    'hello-key' => 'Hello my friend',
+                ],
+            ],
+            [
+                'es',
+                [
+                    'hello-key' => 'Hola my friend',
+                ],
+            ],
+            [
+                'fr',
+                [
+                    'hello-key' => 'Bonjour my friend',
+                ],
+            ],
+        ];
     }
 
     /**
@@ -42,16 +55,29 @@ trait TranslateNativeArrayHelperTrait
      */
     public static function getQueryProvider(): array
     {
-
-        return [['en',
-            ['hi' => 'Hello',
-                'bye' => 'Good Bye',],],
-            ['es',
-                ['hi' => 'Hola',
-                    'bye' => 'Adiós',],],
-            ['fr',
-                ['hi' => 'Bonjour',
-                    'bye' => 'Au revoir',],],];
+        return [
+            [
+                'en',
+                [
+                    'hi'  => 'Hello',
+                    'bye' => 'Good Bye',
+                ],
+            ],
+            [
+                'es',
+                [
+                    'hi'  => 'Hola',
+                    'bye' => 'Adiós',
+                ],
+            ],
+            [
+                'fr',
+                [
+                    'hi'  => 'Bonjour',
+                    'bye' => 'Au revoir',
+                ],
+            ],
+        ];
     }
 
     /**
@@ -61,13 +87,26 @@ trait TranslateNativeArrayHelperTrait
      */
     public static function getQueryTwoVariables(): array
     {
-
-        return [['en',
-            ['song-key' => 'This song is Dust in the wind (Kansas)',],],
-            ['es',
-                ['song-key' => 'La canción es Dust in the wind (Kansas)',],],
-            ['fr',
-                ['song-key' => 'La chanson est Dust in the wind (Kansas)',],],];
+        return [
+            [
+                'en',
+                [
+                    'song-key' => 'This song is Dust in the wind (Kansas)',
+                ],
+            ],
+            [
+                'es',
+                [
+                    'song-key' => 'La canción es Dust in the wind (Kansas)',
+                ],
+            ],
+            [
+                'fr',
+                [
+                    'song-key' => 'La chanson est Dust in the wind (Kansas)',
+                ],
+            ],
+        ];
     }
 
     /**
@@ -77,7 +116,6 @@ trait TranslateNativeArrayHelperTrait
     #[DataProvider('getQueryProvider')]
     public function testTranslateAdapterNativearrayQuery(string $code, array $tests): void
     {
-
         $language = $this->getArrayConfig()[$code];
         $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
 
@@ -99,13 +137,12 @@ trait TranslateNativeArrayHelperTrait
     abstract protected function func(): string;
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getQueryProvider')]
     public function testTranslateAdapterNativearrayVariableSubstitutionNoVariables(string $code, array $tests): void
     {
-
         $language = $this->getArrayConfig()[$code];
         $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
 
@@ -119,29 +156,31 @@ trait TranslateNativeArrayHelperTrait
     #[DataProvider('getQueryOneVariable')]
     public function testTranslateAdapterNativearrayVariableSubstitutionOneVariable(string $code, array $tests): void
     {
-
         $language = $this->getArrayConfig()[$code];
         $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
 
         foreach ($tests as $key => $expected) {
-            $actual = $translator->{$this->func()}($key, ['name' => 'my friend']);
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $expected,
+                $translator->{$this->func()}($key, ['name' => 'my friend'])
+            );
         }
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getQueryTwoVariables')]
     public function testTranslateAdapterNativearrayVariableSubstitutionTwoVariable(string $code, array $tests): void
     {
-
         $language = $this->getArrayConfig()[$code];
         $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
 
-        $vars = ['song' => 'Dust in the wind',
-            'artist' => 'Kansas',];
+        $vars = [
+            'song'   => 'Dust in the wind',
+            'artist' => 'Kansas',
+        ];
 
         foreach ($tests as $key => $expected) {
             $actual = $translator->{$this->func()}($key, $vars);
@@ -156,16 +195,19 @@ trait TranslateNativeArrayHelperTrait
      */
     public function testWithArrayAccessAndUTF8Strings(): void
     {
-
         $language = $this->getArrayConfig()['ru'];
 
         $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
 
-        $vars = ['fname' => 'John',
+        $vars = [
+            'fname' => 'John',
             'lname' => 'Doe',
-            'mname' => 'D.',];
-        $expected = 'Привет, John D. Doe!';
-        $actual = $translator->{$this->func()}('Hello %fname% %mname% %lname%!', $vars);
-        $this->assertSame($expected, $actual);
+            'mname' => 'D.',
+        ];
+
+        $this->assertSame(
+            'Привет, John D. Doe!',
+            $translator->{$this->func()}('Hello %fname% %mname% %lname%!', $vars)
+        );
     }
 }

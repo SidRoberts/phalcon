@@ -48,7 +48,6 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativeArrayContentNotArray(): void
     {
-
         $this->expectException(InvalidDataType::class);
         $this->expectExceptionMessage('Translation data must be an array');
 
@@ -61,7 +60,6 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativeArrayContentParamExist(): void
     {
-
         $this->expectException(MissingContent::class);
         $this->expectExceptionMessage('Translation content was not provided');
 

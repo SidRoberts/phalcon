@@ -34,10 +34,11 @@ trait TranslateGettextTrait
      */
     protected function getGettextConfig(): array
     {
-
-        return ['locale' => ['en_US.utf8'],
+        return [
+            'locale'        => ['en_US.utf8'],
             'defaultDomain' => 'messages',
-            'directory' => supportDir('assets/translation/gettext'),
-            'category' => LC_MESSAGES,];
+            'directory'     => supportDir('assets/translation/gettext'),
+            'category'      => LC_MESSAGES,
+        ];
     }
 }

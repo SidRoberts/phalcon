@@ -39,24 +39,29 @@ final class LoadTest extends AbstractUnitTestCase
      */
     public function testTranslateFactoryLoadArray(): void
     {
-
         /**
          * This test will run only on Linux - unless we figure out how to
          * properly set locales on windows/macos
          */
-        if ('linux' === strtolower(PHP_OS)) {
-            $options      = $this->arrayConfig['translate'];
-            $interpolator = new InterpolatorFactory();
-            $factory      = new TranslateFactory($interpolator);
-            $adapter      = $factory->load($options);
-            $locale       = $options['options']['locale'][0];
-
-            $this->assertInstanceOf(Gettext::class, $adapter);
-            $this->assertSame($options['options']['category'], $adapter->getCategory());
-            $this->assertSame($locale, $adapter->getLocale());
-            $this->assertSame($options['options']['defaultDomain'], $adapter->getDefaultDomain());
-            $this->assertSame($options['options']['directory'], $adapter->getDirectory());
+        if ('linux' !== strtolower(PHP_OS)) {
+            $this->markTestSkipped();
         }
+
+        $options      = $this->arrayConfig['translate'];
+        $interpolator = new InterpolatorFactory();
+        $factory      = new TranslateFactory($interpolator);
+        $adapter      = $factory->load($options);
+        $locale       = $options['options']['locale'][0];
+
+        $this->assertInstanceOf(Gettext::class, $adapter);
+
+        $this->assertSame($options['options']['category'], $adapter->getCategory());
+
+        $this->assertSame($locale, $adapter->getLocale());
+
+        $this->assertSame($options['options']['defaultDomain'], $adapter->getDefaultDomain());
+
+        $this->assertSame($options['options']['directory'], $adapter->getDirectory());
     }
 
     /**
@@ -65,23 +70,28 @@ final class LoadTest extends AbstractUnitTestCase
      */
     public function testTranslateFactoryLoadConfig(): void
     {
-
         /**
          * This test will run only on Linux - unless we figure out how to
          * properly set locales on windows/macos
          */
-        if ('linux' === strtolower(PHP_OS)) {
-            $options      = $this->config->translate;
-            $interpolator = new InterpolatorFactory();
-            $factory      = new TranslateFactory($interpolator);
-            $adapter      = $factory->load($options);
-            $locale       = $options->options->locale[0];
-
-            $this->assertInstanceOf(Gettext::class, $adapter);
-            $this->assertSame($options->options->category, $adapter->getCategory());
-            $this->assertSame($locale, $adapter->getLocale());
-            $this->assertSame($options->options->defaultDomain, $adapter->getDefaultDomain());
-            $this->assertSame($options->options->directory, $adapter->getDirectory());
+        if ('linux' !== strtolower(PHP_OS)) {
+            $this->markTestSkipped();
         }
+
+        $options      = $this->config->translate;
+        $interpolator = new InterpolatorFactory();
+        $factory      = new TranslateFactory($interpolator);
+        $adapter      = $factory->load($options);
+        $locale       = $options->options->locale[0];
+
+        $this->assertInstanceOf(Gettext::class, $adapter);
+
+        $this->assertSame($options->options->category, $adapter->getCategory());
+
+        $this->assertSame($locale, $adapter->getLocale());
+
+        $this->assertSame($options->options->defaultDomain, $adapter->getDefaultDomain());
+
+        $this->assertSame($options->options->directory, $adapter->getDirectory());
     }
 }

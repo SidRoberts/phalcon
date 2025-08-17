@@ -28,7 +28,6 @@ final class SetDomainTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextSetDomain(): void
     {
-
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 

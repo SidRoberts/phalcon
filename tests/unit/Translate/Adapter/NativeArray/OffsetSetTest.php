@@ -29,7 +29,6 @@ final class OffsetSetTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativeArrayOffsetSet(): void
     {
-
         $this->expectException(ImmutableObject::class);
         $this->expectExceptionMessage('Translate is an immutable ArrayAccess object');
 

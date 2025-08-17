@@ -25,18 +25,26 @@ final class InterpolatorTest extends AbstractUnitTestCase
      */
     public function testTranslateInterpolatorIndexedArrayInterpolator(): void
     {
+        $language = [
+            'Hello!'          => 'Привет!',
+            'Hello %s %s %s!' => 'Привет, %s %s %s!',
+        ];
 
-        $language = ['Hello!'          => 'Привет!',
-                     'Hello %s %s %s!' => 'Привет, %s %s %s!',];
-
-        $params = ['content'             => $language,
-                   'defaultInterpolator' => 'indexedArray',];
+        $params = [
+            'content'             => $language,
+            'defaultInterpolator' => 'indexedArray',
+        ];
 
         $translator = new NativeArray(new InterpolatorFactory(), $params);
 
-        $actual = $translator->_('Hello %s %s %s!', ['John',
-                                                     'D.',
-                                                     'Doe',]);
+        $actual = $translator->_(
+            'Hello %s %s %s!',
+            [
+                'John',
+                'D.',
+                'Doe',
+            ]
+        );
 
         $this->assertSame('Привет, John D. Doe!', $actual);
     }

@@ -28,11 +28,11 @@ final class HasTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterCsvHas(): void
     {
-
         $language   = $this->getCsvConfig()['en'];
         $translator = new Csv(new InterpolatorFactory(), $language);
 
-        $actual = $translator->has('hi');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $translator->has('hi')
+        );
     }
 }

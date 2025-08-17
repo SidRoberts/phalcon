@@ -27,7 +27,6 @@ final class UnderscoreTest extends AbstractUnitTestCase
      */
     protected function func(): string
     {
-
         return '_';
     }
 }

@@ -28,13 +28,13 @@ final class OffsetGetTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativeArrayOffsetGet(): void
     {
-
         $language = $this->getArrayConfig()['en'];
 
         $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
 
-        $expected = 'Hello';
-        $actual   = $translator->offsetGet('hi');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Hello',
+            $translator->offsetGet('hi')
+        );
     }
 }

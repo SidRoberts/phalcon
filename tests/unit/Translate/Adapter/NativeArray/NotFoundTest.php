@@ -30,14 +30,21 @@ final class NotFoundTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativearrayNotFound(): void
     {
-
         $language = $this->getArrayConfig()['en'];
 
-        $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
+        $translator = new NativeArray(
+            new InterpolatorFactory(),
+            [
+                'content' => $language,
+            ]
+        );
 
         $expected = 'unknown';
-        $actual   = $translator->query($expected);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $translator->query($expected)
+        );
     }
 
     /**
@@ -46,14 +53,19 @@ final class NotFoundTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativearrayNotFoundCustom(): void
     {
-
         $language = $this->getArrayConfig()['en'];
 
-        $translator = new FakeNativeAdapter(new InterpolatorFactory(), ['content' => $language,]);
+        $translator = new FakeNativeAdapter(
+            new InterpolatorFactory(),
+            [
+                'content' => $language,
+            ]
+        );
 
-        $expected = '';
-        $actual   = $translator->query('unknown');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $translator->query('unknown')
+        );
     }
 
     /**
@@ -62,14 +74,18 @@ final class NotFoundTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativearrayNotFoundTriggerError(): void
     {
-
         $this->expectException(KeyNotFound::class);
         $this->expectExceptionMessage('Cannot find translation key: unknown');
 
         $language = $this->getArrayConfig()['en'];
 
-        $translator = new NativeArray(new InterpolatorFactory(), ['content'      => $language,
-                                                                  'triggerError' => true,]);
+        $translator = new NativeArray(
+            new InterpolatorFactory(),
+            [
+                'content'      => $language,
+                'triggerError' => true,
+            ]
+        );
 
         $translator->query('unknown');
     }
@@ -80,14 +96,18 @@ final class NotFoundTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativearrayNotFoundTriggerErrorRandomVaue(): void
     {
-
         $this->expectException(KeyNotFound::class);
         $this->expectExceptionMessage('Cannot find translation key: unknown');
 
         $language = $this->getArrayConfig()['en'];
 
-        $translator = new NativeArray(new InterpolatorFactory(), ['content'      => $language,
-                                                                  'triggerError' => 'blahblah',]);
+        $translator = new NativeArray(
+            new InterpolatorFactory(),
+            [
+                'content'      => $language,
+                'triggerError' => 'blahblah',
+            ]
+        );
 
         $translator->query('unknown');
     }

@@ -28,16 +28,22 @@ final class NqueryTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextNquery(): void
     {
-
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 
-        $expected = 'two files';
-        $actual   = $translator->nquery('file', 'files', 2);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two files',
+            $translator->nquery('file', 'files', 2)
+        );
 
-        $expected = 'two files';
-        $actual   = $translator->nquery('file', 'files', 2, [], 'messages');
-        $this->assertSame($expected, $actual);
+        $actual = $translator->nquery(
+            'file',
+            'files',
+            2,
+            [],
+            'messages'
+        );
+
+        $this->assertSame('two files', $actual);
     }
 }

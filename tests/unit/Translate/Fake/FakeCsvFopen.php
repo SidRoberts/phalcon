@@ -19,7 +19,6 @@ final class FakeCsvFopen extends Csv
 {
     protected function phpFopen(string $filename, string $mode)
     {
-
         return false;
     }
 }

@@ -19,7 +19,6 @@ final class FakeNativeAdapter extends NativeArray
 {
     public function notFound(string $index): string
     {
-
         return '';
     }
 }

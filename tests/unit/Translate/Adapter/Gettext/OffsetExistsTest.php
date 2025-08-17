@@ -28,10 +28,11 @@ final class OffsetExistsTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextOffsetExists(): void
     {
-
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 
-        $this->assertTrue($translator->has('hi'));
+        $this->assertTrue(
+            $translator->has('hi')
+        );
     }
 }

@@ -31,25 +31,27 @@ final class GetSetDirectoryTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextGetSetDirectory(): void
     {
-
         $params = $this->getGettextConfig();
 
         $translator = new Gettext(new InterpolatorFactory(), $params);
 
-        $expected = supportDir('assets/translation/gettext');
-        $actual   = $translator->getDirectory();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            supportDir('assets/translation/gettext'),
+            $translator->getDirectory()
+        );
 
         $translator->setDirectory(dataDir());
 
-        $expected = dataDir();
-        $actual   = $translator->getDirectory();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            dataDir(),
+            $translator->getDirectory()
+        );
 
         $translator->setDirectory(['en_US.utf8' => dataDir()]);
 
-        $expected = ['en_US.utf8' => dataDir()];
-        $actual   = $translator->getDirectory();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            ['en_US.utf8' => dataDir()],
+            $translator->getDirectory()
+        );
     }
 }

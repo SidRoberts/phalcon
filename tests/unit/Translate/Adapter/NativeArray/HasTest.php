@@ -28,12 +28,12 @@ final class HasTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativeArrayHas(): void
     {
-
         $language = $this->getArrayConfig()['en'];
 
         $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
 
-        $expected = $translator->has('hi');
-        $this->assertTrue($expected);
+        $this->assertTrue(
+            $translator->has('hi')
+        );
     }
 }

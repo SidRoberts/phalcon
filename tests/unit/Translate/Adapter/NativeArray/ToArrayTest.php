@@ -28,13 +28,13 @@ final class ToArrayTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativeToArray(): void
     {
-
         $language = $this->getArrayConfig()['en'];
 
         $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
 
-        $expected = $language;
-        $actual   = $translator->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $language,
+            $translator->toArray()
+        );
     }
 }

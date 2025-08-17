@@ -28,11 +28,11 @@ final class HasTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextHas(): void
     {
-
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 
-        $actual = $translator->has('hi');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $translator->has('hi')
+        );
     }
 }

@@ -28,15 +28,19 @@ final class ToArrayTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterCsvToArray(): void
     {
-
         $language   = $this->getCsvConfig()['en'];
         $translator = new Csv(new InterpolatorFactory(), $language);
 
-        $expected = ['hi'        => 'Hello',
-                     'bye'       => 'Good Bye',
-                     'hello-key' => 'Hello %name%',
-                     'song-key'  => 'This song is %song% (%artist%)',];
-        $actual   = $translator->toArray();
-        $this->assertSame($expected, $actual);
+        $expected = [
+            'hi'        => 'Hello',
+            'bye'       => 'Good Bye',
+            'hello-key' => 'Hello %name%',
+            'song-key'  => 'This song is %song% (%artist%)',
+        ];
+
+        $this->assertSame(
+            $expected,
+            $translator->toArray()
+        );
     }
 }

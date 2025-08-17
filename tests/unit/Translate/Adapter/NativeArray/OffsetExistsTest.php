@@ -28,11 +28,12 @@ final class OffsetExistsTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativeArrayOffsetExists(): void
     {
-
         $language = $this->getArrayConfig()['en'];
 
         $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
 
-        $this->assertTrue($translator->offsetExists('hi'));
+        $this->assertTrue(
+            $translator->offsetExists('hi')
+        );
     }
 }

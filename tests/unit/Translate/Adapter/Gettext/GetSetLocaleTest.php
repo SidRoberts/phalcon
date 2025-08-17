@@ -28,24 +28,26 @@ final class GetSetLocaleTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextGetSetLocale(): void
     {
-
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 
-        $expected = 'en_US.utf8';
-        $actual   = $translator->getLocale();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'en_US.utf8',
+            $translator->getLocale()
+        );
 
         $translator->setLocale(1, ['ru']);
 
-        $expected = '';
-        $actual   = $translator->getLocale();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '',
+            $translator->getLocale()
+        );
 
         $translator->setLocale(1, ['ru_RU.utf8']);
 
-        $expected = 'ru_RU.utf8';
-        $actual   = $translator->getLocale();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'ru_RU.utf8',
+            $translator->getLocale()
+        );
     }
 }

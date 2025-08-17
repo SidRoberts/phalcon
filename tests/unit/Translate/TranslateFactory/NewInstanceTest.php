@@ -33,7 +33,6 @@ final class NewInstanceTest extends AbstractUnitTestCase
      */
     public function testTranslateTranslateFactoryNewInstance(): void
     {
-
         $interpolator = new InterpolatorFactory();
         $factory      = new TranslateFactory($interpolator);
         $language     = $this->getCsvConfig()['ru'];
@@ -49,13 +48,14 @@ final class NewInstanceTest extends AbstractUnitTestCase
      */
     public function testTranslateTranslateFactoryNewInstanceException(): void
     {
-
         $name = uniqid('service-');
+
         $this->expectException(TranslatorNotRegistered::class);
         $this->expectExceptionMessage('Service ' . $name . ' is not registered');
 
         $interpolator = new InterpolatorFactory();
         $factory      = new TranslateFactory($interpolator);
+
         $factory->newInstance($name);
     }
 }

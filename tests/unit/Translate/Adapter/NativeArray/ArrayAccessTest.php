@@ -28,19 +28,21 @@ final class ArrayAccessTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterNativeArrayWithArrayAccess(): void
     {
-
         $language = $this->getArrayConfig()['ru'];
 
         $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
 
-        $actual = isset($translator['Hello!']);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($translator['Hello!'])
+        );
 
-        $actual = isset($translator['Hi there!']);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($translator['Hi there!'])
+        );
 
-        $expected = $language['Hello!'];
-        $actual   = $translator['Hello!'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $language['Hello!'],
+            $translator['Hello!']
+        );
     }
 }

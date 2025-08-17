@@ -27,7 +27,6 @@ final class TTest extends AbstractUnitTestCase
      */
     protected function func(): string
     {
-
         return 't';
     }
 }

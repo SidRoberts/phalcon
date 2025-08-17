@@ -30,11 +30,12 @@ final class GetCategoryTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextGetCategory(): void
     {
-
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 
-        $actual = $translator->getCategory();
-        $this->assertSame(LC_MESSAGES, $actual);
+        $this->assertSame(
+            LC_MESSAGES,
+            $translator->getCategory()
+        );
     }
 }

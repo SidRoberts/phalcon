@@ -28,7 +28,6 @@ final class ResetDomainTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextResetDomain(): void
     {
-
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 

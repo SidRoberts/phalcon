@@ -28,14 +28,19 @@ final class GetSetDefaultDomainTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextGetSetDefaultDomain(): void
     {
-
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 
-        $this->assertSame('messages', $translator->getDefaultDomain());
+        $this->assertSame(
+            'messages',
+            $translator->getDefaultDomain()
+        );
 
         $translator->setDefaultDomain('options');
 
-        $this->assertSame('options', $translator->getDefaultDomain());
+        $this->assertSame(
+            'options',
+            $translator->getDefaultDomain()
+        );
     }
 }

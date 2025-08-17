@@ -27,7 +27,6 @@ final class QueryTest extends AbstractUnitTestCase
      */
     protected function func(): string
     {
-
         return 'query';
     }
 }

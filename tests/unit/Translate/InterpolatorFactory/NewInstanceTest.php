@@ -17,29 +17,33 @@ use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Translate\Exceptions\InterpolatorNotRegistered;
 use Phalcon\Translate\Interpolator\AssociativeArray;
 use Phalcon\Translate\Interpolator\IndexedArray;
+use Phalcon\Translate\Interpolator\InterpolatorInterface;
 use Phalcon\Translate\InterpolatorFactory;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class NewInstanceTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: class-string<InterpolatorInterface>}>
      */
     public static function getExamples(): array
     {
-
-        return [['associativeArray', AssociativeArray::class],
-                ['indexedArray', IndexedArray::class],];
+        return [
+            ['associativeArray', AssociativeArray::class],
+            ['indexedArray', IndexedArray::class],
+        ];
     }
 
     /**
+     * @param string                              $name
+     * @param class-string<InterpolatorInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
     #[DataProvider('getExamples')]
     public function testTranslateInterpolatorFactoryNewInstance(string $name, string $class): void
     {
-
         $adapter = new InterpolatorFactory();
         $service = $adapter->newInstance($name);
 
@@ -52,11 +56,11 @@ final class NewInstanceTest extends AbstractUnitTestCase
      */
     public function testTranslateInterpolatorFactoryNewInstanceException(): void
     {
-
         $this->expectException(InterpolatorNotRegistered::class);
         $this->expectExceptionMessage('Service unknown is not registered');
 
         $adapter = new InterpolatorFactory();
+
         $adapter->newInstance('unknown');
     }
 }

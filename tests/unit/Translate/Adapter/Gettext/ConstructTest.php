@@ -33,7 +33,6 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextConstruct(): void
     {
-
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 
@@ -47,7 +46,6 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextConstructNoGettextException(): void
     {
-
         $this->expectException(MissingGettextExtension::class);
         $this->expectExceptionMessage('This class requires the gettext extension for PHP');
 
@@ -63,7 +61,6 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextContentParamDirectoryExist(): void
     {
-
         $this->expectException(MissingRequiredParameter::class);
         $this->expectExceptionMessage("Parameter 'directory' is required");
 
@@ -76,7 +73,6 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextContentParamLocaleExist(): void
     {
-
         $this->expectException(MissingRequiredParameter::class);
         $this->expectExceptionMessage("Parameter 'locale' is required");
 

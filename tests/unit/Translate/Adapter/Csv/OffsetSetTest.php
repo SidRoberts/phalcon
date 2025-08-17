@@ -29,12 +29,12 @@ final class OffsetSetTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterCsvOffsetSet(): void
     {
-
         $this->expectException(ImmutableObject::class);
         $this->expectExceptionMessage('Translate is an immutable ArrayAccess object');
 
         $language   = $this->getCsvConfig()['en'];
         $translator = new Csv(new InterpolatorFactory(), $language);
+
         $translator->offsetSet('team', 'Team');
     }
 }

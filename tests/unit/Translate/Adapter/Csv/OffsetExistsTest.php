@@ -28,10 +28,11 @@ final class OffsetExistsTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterCsvOffsetExists(): void
     {
-
         $language   = $this->getCsvConfig()['en'];
         $translator = new Csv(new InterpolatorFactory(), $language);
 
-        $this->assertTrue($translator->offsetExists('hi'));
+        $this->assertTrue(
+            $translator->offsetExists('hi')
+        );
     }
 }

@@ -29,13 +29,13 @@ final class OffsetUnsetTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextOffsetUnset(): void
     {
-
         $this->expectException(ImmutableObject::class);
         $this->expectExceptionMessage('Translate is an immutable ArrayAccess object');
 
         $language = $this->getGettextConfig();
 
         $translator = new Gettext(new InterpolatorFactory(), $language);
+
         $translator->offsetUnset('hi');
     }
 }

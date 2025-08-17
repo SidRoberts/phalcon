@@ -28,12 +28,12 @@ final class OffsetGetTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterGettextOffsetGet(): void
     {
-
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 
-        $expected = 'Hello';
-        $actual   = $translator->offsetGet('hi');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Hello',
+            $translator->offsetGet('hi')
+        );
     }
 }

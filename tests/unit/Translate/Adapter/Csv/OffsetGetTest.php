@@ -28,12 +28,12 @@ final class OffsetGetTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterCsvOffsetGet(): void
     {
-
         $language   = $this->getCsvConfig()['en'];
         $translator = new Csv(new InterpolatorFactory(), $language);
 
-        $expected = 'Hello';
-        $actual   = $translator->offsetGet('hi');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Hello',
+            $translator->offsetGet('hi')
+        );
     }
 }

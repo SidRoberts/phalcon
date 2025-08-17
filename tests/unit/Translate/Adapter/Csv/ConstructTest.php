@@ -35,7 +35,6 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterCsvConstruct(): void
     {
-
         $language   = $this->getCsvConfig()['en'];
         $translator = new Csv(new InterpolatorFactory(), $language);
 
@@ -49,7 +48,6 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterCsvContentParamExist(): void
     {
-
         $this->expectException(MissingRequiredParameter::class);
         $this->expectExceptionMessage("Parameter 'content' is required");
 
@@ -62,7 +60,6 @@ final class ConstructTest extends AbstractUnitTestCase
      */
     public function testTranslateAdapterCsvErrorLoadingFile(): void
     {
-
         $message = "Error opening translation file '" . supportDir('assets/translation/csv/en.csv') . "'";
         $this->expectException(FileOpenError::class);
         $this->expectExceptionMessage($message);

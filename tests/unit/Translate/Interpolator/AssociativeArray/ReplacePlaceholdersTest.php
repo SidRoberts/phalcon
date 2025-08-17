@@ -24,14 +24,18 @@ final class ReplacePlaceholdersTest extends AbstractUnitTestCase
      */
     public function testTranslateInterpolatorAssociativearrayReplacePlaceholders(): void
     {
-
         $interpolator = new AssociativeArray();
 
         $stringFrom = 'Hello, %fname% %mname% %lname%!';
 
-        $actual = $interpolator->replacePlaceholders($stringFrom, ['fname' => 'John',
-                                                                   'lname' => 'Doe',
-                                                                   'mname' => 'D.',]);
+        $actual = $interpolator->replacePlaceholders(
+            $stringFrom,
+            [
+                'fname' => 'John',
+                'lname' => 'Doe',
+                'mname' => 'D.',
+            ]
+        );
 
         $this->assertSame('Hello, John D. Doe!', $actual);
     }
@@ -44,9 +48,11 @@ final class ReplacePlaceholdersTest extends AbstractUnitTestCase
     {
         $interpolator = new AssociativeArray();
 
-        $source   = 'Hello, %fname% %mname% %lname%!';
-        $expected = $source;
-        $actual   = $interpolator->replacePlaceholders($source, []);
-        $this->assertSame($expected, $actual);
+        $source = 'Hello, %fname% %mname% %lname%!';
+
+        $this->assertSame(
+            $source,
+            $interpolator->replacePlaceholders($source, [])
+        );
     }
 }
