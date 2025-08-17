@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Unit\Cache\Adapter;
 
 use ArrayObject;
 use DateInterval;
+use Phalcon\Cache\Adapter\AdapterInterface;
 use Phalcon\Cache\Adapter\Apcu;
 use Phalcon\Cache\Adapter\Libmemcached;
 use Phalcon\Cache\Adapter\Memory;
@@ -41,7 +42,7 @@ use function uniqid;
 final class GetSetTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: class-string<AdapterInterface>, 2: array<string, mixed>, 3: mixed}>
      */
     public static function getExamples(): array
     {
@@ -349,6 +350,11 @@ final class GetSetTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param mixed                          $value
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -368,24 +374,28 @@ final class GetSetTest extends AbstractUnitTestCase
 
         $key = uniqid('k-');
 
-        $result = $adapter->set($key, $value);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->set($key, $value)
+        );
 
-        $result = $adapter->has($key);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->has($key)
+        );
 
         /**
          * This will issue delete
          */
-        $result = $adapter->set($key, $value, 0);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->set($key, $value, 0)
+        );
 
-        $result = $adapter->has($key);
-        $this->assertFalse($result);
+        $this->assertFalse(
+            $adapter->has($key)
+        );
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: string}>
      */
     public static function getAdapters(): array
     {
@@ -421,6 +431,10 @@ final class GetSetTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -439,20 +453,24 @@ final class GetSetTest extends AbstractUnitTestCase
 
         $key = uniqid();
 
-        $result = $adapter->set($key, "test");
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->set($key, "test")
+        );
 
-        $result = $adapter->has($key);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->has($key)
+        );
 
         /**
          * This will issue delete
          */
-        $result = $adapter->set($key, "test", 0);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->set($key, "test", 0)
+        );
 
-        $result = $adapter->has($key);
-        $this->assertFalse($result);
+        $this->assertFalse(
+            $adapter->has($key)
+        );
     }
 
     /**
@@ -469,9 +487,9 @@ final class GetSetTest extends AbstractUnitTestCase
             ]
         );
 
-        $data   = 'Phalcon Framework';
-        $actual = $adapter->set('test-key', $data);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->set('test-key', 'Phalcon Framework')
+        );
 
         $target   = outputDir() . 'ph-strm/te/st/-k/';
         $expected = 's:3:"ttl";i:3600;s:7:"content";s:25:"s:17:"Phalcon Framework";";}';
@@ -499,16 +517,13 @@ final class GetSetTest extends AbstractUnitTestCase
 
         $target = outputDir() . 'en/';
 
-        $actual = $adapter->set('men', 123);
-        $this->assertTrue($actual);
+        $this->assertTrue($adapter->set('men', 123));
         $this->assertEquals(123, $adapter->get('men'));
 
-        $actual = $adapter->set('barmen', 'abc');
-        $this->assertTrue($actual);
+        $this->assertTrue($adapter->set('barmen', 'abc'));
         $this->assertEquals('abc', $adapter->get('barmen'));
 
-        $actual = $adapter->set('bar', 'xyz');
-        $this->assertTrue($actual);
+        $this->assertTrue($adapter->set('bar', 'xyz'));
         $this->assertEquals('xyz', $adapter->get('bar'));
 
         $expected = ['enbar', 'enbarmen', 'enmen'];
@@ -536,13 +551,16 @@ final class GetSetTest extends AbstractUnitTestCase
         ];
 
         foreach ($objects as $object) {
-            $key    = uniqid();
-            $result = $adapter->set($key, $object);
-            $this->assertTrue($result);
+            $key = uniqid();
 
-            $expected = $object;
-            $actual   = $adapter->get($key);
-            $this->assertEquals($expected, $actual);
+            $this->assertTrue(
+                $adapter->set($key, $object)
+            );
+
+            $this->assertEquals(
+                $object,
+                $adapter->get($key)
+            );
         }
     }
 
@@ -561,12 +579,14 @@ final class GetSetTest extends AbstractUnitTestCase
         $key = uniqid();
         $ttl = new DateInterval('PT2H');
 
-        $result = $adapter->set($key, 'test-value', $ttl);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->set($key, 'test-value', $ttl)
+        );
 
-        $expected = 'test-value';
-        $actual   = $adapter->get($key);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'test-value',
+            $adapter->get($key)
+        );
 
         $adapter->delete($key);
     }
@@ -584,12 +604,14 @@ final class GetSetTest extends AbstractUnitTestCase
         $obj1 = new stdClass();
         $obj2 = new stdClass();
 
-        $result = $adapter->set($key, $obj1);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->set($key, $obj1)
+        );
 
         // Second set on existing key returns true but keeps the first reference
-        $result = $adapter->set($key, $obj2);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->set($key, $obj2)
+        );
 
         // Original object is still returned
         $actual = $adapter->get($key);
@@ -609,17 +631,23 @@ final class GetSetTest extends AbstractUnitTestCase
         $obj = new stdClass();
 
         $adapter->set($key, $obj);
-        $this->assertTrue($adapter->has($key));
+
+        $this->assertTrue(
+            $adapter->has($key)
+        );
 
         // Release the only strong reference so the GC can collect the object
         unset($obj);
         gc_collect_cycles();
 
         // get() finds a dead WeakRef, deletes the key, and returns null
-        $actual = $adapter->get($key);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $adapter->get($key)
+        );
 
         // Key must have been cleaned up during the get() call
-        $this->assertFalse($adapter->has($key));
+        $this->assertFalse(
+            $adapter->has($key)
+        );
     }
 }

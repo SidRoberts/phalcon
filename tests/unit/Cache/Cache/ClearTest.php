@@ -38,12 +38,27 @@ final class ClearTest extends AbstractUnitTestCase
         $key2 = uniqid();
 
         $adapter->set($key1, 'test');
-        $this->assertTrue($adapter->has($key1));
+
+        $this->assertTrue(
+            $adapter->has($key1)
+        );
 
         $adapter->set($key2, 'test');
-        $this->assertTrue($adapter->has($key2));
-        $this->assertTrue($adapter->clear());
-        $this->assertFalse($adapter->has($key1));
-        $this->assertFalse($adapter->has($key2));
+
+        $this->assertTrue(
+            $adapter->has($key2)
+        );
+
+        $this->assertTrue(
+            $adapter->clear()
+        );
+
+        $this->assertFalse(
+            $adapter->has($key1)
+        );
+
+        $this->assertFalse(
+            $adapter->has($key2)
+        );
     }
 }

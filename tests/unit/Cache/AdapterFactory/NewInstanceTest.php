@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Cache\AdapterFactory;
 
+use Phalcon\Cache\Adapter\AdapterInterface;
 use Phalcon\Cache\Adapter\Apcu;
 use Phalcon\Cache\Adapter\Libmemcached;
 use Phalcon\Cache\Adapter\Memory;
@@ -34,6 +35,9 @@ use function uniqid;
 
 final class NewInstanceTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: string, 1: class-string<AdapterInterface>, 2: array<string, mixed>}>
+     */
     public static function getExamples(): array
     {
         return [
@@ -78,6 +82,12 @@ final class NewInstanceTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param string                         $name
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Cache\Adapter;
 
+use Phalcon\Cache\Adapter\AdapterInterface;
 use Phalcon\Cache\Adapter\Apcu;
 use Phalcon\Cache\Adapter\Libmemcached;
 use Phalcon\Cache\Adapter\Memory;
@@ -32,7 +33,7 @@ use function uniqid;
 final class DecrementTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: class-string<AdapterInterface>, 2: array<string, mixed>, 3: string, 4: mixed}>
      */
     public static function getExamples(): array
     {
@@ -85,6 +86,12 @@ final class DecrementTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param string                         $className
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     * @param mixed                          $unknown
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -103,31 +110,45 @@ final class DecrementTest extends AbstractUnitTestCase
         $serializer = new SerializerFactory();
         $adapter    = new $class($serializer, $options);
 
-        $key    = uniqid();
-        $result = $adapter->set($key, 100);
-        $this->assertTrue($result);
+        $key = uniqid();
+
+        $this->assertTrue(
+            $adapter->set($key, 100)
+        );
 
         $expected = 99;
-        $actual   = $adapter->decrement($key);
-        $this->assertEquals($expected, $actual);
 
-        $actual = $adapter->get($key);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $adapter->decrement($key)
+        );
+
+        $this->assertEquals(
+            $expected,
+            $adapter->get($key)
+        );
 
         $expected = 90;
-        $actual   = $adapter->decrement($key, 9);
-        $this->assertEquals($expected, $actual);
 
-        $actual = $adapter->get($key);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $adapter->decrement($key, 9)
+        );
+
+        $this->assertEquals(
+            $expected,
+            $adapter->get($key)
+        );
 
         /**
          * unknown key
          */
-        $key      = uniqid();
-        $expected = $unknown;
-        $actual   = $adapter->decrement($key);
-        $this->assertEquals($expected, $actual);
+        $key = uniqid();
+
+        $this->assertEquals(
+            $unknown,
+            $adapter->decrement($key)
+        );
 
         if ('Stream' === $className) {
             $this->safeDeleteDirectory(outputDir('ph-strm'));

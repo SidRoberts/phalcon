@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class GetEventsManagerTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: array}>
      */
     public static function getEvents(): array
     {

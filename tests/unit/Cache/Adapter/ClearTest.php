@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Cache\Adapter;
 
+use Phalcon\Cache\Adapter\AdapterInterface;
 use Phalcon\Cache\Adapter\Apcu;
 use Phalcon\Cache\Adapter\Libmemcached;
 use Phalcon\Cache\Adapter\Memory;
@@ -20,9 +21,7 @@ use Phalcon\Cache\Adapter\Redis;
 use Phalcon\Cache\Adapter\RedisCluster;
 use Phalcon\Cache\Adapter\Stream;
 use Phalcon\Cache\Adapter\Weak;
-use Phalcon\Cache\Exception\Exception as StorageException;
 use Phalcon\Storage\SerializerFactory;
-use Phalcon\Support\Exception;
 use Phalcon\Support\Exception as HelperException;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Cache\Fake\Adapter\FakeApcuApcuDelete;
@@ -39,7 +38,7 @@ use function uniqid;
 final class ClearTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: string}>
      */
     public static function getExamples(): array
     {
@@ -92,16 +91,22 @@ final class ClearTest extends AbstractUnitTestCase
 
         $key1 = uniqid();
         $key2 = uniqid();
+
         $adapter->set($key1, 'test');
-        $actual = $adapter->has($key1);
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $adapter->has($key1)
+        );
 
         $adapter->set($key2, 'test');
-        $actual = $adapter->has($key2);
-        $this->assertTrue($actual);
 
-        $actual = $adapter->clear();
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $adapter->has($key2)
+        );
+
+        $this->assertFalse(
+            $adapter->clear()
+        );
     }
 
     /**
@@ -117,19 +122,29 @@ final class ClearTest extends AbstractUnitTestCase
 
         $key1 = uniqid();
         $key2 = uniqid();
+
         $adapter->set($key1, 'test');
-        $actual = $adapter->has($key1);
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $adapter->has($key1)
+        );
 
         $adapter->set($key2, 'test');
-        $actual = $adapter->has($key2);
-        $this->assertTrue($actual);
 
-        $actual = $adapter->clear();
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $adapter->has($key2)
+        );
+
+        $this->assertFalse(
+            $adapter->clear()
+        );
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -148,28 +163,37 @@ final class ClearTest extends AbstractUnitTestCase
 
         $key1 = uniqid();
         $key2 = uniqid();
+
         $adapter->set($key1, 'test');
-        $actual = $adapter->has($key1);
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $adapter->has($key1)
+        );
 
         $adapter->set($key2, 'test');
-        $actual = $adapter->has($key2);
-        $this->assertTrue($actual);
 
-        $actual = $adapter->clear();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->has($key2)
+        );
 
-        $actual = $adapter->has($key1);
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $adapter->clear()
+        );
 
-        $actual = $adapter->has($key2);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->has($key1)
+        );
+
+        $this->assertFalse(
+            $adapter->has($key2)
+        );
 
         /**
          * Call clear twice to ensure it returns true
          */
-        $actual = $adapter->clear();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->clear()
+        );
     }
 
     /**
@@ -188,21 +212,29 @@ final class ClearTest extends AbstractUnitTestCase
 
         $key1 = uniqid();
         $key2 = uniqid();
+
         $adapter->set($key1, 'test');
-        $actual = $adapter->has($key1);
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $adapter->has($key1)
+        );
 
         $adapter->set($key2, 'test');
-        $actual = $adapter->has($key2);
-        $this->assertTrue($actual);
 
-        $actual = $adapter->clear();
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $adapter->has($key2)
+        );
+
+        $this->assertFalse(
+            $adapter->clear()
+        );
 
         $this->safeDeleteDirectory(outputDir('ph-strm'));
     }
 
     /**
+     * @throws HelperException
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2023-07-17
      */
@@ -215,8 +247,10 @@ final class ClearTest extends AbstractUnitTestCase
         $obj1->id = 1;
         $obj2     = new stdClass();
         $obj2->id = 2;
+
         $key1     = uniqid();
         $key2     = uniqid();
+
         $adapter->set($key1, $obj1);
         $adapter->set($key2, $obj2);
 
@@ -228,15 +262,20 @@ final class ClearTest extends AbstractUnitTestCase
         $this->assertEquals($temp, $adapter->get($key2));
         $this->assertEquals($temp, $obj2);
 
-        $actual = $adapter->clear();
-        $this->assertTrue($actual);
-        $actual = $adapter->has($key1);
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $adapter->clear()
+        );
 
-        $actual = $adapter->has($key2);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->has($key1)
+        );
 
-        $actual = $adapter->clear();
-        $this->assertTrue($actual);
+        $this->assertFalse(
+            $adapter->has($key2)
+        );
+
+        $this->assertTrue(
+            $adapter->clear()
+        );
     }
 }

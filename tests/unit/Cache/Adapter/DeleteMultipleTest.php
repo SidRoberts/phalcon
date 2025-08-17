@@ -106,8 +106,9 @@ final class DeleteMultipleTest extends AbstractUnitTestCase
         /**
          * Delete all three — all exist, must return true
          */
-        $actual = $adapter->deleteMultiple([$key1, $key2, $key3]);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->deleteMultiple([$key1, $key2, $key3])
+        );
 
         $this->assertFalse($adapter->has($key1));
         $this->assertFalse($adapter->has($key2));
@@ -116,8 +117,9 @@ final class DeleteMultipleTest extends AbstractUnitTestCase
         /**
          * Delete again — keys no longer exist, must return false
          */
-        $actual = $adapter->deleteMultiple([$key1, $key2, $key3]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->deleteMultiple([$key1, $key2, $key3])
+        );
 
         /**
          * Mix of existing and non-existing keys — must return false
@@ -126,8 +128,9 @@ final class DeleteMultipleTest extends AbstractUnitTestCase
         $key5 = uniqid();
         $adapter->set($key4, 'value4');
 
-        $actual = $adapter->deleteMultiple([$key4, $key5]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->deleteMultiple([$key4, $key5])
+        );
 
         /**
          * key4 was still deleted despite partial failure
@@ -137,8 +140,9 @@ final class DeleteMultipleTest extends AbstractUnitTestCase
         /**
          * Delete unknown keys — must return false
          */
-        $actual = $adapter->deleteMultiple([uniqid(), uniqid()]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->deleteMultiple([uniqid(), uniqid()])
+        );
     }
 
     /**
@@ -172,8 +176,9 @@ final class DeleteMultipleTest extends AbstractUnitTestCase
         /**
          * Delete all three — all exist, must return true
          */
-        $actual = $adapter->deleteMultiple([$key1, $key2, $key3]);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->deleteMultiple([$key1, $key2, $key3])
+        );
 
         $this->assertFalse($adapter->has($key1));
         $this->assertFalse($adapter->has($key2));
@@ -182,13 +187,15 @@ final class DeleteMultipleTest extends AbstractUnitTestCase
         /**
          * Delete again — keys no longer exist, must return false
          */
-        $actual = $adapter->deleteMultiple([$key1, $key2, $key3]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->deleteMultiple([$key1, $key2, $key3])
+        );
 
         /**
          * Delete unknown keys — must return false
          */
-        $actual = $adapter->deleteMultiple([uniqid(), uniqid()]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->deleteMultiple([uniqid(), uniqid()])
+        );
     }
 }

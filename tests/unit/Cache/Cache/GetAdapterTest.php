@@ -33,8 +33,9 @@ final class GetAdapterTest extends AbstractUnitTestCase
 
         $adapter = new Cache($instance);
 
-        $class  = AdapterInterface::class;
-        $actual = $adapter->getAdapter();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            AdapterInterface::class,
+            $adapter->getAdapter()
+        );
     }
 }

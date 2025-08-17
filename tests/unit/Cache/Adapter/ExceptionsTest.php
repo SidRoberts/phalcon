@@ -105,9 +105,10 @@ final class ExceptionsTest extends AbstractUnitTestCase
         }
 
         // Unknown key
-        $expected = 'test';
-        $actual   = $adapter->get(uniqid(), 'test');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'test',
+            $adapter->get(uniqid(), 'test')
+        );
 
         // Invalid stored object
         $actual = file_put_contents(
@@ -116,21 +117,24 @@ final class ExceptionsTest extends AbstractUnitTestCase
         );
         $this->assertNotFalse($actual);
 
-        $expected = 'test';
-        $actual   = $adapter->get('test-key', 'test');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'test',
+            $adapter->get('test-key', 'test')
+        );
 
         // Expiry
         $data = 'Phalcon Framework';
 
-        $actual = $adapter->set('test-key', $data, 1);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->set('test-key', $data, 1)
+        );
 
         sleep(2);
 
-        $expected = 'test';
-        $actual   = $adapter->get('test-key', 'test');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'test',
+            $adapter->get('test-key', 'test')
+        );
 
         $this->safeDeleteFile($target . 'test-key');
     }

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Cache\Adapter;
 
+use Phalcon\Cache\Adapter\AdapterInterface;
 use Phalcon\Cache\Adapter\Apcu;
 use Phalcon\Cache\Adapter\Libmemcached;
 use Phalcon\Cache\Adapter\Memory;
@@ -32,7 +33,7 @@ use function uniqid;
 final class IncrementTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: class-string<AdapterInterface>, 2: array<string, mixed>, 3: string, 4: mixed}>
      */
     public static function getExamples(): array
     {
@@ -85,6 +86,12 @@ final class IncrementTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param string                         $className
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     * @param mixed                          $unknown
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */

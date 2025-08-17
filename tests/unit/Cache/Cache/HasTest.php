@@ -36,10 +36,15 @@ final class HasTest extends AbstractUnitTestCase
         $adapter = new Cache($instance);
         $key     = uniqid();
 
-        $this->assertFalse($adapter->has($key));
+        $this->assertFalse(
+            $adapter->has($key)
+        );
 
         $adapter->set($key, 'test');
-        $this->assertTrue($adapter->has($key));
+
+        $this->assertTrue(
+            $adapter->has($key)
+        );
     }
 
     /**

@@ -24,7 +24,6 @@ use Phalcon\Cache\Adapter\Stream;
 use Phalcon\Cache\Adapter\Weak;
 use Phalcon\Storage\Exception as StorageException;
 use Phalcon\Storage\SerializerFactory;
-use Phalcon\Support\Exception as SupportException;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Cache\Fake\Adapter\Libmemcached as LibmemcachedFixture;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -37,7 +36,7 @@ use function outputDir;
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: string}>
      */
     public static function getExamples(): array
     {
@@ -83,6 +82,10 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -110,6 +113,7 @@ final class ConstructTest extends AbstractUnitTestCase
     public function testCacheAdapterLibmemcachedConstructEmptyOptions(): void
     {
         $this->checkExtensionIsLoaded('memcached');
+
         $serializer = new SerializerFactory();
         $adapter    = new LibmemcachedFixture($serializer);
 
@@ -122,8 +126,11 @@ final class ConstructTest extends AbstractUnitTestCase
                 ],
             ],
         ];
-        $actual   = $adapter->getOptions();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $adapter->getOptions()
+        );
     }
 
     /**
@@ -133,24 +140,29 @@ final class ConstructTest extends AbstractUnitTestCase
     public function testCacheAdapterLibmemcachedConstructGetTtl(): void
     {
         $this->checkExtensionIsLoaded('memcached');
+
         $serializer = new SerializerFactory();
         $adapter    = new LibmemcachedFixture(
             $serializer,
             getOptionsLibmemcached()
         );
 
-        $expected = 3600;
-        $actual   = $adapter->getTtl(null);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            3600,
+            $adapter->getTtl(null)
+        );
 
-        $expected = 20;
-        $actual   = $adapter->getTtl(20);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            20,
+            $adapter->getTtl(20)
+        );
 
-        $time     = new DateInterval('PT5S');
-        $expected = 5;
-        $actual   = $adapter->getTtl($time);
-        $this->assertSame($expected, $actual);
+        $time = new DateInterval('PT5S');
+
+        $this->assertSame(
+            5,
+            $adapter->getTtl($time)
+        );
     }
 
     /**

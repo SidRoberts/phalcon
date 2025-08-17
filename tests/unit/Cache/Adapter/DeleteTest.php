@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Cache\Adapter;
 
+use Phalcon\Cache\Adapter\AdapterInterface;
 use Phalcon\Cache\Adapter\Apcu;
 use Phalcon\Cache\Adapter\Libmemcached;
 use Phalcon\Cache\Adapter\Memory;
@@ -35,7 +36,7 @@ use function uniqid;
 final class DeleteTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: string}>
      */
     public static function getExamples(): array
     {
@@ -76,6 +77,10 @@ final class DeleteTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -93,28 +98,36 @@ final class DeleteTest extends AbstractUnitTestCase
         $adapter    = new $class($serializer, $options);
 
         $key = uniqid();
+
         $adapter->set($key, 'test');
-        $actual = $adapter->has($key);
-        $this->assertTrue($actual);
 
-        $actual = $adapter->delete($key);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->has($key)
+        );
 
-        $actual = $adapter->has($key);
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $adapter->delete($key)
+        );
+
+        $this->assertFalse(
+            $adapter->has($key)
+        );
 
         /**
          * Call clear twice to ensure it returns false
          */
-        $actual = $adapter->delete($key);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->delete($key)
+        );
 
         /**
          * Delete unknown
          */
-        $key    = uniqid();
-        $actual = $adapter->delete($key);
-        $this->assertFalse($actual);
+        $key = uniqid();
+
+        $this->assertFalse(
+            $adapter->delete($key)
+        );
     }
 
     /**
@@ -131,16 +144,19 @@ final class DeleteTest extends AbstractUnitTestCase
         $obj2     = new stdClass();
         $obj2->id = 2;
 
-
         $key1 = uniqid();
         $key2 = uniqid();
+
         $adapter->set($key1, $obj1);
         $adapter->set($key2, $obj2);
 
-        $actual = $adapter->has($key1);
-        $this->assertTrue($actual);
-        $actual = $adapter->has($key2);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->has($key1)
+        );
+
+        $this->assertTrue(
+            $adapter->has($key2)
+        );
 
         unset($obj1);
         gc_collect_cycles();
@@ -152,14 +168,20 @@ final class DeleteTest extends AbstractUnitTestCase
         $this->assertEquals($temp, $adapter->get($key2));
 
         unset($temp);
-        $actual = $adapter->delete($key2);
-        $this->assertTrue($actual);
-        $actual = $adapter->delete($key2);
-        $this->assertFalse($actual);
 
-        $key    = uniqid();
-        $actual = $adapter->delete($key);
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $adapter->delete($key2)
+        );
+
+        $this->assertFalse(
+            $adapter->delete($key2)
+        );
+
+        $key = uniqid();
+
+        $this->assertFalse(
+            $adapter->delete($key)
+        );
     }
 
     /**
@@ -173,6 +195,7 @@ final class DeleteTest extends AbstractUnitTestCase
 
         $key = uniqid();
         $obj = new stdClass();
+
         $adapter->set($key, $obj);
 
         $this->assertTrue($adapter->has($key));
@@ -181,8 +204,9 @@ final class DeleteTest extends AbstractUnitTestCase
         $adapter->setFetching($key);
 
         // Delete must be blocked while the key is being fetched
-        $actual = $adapter->delete($key);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->delete($key)
+        );
 
         // Key is still present
         $this->assertTrue($adapter->has($key));
@@ -191,8 +215,9 @@ final class DeleteTest extends AbstractUnitTestCase
         $adapter->setFetching(null);
 
         // Delete should now succeed
-        $actual = $adapter->delete($key);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->delete($key)
+        );
 
         $this->assertFalse($adapter->has($key));
     }

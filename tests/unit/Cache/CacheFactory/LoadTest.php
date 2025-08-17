@@ -39,6 +39,7 @@ final class LoadTest extends AbstractUnitTestCase
     public function testCacheCacheFactoryLoad(): void
     {
         $options = $this->config->cache;
+
         $this->runTests($options);
     }
 
@@ -49,6 +50,7 @@ final class LoadTest extends AbstractUnitTestCase
     public function testCacheCacheFactoryLoadArray(): void
     {
         $options = $this->arrayConfig['cache'];
+
         $this->runTests($options);
     }
 

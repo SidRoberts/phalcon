@@ -44,8 +44,13 @@ final class SetMultipleTest extends AbstractUnitTestCase
             ]
         );
 
-        $this->assertTrue($adapter->has($key1));
-        $this->assertTrue($adapter->has($key2));
+        $this->assertTrue(
+            $adapter->has($key1)
+        );
+
+        $this->assertTrue(
+            $adapter->has($key2)
+        );
 
         $expected = [
             $key1     => 'test1',
