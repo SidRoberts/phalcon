@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Mvc\View;
 
+use Phalcon\Mvc\View;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
 
@@ -28,6 +29,8 @@ class GetActionNameTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('view');
+
+        /** @var View */
         $view = $this->getService('view');
 
         $view->start();

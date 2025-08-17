@@ -34,16 +34,19 @@ class GetActiveRenderPathTest extends AbstractUnitTestCase
     public function testMvcViewGetActiveRenderPath(): void
     {
         $eventsManager = new Manager();
+
         $eventsManager->attach('view', new AfterRenderListener());
 
         $view = new View();
+
         $view->setViewsDir(dataDir('views' . DIRECTORY_SEPARATOR));
         $view->setRenderLevel(View::LEVEL_ACTION_VIEW);
         $view->setEventsManager($eventsManager);
 
-        $expected = '';
-        $actual   = $view->getActiveRenderPath();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '',
+            $view->getActiveRenderPath()
+        );
 
         $view->start();
         $view->render('activerender', 'index');

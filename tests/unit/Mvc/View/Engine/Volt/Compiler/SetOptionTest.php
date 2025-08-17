@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 class SetOptionTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: string}>
      */
     public static function getVoltSetOptionAutoescape(): array
     {
@@ -50,7 +50,9 @@ class SetOptionTest extends AbstractUnitTestCase
 
         $volt->setOption('autoescape', true);
 
-        $actual = $volt->compileString($param);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $volt->compileString($param)
+        );
     }
 }

@@ -27,11 +27,12 @@ class CallMacroTest extends AbstractUnitTestCase
     {
         $compiler = new Compiler();
 
-        $source   = '{{ str_replace("a", "b", "aabb") }}';
-        $expected = "<?= \$this->callMacro("
-            . "'str_replace', ['a', 'b', 'aabb']) ?>";
-        $actual   = $compiler->compileString($source);
-        $this->assertEquals($expected, $actual);
+        $source = '{{ str_replace("a", "b", "aabb") }}';
+
+        $this->assertEquals(
+            "<?= \$this->callMacro('str_replace', ['a', 'b', 'aabb']) ?>",
+            $compiler->compileString($source)
+        );
     }
 
     /**
@@ -43,9 +44,11 @@ class CallMacroTest extends AbstractUnitTestCase
     {
         $compiler = new Compiler();
 
-        $source   = '{{ myfunction("a") }}';
-        $expected = "<?= \$this->callMacro('myfunction', ['a']) ?>";
-        $actual   = $compiler->compileString($source);
-        $this->assertEquals($expected, $actual);
+        $source = '{{ myfunction("a") }}';
+
+        $this->assertEquals(
+            "<?= \$this->callMacro('myfunction', ['a']) ?>",
+            $compiler->compileString($source)
+        );
     }
 }

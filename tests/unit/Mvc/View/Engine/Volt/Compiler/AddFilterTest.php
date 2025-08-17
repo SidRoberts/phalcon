@@ -19,6 +19,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 class AddFilterTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: string, 1: string, 2: string, 3: string}>
+     */
     public static function getVoltAddFilter(): array
     {
         return [
@@ -31,6 +34,9 @@ class AddFilterTest extends AbstractUnitTestCase
         ];
     }
 
+    /**
+     * @return array<array{0: string, 1: string, 2: string, 3: string}>
+     */
     public static function getVoltAddFilterClosure(): array
     {
         return [
@@ -58,9 +64,10 @@ class AddFilterTest extends AbstractUnitTestCase
 
         $volt->addFilter($name, $filter);
 
-        $actual = $volt->compileString($voltName);
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $volt->compileString($voltName)
+        );
     }
 
     /**
@@ -78,7 +85,7 @@ class AddFilterTest extends AbstractUnitTestCase
 
         $volt->addFilter(
             $name,
-            function ($arguments) use ($filter) {
+            function (string $arguments) use ($filter): string {
                 return $filter . '(",", ' . $arguments . ')';
             }
         );

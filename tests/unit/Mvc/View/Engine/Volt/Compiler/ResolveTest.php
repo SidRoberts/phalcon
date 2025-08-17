@@ -58,8 +58,10 @@ class ResolveTest extends AbstractUnitTestCase
         string $expected
     ): void {
         $compiler = new Compiler();
-        $actual   = $compiler->compileString($template);
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $compiler->compileString($template)
+        );
     }
 }

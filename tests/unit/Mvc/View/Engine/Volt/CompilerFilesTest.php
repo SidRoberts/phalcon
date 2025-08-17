@@ -9,13 +9,15 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace Phalcon\Tests\Unit\Mvc\View\Engine\Volt;
 
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Volt\Compiler;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-use function dataDir;
+use function supportDir;
 use function sprintf;
 
 use const PHP_EOL;
@@ -100,9 +102,12 @@ class CompilerFilesTest extends AbstractUnitTestCase
             supportDir('assets/views/blocks/index/login.volt.php')
         );
 
-        $file     = supportDir('assets/views/blocks/index/login.volt.php');
-        $expected = sprintf($template, '<p>This is the login page</p>');
-        $this->assertFileContentsEqual($file, $expected);
+        $file = supportDir('assets/views/blocks/index/login.volt.php');
+
+        $this->assertFileContentsEqual(
+            $file,
+            sprintf($template, '<p>This is the login page</p>')
+        );
 
         /**
          * Main page = header output
@@ -114,8 +119,10 @@ class CompilerFilesTest extends AbstractUnitTestCase
 
         $file = supportDir('assets/views/blocks/index/main.volt.php');
 
-        $expected = sprintf($template, '<p>This is the main page</p>');
-        $this->assertFileContentsEqual($file, $expected);
+        $this->assertFileContentsEqual(
+            $file,
+            sprintf($template, '<p>This is the main page</p>')
+        );
     }
 
     /**
@@ -167,6 +174,7 @@ class CompilerFilesTest extends AbstractUnitTestCase
         $file     = supportDir('assets/views/extends/import.volt.php');
         $contents = '<div class="header"><h1>This is the header</h1></div>'
             . '<div class="footer"><p>This is the footer</p></div>';
+
         $this->assertFileContentsEqual($file, $contents);
     }
 

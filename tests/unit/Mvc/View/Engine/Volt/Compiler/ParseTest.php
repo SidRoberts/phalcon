@@ -14,14 +14,15 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Mvc\View\Engine\Volt\Compiler;
 
 use Phalcon\Mvc\View\Engine\Volt\Compiler;
-use Phalcon\Volt\Exception;
 use Phalcon\Tests\AbstractUnitTestCase;
+use Phalcon\Volt\Exception;
 use PHPUnit\Framework\Attributes\DataProvider;
-
-use function is_array;
 
 class ParseTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: string, 1: string}>
+     */
     public static function getVoltExtendsError(): array
     {
         return [
@@ -52,6 +53,9 @@ class ParseTest extends AbstractUnitTestCase
         ];
     }
 
+    /**
+     * @return array<array{0: string, 1: int}>
+     */
     public static function getVoltParse(): array
     {
         return [
@@ -197,6 +201,9 @@ class ParseTest extends AbstractUnitTestCase
         ];
     }
 
+    /**
+     * @return array<array{0: string, 1: string}>
+     */
     public static function getVoltSyntaxErrors(): array
     {
         return [
@@ -273,10 +280,11 @@ class ParseTest extends AbstractUnitTestCase
         string $param,
         int $count
     ): void {
-        $volt   = new Compiler();
+        $volt = new Compiler();
+
         $actual = $volt->parse($param);
 
-        $this->assertTrue(is_array($actual));
+        $this->assertIsArray($actual);
         $this->assertCount($count, $actual);
     }
 

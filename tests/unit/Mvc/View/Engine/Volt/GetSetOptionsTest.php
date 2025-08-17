@@ -25,8 +25,9 @@ class GetSetOptionsTest extends AbstractUnitTestCase
      */
     public function testMvcViewEngineVoltGetSetOptions(): void
     {
-        $view    = new View();
-        $volt    = new Volt($view);
+        $view = new View();
+        $volt = new Volt($view);
+
         $options = [
             'path'      => '../app/compiled-templates/',
             'extension' => '.compiled',
@@ -34,8 +35,9 @@ class GetSetOptionsTest extends AbstractUnitTestCase
 
         $volt->setOptions($options);
 
-        $expected = $options;
-        $actual   = $volt->getOptions();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $options,
+            $volt->getOptions()
+        );
     }
 }

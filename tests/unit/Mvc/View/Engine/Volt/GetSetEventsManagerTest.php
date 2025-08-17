@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Mvc\View\Engine\Volt;
 
+use Phalcon\Events\Manager;
+use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Volt;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
@@ -30,10 +32,13 @@ class GetSetEventsManagerTest extends AbstractUnitTestCase
         $this->setNewFactoryDefault();
         $this->setDiService('view');
 
+        /** @var View */
         $view = $this->getService('view');
 
+        /** @var Manager */
         $eventsManager = $this->newService('eventsManager');
-        $engine        = new Volt($view, $this->container);
+
+        $engine = new Volt($view, $this->container);
 
         $this->assertNull(
             $engine->getEventsManager()

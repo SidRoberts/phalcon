@@ -43,9 +43,10 @@ class PickTest extends AbstractUnitTestCase
         $view->render('currentrender', 'another');
         $view->finish();
 
-        $expected = 'Well, this is the view content: here.';
-        $actual   = $view->getContent();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'Well, this is the view content: here.',
+            $view->getContent()
+        );
 
         $view->start();
         $view->setLayout('pick');
@@ -53,8 +54,9 @@ class PickTest extends AbstractUnitTestCase
         $view->render('currentrender', 'another');
         $view->finish();
 
-        $expected = 'Well, this is the view content: here.';
-        $actual   = $view->getContent();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'Well, this is the view content: here.',
+            $view->getContent()
+        );
     }
 }

@@ -19,6 +19,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 class CompileFileTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: string, 1: string}>
+     */
     public static function defaultFilterProvider(): array
     {
         return [

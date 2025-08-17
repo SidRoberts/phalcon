@@ -26,6 +26,7 @@ class ConstructTest extends AbstractUnitTestCase
     public function testMvcViewSimpleConstruct(): void
     {
         $view = new Simple();
+
         $this->assertInstanceOf(ViewBaseInterface::class, $view);
     }
 }

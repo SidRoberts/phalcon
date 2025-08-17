@@ -32,7 +32,7 @@ class CompileStringTest extends AbstractUnitTestCase
     private TagFactory $tag;
 
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: string}>
      */
     public static function getVoltCompileString(): array
     {
@@ -517,7 +517,7 @@ class CompileStringTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return string[][]
+     * @return array<array{0: string, 1: string}>
      */
     public static function getVoltCompileStringErrors(): array
     {
@@ -550,8 +550,10 @@ class CompileStringTest extends AbstractUnitTestCase
         $volt = new Compiler();
         $volt->setDI($this->container);
 
-        $actual = $volt->compileString($param);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $volt->compileString($param)
+        );
     }
 
     /**
@@ -600,9 +602,11 @@ class CompileStringTest extends AbstractUnitTestCase
         $this->assertSame($expected, $actual);
 
         // Title executed in code
-        $expected = "+<title>test</title>-";
-        $actual   = (string)$this->tag->title("+", "-")->set('test');
-        $this->assertSame($expected, $actual);
+        $actual = (string)$this->tag->title("+", "-")->set('test');
+        $this->assertSame(
+            "+<title>test</title>-",
+            $actual
+        );
 
         // Title after volt parsing
         $code     = 'echo $this->tag->title("+", "-")->set("test");';

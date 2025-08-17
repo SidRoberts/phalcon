@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Mvc\View;
 
 use Phalcon\Mvc\View;
+use Phalcon\Mvc\View\Engine\EngineInterface;
 use Phalcon\Mvc\View\Engine\Php;
 use Phalcon\Mvc\View\Engine\Volt;
 use Phalcon\Tests\AbstractUnitTestCase;
@@ -37,7 +38,7 @@ class RegisterEnginesTest extends AbstractUnitTestCase
     {
         $engines = $this->getViewRegisterEngines();
 
-        /** @var View $view */
+        /** @var View */
         $view = $this->getService('view');
 
         $view->registerEngines($engines);
@@ -48,6 +49,9 @@ class RegisterEnginesTest extends AbstractUnitTestCase
         );
     }
 
+    /**
+     * @return array<string, class-string<EngineInterface>>
+     */
     private function getViewRegisterEngines(): array
     {
         return [

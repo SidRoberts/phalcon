@@ -32,8 +32,9 @@ class GetSetViewsDirTest extends AbstractUnitTestCase
 
         $view->setViewsDir('views/');
 
-        $expected = 'views/';
-        $actual   = $view->getViewsDir();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'views/',
+            $view->getViewsDir()
+        );
     }
 }

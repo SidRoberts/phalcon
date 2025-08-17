@@ -56,9 +56,9 @@ class ExpressionTest extends AbstractUnitTestCase
             ],
         ];
 
-        $expected = "\"\t\", \"\n\n\"";
-        $actual   = $volt->expression($source, true);
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            "\"\t\", \"\n\n\"",
+            $volt->expression($source, true)
+        );
     }
 }

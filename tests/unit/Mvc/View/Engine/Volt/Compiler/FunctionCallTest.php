@@ -23,7 +23,7 @@ class FunctionCallTest extends AbstractUnitTestCase
     use DiTrait;
 
     /**
-     * @return array
+     * @return array<array{0: string, 1: string}>
      */
     public static function getExamples(): array
     {
@@ -453,10 +453,12 @@ class FunctionCallTest extends AbstractUnitTestCase
         $this->setNewFactoryDefault();
 
         $volt = new Compiler();
+
         $volt->setDI($this->container);
 
-        $actual = $volt->compileString($source);
-
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $volt->compileString($source)
+        );
     }
 }

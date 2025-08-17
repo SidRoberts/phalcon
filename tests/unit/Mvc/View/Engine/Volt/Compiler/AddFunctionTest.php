@@ -19,6 +19,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 class AddFunctionTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: string, 1: string, 2: string, 3: string}>
+     */
     public static function getVoltAddFunction(): array
     {
         return [
@@ -38,6 +41,9 @@ class AddFunctionTest extends AbstractUnitTestCase
         ];
     }
 
+    /**
+     * @return array<array{0: string, 1: string, 2: string, 3: string}>
+     */
     public static function getVoltAddFunctionClosure(): array
     {
         return [
@@ -86,7 +92,7 @@ class AddFunctionTest extends AbstractUnitTestCase
 
         $volt->addFunction(
             $name,
-            function ($arguments) use ($funcName) {
+            function ($arguments) use ($funcName): string {
                 return $funcName . '(' . $arguments . ')';
             }
         );

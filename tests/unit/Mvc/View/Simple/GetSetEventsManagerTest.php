@@ -32,7 +32,9 @@ class GetSetEventsManagerTest extends AbstractUnitTestCase
 
         $view->setEventsManager($manager);
 
-        $actual = $view->getEventsManager();
-        $this->assertEquals($manager, $actual);
+        $this->assertEquals(
+            $manager,
+            $view->getEventsManager()
+        );
     }
 }

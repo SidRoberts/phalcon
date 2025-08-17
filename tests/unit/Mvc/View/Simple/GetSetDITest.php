@@ -33,8 +33,9 @@ class GetSetDITest extends AbstractUnitTestCase
 
         $view->setDI($container);
 
-        $class  = Di::class;
-        $actual = $view->getDI();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            Di::class,
+            $view->getDI()
+        );
     }
 }

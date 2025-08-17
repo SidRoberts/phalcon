@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Mvc\View\Engine\Volt;
 
+use Phalcon\Events\Manager;
 use Phalcon\Mvc\View\Engine\Volt;
+use Phalcon\Mvc\View\Simple;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Listener\ViewCompileListener;
 use Phalcon\Tests\Support\Traits\DiTrait;
@@ -53,7 +55,10 @@ class RenderTest extends AbstractUnitTestCase
         $this->setNewFactoryDefault();
         $this->setDiService('viewSimple');
 
+        /** @var Simple */
         $view = $this->getService('viewSimple');
+
+        /** @var Manager */
         $eventsManager = $this->newService('eventsManager');
 
         $listener = new ViewCompileListener();

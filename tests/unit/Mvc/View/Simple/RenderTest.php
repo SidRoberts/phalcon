@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Unit\Mvc\View\Simple;
 
 use Phalcon\Mvc\View\Engine\Volt;
 use Phalcon\Mvc\View\Exception;
+use Phalcon\Mvc\View\Simple;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Objects\ChildObject;
 use Phalcon\Tests\Support\Objects\ParentObject;
@@ -54,6 +55,7 @@ class RenderTest extends AbstractUnitTestCase
             supportDir('assets/views/currentrender/subobject.volt.php')
         );
 
+        /** @var Simple */
         $view = $this->container->get('viewSimple');
 
         $view->registerEngines(
@@ -67,9 +69,10 @@ class RenderTest extends AbstractUnitTestCase
 
         $view->setVar('parentObject', $parent);
 
-        $expected = 'Value';
-        $actual   = $view->render('currentrender/subobject');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'Value',
+            $view->render('currentrender/subobject')
+        );
 
         $this->safeDeleteFile(
             supportDir('assets/views/currentrender/subobject.volt.php')
@@ -82,11 +85,13 @@ class RenderTest extends AbstractUnitTestCase
      */
     public function testMvcViewSimpleRender(): void
     {
+        /** @var Simple */
         $view = $this->container->get('viewSimple');
 
-        $expected = 'here';
-        $actual   = $view->render('currentrender/other');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'here',
+            $view->render('currentrender/other')
+        );
     }
 
     /**
@@ -98,7 +103,9 @@ class RenderTest extends AbstractUnitTestCase
         $startLevel = ob_get_level();
 
         try {
+            /** @var Simple */
             $view = $this->container->get('viewSimple');
+
             $view->setParamToView('name', 'FooBar');
             $view->render('unknown/view');
         } catch (Exception $ex) {
@@ -112,7 +119,10 @@ class RenderTest extends AbstractUnitTestCase
                 "View '%sunknown/view' was not found in the views directory",
                 supportDir('assets/views/')
             );
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $expected,
+                $ex->getMessage()
+            );
         }
     }
 
@@ -148,15 +158,18 @@ class RenderTest extends AbstractUnitTestCase
      */
     public function testRenderStandard(): void
     {
+        /** @var Simple */
         $view = $this->container->get('viewSimple');
 
-        $expected = 'We are here';
-        $actual   = $view->render('simple/index');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'We are here',
+            $view->render('simple/index')
+        );
 
-        $expected = 'We are here';
-        $actual   = $view->getContent();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'We are here',
+            $view->getContent()
+        );
     }
 
     /**
@@ -165,6 +178,7 @@ class RenderTest extends AbstractUnitTestCase
      */
     public function testRenderWithPartials(): void
     {
+        /** @var Simple */
         $view = $this->container->get('viewSimple');
 
         $expectedParams = [

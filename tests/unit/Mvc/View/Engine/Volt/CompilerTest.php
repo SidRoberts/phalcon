@@ -9,6 +9,8 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 namespace Phalcon\Tests\Unit\Mvc\View\Engine\Volt;
 
 use DateTime;
@@ -20,12 +22,14 @@ use Phalcon\Html\Helper\Doctype;
 use Phalcon\Html\TagFactory;
 use Phalcon\Mvc\Url;
 use Phalcon\Mvc\View;
+use Phalcon\Mvc\View\Engine\EngineInterface;
 use Phalcon\Mvc\View\Engine\Volt;
 use Phalcon\Mvc\View\Engine\Volt\Compiler;
+use Phalcon\Mvc\View\ViewBaseInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 use stdClass;
 
-use function dataDir;
+use function supportDir;
 use function file_put_contents;
 
 /**
@@ -47,6 +51,7 @@ class CompilerTest extends AbstractUnitTestCase
         $this->clearFiles();
 
         Di::reset();
+
         $di   = new Di();
         $view = $this->setupServices($di);
 
@@ -64,9 +69,10 @@ class CompilerTest extends AbstractUnitTestCase
         $view->render('extends', 'index');
         $view->finish();
 
-        $expected = 'Hello Rock n roll!';
-        $actual   = $view->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Hello Rock n roll!',
+            $view->getContent()
+        );
 
         $view->setParamToView('some_eval', true);
 
@@ -76,9 +82,10 @@ class CompilerTest extends AbstractUnitTestCase
         $view->finish();
 
 
-        $expected = 'Clearly, the song is: Hello Rock n roll!.' . PHP_EOL;
-        $actual   = $view->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Clearly, the song is: Hello Rock n roll!.' . PHP_EOL,
+            $view->getContent()
+        );
 
         // Refreshing generated view
         file_put_contents(
@@ -93,18 +100,20 @@ class CompilerTest extends AbstractUnitTestCase
         $view->render('extends', 'other');
         $view->finish();
 
-        $expected = 'Le Song Le Song';
-        $actual   = $view->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Le Song Le Song',
+            $view->getContent()
+        );
 
         $view->start();
         $view->setRenderLevel(View::LEVEL_LAYOUT);
         $view->render('extends', 'other');
         $view->finish();
 
-        $expected = 'Clearly, the song is: Le Song Le Song.' . PHP_EOL;
-        $actual   = $view->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Clearly, the song is: Le Song Le Song.' . PHP_EOL,
+            $view->getContent()
+        );
 
         // Change the view
         file_put_contents(
@@ -117,9 +126,10 @@ class CompilerTest extends AbstractUnitTestCase
         $view->render('extends', 'other');
         $view->finish();
 
-        $expected = 'Clearly, the song is: Two songs: Le Song Le Song.' . PHP_EOL;
-        $actual   = $view->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Clearly, the song is: Two songs: Le Song Le Song.' . PHP_EOL,
+            $view->getContent()
+        );
 
         $this->clearFiles();
     }
@@ -130,7 +140,8 @@ class CompilerTest extends AbstractUnitTestCase
      */
     public function testMvcViewEngineVoltCompilerLoop(): void
     {
-        $volt     = new Compiler();
+        $volt = new Compiler();
+
         $compiled = $volt->compileString(
             '{% for i in 1..5 %}{{ loop.self.index }}{% endfor %}'
         );
@@ -153,12 +164,13 @@ class CompilerTest extends AbstractUnitTestCase
         $this->clearFiles();
 
         Di::reset();
+
         $di   = new Di();
         $view = $this->setupServices($di);
 
         $view->registerEngines(
             [
-                '.volt' => function ($view) use ($di) {
+                '.volt' => function (ViewBaseInterface $view) use ($di): EngineInterface {
                     $volt = new Volt($view, $di);
 
                     $compiler = $volt->getCompiler();
@@ -174,25 +186,28 @@ class CompilerTest extends AbstractUnitTestCase
         $view->render('macro', 'hello');
         $view->finish();
 
-        $expected = 'Hello World';
-        $actual   = $view->getContent();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'Hello World',
+            $view->getContent()
+        );
 
         $view->start();
         $view->render('macro', 'conditionaldate');
         $view->finish();
 
-        $expected = sprintf('from <br/>%s, %s UTC', date('Y-m-d'), date('H:i'));
-        $actual   = $view->getContent();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            sprintf('from <br/>%s, %s UTC', date('Y-m-d'), date('H:i')),
+            $view->getContent()
+        );
 
         $view->start();
         $view->render('macro', 'my_input');
         $view->finish();
 
-        $expected = '<p><input type="text" id="name" name="name" class="input-text" /></p>';
-        $actual   = $view->getContent();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '<p><input type="text" id="name" name="name" class="input-text" /></p>',
+            $view->getContent()
+        );
 
         $view->start();
         $view->render('macro', 'error_messages');
@@ -200,8 +215,11 @@ class CompilerTest extends AbstractUnitTestCase
 
         $expected = '<div><span class="error-type">Invalid</span><span class="error-field">name</span>'
             . '<span class="error-message">The name is invalid</span></div>';
-        $actual   = $view->getContent();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $view->getContent()
+        );
 
         $view->setVar(
             'links',
@@ -217,9 +235,10 @@ class CompilerTest extends AbstractUnitTestCase
         $view->render('macro', 'related_links');
         $view->finish();
 
-        $expected = '<ul><li><a href="/localhost" title="Menu title">Menu item</a></li></ul>';
-        $actual   = $view->getContent();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '<ul><li><a href="/localhost" title="Menu title">Menu item</a></li></ul>',
+            $view->getContent()
+        );
 
         $view->setVar('date', new DateTime());
         $view->start();
@@ -246,14 +265,17 @@ class CompilerTest extends AbstractUnitTestCase
         $this->clearFiles();
 
         Di::reset();
+
         $di   = new Di();
         $view = $this->setupServices($di);
 
-        $view->registerEngines([
-            '.volt' => function ($view) use ($di) {
-                return new Volt($view, $di);
-            },
-        ]);
+        $view->registerEngines(
+            [
+                '.volt' => function (ViewBaseInterface $view) use ($di): EngineInterface {
+                    return new Volt($view, $di);
+                },
+            ]
+        );
 
         $object      = new stdClass();
         $object->foo = 'bar';
@@ -261,6 +283,7 @@ class CompilerTest extends AbstractUnitTestCase
         $object->pi  = 3.14;
         $object->ary = ['some array'];
         $object->obj = clone $object;
+
         $view->setVar('object', $object);
         $view->start();
         $view->render('macro', 'list');
@@ -272,8 +295,8 @@ class CompilerTest extends AbstractUnitTestCase
         $actual = ob_get_clean();
 
         // Trim xdebug first line (file path)
-        $actual   = substr($actual, strpos($actual, 'class'));
-        $expected = substr($view->getContent(), strpos($view->getContent(), 'class'));
+        $actual   = strstr($actual, 'class');
+        $expected = strstr($view->getContent(), 'class');
 
         $this->assertEquals($expected, $actual);
 
@@ -300,8 +323,10 @@ class CompilerTest extends AbstractUnitTestCase
 </div>
 FORM;
 
-        $actual = $view->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $view->getContent()
+        );
 
         $this->clearFiles();
     }
@@ -367,7 +392,7 @@ FORM;
         $tagFactory = new TagFactory($escaper);
         $view       = new View();
 
-        $doctype    = $tagFactory->newInstance('doctype');
+        $doctype = $tagFactory->newInstance('doctype');
         $doctype(Doctype::XHTML5);
 
         $di->set("escaper", $escaper);
@@ -375,13 +400,16 @@ FORM;
 
         $di->set(
             "url",
-            function () {
+            function (): Url {
                 return (new Url())->setBaseUri('/');
             }
         );
+
         $view->setDI($di);
 
-        $view->setViewsDir(supportDir('assets/views/'));
+        $view->setViewsDir(
+            supportDir('assets/views/')
+        );
 
         return $view;
     }

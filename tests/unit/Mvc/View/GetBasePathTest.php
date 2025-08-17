@@ -37,8 +37,9 @@ class GetBasePathTest extends AbstractUnitTestCase
 
         $view->setDI($container);
 
-        $expected = "";
-        $actual   = $view->getBasePath();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            "",
+            $view->getBasePath()
+        );
     }
 }

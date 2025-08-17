@@ -38,6 +38,8 @@ class GetSetRenderLevelTest extends AbstractUnitTestCase
 
         $this->setNewFactoryDefault();
         $this->setDiService('view');
+
+        /** @var View */
         $view = $this->getService('view');
 
         $view->setViewsDir(supportDir('assets/views' . DIRECTORY_SEPARATOR));

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Mvc\View;
 
+use Phalcon\Mvc\View;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
 use Phalcon\Tests\Unit\Mvc\Fake\ViewTrait;
@@ -26,7 +27,10 @@ class RenderTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('view');
+
+        /** @var View */
         $view = $this->getService('view');
+
         $view->setViewsDir(
             [
                 supportDir('assets/views'),
@@ -45,9 +49,10 @@ class RenderTest extends AbstractUnitTestCase
         );
         $view->finish();
 
-        $expected = 'My name is Sam and I am 20 years old';
-        $actual   = $view->getContent();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'My name is Sam and I am 20 years old',
+            $view->getContent()
+        );
     }
 
     /**
@@ -59,6 +64,8 @@ class RenderTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('view');
+
+        /** @var View */
         $view = $this->getService('view');
 
         $view->start();
@@ -72,8 +79,9 @@ class RenderTest extends AbstractUnitTestCase
         );
         $view->finish();
 
-        $expected = 'My name is Sam and I am 20 years old';
-        $actual   = $view->getContent();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'My name is Sam and I am 20 years old',
+            $view->getContent()
+        );
     }
 }
