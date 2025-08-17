@@ -10,7 +10,7 @@ use Phalcon\Mvc\Controller;
  */
 class DispatcherTestDefaultSimpleController extends Controller
 {
-    public function indexAction()
+    public function indexAction(): void
     {
         $this->trace('indexAction');
     }
@@ -18,7 +18,7 @@ class DispatcherTestDefaultSimpleController extends Controller
     /**
      * Add tracing information into the current dispatch tracer
      */
-    protected function trace($text)
+    protected function trace($text): void
     {
         $this->getDI()->getShared('dispatcherListener')->trace($text);
     }

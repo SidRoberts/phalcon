@@ -23,8 +23,7 @@ abstract class BaseDispatcher extends AbstractUnitTestCase
     /**
      * Executed before each test.
      *
-     * Ensure the depenendency injector and corresponding services including
-     * the
+     * Ensure the depenendency injector and corresponding services including the
      * dispatcher, response, and dispatcher listener are reset prior to each
      * test.
      */

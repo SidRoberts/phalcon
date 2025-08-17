@@ -11,19 +11,19 @@ use Phalcon\Mvc\Controller;
  */
 class DispatcherTestBeforeExecuteRouteExceptionController extends Controller
 {
-    public function beforeExecuteRoute()
+    public function beforeExecuteRoute(): void
     {
         $this->trace('beforeExecuteRoute-method');
 
         throw new Exception('beforeExecuteRoute exception occurred');
     }
 
-    public function indexAction()
+    public function indexAction(): void
     {
         $this->trace('indexAction');
     }
 
-    public function initialize()
+    public function initialize(): void
     {
         $this->trace('initialize-method');
     }
@@ -31,7 +31,7 @@ class DispatcherTestBeforeExecuteRouteExceptionController extends Controller
     /**
      * Add tracing information into the current dispatch tracer
      */
-    protected function trace($text)
+    protected function trace($text): void
     {
         $this->getDI()->getShared('dispatcherListener')->trace($text);
     }

@@ -10,7 +10,7 @@ use Phalcon\Mvc\Controller;
  */
 class DispatcherTestBeforeExecuteRouteForwardController extends Controller
 {
-    public function beforeExecuteRoute()
+    public function beforeExecuteRoute(): void
     {
         $this->trace('beforeExecuteRoute-method');
 
@@ -26,12 +26,12 @@ class DispatcherTestBeforeExecuteRouteForwardController extends Controller
         );
     }
 
-    public function indexAction()
+    public function indexAction(): void
     {
         $this->trace('indexAction');
     }
 
-    public function initialize()
+    public function initialize(): void
     {
         $this->trace('initialize-method');
     }
@@ -39,7 +39,7 @@ class DispatcherTestBeforeExecuteRouteForwardController extends Controller
     /**
      * Add tracing information into the current dispatch tracer
      */
-    protected function trace($text)
+    protected function trace($text): void
     {
         $this->getDI()->getShared('dispatcherListener')->trace($text);
     }

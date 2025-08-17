@@ -26,6 +26,7 @@ class GetControllerNameTest extends BaseDispatcher
     public function testMvcDispatcherGetControllerName(): void
     {
         $dispatcher = $this->getDispatcher();
+
         $this->assertSame('dispatcher-test-default', $dispatcher->getControllerName());
     }
 }

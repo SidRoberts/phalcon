@@ -10,24 +10,24 @@ use Phalcon\Mvc\Controller;
  */
 class DispatcherTestDefaultTwoController extends Controller
 {
-    public function afterExecuteRoute()
+    public function afterExecuteRoute(): void
     {
         $this->trace('afterExecuteRoute-method');
     }
 
-    public function beforeExecuteRoute()
+    public function beforeExecuteRoute(): void
     {
         $this->trace('beforeExecuteRoute-method');
     }
 
-    public function exceptionAction()
+    public function exceptionAction(): void
     {
         $this->trace('exceptionAction');
 
         throw new Exception('An exception occurred.');
     }
 
-    public function forwardExternalAction()
+    public function forwardExternalAction(): void
     {
         $this->trace('forwardExternalAction');
 
@@ -43,7 +43,7 @@ class DispatcherTestDefaultTwoController extends Controller
         );
     }
 
-    public function forwardLocalAction()
+    public function forwardLocalAction(): void
     {
         $this->trace('forwardLocalAction');
 
@@ -58,17 +58,17 @@ class DispatcherTestDefaultTwoController extends Controller
         );
     }
 
-    public function index2Action()
+    public function index2Action(): void
     {
         $this->trace('index2Action');
     }
 
-    public function indexAction()
+    public function indexAction(): void
     {
         $this->trace('indexAction');
     }
 
-    public function initialize()
+    public function initialize(): void
     {
         $this->trace('initialize-method');
     }
@@ -76,7 +76,7 @@ class DispatcherTestDefaultTwoController extends Controller
     /**
      * Add tracing information into the current dispatch tracer
      */
-    protected function trace($text)
+    protected function trace($text): void
     {
         $this->getDI()->getShared('dispatcherListener')->trace($text);
     }

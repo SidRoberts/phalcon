@@ -26,11 +26,16 @@ class ForwardTest extends BaseDispatcher
     public function testMvcDispatcherForward(): void
     {
         $dispatcher = $this->getDispatcher();
+
         $dispatcher->dispatch();
-        $dispatcher->forward([
-            'controller' => 'dispatcher-test-default-two',
-            'action'     => 'index',
-        ]);
+
+        $dispatcher->forward(
+            [
+                'controller' => 'dispatcher-test-default-two',
+                'action'     => 'index',
+            ]
+        );
+
         $this->assertSame('dispatcher-test-default-two', $dispatcher->getControllerName());
         $this->assertSame('index', $dispatcher->getActionName());
     }

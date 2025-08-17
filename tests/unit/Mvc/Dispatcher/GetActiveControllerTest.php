@@ -27,8 +27,13 @@ class GetActiveControllerTest extends BaseDispatcher
     public function testMvcDispatcherGetActiveController(): void
     {
         $dispatcher = $this->getDispatcher();
-        $this->assertNull($dispatcher->getActiveController());
+
+        $this->assertNull(
+            $dispatcher->getActiveController()
+        );
+
         $dispatcher->dispatch();
+
         $this->assertInstanceOf(
             DispatcherTestDefaultController::class,
             $dispatcher->getActiveController()

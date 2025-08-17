@@ -13,73 +13,76 @@ use Phalcon\Events\Event;
 class DispatcherListener
 {
     /**
-     * @var array
+     * @var list<string>
      */
-    protected $trace = [];
+    protected array $trace = [];
 
-    public function afterDispatch(Event $event, DispatcherInterface $dispatcher)
+    public function afterDispatch(Event $event, DispatcherInterface $dispatcher): void
     {
         $this->trace('afterDispatch');
     }
 
-    public function afterDispatchLoop(Event $event, DispatcherInterface $dispatcher)
+    public function afterDispatchLoop(Event $event, DispatcherInterface $dispatcher): void
     {
         $this->trace('afterDispatchLoop');
     }
 
-    public function afterExecuteRoute(Event $event, DispatcherInterface $dispatcher)
+    public function afterExecuteRoute(Event $event, DispatcherInterface $dispatcher): void
     {
         $this->trace('afterExecuteRoute');
     }
 
-    public function afterInitialize(Event $event, DispatcherInterface $dispatcher)
+    public function afterInitialize(Event $event, DispatcherInterface $dispatcher): void
     {
         $this->trace('afterInitialize');
     }
 
-    public function beforeDispatch(Event $event, DispatcherInterface $dispatcher)
+    public function beforeDispatch(Event $event, DispatcherInterface $dispatcher): void
     {
         $this->trace('beforeDispatch');
     }
 
-    public function beforeDispatchLoop(Event $event, DispatcherInterface $dispatcher)
+    public function beforeDispatchLoop(Event $event, DispatcherInterface $dispatcher): void
     {
         $this->trace('beforeDispatchLoop');
     }
 
-    public function beforeException(Event $event, DispatcherInterface $dispatcher, Exception $exception)
+    public function beforeException(Event $event, DispatcherInterface $dispatcher, Exception $exception): void
     {
         $this->trace(
             'beforeException: ' . $exception->getMessage()
         );
     }
 
-    public function beforeExecuteRoute(Event $event, DispatcherInterface $dispatcher)
+    public function beforeExecuteRoute(Event $event, DispatcherInterface $dispatcher): void
     {
         $this->trace('beforeExecuteRoute');
     }
 
-    public function beforeNotFoundAction(Event $event, DispatcherInterface $dispatcher)
+    public function beforeNotFoundAction(Event $event, DispatcherInterface $dispatcher): void
     {
         $this->trace('beforeNotFoundAction');
     }
 
-    public function clearTrace()
+    public function clearTrace(): void
     {
         $this->trace = [];
     }
 
-    public function compare(array $eventTraces)
+    public function compare(array $eventTraces): bool
     {
         return $this->trace === $eventTraces;
     }
 
-    public function getTrace()
+    /**
+     * @return list<string>
+     */
+    public function getTrace(): array
     {
         return $this->trace;
     }
 
-    public function trace($text)
+    public function trace($text): void
     {
         $this->trace[] = $text;
     }

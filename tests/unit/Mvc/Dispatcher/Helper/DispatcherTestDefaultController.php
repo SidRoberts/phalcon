@@ -14,24 +14,24 @@ class DispatcherTestDefaultController extends Controller
     public const RETURN_VALUE_INT    = 5;
     public const RETURN_VALUE_STRING = 'string';
 
-    public function afterExecuteRoute()
+    public function afterExecuteRoute(): void
     {
         $this->trace('afterExecuteRoute-method');
     }
 
-    public function beforeExecuteRoute()
+    public function beforeExecuteRoute(): void
     {
         $this->trace('beforeExecuteRoute-method');
     }
 
-    public function exceptionAction()
+    public function exceptionAction(): void
     {
         $this->trace('exceptionAction');
 
         throw new Exception('An exception occurred.');
     }
 
-    public function forwardExternalAction()
+    public function forwardExternalAction(): void
     {
         $this->trace('forwardExternalAction');
 
@@ -47,7 +47,7 @@ class DispatcherTestDefaultController extends Controller
         );
     }
 
-    public function forwardLocalAction()
+    public function forwardLocalAction(): void
     {
         $this->trace('forwardLocalAction');
 
@@ -62,36 +62,36 @@ class DispatcherTestDefaultController extends Controller
         );
     }
 
-    public function index2Action()
+    public function index2Action(): void
     {
         $this->trace('index2Action');
     }
 
-    public function indexAction()
+    public function indexAction(): void
     {
         $this->trace('indexAction');
     }
 
-    public function initialize()
+    public function initialize(): void
     {
         $this->trace('initialize-method');
     }
 
-    public function multiplyAction($a, $b)
+    public function multiplyAction($a, $b): int
     {
         $this->trace('multiplyAction');
 
         return (int)$a * (int)$b;
     }
 
-    public function returnIntAction()
+    public function returnIntAction(): int
     {
         $this->trace('returnIntAction');
 
         return self::RETURN_VALUE_INT;
     }
 
-    public function returnStringAction()
+    public function returnStringAction(): string
     {
         $this->trace('returnStringAction');
 
@@ -101,7 +101,7 @@ class DispatcherTestDefaultController extends Controller
     /**
      * Add tracing information into the current dispatch tracer
      */
-    protected function trace($text)
+    protected function trace($text): void
     {
         $this->getDI()->getShared('dispatcherListener')->trace($text);
     }

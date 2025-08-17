@@ -26,7 +26,9 @@ class GetActiveMethodTest extends BaseDispatcher
     public function testMvcDispatcherGetActiveMethod(): void
     {
         $dispatcher = $this->getDispatcher();
+
         $dispatcher->dispatch();
+
         $this->assertSame('indexAction', $dispatcher->getActiveMethod());
     }
 }

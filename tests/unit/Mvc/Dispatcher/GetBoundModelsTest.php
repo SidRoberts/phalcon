@@ -26,6 +26,7 @@ class GetBoundModelsTest extends BaseDispatcher
     public function testMvcDispatcherGetBoundModels(): void
     {
         $dispatcher = $this->getDispatcher();
+
         $this->assertSame([], $dispatcher->getBoundModels());
     }
 }

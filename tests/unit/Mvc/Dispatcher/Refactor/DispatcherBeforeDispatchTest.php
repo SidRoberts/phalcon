@@ -32,7 +32,7 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
 
         $dispatcher->getEventsManager()->attach(
             'dispatch:beforeDispatch',
-            function ($event, $dispatcher) use (&$forwarded) {
+            function ($event, $dispatcher) use (&$forwarded): void {
                 if ($forwarded === false) {
                     $dispatcher->forward(
                         [
@@ -61,8 +61,11 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
             'afterDispatch',
             'afterDispatchLoop',
         ];
-        $actual   = $this->getDispatcherListener()->getTrace();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $this->getDispatcherListener()->getTrace()
+        );
     }
 
     /**
@@ -76,12 +79,13 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
 
         $dispatcher->getEventsManager()->attach(
             'dispatch:beforeDispatch',
-            function () use ($dispatcherListener) {
+            function () use ($dispatcherListener): bool {
                 $dispatcherListener->trace('beforeDispatch: custom return false');
 
                 return false;
             }
         );
+
         $dispatcher->dispatch();
 
         $expected = [
@@ -90,8 +94,11 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
             'beforeDispatch: custom return false',
             'afterDispatchLoop',
         ];
-        $actual   = $this->getDispatcherListener()->getTrace();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $this->getDispatcherListener()->getTrace()
+        );
     }
 
     /**
@@ -105,7 +112,7 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
 
         $dispatcher->getEventsManager()->attach(
             'dispatch:beforeDispatch',
-            function () {
+            function (): void {
                 throw new Exception('beforeDispatch exception occurred');
             }
         );
@@ -131,8 +138,11 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
             'beforeException: beforeDispatch exception occurred',
             'beforeException: custom before exception bubble',
         ];
-        $actual   = $this->getDispatcherListener()->getTrace();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $this->getDispatcherListener()->getTrace()
+        );
     }
 
     /**
@@ -147,7 +157,7 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
 
         $dispatcher->getEventsManager()->attach(
             'dispatch:beforeDispatch',
-            function () use (&$forwarded) {
+            function () use (&$forwarded): void {
                 if ($forwarded === false) {
                     $forwarded = true;
 
@@ -158,7 +168,7 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
 
         $dispatcher->getEventsManager()->attach(
             'dispatch:beforeException',
-            function ($event, $dispatcher) use ($dispatcherListener) {
+            function ($event, $dispatcher) use ($dispatcherListener): void {
                 $dispatcherListener->trace(
                     'beforeException: custom before exception forward'
                 );
@@ -189,8 +199,11 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
             'afterDispatch',
             'afterDispatchLoop',
         ];
-        $actual   = $this->getDispatcherListener()->getTrace();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $this->getDispatcherListener()->getTrace()
+        );
     }
 
     /**
@@ -203,14 +216,14 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
 
         $dispatcher->getEventsManager()->attach(
             'dispatch:beforeDispatch',
-            function () {
+            function (): void {
                 throw new Exception('beforeDispatch exception occurred');
             }
         );
 
         $dispatcher->getEventsManager()->attach(
             'dispatch:beforeException',
-            function () {
+            function (): bool {
                 return false;
             }
         );
@@ -223,7 +236,10 @@ class DispatcherBeforeDispatchTest extends BaseDispatcher
             'beforeException: beforeDispatch exception occurred',
             'afterDispatchLoop',
         ];
-        $actual   = $this->getDispatcherListener()->getTrace();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $this->getDispatcherListener()->getTrace()
+        );
     }
 }

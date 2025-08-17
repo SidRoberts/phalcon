@@ -26,6 +26,7 @@ class GetActionSuffixTest extends BaseDispatcher
     public function testMvcDispatcherGetActionSuffix(): void
     {
         $dispatcher = $this->getDispatcher();
+
         $this->assertSame('Action', $dispatcher->getActionSuffix());
     }
 }

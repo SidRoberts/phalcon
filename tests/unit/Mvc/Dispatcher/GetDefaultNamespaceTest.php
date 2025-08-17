@@ -26,6 +26,7 @@ class GetDefaultNamespaceTest extends BaseDispatcher
     public function testMvcDispatcherGetDefaultNamespace(): void
     {
         $dispatcher = $this->getDispatcher();
+
         $this->assertSame('', $dispatcher->getDefaultNamespace());
     }
 }
