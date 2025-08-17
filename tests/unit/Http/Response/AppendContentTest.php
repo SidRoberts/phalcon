@@ -28,8 +28,9 @@ final class AppendContentTest extends AbstractHttpBase
         $response->setContent('<h1>Hello');
         $response->appendContent('</h1>');
 
-        $expected = '<h1>Hello</h1>';
-        $actual   = $response->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '<h1>Hello</h1>',
+            $response->getContent()
+        );
     }
 }

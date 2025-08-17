@@ -31,8 +31,9 @@ final class GetReasonPhraseTest extends AbstractUnitTestCase
 
         $response = new Response($content, $code, $phrase);
 
-        $expected = $phrase;
-        $actual   = $response->getReasonPhrase();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $phrase,
+            $response->getReasonPhrase()
+        );
     }
 }

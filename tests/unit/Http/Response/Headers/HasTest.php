@@ -35,13 +35,16 @@ final class HasTest extends AbstractUnitTestCase
             Http::CONTENT_ENCODING_GZIP
         );
 
-        $actual = $headers->has(Http::CONTENT_TYPE);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $headers->has(Http::CONTENT_TYPE)
+        );
 
-        $actual = $headers->has(Http::CONTENT_ENCODING);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $headers->has(Http::CONTENT_ENCODING)
+        );
 
-        $actual = $headers->has(Http::SERVER);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $headers->has(Http::SERVER)
+        );
     }
 }

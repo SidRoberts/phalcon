@@ -48,10 +48,12 @@ final class HasTest extends AbstractHttpBase
         $cookies->setDI($this->container);
         $cookies->set($name, $value);
 
-        $actual = $cookies->has($name);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $cookies->has($name)
+        );
 
-        $actual = $cookies->has($unknown);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $cookies->has($unknown)
+        );
     }
 }

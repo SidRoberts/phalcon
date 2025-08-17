@@ -49,8 +49,7 @@ final class ResetTest extends AbstractHttpBase
 
         $keys = $cookies->getCookies();
 
-        $actual = array_key_exists($name, $keys);
-        $this->assertTrue($actual);
+        $this->assertArrayHasKey($name, $keys);
 
         $cookies->reset();
 

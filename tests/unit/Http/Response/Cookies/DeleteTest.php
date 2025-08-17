@@ -27,8 +27,6 @@ final class DeleteTest extends AbstractHttpBase
      * Executed before each test
      *
      * @return void
-     *
-     * @return void
      */
     public function setUp(): void
     {
@@ -52,14 +50,16 @@ final class DeleteTest extends AbstractHttpBase
         $cookies->setDI($this->container);
         $cookies->set($name, $value);
 
-        $expected = $value;
-        $actual   = (string)$cookies->get($name);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            (string)$cookies->get($name)
+        );
 
         $cookies->delete($name);
 
-        $expected = '';
-        $actual   = (string)$cookies->get($name);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            (string)$cookies->get($name)
+        );
     }
 }

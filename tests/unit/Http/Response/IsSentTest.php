@@ -34,12 +34,11 @@ final class IsSentTest extends AbstractUnitTestCase
         $response->send();
         $result = ob_get_clean();
 
-        $expected = $content;
-        $actual   = $result;
-        $this->assertSame($expected, $actual);
+        $this->assertSame($content, $result);
 
-        $actual = $response->isSent();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $response->isSent()
+        );
     }
 
     /**
@@ -56,6 +55,7 @@ final class IsSentTest extends AbstractUnitTestCase
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Response was already sent');
+
         $response->send();
     }
 }

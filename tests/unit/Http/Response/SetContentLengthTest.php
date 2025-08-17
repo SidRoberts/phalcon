@@ -30,8 +30,9 @@ final class SetContentLengthTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $expected = 100;
-        $actual   = (int)$headers->get(Http::CONTENT_LENGTH);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            100,
+            (int)$headers->get(Http::CONTENT_LENGTH)
+        );
     }
 }

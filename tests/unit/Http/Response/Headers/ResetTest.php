@@ -37,10 +37,12 @@ final class ResetTest extends AbstractUnitTestCase
 
         $headers->reset();
 
-        $actual = $headers->get(Http::CONTENT_TYPE);
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $headers->get(Http::CONTENT_TYPE)
+        );
 
-        $actual = $headers->get(Http::CONTENT_ENCODING);
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $headers->get(Http::CONTENT_ENCODING)
+        );
     }
 }

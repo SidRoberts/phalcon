@@ -37,8 +37,9 @@ final class GetSetCookiesTest extends AbstractHttpBase
         $response = new Response();
         $response->setCookies($cookies);
 
-        $expected = $cookies;
-        $actual   = $response->getCookies();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $cookies,
+            $response->getCookies()
+        );
     }
 }

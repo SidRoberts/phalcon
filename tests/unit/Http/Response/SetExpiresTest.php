@@ -37,8 +37,9 @@ final class SetExpiresTest extends AbstractUnitTestCase
 
         $headers = $response->getHeaders();
 
-        $expected = $expiry->format(Http::DATETIME_FORMAT) . ' GMT';
-        $actual   = $headers->get(Http::EXPIRES);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expiry->format(Http::DATETIME_FORMAT) . ' GMT',
+            $headers->get(Http::EXPIRES)
+        );
     }
 }

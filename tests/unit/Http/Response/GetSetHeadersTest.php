@@ -33,13 +33,15 @@ final class GetSetHeadersTest extends AbstractUnitTestCase
         $response = new Response();
         $response->setHeaders($headers);
 
-        $expected = $headers;
-        $actual   = $response->getHeaders();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $headers,
+            $response->getHeaders()
+        );
 
-        $expected = $headers->toArray();
-        $actual   = $response->getHeaders()->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $headers->toArray(),
+            $response->getHeaders()->toArray()
+        );
     }
 
     /**
@@ -54,9 +56,10 @@ final class GetSetHeadersTest extends AbstractUnitTestCase
         $headers->set('Cache-Control', 'no-cache');
         $response->setHeaders($headers);
 
-        $expected = $headers;
-        $actual   = $response->getHeaders();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $headers,
+            $response->getHeaders()
+        );
     }
 
     /**
@@ -79,8 +82,9 @@ final class GetSetHeadersTest extends AbstractUnitTestCase
         $headers->set('Content-Length', '1234');
         $headers->set('Cache-Control', 'no-cache');
 
-        $expected = $headers;
-        $actual   = $response->getHeaders();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $headers,
+            $response->getHeaders()
+        );
     }
 }

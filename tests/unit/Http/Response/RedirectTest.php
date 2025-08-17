@@ -31,16 +31,19 @@ final class RedirectTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $expected = Http::MESSAGE_302_FOUND;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_302_FOUND,
+            $headers->get(Http::STATUS)
+        );
 
-        $expected = '/' . Http::REDIRECT_URI;
-        $actual   = $headers->get(Http::LOCATION);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '/' . Http::REDIRECT_URI,
+            $headers->get(Http::LOCATION)
+        );
 
-        $actual = $headers->get(Http::HTTP_302_FOUND);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $headers->get(Http::HTTP_302_FOUND)
+        );
     }
 
     /**
@@ -57,16 +60,19 @@ final class RedirectTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $expected = Http::MESSAGE_302_FOUND;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_302_FOUND,
+            $headers->get(Http::STATUS)
+        );
 
-        $expected = '/' . Http::REDIRECT_URI;
-        $actual   = $headers->get(Http::LOCATION);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '/' . Http::REDIRECT_URI,
+            $headers->get(Http::LOCATION)
+        );
 
-        $actual = $headers->get(Http::HTTP_302_FOUND);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $headers->get(Http::HTTP_302_FOUND)
+        );
     }
 
     /**
@@ -87,16 +93,19 @@ final class RedirectTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $expected = Http::MESSAGE_301_MOVED_PERMANENTLY;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_301_MOVED_PERMANENTLY,
+            $headers->get(Http::STATUS)
+        );
 
-        $expected = Http::TEST_URI;
-        $actual   = $headers->get(Http::LOCATION);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::TEST_URI,
+            $headers->get(Http::LOCATION)
+        );
 
-        $actual = $headers->get(Http::HTTP_302_FOUND);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $headers->get(Http::HTTP_302_FOUND)
+        );
     }
 
     /**
@@ -112,15 +121,18 @@ final class RedirectTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $expected = Http::MESSAGE_302_FOUND;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_302_FOUND,
+            $headers->get(Http::STATUS)
+        );
 
-        $expected = Http::TEST_URI;
-        $actual   = $headers->get(Http::LOCATION);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::TEST_URI,
+            $headers->get(Http::LOCATION)
+        );
 
-        $actual = $headers->get(Http::HTTP_302_FOUND);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $headers->get(Http::HTTP_302_FOUND)
+        );
     }
 }

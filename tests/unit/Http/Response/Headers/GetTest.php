@@ -26,24 +26,25 @@ final class GetTest extends AbstractUnitTestCase
     public function testHttpResponseHeadersGet(): void
     {
         $headers = new Headers();
+
         $headers->set(
             Http::CONTENT_TYPE,
             Http::CONTENT_TYPE_HTML
         );
 
-        $expected = Http::CONTENT_TYPE_HTML;
-        $actual   = $headers->get(Http::CONTENT_TYPE);
-
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_HTML,
+            $headers->get(Http::CONTENT_TYPE)
+        );
 
         $headers->set(
             Http::CONTENT_TYPE,
             Http::CONTENT_TYPE_PLAIN
         );
 
-        $expected = Http::CONTENT_TYPE_PLAIN;
-        $actual   = $headers->get(Http::CONTENT_TYPE);
-
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_PLAIN,
+            $headers->get(Http::CONTENT_TYPE)
+        );
     }
 }

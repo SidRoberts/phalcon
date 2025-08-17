@@ -49,15 +49,12 @@ final class GetCookiesTest extends AbstractHttpBase
 
         $keys = $cookies->getCookies();
 
-        $actual = array_key_exists($name, $keys);
-        $this->assertTrue($actual);
+        $this->assertArrayHasKey($name, $keys);
 
-        $expected = $value;
-        $actual   = (string)$keys[$name];
-        $this->assertSame($expected, $actual);
+        $actual = (string)$keys[$name];
 
-        $expected = 1;
-        $actual   = count($keys);
-        $this->assertSame($expected, $actual);
+        $this->assertSame($value, $actual);
+
+        $this->assertCount(1, $keys);
     }
 }

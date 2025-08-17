@@ -23,7 +23,7 @@ use function uniqid;
 final class HeadersTest extends AbstractHttpBase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function statusHeaderProvider(): array
     {
@@ -80,9 +80,8 @@ final class HeadersTest extends AbstractHttpBase
         $response->setEventsManager($eventsManager);
         $response->sendHeaders();
 
-        $expected = 'some content';
-        $actual   = ob_get_clean();
-        $this->assertSame($expected, $actual);
+        $actual = ob_get_clean();
+        $this->assertSame('some content', $actual);
     }
 
     /**
@@ -105,8 +104,9 @@ final class HeadersTest extends AbstractHttpBase
         $response = $this->getResponseObject();
         $response->setEventsManager($eventsManager);
 
-        $actual = $response->sendHeaders();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $response->sendHeaders()
+        );
     }
 
     /**
@@ -118,7 +118,7 @@ final class HeadersTest extends AbstractHttpBase
     #[DataProvider('statusHeaderProvider')]
     public function testHttpResponseHeadersGetResponseStatusHeader(
         string $code
-    ) {
+    ): void {
         $headers = new Headers();
 
         $this->setProtectedProperty(
@@ -129,9 +129,10 @@ final class HeadersTest extends AbstractHttpBase
             ]
         );
 
-        $expected = $code;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $code,
+            $headers->get(Http::STATUS)
+        );
     }
 
     /**
@@ -147,9 +148,10 @@ final class HeadersTest extends AbstractHttpBase
             Http::CONTENT_TYPE_HTML
         );
 
-        $expected = Http::CONTENT_TYPE_HTML;
-        $actual   = $headers->get(Http::CONTENT_TYPE);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_HTML,
+            $headers->get(Http::CONTENT_TYPE)
+        );
     }
 
     /**
@@ -165,12 +167,15 @@ final class HeadersTest extends AbstractHttpBase
             Http::CONTENT_TYPE_HTML
         );
 
-        $actual = $headers->has(Http::CONTENT_TYPE);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $headers->has(Http::CONTENT_TYPE)
+        );
 
         $header = uniqid('header-');
-        $actual = $headers->has($header);
-        $this->assertFalse($actual);
+
+        $this->assertFalse(
+            $headers->has($header)
+        );
     }
 
     /**
@@ -181,11 +186,9 @@ final class HeadersTest extends AbstractHttpBase
     {
         $headers = new Headers();
 
-        $class = Headers::class;
-        $this->assertInstanceOf($class, $headers);
+        $this->assertInstanceOf(Headers::class, $headers);
 
-        $class = HeadersInterface::class;
-        $this->assertInstanceOf($class, $headers);
+        $this->assertInstanceOf(HeadersInterface::class, $headers);
     }
 
     /**
@@ -198,8 +201,9 @@ final class HeadersTest extends AbstractHttpBase
 
         $headers->setRaw(Http::CONTENT_TYPE_HTML_RAW);
 
-        $actual = $headers->get(Http::CONTENT_TYPE);
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $headers->get(Http::CONTENT_TYPE)
+        );
     }
 
     /**
@@ -217,8 +221,9 @@ final class HeadersTest extends AbstractHttpBase
 
         $headers->remove(Http::CONTENT_TYPE);
 
-        $actual = $headers->get(Http::CONTENT_TYPE);
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $headers->get(Http::CONTENT_TYPE)
+        );
     }
 
     /**
@@ -236,8 +241,9 @@ final class HeadersTest extends AbstractHttpBase
 
         $headers->reset();
 
-        $actual = $headers->get(Http::CONTENT_TYPE);
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $headers->get(Http::CONTENT_TYPE)
+        );
     }
 
     /**
@@ -249,21 +255,23 @@ final class HeadersTest extends AbstractHttpBase
     #[DataProvider('statusHeaderProvider')]
     public function testHttpResponseHeadersSetResponseStatusHeader(
         string $code
-    ) {
+    ): void {
         $headers = new Headers();
 
         $headers->set(Http::STATUS, $code);
+
         $headers = $this->getProtectedProperty($headers, 'headers');
 
-        $expected = 1;
-        $this->assertCount($expected, $headers);
+        $this->assertCount(1, $headers);
 
-        $actual = isset($headers[Http::STATUS]);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($headers[Http::STATUS])
+        );
 
-        $expected = (string)$code;
-        $actual   = $headers[Http::STATUS];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            (string) $code,
+            $headers[Http::STATUS]
+        );
     }
 
     /**
@@ -279,11 +287,11 @@ final class HeadersTest extends AbstractHttpBase
             Http::CONTENT_TYPE_HTML
         );
 
-        $expected = [
-            Http::CONTENT_TYPE => Http::CONTENT_TYPE_HTML,
-        ];
-
-        $actual = $headers->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [
+                Http::CONTENT_TYPE => Http::CONTENT_TYPE_HTML,
+            ],
+            $headers->toArray()
+        );
     }
 }

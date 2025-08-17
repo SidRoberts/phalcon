@@ -31,13 +31,15 @@ final class GetSetDITest extends AbstractUnitTestCase
 
         $response->setDI($container);
 
-        $expected = $container;
-        $actual   = $response->getDI();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $container,
+            $response->getDI()
+        );
 
-        $class  = Di::class;
-        $actual = $response->getDI();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            Di::class,
+            $response->getDI()
+        );
     }
 
     /**
@@ -47,12 +49,15 @@ final class GetSetDITest extends AbstractUnitTestCase
     public function testHttpResponseGetDIFromDefault(): void
     {
         $container = new Di();
+
         Di::setDefault($container);
 
         $response = new Response();
 
-        $actual = $response->getDI();
-        $this->assertSame($container, $actual);
+        $this->assertSame(
+            $container,
+            $response->getDI()
+        );
 
         Di::reset();
     }
@@ -69,6 +74,7 @@ final class GetSetDITest extends AbstractUnitTestCase
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage("A dependency injection container is required");
+
         $response->getDI();
     }
 

@@ -31,16 +31,15 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $response = new Response();
 
-        $class = Response::class;
-        $this->assertInstanceOf($class, $response);
-        $class = ResponseInterface::class;
-        $this->assertInstanceOf($class, $response);
-        $class = InjectionAwareInterface::class;
-        $this->assertInstanceOf($class, $response);
-        $class = EventsAwareInterface::class;
-        $this->assertInstanceOf($class, $response);
-        $class = ResponseStatusCodeInterface::class;
-        $this->assertInstanceOf($class, $response);
+        $this->assertInstanceOf(Response::class, $response);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+
+        $this->assertInstanceOf(InjectionAwareInterface::class, $response);
+
+        $this->assertInstanceOf(EventsAwareInterface::class, $response);
+
+        $this->assertInstanceOf(ResponseStatusCodeInterface::class, $response);
     }
 
     /**
@@ -52,9 +51,10 @@ final class ConstructTest extends AbstractUnitTestCase
         $content  = Http::TEST_CONTENT;
         $response = new Response($content);
 
-        $expected = $content;
-        $actual   = $response->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $content,
+            $response->getContent()
+        );
     }
 
     /**
@@ -68,18 +68,21 @@ final class ConstructTest extends AbstractUnitTestCase
 
         $response = new Response($content, $code);
 
-        $expected = $content;
-        $actual   = $response->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $content,
+            $response->getContent()
+        );
 
-        $expected = $code;
-        $actual   = $response->getStatusCode();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $code,
+            $response->getStatusCode()
+        );
 
         // Check Status message
-        $expected = Http::MESSAGE_200_OK;
-        $actual   = $response->getHeaders()->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_200_OK,
+            $response->getHeaders()->get(Http::STATUS)
+        );
     }
 
     /**
@@ -93,17 +96,20 @@ final class ConstructTest extends AbstractUnitTestCase
 
         $response = new Response($content, $code, 'Success');
 
-        $expected = $content;
-        $actual   = $response->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $content,
+            $response->getContent()
+        );
 
-        $expected = $code;
-        $actual   = $response->getStatusCode();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $code,
+            $response->getStatusCode()
+        );
 
         // Check Status message
-        $expected = Http::MESSAGE_200_SUCCESS;
-        $actual   = $response->getHeaders()->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_200_SUCCESS,
+            $response->getHeaders()->get(Http::STATUS)
+        );
     }
 }

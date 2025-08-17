@@ -41,12 +41,14 @@ final class UseEncryptionIsUsingEncryptionTest extends AbstractHttpBase
         $cookies = new Cookies(false);
         $cookies->setDI($this->container);
 
-        $actual = $cookies->isUsingEncryption();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $cookies->isUsingEncryption()
+        );
 
         $cookies->useEncryption(true);
 
-        $actual = $cookies->isUsingEncryption();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $cookies->isUsingEncryption()
+        );
     }
 }

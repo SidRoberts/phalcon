@@ -32,11 +32,14 @@ final class HasHeaderTest extends AbstractHttpBase
 
         $response->setHeader(Http::CONTENT_TYPE, Http::CONTENT_TYPE_HTML);
 
-        $actual = $response->hasHeader(Http::CONTENT_TYPE);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $response->hasHeader(Http::CONTENT_TYPE)
+        );
 
-        $name   = uniqid('head-');
-        $actual = $response->hasHeader($name);
-        $this->assertFalse($actual);
+        $name = uniqid('head-');
+
+        $this->assertFalse(
+            $response->hasHeader($name)
+        );
     }
 }

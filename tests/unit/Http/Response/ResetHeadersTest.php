@@ -32,13 +32,16 @@ final class ResetHeadersTest extends AbstractUnitTestCase
         $headers->set(Http::CACHE_CONTROL, Http::NO_CACHE);
         $response->setHeaders($headers);
 
-        $expected = $headers;
-        $actual   = $response->getHeaders();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $headers,
+            $response->getHeaders()
+        );
 
         $response->resetHeaders();
-        $actual = $response->getHeaders();
-        $actual = $actual->toArray();
-        $this->assertCount(0, $actual);
+
+        $this->assertCount(
+            0,
+            $response->getHeaders()->toArray()
+        );
     }
 }

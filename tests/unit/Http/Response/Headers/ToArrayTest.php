@@ -39,8 +39,10 @@ final class ToArrayTest extends AbstractUnitTestCase
             Http::CONTENT_TYPE     => Http::CONTENT_TYPE_HTML_CHARSET,
             Http::CONTENT_ENCODING => Http::CONTENT_ENCODING_GZIP,
         ];
-        $actual   = $headers->toArray();
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $headers->toArray()
+        );
     }
 }

@@ -29,14 +29,16 @@ final class GetSetContentTest extends AbstractUnitTestCase
 
         $response = new Response();
 
-        $expected = '';
-        $actual   = $response->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $response->getContent()
+        );
 
         $response->setContent($content);
 
-        $expected = $content;
-        $actual   = $response->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $content,
+            $response->getContent()
+        );
     }
 }

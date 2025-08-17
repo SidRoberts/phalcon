@@ -30,11 +30,13 @@ final class SetFileToSendTest extends AbstractHttpBase
         ob_start();
         $response->send();
 
-        $expected = file_get_contents($filename);
-        $actual   = ob_get_clean();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            file_get_contents($filename),
+            ob_get_clean()
+        );
 
-        $actual = $response->isSent();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $response->isSent()
+        );
     }
 }

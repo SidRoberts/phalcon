@@ -36,8 +36,9 @@ final class SendTest extends AbstractUnitTestCase
             Http::CONTENT_ENCODING_GZIP
         );
 
-        $actual = $headers->send();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $headers->send()
+        );
     }
 
     /**
@@ -47,10 +48,12 @@ final class SendTest extends AbstractUnitTestCase
     public function testHttpResponseHeadersSendRawNoColon(): void
     {
         $headers = new Headers();
+
         $headers->setRaw('X-Custom-Header');
 
-        $actual = $headers->send();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $headers->send()
+        );
     }
 
     /**
@@ -71,16 +74,20 @@ final class SendTest extends AbstractUnitTestCase
             Http::CONTENT_ENCODING_GZIP
         );
 
-        $actual = $headers->isSent();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $headers->isSent()
+        );
 
-        $actual = $headers->send();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $headers->send()
+        );
 
-        $actual = $headers->isSent();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $headers->isSent()
+        );
 
-        $actual = $headers->send();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $headers->send()
+        );
     }
 }

@@ -32,12 +32,15 @@ final class GetSetStatusCodeTest extends AbstractHttpBase
     public function testHttpResponseGetSetStatusCode(): void
     {
         $code = Http::CODE_200;
+
         $response = $this->getResponseObject();
+
         $response->setStatusCode($code);
 
-        $expected = $code;
-        $actual   = $response->getStatusCode();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $code,
+            $response->getStatusCode()
+        );
     }
 
     /**
@@ -47,7 +50,9 @@ final class GetSetStatusCodeTest extends AbstractHttpBase
     public function testHttpResponseSetStatusCode(): void
     {
         $response = $this->getResponseObject();
+
         $response->resetHeaders();
+
         $response->setStatusCode(
             Http::CODE_404,
             Http::NOT_FOUND
@@ -55,15 +60,18 @@ final class GetSetStatusCodeTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $actual = $headers->has(Http::HTTP_404_NOT_FOUND);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $headers->has(Http::HTTP_404_NOT_FOUND)
+        );
 
-        $actual = $headers->get(Http::HTTP_404_NOT_FOUND);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $headers->get(Http::HTTP_404_NOT_FOUND)
+        );
 
-        $expected = Http::MESSAGE_404_NOT_FOUND;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_404_NOT_FOUND,
+            $headers->get(Http::STATUS)
+        );
     }
 
     /**
@@ -76,15 +84,19 @@ final class GetSetStatusCodeTest extends AbstractHttpBase
 
         $application = new Micro($this->container);
 
-        $application->before(new FakeHttpResponseContentMiddleware());
+        $application->before(
+            new FakeHttpResponseContentMiddleware()
+        );
+
         $application->notFound(
-            function () {
+            function (): string {
                 return '404 - handler';
             }
         );
+
         $application->get(
             "/",
-            function () {
+            function (): string {
                 return '200 - "/"';
             }
         );
@@ -97,12 +109,13 @@ final class GetSetStatusCodeTest extends AbstractHttpBase
             "Status: 404 Not Found",
             "Content-Type: application/json",
         ];
-        $actual   = xdebug_get_headers();
-        $this->assertSame($expected, $actual);
 
-        $expected = '{"test":123}';
-        $actual   = $contents;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            xdebug_get_headers()
+        );
+
+        $this->assertSame('{"test":123}', $contents);
     }
 
     /**
@@ -121,12 +134,14 @@ final class GetSetStatusCodeTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $actual = $headers->get(Http::HTTP_409_CONFLICT);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $headers->get(Http::HTTP_409_CONFLICT)
+        );
 
-        $expected = Http::MESSAGE_409_CONFLICT;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_409_CONFLICT,
+            $headers->get(Http::STATUS)
+        );
     }
 
     /**
@@ -151,12 +166,14 @@ final class GetSetStatusCodeTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $actual = $headers->get(Http::HTTP_103_EARLY_HINTS);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $headers->get(Http::HTTP_103_EARLY_HINTS)
+        );
 
-        $expected = Http::MESSAGE_103_EARLY_HINTS;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_103_EARLY_HINTS,
+            $headers->get(Http::STATUS)
+        );
 
         /**
          * 200
@@ -165,12 +182,14 @@ final class GetSetStatusCodeTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $actual = $headers->get(Http::HTTP_200_OK);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $headers->get(Http::HTTP_200_OK)
+        );
 
-        $expected = Http::MESSAGE_200_OK;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_200_OK,
+            $headers->get(Http::STATUS)
+        );
 
         /**
          * 418
@@ -179,12 +198,14 @@ final class GetSetStatusCodeTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $actual = $headers->get(Http::HTTP_418_IM_A_TEAPOT);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $headers->get(Http::HTTP_418_IM_A_TEAPOT)
+        );
 
-        $expected = Http::MESSAGE_418_IM_A_TEAPOT;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_418_IM_A_TEAPOT,
+            $headers->get(Http::STATUS)
+        );
 
         /**
          * 418 Custom
@@ -196,11 +217,13 @@ final class GetSetStatusCodeTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $actual = $headers->get($name);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $headers->get($name)
+        );
 
-        $expected = $status;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $status,
+            $headers->get(Http::STATUS)
+        );
     }
 }

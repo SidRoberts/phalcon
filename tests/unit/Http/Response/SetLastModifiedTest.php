@@ -35,8 +35,9 @@ final class SetLastModifiedTest extends AbstractUnitTestCase
 
         $response->setLastModified($modified);
 
-        $expected = $modified->format(Http::DATETIME_FORMAT) . ' GMT';
-        $actual   = $response->getHeaders()->get(Http::LAST_MODIFIED);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $modified->format(Http::DATETIME_FORMAT) . ' GMT',
+            $response->getHeaders()->get(Http::LAST_MODIFIED)
+        );
     }
 }

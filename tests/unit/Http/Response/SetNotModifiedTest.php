@@ -25,15 +25,18 @@ final class SetNotModifiedTest extends AbstractHttpBase
     public function testHttpResponseSetNotModified(): void
     {
         $response = $this->getResponseObject();
+
         $response->setNotModified();
 
-        $expected = Http::CODE_304;
-        $actual   = $response->getStatusCode();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CODE_304,
+            $response->getStatusCode()
+        );
 
-        $expected = Http::NOT_MODIFIED;
-        $actual   = $response->getReasonPhrase();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::NOT_MODIFIED,
+            $response->getReasonPhrase()
+        );
     }
 
     /**
@@ -48,11 +51,13 @@ final class SetNotModifiedTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $actual = $headers->get(Http::HTTP_304_NOT_MODIFIED);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $headers->get(Http::HTTP_304_NOT_MODIFIED)
+        );
 
-        $expected = Http::MESSAGE_304_NOT_MODIFIED;
-        $actual   = $headers->get(Http::STATUS);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::MESSAGE_304_NOT_MODIFIED,
+            $headers->get(Http::STATUS)
+        );
     }
 }

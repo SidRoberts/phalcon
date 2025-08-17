@@ -47,8 +47,9 @@ final class SendTest extends AbstractHttpBase
         $cookies->setDI($this->container);
         $cookies->set($name, $value);
 
-        $actual = $cookies->send();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $cookies->send()
+        );
     }
 
     /**
@@ -67,16 +68,20 @@ final class SendTest extends AbstractHttpBase
         $cookies->setDI($this->container);
         $cookies->set($name, $value);
 
-        $actual = $cookies->isSent();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $cookies->isSent()
+        );
 
-        $actual = $cookies->send();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $cookies->send()
+        );
 
-        $actual = $cookies->isSent();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $cookies->isSent()
+        );
 
-        $actual = $cookies->send();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $cookies->send()
+        );
     }
 }

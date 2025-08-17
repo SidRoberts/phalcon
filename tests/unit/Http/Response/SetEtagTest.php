@@ -32,8 +32,9 @@ final class SetEtagTest extends AbstractUnitTestCase
 
         $headers = $response->getHeaders();
 
-        $expected = $etag;
-        $actual   = $headers->get(Http::ETAG);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $etag,
+            $headers->get(Http::ETAG)
+        );
     }
 }

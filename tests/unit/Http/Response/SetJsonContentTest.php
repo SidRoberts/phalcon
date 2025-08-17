@@ -52,21 +52,24 @@ final class SetJsonContentTest extends AbstractUnitTestCase
         $response->setJsonContent($content);
 
         // Check content
-        $expected = json_encode($content);
-        $actual   = $response->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            json_encode($content),
+            $response->getContent()
+        );
 
         // Check Header
-        $expected = Http::CONTENT_TYPE_JSON;
-        $actual   = $response->getHeaders()->get(Http::CONTENT_TYPE);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_JSON,
+            $response->getHeaders()->get(Http::CONTENT_TYPE)
+        );
 
         // With option
         $response = new Response();
         $response->setJsonContent($content, JSON_HEX_TAG);
 
-        $expected = json_encode($content, JSON_HEX_TAG);
-        $actual   = $response->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            json_encode($content, JSON_HEX_TAG),
+            $response->getContent()
+        );
     }
 }

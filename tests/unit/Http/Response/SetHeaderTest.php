@@ -32,21 +32,24 @@ final class SetHeaderTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $expected = Http::CONTENT_TYPE_HTML;
-        $actual   = $headers->get(Http::CONTENT_TYPE);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_HTML,
+            $headers->get(Http::CONTENT_TYPE)
+        );
 
         $response->setHeader(Http::CONTENT_LENGTH, $length);
 
         $headers = $response->getHeaders();
 
-        $expected = Http::CONTENT_TYPE_HTML;
-        $actual   = $headers->get(Http::CONTENT_TYPE);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_HTML,
+            $headers->get(Http::CONTENT_TYPE)
+        );
 
-        $expected = $length;
-        $actual   = $headers->get(Http::CONTENT_LENGTH);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $length,
+            $headers->get(Http::CONTENT_LENGTH)
+        );
     }
 
     /**
@@ -67,12 +70,14 @@ final class SetHeaderTest extends AbstractHttpBase
         $this->assertArrayHasKey(Http::CONTENT_TYPE, $headers);
         $this->assertArrayHasKey(Http::CONTENT_LENGTH, $headers);
 
-        $expected = Http::CONTENT_TYPE_HTML;
-        $actual   = $headers[Http::CONTENT_TYPE];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_HTML,
+            $headers[Http::CONTENT_TYPE]
+        );
 
-        $expected = $length;
-        $actual   = $headers[Http::CONTENT_LENGTH];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $length,
+            $headers[Http::CONTENT_LENGTH]
+        );
     }
 }

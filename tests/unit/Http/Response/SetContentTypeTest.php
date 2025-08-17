@@ -31,9 +31,10 @@ final class SetContentTypeTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $expected = Http::CONTENT_TYPE_JSON;
-        $actual   = $headers->get(Http::CONTENT_TYPE);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_JSON,
+            $headers->get(Http::CONTENT_TYPE)
+        );
     }
 
     /**
@@ -49,8 +50,9 @@ final class SetContentTypeTest extends AbstractHttpBase
 
         $headers = $response->getHeaders();
 
-        $expected = Http::CONTENT_TYPE_JSON_UTF8;
-        $actual   = $headers->get(Http::CONTENT_TYPE);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_JSON_UTF8,
+            $headers->get(Http::CONTENT_TYPE)
+        );
     }
 }

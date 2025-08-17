@@ -31,8 +31,9 @@ final class SetRawHeaderTest extends AbstractHttpBase
 
         $actual = $response->getHeaders();
 
-        $expected = '';
-        $actual   = $actual->get(Http::HTTP_304_NOT_MODIFIED);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '',
+            $actual->get(Http::HTTP_304_NOT_MODIFIED)
+        );
     }
 }

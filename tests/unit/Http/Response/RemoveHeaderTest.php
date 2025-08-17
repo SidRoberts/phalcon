@@ -31,13 +31,15 @@ final class RemoveHeaderTest extends AbstractHttpBase
 
         $this->assertArrayHasKey(Http::CONTENT_TYPE, $headers);
 
-        $expected = Http::CONTENT_TYPE_HTML;
-        $actual   = $headers[Http::CONTENT_TYPE];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Http::CONTENT_TYPE_HTML,
+            $headers[Http::CONTENT_TYPE]
+        );
 
         $response->removeHeader(Http::CONTENT_TYPE);
 
         $headers = $response->getHeaders()->toArray();
+
         $this->assertArrayNotHasKey(Http::CONTENT_TYPE, $headers);
     }
 }
