@@ -26,14 +26,16 @@ final class GetSetActionSuffixTest extends AbstractUnitTestCase
     {
         $dispatcher = new Dispatcher();
 
-        $expected = 'Action';
-        $actual   = $dispatcher->getActionSuffix();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Action',
+            $dispatcher->getActionSuffix()
+        );
 
         $dispatcher->setActionSuffix('two');
 
-        $expected = 'two';
-        $actual   = $dispatcher->getActionSuffix();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $dispatcher->getActionSuffix()
+        );
     }
 }

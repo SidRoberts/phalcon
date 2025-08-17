@@ -34,14 +34,16 @@ final class GetSetParamsTest extends AbstractUnitTestCase
             'three' => 'four',
         ];
 
-        $actual = $dispatcher->getParams();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $dispatcher->getParams()
+        );
 
         $dispatcher->setParams($params);
 
-        $expected = $params;
-        $actual   = $dispatcher->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $params,
+            $dispatcher->getParams()
+        );
 
         $dispatcher = new Dispatcher();
         $params     = [
@@ -49,14 +51,16 @@ final class GetSetParamsTest extends AbstractUnitTestCase
             'three' => 'four',
         ];
 
-        $actual = $dispatcher->getParameters();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $dispatcher->getParameters()
+        );
 
         $dispatcher->setParameters($params);
 
-        $expected = $params;
-        $actual   = $dispatcher->getParameters();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $params,
+            $dispatcher->getParameters()
+        );
     }
 
     /**
@@ -73,8 +77,9 @@ final class GetSetParamsTest extends AbstractUnitTestCase
         $dispatcher->setControllerSuffix("");
         $dispatcher->setControllerName(DispatcherParametersController::class);
 
-        $actual = $dispatcher->getParams();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $dispatcher->getParams()
+        );
 
         $params = [
             "trace" => [],
@@ -88,8 +93,11 @@ final class GetSetParamsTest extends AbstractUnitTestCase
                 "afterExecuteRoute",
             ],
         ];
-        $actual   = $dispatcher->getParams();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dispatcher->getParams()
+        );
 
         $dispatcher = new Dispatcher();
         $dispatcher->setDI($this->container);
@@ -97,8 +105,9 @@ final class GetSetParamsTest extends AbstractUnitTestCase
         $dispatcher->setControllerSuffix("");
         $dispatcher->setControllerName(DispatcherParametersController::class);
 
-        $actual = $dispatcher->getParameters();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $dispatcher->getParameters()
+        );
 
         $params = [
             "trace" => [],
@@ -112,7 +121,10 @@ final class GetSetParamsTest extends AbstractUnitTestCase
                 "afterExecuteRoute",
             ],
         ];
-        $actual   = $dispatcher->getParameters();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dispatcher->getParameters()
+        );
     }
 }

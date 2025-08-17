@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class GetActiveMethodTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{actionName: string, expected: string}>
      */
     public static function getExamples(): array
     {
@@ -57,12 +57,14 @@ final class GetActiveMethodTest extends AbstractUnitTestCase
         string $expected
     ): void {
         $dispatcher = new Dispatcher();
-        $dispatcher->setActionSuffix('Action');
 
+        $dispatcher->setActionSuffix('Action');
 
         $dispatcher->setActionName($actionName);
 
-        $actual = $dispatcher->getActiveMethod();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dispatcher->getActiveMethod()
+        );
     }
 }

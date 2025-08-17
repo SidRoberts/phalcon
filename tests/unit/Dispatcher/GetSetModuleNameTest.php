@@ -26,13 +26,15 @@ final class GetSetModuleNameTest extends AbstractUnitTestCase
     {
         $dispatcher = new Dispatcher();
 
-        $actual = $dispatcher->getModuleName();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $dispatcher->getModuleName()
+        );
 
         $dispatcher->setModuleName('two');
 
-        $expected = 'two';
-        $actual   = $dispatcher->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $dispatcher->getModuleName()
+        );
     }
 }

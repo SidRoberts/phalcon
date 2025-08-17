@@ -26,13 +26,15 @@ final class GetSetDefaultNamespaceTest extends AbstractUnitTestCase
     {
         $dispatcher = new Dispatcher();
 
-        $actual = $dispatcher->getDefaultNamespace();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $dispatcher->getDefaultNamespace()
+        );
 
         $dispatcher->setDefaultNamespace('two');
 
-        $expected = 'two';
-        $actual   = $dispatcher->getDefaultNamespace();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $dispatcher->getDefaultNamespace()
+        );
     }
 }

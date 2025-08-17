@@ -29,35 +29,42 @@ final class GetSetHasParamTest extends AbstractUnitTestCase
     {
         $dispatcher = new Dispatcher();
 
-        $actual = $dispatcher->hasParam('one');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $dispatcher->hasParam('one')
+        );
 
         $dispatcher->setParam('one', 'two');
 
-        $actual = $dispatcher->hasParam('one');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $dispatcher->hasParam('one')
+        );
 
-        $expected = 'two';
-        $actual   = $dispatcher->getParam('one');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $dispatcher->getParam('one')
+        );
 
         $dispatcher = new Dispatcher();
 
-        $actual = $dispatcher->hasParameter('one');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $dispatcher->hasParameter('one')
+        );
 
         $dispatcher->setParameter('one', 'two');
 
-        $actual = $dispatcher->hasParameter('one');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $dispatcher->hasParameter('one')
+        );
 
-        $expected = 'two';
-        $actual   = $dispatcher->getParameter('one');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $dispatcher->getParameter('one')
+        );
 
-        $expected = 'default';
-        $actual   = $dispatcher->getParameter('unknown', [], 'default');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'default',
+            $dispatcher->getParameter('unknown', [], 'default')
+        );
     }
 
     /**
@@ -69,12 +76,14 @@ final class GetSetHasParamTest extends AbstractUnitTestCase
         $this->setNewFactoryDefault();
 
         $dispatcher = new Dispatcher();
+
         $dispatcher->setDI($this->container);
 
         $dispatcher->setParameter('one', '1234');
 
-        $expected = 1234;
-        $actual   = $dispatcher->getParameter('one', 'int');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1234,
+            $dispatcher->getParameter('one', 'int')
+        );
     }
 }

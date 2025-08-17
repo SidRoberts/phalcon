@@ -30,12 +30,10 @@ final class GetSetDITest extends AbstractUnitTestCase
 
         $dispatcher->setDI($container);
 
-        $actual   = $container;
-        $expected = $dispatcher->getDI();
-        $this->assertSame($expected, $actual);
-
-        $class  = Di::class;
         $actual = $dispatcher->getDI();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertSame($container, $actual);
+
+        $actual = $dispatcher->getDI();
+        $this->assertInstanceOf(Di::class, $actual);
     }
 }

@@ -26,14 +26,16 @@ final class GetSetHandlerSuffixTest extends AbstractUnitTestCase
     {
         $dispatcher = new Dispatcher();
 
-        $expected = 'Controller';
-        $actual   = $dispatcher->getHandlerSuffix();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Controller',
+            $dispatcher->getHandlerSuffix()
+        );
 
         $dispatcher->setHandlerSuffix('two');
 
-        $expected = 'two';
-        $actual   = $dispatcher->getHandlerSuffix();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $dispatcher->getHandlerSuffix()
+        );
     }
 }

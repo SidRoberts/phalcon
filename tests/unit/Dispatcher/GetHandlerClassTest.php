@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class GetHandlerClassTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: string, 3: class-string}>
      */
     public static function getTestCases(): array
     {
@@ -47,6 +47,11 @@ final class GetHandlerClassTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param string       $namespace
+     * @param string       $controller
+     * @param string       $suffix
+     * @param class-string $expected
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
@@ -64,7 +69,9 @@ final class GetHandlerClassTest extends AbstractUnitTestCase
         $dispatcher->setControllerName($controller);
         $dispatcher->setHandlerSuffix($suffix);
 
-        $actual = $dispatcher->getHandlerClass();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dispatcher->getHandlerClass()
+        );
     }
 }

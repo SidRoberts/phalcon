@@ -26,13 +26,15 @@ final class GetSetReturnedValueTest extends AbstractUnitTestCase
     {
         $dispatcher = new Dispatcher();
 
-        $actual = $dispatcher->getReturnedValue();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $dispatcher->getReturnedValue()
+        );
 
         $dispatcher->setReturnedValue('two');
 
-        $expected = 'two';
-        $actual   = $dispatcher->getReturnedValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $dispatcher->getReturnedValue()
+        );
     }
 }
