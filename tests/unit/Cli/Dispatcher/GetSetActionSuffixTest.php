@@ -16,9 +16,6 @@ namespace Phalcon\Tests\Unit\Cli\Dispatcher;
 use Phalcon\Cli\Dispatcher;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class GetActionSuffixTest extends AbstractUnitTestCase
- */
 final class GetSetActionSuffixTest extends AbstractUnitTestCase
 {
     /**
@@ -28,10 +25,12 @@ final class GetSetActionSuffixTest extends AbstractUnitTestCase
     public function testCliDispatcherGetActionSuffix(): void
     {
         $dispatcher = new Dispatcher();
+
         $dispatcher->setActionSuffix('Task');
 
-        $expected = 'Task';
-        $actual   = $dispatcher->getActionSuffix();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Task',
+            $dispatcher->getActionSuffix()
+        );
     }
 }

@@ -17,9 +17,6 @@ use Phalcon\Cli\Dispatcher;
 use Phalcon\Di\FactoryDefault\Cli as DiFactoryDefault;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class GetOptionTest extends AbstractUnitTestCase
- */
 final class GetOptionTest extends AbstractUnitTestCase
 {
     /**
@@ -30,33 +27,41 @@ final class GetOptionTest extends AbstractUnitTestCase
     {
         $container  = new DiFactoryDefault();
         $dispatcher = new Dispatcher();
+
         $dispatcher->setDi($container);
+
         $options = [
             "phalcon" => "value123!",
         ];
 
         $dispatcher->setOptions($options);
+
         $optionName   = "phalcon";
         $defaultValue = "Phalcon Rocks!";
 
-        $expected = $options[$optionName];
-        $actual   = $dispatcher->getOption($optionName);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $options[$optionName],
+            $dispatcher->getOption($optionName)
+        );
 
-        $expected = $options[$optionName];
-        $actual   = $dispatcher->getOption($optionName, '', $defaultValue);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $options[$optionName],
+            $dispatcher->getOption($optionName, '', $defaultValue)
+        );
 
-        $expected = $defaultValue;
-        $actual   = $dispatcher->getOption('nonExisting', '', $defaultValue);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $defaultValue,
+            $dispatcher->getOption('nonExisting', '', $defaultValue)
+        );
 
-        $expected = 'value123';
-        $actual   = $dispatcher->getOption($optionName, 'alnum');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'value123',
+            $dispatcher->getOption($optionName, 'alnum')
+        );
 
-        $expected = 123;
-        $actual   = $dispatcher->getOption($optionName, ['int']);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            123,
+            $dispatcher->getOption($optionName, ['int'])
+        );
     }
 }

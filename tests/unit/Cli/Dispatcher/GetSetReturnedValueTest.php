@@ -25,13 +25,18 @@ final class GetSetReturnedValueTest extends AbstractUnitTestCase
     public function testCliDispatcherGetReturnedValue(): void
     {
         $dispatcher = new Dispatcher();
-        $this->assertNull($dispatcher->getReturnedValue());
+
+        $this->assertNull(
+            $dispatcher->getReturnedValue()
+        );
 
         $value = "Phalcon";
+
         $dispatcher->setReturnedValue($value);
 
-        $expected = $value;
-        $actual   = $dispatcher->getReturnedValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $dispatcher->getReturnedValue()
+        );
     }
 }

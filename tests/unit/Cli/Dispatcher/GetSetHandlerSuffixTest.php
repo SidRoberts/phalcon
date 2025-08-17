@@ -29,9 +29,11 @@ final class GetSetHandlerSuffixTest extends AbstractUnitTestCase
     public function testCliDispatcherGetHandlerSuffix(): void
     {
         $this->setNewCliFactoryDefault();
+
         $dispatcher = new Dispatcher();
 
         $this->container->setShared('dispatcher', $dispatcher);
+
         $dispatcher->setDI($this->container);
 
         $dispatcher->setTaskName('Index');

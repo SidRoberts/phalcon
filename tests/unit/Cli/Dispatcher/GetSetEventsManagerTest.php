@@ -31,7 +31,9 @@ final class GetSetEventsManagerTest extends AbstractUnitTestCase
 
         $console->setEventsManager($manager);
 
-        $actual = $console->getEventsManager();
-        $this->assertSame($manager, $actual);
+        $this->assertSame(
+            $manager,
+            $console->getEventsManager()
+        );
     }
 }

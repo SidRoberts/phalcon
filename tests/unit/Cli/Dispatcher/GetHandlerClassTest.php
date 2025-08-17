@@ -17,13 +17,10 @@ use Phalcon\Cli\Dispatcher;
 use Phalcon\Tests\AbstractUnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-/**
- * Class GetHandlerClassTest extends AbstractUnitTestCase
- */
 final class GetHandlerClassTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: string, 3: string}>
      */
     public static function getTestCases(): array
     {
@@ -67,7 +64,9 @@ final class GetHandlerClassTest extends AbstractUnitTestCase
         $dispatcher->setTaskName($task);
         $dispatcher->setHandlerSuffix($suffix);
 
-        $actual = $dispatcher->getHandlerClass();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dispatcher->getHandlerClass()
+        );
     }
 }

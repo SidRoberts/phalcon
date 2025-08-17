@@ -45,48 +45,58 @@ final class GetSetParametersTest extends AbstractUnitTestCase
 
         $dispatcher->dispatch();
 
-        $expected = 'This';
-        $actual   = $dispatcher->getParam('a');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'This',
+            $dispatcher->getParam('a')
+        );
 
-        $expected = 'Is';
-        $actual   = $dispatcher->getParam('b');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Is',
+            $dispatcher->getParam('b')
+        );
 
-        $expected = 'An';
-        $actual   = $dispatcher->getParam('c');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'An',
+            $dispatcher->getParam('c')
+        );
 
-        $expected = 'Example';
-        $actual   = $dispatcher->getParam('d');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Example',
+            $dispatcher->getParam('d')
+        );
 
-        $expected = 'This';
-        $actual   = $dispatcher->getParameter('a');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'This',
+            $dispatcher->getParameter('a')
+        );
 
-        $expected = 'Is';
-        $actual   = $dispatcher->getParameter('b');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Is',
+            $dispatcher->getParameter('b')
+        );
 
-        $expected = 'An';
-        $actual   = $dispatcher->getParameter('c');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'An',
+            $dispatcher->getParameter('c')
+        );
 
-        $expected = 'Example';
-        $actual   = $dispatcher->getParameter('d');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Example',
+            $dispatcher->getParameter('d')
+        );
 
         $dispatcher->setParam('e', 'one');
 
-        $expected = 'one';
-        $actual   = $dispatcher->getParam('e');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'one',
+            $dispatcher->getParam('e')
+        );
 
         $dispatcher->setParameter('f', 'two');
 
-        $expected = 'two';
-        $actual   = $dispatcher->getParameter('f');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $dispatcher->getParameter('f')
+        );
     }
 }

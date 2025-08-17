@@ -16,9 +16,6 @@ namespace Phalcon\Tests\Unit\Cli\Dispatcher;
 use Phalcon\Cli\Dispatcher;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class ForwardTest extends AbstractUnitTestCase
- */
 final class ForwardTest extends AbstractUnitTestCase
 {
     /**
@@ -28,16 +25,20 @@ final class ForwardTest extends AbstractUnitTestCase
     public function testCliDispatcherForward(): void
     {
         $dispatcher = new Dispatcher();
+
         $dispatcher->setDefaultNamespace('Phalcon\Tests\Support\Tasks');
+
         $dispatcher->setActionName('hello');
+
         $dispatcher->forward(
             [
                 'action' => 'phalcon',
             ]
         );
 
-        $expected = 'phalcon';
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'phalcon',
+            $dispatcher->getActionName()
+        );
     }
 }

@@ -17,9 +17,6 @@ use Phalcon\Cli\Dispatcher;
 use Phalcon\Mvc\Model\Binder;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class GetSetModelBinderTest extends AbstractUnitTestCase
- */
 final class GetSetModelBinderTest extends AbstractUnitTestCase
 {
     /**
@@ -29,13 +26,18 @@ final class GetSetModelBinderTest extends AbstractUnitTestCase
     public function testCliDispatcherGetModelBinder(): void
     {
         $dispatcher = new Dispatcher();
-        $this->assertNull($dispatcher->getModelBinder());
+
+        $this->assertNull(
+            $dispatcher->getModelBinder()
+        );
 
         $modelBinder = new Binder();
+
         $dispatcher->setModelBinder($modelBinder);
 
-        $expected = $modelBinder;
-        $actual   = $dispatcher->getModelBinder();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $modelBinder,
+            $dispatcher->getModelBinder()
+        );
     }
 }

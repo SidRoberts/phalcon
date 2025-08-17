@@ -18,9 +18,6 @@ use Phalcon\Di\FactoryDefault\Cli as DiFactoryDefault;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Tasks\MainTask;
 
-/**
- * Class GetActiveTaskTest extends AbstractUnitTestCase
- */
 final class GetActiveTaskTest extends AbstractUnitTestCase
 {
     /**
@@ -30,13 +27,16 @@ final class GetActiveTaskTest extends AbstractUnitTestCase
     public function testCliDispatcherGetActiveTask(): void
     {
         $dispatcher = new Dispatcher();
+
         $dispatcher->setDI(new DiFactoryDefault());
         $dispatcher->setDefaultNamespace('Phalcon\Tests\Support\Tasks');
         $dispatcher->setTaskName("main");
+
         $dispatcher->dispatch();
 
-        $class  = MainTask::class;
-        $actual = $dispatcher->getActiveTask();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            MainTask::class,
+            $dispatcher->getActiveTask()
+        );
     }
 }

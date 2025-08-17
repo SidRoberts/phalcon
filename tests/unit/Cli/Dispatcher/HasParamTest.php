@@ -34,16 +34,20 @@ final class HasParamTest extends AbstractUnitTestCase
             ]
         );
 
-        $actual = $dispatcher->hasParam('a');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $dispatcher->hasParam('a')
+        );
 
-        $actual = $dispatcher->hasParam('b');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $dispatcher->hasParam('b')
+        );
 
-        $actual = $dispatcher->hasParam('c');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $dispatcher->hasParam('c')
+        );
 
-        $actual = $dispatcher->hasParam('d');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $dispatcher->hasParam('d')
+        );
     }
 }

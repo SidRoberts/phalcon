@@ -26,15 +26,18 @@ final class GetSetTaskNameTest extends AbstractUnitTestCase
     {
         $dispatcher = new Dispatcher();
 
-        $expected = '';
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $dispatcher->getTaskName()
+        );
 
         $value = "Phalcon";
+
         $dispatcher->setTaskName($value);
 
-        $expected = $value;
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $dispatcher->getTaskName()
+        );
     }
 }

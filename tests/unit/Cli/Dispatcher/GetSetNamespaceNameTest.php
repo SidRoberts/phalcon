@@ -16,9 +16,6 @@ namespace Phalcon\Tests\Unit\Cli\Dispatcher;
 use Phalcon\Cli\Dispatcher;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class GetSetNamespaceNameTest extends AbstractUnitTestCase
- */
 final class GetSetNamespaceNameTest extends AbstractUnitTestCase
 {
     /**
@@ -29,15 +26,17 @@ final class GetSetNamespaceNameTest extends AbstractUnitTestCase
     {
         $dispatcher = new Dispatcher();
 
-        $expected = '';
-        $actual   = $dispatcher->getNamespaceName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $dispatcher->getNamespaceName()
+        );
 
         $namespace = "Phalcon";
         $dispatcher->setNamespaceName($namespace);
 
-        $expected = $namespace;
-        $actual   = $dispatcher->getNamespaceName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $namespace,
+            $dispatcher->getNamespaceName()
+        );
     }
 }

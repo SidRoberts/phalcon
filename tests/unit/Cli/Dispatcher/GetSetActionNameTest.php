@@ -16,9 +16,6 @@ namespace Phalcon\Tests\Unit\Cli\Dispatcher;
 use Phalcon\Cli\Dispatcher;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class GetActionNameTest extends AbstractUnitTestCase
- */
 final class GetSetActionNameTest extends AbstractUnitTestCase
 {
     /**
@@ -28,10 +25,12 @@ final class GetSetActionNameTest extends AbstractUnitTestCase
     public function testCliDispatcherGetActionName(): void
     {
         $dispatcher = new Dispatcher();
+
         $dispatcher->setActionName('hello');
 
-        $expected = 'hello';
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'hello',
+            $dispatcher->getActionName()
+        );
     }
 }

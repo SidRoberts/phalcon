@@ -18,9 +18,6 @@ use Phalcon\Di\FactoryDefault\Cli as DiFactoryDefault;
 use Phalcon\Mvc\Model\Binder;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class GetBoundModelsTest extends AbstractUnitTestCase
- */
 final class GetBoundModelsTest extends AbstractUnitTestCase
 {
     /**
@@ -30,18 +27,24 @@ final class GetBoundModelsTest extends AbstractUnitTestCase
     public function testCliDispatcherGetBoundModels(): void
     {
         $dispatcher = new Dispatcher();
-        $dispatcher->setDI(new DiFactoryDefault());
 
-        //No binder set should return empty array
-        $expected = [];
-        $actual   = $dispatcher->getBoundModels();
-        $this->assertSame($expected, $actual);
+        $dispatcher->setDI(
+            new DiFactoryDefault()
+        );
+
+        // No binder set should return empty array
+        $this->assertSame(
+            [],
+            $dispatcher->getBoundModels()
+        );
 
         $modelBinder = new Binder();
+
         $dispatcher->setModelBinder($modelBinder);
 
-        $expected = 0;
-        $actual   = count($dispatcher->getBoundModels());
-        $this->assertSame($expected, $actual);
+        $this->assertCount(
+            0,
+            $dispatcher->getBoundModels()
+        );
     }
 }

@@ -16,9 +16,6 @@ namespace Phalcon\Tests\Unit\Cli\Dispatcher;
 use Phalcon\Cli\Dispatcher;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class GetSetModuleNameTest extends AbstractUnitTestCase
- */
 final class GetSetModuleNameTest extends AbstractUnitTestCase
 {
     /**
@@ -29,15 +26,18 @@ final class GetSetModuleNameTest extends AbstractUnitTestCase
     {
         $dispatcher = new Dispatcher();
 
-        $expected = '';
-        $actual   = $dispatcher->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $dispatcher->getModuleName()
+        );
 
         $moduleName = "Phalcon";
+
         $dispatcher->setModuleName($moduleName);
 
-        $expected = $moduleName;
-        $actual   = $dispatcher->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $moduleName,
+            $dispatcher->getModuleName()
+        );
     }
 }

@@ -26,21 +26,27 @@ final class SetDefaultTaskTest extends AbstractUnitTestCase
     public function testCliDispatcherSetDefaultTask(): void
     {
         $dispatcher = new Dispatcher();
+
         $dispatcher->setDefaultNamespace('Phalcon\Tests\Support\Tasks');
+
         $dispatcher->setDI(
             new DiFactoryDefault()
         );
+
         $defaultTask = "echo";
+
         $dispatcher->setDefaultTask($defaultTask);
 
-        $expected = '';
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $dispatcher->getTaskName()
+        );
 
         $dispatcher->dispatch();
 
-        $expected = $defaultTask;
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $defaultTask,
+            $dispatcher->getTaskName()
+        );
     }
 }

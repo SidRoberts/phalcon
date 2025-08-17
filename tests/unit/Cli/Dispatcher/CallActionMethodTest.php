@@ -38,8 +38,9 @@ final class CallActionMethodTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 'Hello Sid.';
-        $actual   = $returnedValue;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Hello Sid.',
+            $returnedValue
+        );
     }
 }

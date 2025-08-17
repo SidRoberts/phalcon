@@ -28,20 +28,24 @@ final class GetLastTaskTest extends AbstractUnitTestCase
     public function testCliDispatcherGetLastTask(): void
     {
         $dispatcher = new Dispatcher();
+
         $dispatcher->setDI(new DiFactoryDefault());
         $dispatcher->setDefaultNamespace('Phalcon\Tests\Support\Tasks');
         $dispatcher->setTaskName("main");
+
         $dispatcher->dispatch();
 
-        $class  = MainTask::class;
-        $actual = $dispatcher->getLastTask();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            MainTask::class,
+            $dispatcher->getLastTask()
+        );
 
         $dispatcher->setTaskName("echo");
         $dispatcher->dispatch();
 
-        $class  = EchoTask::class;
-        $actual = $dispatcher->getLastTask();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            EchoTask::class,
+            $dispatcher->getLastTask()
+        );
     }
 }

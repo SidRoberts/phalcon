@@ -17,9 +17,6 @@ use Phalcon\Cli\Dispatcher;
 use Phalcon\Di\FactoryDefault\Cli as DiFactoryDefault;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class IsFinishedTest extends AbstractUnitTestCase
- */
 final class IsFinishedTest extends AbstractUnitTestCase
 {
     /**
@@ -29,15 +26,21 @@ final class IsFinishedTest extends AbstractUnitTestCase
     public function testCliDispatcherIsFinished(): void
     {
         $dispatcher = new Dispatcher();
-        $dispatcher->setDefaultNamespace('Phalcon\Tests\Support\Tasks');
-        $dispatcher->setDI(new DiFactoryDefault());
 
-        $actual = $dispatcher->isFinished();
-        $this->assertFalse($actual);
+        $dispatcher->setDefaultNamespace('Phalcon\Tests\Support\Tasks');
+
+        $dispatcher->setDI(
+            new DiFactoryDefault()
+        );
+
+        $this->assertFalse(
+            $dispatcher->isFinished()
+        );
 
         $dispatcher->dispatch();
 
-        $actual = $dispatcher->isFinished();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $dispatcher->isFinished()
+        );
     }
 }

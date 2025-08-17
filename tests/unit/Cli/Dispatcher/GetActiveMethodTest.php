@@ -16,9 +16,6 @@ namespace Phalcon\Tests\Unit\Cli\Dispatcher;
 use Phalcon\Cli\Dispatcher;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class GetActiveMethodTest extends AbstractUnitTestCase
- */
 final class GetActiveMethodTest extends AbstractUnitTestCase
 {
     /**
@@ -31,8 +28,9 @@ final class GetActiveMethodTest extends AbstractUnitTestCase
 
         $dispatcher->setActionName("phalcon");
 
-        $expected = "phalconAction";
-        $actual   = $dispatcher->getActiveMethod();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "phalconAction",
+            $dispatcher->getActiveMethod()
+        );
     }
 }

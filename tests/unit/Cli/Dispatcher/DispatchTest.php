@@ -33,21 +33,25 @@ final class DispatchTest extends AbstractUnitTestCase
         $dispatcher->setDefaultNamespace('Phalcon\Tests\Support\Tasks');
         $dispatcher->dispatch();
 
-        $expected = 'main';
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'main',
+            $dispatcher->getTaskName()
+        );
 
-        $expected = 'main';
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'main',
+            $dispatcher->getActionName()
+        );
 
-        $expected = [];
-        $actual   = $dispatcher->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $dispatcher->getParams()
+        );
 
-        $expected = 'mainAction';
-        $actual   = $dispatcher->getReturnedValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'mainAction',
+            $dispatcher->getReturnedValue()
+        );
 
         // Test 2
         $dispatcher = new Dispatcher();
@@ -56,21 +60,25 @@ final class DispatchTest extends AbstractUnitTestCase
         $dispatcher->setTaskName('echo');
         $dispatcher->dispatch();
 
-        $expected = 'echo';
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'echo',
+            $dispatcher->getTaskName()
+        );
 
-        $expected = 'main';
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'main',
+            $dispatcher->getActionName()
+        );
 
-        $expected = [];
-        $actual   = $dispatcher->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $dispatcher->getParams()
+        );
 
-        $expected = 'echoMainAction';
-        $actual   = $dispatcher->getReturnedValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'echoMainAction',
+            $dispatcher->getReturnedValue()
+        );
 
         // Test 3
         $dispatcher = new Dispatcher();
@@ -80,21 +88,25 @@ final class DispatchTest extends AbstractUnitTestCase
         $dispatcher->setActionName('hello');
         $dispatcher->dispatch();
 
-        $expected = 'main';
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'main',
+            $dispatcher->getTaskName()
+        );
 
-        $expected = 'hello';
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'hello',
+            $dispatcher->getActionName()
+        );
 
-        $expected = [];
-        $actual   = $dispatcher->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $dispatcher->getParams()
+        );
 
-        $expected = 'Hello !';
-        $actual   = $dispatcher->getReturnedValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Hello !',
+            $dispatcher->getReturnedValue()
+        );
 
         // Test 4
         $dispatcher = new Dispatcher();
@@ -109,24 +121,30 @@ final class DispatchTest extends AbstractUnitTestCase
         );
         $dispatcher->dispatch();
 
-        $expected = 'main';
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'main',
+            $dispatcher->getTaskName()
+        );
 
-        $expected = 'hello';
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'hello',
+            $dispatcher->getActionName()
+        );
 
         $expected = [
             'World',
             '#####',
         ];
-        $actual   = $dispatcher->getParams();
-        $this->assertSame($expected, $actual);
 
-        $expected = 'Hello World#####';
-        $actual   = $dispatcher->getReturnedValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dispatcher->getParams()
+        );
+
+        $this->assertSame(
+            'Hello World#####',
+            $dispatcher->getReturnedValue()
+        );
 
         //Test 5
         $dispatcher = new Dispatcher();
@@ -141,13 +159,17 @@ final class DispatchTest extends AbstractUnitTestCase
         );
         $dispatcher->dispatch();
 
+        $this->assertTrue(
+            $dispatcher->hasParam('hello')
+        );
 
-        $actual = $dispatcher->hasParam('hello');
-        $this->assertTrue($actual);
-        $actual = $dispatcher->hasParam('goodbye');
-        $this->assertTrue($actual);
-        $actual = $dispatcher->hasParam('salutations');
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $dispatcher->hasParam('goodbye')
+        );
+
+        $this->assertFalse(
+            $dispatcher->hasParam('salutations')
+        );
     }
 
     public function testFakeNamespace(): void
@@ -207,7 +229,7 @@ final class DispatchTest extends AbstractUnitTestCase
 
         $eventsManager->attach(
             'dispatch:beforeException',
-            function () {
+            function (): bool {
                 return false;
             }
         );
@@ -217,7 +239,8 @@ final class DispatchTest extends AbstractUnitTestCase
         $dispatcher->setDefaultNamespace('NonExistentNamespace');
 
         // The event listener suppresses the exception; dispatch returns null
-        $result = $dispatcher->dispatch();
-        $this->assertNull($result);
+        $this->assertNull(
+            $dispatcher->dispatch()
+        );
     }
 }

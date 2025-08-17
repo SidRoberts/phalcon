@@ -16,9 +16,6 @@ namespace Phalcon\Tests\Unit\Cli\Dispatcher;
 use Phalcon\Cli\Dispatcher;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class HasOptionTest extends AbstractUnitTestCase
- */
 final class HasOptionTest extends AbstractUnitTestCase
 {
     /**
@@ -30,16 +27,19 @@ final class HasOptionTest extends AbstractUnitTestCase
         $dispatcher = new Dispatcher();
         $optionName = "Phalcon";
 
-        $actual = $dispatcher->hasOption($optionName);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $dispatcher->hasOption($optionName)
+        );
 
         $dispatcher->setOptions([$optionName => "value"]);
 
-        $actual = $dispatcher->hasOption($optionName);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $dispatcher->hasOption($optionName)
+        );
 
         // Options should be case-sensitive
-        $actual = $dispatcher->hasOption(strtolower($optionName));
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $dispatcher->hasOption(strtolower($optionName))
+        );
     }
 }

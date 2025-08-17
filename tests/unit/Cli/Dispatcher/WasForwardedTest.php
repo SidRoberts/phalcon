@@ -26,11 +26,16 @@ final class WasForwardedTest extends AbstractUnitTestCase
     public function testCliDispatcherWasForwarded(): void
     {
         $dispatcher = new Dispatcher();
-        $dispatcher->setDefaultNamespace('Phalcon\Tests\Support\Tasks');
-        $dispatcher->setDI(new DiFactoryDefault());
 
-        $actual = $dispatcher->wasForwarded();
-        $this->assertFalse($actual);
+        $dispatcher->setDefaultNamespace('Phalcon\Tests\Support\Tasks');
+
+        $dispatcher->setDI(
+            new DiFactoryDefault()
+        );
+
+        $this->assertFalse(
+            $dispatcher->wasForwarded()
+        );
 
         $dispatcher->forward(
             [
@@ -41,7 +46,8 @@ final class WasForwardedTest extends AbstractUnitTestCase
 
         $dispatcher->dispatch();
 
-        $actual = $dispatcher->wasForwarded();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $dispatcher->wasForwarded()
+        );
     }
 }

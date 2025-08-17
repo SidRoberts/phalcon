@@ -24,9 +24,11 @@ final class GetSetParameterTest extends AbstractUnitTestCase
     public function testCliDispatcherGetSetParameter(): void
     {
         $this->setNewCliFactoryDefault();
+
         $dispatcher = new Dispatcher();
 
         $this->container->setShared('dispatcher', $dispatcher);
+
         $dispatcher->setDI($this->container);
 
         // Test $this->dispatcher->getParam()
@@ -40,8 +42,9 @@ final class GetSetParameterTest extends AbstractUnitTestCase
 
         $dispatcher->dispatch();
 
-        $expected = '$param[0] is the same as $this->dispatcher->getParam(0)';
-        $actual   = $dispatcher->getReturnedValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '$param[0] is the same as $this->dispatcher->getParam(0)',
+            $dispatcher->getReturnedValue()
+        );
     }
 }

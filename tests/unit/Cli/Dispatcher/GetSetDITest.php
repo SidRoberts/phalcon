@@ -31,7 +31,9 @@ final class GetSetDITest extends AbstractUnitTestCase
 
         $console->setDI($container);
 
-        $actual = $console->getDI();
-        $this->assertSame($container, $actual);
+        $this->assertSame(
+            $container,
+            $console->getDI()
+        );
     }
 }
