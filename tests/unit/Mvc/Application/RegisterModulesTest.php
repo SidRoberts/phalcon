@@ -148,9 +148,10 @@ final class RegisterModulesTest extends AbstractUnitTestCase
 
         $response = $application->handle('/login');
 
-        $expected = '<html>here</html>' . PHP_EOL;
-        $actual   = $response->getContent();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '<html>here</html>' . PHP_EOL,
+            $response->getContent()
+        );
     }
 
     /**

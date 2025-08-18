@@ -54,7 +54,7 @@ final class HandleTest extends AbstractUnitTestCase
 
         $this->container->set(
             'view',
-            function () {
+            function (): View {
                 $view = new View();
 
                 $view->setViewsDir(
@@ -157,7 +157,7 @@ final class HandleTest extends AbstractUnitTestCase
 
         $this->container->set(
             'view',
-            function () {
+            function (): View {
                 $view = new View();
 
                 $view->setViewsDir(
@@ -175,6 +175,7 @@ final class HandleTest extends AbstractUnitTestCase
             'dispatcher',
             function () use ($eventsManager) {
                 $dispatcher = new Dispatcher();
+
                 $dispatcher->setDefaultNamespace(
                     'Phalcon\Tests\Support\Controllers'
                 );
@@ -185,10 +186,12 @@ final class HandleTest extends AbstractUnitTestCase
                         switch ($exception->getCode()) {
                             case Dispatcher\Exception::EXCEPTION_HANDLER_NOT_FOUND:
                             case Dispatcher\Exception::EXCEPTION_ACTION_NOT_FOUND:
-                                $dispatcher->forward([
-                                    'controller' => 'init',
-                                    'action'     => 'index',
-                                ]);
+                                $dispatcher->forward(
+                                    [
+                                        'controller' => 'init',
+                                        'action'     => 'index',
+                                    ]
+                                );
 
                                 return false;
                         }
@@ -202,6 +205,7 @@ final class HandleTest extends AbstractUnitTestCase
         );
 
         $application = new Application();
+
         $application->setDI($this->container);
 
         $this->expectException(Exception::class);
@@ -236,6 +240,7 @@ final class HandleTest extends AbstractUnitTestCase
             'dispatcher',
             function () {
                 $dispatcher = new Dispatcher();
+
                 $dispatcher->setDefaultNamespace(
                     'Phalcon\Tests\Support\Controllers'
                 );
@@ -245,12 +250,14 @@ final class HandleTest extends AbstractUnitTestCase
         );
 
         $application = new Application();
+
         $application->setDI($this->container);
 
         $response = $application->handle('/micro');
 
-        $expected = 'We are here';
-        $actual   = $response->getContent();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'We are here',
+            $response->getContent()
+        );
     }
 }
