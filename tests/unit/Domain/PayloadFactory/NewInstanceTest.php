@@ -23,13 +23,13 @@ final class NewInstanceTest extends AbstractUnitTestCase
     /**
      * Unit Tests Phalcon\Domain\PayloadFactory :: newInstance()
      *
-     * @since  2019-09-09
-     *
      * @author Phalcon Team <team@phalcon.io>
+     * @since  2019-09-09
      */
     public function testDomainPayloadPayloadFactoryNewInstance(): void
     {
         $factory = new PayloadFactory();
+
         $payload = $factory->newInstance(
             DomainStatus::ACCEPTED,
             [

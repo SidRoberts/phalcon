@@ -20,12 +20,12 @@ use Phalcon\Tests\AbstractUnitTestCase;
 final class GetResultTest extends AbstractUnitTestCase
 {
     /**
-     * Unit Tests Phalcon\Domain\Payload :: getResult
+     * Unit Tests Phalcon\Domain\Payload :: getResult()
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
-    public function testDomainPayloadPayloadGetMessages(): void
+    public function testDomainPayloadPayloadGetResult(): void
     {
         $payload = new Payload(
             DomainStatus::ACCEPTED,
@@ -35,7 +35,10 @@ final class GetResultTest extends AbstractUnitTestCase
         );
 
         $expected = ['one' => 'two'];
-        $actual   = $payload->getResult();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $payload->getResult()
+        );
     }
 }

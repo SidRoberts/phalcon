@@ -29,8 +29,9 @@ final class GetStatusTest extends AbstractUnitTestCase
     {
         $payload = new Payload(DomainStatus::PROCESSING);
 
-        $expected = DomainStatus::PROCESSING;
-        $actual   = $payload->getStatus();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            DomainStatus::PROCESSING,
+            $payload->getStatus()
+        );
     }
 }
