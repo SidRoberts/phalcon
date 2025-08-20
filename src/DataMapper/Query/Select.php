@@ -62,40 +62,40 @@ class Select extends SelectStatement
     public function __call(string $method, array $params)
     {
         $proxied = [
-            'fetchAffected' => true,
-            'fetchAll'      => true,
-            'fetchAssoc'    => true,
-            'fetchColumn'   => true,
-            'fetchGroup'    => true,
-            'fetchObject'   => true,
-            'fetchObjects'  => true,
-            'fetchOne'      => true,
-            'fetchPairs'    => true,
-            'fetchUnique'   => true,
-            'fetchValue'    => true,
-            'yieldAffected' => true,
-            'yieldAll'      => true,
-            'yieldAssoc'    => true,
-            'yieldColumn'   => true,
-            'yieldObjects'  => true,
-            'yieldPairs'    => true,
-            'yieldUnique'   => true,
+            'fetchAffected',
+            'fetchAll',
+            'fetchAssoc',
+            'fetchColumn',
+            'fetchGroup',
+            'fetchObject',
+            'fetchObjects',
+            'fetchOne',
+            'fetchPairs',
+            'fetchUnique',
+            'fetchValue',
+            'yieldAffected',
+            'yieldAll',
+            'yieldAssoc',
+            'yieldColumn',
+            'yieldObjects',
+            'yieldPairs',
+            'yieldUnique',
         ];
 
-        if (isset($proxied[$method])) {
-            $params = array_merge(
-                [
-                    $this->getStatement(),
-                    $this->getBindValues(),
-                ],
-                $params
+        if (!in_array($method, $proxied)) {
+            throw new BadMethodCallException(
+                "Unknown method: [" . $method . "]"
             );
-
-            return $this->connection->$method(...$params);
         }
 
-        throw new BadMethodCallException(
-            "Unknown method: [" . $method . "]"
+        $params = array_merge(
+            [
+                $this->getStatement(),
+                $this->getBindValues(),
+            ],
+            $params
         );
+
+        return $this->connection->$method(...$params);
     }
 }
