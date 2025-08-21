@@ -58,7 +58,9 @@ final class UnserializeTest extends AbstractDatabaseTestCase
             'hydrateMode' => 0,
         ];
 
-        $this->assertTrue($this->container->has('serializer'));
+        $this->assertTrue(
+            $this->container->has('serializer')
+        );
 
         $complex->unserialize(serialize($expected));
 

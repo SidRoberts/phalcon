@@ -61,7 +61,9 @@ final class UnserializeTest extends AbstractDatabaseTestCase
 
         $this->assertTrue($this->container->has('serializer'));
 
-        $simple->unserialize(serialize($expected));
+        $simple->unserialize(
+            serialize($expected)
+        );
 
         $this->assertEquals([['__FAKE__']], $this->getProtectedProperty($simple, 'columnMap'));
         $this->assertEquals(0, $this->getProtectedProperty($simple, 'hydrateMode'));

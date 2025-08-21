@@ -74,12 +74,23 @@ final class GetFirstTest extends AbstractDatabaseTestCase
         $manager = $this->getService('modelsManager');
 
         $sql = sprintf('SELECT i.inv_id FROM [%s] AS i', Invoices::class);
-        $this->assertInstanceOf(Row::class, $manager->createQuery($sql)->execute()->getFirst());
+
+        $this->assertInstanceOf(
+            Row::class,
+            $manager->createQuery($sql)->execute()->getFirst()
+        );
 
         $sql = sprintf('SELECT * FROM [%s] AS i', Invoices::class);
-        $this->assertInstanceOf(Invoices::class, $manager->createQuery($sql)->execute()->getFirst());
+
+        $this->assertInstanceOf(
+            Invoices::class,
+            $manager->createQuery($sql)->execute()->getFirst()
+        );
 
         $sql = sprintf('SELECT i.inv_id FROM [%s] AS i WHERE inv_total = -42', Invoices::class);
-        $this->assertNull($manager->createQuery($sql)->execute()->getFirst());
+
+        $this->assertNull(
+            $manager->createQuery($sql)->execute()->getFirst()
+        );
     }
 }
