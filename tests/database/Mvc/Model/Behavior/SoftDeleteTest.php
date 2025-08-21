@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Database\Mvc\Model\Behavior;
 
 use Phalcon\Events\Event;
 use Phalcon\Events\Manager as EventManager;
+use Phalcon\Mvc\Model\Behavior\SoftDelete;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\CustomersMigration;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
@@ -82,9 +83,13 @@ final class SoftDeleteTest extends AbstractDatabaseTestCase
 
         /** ADD BeforeDelete event */
         $eventsManager = new EventManager();
-        $eventsManager->attach('model:beforeDelete', function (Event $event, $model) {
-            return false;
-        });
+
+        $eventsManager->attach(
+            'model:beforeDelete',
+            function (Event $event, $model): bool {
+                return false;
+            }
+        );
 
         /** Add row to SoftDelete then */
         $title = uniqid('inv-');
@@ -167,12 +172,14 @@ final class SoftDeleteTest extends AbstractDatabaseTestCase
 
         // Remove the SoftDelete behavior
         $modelsManager = $invoice->getModelsManager();
-        $modelsManager->removeBehavior($invoice, \Phalcon\Mvc\Model\Behavior\SoftDelete::class);
+        $modelsManager->removeBehavior($invoice, SoftDelete::class);
 
         /* delete invoice */
         $invoice->delete();
 
         // Check that the SoftDelete behavior was removed and the invoice was actually deleted
-        $this->assertFalse($invoice->hasSnapshotData());
+        $this->assertFalse(
+            $invoice->hasSnapshotData()
+        );
     }
 }

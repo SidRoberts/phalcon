@@ -82,9 +82,13 @@ final class TimestampableTest extends AbstractDatabaseTestCase
 
         /** ADD BeforeDelete event */
         $eventsManager = new EventManager();
-        $eventsManager->attach('model:beforeCreate', function (Event $event, $model) {
-            return false;
-        });
+
+        $eventsManager->attach(
+            'model:beforeCreate',
+            function (Event $event, $model): bool {
+                return false;
+            }
+        );
 
         /** Add row to Timestampable then */
         $title = uniqid('inv-');
