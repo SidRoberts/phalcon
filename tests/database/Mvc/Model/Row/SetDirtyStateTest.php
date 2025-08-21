@@ -30,7 +30,12 @@ final class SetDirtyStateTest extends AbstractDatabaseTestCase
     {
         $row = new Row();
 
-        $this->assertFalse($row->setDirtyState(0));
-        $this->assertFalse($row->setDirtyState(1));
+        $this->assertFalse(
+            $row->setDirtyState(0)
+        );
+
+        $this->assertFalse(
+            $row->setDirtyState(1)
+        );
     }
 }
