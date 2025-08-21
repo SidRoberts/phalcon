@@ -26,7 +26,6 @@ use Phalcon\Tests\Support\Traits\DiTrait;
 use PHPUnit\Framework\Attributes\Group;
 
 use function date;
-use function is_int;
 
 #[Group('phql')]
 final class PaginateTest extends AbstractDatabaseTestCase
@@ -90,7 +89,7 @@ final class PaginateTest extends AbstractDatabaseTestCase
         $this->assertEquals(1, $page->getCurrent());
         $this->assertEquals(5, $page->limit);
         $this->assertEquals(17, $page->getTotalItems());
-        $this->assertTrue(is_int($page->getTotalItems()));
+        $this->assertIsInt($page->getTotalItems());
     }
 
     /**
@@ -141,7 +140,7 @@ final class PaginateTest extends AbstractDatabaseTestCase
         $this->assertEquals(1, $page->getCurrent());
         $this->assertEquals(5, $page->limit);
         $this->assertEquals(28, $page->getTotalItems());
-        $this->assertTrue(is_int($page->getTotalItems()));
+        $this->assertIsInt($page->getTotalItems());
 
         $builder = $manager
             ->createBuilder()
@@ -162,7 +161,7 @@ final class PaginateTest extends AbstractDatabaseTestCase
         $this->assertEquals(1, $page->getCurrent());
         $this->assertEquals(5, $page->limit);
         $this->assertEquals(17, $page->getTotalItems());
-        $this->assertTrue(is_int($page->getTotalItems()));
+        $this->assertIsInt($page->getTotalItems());
     }
 
     /**

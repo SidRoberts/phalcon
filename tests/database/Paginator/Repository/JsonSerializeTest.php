@@ -35,6 +35,7 @@ final class JsonSerializeTest extends AbstractDatabaseTestCase
         ];
 
         $repository = new Repository();
+
         $repository->setProperties($data);
 
         $this->assertEquals(

@@ -67,8 +67,16 @@ final class SetGetLimitTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $this->assertEquals(5, $paginator->getLimit());
+        $this->assertEquals(
+            5,
+            $paginator->getLimit()
+        );
+
         $paginator->setLimit(12);
-        $this->assertEquals(12, $paginator->getLimit());
+
+        $this->assertEquals(
+            12,
+            $paginator->getLimit()
+        );
     }
 }

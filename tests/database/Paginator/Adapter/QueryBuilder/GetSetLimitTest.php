@@ -67,9 +67,17 @@ final class GetSetLimitTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $this->assertEquals(5, $paginator->getLimit());
+        $this->assertEquals(
+            5,
+            $paginator->getLimit()
+        );
+
         $paginator->setLimit(12);
-        $this->assertEquals(12, $paginator->getLimit());
+
+        $this->assertEquals(
+            12,
+            $paginator->getLimit()
+        );
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Limit must be greater than zero');
