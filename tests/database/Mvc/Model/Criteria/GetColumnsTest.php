@@ -29,13 +29,13 @@ final class GetColumnsTest extends AbstractDatabaseTestCase
     public function testMvcModelCriteriaGetColumns(): void
     {
         $criteria = new Criteria();
-        $criteria
-            ->columns('inv_id, inv_cst_id, inv_total')
-        ;
 
-        $expected = 'inv_id, inv_cst_id, inv_total';
-        $actual   = $criteria->getColumns();
-        $this->assertEquals($expected, $actual);
+        $criteria->columns('inv_id, inv_cst_id, inv_total');
+
+        $this->assertEquals(
+            'inv_id, inv_cst_id, inv_total',
+            $criteria->getColumns()
+        );
     }
 
     /**
@@ -48,22 +48,24 @@ final class GetColumnsTest extends AbstractDatabaseTestCase
     public function testMvcModelCriteriaGetColumnsArray(): void
     {
         $criteria = new Criteria();
-        $criteria
-            ->columns(
-                [
-                    'id'     => 'inv_id',
-                    'cst_id' => 'inv_cst_id',
-                    'total'  => 'inv_total',
-                ]
-            )
-        ;
+
+        $criteria->columns(
+            [
+                'id'     => 'inv_id',
+                'cst_id' => 'inv_cst_id',
+                'total'  => 'inv_total',
+            ]
+        );
 
         $expected = [
             'id'     => 'inv_id',
             'cst_id' => 'inv_cst_id',
             'total'  => 'inv_total',
         ];
-        $actual   = $criteria->getColumns();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $criteria->getColumns()
+        );
     }
 }

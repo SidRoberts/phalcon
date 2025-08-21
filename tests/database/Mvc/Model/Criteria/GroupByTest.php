@@ -53,11 +53,15 @@ final class GroupByTest extends AbstractDatabaseTestCase
         $expected = 'SELECT [Phalcon\Tests\Support\Models\Invoices].* '
             . 'FROM [Phalcon\Tests\Support\Models\Invoices] '
             . 'GROUP BY [inv_cst_id]';
-        $actual   = $builder->getPhql();
-        $this->assertEquals($expected, $actual);
 
-        $expected = 'inv_cst_id';
-        $actual   = $criteria->getGroupBy();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $builder->getPhql()
+        );
+
+        $this->assertEquals(
+            'inv_cst_id',
+            $criteria->getGroupBy()
+        );
     }
 }

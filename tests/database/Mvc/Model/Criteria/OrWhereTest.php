@@ -54,7 +54,10 @@ final class OrWhereTest extends AbstractDatabaseTestCase
         $expected = 'SELECT [Phalcon\Tests\Support\Models\Invoices].* '
             . 'FROM [Phalcon\Tests\Support\Models\Invoices] '
             . 'WHERE (inv_cst_id = 1) OR (inv_status_flag = :status:)';
-        $actual   = $builder->getPhql();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $builder->getPhql()
+        );
     }
 }

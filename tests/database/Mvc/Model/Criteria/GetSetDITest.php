@@ -37,8 +37,12 @@ final class GetSetDITest extends AbstractDatabaseTestCase
     public function testMvcModelCriteriaGetSetDI(): void
     {
         $criteria = new Criteria();
+
         $criteria->setDI($this->container);
 
-        $this->assertEquals($this->container, $criteria->getDI());
+        $this->assertEquals(
+            $this->container,
+            $criteria->getDI()
+        );
     }
 }

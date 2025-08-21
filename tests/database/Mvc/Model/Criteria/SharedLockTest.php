@@ -30,16 +30,20 @@ final class SharedLockTest extends AbstractDatabaseTestCase
     {
         $criteria = new Criteria();
 
-        $expected = [];
-        $actual   = $criteria->getParams();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            [],
+            $criteria->getParams()
+        );
 
         $criteria->sharedLock(true);
 
         $expected = [
             'shared_lock' => true,
         ];
-        $actual   = $criteria->getParams();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $criteria->getParams()
+        );
     }
 }

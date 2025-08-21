@@ -53,7 +53,10 @@ final class BetweenWhereTest extends AbstractDatabaseTestCase
         $expected = 'SELECT [Phalcon\Tests\Support\Models\Invoices].* '
             . 'FROM [Phalcon\Tests\Support\Models\Invoices] '
             . 'WHERE inv_cst_id BETWEEN :ACP0: AND :ACP1:';
-        $actual   = $builder->getPhql();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $builder->getPhql()
+        );
     }
 }

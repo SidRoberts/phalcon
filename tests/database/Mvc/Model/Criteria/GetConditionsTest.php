@@ -53,11 +53,15 @@ final class GetConditionsTest extends AbstractDatabaseTestCase
         $expected = 'SELECT [Phalcon\Tests\Support\Models\Invoices].* '
             . 'FROM [Phalcon\Tests\Support\Models\Invoices] '
             . 'WHERE inv_cst_id = 1';
-        $actual   = $builder->getPhql();
-        $this->assertEquals($expected, $actual);
 
-        $expected = 'inv_cst_id = 1';
-        $actual   = $criteria->getConditions();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $builder->getPhql()
+        );
+
+        $this->assertEquals(
+            'inv_cst_id = 1',
+            $criteria->getConditions()
+        );
     }
 }

@@ -52,8 +52,11 @@ final class ColumnsTest extends AbstractDatabaseTestCase
 
         $expected = 'SELECT inv_id, inv_total '
             . 'FROM [Phalcon\Tests\Support\Models\Invoices]';
-        $actual   = $builder->getPhql();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $builder->getPhql()
+        );
     }
 
     /**
@@ -84,7 +87,10 @@ final class ColumnsTest extends AbstractDatabaseTestCase
 
         $expected = 'SELECT inv_id AS [id], inv_total AS [total] '
             . 'FROM [Phalcon\Tests\Support\Models\Invoices]';
-        $actual   = $builder->getPhql();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $builder->getPhql()
+        );
     }
 }

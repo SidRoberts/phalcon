@@ -53,11 +53,15 @@ final class OrderByTest extends AbstractDatabaseTestCase
         $expected = 'SELECT [Phalcon\Tests\Support\Models\Invoices].* '
             . 'FROM [Phalcon\Tests\Support\Models\Invoices] '
             . 'ORDER BY inv_cst_id DESC';
-        $actual   = $builder->getPhql();
-        $this->assertEquals($expected, $actual);
 
-        $expected = 'inv_cst_id DESC';
-        $actual   = $criteria->getOrderBy();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $builder->getPhql()
+        );
+
+        $this->assertEquals(
+            'inv_cst_id DESC',
+            $criteria->getOrderBy()
+        );
     }
 }

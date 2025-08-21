@@ -30,16 +30,20 @@ final class DistinctTest extends AbstractDatabaseTestCase
     {
         $criteria = new Criteria();
 
-        $expected = [];
-        $actual   = $criteria->getParams();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            [],
+            $criteria->getParams()
+        );
 
         $criteria->distinct('inv_cst_id');
 
         $expected = [
             'distinct' => 'inv_cst_id',
         ];
-        $actual   = $criteria->getParams();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $criteria->getParams()
+        );
     }
 }

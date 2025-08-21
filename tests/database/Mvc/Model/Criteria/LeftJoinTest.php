@@ -54,7 +54,10 @@ final class LeftJoinTest extends AbstractDatabaseTestCase
         $expected = 'SELECT [Phalcon\Tests\Support\Models\Invoices].* '
             . 'FROM [Phalcon\Tests\Support\Models\Invoices] '
             . 'LEFT JOIN [Phalcon\Tests\Support\Models\Customers] AS [customer] ON inv_cst_id = cst_id';
-        $actual   = $builder->getPhql();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $builder->getPhql()
+        );
     }
 }

@@ -124,6 +124,9 @@ final class LimitTest extends AbstractDatabaseTestCase
             . 'FROM [Phalcon\Tests\Support\Models\Invoices]';
 
         $this->assertEquals($expected, $builder->getPhql());
-        $this->assertEquals(null, $criteria->getLimit());
+
+        $this->assertNull(
+            $criteria->getLimit()
+        );
     }
 }

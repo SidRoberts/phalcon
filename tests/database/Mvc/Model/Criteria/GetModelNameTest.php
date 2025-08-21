@@ -33,8 +33,8 @@ final class GetModelNameTest extends AbstractDatabaseTestCase
 
         $criteria->setModelName(Invoices::class);
 
-        $expected = Invoices::class;
-        $actual   = $criteria->getModelName();
-        $this->assertEquals($expected, $actual);
+        $actual = $criteria->getModelName();
+
+        $this->assertEquals(Invoices::class, $actual);
     }
 }

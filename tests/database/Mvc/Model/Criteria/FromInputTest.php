@@ -100,6 +100,9 @@ final class FromInputTest extends AbstractDatabaseTestCase
             ];
         }
 
-        $this->assertEquals($expected, $builder->getBindParams());
+        $this->assertEquals(
+            $expected,
+            $builder->getBindParams()
+        );
     }
 }

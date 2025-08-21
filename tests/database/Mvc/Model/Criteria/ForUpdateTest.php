@@ -30,16 +30,20 @@ final class ForUpdateTest extends AbstractDatabaseTestCase
     {
         $criteria = new Criteria();
 
-        $expected = [];
-        $actual   = $criteria->getParams();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            [],
+            $criteria->getParams()
+        );
 
         $criteria->forUpdate(true);
 
         $expected = [
             'for_update' => true,
         ];
-        $actual   = $criteria->getParams();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $criteria->getParams()
+        );
     }
 }
