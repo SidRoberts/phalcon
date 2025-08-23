@@ -28,12 +28,12 @@ class Repository implements RepositoryInterface, JsonSerializable
     use CamelizeTrait;
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected array $aliases = [];
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $properties = [];
 
@@ -64,7 +64,7 @@ class Repository implements RepositoryInterface, JsonSerializable
     }
 
     /**
-     * @return array
+     * @return array<string, string>
      */
     public function getAliases(): array
     {
@@ -128,7 +128,7 @@ class Repository implements RepositoryInterface, JsonSerializable
     }
 
     /**
-     * @return int
+     * @return non-negative-int
      */
     public function getTotalItems(): int
     {
@@ -136,7 +136,7 @@ class Repository implements RepositoryInterface, JsonSerializable
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {
@@ -144,7 +144,7 @@ class Repository implements RepositoryInterface, JsonSerializable
     }
 
     /**
-     * @param array $aliases
+     * @param array<string, string> $aliases
      *
      * @return RepositoryInterface
      */
@@ -156,7 +156,7 @@ class Repository implements RepositoryInterface, JsonSerializable
     }
 
     /**
-     * @param array $properties
+     * @param array<string, mixed> $properties
      *
      * @return RepositoryInterface
      */

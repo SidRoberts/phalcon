@@ -20,8 +20,10 @@ use Phalcon\Paginator\Adapter\Model;
 use Phalcon\Paginator\Adapter\NativeArray;
 use Phalcon\Paginator\Adapter\QueryBuilder;
 use Phalcon\Paginator\Adapter\QueryBuilderCursor;
+use Phalcon\Paginator\RepositoryInterface;
 use Phalcon\Support\Traits\ConfigTrait;
 use Phalcon\Traits\Factory\FactoryTrait;
+use Throwable;
 
 /**
  * @phpstan-type TOptions = array{
@@ -39,7 +41,7 @@ class PaginatorFactory
     /**
      * AdapterFactory constructor.
      *
-     * @param array $services
+     * @param array<string, class-string<AdapterInterface>> $services
      */
     public function __construct(array $services = [])
     {
@@ -70,6 +72,8 @@ class PaginatorFactory
      *```
      *
      * @param TOptions|Config $config
+     *
+     * @return AdapterInterface
      */
     public function load(array | Config $config): AdapterInterface
     {
@@ -83,17 +87,22 @@ class PaginatorFactory
 
     /**
      * Create a new instance of the adapter
+     *
+     * @param string                                                           $name
+     * @param array{limit?: int, page?: int, repository?: RepositoryInterface} $options
+     *
+     * @return AdapterInterface
      */
     public function newInstance(string $name, array $options = []): AdapterInterface
     {
+        /** @var class-string<AdapterInterface> */
         $definition = $this->getService($name);
 
-        /** @var AdapterInterface */
         return new $definition($options);
     }
 
     /**
-     * @return string
+     * @return class-string<Throwable>
      */
     protected function getExceptionClass(): string
     {
@@ -103,7 +112,7 @@ class PaginatorFactory
     /**
      * Returns the available adapters
      *
-     * @return string[]
+     * @return array<string, class-string<AdapterInterface>>
      */
     protected function getServices(): array
     {

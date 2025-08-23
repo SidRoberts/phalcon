@@ -44,7 +44,7 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Constructor
      *
-     * @param array $config
+     * @param array{limit?: positive-int, page?: int, repository?: RepositoryInterface} $config
      *
      * @throws Exception
      */
@@ -93,9 +93,10 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Set current rows limit
      *
-     * @param int $limit
+     * @param positive-int $limit
      *
      * @return AdapterInterface
+     *
      * @throws Exception
      */
     public function setLimit(int $limit): AdapterInterface
@@ -126,7 +127,7 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Gets current repository for pagination
      *
-     * @param array|null $properties
+     * @param array<string, mixed>|null $properties
      *
      * @return RepositoryInterface
      */

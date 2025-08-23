@@ -72,11 +72,7 @@ class QueryBuilder extends AbstractAdapter
     /**
      * Phalcon\Paginator\Adapter\QueryBuilder
      *
-     * @param array $config = [
-     *                      'limit' => 10,
-     *                      'builder' => null,
-     *                      'columns' => ''
-     *                      ]
+     * @param array{limit: int, builder: Builder, columns?: array|string|null} $config
      */
     public function __construct(array $config)
     {
@@ -318,6 +314,10 @@ class QueryBuilder extends AbstractAdapter
 
     /**
      * Set query builder object
+     *
+     * @param Builder $builder
+     *
+     * @return QueryBuilder
      */
     public function setQueryBuilder(Builder $builder): static
     {
