@@ -65,6 +65,8 @@ class Asset implements AssetInterface
 
     /**
      * Gets the asset's key.
+     *
+     * @return string
      */
     public function getAssetKey(): string
     {
@@ -87,12 +89,13 @@ class Asset implements AssetInterface
      * Returns the content of the asset as an string
      * Optionally a base path where the asset is located can be set
      *
-     * @param string|null $basePath
+     * @param string $basePath
      *
      * @return string
+     *
      * @throws Exception
      */
-    public function getContent(string | null $basePath = null): string
+    public function getContent(string $basePath = ''): string
     {
         /**
          * A base path for assets can be set in the assets manager
@@ -120,7 +123,6 @@ class Asset implements AssetInterface
             $this->throwException($completePath);
         }
 
-        /** @var string $content */
         return $content;
     }
 

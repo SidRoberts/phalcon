@@ -48,15 +48,6 @@ use const PHP_EOL;
  *      sourceBasePath?: string,
  *      targetBasePath?: string
  * }
- *
- * @phpstan-type TParameters = array{
- *      local?: bool,
- *      type?: string,
- *      rel?: string,
- *      string?: string,
- *      0?: string,
- *      1?: string
- * }
  */
 class Manager implements InjectionAwareInterface
 {
@@ -270,10 +261,10 @@ class Manager implements InjectionAwareInterface
     /**
      * Creates/Returns a collection of assets by type
      *
-     * @param AssetInterface[] $assets
-     * @param string           $type
+     * @param list<AssetInterface> $assets
+     * @param string               $type
      *
-     * @return AssetInterface[]
+     * @return list<AssetInterface>
      */
     public function collectionAssetsByType(array $assets, string $type): array
     {
@@ -301,6 +292,7 @@ class Manager implements InjectionAwareInterface
      * @param string $name
      *
      * @return Collection
+     *
      * @throws Exception
      */
     public function get(string $name): Collection
@@ -439,7 +431,6 @@ class Manager implements InjectionAwareInterface
             $join = $this->getJoin($collection, $completeTargetPath);
         }
 
-        /** @var Asset $asset */
         foreach ($assets as $asset) {
             $filterNeeded = false;
 
@@ -652,7 +643,7 @@ class Manager implements InjectionAwareInterface
             foreach ($codes as $code) {
                 $attributes = $code->getAttributes();
                 $content    = $code->getContent();
-                /** @var FilterInterface $filter */
+
                 foreach ($filters as $filter) {
                     /**
                      * Filters must be valid objects
@@ -780,7 +771,7 @@ class Manager implements InjectionAwareInterface
      *
      * @param TOptions $options
      *
-     * $return static
+     * @return static
      */
     public function setOptions(array $options): static
     {
@@ -794,7 +785,7 @@ class Manager implements InjectionAwareInterface
      *
      * @param bool $implicitOutput
      *
-     * $return static
+     * @return static
      */
     public function useImplicitOutput(bool $implicitOutput): static
     {
@@ -931,10 +922,10 @@ class Manager implements InjectionAwareInterface
     }
 
     /**
-     * @param Collection                       $collection
-     * @param string                           $completeTargetPath
-     * @param array<array-key, Manager|string> $callback
-     * @param string                           $output
+     * @param Collection            $collection
+     * @param string                $completeTargetPath
+     * @param array<Manager|string> $callback
+     * @param string                $output
      *
      * @return string
      */
@@ -1100,7 +1091,7 @@ class Manager implements InjectionAwareInterface
             }
         }
 
-        /** @var string $tag */
+        /** @var string */
         $tag = $params[$name];
         unset($params[$name]);
 
@@ -1115,7 +1106,7 @@ class Manager implements InjectionAwareInterface
             }
         }
 
-        /** @var Link|Script $helper */
+        /** @var Link|Script */
         $helper = $this->tagFactory->newInstance($helperClass);
 
         $helper->__invoke(""); // no indentation

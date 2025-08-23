@@ -24,9 +24,7 @@ use function realpath;
 /**
  * Collection of asset objects
  *
- * @template TKey of array-key
- * @template TValue of AssetInterface
- * @implements IteratorAggregate<TKey, TValue>
+ * @implements IteratorAggregate<array-key, AssetInterface>
  */
 class Collection implements Countable, IteratorAggregate
 {
@@ -50,12 +48,12 @@ class Collection implements Countable, IteratorAggregate
     protected bool $autoVersion = false;
 
     /**
-     * @var AssetInterface[]
+     * @var list<AssetInterface>
      */
     protected array $codes = [];
 
     /**
-     * @var FilterInterface[]
+     * @var list<FilterInterface>
      */
     protected array $filters = [];
     /**
@@ -237,7 +235,7 @@ class Collection implements Countable, IteratorAggregate
     /**
      * Return the count of the assets
      *
-     * @return int
+     * @return non-negative-int
      *
      * @link https://php.net/manual/en/countable.count.php
      */
@@ -269,7 +267,7 @@ class Collection implements Countable, IteratorAggregate
     /**
      * Return the stored codes
      *
-     * @return AssetInterface[]
+     * @return list<AssetInterface>
      */
     public function getCodes(): array
     {
@@ -279,7 +277,7 @@ class Collection implements Countable, IteratorAggregate
     /**
      * Return the stored filters
      *
-     * @return FilterInterface[]
+     * @return list<FilterInterface>
      */
     public function getFilters(): array
     {
@@ -487,7 +485,7 @@ class Collection implements Countable, IteratorAggregate
     /**
      * Sets an array of filters in the collection
      *
-     * @param FilterInterface[] $filters
+     * @param list<FilterInterface> $filters
      *
      * @return static
      */
@@ -642,10 +640,9 @@ class Collection implements Countable, IteratorAggregate
         string | null $version = null,
         bool $autoVersion = false
     ): static {
-        /** @var class-string $name */
+        /** @var class-string<AssetInterface> */
         $name = "Phalcon\\Assets\\Asset\\" . $className;
 
-        /** @var AssetInterface $add */
         $add = new $name(
             $path,
             (null !== $isLocal) ? $isLocal : $this->isLocal,
@@ -676,10 +673,10 @@ class Collection implements Countable, IteratorAggregate
         bool $filter = true,
         array $attributes = []
     ): static {
-        /** @var class-string $name */
+        /** @var class-string */
         $name  = "Phalcon\\Assets\\Inline\\" . $className;
         $attrs = $this->processAttributes($attributes);
-        /** @var Inline $asset */
+        /** @var Inline */
         $asset = new $name(
             $content,
             $filter,
