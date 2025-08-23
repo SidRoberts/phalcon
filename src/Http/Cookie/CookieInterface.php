@@ -78,14 +78,13 @@ interface CookieInterface
     /**
      * Returns the cookie's value.
      *
-     * @param mixed|null $filters
-     * @param mixed|null $defaultValue
+     * @param array|string|null $filters
+     * @param mixed|null        $defaultValue
      *
      * @return mixed
-     * @todo check if $filters can be more type specific
      */
     public function getValue(
-        mixed $filters = null,
+        array|string|null $filters = null,
         mixed $defaultValue = null
     ): mixed;
 

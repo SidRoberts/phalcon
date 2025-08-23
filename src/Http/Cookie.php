@@ -75,6 +75,15 @@ class Cookie extends AbstractInjectionAware implements
 
     /**
      * Phalcon\Http\Cookie constructor.
+     *
+     * @param string               $name
+     * @param mixed                $value
+     * @param int                  $expire
+     * @param string               $path
+     * @param bool|null            $secure
+     * @param string|null          $domain
+     * @param bool|null            $httpOnly
+     * @param array<string, mixed> $options
      */
     public function __construct(
         protected string $name,
@@ -93,6 +102,8 @@ class Cookie extends AbstractInjectionAware implements
 
     /**
      * Magic __toString method converts the cookie's value to string
+     *
+     * @return string
      */
     public function __toString(): string
     {
@@ -110,10 +121,11 @@ class Cookie extends AbstractInjectionAware implements
             null !== $this->container &&
             true === $this->container->has('session')
         ) {
-            /** @var SessionManagerInterface $session */
             if ($this->container instanceof DiInterface) {
+                /** @var SessionManagerInterface */
                 $session = $this->container->getShared('session');
             } else {
+                /** @var SessionManagerInterface */
                 $session = $this->container->get('session');
             }
 
@@ -177,7 +189,7 @@ class Cookie extends AbstractInjectionAware implements
     /**
      * Returns the current cookie's options
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getOptions(): array
     {
@@ -212,15 +224,15 @@ class Cookie extends AbstractInjectionAware implements
     /**
      * Returns the cookie's value.
      *
-     * @param mixed|null $filters
-     * @param mixed|null $defaultValue
+     * @param array|string|null $filters
+     * @param mixed|null        $defaultValue
      *
      * @return mixed
+     *
      * @throws Exception
-     * @todo filters needs to be array/string
      */
     public function getValue(
-        mixed $filters = null,
+        array|string|null $filters = null,
         mixed $defaultValue = null
     ): mixed {
         $this->checkRestored();
@@ -237,10 +249,11 @@ class Cookie extends AbstractInjectionAware implements
                     throw new CryptServiceUnavailable();
                 }
 
-                /** @var CryptInterface $crypt */
                 if ($this->container instanceof DiInterface) {
+                    /** @var CryptInterface */
                     $crypt = $this->container->getShared('crypt');
                 } else {
+                    /** @var CryptInterface */
                     $crypt = $this->container->get('crypt');
                 }
 
@@ -325,10 +338,11 @@ class Cookie extends AbstractInjectionAware implements
                 null !== $this->container &&
                 true === $this->container->has('session')
             ) {
-                /** @var SessionManagerInterface $session */
                 if ($this->container instanceof DiInterface) {
+                    /** @var SessionManagerInterface */
                     $session = $this->container->getShared('session');
                 } else {
+                    /** @var SessionManagerInterface */
                     $session = $this->container->get('session');
                 }
 
@@ -358,6 +372,7 @@ class Cookie extends AbstractInjectionAware implements
      * Stores the cookie definition in session.
      *
      * @return CookieInterface
+     *
      * @throws Exception
      */
     public function send(): CookieInterface
@@ -383,10 +398,11 @@ class Cookie extends AbstractInjectionAware implements
             null !== $this->container &&
             true === $this->container->has('session')
         ) {
-            /** @var SessionManagerInterface $session */
             if ($this->container instanceof DiInterface) {
+                /** @var SessionManagerInterface */
                 $session = $this->container->getShared('session');
             } else {
+                /** @var SessionManagerInterface */
                 $session = $this->container->get('session');
             }
 
@@ -401,10 +417,11 @@ class Cookie extends AbstractInjectionAware implements
                 throw new FilterServiceUnavailable();
             }
 
-            /** @var CryptInterface $crypt */
             if ($this->container instanceof DiInterface) {
+            /** @var CryptInterface */
                 $crypt = $this->container->getShared('crypt');
             } else {
+                /** @var CryptInterface */
                 $crypt = $this->container->get('crypt');
             }
 
@@ -487,7 +504,7 @@ class Cookie extends AbstractInjectionAware implements
     /**
      * Sets the cookie's options
      *
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return CookieInterface
      */
@@ -542,7 +559,9 @@ class Cookie extends AbstractInjectionAware implements
      * @param string|null $signKey
      *
      * @return CookieInterface
+     *
      * @throws CookieException
+     *
      * @see \Phalcon\Encryption\Security\Random
      */
     public function setSignKey(string | null $signKey = null): CookieInterface
@@ -591,6 +610,7 @@ class Cookie extends AbstractInjectionAware implements
      * @param string $signKey
      *
      * @return void
+     *
      * @throws CookieException
      */
     protected function assertSignKeyIsLongEnough(string $signKey): void
@@ -617,7 +637,7 @@ class Cookie extends AbstractInjectionAware implements
     /**
      * @param int $expiresDefault
      *
-     * @return array
+     * @return array<string, mixed>
      */
     private function getCookieOptions(int $expiresDefault): array
     {
