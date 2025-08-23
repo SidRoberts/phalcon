@@ -131,17 +131,17 @@ class Memory extends AbstractAdapter
     protected function doDecrement(string $key, int $value = 1): false | int
     {
         $prefixedKey = $this->getPrefixedKey($key);
-        $result      = array_key_exists($prefixedKey, $this->data);
 
-        if (true === $result) {
-            $current  = $this->data[$prefixedKey];
-            $newValue = (int)$current - $value;
-            $result   = $newValue;
-
-            $this->data[$prefixedKey] = $newValue;
+        if (!array_key_exists($prefixedKey, $this->data)) {
+            return false;
         }
 
-        return $result;
+        $current  = $this->data[$prefixedKey];
+        $newValue = (int)$current - $value;
+
+        $this->data[$prefixedKey] = $newValue;
+
+        return $newValue;
     }
 
     /**
@@ -196,17 +196,17 @@ class Memory extends AbstractAdapter
     protected function doIncrement(string $key, int $value = 1): false | int
     {
         $prefixedKey = $this->getPrefixedKey($key);
-        $result      = array_key_exists($prefixedKey, $this->data);
 
-        if ($result) {
-            $current  = $this->data[$prefixedKey];
-            $newValue = (int)$current + $value;
-            $result   = $newValue;
-
-            $this->data[$prefixedKey] = $newValue;
+        if (!array_key_exists($prefixedKey, $this->data)) {
+            return false;
         }
 
-        return $result;
+        $current  = $this->data[$prefixedKey];
+        $newValue = (int)$current + $value;
+
+        $this->data[$prefixedKey] = $newValue;
+
+        return $newValue;
     }
 
     /**
