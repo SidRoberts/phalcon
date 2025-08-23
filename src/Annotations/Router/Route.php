@@ -19,6 +19,13 @@ use Phalcon\Http\Message\Interfaces\RequestMethodInterface;
 #[Attribute(Attribute::TARGET_METHOD)]
 class Route
 {
+    /**
+     * @param string       $route
+     * @param string|array $methods
+     * @param string|null  $name
+     * @param array        $paths
+     * @param array        $converters
+     */
     public function __construct(
         public string $route,
         public string | array $methods = [

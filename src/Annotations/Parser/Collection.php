@@ -15,6 +15,7 @@ namespace Phalcon\Annotations\Parser;
 
 use ArrayIterator;
 use IteratorAggregate;
+use ReflectionAttribute;
 use Traversable;
 
 /**
@@ -32,13 +33,13 @@ use Traversable;
  *
  * // Get an specific annotation in the collection
  * $annotation = $classAnnotations->get("Cacheable");
- *
- * @template TKey of int
- * @template TValue of Annotation
  *```
  */
 class Collection implements IteratorAggregate
 {
+    /**
+     * @var list<Annotation>
+     */
     protected array $annotations;
 
     protected int $position = 0;
@@ -46,7 +47,7 @@ class Collection implements IteratorAggregate
     /**
      * Constructor
      *
-     * @param array $reflectionData
+     * @param list<ReflectionAttribute> $reflectionData
      */
     public function __construct(array $reflectionData = [])
     {
@@ -63,6 +64,7 @@ class Collection implements IteratorAggregate
      * @param string $name
      *
      * @return Annotation
+     *
      * @throws Exception
      */
     public function get(string $name): Annotation
@@ -83,7 +85,7 @@ class Collection implements IteratorAggregate
      *
      * @param string $name
      *
-     * @return TValue[]
+     * @return list<Annotation>
      */
     public function getAll(string $name): array
     {
@@ -98,11 +100,17 @@ class Collection implements IteratorAggregate
         return $found;
     }
 
+    /**
+     * @return Traversable<Annotation>
+     */
     public function getAnnotations(): Traversable
     {
         return new ArrayIterator($this->annotations);
     }
 
+    /**
+     * @return Traversable
+     */
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->annotations);

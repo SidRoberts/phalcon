@@ -24,9 +24,15 @@ class Reader implements ReaderInterface
     /**
      * Reads annotations from the class, its methods and/or properties
      *
-     * @param string $className
+     * @param class-string $className
      *
-     * @return array
+     * @return array{
+     *     class?: Collection,
+     *     constants?: array<string, Collection>,
+     *     properties?: array<string, Collection>,
+     *     methods?: array<string, Collection>
+     * }
+     *
      * @throws ReflectionException
      */
     public function parse(string $className): array

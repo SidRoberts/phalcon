@@ -20,6 +20,15 @@ interface ReaderInterface
 {
     /**
      * Reads attributes from the class, properties and methods
+     *
+     * @param class-string $className
+     *
+     * @return array{
+     *     class?: Collection,
+     *     constants?: array<string, Collection>,
+     *     properties?: array<string, Collection>,
+     *     methods?: array<string, Collection>
+     * }
      */
     public function parse(string $className): array;
 }

@@ -18,6 +18,16 @@ use Attribute;
 #[Attribute(Attribute::TARGET_PROPERTY)]
 class Column
 {
+    /**
+     * @param string|null $column
+     * @param string      $type
+     * @param int|null    $length
+     * @param bool        $nullable
+     * @param bool        $skipOnInsert
+     * @param bool        $skipOnUpdate
+     * @param bool        $allowEmptyString
+     * @param mixed       $default
+     */
     public function __construct(
         public string | null $column = null,
         public string $type = 'string',

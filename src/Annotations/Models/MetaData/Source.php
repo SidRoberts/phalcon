@@ -18,6 +18,9 @@ use Attribute;
 #[Attribute(Attribute::TARGET_CLASS)]
 class Source
 {
+    /**
+     * @param string $table
+     */
     public function __construct(
         public string $table
     ) {

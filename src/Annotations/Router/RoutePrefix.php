@@ -18,6 +18,9 @@ use Attribute;
 #[Attribute(Attribute::TARGET_CLASS)]
 class RoutePrefix
 {
+    /**
+     * @param string $prefix
+     */
     public function __construct(public string $prefix)
     {
     }

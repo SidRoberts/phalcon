@@ -19,6 +19,9 @@ use Phalcon\Http\Message\Interfaces\RequestMethodInterface;
 #[Attribute(Attribute::TARGET_METHOD)]
 class Patch extends Route
 {
+    /**
+     * @param array<mixed> $params
+     */
     public function __construct(...$params)
     {
         $params['methods'] = RequestMethodInterface::METHOD_PATCH;

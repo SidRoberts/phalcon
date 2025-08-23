@@ -22,19 +22,26 @@ use Phalcon\Storage\Adapter\AdapterInterface;
 class Annotations
 {
     private const CACHE_PREFIX = '_PHATN';
-    protected AdapterInterface $adapter;
-    protected array $attributes = [];
-    protected Reader | null $reader = null;
 
-    public function __construct(AdapterInterface $adapter)
-    {
-        $this->adapter = $adapter;
+    /**
+     * @var array<class-string, Reflection>
+     */
+    protected array $attributes = [];
+
+    protected ReaderInterface | null $reader = null;
+
+    /**
+     * @param AdapterInterface $adapter
+     */
+    public function __construct(
+        protected AdapterInterface $adapter
+    ) {
     }
 
     /**
      * Parses or retrieves all the attributes found in a class
      *
-     * @param mixed $className
+     * @param object|class-string $className
      *
      * @return Reflection
      */
@@ -72,8 +79,8 @@ class Annotations
     /**
      * Returns the attributes found in a specific constant
      *
-     * @param string $className
-     * @param string $constantName
+     * @param class-string $className
+     * @param string       $constantName
      *
      * @return Collection
      */
@@ -87,9 +94,9 @@ class Annotations
     /**
      * Returns the attributes found in all the class' constants
      *
-     * @param string $className
+     * @param class-string $className
      *
-     * @return array
+     * @return array<string, Collection>
      */
     public function getConstants(string $className): array
     {
@@ -99,8 +106,8 @@ class Annotations
     /**
      * Returns the attributes found in a specific method
      *
-     * @param string $className
-     * @param string $methodName
+     * @param class-string $className
+     * @param string       $methodName
      *
      * @return Collection
      */
@@ -123,9 +130,9 @@ class Annotations
     /**
      * Returns the attributes found in all the class' methods
      *
-     * @param string $className
+     * @param class-string $className
      *
-     * @return array
+     * @return array<string, Collection>
      */
     public function getMethods(string $className): array
     {
@@ -135,9 +142,9 @@ class Annotations
     /**
      * Returns the attributes found in all the class' properties
      *
-     * @param string $className
+     * @param class-string $className
      *
-     * @return array
+     * @return array<string, Collection>
      */
     public function getProperties(string $className): array
     {
@@ -147,8 +154,8 @@ class Annotations
     /**
      * Returns the attributes found in a specific property
      *
-     * @param string $className
-     * @param string $propertyName
+     * @param class-string $className
+     * @param string       $propertyName
      *
      * @return Collection
      */
@@ -174,9 +181,9 @@ class Annotations
      *
      * @param string $key
      *
-     * @return Reflection|bool
+     * @return Reflection|false
      */
-    public function read(string $key): Reflection | bool
+    public function read(string $key): Reflection | false
     {
         return $this->adapter->get(strtolower($key)) ?? false;
     }

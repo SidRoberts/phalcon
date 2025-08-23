@@ -33,6 +33,13 @@ use function is_array;
  * // Get the annotations from the class
  * $classAnnotations = $reflection->getClassAnnotations();
  *```
+ *
+ * @phpstan-type TReflectionData = array{
+ *     class?: Collection,
+ *     constants?: array<string, Collection>,
+ *     properties?: array<string, Collection>,
+ *     methods?: array<string, Collection>
+ * }
  */
 class Reflection
 {
@@ -42,24 +49,24 @@ class Reflection
     protected Collection | null $classAnnotations = null;
 
     /**
-     * @var array
+     * @var array<string, Collection>
      */
     protected array $constantAnnotations = [];
 
     /**
-     * @var array
+     * @var array<string, Collection>
      */
     protected array $methodAnnotations = [];
 
     /**
-     * @var array
+     * @var array<string, Collection>
      */
     protected array $propertyAnnotations = [];
 
     /**
      * Constructor
      *
-     * @param array $reflectionData
+     * @param TReflectionData $reflectionData
      */
     public function __construct(
         protected array $reflectionData = []
@@ -86,7 +93,7 @@ class Reflection
     /**
      * Returns the annotations found as constants
      *
-     * @return Collection[]
+     * @return array<string, Collection>
      */
     public function getConstantsAnnotations(): array
     {
@@ -99,7 +106,7 @@ class Reflection
     /**
      * Returns the annotations found at methods
      *
-     * @return Collection[]
+     * @return array<string, Collection>
      */
     public function getMethodsAnnotations(): array
     {
@@ -112,7 +119,7 @@ class Reflection
     /**
      * Returns the annotations found at properties
      *
-     * @return Collection[]
+     * @return array<string, Collection>
      */
     public function getPropertiesAnnotations(): array
     {
@@ -126,7 +133,7 @@ class Reflection
      * Returns the raw parsing intermediate definitions used to construct the
      * reflection
      *
-     * @return array
+     * @return TReflectionData
      */
     public function getReflectionData(): array
     {
@@ -134,10 +141,10 @@ class Reflection
     }
 
     /**
-     * @param string $element
-     * @param string $collection
+     * @param string                                                          $element
+     * @param "constantAnnotations"|"methodAnnotations"|"propertyAnnotations" $collection
      *
-     * @return array
+     * @return array<string, Collection>
      */
     private function traverseCollection(string $element, string $collection): array
     {

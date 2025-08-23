@@ -24,6 +24,7 @@ use Phalcon\Annotations\Adapter\Weak;
 use Phalcon\Annotations\Parser\Exception;
 use Phalcon\Storage\SerializerFactory;
 use Phalcon\Traits\Factory\FactoryTrait;
+use Throwable;
 
 /**
  * Factory to create Annotations adapters
@@ -33,15 +34,15 @@ class AdapterFactory
     use FactoryTrait;
 
     /**
-     * @var SerializerFactory|null
+     * @var SerializerFactory
      */
-    private SerializerFactory | null $serializerFactory;
+    private SerializerFactory $serializerFactory;
 
     /**
      * AdapterFactory constructor.
      *
-     * @param SerializerFactory     $factory
-     * @param array<string, string> $services
+     * @param SerializerFactory                             $factory
+     * @param array<string, class-string<AdapterInterface>> $services
      */
     public function __construct(
         SerializerFactory $factory,
@@ -78,10 +79,12 @@ class AdapterFactory
      *                                      ]
      *
      * @return AdapterInterface
+     *
      * @throws BaseException
      */
     public function newInstance(string $name, array $options = []): AdapterInterface
     {
+        /** @var class-string<AdapterInterface> */
         $definition = $this->getService($name);
 
         return new $definition(
@@ -91,7 +94,7 @@ class AdapterFactory
     }
 
     /**
-     * @return string
+     * @return class-string<Throwable>
      */
     protected function getExceptionClass(): string
     {
@@ -101,7 +104,7 @@ class AdapterFactory
     /**
      * Returns the available adapters
      *
-     * @return array<string, string>
+     * @return array<string, class-string<AdapterInterface>>
      */
     protected function getServices(): array
     {

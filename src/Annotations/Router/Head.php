@@ -19,6 +19,9 @@ use Phalcon\Http\Message\Interfaces\RequestMethodInterface;
 #[Attribute(Attribute::TARGET_METHOD)]
 class Head extends Route
 {
+    /**
+     * @param array<mixed> $params
+     */
     public function __construct(...$params)
     {
         $params['methods'] = RequestMethodInterface::METHOD_HEAD;

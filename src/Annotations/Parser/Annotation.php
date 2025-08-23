@@ -27,7 +27,7 @@ class Annotation
     /**
      * Attribute Arguments
      *
-     * @var array
+     * @var array<mixed>
      */
     protected array $arguments = [];
 
@@ -52,7 +52,7 @@ class Annotation
     /**
      * Returns an argument in a specific position
      *
-     * @param int | string $position
+     * @param int|string $position
      *
      * @return mixed
      */
@@ -64,7 +64,7 @@ class Annotation
     /**
      * Returns the expression arguments
      *
-     * @return array
+     * @return array<mixed>
      */
     public function getArguments(): array
     {
@@ -118,7 +118,7 @@ class Annotation
     /**
      * Returns an argument in a specific position
      *
-     * @param int | string $position
+     * @param int|string $position
      *
      * @return bool
      */
@@ -130,7 +130,7 @@ class Annotation
     /**
      * Returns the number of arguments that the attribute has
      *
-     * @return int
+     * @return non-negative-int
      */
     public function numberArguments(): int
     {
