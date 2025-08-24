@@ -74,6 +74,13 @@ interface RouteInterface
     public function getCompiledPattern(): string;
 
     /**
+     * Returns the router converter
+     *
+     * @return array
+     */
+    public function getConverters(): array;
+
+    /**
      * Get routing delimiter
      *
      * @return string
