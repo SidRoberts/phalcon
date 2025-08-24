@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Mvc\Model;
 
 use Phalcon\Db\Adapter\AdapterInterface;
+use Phalcon\Events\ManagerInterface as EventsManagerInterface;
 use Phalcon\Mvc\Model\Query\BuilderInterface;
 use Phalcon\Mvc\Model\Query\StatusInterface;
 use Phalcon\Mvc\Model\Resultset\Simple;
@@ -219,6 +220,18 @@ interface ManagerInterface
      * @return BuilderInterface|null
      */
     public function getBuilder(): BuilderInterface | null;
+
+    /**
+     * Returns a custom events manager related to a model or null if there is
+     * no related events manager
+     *
+     * @param ModelInterface $model
+     *
+     * @return EventsManagerInterface | null
+     */
+    public function getCustomEventsManager(
+        ModelInterface $model
+    ): EventsManagerInterface | null;
 
     /**
      * Gets hasMany relations defined on a model
@@ -616,6 +629,19 @@ interface ManagerInterface
     public function setConnectionService(
         ModelInterface $model,
         string $connectionService
+    ): void;
+
+    /**
+     * Sets a custom events manager for a specific model
+     *
+     * @param ModelInterface         $model
+     * @param EventsManagerInterface $eventsManager
+     *
+     * @return void
+     */
+    public function setCustomEventsManager(
+        ModelInterface $model,
+        EventsManagerInterface $eventsManager
     ): void;
 
     /**
