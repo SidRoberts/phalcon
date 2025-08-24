@@ -29,16 +29,6 @@ use function mb_strtolower;
 use function memory_get_usage;
 use function sprintf;
 
-/**
- * @property array  $blacklist
- * @property mixed  $data
- * @property bool   $hideDocumentRoot
- * @property bool   $isActive
- * @property bool   $showBackTrace
- * @property bool   $showFileFragment
- * @property bool   $showFiles
- * @property string $uri
- */
 class Debug
 {
     /**

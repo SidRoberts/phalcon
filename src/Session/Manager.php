@@ -33,11 +33,6 @@ use function session_status;
  * Phalcon\Session\Manager
  *
  * Session manager class
- *
- * @property SessionHandlerInterface|null $adapter
- * @property string                       $name
- * @property array                        $options
- * @property string                       $uniqueId
  */
 class Manager implements ManagerInterface
 {

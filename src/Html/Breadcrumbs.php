@@ -29,10 +29,6 @@ use function str_replace;
  * The resulting HTML when calling `render()` will have each breadcrumb enclosed
  * in `<dt>` tags, while the whole string is enclosed in `<dl>` tags.
  *
- * @property array  $elements
- * @property string $separator
- * @property string $template
- *
  * @deprecated Will be removed in future version
  * Use {@see \Phalcon\Html\Helper\Breadcrumbs} instead.
  */

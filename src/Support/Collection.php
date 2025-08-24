@@ -59,12 +59,6 @@ use const SORT_DESC;
  * etc.
  *
  * @phpstan-template T
- *
- * @property array       $data
- * @property bool        $insensitive
- * @property array       $lowerKeys
- * @property bool        $strictNull
- * @property string|null $type
  */
 class Collection implements
     CollectionInterface,

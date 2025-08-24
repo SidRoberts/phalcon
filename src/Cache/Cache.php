@@ -20,8 +20,6 @@ use Phalcon\Cache\Exception\InvalidArgumentException;
 /**
  * This component offers caching capabilities for your application.
  * Phalcon\Cache implements PSR-16.
- *
- * @property AdapterInterface $adapter
  */
 class Cache extends AbstractCache
 {

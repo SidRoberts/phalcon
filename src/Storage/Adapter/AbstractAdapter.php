@@ -28,14 +28,6 @@ use function mb_strtolower;
  * Class AbstractAdapter
  *
  * @package Phalcon\Storage\Adapter
- *
- * @property mixed               $adapter
- * @property string              $defaultSerializer
- * @property int                 $lifetime
- * @property array               $options
- * @property string              $prefix
- * @property SerializerInterface $serializer
- * @property SerializerFactory   $serializerFactory
  */
 abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
 {

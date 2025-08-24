@@ -15,9 +15,6 @@ namespace Phalcon\Acl\Traits;
 
 /**
  * This class defines role/component names and their descriptions
- *
- * @property string      $name
- * @property string|null $description
  */
 trait ItemTrait
 {

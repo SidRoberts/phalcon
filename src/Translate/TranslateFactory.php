@@ -23,9 +23,7 @@ use Phalcon\Translate\Adapter\NativeArray;
 use Phalcon\Translate\Exceptions\TranslatorNotRegistered;
 
 /**
- * @property InterpolatorFactory $interpolator
- *
- * @psalm-type TConfig array{
+ * @psalm-type TConfig = array{
  *      adapter: string,
  *      options?: array{
  *          content: string,

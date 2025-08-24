@@ -36,11 +36,6 @@ use function is_string;
  *
  * $request = service->resolve();
  *```
- *
- * @property array $definition
- * @property bool  $resolved
- * @property bool  $shared
- * @property mixed $sharedInstance
  */
 class Service implements ServiceInterface
 {

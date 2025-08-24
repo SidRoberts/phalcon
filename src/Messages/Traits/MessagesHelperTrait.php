@@ -21,9 +21,6 @@ use Phalcon\Messages\MessageInterface;
  * Trait MessagesHelperTrait
  *
  * @package Phalcon\Messages\Traits
- *
- * @property array $messages
- * @property int   $position
  */
 trait MessagesHelperTrait
 {

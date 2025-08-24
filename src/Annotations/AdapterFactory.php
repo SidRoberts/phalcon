@@ -27,8 +27,6 @@ use Phalcon\Traits\Factory\FactoryTrait;
 
 /**
  * Factory to create Annotations adapters
- *
- * @property SerializerFactory $serializerFactory
  */
 class AdapterFactory
 {

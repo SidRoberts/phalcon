@@ -25,8 +25,6 @@ use function mb_strtolower;
 
 /**
  * Redis adapter
- *
- * @property array $options
  */
 class RedisCluster extends Redis
 {

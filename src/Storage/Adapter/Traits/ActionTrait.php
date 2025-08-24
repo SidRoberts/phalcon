@@ -32,7 +32,7 @@ use function is_object;
  * @property string                   $defaultSerializer
  * @property int                      $lifetime
  * @property string                   $prefix
- * @property SerializerInterface|null $serializer;
+ * @property SerializerInterface|null $serializer
  * @property SerializerFactory        $serializerFactory
  */
 trait ActionTrait

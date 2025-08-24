@@ -38,12 +38,6 @@ use function strtolower;
  * files (see Phalcon\Config\Config object).
  *
  * @package Phalcon\Logger
- *
- * @property AdapterInterface[] $adapters
- * @property array              $excluded
- * @property int                $logLevel
- * @property string             $name
- * @property DateTimeZone       $timezone
  */
 abstract class AbstractLogger
 {

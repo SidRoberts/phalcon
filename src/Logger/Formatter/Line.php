@@ -18,8 +18,6 @@ use Phalcon\Logger\Item;
 
 /**
  * Class Line
- *
- * @property string $format
  */
 class Line extends AbstractFormatter
 {

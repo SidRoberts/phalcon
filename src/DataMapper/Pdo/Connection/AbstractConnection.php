@@ -38,9 +38,6 @@ use function preg_replace_callback;
  * Provides array quoting, profiling, a new `perform()` method, new `fetch*()`
  * methods
  *
- * @property PDO|null               $pdo
- * @property ProfilerInterface|null $profiler
- *
  * @method bool        beginTransaction()
  * @method bool        commit()
  * @method string|null errorCode()

@@ -49,8 +49,6 @@ use const LOCK_SH;
  *     lifetime?: int,
  *     prefix?: string
  * }
- * @property string $storageDir
- * @property array  $options
  */
 class Stream extends AbstractAdapter
 {

@@ -34,12 +34,6 @@ use const LOG_WARNING;
 
 /**
  * Class Syslog
- *
- * @property string $defaultFormatter
- * @property int    $facility
- * @property string $name
- * @property bool   $opened
- * @property int    $option
  */
 class Syslog extends AbstractAdapter
 {

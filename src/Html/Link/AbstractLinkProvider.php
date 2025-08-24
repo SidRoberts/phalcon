@@ -19,9 +19,6 @@ use function in_array;
 use function is_a;
 use function spl_object_hash;
 
-/**
- * @property array $links
- */
 abstract class AbstractLinkProvider
 {
     /**

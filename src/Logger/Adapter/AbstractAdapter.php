@@ -24,12 +24,6 @@ use Phalcon\Logger\Item;
 
 /**
  * Class AbstractAdapter
- *
- * @property string             $defaultFormatter
- * @property FormatterInterface $formatter
- * @property bool               $inTransaction
- * @property array              $queue
- * @property int                $queueLimit
  */
 abstract class AbstractAdapter implements AdapterInterface
 {

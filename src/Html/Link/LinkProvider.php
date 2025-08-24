@@ -16,9 +16,6 @@ namespace Phalcon\Html\Link;
 use Phalcon\Html\Link\Interfaces\LinkInterface;
 use Phalcon\Html\Link\Interfaces\LinkProviderInterface;
 
-/**
- * @property LinkInterface[] $links
- */
 class LinkProvider extends AbstractLinkProvider implements LinkProviderInterface
 {
     /**

@@ -51,12 +51,6 @@ use const ENT_SUBSTITUTE;
  *
  * echo $escaped; // font\2D family\3A \20 \3C Verdana\3E
  *```
- *
- * @property AttributeEscaper $attributeEscaper
- * @property CssEscaper       $cssEscaper
- * @property HtmlEscaper      $htmlEscaper
- * @property JsEscaper        $jsEscaper
- * @property UrlEscaper       $urlEscaper
  */
 class Escaper implements EscaperInterface
 {

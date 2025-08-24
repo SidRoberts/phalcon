@@ -19,12 +19,6 @@ use Phalcon\Events\Traits\EventsAwareTrait;
 
 /**
  * Functionality common to all adapters
- *
- * @property string|null $activeAccess
- * @property string|null $activeComponent
- * @property string|null $activeRole
- * @property bool        $accessGranted
- * @property int         $defaultAccess
  */
 abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
 {

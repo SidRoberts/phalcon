@@ -40,14 +40,6 @@ use function substr;
 
 /**
  * Uri
- *
- * @property string   $fragment
- * @property string   $host
- * @property string   $pass
- * @property int|null $port
- * @property string   $query
- * @property string   $scheme
- * @property string   $userInfo
  */
 class Uri extends AbstractCommon implements UriInterface
 {

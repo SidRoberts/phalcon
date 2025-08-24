@@ -28,14 +28,6 @@ use Phalcon\Session\ManagerInterface as SessionInterface;
  * $flash->success("The record was successfully deleted");
  * $flash->error("Cannot open the file");
  *```
- * @property bool                  $autoescape
- * @property bool                  $automaticHtml
- * @property array                 $cssClasses
- * @property string                $customTemplate
- * @property EscaperInterface|null $escaperService
- * @property bool                  $implicitFlush
- * @property array                 $messages
- * @property SessionInterface|null $sessionService
  */
 trait FlashGettersTrait
 {

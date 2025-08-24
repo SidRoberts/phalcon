@@ -26,8 +26,6 @@ use Phalcon\Traits\Factory\FactoryTrait;
 
 /**
  * Class AdapterFactory
- *
- * @property SerializerFactory $serializerFactory
  */
 class AdapterFactory
 {

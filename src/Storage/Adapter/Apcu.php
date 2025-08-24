@@ -24,8 +24,6 @@ use function is_int;
 
 /**
  * Apcu adapter
- *
- * @property array $options
  */
 class Apcu extends AbstractAdapter
 {

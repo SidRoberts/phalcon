@@ -18,8 +18,6 @@ use Phalcon\Traits\Helper\Str\InterpolateTrait;
 
 /**
  * Class AbstractFormatter
- *
- * @property string $dateFormat
  */
 abstract class AbstractFormatter implements FormatterInterface
 {

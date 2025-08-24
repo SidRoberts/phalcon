@@ -22,8 +22,6 @@ use Psr\SimpleCache\CacheInterface;
 
 /**
  * Creates a new Cache class
- *
- * @property AdapterFactory $adapterFactory;
  */
 class CacheFactory
 {

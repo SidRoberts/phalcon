@@ -47,10 +47,6 @@ use const DIRECTORY_SEPARATOR;
  * );
  * $session->setAdapter($files);
  * ```
- *
- * @property array  $options
- * @property string $prefix
- * @property string $path
  */
 class Stream extends Noop
 {

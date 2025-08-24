@@ -69,10 +69,6 @@ use const PHP_EOL;
  *
  * echo (new \Phalcon\Debug\Dump())->variables($foo, $bar, $baz);
  * ```
- *
- * @property bool  $detailed
- * @property array $methods
- * @property array $styles
  */
 class Dump
 {

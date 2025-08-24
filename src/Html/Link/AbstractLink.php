@@ -15,12 +15,6 @@ namespace Phalcon\Html\Link;
 
 use Phalcon\Support\Collection;
 
-/**
- * @property Collection $attributes
- * @property string     $href
- * @property Collection $rels
- * @property bool       $templated
- */
 abstract class AbstractLink
 {
     /**

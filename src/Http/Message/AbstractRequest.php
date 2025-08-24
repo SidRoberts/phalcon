@@ -29,10 +29,6 @@ use function strtoupper;
 
 /**
  * Request methods
- *
- * @property string       $method
- * @property null|string  $requestTarget
- * @property UriInterface $uri
  */
 abstract class AbstractRequest extends AbstractMessage implements
     RequestInterface,

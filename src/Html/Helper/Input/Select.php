@@ -25,11 +25,6 @@ use function is_numeric;
 
 /**
  * Class Select
- *
- * @property string $elementTag
- * @property bool   $inOptGroup
- * @property string $selected
- * @property bool   $strict
  */
 class Select extends AbstractList
 {

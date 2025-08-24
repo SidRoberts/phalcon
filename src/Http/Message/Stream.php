@@ -69,9 +69,6 @@ use function strpbrk;
  *      mediatype?: string,
  *      base64?: bool
  * }
- *
- * @property resource|null   $handle
- * @property resource|string $stream
  */
 class Stream implements StreamInterface
 {
