@@ -306,12 +306,14 @@ class Response extends Injectable implements
         $container = $this->getDI();
 
         if (empty($header)) {
-            /** @var UrlInterface $url */
             if ($container instanceof DiInterface) {
+                /** @var UrlInterface */
                 $url = $container->getShared('url');
             } else {
+                /** @var UrlInterface */
                 $url = $container->get('url');
             }
+
             $header = $url->get($location);
         }
 
@@ -451,7 +453,7 @@ class Response extends Injectable implements
      * $this->response->setCache(60);
      *```
      *
-     * @param int $minutes
+     * @param non-negative-int $minutes
      *
      * @return ResponseInterface
      */
@@ -492,7 +494,7 @@ class Response extends Injectable implements
      * $response->setContentLength(2048);
      *```
      *
-     * @param int $contentLength
+     * @param non-negative-int $contentLength
      *
      * @return ResponseInterface
      */
@@ -601,6 +603,12 @@ class Response extends Injectable implements
 
     /**
      * Sets an attached file to be sent at the end of the request
+     *
+     * @param string      $filePath
+     * @param string|null $attachmentName
+     * @param bool        $attach
+     *
+     * @return ResponseInterface
      */
     public function setFileToSend(
         string $filePath,
@@ -712,9 +720,9 @@ class Response extends Injectable implements
      * );
      *```
      *
-     * @param mixed $content
-     * @param int   $jsonOptions
-     * @param int   $depth
+     * @param mixed        $content
+     * @param int          $jsonOptions
+     * @param positive-int $depth
      *
      * @return ResponseInterface
      */
@@ -769,6 +777,7 @@ class Response extends Injectable implements
      * Sends a Not-Modified response
      *
      * @return ResponseInterface
+     *
      * @throws Exception
      */
     public function setNotModified(): ResponseInterface
@@ -784,6 +793,9 @@ class Response extends Injectable implements
      *```php
      * $response->setRawHeader("HTTP/1.1 404 Not Found");
      *```
+     * @param string $header
+     *
+     * @return ResponseInterface
      */
     public function setRawHeader(string $header): ResponseInterface
     {
@@ -803,6 +815,7 @@ class Response extends Injectable implements
      * @param string|null $message
      *
      * @return ResponseInterface
+     *
      * @throws Exception
      */
     public function setStatusCode(

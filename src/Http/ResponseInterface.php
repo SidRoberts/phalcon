@@ -125,7 +125,7 @@ interface ResponseInterface
     /**
      * Sets the response content-length
      *
-     * @param int $contentLength
+     * @param non-negative-int $contentLength
      *
      * @return ResponseInterface
      */

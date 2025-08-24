@@ -73,7 +73,7 @@ use function headers_sent;
 class Cookies extends AbstractInjectionAware implements CookiesInterface
 {
     /**
-     * @var array
+     * @var array<string, CookieInterface>
      */
     protected array $cookies = [];
     /**
@@ -93,6 +93,9 @@ class Cookies extends AbstractInjectionAware implements CookiesInterface
 
     /**
      * Constructor
+     *
+     * @param bool        $useEncryption
+     * @param string|null $signKey
      */
     public function __construct(
         protected bool $useEncryption = true,
@@ -167,7 +170,7 @@ class Cookies extends AbstractInjectionAware implements CookiesInterface
     /**
      * Gets all cookies from the bag
      *
-     * @return array
+     * @return array<string, CookieInterface>
      */
     public function getCookies(): array
     {
@@ -222,6 +225,8 @@ class Cookies extends AbstractInjectionAware implements CookiesInterface
     /**
      * Sends the cookies to the client
      * Cookies aren't sent if headers are sent in the current request
+     *
+     * @return bool
      */
     public function send(): bool
     {
@@ -259,6 +264,17 @@ class Cookies extends AbstractInjectionAware implements CookiesInterface
      *     (int) $tomorrow->format('U'),
      * );
      * ```
+     *
+     * @param string     $name
+     * @param mixed|null $value
+     * @param int        $expire
+     * @param string     $path
+     * @param bool       $secure
+     * @param string     $domain
+     * @param bool       $httpOnly
+     * @param array      $options
+     *
+     * @return CookiesInterface
      */
     public function set(
         string $name,
@@ -318,6 +334,7 @@ class Cookies extends AbstractInjectionAware implements CookiesInterface
          */
         if (true !== $this->isRegistered) {
             $container = $this->checkGetContainer();
+
             $response  = $container->getShared('response');
 
             /**

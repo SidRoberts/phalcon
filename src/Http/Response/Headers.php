@@ -25,7 +25,7 @@ use function str_contains;
 class Headers implements HeadersInterface, IteratorAggregate
 {
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected array $headers = [];
 
@@ -55,7 +55,7 @@ class Headers implements HeadersInterface, IteratorAggregate
     }
 
     /**
-     * @return Traversable
+     * @return Traversable<string, string>
      */
     public function getIterator(): Traversable
     {
@@ -171,7 +171,7 @@ class Headers implements HeadersInterface, IteratorAggregate
     /**
      * Returns the current headers as an array
      *
-     * @return array
+     * @return array<string, string>
      */
     public function toArray(): array
     {
