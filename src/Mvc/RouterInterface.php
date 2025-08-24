@@ -312,6 +312,15 @@ interface RouterInterface
     public function mount(GroupInterface $group): RouterInterface;
 
     /**
+     * Set whether router must remove the extra slashes in the handled routes
+     *
+     * @param bool $remove
+     *
+     * @return RouterInterface
+     */
+    public function removeExtraSlashes(bool $remove): RouterInterface;
+
+    /**
      * Sets the default action name
      *
      * @param string $actionName
