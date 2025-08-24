@@ -18,7 +18,6 @@ namespace Phalcon\Cli\Router;
  */
 interface RouteInterface
 {
-
     /**
      * Sets a callback that is called if the route is matched.
      * The developer can implement any arbitrary conditions here
@@ -59,6 +58,13 @@ interface RouteInterface
      * @return mixed
      */
     public static function delimiter(string $delimiter);
+
+    /**
+     * Returns the 'before match' callback if any
+     *
+     * @return mixed
+     */
+    public function getBeforeMatch(): mixed;
 
     /**
      * Returns the route's pattern
