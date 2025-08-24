@@ -60,27 +60,27 @@ class Annotations extends Router
     use UncamelizeTrait;
 
     /**
-     * @mixed callable|string|null
+     * @var callable|string|null
      */
     protected mixed $actionPreformatCallback = null;
 
     /**
-     * @mixed string
+     * @var string
      */
     protected string $actionSuffix = "Action";
 
     /**
-     * @mixed string
+     * @var string
      */
     protected string $controllerSuffix = "Controller";
 
     /**
-     * @mixed array
+     * @var list<array{0: string, 1: string, 2?: string|null}>
      */
     protected array $handlers = [];
 
     /**
-     * @mixed string
+     * @var string
      */
     protected string $routePrefix = "";
 
@@ -134,7 +134,7 @@ class Annotations extends Router
     /**
      * Return the registered resources
      *
-     * @return array
+     * @return list<array{0: string, 1: string, 2?: string|null}>
      */
     public function getResources(): array
     {
@@ -147,6 +147,7 @@ class Annotations extends Router
      * @param string $uri
      *
      * @return void
+     *
      * @throws Exception|\Phalcon\Mvc\Router\Exception
      * @throws EventsException
      */
@@ -306,6 +307,7 @@ class Annotations extends Router
      * @param Annotation $annotation
      *
      * @return void
+     *
      * @throws Exception|\Phalcon\Mvc\Router\Exception
      */
     public function processActionAnnotation(
@@ -510,6 +512,7 @@ class Annotations extends Router
      * @param callable|string|null $callback
      *
      * @return Annotations
+     *
      * @throws Exception
      */
     public function setActionPreformatCallback(callable | string | null $callback = null): static

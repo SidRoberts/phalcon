@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Mvc\Router;
 
 use Phalcon\Mvc\Router\Exceptions\InvalidRoutePaths;
+use Phalcon\Mvc\RouterInterface;
 
 use function array_flip;
 use function array_merge;
@@ -28,11 +29,19 @@ use function substr;
 
 /**
  * This class represents every route added to the router
+ *
+ * @phpstan-type TPath = array{
+ *     module?: string,
+ *     namespace?: string,
+ *     controller: string,
+ *     action?: string,
+ *     params?: array
+ * }
  */
 class Route implements RouteInterface
 {
     /**
-     * @mixed $callable|null
+     * @var callable(string, RouteInterface, RouterInterface): bool|null
      */
     protected mixed $beforeMatch = null;
 
@@ -41,71 +50,71 @@ class Route implements RouteInterface
      * `null` means "hostname is literal — use string equality"; any string
      * means "use this as the PCRE pattern."
      *
-     * @mixed string|null|false
+     * @var string|null|false
      */
     protected string | null | false $compiledHostName = false;
 
     /**
-     * @mixed string|null
+     * @var string|null
      */
     protected string | null $compiledPattern = null;
 
     /**
-     * @mixed array
+     * @var array<string, mixed>
      */
     protected array $converters = [];
 
     /**
-     * @mixed GroupInterface|null
+     * @var GroupInterface|null
      */
     protected GroupInterface | null $group = null;
 
     /**
-     * @mixed string|null
+     * @var string|null
      */
     protected string | null $hostname = null;
 
     /**
-     * @mixed callable|null
+     * @var callable|null
      */
     protected mixed $match = null;
 
     /**
-     * @mixed array|string|null
+     * @var list<string>|string|null
      */
     protected array | string | null $methods = [];
 
     /**
-     * @mixed string|null
+     * @var string|null
      */
     protected string | null $name = null;
 
     /**
-     * @mixed array
+     * @var array{module?: string, controller: string, action?: string, namespace?: string}
      */
     protected array $paths = [];
 
     /**
-     * @mixed string
+     * @var string
      */
     protected string $pattern = '';
 
     /**
-     * @mixed string
+     * @var string
      */
     protected string $routeId = "";
 
     /**
-     * @mixed $int
+     * @var int
      */
     protected static int $uniqueId = 0;
 
     /**
      * Phalcon\Mvc\Router\Route constructor
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param array|string|null $httpMethods
+     * @param string                                                                                      $pattern
+     * @param array{module?: string, controller: string, action?: string, namespace?: string}|string|null $paths
+     * @param list<string>|string|null                                                                    $httpMethods
      *
      * @throws Exception
      */
@@ -134,6 +143,9 @@ class Route implements RouteInterface
      * If the callback returns false the route is treated as not matched
      *
      *```php
+     * use Phalcon\Mvc\Router\RouteInterface;
+     * use Phalcon\Mvc\RouterInterface;
+     *
      * $router->add(
      *     "/login",
      *     [
@@ -141,7 +153,7 @@ class Route implements RouteInterface
      *         "controller" => "session",
      *     ]
      * )->beforeMatch(
-     *     function ($uri, $route) {
+     *     function (string $uri, RouteInterface $route, RouterInterface $router): bool {
      *         // Check if the request was made with Ajax
      *         if ($_SERVER["HTTP_X_REQUESTED_WITH"] === "xmlhttprequest") {
      *             return false;
@@ -152,7 +164,7 @@ class Route implements RouteInterface
      * );
      *```
      *
-     * @param callable $callback
+     * @param callable(string, RouteInterface, RouterInterface): bool $callback
      *
      * @return RouteInterface
      */
@@ -165,6 +177,10 @@ class Route implements RouteInterface
 
     /**
      * Replaces placeholders from pattern returning a valid PCRE regular expression
+     *
+     * @param string $pattern
+     *
+     * @return string
      */
     public function compilePattern(string $pattern): string
     {
@@ -214,7 +230,7 @@ class Route implements RouteInterface
      *
      * @param string $pattern
      *
-     * @return array|bool
+     * @return array{0: string, 1: array<string, int>}|bool
      */
     public function extractNamedParams(string $pattern): array | bool
     {
@@ -371,7 +387,7 @@ class Route implements RouteInterface
     /**
      * Returns the 'before match' callback if any
      *
-     * @return callable|null
+     * @return callable(string, RouteInterface, RouterInterface): bool|null
      */
     public function getBeforeMatch(): callable | null
     {
@@ -435,7 +451,7 @@ class Route implements RouteInterface
     /**
      * Returns the router converter
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getConverters(): array
     {
@@ -454,6 +470,8 @@ class Route implements RouteInterface
 
     /**
      * Returns the hostname restriction if any
+     *
+     * @return string|null
      */
     public function getHostname(): string | null
     {
@@ -463,7 +481,7 @@ class Route implements RouteInterface
     /**
      * Returns the HTTP methods that constraint matching the route
      *
-     * @return array|string|null
+     * @return list<string>|string|null
      */
     public function getHttpMethods(): array | string | null
     {
@@ -535,9 +553,10 @@ class Route implements RouteInterface
     /**
      * Returns routePaths
      *
-     * @param array|string|null $paths
+     * @param TPath|string|null $paths
      *
-     * @return array
+     * @return TPath
+     *
      * @throws Exception
      */
     public static function getRoutePaths(array | string | null $paths = null): array
@@ -617,6 +636,10 @@ class Route implements RouteInterface
      *     }
      * );
      *```
+     *
+     * @param callable $callback
+     *
+     * @return RouteInterface
      */
     public function match(callable $callback): RouteInterface
     {
@@ -628,10 +651,11 @@ class Route implements RouteInterface
     /**
      * Reconfigure the route adding a new pattern and a set of paths
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string                                                                                      $pattern
+     * @param array{module?: string, controller: string, action?: string, namespace?: string}|string|null $paths
      *
      * @return void
+     *
      * @throws Exception
      */
     public function reConfigure(
@@ -736,7 +760,7 @@ class Route implements RouteInterface
      * );
      *```
      *
-     * @param array|string $httpMethods
+     * @param list<string>|string $httpMethods
      *
      * @return RouteInterface
      */
@@ -798,7 +822,7 @@ class Route implements RouteInterface
      * );
      *```
      *
-     * @param array|string|null $httpMethods
+     * @param list<string>|string|null $httpMethods
      *
      * @return RouteInterface
      */

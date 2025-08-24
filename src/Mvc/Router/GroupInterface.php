@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Phalcon\Mvc\Router;
 
+use Phalcon\Mvc\RouterInterface;
+
 /**
  *```php
  * $router = new \Phalcon\Mvc\Router();
@@ -55,7 +57,9 @@ namespace Phalcon\Mvc\Router;
  *
  * // Add the group to the router
  * $router->mount($blog);
- *```
+ * ```
+ *
+ * @phpstan-type TPaths = array{module?: string, controller: string, action?: string, namespace?: string}|string
  */
 interface GroupInterface
 {
@@ -66,9 +70,9 @@ interface GroupInterface
      * router->add("/about", "About::index");
      *```
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param array|string|null $httpMethods
+     * @param string                   $pattern
+     * @param TPaths|null              $paths
+     * @param list<string>|string|null $httpMethods
      *
      * @return RouteInterface
      */
@@ -81,8 +85,8 @@ interface GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is CONNECT
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      */
@@ -94,8 +98,8 @@ interface GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is DELETE
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      */
@@ -107,8 +111,8 @@ interface GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is GET
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      */
@@ -120,8 +124,8 @@ interface GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is HEAD
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      */
@@ -133,8 +137,8 @@ interface GroupInterface
     /**
      * Add a route to the router that only match if the HTTP method is OPTIONS
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      */
@@ -146,8 +150,8 @@ interface GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is PATCH
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      */
@@ -159,8 +163,8 @@ interface GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is POST
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      */
@@ -172,8 +176,8 @@ interface GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is PURGE
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      */
@@ -198,8 +202,8 @@ interface GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is TRACE
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      */
@@ -213,7 +217,7 @@ interface GroupInterface
      * The developer can implement any arbitrary conditions here
      * If the callback returns false the route is treated as not matched
      *
-     * @param callable $beforeMatch
+     * @param callable(string, RouteInterface, RouterInterface): bool $beforeMatch
      *
      * @return GroupInterface
      */
@@ -243,7 +247,7 @@ interface GroupInterface
     /**
      * Returns the common paths defined for this group
      *
-     * @return array|string|null
+     * @return TPaths|null
      */
     public function getPaths(): array | string | null;
 
@@ -257,7 +261,7 @@ interface GroupInterface
     /**
      * Returns the routes added to the group
      *
-     * @return array
+     * @return list<RouteInterface>
      */
     public function getRoutes(): array;
 
@@ -273,7 +277,7 @@ interface GroupInterface
     /**
      * Set common paths for all the routes in the group
      *
-     * @param array|string $paths
+     * @param TPaths $paths
      *
      * @return GroupInterface
      */

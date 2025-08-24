@@ -19,16 +19,18 @@ use Phalcon\Mvc\Router\RouteInterface;
 
 /**
  * Interface for Phalcon\Mvc\Router
+ *
+ * @phpstan-type TPaths = array{module?: string, controller: string, action?: string, namespace?: string}|string
  */
 interface RouterInterface
 {
     /**
      * Adds a route to the router on any HTTP method
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param array|string|null $httpMethods
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param list<string>|string|null        $httpMethods
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -42,9 +44,9 @@ interface RouterInterface
     /**
      * Adds a route to the router that only match if the HTTP method is CONNECT
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -57,9 +59,9 @@ interface RouterInterface
     /**
      * Adds a route to the router that only match if the HTTP method is DELETE
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -72,9 +74,9 @@ interface RouterInterface
     /**
      * Adds a route to the router that only match if the HTTP method is GET
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -87,9 +89,9 @@ interface RouterInterface
     /**
      * Adds a route to the router that only match if the HTTP method is HEAD
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -102,9 +104,9 @@ interface RouterInterface
     /**
      * Add a route to the router that only match if the HTTP method is OPTIONS
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -117,9 +119,9 @@ interface RouterInterface
     /**
      * Adds a route to the router that only match if the HTTP method is PATCH
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -132,9 +134,9 @@ interface RouterInterface
     /**
      * Adds a route to the router that only match if the HTTP method is POST
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -148,9 +150,9 @@ interface RouterInterface
      * Adds a route to the router that only match if the HTTP method is PURGE
      * (Squid and Varnish support)
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -163,9 +165,9 @@ interface RouterInterface
     /**
      * Adds a route to the router that only match if the HTTP method is PUT
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -178,9 +180,9 @@ interface RouterInterface
     /**
      * Adds a route to the router that only match if the HTTP method is TRACE
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
-     * @param int               $position
+     * @param string                          $pattern
+     * @param TPaths|null                     $paths
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouteInterface
      */
@@ -193,8 +195,8 @@ interface RouterInterface
     /**
      * Attach Route object to the routes stack.
      *
-     * @param RouteInterface $route
-     * @param int            $position
+     * @param RouteInterface                  $route
+     * @param int-mask-of<Router::POSITION_*> $position
      *
      * @return RouterInterface
      */
@@ -280,7 +282,7 @@ interface RouterInterface
     /**
      * Return all the routes defined in the router
      *
-     * @return RouteInterface[]
+     * @return list<RouteInterface>
      */
     public function getRoutes(): array;
 

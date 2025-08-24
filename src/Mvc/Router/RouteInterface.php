@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Phalcon\Mvc\Router;
 
+use Phalcon\Mvc\RouterInterface;
+
 /**
  * Interface for Phalcon\Mvc\Router\Route
  */
@@ -42,7 +44,7 @@ interface RouteInterface
      * );
      *```
      *
-     * @param callable $callback
+     * @param callable(string, RouteInterface, RouterInterface): bool $callback
      *
      * @return RouteInterface
      */
@@ -70,7 +72,7 @@ interface RouteInterface
     /**
      * Returns the 'before match' callback if any
      *
-     * @return callable|null
+     * @return callable(string, RouteInterface, RouterInterface): bool|null
      */
     public function getBeforeMatch(): callable | null;
 
@@ -105,7 +107,7 @@ interface RouteInterface
     /**
      * Returns the HTTP methods that constraint matching the route
      *
-     * @return array|string|null
+     * @return list<string>|string|null
      */
     public function getHttpMethods(): array | string | null;
 
@@ -126,7 +128,7 @@ interface RouteInterface
     /**
      * Returns the paths
      *
-     * @return array
+     * @return array{module?: string, controller: string, action?: string, namespace?: string}
      */
     public function getPaths(): array;
 
@@ -154,8 +156,8 @@ interface RouteInterface
     /**
      * Reconfigure the route adding a new pattern and a set of paths
      *
-     * @param string            $pattern
-     * @param array|string|null $paths
+     * @param string                                                                                      $pattern
+     * @param array{module?: string, controller: string, action?: string, namespace?: string}|string|null $paths
      *
      * @return void
      */
@@ -183,7 +185,7 @@ interface RouteInterface
     /**
      * Sets a set of HTTP methods that constraint the matching of the route
      *
-     * @param array|string $httpMethods
+     * @param list<string>|string $httpMethods
      *
      * @return RouteInterface
      */
@@ -210,7 +212,7 @@ interface RouteInterface
     /**
      * Set one or more HTTP methods that constraint the matching of the route
      *
-     * @param array|string|null $httpMethods
+     * @param list<string>|string|null $httpMethods
      *
      * @return RouteInterface
      */

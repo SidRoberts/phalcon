@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Phalcon\Mvc\Router;
 
+use Phalcon\Mvc\RouterInterface;
+
 use function array_merge;
 use function is_array;
 use function is_string;
@@ -62,39 +64,41 @@ use function method_exists;
  *
  * //Add the group to the router
  * $router->mount($blog);
- *```
+ * ```
+ *
+ * @phpstan-import-type TPaths from GroupInterface
  */
 class Group implements GroupInterface
 {
     /**
-     * @mixed $callable|null
+     * @var callable(string, RouteInterface, RouterInterface): bool|null
      */
     protected mixed $beforeMatch = null;
 
     /**
-     * @mixed string|null
+     * @var string|null
      */
     protected string | null $hostname = null;
 
     /**
-     * @mixed array|string|null
+     * @var TPaths|null
      */
     protected array | string | null $paths = null;
 
     /**
-     * @mixed string|null
+     * @var string|null
      */
     protected string | null $prefix = null;
 
     /**
-     * @mixed array
+     * @var list<RouteInterface>
      */
     protected array $routes = [];
 
     /**
      * Phalcon\Mvc\Router\Group constructor
      *
-     * @param array|string|null $paths
+     * @param TPaths|null $paths
      */
     public function __construct(mixed $paths = null)
     {
@@ -137,13 +141,8 @@ class Group implements GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is CONNECT
      *
-     * @param string            $pattern
-     * @param array|string|null $paths = [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      * @throws Exception
@@ -156,13 +155,8 @@ class Group implements GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is DELETE
      *
-     * @param string            $pattern
-     * @param array|string|null $paths = [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      * @throws Exception
@@ -175,13 +169,8 @@ class Group implements GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is GET
      *
-     * @param string            $pattern
-     * @param array|string|null $paths = [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      * @throws Exception
@@ -194,13 +183,8 @@ class Group implements GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is HEAD
      *
-     * @param string            $pattern
-     * @param array|string|null $paths = [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      * @throws Exception
@@ -213,13 +197,8 @@ class Group implements GroupInterface
     /**
      * Add a route to the router that only match if the HTTP method is OPTIONS
      *
-     * @param string            $pattern
-     * @param array|string|null $paths = [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      * @throws Exception
@@ -232,13 +211,8 @@ class Group implements GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is PATCH
      *
-     * @param string            $pattern
-     * @param array|string|null $paths = [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      * @throws Exception
@@ -251,13 +225,8 @@ class Group implements GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is POST
      *
-     * @param string            $pattern
-     * @param array|string|null $paths = [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      * @throws Exception
@@ -270,13 +239,8 @@ class Group implements GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is PURGE
      *
-     * @param string            $pattern
-     * @param array|string|null $paths = [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      * @throws Exception
@@ -289,13 +253,8 @@ class Group implements GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is PUT
      *
-     * @param string            $pattern
-     * @param array|string|null $paths = [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      * @throws Exception
@@ -308,13 +267,8 @@ class Group implements GroupInterface
     /**
      * Adds a route to the router that only match if the HTTP method is TRACE
      *
-     * @param string            $pattern
-     * @param array|string|null $paths = [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
+     * @param string      $pattern
+     * @param TPaths|null $paths
      *
      * @return RouteInterface
      * @throws Exception
@@ -329,7 +283,7 @@ class Group implements GroupInterface
      * The developer can implement any arbitrary conditions here
      * If the callback returns false the route is treated as not matched
      *
-     * @param callable $beforeMatch
+     * @param callable(string, RouteInterface, RouterInterface): bool $beforeMatch
      *
      * @return GroupInterface
      */
@@ -353,7 +307,7 @@ class Group implements GroupInterface
     /**
      * Returns the 'before match' callback if any
      *
-     * @return callable|null
+     * @return callable(string, RouteInterface, RouterInterface): bool
      */
     public function getBeforeMatch(): callable | null
     {
@@ -373,7 +327,7 @@ class Group implements GroupInterface
     /**
      * Returns the common paths defined for this group
      *
-     * @return array|string|null
+     * @return TPaths|null
      */
     public function getPaths(): array | string | null
     {
@@ -393,7 +347,7 @@ class Group implements GroupInterface
     /**
      * Returns the routes added to the group
      *
-     * @return RouteInterface[]
+     * @return list<RouteInterface>
      */
     public function getRoutes(): array
     {
@@ -417,7 +371,7 @@ class Group implements GroupInterface
     /**
      * Set common paths for all the routes in the group
      *
-     * @param array|string $paths
+     * @param TPaths $paths
      *
      * @return GroupInterface
      */
@@ -445,14 +399,9 @@ class Group implements GroupInterface
     /**
      * Adds a route applying the common attributes
      *
-     * @param string            $pattern
-     * @param array|string|null $paths [
-     *                                 'module => '',
-     *                                 'controller' => '',
-     *                                 'action' => '',
-     *                                 'namespace' => ''
-     *                                 ]
-     * @param array|string|null $httpMethods
+     * @param string                   $pattern
+     * @param TPaths|null              $paths
+     * @param list<string>|string|null $httpMethods
      *
      * @return RouteInterface
      * @throws Exception
