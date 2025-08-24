@@ -41,6 +41,10 @@ use const PHP_EOL;
  * Phalcon\Tag is designed to simplify building of HTML tags.
  * It provides a set of helpers to generate HTML in a dynamic way.
  * This component is a class that you can extend to add more helpers.
+ *
+ * @phpstan-type TInputFieldParameters = array{id?: string, name?: string, value?: string, class?: string}|string
+ *
+ * @phpstan-type TImageParameters = array{id?: string, name?: string, src?: string, class?: string}|string
  */
 class Tag
 {
@@ -76,12 +80,12 @@ class Tag
     protected static array $displayValues = [];
 
     /**
-     * @var array
+     * @var array<string>
      */
     protected static array $documentAppendTitle = [];
 
     /**
-     * @var array
+     * @var array<string>
      */
     protected static array $documentPrependTitle = [];
 
@@ -115,7 +119,7 @@ class Tag
     /**
      * Appends a text to current document title
      *
-     * @param array|string $title
+     * @param array<string>|string $title
      *
      * @return void
      */
@@ -131,12 +135,7 @@ class Tag
     /**
      * Builds an HTML input[type="check"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
      */
@@ -148,14 +147,10 @@ class Tag
     /**
      * Builds an HTML input[type="color"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function colorField(array | string $parameters): string
@@ -166,14 +161,10 @@ class Tag
     /**
      * Builds an HTML input[type="date"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function dateField(array | string $parameters): string
@@ -184,14 +175,10 @@ class Tag
     /**
      * Builds an HTML input[type="datetime"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function dateTimeField(array | string $parameters): string
@@ -202,14 +189,10 @@ class Tag
     /**
      * Builds an HTML input[type="datetime-local"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function dateTimeLocalField(array | string $parameters): string
@@ -233,14 +216,10 @@ class Tag
     /**
      * Builds an HTML input[type="email"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function emailField(array | string $parameters): string
@@ -261,14 +240,10 @@ class Tag
     /**
      * Builds an HTML input[type="file"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function fileField(array | string $parameters): string
@@ -289,6 +264,7 @@ class Tag
      *                                 ]
      *
      * @return string
+     *
      * @throws Exception
      * @throws Url\Exception
      */
@@ -336,6 +312,7 @@ class Tag
      * @param array|string $replace
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function friendlyTitle(
@@ -367,6 +344,8 @@ class Tag
 
     /**
      * Get the document type declaration of content
+     *
+     * @return string
      */
     public static function getDocType(): string
     {
@@ -413,9 +392,10 @@ class Tag
     /**
      * Obtains the 'escaper' service if required
      *
-     * @param array $parameters
+     * @param array{escape: bool} $parameters
      *
      * @return EscaperInterface|null
+     *
      * @throws Exception
      */
     public static function getEscaper(array $parameters): EscaperInterface | null
@@ -433,6 +413,7 @@ class Tag
      * Returns an Escaper service from the default DI
      *
      * @return EscaperInterface
+     *
      * @throws Exception
      */
     public static function getEscaperService(): EscaperInterface
@@ -457,6 +438,7 @@ class Tag
      * @param bool $append
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function getTitle(
@@ -510,10 +492,11 @@ class Tag
     /**
      * Returns a URL service from the default DI
      *
-     * @return Url
+     * @return UrlInterface
+     *
      * @throws Exception
      */
-    public static function getUrlService(): Url
+    public static function getUrlService(): UrlInterface
     {
         if (null === self::$urlService) {
             $container = self::getDI();
@@ -532,8 +515,8 @@ class Tag
      * Every helper calls this function to check whether a component has a
      * predefined value using Phalcon\Tag::setDefault() or value from $_POST
      *
-     * @param int|string $name
-     * @param array      $parameters
+     * @param int|string          $name
+     * @param array{value: mixed} $parameters
      *
      * @return mixed|null
      */
@@ -570,15 +553,10 @@ class Tag
     /**
      * Builds a HTML input[type="hidden"] tag
      *
-     *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function hiddenField(array | string $parameters): string
@@ -589,15 +567,11 @@ class Tag
     /**
      * Builds HTML IMG tags
      *
-     * @param array|string $parameters = [
-     *                                 'src'   => '',
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 ]
-     * @param bool         $local
+     * @param TImageParameters $parameters
+     * @param bool             $local
      *
      * @return string
+     *
      * @throws Exception
      * @throws Url\Exception
      */
@@ -639,14 +613,10 @@ class Tag
     /**
      * Builds an HTML input[type="image"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'name'  => '',
-     *                                 'src'   => '',
-     *                                 'id'    => ''
-     *                                 ]
+     * @param TImageParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function imageInput(array | string $parameters): string
@@ -657,15 +627,11 @@ class Tag
     /**
      * Builds a SCRIPT[type="javascript"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'local' => false,
-     *                                 'src'   => '',
-     *                                 'type'  => 'text/javascript'
-     *                                 'rel'   => ''
-     *                                 ]
-     * @param bool         $local
+     * @param array{local?: bool, src?: string, type?: string, rel?: string}|string $parameters
+     * @param bool                                                                  $local
      *
      * @return string
+     *
      * @throws Exception
      * @throws Url\Exception
      */
@@ -726,6 +692,7 @@ class Tag
      * @param bool         $local
      *
      * @return string
+     *
      * @throws Exception
      * @throws Url\Exception
      */
@@ -776,14 +743,10 @@ class Tag
     /**
      * Builds an HTML input[type="month"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function monthField(array | string $parameters): string
@@ -794,14 +757,10 @@ class Tag
     /**
      * Builds an HTML input[type="number"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function numericField(array | string $parameters): string
@@ -812,14 +771,10 @@ class Tag
     /**
      * Builds a HTML input[type="password"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function passwordField(array | string $parameters): string
@@ -873,7 +828,7 @@ class Tag
     /**
      * Prepends a text to current document title
      *
-     * @param array|string $title
+     * @param array<string>|string $title
      *
      * @return void
      */
@@ -889,12 +844,7 @@ class Tag
     /**
      * Builds an HTML input[type="radio"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
      */
@@ -906,14 +856,10 @@ class Tag
     /**
      * Builds an HTML input[type="range"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function rangeField(array | string $parameters): string
@@ -939,6 +885,7 @@ class Tag
      *                           ]
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function renderAttributes(string $code, array $attributes): string
@@ -1016,8 +963,8 @@ class Tag
      * any default value.
      *
      * @return void
-     * @deprecated Will be removed in 4.0.0
      *
+     * @deprecated Will be removed in 4.0.0
      */
     public static function resetInput(): void
     {
@@ -1031,14 +978,10 @@ class Tag
     /**
      * Builds a HTML input[type="search"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'class' => '',
-     *                                 'name'  => '',
-     *                                 'id'    => '',
-     *                                 'value' => '',
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function searchField(array | string $parameters): string
@@ -1060,6 +1003,7 @@ class Tag
      * @param              $data
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function select(array | string $parameters, $data = null): string
@@ -1081,6 +1025,7 @@ class Tag
      * @param              $data
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function selectStatic(array | string $parameters, $data = null): string
@@ -1119,6 +1064,7 @@ class Tag
      * @param mixed  $value
      *
      * @return void
+     *
      * @throws Exception
      */
     public static function setDefault(string $id, mixed $value = null): void
@@ -1151,6 +1097,10 @@ class Tag
 
     /**
      * Set the document type of content
+     *
+     * @param int $doctype
+     *
+     * @return void
      */
     public static function setDocType(int $doctype): void
     {
@@ -1192,6 +1142,7 @@ class Tag
      * @param bool              $local
      *
      * @return string
+     *
      * @throws Exception
      * @throws Url\Exception
      */
@@ -1252,6 +1203,7 @@ class Tag
      * @param array|string $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function submitButton(array | string $parameters): string
@@ -1269,6 +1221,7 @@ class Tag
      * @param bool         $useEol
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function tagHtml(
@@ -1320,14 +1273,10 @@ class Tag
     /**
      * Builds an HTML input[type="tel"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 'class' => ''
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function telField(array | string $parameters): string
@@ -1338,14 +1287,10 @@ class Tag
     /**
      * Builds an HTML TEXTAREA tag
      *
-     * @param array|string $parameters = [
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 'class' => ''
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function textArea(array | string $parameters): string
@@ -1398,14 +1343,10 @@ class Tag
     /**
      * Builds an HTML input[type="text"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 'class' => ''
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function textField(array | string $parameters): string
@@ -1416,14 +1357,10 @@ class Tag
     /**
      * Builds an HTML input[type="time"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 'class' => ''
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function timeField(array | string $parameters): string
@@ -1434,14 +1371,10 @@ class Tag
     /**
      * Builds an HTML input[type="url"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 'class' => ''
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function urlField(array | string $parameters): string
@@ -1452,14 +1385,10 @@ class Tag
     /**
      * Builds an HTML input[type="week"] tag
      *
-     * @param array|string $parameters = [
-     *                                 'id'    => '',
-     *                                 'name'  => '',
-     *                                 'value' => '',
-     *                                 'class' => ''
-     *                                 ]
+     * @param TInputFieldParameters $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function weekField(array | string $parameters): string
@@ -1483,6 +1412,7 @@ class Tag
      * @param bool         $asValue
      *
      * @return string
+     *
      * @throws Exception
      */
     final protected static function inputField(
@@ -1538,10 +1468,11 @@ class Tag
     /**
      * Builds INPUT tags that implements the checked attribute
      *
-     * @param string       $type
-     * @param array|string $parameters
+     * @param string              $type
+     * @param array<mixed>|string $parameters
      *
      * @return string
+     *
      * @throws Exception
      */
     final protected static function inputFieldChecked(

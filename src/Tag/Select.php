@@ -47,6 +47,7 @@ abstract class Select
      * @param mixed|null                  $data
      *
      * @return string
+     *
      * @throws Exception
      */
     public static function selectField(
@@ -155,6 +156,12 @@ abstract class Select
         return $code;
     }
 
+    /**
+     * @param string $value
+     * @param bool   $selected
+     *
+     * @return string
+     */
     protected static function echoOption(string $value, bool $selected = false): string
     {
         $extra = $selected ? 'selected="selected" ' : '';
@@ -165,11 +172,12 @@ abstract class Select
     /**
      * Generate the OPTION tags based on an array
      *
-     * @param array  $data
-     * @param mixed  $value
-     * @param string $closeOption
+     * @param array<array<string>|string> $data
+     * @param mixed                       $value
+     * @param string                      $closeOption
      *
      * @return string
+     *
      * @throws Exception
      */
     private static function optionsFromArray(
@@ -228,6 +236,7 @@ abstract class Select
      * @param string             $closeOption
      *
      * @return string
+     *
      * @throws Exception
      */
     private static function optionsFromResultset(
