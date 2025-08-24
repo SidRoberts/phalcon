@@ -782,11 +782,7 @@ class Manager implements ManagerInterface, EventDispatcherInterface
      */
     public function isValidHandler(mixed $handler): bool
     {
-        if (!is_object($handler) && !is_callable($handler)) {
-            return false;
-        }
-
-        return true;
+        return is_object($handler) || is_callable($handler);
     }
 
     /**
