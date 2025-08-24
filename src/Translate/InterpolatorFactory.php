@@ -40,6 +40,7 @@ class InterpolatorFactory
      */
     public function newInstance(string $name): InterpolatorInterface
     {
+        /** @var InterpolatorInterface */
         return $this->getCachedInstance($name);
     }
 
@@ -52,7 +53,7 @@ class InterpolatorFactory
     }
 
     /**
-     * @return string[]
+     * @return array<string, class-string<InterpolatorInterface>>
      */
     protected function getServices(): array
     {

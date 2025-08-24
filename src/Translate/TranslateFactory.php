@@ -21,6 +21,7 @@ use Phalcon\Translate\Adapter\Csv;
 use Phalcon\Translate\Adapter\Gettext;
 use Phalcon\Translate\Adapter\NativeArray;
 use Phalcon\Translate\Exceptions\TranslatorNotRegistered;
+use Throwable;
 
 /**
  * @psalm-type TConfig = array{
@@ -58,11 +59,12 @@ class TranslateFactory
      * @param ConfigInterface|TConfig $config
      *
      * @return AdapterInterface
+     *
      * @throws Exception
      */
     public function load(array | ConfigInterface $config): AdapterInterface
     {
-        /** @var TConfig $config */
+        /** @var TConfig */
         $config  = $this->checkConfig($config);
         $name    = (string)$config['adapter'];
         $options = (array) ($config['options'] ?? []);
@@ -79,11 +81,12 @@ class TranslateFactory
      */
     public function newInstance(string $name, array $options = []): AdapterInterface
     {
+        /** @var AdapterInterface */
         return $this->getCachedInstance($name, $this->interpolator, $options);
     }
 
     /**
-     * @return string
+     * @return class-string<Throwable>
      */
     protected function getExceptionClass(): string
     {
@@ -91,7 +94,7 @@ class TranslateFactory
     }
 
     /**
-     * @return string[]
+     * @return array<string, class-string<AdapterInterface>>
      */
     protected function getServices(): array
     {

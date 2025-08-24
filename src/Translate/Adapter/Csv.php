@@ -110,6 +110,7 @@ class Csv extends AbstractAdapter
      * @param string $escape
      *
      * @return void
+     *
      * @throws FileOpenError
      */
     private function load(
@@ -126,7 +127,7 @@ class Csv extends AbstractAdapter
         }
 
         while (true) {
-            /** @var array<array-key, string>|false $data */
+            /** @var array<string>|false */
             $data = $this->phpFgetCsv($pointer, $length, $separator, $enclosure, $escape);
 
             if (false === $data) {

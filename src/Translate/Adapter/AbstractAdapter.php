@@ -23,9 +23,7 @@ use Phalcon\Translate\InterpolatorFactory;
  *     defaultInterpolator?: string
  * }
  *
- * @template TKey of string
- * @template TValue of string
- * @implements ArrayAccess<TKey, TValue>
+ * @implements ArrayAccess<string, string>
  */
 abstract class AbstractAdapter implements AdapterInterface, ArrayAccess
 {
@@ -37,6 +35,7 @@ abstract class AbstractAdapter implements AdapterInterface, ArrayAccess
     /**
      * AbstractAdapter constructor.
      *
+     * @param InterpolatorFactory $interpolatorFactory
      * @param TOptions            $options
      */
     public function __construct(
@@ -129,6 +128,7 @@ abstract class AbstractAdapter implements AdapterInterface, ArrayAccess
      * @phpstan-param array<string, string> $placeholders
      *
      * @return string
+     *
      * @throws BaseException
      */
     protected function replacePlaceholders(

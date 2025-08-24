@@ -206,6 +206,8 @@ class Gettext extends AbstractAdapter
      * Sets the domain default to search within when calls are made to gettext()
      *
      * @param string $domain
+     *
+     * @return void
      */
     public function setDefaultDomain(string $domain): void
     {
@@ -229,8 +231,10 @@ class Gettext extends AbstractAdapter
      * ```
      *
      * @param string|array<string, string> $directory
+     *
+     * @return void
      */
-    public function setDirectory($directory): void
+    public function setDirectory(array|string $directory): void
     {
         if (empty($directory)) {
             return;
@@ -278,7 +282,7 @@ class Gettext extends AbstractAdapter
      *
      * @return false|string
      */
-    public function setLocale(int $category, array $localeArray = [])
+    public function setLocale(int $category, array $localeArray = []): false|string
     {
         $this->locale   = setlocale($category, $localeArray);
         $this->category = $category;
@@ -312,6 +316,7 @@ class Gettext extends AbstractAdapter
      * @phpstan-param TOptions $options
      *
      * @return void
+     *
      * @throws MissingRequiredParameter
      */
     protected function prepareOptions(array $options): void
