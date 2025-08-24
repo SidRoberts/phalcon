@@ -166,9 +166,9 @@ class Ini extends Config
     }
 
     /**
-     * @param array $ini
+     * @param array<mixed> $ini
      *
-     * @return array
+     * @return array<mixed>
      */
     protected function castArray(array $ini): array
     {

@@ -23,21 +23,21 @@ use Phalcon\Support\Collection\CollectionInterface;
 interface ConfigInterface extends CollectionInterface
 {
     /**
-     * @return string
+     * @return non-empty-string
      */
     public function getPathDelimiter(): string;
 
     /**
-     * @param array|ConfigInterface $toMerge
+     * @param array<mixed>|ConfigInterface $toMerge
      *
      * @return ConfigInterface
      */
     public function merge(array | ConfigInterface $toMerge): ConfigInterface;
 
     /**
-     * @param string      $path
-     * @param mixed|null  $defaultValue
-     * @param string|null $delimiter
+     * @param string                $path
+     * @param mixed|null            $defaultValue
+     * @param non-empty-string|null $delimiter
      *
      * @return mixed
      */
@@ -48,7 +48,7 @@ interface ConfigInterface extends CollectionInterface
     );
 
     /**
-     * @param string|null $delimiter
+     * @param non-empty-string|null $delimiter
      *
      * @return ConfigInterface
      */

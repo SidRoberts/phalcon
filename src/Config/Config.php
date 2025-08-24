@@ -51,14 +51,14 @@ class Config extends Collection implements ConfigInterface
     public const DEFAULT_PATH_DELIMITER = ".";
 
     /**
-     * @var string
+     * @var non-empty-string
      */
     protected string $pathDelimiter = self::DEFAULT_PATH_DELIMITER;
 
     /**
      * Gets the default path delimiter
      *
-     * @return string
+     * @return non-empty-string
      */
     public function getPathDelimiter(): string
     {
@@ -80,9 +80,10 @@ class Config extends Collection implements ConfigInterface
      * $globalConfig->merge($appConfig);
      *```
      *
-     * @param array|ConfigInterface $toMerge
+     * @param array<mixed>|ConfigInterface $toMerge
      *
      * @return ConfigInterface
+     *
      * @throws Exception
      */
     public function merge(array | ConfigInterface $toMerge): ConfigInterface
@@ -109,9 +110,9 @@ class Config extends Collection implements ConfigInterface
      * echo $config->path("unknown.path", "default", ".");
      *```
      *
-     * @param string      $path
-     * @param mixed|null  $defaultValue
-     * @param string|null $delimiter
+     * @param string                $path
+     * @param mixed|null            $defaultValue
+     * @param non-empty-string|null $delimiter
      *
      * @return mixed
      */
@@ -128,7 +129,6 @@ class Config extends Collection implements ConfigInterface
             $delimiter = $this->pathDelimiter;
         }
 
-        /** @var non-empty-string $delimiter */
         $config = clone $this;
         $keys   = explode($delimiter, $path);
 
@@ -156,7 +156,7 @@ class Config extends Collection implements ConfigInterface
     /**
      * Sets the default path delimiter
      *
-     * @param string|null $delimiter
+     * @param non-empty-string|null $delimiter
      *
      * @return ConfigInterface
      */
@@ -176,7 +176,7 @@ class Config extends Collection implements ConfigInterface
      * );
      *```
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     public function toArray(): array
     {
@@ -197,10 +197,10 @@ class Config extends Collection implements ConfigInterface
     /**
      * Performs a merge recursively
      *
-     * @param array<array-key, mixed> $source
-     * @param array<array-key, mixed> $target
+     * @param array<mixed> $source
+     * @param array<mixed> $target
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     final protected function internalMerge(array $source, array $target): array
     {
@@ -226,6 +226,8 @@ class Config extends Collection implements ConfigInterface
      *
      * @param mixed $element
      * @param mixed $value
+     *
+     * @return void
      */
     protected function setData(mixed $element, mixed $value): void
     {

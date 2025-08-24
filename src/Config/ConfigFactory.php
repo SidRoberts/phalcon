@@ -19,9 +19,11 @@ use Phalcon\Config\Adapter\Ini;
 use Phalcon\Config\Adapter\Json;
 use Phalcon\Config\Adapter\Php;
 use Phalcon\Config\Adapter\Yaml;
+use Phalcon\Config\ConfigInterface;
 use Phalcon\Config\Exceptions\MissingConfigOption;
 use Phalcon\Config\Exceptions\MissingFileExtension;
 use Phalcon\Traits\Factory\FactoryTrait;
+use Throwable;
 
 use function is_string;
 use function lcfirst;
@@ -66,7 +68,7 @@ class ConfigFactory
     /**
      * ConfigFactory constructor.
      *
-     * @param array<string, string> $services
+     * @param array<string, class-string<ConfigInterface>> $services
      */
     public function __construct(array $services = [])
     {
@@ -152,7 +154,7 @@ class ConfigFactory
     }
 
     /**
-     * @return string
+     * @return class-string<Throwable>
      */
     protected function getExceptionClass(): string
     {
@@ -160,7 +162,7 @@ class ConfigFactory
     }
 
     /**
-     * @return string[]
+     * @return array<string, class-string<ConfigInterface>>
      */
     protected function getServices(): array
     {
@@ -177,6 +179,7 @@ class ConfigFactory
      * @param TConfig|ConfigInterface|string $config
      *
      * @return TConfigReturn
+     *
      * @throws Exception
      */
     protected function parseConfig(array | ConfigInterface | string $config): array
@@ -206,6 +209,8 @@ class ConfigFactory
 
     /**
      * @param TConfig $config
+     *
+     * @return void
      *
      * @throws Exception
      */
