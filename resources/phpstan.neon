@@ -5,3 +5,5 @@ parameters:
     tmpDir: ../tests/_output
     ignoreErrors:
         - "#Unsafe usage of new static#"
+        - "#Call to static method [A-Za-z]+\\(\\) on an unknown class Phalcon\\\\Parsers\\\\Parser.#"
+    reportUnmatchedIgnoredErrors: false
