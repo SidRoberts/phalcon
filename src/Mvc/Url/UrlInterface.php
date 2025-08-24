@@ -52,6 +52,30 @@ interface UrlInterface
     public function getBaseUri(): string;
 
     /**
+     * Generates a URL for a static resource
+     *
+     *```php
+     * // Generate a URL for a static resource
+     * echo $url->getStatic("img/logo.png");
+     *
+     * // Generate a URL for a static predefined route
+     * echo $url->getStatic(
+     *     [
+     *         "for" => "logo-cdn",
+     *     ]
+     * );
+     *```
+     *
+     * @param array|string|null $uri = [
+     *                               'for' => ''
+     *                               ]
+     *
+     * @return string
+     * @throws Exception
+     */
+    public function getStatic(array | string | null $uri = null): string;
+
+    /**
      * Generates a local path
      *
      * @param string|null $path
