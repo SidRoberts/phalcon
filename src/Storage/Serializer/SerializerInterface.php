@@ -21,6 +21,14 @@ interface SerializerInterface //extends Serializable
     public function getData(): mixed;
 
     /**
+     * Returns `true` if the serialize/unserialize operation was successful;
+     * `false` otherwise
+     *
+     * @return bool
+     */
+    public function isSuccess(): bool;
+
+    /**
      * Serializes data
      *
      * @return mixed
