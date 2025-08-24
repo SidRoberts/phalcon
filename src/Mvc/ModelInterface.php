@@ -327,6 +327,19 @@ interface ModelInterface
     ): CriteriaInterface;
 
     /**
+     * Reads an attribute value by its name
+     *
+     * ```php
+     * echo $robot->readAttribute("name");
+     * ```
+     *
+     * @param string $attribute
+     *
+     * @return mixed
+     */
+    public function readAttribute(string $attribute): mixed;
+
+    /**
      * Refreshes the model attributes re-querying the record from the database
      *
      * @return ModelInterface
@@ -445,4 +458,18 @@ interface ModelInterface
      * @return bool
      */
     public function validationHasFailed(): bool;
+
+    /**
+     * Writes an attribute value by its name
+     *
+     *```php
+     * $robot->writeAttribute("name", "Rosey");
+     *```
+     *
+     * @param string $attribute
+     * @param mixed  $value
+     *
+     * @return void
+     */
+    public function writeAttribute(string $attribute, mixed $value): void;
 }
