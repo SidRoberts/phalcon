@@ -18,6 +18,7 @@ use Phalcon\Db\Adapter\AdapterInterface;
 use Phalcon\Di\DiInterface;
 use Phalcon\Messages\MessageInterface;
 use Phalcon\Mvc\Model\CriteriaInterface;
+use Phalcon\Mvc\Model\ManagerInterface;
 use Phalcon\Mvc\Model\MetaDataInterface;
 use Phalcon\Mvc\Model\ResultInterface;
 use Phalcon\Mvc\Model\ResultsetInterface;
@@ -204,6 +205,13 @@ interface ModelInterface
      * @return MessageInterface[]
      */
     public function getMessages(): array;
+
+    /**
+     * Returns the models manager related to the entity instance
+     *
+     * @return ManagerInterface
+     */
+    public function getModelsManager(): ManagerInterface;
 
     /**
      * Returns the models meta-data service related to the entity instance.
