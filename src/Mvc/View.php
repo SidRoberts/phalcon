@@ -18,6 +18,7 @@ use Phalcon\Di\Injectable;
 use Phalcon\Events\EventsAwareInterface;
 use Phalcon\Events\Exception as EventsException;
 use Phalcon\Events\Traits\EventsAwareTrait;
+use Phalcon\Mvc\View\Engine\EngineInterface;
 use Phalcon\Mvc\View\Engine\Php as PhpEngine;
 use Phalcon\Mvc\View\Exception;
 use Phalcon\Mvc\View\Exceptions\InvalidEngineRegistration;
@@ -103,7 +104,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     protected string $actionName;
 
     /**
-     * @var array
+     * @var list<string>
      */
     protected array $activeRenderPaths = [];
 
@@ -133,12 +134,12 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     protected bool $disabled = false;
 
     /**
-     * @var array
+     * @var array<int, true>
      */
     protected array $disabledLevels = [];
 
     /**
-     * @var array|false
+     * @var array<string, EngineInterface>|false
      */
     protected array | false $engines = false; // TODO: Make always array
 
@@ -168,12 +169,12 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     protected string $partialsDir = "";
 
     /**
-     * @var array|null
+     * @var array{0: string, 1?: string}|null
      */
     protected array | null $pickView = null;
 
     /**
-     * @var array
+     * @var array<string, EngineInterface>
      */
     protected array $registeredEngines = [];
 
@@ -183,27 +184,29 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     protected int $renderLevel = 5;
 
     /**
-     * @var array
+     * @var list<string>
      */
     protected array $templatesAfter = [];
 
     /**
-     * @var array
+     * @var list<string>
      */
     protected array $templatesBefore = [];
 
     /**
-     * @var array
+     * @var array<non-empty-string, mixed>
      */
     protected array $viewParams = [];
 
     /**
-     * @var array|string
+     * @var list<string>|string
      */
     protected array | string $viewsDirs = [];
 
     /**
      * Phalcon\Mvc\View constructor
+     *
+     * @param array<string, mixed> $options
      */
     public function __construct(
         protected array $options = []
@@ -233,7 +236,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * echo isset($this->view->products);
      *```
      *
-     * @param string $name
+     * @param non-empty-string $name
      *
      * @return bool
      */
@@ -249,8 +252,8 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * $this->view->products = $products;
      *```
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param non-empty-string $key
+     * @param mixed            $value
      *
      * @return void
      */
@@ -305,11 +308,11 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * );
      *```
      *
-     * @param mixed $level
+     * @param array<int, true>|int $level
      *
      * @return ViewInterface
      */
-    public function disableLevel(mixed $level): static
+    public function disableLevel(array | int $level): static
     {
         if (is_array($level)) {
             $this->disabledLevels = $level;
@@ -370,7 +373,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     /**
      * Returns the path (or paths) of the views that are currently rendered
      *
-     * @return array|string
+     * @return list<string>|string
      */
     public function getActiveRenderPath(): array | string
     {
@@ -458,7 +461,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     /**
      * Returns parameters to views
      *
-     * @return array
+     * @return array<non-empty-string, mixed>
      */
     public function getParamsToView(): array
     {
@@ -487,6 +490,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * @param mixed|null $params
      *
      * @return string
+     *
      * @throws EventsException
      * @throws Exception
      */
@@ -514,7 +518,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     }
 
     /**
-     * @return array
+     * @return array<string, EngineInterface>
      */
     public function getRegisteredEngines(): array
     {
@@ -534,10 +538,10 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * );
      * ```
      *
-     * @param string     $controllerName
-     * @param string     $actionName
-     * @param array      $params
-     * @param mixed|null $configCallback
+     * @param string                         $controllerName
+     * @param string                         $actionName
+     * @param array<non-empty-string, mixed> $params
+     * @param mixed|null                     $configCallback
      *
      * @return string
      */
@@ -601,7 +605,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     /**
      * Returns a parameter previously set in the view
      *
-     * @param string $key
+     * @param non-empty-string $key
      *
      * @return mixed
      */
@@ -613,7 +617,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     /**
      * Gets views directory
      *
-     * @return string|array
+     * @return string|list<string>
      */
     public function getViewsDir(): string | array
     {
@@ -680,10 +684,11 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * );
      * ```
      *
-     * @param string     $partialPath
-     * @param mixed|null $params
+     * @param string                              $partialPath
+     * @param array<non-empty-string, mixed>|null $params
      *
      * @return void
+     *
      * @throws EventsException
      * @throws Exception
      */
@@ -775,10 +780,10 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     /**
      * Processes the view and templates; Fires events if needed
      *
-     * @param string $controllerName
-     * @param string $actionName
-     * @param array  $params
-     * @param bool   $fireEvents
+     * @param string                         $controllerName
+     * @param string                         $actionName
+     * @param array<non-empty-string, mixed> $params
+     * @param bool                           $fireEvents
      *
      * @return bool
      * @throws EventsException
@@ -996,7 +1001,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * );
      * ```
      *
-     * @param array $engines
+     * @param array<string, class-string<EngineInterface>> $engines
      *
      * @return $this
      */
@@ -1015,11 +1020,12 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * $view->start()->render("posts", "recent")->finish();
      *```
      *
-     * @param string $controllerName
-     * @param string $actionName
-     * @param array  $params
+     * @param string                         $controllerName
+     * @param string                         $actionName
+     * @param array<non-empty-string, mixed> $params
      *
      * @return View|bool|$this
+     *
      * @throws EventsException
      * @throws Exception
      */
@@ -1039,6 +1045,8 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
 
     /**
      * Resets the view component to its factory default values
+     *
+     * @return View
      */
     public function reset(): static
     {
@@ -1155,8 +1163,8 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * $this->view->setParamToView("products", $products);
      *```
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param non-empty-string $key
+     * @param mixed            $value
      *
      * @return $this
      */
@@ -1194,6 +1202,10 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      *     View::LEVEL_LAYOUT
      * );
      * ```
+     *
+     * @param int $level
+     *
+     * @return $this
      */
     public function setRenderLevel(int $level): static
     {
@@ -1205,7 +1217,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     /**
      * Sets a "template after" controller layout
      *
-     * @param array|string $templateAfter
+     * @param list<string>|string $templateAfter
      *
      * @return $this
      */
@@ -1223,7 +1235,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     /**
      * Sets a template before the controller layout
      *
-     * @param array|string $templateBefore
+     * @param list<string>|string $templateBefore
      *
      * @return $this
      */
@@ -1244,6 +1256,11 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      *```php
      * $this->view->setVar("products", $products);
      *```
+     *
+     * @param non-empty-string $key
+     * @param mixed            $value
+     *
+     * @return $this
      */
     public function setVar(string $key, mixed $value): static
     {
@@ -1263,8 +1280,8 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * );
      *```
      *
-     * @param array $params
-     * @param bool  $merge
+     * @param array<non-empty-string, mixed> $params
+     * @param bool                           $merge
      *
      * @return $this
      */
@@ -1283,9 +1300,10 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * Sets the views directory. Depending of your platform,
      * always add a trailing slash or backslash
      *
-     * @param array|string $viewsDir
+     * @param list<string>|string $viewsDir
      *
      * @return $this
+     *
      * @throws Exception
      */
     public function setViewsDir(array | string $viewsDir): static
@@ -1326,11 +1344,12 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     /**
      * Renders the view and returns it as a string
      *
-     * @param string $controllerName
-     * @param string $actionName
-     * @param array  $params
+     * @param string                         $controllerName
+     * @param string                         $actionName
+     * @param array<non-empty-string, mixed> $params
      *
      * @return string
+     *
      * @throws EventsException
      * @throws Exception
      */
@@ -1360,12 +1379,13 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     /**
      * Checks whether view exists on registered extensions and render it
      *
-     * @param array  $engines
-     * @param string $viewPath
-     * @param bool   $silence
-     * @param bool   $mustClean
+     * @param array<string, EngineInterface> $engines
+     * @param string                         $viewPath
+     * @param bool                           $silence
+     * @param bool                           $mustClean
      *
      * @return void
+     *
      * @throws Exception
      * @throws EventsException
      */
@@ -1432,7 +1452,7 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
     /**
      * Gets views directories
      *
-     * @return array
+     * @return list<string>
      */
     protected function getViewsDirs(): array
     {
@@ -1463,7 +1483,8 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
      * Loads registered template engines, if none is registered it will use
      * Phalcon\Mvc\View\Engine\Php
      *
-     * @return array
+     * @return array<string, EngineInterface>
+     *
      * @throws Exception
      */
     protected function loadTemplateEngines(): array

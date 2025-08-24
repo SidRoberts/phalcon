@@ -42,12 +42,12 @@ class Volt extends AbstractEngine implements EventsAwareInterface
     protected Compiler | null $compiler = null;
 
     /**
-     * @var array
+     * @var array<string, callable>
      */
     protected array $macros = [];
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $options = [];
 
@@ -58,6 +58,7 @@ class Volt extends AbstractEngine implements EventsAwareInterface
      * @param array  $arguments
      *
      * @return mixed
+     *
      * @throws MacroNotFound
      */
     public function callMacro(string $name, array $arguments = []): mixed
@@ -119,7 +120,7 @@ class Volt extends AbstractEngine implements EventsAwareInterface
     /**
      * Return Volt's options
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getOptions(): array
     {
@@ -152,7 +153,7 @@ class Volt extends AbstractEngine implements EventsAwareInterface
      *
      * @param mixed $item
      *
-     * @return int
+     * @return non-negative-int
      */
     public function length(mixed $item): int
     {
@@ -169,6 +170,10 @@ class Volt extends AbstractEngine implements EventsAwareInterface
 
     /**
      * Parses the preload element passed and sets the necessary link headers
+     *
+     * @param mixed $parameters
+     *
+     * @return string
      *
      * @todo find a better way to handle this
      */
@@ -224,6 +229,7 @@ class Volt extends AbstractEngine implements EventsAwareInterface
      * TODO: Make params array
      *
      * @return void|null
+     *
      * @throws Volt\Exception
      * @throws EventsException
      */
@@ -269,7 +275,7 @@ class Volt extends AbstractEngine implements EventsAwareInterface
     /**
      * Set Volt's options
      *
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return void
      */
@@ -281,13 +287,13 @@ class Volt extends AbstractEngine implements EventsAwareInterface
     /**
      * Extracts a slice from a string/array/traversable object value
      *
-     * @param mixed      $value
-     * @param int        $start
-     * @param mixed|null $end
+     * @param mixed    $value
+     * @param int      $start
+     * @param int|null $end
      *
-     * @return array | string
+     * @return array<mixed>|string
      */
-    public function slice(mixed $value, int $start = 0, mixed $end = null): array | string
+    public function slice(mixed $value, int $start = 0, int | null $end = null): array | string
     {
         /**
          * Objects must implement a Traversable interface
@@ -339,9 +345,9 @@ class Volt extends AbstractEngine implements EventsAwareInterface
     /**
      * Sorts an array
      *
-     * @param array $value
+     * @param array<mixed> $value
      *
-     * @return array
+     * @return array<mixed>
      */
     public function sort(array $value): array
     {

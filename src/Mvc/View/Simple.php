@@ -77,16 +77,16 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
     protected string $content;
 
     /**
-     * @var EngineInterface[]|false
+     * @var array<non-empty-string, EngineInterface>|false
      */
     protected array | false $engines = false; // TODO: Change to default null or empty array
 
     /**
-     * @var array
+     * @var array<non-empty-string, class-string<EngineInterface>>
      */
     protected array $registeredEngines = [];
     /**
-     * @var array
+     * @var array<non-empty-string, mixed>
      */
     protected array $viewParams = [];
     /**
@@ -97,7 +97,7 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
     /**
      * Phalcon\Mvc\View\Simple constructor
      *
-     * @param array $options
+     * @param array<string, mixed> $options
      */
     public function __construct(
         protected array $options = []
@@ -111,7 +111,7 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
      * echo $this->view->products;
      *```
      *
-     * @param string $propertyName
+     * @param non-empty-string $propertyName
      *
      * @return mixed
      */
@@ -127,8 +127,8 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
      * $this->view->products = $products;
      *```
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param non-empty-string $key
+     * @param mixed            $value
      *
      * @return void
      */
@@ -160,7 +160,7 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
     /**
      * Returns parameters to views
      *
-     * @return array
+     * @return array<non-empty-string, mixed>
      */
     public function getParamsToView(): array
     {
@@ -168,7 +168,7 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
     }
 
     /**
-     * @return array
+     * @return array<non-empty-string, class-string<EngineInterface>>
      */
     public function getRegisteredEngines(): array
     {
@@ -177,6 +177,8 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
 
     /**
      * Returns a parameter previously set in the view
+     *
+     * @param non-empty-string $key
      *
      * @return mixed|null
      */
@@ -213,10 +215,11 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
      * );
      * ```
      *
-     * @param string     $partialPath
-     * @param mixed|null $params
+     * @param string                              $partialPath
+     * @param array<non-empty-string, mixed>|null $params
      *
      * @return void
+     *
      * @throws EventsException
      * @throws Exception
      */
@@ -278,7 +281,7 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
      * );
      *```
      *
-     * @param array $engines
+     * @param array<non-empty-string, class-string<EngineInterface>> $engines
      *
      * @return void
      */
@@ -290,10 +293,11 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
     /**
      * Renders a view
      *
-     * @param string $path
-     * @param array  $params
+     * @param string                         $path
+     * @param array<non-empty-string, mixed> $params
      *
      * @return string
+     *
      * @throws EventsException
      * @throws Exception
      */
@@ -341,8 +345,8 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
      * $this->view->setParamToView("products", $products);
      *```
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param non-empty-string $key
+     * @param mixed            $value
      *
      * @return Simple
      */
@@ -358,8 +362,8 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
      * $this->view->setVar("products", $products);
      *```
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param non-empty-string $key
+     * @param mixed            $value
      *
      * @return $this
      */
@@ -381,8 +385,8 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
      * );
      *```
      *
-     * @param array $params
-     * @param bool  $merge
+     * @param array<non-empty-string, mixed> $params
+     * @param bool                           $merge
      *
      * @return $this
      */
@@ -496,7 +500,8 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
      * Loads registered template engines, if none are registered it will use
      * Phalcon\Mvc\View\Engine\Php
      *
-     * @return array|EngineInterface[]
+     * @return array<non-empty-string, EngineInterface>
+     *
      * @throws Exception
      */
     protected function loadTemplateEngines(): array
@@ -529,16 +534,20 @@ class Simple extends Injectable implements ViewBaseInterface, EventsAwareInterfa
                                 $this->container
                             );
 
+                            /** @var EngineInterface */
                             $engineObject = call_user_func(
                                 $engineService,
                                 $this
                             );
                         } else {
+                            /** @var EngineInterface */
                             $engineObject = $engineService;
                         }
                     } elseif (is_string($engineService)) {
                         /**
                          * Engine can be a string representing a service in the DI
+                         *
+                         * @var EngineInterface
                          */
                         if ($this->container instanceof DiInterface) {
                             $engineObject = $this->container->getShared(

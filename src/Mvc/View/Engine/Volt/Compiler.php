@@ -131,15 +131,15 @@ class Compiler implements InjectionAwareInterface
      */
     protected array | bool $extendedBlocks;
     /**
-     * @var array
+     * @var list<object>
      */
     protected array $extensions = [];
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $filters = [];
     /**
-     * @var array
+     * @var array<int, string>
      */
     protected array $forElsePointers = [];
     /**
@@ -147,7 +147,7 @@ class Compiler implements InjectionAwareInterface
      */
     protected int $foreachLevel = 0;
     /**
-     * @var array
+     * @var array<non-empty-string, mixed>
      */
     protected array $functions = [];
 
@@ -157,7 +157,7 @@ class Compiler implements InjectionAwareInterface
     protected int $level = 0;
 
     /**
-     * @var array
+     * @var array<int, int>
      */
     protected array $loopPointers = [];
 
@@ -167,7 +167,7 @@ class Compiler implements InjectionAwareInterface
     protected array $macros = [];
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $options = [];
 
@@ -195,6 +195,7 @@ class Compiler implements InjectionAwareInterface
      * @param mixed $extension
      *
      * @return $this
+     *
      * @throws Exception
      */
     public function addExtension(mixed $extension): static
@@ -233,8 +234,8 @@ class Compiler implements InjectionAwareInterface
     /**
      * Register a new function in the compiler
      *
-     * @param string $name
-     * @param mixed  $definition
+     * @param non-empty-string $name
+     * @param mixed            $definition
      *
      * @return $this
      */
@@ -248,9 +249,10 @@ class Compiler implements InjectionAwareInterface
     /**
      * Resolves attribute reading
      *
-     * @param array $expr
+     * @param array{left: array{type: int, value: string}, right: array{type: int, value: string}} $expr
      *
      * @return string
+     *
      * @throws Exception
      */
     public function attributeReader(array $expr): string
@@ -311,6 +313,7 @@ class Compiler implements InjectionAwareInterface
      * @param bool   $extendsMode
      *
      * @return array|mixed|string|null
+     *
      * @throws Exception
      */
     public function compile(string $templatePath, bool $extendsMode = false): mixed
@@ -488,10 +491,11 @@ class Compiler implements InjectionAwareInterface
     /**
      * Compiles a "autoescape" statement returning PHP code
      *
-     * @param array $statement
-     * @param bool  $extendsMode
+     * @param array{enable: bool, block_statements: array} $statement
+     * @param bool                                         $extendsMode
      *
      * @return string
+     *
      * @throws Exception
      */
     public function compileAutoEscape(array $statement, bool $extendsMode): string
@@ -541,6 +545,7 @@ class Compiler implements InjectionAwareInterface
      * @param bool  $caseClause
      *
      * @return string
+     *
      * @throws Exception
      */
     public function compileCase(array $statement, bool $caseClause = true): string
@@ -647,7 +652,7 @@ class Compiler implements InjectionAwareInterface
     /**
      * Compiles a "elseif" statement returning PHP code
      *
-     * @param array $statement
+     * @param array{expr: array} $statement
      *
      * @return string
      * @throws Exception
@@ -927,8 +932,8 @@ class Compiler implements InjectionAwareInterface
     /**
      * Compiles a 'if' statement returning PHP code
      *
-     * @param array $statement
-     * @param bool  $extendsMode
+     * @param array{expr: array, true_statements: array, false_statements?: array} $statement
+     * @param bool                                                                 $extendsMode
      *
      * @return string
      * @throws Exception
@@ -1140,9 +1145,10 @@ class Compiler implements InjectionAwareInterface
     /**
      * Compiles a "return" statement returning PHP code
      *
-     * @param array $statement
+     * @param array{expr: string} $statement
      *
      * @return string
+     *
      * @throws Exception
      */
     public function compileReturn(array $statement): string
@@ -1286,8 +1292,8 @@ class Compiler implements InjectionAwareInterface
     /**
      * Compiles a 'switch' statement returning PHP code
      *
-     * @param array $statement
-     * @param bool  $extendsMode
+     * @param array{expr: array, case_clauses?: array} $statement
+     * @param bool                                     $extendsMode
      *
      * @return string
      * @throws Exception
@@ -1739,8 +1745,8 @@ class Compiler implements InjectionAwareInterface
     /**
      * Fires an event to registered extensions
      *
-     * @param string $name
-     * @param array  $arguments
+     * @param string       $name
+     * @param array<mixed> $arguments
      *
      * @return mixed
      */
@@ -2070,7 +2076,7 @@ class Compiler implements InjectionAwareInterface
     /**
      * Returns the compiler options
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function getOptions(): array
     {
@@ -2132,6 +2138,10 @@ class Compiler implements InjectionAwareInterface
      *     $compiler->parse("{% raw %}{{ 3 + 2 }}{% endraw %}")
      * );
      *```
+     *
+     * @param string $viewCode
+     *
+     * @return array
      *
      * @throws Exception
      */
@@ -2230,7 +2240,7 @@ class Compiler implements InjectionAwareInterface
     /**
      * Sets the compiler options
      *
-     * @param array $options
+     * @param array<string, mixed> $options
      *
      * @return $this
      */
@@ -2595,7 +2605,8 @@ class Compiler implements InjectionAwareInterface
      * @param array $statements
      * @param bool  $extendsMode
      *
-     * @return string | null
+     * @return string|null
+     *
      * @throws Exception
      */
     final protected function statementList(
@@ -2882,6 +2893,7 @@ class Compiler implements InjectionAwareInterface
      * @param mixed $statements
      *
      * @return mixed
+     *
      * @throws Exception
      */
     final protected function statementListOrExtends(mixed $statements): mixed

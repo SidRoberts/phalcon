@@ -28,22 +28,22 @@ interface ViewBaseInterface
     /**
      * Returns parameters to views
      *
-     * @return array
+     * @return array<non-empty-string, mixed>
      */
     public function getParamsToView(): array;
 
     /**
      * Gets views directory
      *
-     * @return string|array
+     * @return string|list<string>
      */
     public function getViewsDir(): string | array;
 
     /**
      * Renders a partial view
      *
-     * @param string     $partialPath
-     * @param mixed|null $params
+     * @param string                              $partialPath
+     * @param array<non-empty-string, mixed>|null $params
      *
      * @return mixed
      */
@@ -61,8 +61,8 @@ interface ViewBaseInterface
     /**
      * Adds parameters to views (alias of setVar)
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param non-empty-string $key
+     * @param mixed            $value
      *
      * @return mixed
      */
@@ -71,8 +71,8 @@ interface ViewBaseInterface
     /**
      * Adds parameters to views
      *
-     * @param string $key
-     * @param mixed  $value
+     * @param non-empty-string $key
+     * @param mixed            $value
      *
      * @return mixed
      */

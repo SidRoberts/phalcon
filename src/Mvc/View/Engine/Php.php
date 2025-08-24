@@ -24,6 +24,10 @@ class Php extends AbstractEngine
 {
     /**
      * Renders a view using the template engine
+     *
+     * @param string $path
+     * @param mixed  $params
+     * @param bool   $mustClean
      */
     public function render(
         string $path,
