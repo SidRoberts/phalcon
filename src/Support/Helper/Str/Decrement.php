@@ -33,12 +33,11 @@ class Decrement
     ): string {
         $number = 0;
         $parts  = explode($separator, $text);
-        /** @var array<int, string> $parts */
-        $parts = false === $parts ? [] : $parts;
 
         if (isset($parts[1])) {
             $number = (int)$parts[1];
             $number--;
+
             if ($number <= 0) {
                 return $parts[0];
             }
