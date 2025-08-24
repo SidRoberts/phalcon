@@ -19,6 +19,36 @@ namespace Phalcon\Mvc\Router;
 interface RouteInterface
 {
     /**
+     * Sets a callback that is called if the route is matched.
+     * The developer can implement any arbitrary conditions here
+     * If the callback returns false the route is treated as not matched
+     *
+     *```php
+     * $router->add(
+     *     "/login",
+     *     [
+     *         "module"     => "admin",
+     *         "controller" => "session",
+     *     ]
+     * )->beforeMatch(
+     *     function ($uri, $route) {
+     *         // Check if the request was made with Ajax
+     *         if ($_SERVER["HTTP_X_REQUESTED_WITH"] === "xmlhttprequest") {
+     *             return false;
+     *         }
+     *
+     *         return true;
+     *     }
+     * );
+     *```
+     *
+     * @param callable $callback
+     *
+     * @return RouteInterface
+     */
+    public function beforeMatch(callable $callback): RouteInterface;
+
+    /**
      * Replaces placeholders from pattern returning a valid PCRE regular expression
      *
      * @param string $pattern
