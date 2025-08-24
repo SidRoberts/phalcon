@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Http;
 
 use DateTime;
+use Phalcon\Http\Response\CookiesInterface;
 use Phalcon\Http\Response\HeadersInterface;
 
 /**
@@ -143,6 +144,15 @@ interface ResponseInterface
         string $contentType,
         string | null $charset = null
     ): ResponseInterface;
+
+    /**
+     * Sets a cookies bag for the response externally
+     *
+     * @param CookiesInterface $cookies
+     *
+     * @return ResponseInterface
+     */
+    public function setCookies(CookiesInterface $cookies): ResponseInterface;
 
     /**
      * Sets output expire time header
