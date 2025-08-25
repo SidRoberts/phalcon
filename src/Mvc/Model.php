@@ -503,10 +503,11 @@ abstract class Model extends AbstractInjectionAware implements
      * @param string $property
      * @param mixed  $value
      *
-     * @return array|mixed|ModelInterface
+     * @return void
+     *
      * @throws Exception
      */
-    public function __set(string $property, mixed $value)
+    public function __set(string $property, mixed $value): void
     {
         /**
          * Values are probably relationships if they are objects
@@ -532,7 +533,7 @@ abstract class Model extends AbstractInjectionAware implements
                 $this->dirtyRelated[$lowerProperty] = $value;
                 $this->dirtyState                   = $dirtyState;
 
-                return $value;
+                return;
             }
         } elseif (is_array($value)) {
             /**
@@ -565,7 +566,7 @@ abstract class Model extends AbstractInjectionAware implements
                             $this->dirtyRelated[$lowerProperty] = $referencedModel;
                             $this->dirtyState                   = self::DIRTY_STATE_TRANSIENT;
 
-                            return $value;
+                            return;
                         }
 
                         break;
@@ -592,7 +593,7 @@ abstract class Model extends AbstractInjectionAware implements
                             unset($this->dirtyRelated[$lowerProperty]);
                         }
 
-                        return $value;
+                        return;
                 }
             }
         } elseif ($value === null) {
@@ -625,7 +626,7 @@ abstract class Model extends AbstractInjectionAware implements
 
         // Use possible setter.
         if ($this->possibleSetter($property, $value)) {
-            return $value;
+            return;
         }
 
         /**
@@ -641,8 +642,6 @@ abstract class Model extends AbstractInjectionAware implements
         }
 
         $this->$property = $value;
-
-        return $value;
     }
 
     /**
