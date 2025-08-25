@@ -155,7 +155,7 @@ class Transaction implements TransactionInterface
     {
         if (
             true === $this->rollbackOnAbort &&
-            true === connection_aborted()
+            1 === connection_aborted()
         ) {
             $this->rollback("The request was aborted");
         }
