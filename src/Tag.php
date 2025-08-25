@@ -73,7 +73,7 @@ class Tag
      *
      * @var array
      */
-    protected static array $displayValues;
+    protected static array $displayValues = [];
 
     /**
      * @var array
@@ -1142,10 +1142,7 @@ class Tag
      */
     public static function setDefaults(array $values, bool $merge = false): void
     {
-        if (
-            true === $merge &&
-            is_array(self::$displayValues)
-        ) {
+        if (true === $merge) {
             self::$displayValues = array_merge(self::$displayValues, $values);
         } else {
             self::$displayValues = $values;
