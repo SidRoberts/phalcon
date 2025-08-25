@@ -221,6 +221,13 @@ interface ModelInterface
     public function getModelsMetaData(): MetaDataInterface;
 
     /**
+     * Returns the internal old snapshot data
+     *
+     * @return array
+     */
+    public function getOldSnapshotData(): array;
+
+    /**
      * Returns the type of the latest operation performed by the ORM
      * Returns one of the OP_* class constants
      *
@@ -259,6 +266,13 @@ interface ModelInterface
      * @return string|null
      */
     public function getSchema(): string | null;
+
+    /**
+     * Returns the internal snapshot data
+     *
+     * @return array
+     */
+    public function getSnapshotData(): array;
 
     /**
      * Returns table name mapped in the model
@@ -345,6 +359,18 @@ interface ModelInterface
      * @return ModelInterface|bool
      */
     public function setDirtyState(int $dirtyState): ModelInterface | bool;
+
+    /**
+     * Sets the record's old snapshot data.
+     * This method is used internally to set old snapshot data when the model
+     * was set up to keep snapshot data
+     *
+     * @param array      $data
+     * @param array|null $columnMap
+     *
+     * @return void
+     */
+    public function setOldSnapshotData(array $data, array | null $columnMap = null);
 
     /**
      * Sets the DependencyInjection connection service used to read data
