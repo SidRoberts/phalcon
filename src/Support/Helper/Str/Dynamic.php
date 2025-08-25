@@ -47,12 +47,8 @@ class Dynamic
         $left    = preg_quote($leftDelimiter);
         $right   = preg_quote($rightDelimiter);
         $pattern = '/' . $left . '([^' . $left . $right . ']+)' . $right . '/';
-        $matches = [];
 
-        if (
-            false !== preg_match_all($pattern, $text, $matches, 2) &&
-            is_array($matches)
-        ) {
+        if (false !== preg_match_all($pattern, $text, $matches, 2)) {
             foreach ($matches as $match) {
                 if (!isset($match[0]) || !isset($match[1])) {
                     continue;
