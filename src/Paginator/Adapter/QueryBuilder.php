@@ -288,14 +288,14 @@ class QueryBuilder extends AbstractAdapter
                 $sql["bind"]
             );
 
-            $rowcount   = $row ? intval($row["rowcount"]) : 0;
-            $totalPages = intval(ceil($rowcount / $limit));
+            $rowcount = $row ? intval($row["rowcount"]) : 0;
         } else {
-            $result     = $totalQuery->execute();
-            $row        = $result->getFirst();
-            $rowcount   = $row ? intval($row->rowcount) : 0;
-            $totalPages = intval(ceil($rowcount / $limit));
+            $result   = $totalQuery->execute();
+            $row      = $result->getFirst();
+            $rowcount = $row ? intval($row->rowcount) : 0;
         }
+
+        $totalPages = intval(ceil($rowcount / $limit));
 
         $next = $totalPages;
         if ($numberPage < $totalPages) {
