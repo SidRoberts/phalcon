@@ -389,6 +389,7 @@ class Memory extends AbstractAdapter
         }
 
         $roleName = $role->getName();
+
         if (isset($this->roles[$roleName])) {
             return false;
         }
