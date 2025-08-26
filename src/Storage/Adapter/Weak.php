@@ -73,8 +73,10 @@ class Weak extends AbstractAdapter
     public function getKeys(string $prefix = ""): array
     {
         $keys = array_keys($this->weakList);
+
         if ('' !== $prefix) {
             $results = [];
+
             foreach ($keys as $key) {
                 if (str_starts_with($key, $prefix)) {
                     $results[] = $key;
