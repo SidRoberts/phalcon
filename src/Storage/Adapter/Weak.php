@@ -161,6 +161,7 @@ class Weak extends AbstractAdapter
          * not do destroy the key before getting it.
          */
         $this->fetching = $key;
+
         if (false === isset($this->weakList[$key])) {
             $this->fetching = null;
 
@@ -170,6 +171,7 @@ class Weak extends AbstractAdapter
         $reference      = $this->weakList[$key];
         $value          = $reference->get();
         $this->fetching = null;
+
         /**
          * value could be null, object could be destroyed while fetching
          */
