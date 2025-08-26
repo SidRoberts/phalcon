@@ -253,6 +253,7 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     final public function getColumnMapUniqueKey(ModelInterface $model): string | null
     {
         $key = mb_strtolower(get_class($model));
+
         if (
             false === isset($this->columnMap[$key]) &&
             false === $this->initializeColumnMap($model, $key)
