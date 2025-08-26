@@ -4136,14 +4136,9 @@ abstract class Model extends AbstractInjectionAware implements
     final protected function checkForeignKeysReverseCascade(): bool
     {
         /**
-         * Get the models manager
-         */
-        $manager = $this->modelsManager;
-
-        /**
          * We check if some of the hasOne/hasMany relations is a foreign key
          */
-        $relations = $manager->getHasOneAndHasMany($this);
+        $relations = $this->modelsManager->getHasOneAndHasMany($this);
 
         foreach ($relations as $relation) {
             /**
@@ -4163,7 +4158,7 @@ abstract class Model extends AbstractInjectionAware implements
             /**
              * Try to find a different action in the foreign key's options
              */
-            if (is_array($foreignKey) && isset($foreignKey["action"])) {
+            if (isset($foreignKey["action"])) {
                 $action = (int)$foreignKey["action"];
             }
 
@@ -4174,7 +4169,7 @@ abstract class Model extends AbstractInjectionAware implements
                 continue;
             }
 
-            $related = $manager->getRelationRecords(
+            $related = $this->modelsManager->getRelationRecords(
                 $relation,
                 $this
             );
