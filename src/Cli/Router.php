@@ -295,6 +295,7 @@ class Router extends AbstractInjectionAware implements RouterInterface
 
         if (!is_array($arguments)) {
             $reverseRoutes = array_reverse($this->routes);
+
             foreach ($reverseRoutes as $route) {
                 /**
                  * If the route has parentheses use preg_match
@@ -354,6 +355,7 @@ class Router extends AbstractInjectionAware implements RouterInterface
                         foreach ($paths as $part => $position) {
                             if (isset($matches[$position])) {
                                 $matchPosition = $matches[$position];
+
                                 /**
                                  * Check if the part has a converter
                                  */
@@ -397,14 +399,12 @@ class Router extends AbstractInjectionAware implements RouterInterface
              * Update the wasMatched property indicating if the route was
              * matched
              */
-            if (true === $routeFound) {
-                $this->wasMatched = true;
-            } else {
-                $this->wasMatched = false;
+            $this->wasMatched = $routeFound;
 
-                /**
-                 * The route wasn't found, try to use the not-found paths
-                 */
+            /**
+             * The route wasn't found, try to use the not-found paths
+             */
+            if (false === $routeFound) {
                 $this->module     = $this->defaultModule;
                 $this->task       = $this->defaultTask;
                 $this->action     = $this->defaultAction;
@@ -445,6 +445,7 @@ class Router extends AbstractInjectionAware implements RouterInterface
          */
         if (isset($parts["params"])) {
             $params = $parts["params"];
+
             if (!is_array($params)) {
                 $strParams = substr((string)$params, 1);
 
