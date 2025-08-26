@@ -92,6 +92,7 @@ class Message implements MessageInterface, JsonSerializable
      * Serializes the object for json_encode
      *
      * @return array
+     *
      * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
      */
     public function jsonSerialize(): array
