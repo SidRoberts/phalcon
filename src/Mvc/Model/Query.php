@@ -2906,12 +2906,10 @@ class Query implements QueryInterface, InjectionAwareInterface
          */
         $intermediateModelName = $relation->getIntermediateModel();
 
-        $manager = $this->manager;
-
         /**
          * Get the intermediate model instance
          */
-        $intermediateModel = $manager->load($intermediateModelName);
+        $intermediateModel = $this->manager->load($intermediateModelName);
 
         /**
          * Source of the related model
@@ -2956,11 +2954,6 @@ class Query implements QueryInterface, InjectionAwareInterface
                 if (!isset($referencedFields[$position])) {
                     throw new JoinFieldCountMismatch($modelAlias, $joinAlias, (string) $this->phql);
                 }
-
-                /**
-                 * Get the referenced field in the same position
-                 */
-                $intermediateField = $intermediateFields[$position];
 
                 /**
                  * Create a binary operation for the join conditions
