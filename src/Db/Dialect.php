@@ -799,7 +799,6 @@ abstract class Dialect implements DialectInterface
         $bindCounts = $definition["bindCounts"] ?? [];
         $columns    = $definition["columns"];
         $tableNames = $definition["tables"];
-        $escapeChar = $this->escapeChar;
 
         $sql = "SELECT";
         if (isset($definition["distinct"])) {
@@ -809,12 +808,12 @@ abstract class Dialect implements DialectInterface
         /**
          * Resolve COLUMNS
          */
-        $sql .= " " . $this->getColumnList($columns, $escapeChar, $bindCounts);
+        $sql .= " " . $this->getColumnList($columns, $this->escapeChar, $bindCounts);
 
         /**
          * Resolve FROM
          */
-        $sql .= " " . $this->getSqlExpressionFrom($tableNames, $escapeChar);
+        $sql .= " " . $this->getSqlExpressionFrom($tableNames, $this->escapeChar);
 
         /**
          * Resolve JOINs
@@ -826,7 +825,7 @@ abstract class Dialect implements DialectInterface
             $sql .= " "
                 . $this->getSqlExpressionJoins(
                     $definition["joins"],
-                    $escapeChar,
+                    $this->escapeChar,
                     $bindCounts
                 );
         }
@@ -841,7 +840,7 @@ abstract class Dialect implements DialectInterface
             $sql .= " "
                 . $this->getSqlExpressionWhere(
                     $definition["where"],
-                    $escapeChar,
+                    $this->escapeChar,
                     $bindCounts
                 );
         }
@@ -856,7 +855,7 @@ abstract class Dialect implements DialectInterface
             $sql .= " "
                 . $this->getSqlExpressionGroupBy(
                     $definition["group"],
-                    $escapeChar
+                    $this->escapeChar
                 );
         }
 
@@ -870,7 +869,7 @@ abstract class Dialect implements DialectInterface
             $sql .= " "
                 . $this->getSqlExpressionHaving(
                     $definition["having"],
-                    $escapeChar,
+                    $this->escapeChar,
                     $bindCounts
                 );
         }
@@ -885,7 +884,7 @@ abstract class Dialect implements DialectInterface
             $sql .= " "
                 . $this->getSqlExpressionOrderBy(
                     $definition["order"],
-                    $escapeChar,
+                    $this->escapeChar,
                     $bindCounts
                 );
         }
@@ -902,7 +901,7 @@ abstract class Dialect implements DialectInterface
                     "sql"   => $sql,
                     "value" => $definition["limit"],
                 ],
-                $escapeChar,
+                $this->escapeChar,
                 $bindCounts
             );
         }
