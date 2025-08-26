@@ -299,6 +299,7 @@ class Cookies extends AbstractInjectionAware implements CookiesInterface
         } else {
             /** @var CookieInterface $cookie */
             $cookie = $this->cookies[$name];
+
             /**
              * Override any settings in the cookie
              */
