@@ -600,6 +600,7 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function hasAttribute(ModelInterface $model, string $attribute): bool
     {
         $columnMap = $this->getReverseColumnMap($model);
+
         if (is_array($columnMap)) {
             return isset($columnMap[$attribute]);
         }
