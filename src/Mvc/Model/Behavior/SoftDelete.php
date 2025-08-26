@@ -97,8 +97,6 @@ class SoftDelete extends Behavior
             true === $modelsManager->isKeepingSnapshots($model) &&
             Settings::get("orm.update_snapshot_on_save")
         ) {
-            $metaData = $model->getModelsMetaData();
-
             $model->setSnapshotData($updateModel->getSnapshotData());
             $model->setOldSnapshotData($updateModel->getOldSnapshotData());
         }
