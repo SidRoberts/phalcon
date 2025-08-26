@@ -235,6 +235,7 @@ class Memory extends AbstractAdapter
 
         foreach ($accessList as $accessName) {
             $accessKey = $componentName . '!' . $accessName;
+
             if (!isset($this->accessList[$accessKey])) {
                 $this->accessList[$accessKey] = true;
             }
