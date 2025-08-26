@@ -1890,11 +1890,7 @@ class Request extends AbstractInjectionAware implements
         } else {
             if (true === $this->hasServer('HTTP_AUTHORIZATION')) {
                 $authHeader = $this->getServer('HTTP_AUTHORIZATION');
-            } elseif (
-                true === $this->hasServer(
-                    'REDIRECT_HTTP_AUTHORIZATION'
-                )
-            ) {
+            } elseif (true === $this->hasServer('REDIRECT_HTTP_AUTHORIZATION')) {
                 $authHeader = $this->getServer('REDIRECT_HTTP_AUTHORIZATION');
             }
 
