@@ -673,6 +673,7 @@ class Loader
                     if (true === $isDirectory) {
                         $this->addDebug("Directories: " . $filePath);
                     }
+
                     return true;
                 }
             }
