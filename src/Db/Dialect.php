@@ -481,14 +481,9 @@ abstract class Dialect implements DialectInterface
         /**
          * Escape alias and concatenate to value SQL
          */
-        if (isset($columnExpression["sqlAlias"]) || isset($columnExpression["alias"])) {
-            $columnAlias = $columnExpression["sqlAlias"] ?? null;
-            $columnAlias = (null === $columnAlias) ? $columnExpression["alias"] : $columnAlias;
+        $columnAlias = $columnExpression["sqlAlias"] ?? $columnExpression["alias"] ?? "";
 
-            return $this->prepareColumnAlias($column, $columnAlias, $escapeChar);
-        }
-
-        return $this->prepareColumnAlias($column, "", $escapeChar);
+        return $this->prepareColumnAlias($column, $columnAlias, $escapeChar);
     }
 
     /**
