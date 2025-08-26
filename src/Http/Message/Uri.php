@@ -742,20 +742,21 @@ class Uri extends AbstractCommon implements UriInterface
     private function filterScheme(string $scheme): string
     {
         $filtered = preg_replace("#:(//)?$#", "", mb_strtolower($scheme));
-        $schemes  = [
-            "http"  => 1,
-            "https" => 1,
-        ];
 
         if ("" === $filtered) {
             return "";
         }
 
-        if (!isset($schemes[$filtered])) {
+        $schemes = [
+            "http",
+            "https",
+        ];
+
+        if (!in_array($filtered, $schemes)) {
             throw new InvalidArgumentException(
                 "Unsupported scheme [" . $filtered . "]. " .
                 "Scheme must be one of [" .
-                implode(", ", array_keys($schemes)) . "]"
+                implode(", ", $schemes) . "]"
             );
         }
 
