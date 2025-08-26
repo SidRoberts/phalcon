@@ -1583,6 +1583,7 @@ class Request extends AbstractInjectionAware implements
         // sanitize IPs
         foreach ($trustedProxies as $trustedProxy) {
             $filtered = $filterService->sanitize($trustedProxy, "ip");
+
             if ($filtered !== false) {
                 $this->trustedProxies[] = $filtered;
             }
