@@ -598,6 +598,7 @@ class ServerRequestFactory implements
 
         if (!empty($split[0])) {
             $uri = $uri->withHost($split[0]);
+
             if (!empty($split[1])) {
                 $uri = $uri->withPort($split[1]);
             }
