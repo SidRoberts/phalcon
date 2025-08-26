@@ -443,6 +443,7 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     public function getModelUUID(ModelInterface $model, array $row): string | null
     {
         $pks = $this->readMetaDataIndex($model, self::MODELS_PRIMARY_KEY);
+
         if (null === $pks) {
             return null;
         }
