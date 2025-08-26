@@ -545,6 +545,7 @@ class ServerRequestFactory implements
              */
             if ($file instanceof UploadedFileInterface) {
                 $collection->set($key, $file);
+
                 continue;
             }
 
@@ -553,6 +554,7 @@ class ServerRequestFactory implements
              */
             if (is_array($file) && isset($file["tmp_name"])) {
                 $collection->set($key, $this->createUploadedFile($file));
+
                 continue;
             }
 
