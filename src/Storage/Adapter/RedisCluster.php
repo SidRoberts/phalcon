@@ -87,6 +87,7 @@ class RedisCluster extends Redis
     public function clear(): bool
     {
         $adapter = $this->getAdapter();
+
         foreach ($adapter->_masters() as $master) {
             $adapter->flushAll($master);
         }
