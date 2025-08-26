@@ -420,6 +420,7 @@ abstract class MetaData extends Injectable implements MetaDataInterface
     final public function getMetaDataUniqueKey(ModelInterface $model): string | null
     {
         $key = mb_strtolower(get_class($model));
+
         if (
             false === isset($this->metaData[$key]) &&
             false === $this->initializeMetaData($model, $key)
