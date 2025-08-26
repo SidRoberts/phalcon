@@ -16,8 +16,6 @@ namespace Phalcon\Annotations\Parser;
 use ReflectionClass;
 use ReflectionException;
 
-use function count;
-
 /**
  * Parses classes returning an array with the found annotations
  */
@@ -45,7 +43,7 @@ class Reader implements ReaderInterface
         /**
          * Append the class annotations to the annotations var
          */
-        if (count($classAnnotations) !== 0) {
+        if (!empty($classAnnotations)) {
             $annotations["class"] = new Collection($classAnnotations);
         }
 
@@ -54,9 +52,11 @@ class Reader implements ReaderInterface
          */
         $constants            = $reflection->getReflectionConstants();
         $annotationsConstants = [];
+
         foreach ($constants as $constant) {
             $constantAnnotations = $constant->getAttributes();
-            if (count($constantAnnotations) > 0) {
+
+            if (!empty($constantAnnotations)) {
                 $annotationsConstants[$constant->getName()] = new Collection($constantAnnotations);
             }
         }
@@ -70,14 +70,16 @@ class Reader implements ReaderInterface
          */
         $properties            = $reflection->getProperties();
         $annotationsProperties = [];
+
         foreach ($properties as $property) {
             $propertyAnnotations = $property->getAttributes();
-            if (count($propertyAnnotations) > 0) {
+
+            if (!empty($propertyAnnotations)) {
                 $annotationsProperties[$property->getName()] = new Collection($propertyAnnotations);
             }
         }
 
-        if (count($annotationsProperties) !== 0) {
+        if (!empty($annotationsProperties)) {
             $annotations["properties"] = $annotationsProperties;
         }
 
@@ -86,14 +88,16 @@ class Reader implements ReaderInterface
          */
         $methods            = $reflection->getMethods();
         $annotationsMethods = [];
+
         foreach ($methods as $method) {
             $methodAnnotations = $method->getAttributes();
-            if (count($methodAnnotations) > 0) {
+
+            if (!empty($methodAnnotations)) {
                 $annotationsMethods[$method->getName()] = new Collection($methodAnnotations);
             }
         }
 
-        if (count($annotationsMethods) !== 0) {
+        if (!empty($annotationsMethods)) {
             $annotations["methods"] = $annotationsMethods;
         }
 
