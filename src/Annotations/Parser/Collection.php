@@ -88,6 +88,7 @@ class Collection implements IteratorAggregate
     public function getAll(string $name): array
     {
         $found = [];
+
         foreach ($this->annotations as $annotation) {
             if ($name === $annotation->getName()) {
                 $found[] = $annotation;
