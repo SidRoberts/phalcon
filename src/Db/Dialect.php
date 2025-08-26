@@ -77,12 +77,12 @@ abstract class Dialect implements DialectInterface
         string $input,
         string $escapeChar = ""
     ): string {
-        $identifiers = Settings::get("db.escape_identifiers");
-        if (true !== $identifiers) {
+        if (true !== Settings::get("db.escape_identifiers")) {
             return $input;
         }
 
         $escapeChar = (!empty($escapeChar)) ? $escapeChar : $this->escapeChar;
+
         if (true !== str_contains($input, ".")) {
             if ("" !== $escapeChar && "*" !== $input) {
                 return $escapeChar
@@ -95,6 +95,7 @@ abstract class Dialect implements DialectInterface
 
         $parts    = explode(".", trim($input, $escapeChar));
         $newParts = $parts;
+
         foreach ($parts as $key => $part) {
             if ("" === $escapeChar || "" === $part || "*" === $part) {
                 continue;
