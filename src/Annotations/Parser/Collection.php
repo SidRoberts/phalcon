@@ -51,6 +51,7 @@ class Collection implements IteratorAggregate
     public function __construct(array $reflectionData = [])
     {
         $this->annotations = [];
+
         foreach ($reflectionData as $annotationData) {
             $this->annotations[] = new Annotation($annotationData);
         }
