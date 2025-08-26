@@ -4197,14 +4197,9 @@ abstract class Model extends AbstractInjectionAware implements
     final protected function checkForeignKeysReverseRestrict(): bool
     {
         /**
-         * Get the models manager
-         */
-        $manager = $this->modelsManager;
-
-        /**
          * We check if some of the hasOne/hasMany relations is a foreign key
          */
-        $relations = $manager->getHasOneAndHasMany($this);
+        $relations = $this->modelsManager->getHasOneAndHasMany($this);
         $error     = false;
 
         foreach ($relations as $relation) {
@@ -4225,7 +4220,7 @@ abstract class Model extends AbstractInjectionAware implements
             /**
              * Try to find a different action in the foreign key's options
              */
-            if (is_array($foreignKey) && isset($foreignKey["action"])) {
+            if (isset($foreignKey["action"])) {
                 $action = (int)$foreignKey["action"];
             }
 
@@ -4239,7 +4234,7 @@ abstract class Model extends AbstractInjectionAware implements
             $relationClass = $relation->getReferencedModel();
             $fields        = $relation->getFields();
 
-            if ($manager->getRelationRecords($relation, $this, null, "count")) {
+            if ($this->modelsManager->getRelationRecords($relation, $this, null, "count")) {
                 /**
                  * Create a new message
                  */
