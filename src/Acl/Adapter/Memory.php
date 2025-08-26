@@ -271,17 +271,16 @@ class Memory extends AbstractAdapter
         /**
          * Type conversion
          */
-        $roleToInheritList = $roleToInherit;
         if (!is_array($roleToInherit)) {
-            $roleToInheritList = [$roleToInherit];
+            $roleToInherit = [$roleToInherit];
         }
 
         /**
          * inherits
          */
-        /** @var array<RoleInterface|string> $roleToInheritList */
-        foreach ($roleToInheritList as $inheritRole) {
+        foreach ($roleToInherit as $inheritRole) {
             $roleInheritName = $inheritRole;
+
             if ($inheritRole instanceof RoleInterface) {
                 $roleInheritName = $inheritRole->getName();
             }
@@ -332,6 +331,7 @@ class Memory extends AbstractAdapter
                     }
 
                     $usedRoleToInherits[$checkRoleToInherit] = true;
+
                     if ($roleName === $checkRoleToInherit) {
                         throw new CircularInheritanceError($roleInheritName);
                     }
@@ -340,9 +340,10 @@ class Memory extends AbstractAdapter
                      * Push inherited roles
                      */
                     if (isset($this->roleInherits[$checkRoleToInherit])) {
-                        foreach ($this->roleInherits[$checkRoleToInherit] as $usedRoleToInherit) {
-                            $checkRoleToInherits[] = $usedRoleToInherit;
-                        }
+                        $checkRoleToInherits = array_merge(
+                            $checkRoleToInherits,
+                            array_values($this->roleInherits[$checkRoleToInherit])
+                        );
                     }
                 }
             }
