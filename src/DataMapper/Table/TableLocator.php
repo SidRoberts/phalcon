@@ -109,12 +109,10 @@ class TableLocator
      */
     protected function newTable(string $tableClass): AbstractTable
     {
-        /** @var AbstractTable $table */
-        $table = new ('\\' . $tableClass)(
+        /** @var AbstractTable */
+        return new ('\\' . $tableClass)(
             $this->connectionLocator,
             ($this->factory)($tableClass . 'Events')
         );
-
-        return $table;
     }
 }
