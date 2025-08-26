@@ -680,11 +680,7 @@ class Validation extends Injectable implements ValidationInterface
             foreach ($field as $singleField) {
                 $results[] = $this->preChecking($singleField, $validator);
 
-                if (true === in_array(false, $results)) {
-                    return false;
-                }
-
-                return true;
+                return !in_array(false, $results);
             }
         } else {
             $allowEmpty = $validator->getOption("allowEmpty", false);
@@ -697,11 +693,7 @@ class Validation extends Injectable implements ValidationInterface
                 $value = $this->getValue($field);
 
                 if (is_array($allowEmpty)) {
-                    if (in_array($value, $allowEmpty, true)) {
-                        return true;
-                    }
-
-                    return false;
+                    return in_array($value, $allowEmpty, true);
                 }
 
                 return empty($value);
