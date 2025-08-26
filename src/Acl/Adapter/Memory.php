@@ -506,14 +506,13 @@ class Memory extends AbstractAdapter
         string $componentName,
         array | string $accessList
     ): void {
-        $localAccess = $accessList;
         if (is_string($accessList)) {
-            $localAccess = [$accessList];
+            $accessList = [$accessList];
         }
 
-        /** @var array<string> $localAccess */
-        foreach ($localAccess as $accessName) {
+        foreach ($accessList as $accessName) {
             $accessKey = $componentName . '!' . $accessName;
+
             if (isset($this->accessList[$accessKey])) {
                 unset($this->accessList[$accessKey]);
             }
