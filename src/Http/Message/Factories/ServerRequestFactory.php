@@ -374,6 +374,7 @@ class ServerRequestFactory implements
     private function parseCookieHeader(string $cookieHeader): array
     {
         $cookies = [];
+
         parse_str(
             strtr(
                 $cookieHeader,
