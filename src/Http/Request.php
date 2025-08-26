@@ -326,6 +326,7 @@ class Request extends AbstractInjectionAware implements
     public function getDigestAuth(): array
     {
         $auth = [];
+
         if (isset($_SERVER['PHP_AUTH_DIGEST'])) {
             $matches = [];
             $digest  = $_SERVER['PHP_AUTH_DIGEST'];
