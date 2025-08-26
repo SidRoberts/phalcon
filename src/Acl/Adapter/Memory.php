@@ -480,6 +480,7 @@ class Memory extends AbstractAdapter
         callable | null $function = null
     ): void {
         $rolesArray = [$roleName];
+
         if ('*' === $roleName) {
             $rolesArray = array_keys($this->roles ?? []);
         }
