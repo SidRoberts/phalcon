@@ -166,8 +166,7 @@ class Select extends AbstractElement
      */
     protected function prepareAttributes(array $attributes = []): array
     {
-        $name          = $this->name;
-        $attributes[0] = $name;
+        $attributes[0] = $this->name;
 
         /**
          * Merge passed parameters with default ones
