@@ -588,26 +588,26 @@ class Form extends Injectable implements Countable, Iterator, AttributesInterfac
         }
 
         $forbidden = [
-            "action"        => true,
-            "attributes"    => true,
-            "di"            => true,
-            "elements"      => true,
-            "entity"        => true,
-            "eventsmanager" => true,
-            "label"         => true,
-            "messages"      => true,
-            "messagesfor"   => true,
-            "tagFactory"    => true,
-            "useroption"    => true,
-            "useroptions"   => true,
-            "validation"    => true,
-            "value"         => true,
+            "action",
+            "attributes",
+            "di",
+            "elements",
+            "entity",
+            "eventsmanager",
+            "label",
+            "messages",
+            "messagesfor",
+            "tagFactory",
+            "useroption",
+            "useroptions",
+            "validation",
+            "value",
         ];
 
         /**
          * Check if the method is internal
          */
-        if (isset($forbidden[strtolower($name)])) {
+        if (in_array(strtolower($name), $forbidden)) {
             return null;
         }
 
