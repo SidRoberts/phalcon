@@ -114,7 +114,7 @@ class Memory extends AbstractAdapter
     /**
      * Function List
      *
-     * @var array<string, callable|string>|null
+     * @var array<string, callable(): bool|string>|null
      */
     protected ?array $functions = null;
 
@@ -183,7 +183,7 @@ class Memory extends AbstractAdapter
      * ```
      *
      * @param ComponentInterface|string $componentObject
-     * @param TComponent|string         $accessList
+     * @param list<string>|string       $accessList
      *
      * @return bool
      * @throws Exception
@@ -300,7 +300,6 @@ class Memory extends AbstractAdapter
             /**
              * Check if the role to inherit is valid
              */
-            /** @var string $roleInheritName */
             if (!isset($this->roles[$roleInheritName])) {
                 throw new RoleNotFoundException($roleInheritName);
             }
@@ -374,6 +373,7 @@ class Memory extends AbstractAdapter
      * @phpstan-param RoleInterface|string $roleObject
      *
      * @return bool
+     *
      * @throws Exception
      */
     public function addRole(
@@ -419,10 +419,12 @@ class Memory extends AbstractAdapter
      * // Allow access to any role to browse on any component
      * $acl->allow("*", "*", "browse");
      *
-     * @param string               $roleName
-     * @param string               $componentName
-     * @param array<string>|string $access
-     * @param callable|null        $function
+     * @param string                $roleName
+     * @param string                $componentName
+     * @param list<string>|string   $access
+     * @param callable(): bool|null $function
+     *
+     * @return void
      *
      * @throws Exception
      */
@@ -466,10 +468,12 @@ class Memory extends AbstractAdapter
      * $acl->deny("*", "*", "browse");
      * ```
      *
-     * @param string               $roleName
-     * @param string               $componentName
-     * @param array<string>|string $access
-     * @param callable|null        $function
+     * @param string                $roleName
+     * @param string                $componentName
+     * @param list<string>|string   $access
+     * @param callable(): bool|null $function
+     *
+     * @return void
      *
      * @throws Exception
      */
@@ -499,8 +503,10 @@ class Memory extends AbstractAdapter
     /**
      * Removes access from a component
      *
-     * @param string               $componentName
-     * @param array<string>|string $accessList
+     * @param string              $componentName
+     * @param list<string>|string $accessList
+     *
+     * @return void
      */
     public function dropComponentAccess(
         string $componentName,
@@ -612,6 +618,7 @@ class Memory extends AbstractAdapter
      * @phpstan-param TComponentName $componentName
      *
      * @return bool
+     *
      * @throws Exception
      * @throws ReflectionException
      * @throws EventsException
@@ -720,12 +727,12 @@ class Memory extends AbstractAdapter
             $numberOfRequiredParameters = $reflectionFunction->getNumberOfRequiredParameters();
             $userParametersSizeShouldBe = $parameterNumber;
             foreach ($reflectionParameters as $reflectionParameter) {
-                /** @var ReflectionNamedType $reflectionType */
+                /** @var ReflectionNamedType */
                 $reflectionType   = $reflectionParameter->getType();
                 $parameterToCheck = $reflectionParameter->getName();
 
                 if (null !== $reflectionType && $reflectionType instanceof ReflectionNamedType) {
-                    /** @var class-string $className */
+                    /** @var class-string */
                     $className       = $reflectionType->getName();
                     $reflectionClass = new ReflectionClass($className);
 
@@ -870,6 +877,8 @@ class Memory extends AbstractAdapter
      * if there exists func for accessKey
      *
      * @param int $defaultAccess
+     *
+     * @return void
      */
     public function setNoArgumentsDefaultAction(int $defaultAccess): void
     {
@@ -879,11 +888,13 @@ class Memory extends AbstractAdapter
     /**
      * Checks if a role has access to a component
      *
-     * @param string               $roleName
-     * @param string               $componentName
-     * @param array<string>|string $access
-     * @param int                  $action
-     * @param callable|null        $function
+     * @param string                $roleName
+     * @param string                $componentName
+     * @param list<string>|string   $access
+     * @param int                   $action
+     * @param callable(): bool|null $function
+     *
+     * @return void
      *
      * @throws Exception
      */
@@ -905,6 +916,7 @@ class Memory extends AbstractAdapter
             foreach ($access as $accessName) {
                 $accessKey                = $roleName . '!' . $componentName . '!' . $accessName;
                 $this->access[$accessKey] = $action;
+
                 if (null !== $function) {
                     $this->functions[$accessKey] = $function;
                 }
@@ -1008,6 +1020,8 @@ class Memory extends AbstractAdapter
      * @param string                    $elementName
      * @param string                    $suffix
      *
+     * @return void
+     *
      * @throws Exception
      */
     private function checkExists(
@@ -1029,6 +1043,7 @@ class Memory extends AbstractAdapter
      * @param string $accessName
      *
      * @return void
+     *
      * @throws Exception
      */
     private function checkExistsInAccessList(
@@ -1036,6 +1051,7 @@ class Memory extends AbstractAdapter
         string $accessName
     ): void {
         $accessKey = $componentName . '!' . $accessName;
+
         if (!isset($this->accessList[$accessKey])) {
             throw new AccessRuleNotFound($accessName, $componentName);
         }

@@ -20,6 +20,8 @@ interface RoleAwareInterface
 {
     /**
      * Returns role name
+     *
+     * @return string
      */
     public function getRoleName(): string;
 }

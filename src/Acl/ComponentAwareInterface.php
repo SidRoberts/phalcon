@@ -20,6 +20,8 @@ interface ComponentAwareInterface
 {
     /**
      * Returns component name
+     *
+     * @return string
      */
     public function getComponentName(): string;
 }

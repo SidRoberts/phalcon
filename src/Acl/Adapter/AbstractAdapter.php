@@ -107,6 +107,8 @@ abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
      * (Phalcon\Acl\Enum::ALLOW or Phalcon\Acl\Enum::DENY)
      *
      * @param int $defaultAccess
+     *
+     * @return void
      */
     public function setDefaultAction(int $defaultAccess): void
     {
