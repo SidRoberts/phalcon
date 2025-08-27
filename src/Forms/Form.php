@@ -368,11 +368,7 @@ class Form extends Injectable implements Countable, Iterator, AttributesInterfac
      */
     public function current(): mixed
     {
-        if (!isset($this->elementsIndexed[$this->position])) {
-            return false;
-        }
-
-        return $this->elementsIndexed[$this->position];
+        return $this->elementsIndexed[$this->position] ?? false;
     }
 
     /**
