@@ -525,6 +525,7 @@ class Uri extends AbstractCommon implements UriInterface
         string | null $password = null
     ): UriInterface {
         $userInfo = $this->filterUserInfo($user);
+
         if (null !== $password) {
             $userInfo .= ":" . $this->filterUserInfo($password);
         }
