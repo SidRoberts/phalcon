@@ -1379,8 +1379,6 @@ class Query implements QueryInterface, InjectionAwareInterface
         /**
          * Choose a resultset type
          */
-        $cache = $this->cache;
-
         if (!$isComplex) {
             /**
              * Select the base object
@@ -1457,7 +1455,7 @@ class Query implements QueryInterface, InjectionAwareInterface
                         $simpleColumnMap,
                         $resultObject,
                         $resultData,
-                        $cache,
+                        $this->cache,
                         $isKeepingSnapshots
                     );
                 }
@@ -1470,7 +1468,7 @@ class Query implements QueryInterface, InjectionAwareInterface
                 $simpleColumnMap,
                 $resultObject,
                 $resultData,
-                $cache,
+                $this->cache,
                 $isKeepingSnapshots
             );
         }
@@ -1478,7 +1476,7 @@ class Query implements QueryInterface, InjectionAwareInterface
         /**
          * Complex resultsets may contain complete objects and scalars
          */
-        return new Complex($columns1, $resultData, $cache);
+        return new Complex($columns1, $resultData, $this->cache);
     }
 
     /**
