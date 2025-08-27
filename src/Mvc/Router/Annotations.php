@@ -234,8 +234,7 @@ class Annotations extends Router
             /**
              * Check if the scope has a module associated
              */
-            $moduleName = $scope[2] ?? null;
-            $moduleName = $moduleName !== null ? $moduleName : "";
+            $moduleName = $scope[2] ?? "";
             $suffixed   = $controllerName . $this->controllerSuffix;
 
             /**
