@@ -3104,11 +3104,7 @@ class Query implements QueryInterface, InjectionAwareInterface
         /**
          * Check if the qualified name is a column alias
          */
-        if (isset($this->sqlColumnAliases[$nestingLevel])) {
-            $sqlColumnAliases = $this->sqlColumnAliases[$nestingLevel];
-        } else {
-            $sqlColumnAliases = [];
-        }
+        $sqlColumnAliases = $this->sqlColumnAliases[$nestingLevel] ?? [];
 
         if (
             isset($sqlColumnAliases[$columnName]) &&
@@ -3203,9 +3199,7 @@ class Query implements QueryInterface, InjectionAwareInterface
             /**
              * Check if the models property is correctly prepared
              */
-            $models = $this->models;
-
-            if (!is_array($models)) {
+            if (!is_array($this->models)) {
                 throw new ModelsListNotLoaded();
             }
 
@@ -3214,11 +3208,11 @@ class Query implements QueryInterface, InjectionAwareInterface
              */
             $className = get_class($hasModel);
 
-            if (!isset($models[$className])) {
+            if (!isset($this->models[$className])) {
                 throw new ModelSourceNotFound($className, (string) $this->phql);
             }
 
-            $source = $models[$className];
+            $source = $this->models[$className];
 
             /**
              * Rename the column
