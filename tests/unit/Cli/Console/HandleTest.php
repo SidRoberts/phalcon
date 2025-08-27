@@ -34,7 +34,7 @@ use function shell_exec;
 final class HandleTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array{0: array, 1: string, 2: string, 3: array, 4: mixed}
      */
     public static function getExamplesHandle(): array
     {
@@ -84,6 +84,9 @@ final class HandleTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws ConsoleException
+     * @throws RouterException
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
@@ -99,7 +102,7 @@ final class HandleTest extends AbstractUnitTestCase
 
         $container->set(
             'data',
-            function () {
+            function (): string {
                 return 'data';
             }
         );
@@ -113,21 +116,25 @@ final class HandleTest extends AbstractUnitTestCase
 
         $console->handle($arguments);
 
-        $expected = $taskName;
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $taskName,
+            $dispatcher->getTaskName()
+        );
 
-        $expected = $actionName;
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $actionName,
+            $dispatcher->getActionName()
+        );
 
-        $expected = $params;
-        $actual   = $dispatcher->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $params,
+            $dispatcher->getParams()
+        );
 
-        $expected = $returnedValue;
-        $actual   = $dispatcher->getReturnedValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $returnedValue,
+            $dispatcher->getReturnedValue()
+        );
     }
 
     /**
@@ -418,17 +425,20 @@ final class HandleTest extends AbstractUnitTestCase
             $this->assertSame('Task Run', $e->getMessage());
         }
 
-        $expected = 'main';
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'main',
+            $dispatcher->getTaskName()
+        );
 
-        $expected = 'throw';
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'throw',
+            $dispatcher->getActionName()
+        );
 
-        $expected = 'backend';
-        $actual   = $dispatcher->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'backend',
+            $dispatcher->getModuleName()
+        );
     }
 
     public function testCliConsoleHandleModuleDoesNotExists(): void
@@ -463,8 +473,7 @@ final class HandleTest extends AbstractUnitTestCase
         $actual = shell_exec('php ' . $script . 'print');
         ob_end_clean();
 
-        $expected = 'printMainAction';
-        $this->assertSame($expected, $actual);
+        $this->assertSame('printMainAction', $actual);
     }
 
     public function testCliConsoleHandleTaskDoesNotExists(): void
@@ -521,8 +530,9 @@ final class HandleTest extends AbstractUnitTestCase
             }
         );
 
-        $actual = $console->handle();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $console->handle()
+        );
     }
 
     /**
@@ -550,8 +560,13 @@ final class HandleTest extends AbstractUnitTestCase
             }
         );
 
-        $actual = $console->handle(['module' => 'backend']);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $console->handle(
+                [
+                    'module' => 'backend',
+                ]
+            )
+        );
     }
 
     /**
@@ -568,7 +583,11 @@ final class HandleTest extends AbstractUnitTestCase
         // Register a module as a non-array value
         $console->registerModules(['backend' => 'not-an-array']);
 
-        $console->handle(['module' => 'backend']);
+        $console->handle(
+            [
+                'module' => 'backend',
+            ]
+        );
     }
 
     /**
@@ -596,8 +615,13 @@ final class HandleTest extends AbstractUnitTestCase
             }
         );
 
-        $actual = $console->handle(['module' => 'backend']);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $console->handle(
+                [
+                    'module' => 'backend',
+                ]
+            )
+        );
     }
 
     /**
@@ -616,8 +640,11 @@ final class HandleTest extends AbstractUnitTestCase
             }
         );
 
-        $actual = $console->handle([]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $console->handle(
+                []
+            )
+        );
     }
 
     /**

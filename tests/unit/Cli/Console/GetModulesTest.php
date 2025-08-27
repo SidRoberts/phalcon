@@ -47,9 +47,10 @@ final class GetModulesTest extends AbstractUnitTestCase
 
         $console->registerModules($definition);
 
-        $expected = $definition;
-        $actual   = $console->getModules();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $definition,
+            $console->getModules()
+        );
     }
 
     /**
@@ -62,8 +63,9 @@ final class GetModulesTest extends AbstractUnitTestCase
     {
         $console = new CliConsole(new DiFactoryDefault());
 
-        $expected = [];
-        $actual   = $console->getModules();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $console->getModules()
+        );
     }
 }

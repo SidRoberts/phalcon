@@ -45,13 +45,15 @@ final class GetModuleTest extends AbstractUnitTestCase
 
         $console->registerModules($definition);
 
-        $expected = $definition['frontend'];
-        $actual   = $console->getModule('frontend');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $definition['frontend'],
+            $console->getModule('frontend')
+        );
 
-        $expected = $definition['backend'];
-        $actual   = $console->getModule('backend');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $definition['backend'],
+            $console->getModule('backend')
+        );
     }
 
     /**

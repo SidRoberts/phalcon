@@ -31,11 +31,8 @@ final class UnderscoreGetTest extends AbstractUnitTestCase
         $container = new DiFactoryDefault();
         $console   = new CliConsole($container);
 
-        $class  = Dispatcher::class;
-        $actual = $console->dispatcher;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Dispatcher::class, $console->dispatcher);
 
-        $actual = $console->di;
-        $this->assertSame($container, $actual);
+        $this->assertSame($container, $console->di);
     }
 }

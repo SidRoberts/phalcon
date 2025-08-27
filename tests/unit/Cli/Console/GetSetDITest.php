@@ -31,8 +31,7 @@ final class GetSetDITest extends AbstractUnitTestCase
         $container = new DiFactoryDefault();
         $console->setDI($container);
 
-        $class  = Dispatcher::class;
         $actual = $console->getDI()->getShared('dispatcher');
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Dispatcher::class, $actual);
     }
 }

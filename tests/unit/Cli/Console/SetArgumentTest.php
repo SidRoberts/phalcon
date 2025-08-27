@@ -26,7 +26,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class SetArgumentTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: array, 1: string, 2: string, 3: array, 4: mixed}>
      */
     public static function getExamplesRouter(): array
     {
@@ -67,7 +67,7 @@ final class SetArgumentTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: bool, 1: bool, 2: array, 3: string, 4: string, 5: array,6: mixed}>
      */
     public static function getExamplesStrShift(): array
     {
@@ -185,7 +185,7 @@ final class SetArgumentTest extends AbstractUnitTestCase
 
         $di->setShared(
             'router',
-            function () {
+            function (): Router {
                 $router = new Router(true);
 
                 return $router;
@@ -209,21 +209,27 @@ final class SetArgumentTest extends AbstractUnitTestCase
                 ->handle()
         ;
 
-        $expected = 'main';
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'main',
+            $dispatcher->getTaskName()
+        );
 
-        $expected = 'arguments';
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'arguments',
+            $dispatcher->getActionName()
+        );
 
         $expected = ['a', 'b', 'c', 'd'];
-        $actual   = $dispatcher->getParameters();
-        $this->assertSame($expected, $actual);
 
-        $expected = [];
-        $actual   = $dispatcher->getOptions();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dispatcher->getParameters()
+        );
+
+        $this->assertSame(
+            [],
+            $dispatcher->getOptions()
+        );
 
         $console->setArgument(
             [
@@ -239,26 +245,39 @@ final class SetArgumentTest extends AbstractUnitTestCase
                 ->handle()
         ;
 
-        $expected = 'main';
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'main',
+            $dispatcher->getTaskName()
+        );
 
-        $expected = 'arguments';
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'arguments',
+            $dispatcher->getActionName()
+        );
 
         $expected = ['a', 'b'];
-        $actual   = $dispatcher->getParameters();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dispatcher->getParameters()
+        );
 
         $expected = [
             'country' => 'usa',
             'last'    => true,
         ];
-        $actual   = $dispatcher->getOptions();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dispatcher->getOptions()
+        );
     }
 
+    /**
+     * @throws ConsoleException
+     * @throws RouterException
+     * @throws DiException
+     */
     #[DataProvider('getExamplesRouter')]
     public function testCliConsoleSetArgumentRouter(
         array $argument,
@@ -272,7 +291,7 @@ final class SetArgumentTest extends AbstractUnitTestCase
 
         $di->setShared(
             'router',
-            function () {
+            function (): Router {
                 $router = new Router(true);
 
                 return $router;
@@ -287,23 +306,32 @@ final class SetArgumentTest extends AbstractUnitTestCase
                 ->handle()
         ;
 
-        $expected = $taskName;
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $taskName,
+            $dispatcher->getTaskName()
+        );
 
-        $expected = $actionName;
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $actionName,
+            $dispatcher->getActionName()
+        );
 
-        $expected = $params;
-        $actual   = $dispatcher->getParameters();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $params,
+            $dispatcher->getParameters()
+        );
 
-        $expected = $returnedValue;
-        $actual   = $dispatcher->getReturnedValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $returnedValue,
+            $dispatcher->getReturnedValue()
+        );
     }
 
+    /**
+     * @throws ConsoleException
+     * @throws DiException
+     * @throws RouterException
+     */
     #[DataProvider('getExamplesStrShift')]
     public function testCliConsoleSetArgumentStrShift(
         bool $str,
@@ -317,7 +345,6 @@ final class SetArgumentTest extends AbstractUnitTestCase
         $di      = new DiFactoryDefault();
         $console = new CliConsole($di);
 
-
         /** @var Dispatcher $dispatcher */
         $dispatcher = $di->getShared('dispatcher');
         $dispatcher->setDefaultNamespace('Phalcon\Tests\Support\Tasks');
@@ -326,21 +353,25 @@ final class SetArgumentTest extends AbstractUnitTestCase
                 ->handle()
         ;
 
-        $expected = $taskName;
-        $actual   = $dispatcher->getTaskName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $taskName,
+            $dispatcher->getTaskName()
+        );
 
-        $expected = $actionName;
-        $actual   = $dispatcher->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $actionName,
+            $dispatcher->getActionName()
+        );
 
-        $expected = $params;
-        $actual   = $dispatcher->getParameters();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $params,
+            $dispatcher->getParameters()
+        );
 
-        $expected = $returnedValue;
-        $actual   = $dispatcher->getReturnedValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $returnedValue,
+            $dispatcher->getReturnedValue()
+        );
     }
 
     /**

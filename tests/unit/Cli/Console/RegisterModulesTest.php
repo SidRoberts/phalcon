@@ -92,13 +92,15 @@ final class RegisterModulesTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $console->getModules();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            1,
+            $console->getModules()
+        );
 
-        $expected = 'backend';
-        $actual   = $console->getModules();
-        $this->assertArrayHasKey($expected, $actual);
+        $this->assertArrayHasKey(
+            'backend',
+            $console->getModules()
+        );
 
         $console->registerModules(
             [
@@ -110,16 +112,19 @@ final class RegisterModulesTest extends AbstractUnitTestCase
             true
         );
 
-        $expected = 2;
-        $actual   = $console->getModules();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            2,
+            $console->getModules()
+        );
 
-        $expected = 'frontend';
-        $actual   = $console->getModules();
-        $this->assertArrayHasKey($expected, $actual);
+        $this->assertArrayHasKey(
+            'frontend',
+            $console->getModules()
+        );
 
-        $expected = 'backend';
-        $actual   = $console->getModules();
-        $this->assertArrayHasKey($expected, $actual);
+        $this->assertArrayHasKey(
+            'backend',
+            $console->getModules()
+        );
     }
 }

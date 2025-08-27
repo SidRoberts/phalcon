@@ -31,8 +31,9 @@ final class GetSetDefaultModuleTest extends AbstractUnitTestCase
 
         $console->setDefaultModule('moduleName');
 
-        $expected = 'moduleName';
-        $actual   = $console->getDefaultModule();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'moduleName',
+            $console->getDefaultModule()
+        );
     }
 }
