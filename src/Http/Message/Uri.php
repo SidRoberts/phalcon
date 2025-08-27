@@ -700,6 +700,7 @@ class Uri extends AbstractCommon implements UriInterface
 
         foreach ($parts as $index => $part) {
             $split = $this->splitQueryValue($part);
+
             if (null === $split[1]) {
                 $parts[$index] = $this->filterQueryOrFragment($split[0]);
                 continue;
