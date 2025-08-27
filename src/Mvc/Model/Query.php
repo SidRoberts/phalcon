@@ -3691,13 +3691,11 @@ class Query implements QueryInterface, InjectionAwareInterface
      */
     final protected function prepareDelete(): array
     {
-        $ast = $this->ast;
-
-        if (!isset($ast["delete"])) {
+        if (!isset($this->ast["delete"])) {
             throw new CorruptedDeleteAst();
         }
 
-        $delete = $ast["delete"];
+        $delete = $this->ast["delete"];
 
         if (!isset($delete["tables"])) {
             throw new CorruptedDeleteAst();
@@ -3772,12 +3770,12 @@ class Query implements QueryInterface, InjectionAwareInterface
         $sqlDelete["tables"] = $sqlTables;
         $sqlDelete["models"] = $sqlModels;
 
-        if (isset($ast["where"])) {
-            $sqlDelete["where"] = $this->getExpression($ast["where"]);
+        if (isset($this->ast["where"])) {
+            $sqlDelete["where"] = $this->getExpression($this->ast["where"]);
         }
 
-        if (isset($ast["limit"])) {
-            $sqlDelete["limit"] = $this->getLimitClause($ast["limit"]);
+        if (isset($this->ast["limit"])) {
+            $sqlDelete["limit"] = $this->getLimitClause($this->ast["limit"]);
         }
 
         return $sqlDelete;
