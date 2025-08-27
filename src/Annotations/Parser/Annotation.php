@@ -46,7 +46,7 @@ class Annotation
     public function __construct(ReflectionAttribute $reflectionData)
     {
         $this->name      = ltrim(strrchr($reflectionData->getName() ?: "", '\\'), '\\');
-        $this->arguments = $reflectionData->getArguments() ?? [];
+        $this->arguments = $reflectionData->getArguments();
     }
 
     /**
