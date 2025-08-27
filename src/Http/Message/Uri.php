@@ -846,6 +846,7 @@ class Uri extends AbstractCommon implements UriInterface
     private function splitQueryValue(string $element): array
     {
         $data = explode("=", $element, 2);
+
         if (!isset($data[1])) {
             $data[] = null;
         }
