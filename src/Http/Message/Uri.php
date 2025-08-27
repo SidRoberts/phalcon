@@ -559,11 +559,11 @@ class Uri extends AbstractCommon implements UriInterface
         string $prefix = "",
         string $suffix = ""
     ): string {
-        if ("" !== $value) {
-            $value = $prefix . $value . $suffix;
+        if ("" === $value) {
+            return $value;
         }
 
-        return $value;
+        return $prefix . $value . $suffix;
     }
 
     /**
