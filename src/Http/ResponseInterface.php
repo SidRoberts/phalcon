@@ -218,7 +218,6 @@ interface ResponseInterface
      * @param string|null $message
      *
      * @return ResponseInterface
-     * @todo change $message to only string
      */
     public function setStatusCode(
         int $code,

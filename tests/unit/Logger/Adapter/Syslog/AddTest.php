@@ -11,11 +11,6 @@
 
 declare(strict_types=1);
 
-/**
- * @todo Until I figure this approach, this stays here and can be used for other
- *       tests in this namespace
- */
-
 namespace Phalcon\Tests\Unit\Logger\Adapter\Syslog;
 
 use DateTimeImmutable;
