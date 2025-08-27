@@ -3790,26 +3790,23 @@ class Query implements QueryInterface, InjectionAwareInterface
      */
     final protected function prepareInsert(): array
     {
-        $ast = $this->ast;
-
         if (
-            !isset($ast["qualifiedName"]) ||
-            !isset($ast["values"])
+            !isset($this->ast["qualifiedName"]) ||
+            !isset($this->ast["values"])
         ) {
             throw new CorruptedInsertAst();
         }
 
-        $qualifiedName = $ast["qualifiedName"];
+        $qualifiedName = $this->ast["qualifiedName"];
 
         // Check if the related model exists
         if (!isset($qualifiedName["name"])) {
             throw new CorruptedInsertAst();
         }
 
-        $manager   = $this->manager;
         $modelName = $qualifiedName["name"];
 
-        $model  = $manager->load($modelName);
+        $model  = $this->manager->load($modelName);
         $source = $model->getSource();
         $schema = $model->getSchema();
 
@@ -3820,7 +3817,7 @@ class Query implements QueryInterface, InjectionAwareInterface
         $notQuoting = false;
         $exprValues = [];
 
-        foreach ($ast["values"] as $exprValue) {
+        foreach ($this->ast["values"] as $exprValue) {
             // Resolve every expression in the "values" clause
             $exprValues[] = [
                 "type"  => $exprValue["type"],
@@ -3833,17 +3830,15 @@ class Query implements QueryInterface, InjectionAwareInterface
             "table" => $source,
         ];
 
-        $metaData = $this->metaData;
-
-        if (isset($ast["fields"])) {
-            $fields    = $ast["fields"];
+        if (isset($this->ast["fields"])) {
+            $fields    = $this->ast["fields"];
             $sqlFields = [];
 
             foreach ($fields as $field) {
                 $name = $field["name"];
 
                 // Check that inserted fields are part of the model
-                if (!$metaData->hasAttribute($model, $name)) {
+                if (!$this->metaData->hasAttribute($model, $name)) {
                     throw new MissingModelAttribute($modelName, $name, (string) $this->phql);
                 }
 
