@@ -828,6 +828,7 @@ class Uri extends AbstractCommon implements UriInterface
         }
 
         $characters = str_split($value);
+
         foreach ($characters as $index => $character) {
             if (!preg_match("//u", $character)) {
                 $characters[$index] = rawurlencode($character);
