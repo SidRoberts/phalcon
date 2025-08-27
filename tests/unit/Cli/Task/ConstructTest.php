@@ -28,15 +28,16 @@ final class ConstructTest extends AbstractUnitTestCase
 
         $task->setDI($di);
 
-        $expected = 'echoMainAction';
-        $actual   = $task->mainAction();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'echoMainAction',
+            $task->mainAction()
+        );
     }
 
     public function testExtendTask(): void
     {
         $di             = new DiFactoryDefault();
-        $di['registry'] = function () {
+        $di['registry'] = function (): Registry {
             $registry = new Registry();
 
             $registry->data = 'data';
@@ -47,16 +48,19 @@ final class ConstructTest extends AbstractUnitTestCase
         $task = new MainTask();
         $task->setDI($di);
 
-        $expected = 'data';
-        $actual   = $task->requestRegistryAction();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'data',
+            $task->requestRegistryAction()
+        );
 
-        $expected = 'Hello !';
-        $actual   = $task->helloAction();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Hello !',
+            $task->helloAction()
+        );
 
-        $expected = 'Hello World!';
-        $actual   = $task->helloAction('World');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Hello World!',
+            $task->helloAction('World')
+        );
     }
 }

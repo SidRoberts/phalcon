@@ -27,10 +27,12 @@ final class GetSetDITest extends AbstractUnitTestCase
     {
         $task      = new Task();
         $container = new CliDi();
+
         $task->setDi($container);
 
-        $expected = $container;
-        $actual   = $task->getDI();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $container,
+            $task->getDI()
+        );
     }
 }

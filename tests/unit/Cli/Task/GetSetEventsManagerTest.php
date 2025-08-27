@@ -27,10 +27,12 @@ final class GetSetEventsManagerTest extends AbstractUnitTestCase
     {
         $eventsManager = new Manager();
         $task          = new Task();
+
         $task->setEventsManager($eventsManager);
 
-        $expected = $eventsManager;
-        $actual   = $task->getEventsManager();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $eventsManager,
+            $task->getEventsManager()
+        );
     }
 }

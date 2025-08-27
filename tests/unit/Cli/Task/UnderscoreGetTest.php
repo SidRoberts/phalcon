@@ -28,9 +28,11 @@ final class UnderscoreGetTest extends AbstractUnitTestCase
     {
         $task      = new Task();
         $container = new CliDi();
+
         $task->setDi($container);
 
         $eventsManager = new Manager();
+
         $task->setEventsManager($eventsManager);
 
         $this->assertSame($container, $task->di);
