@@ -20,7 +20,6 @@ use function array_merge;
 use function array_pop;
 use function explode;
 use function implode;
-use function is_array;
 use function is_string;
 use function str_replace;
 use function str_split;
@@ -548,29 +547,19 @@ class Route implements RouteInterface
         }
 
         if (is_string($paths)) {
-            $moduleName     = null;
-            $controllerName = null;
-            $actionName     = null;
-
             // Explode the short paths using the :: separator
             $parts = explode("::", $paths);
 
-            // Create the array paths dynamically
-            switch (count($parts)) {
-                case 3:
-                    $moduleName     = $parts[0];
-                    $controllerName = $parts[1];
-                    $actionName     = $parts[2];
-                    break;
+            $parts = array_reverse($parts);
 
-                case 2:
-                    $controllerName = $parts[0];
-                    $actionName     = $parts[1];
-                    break;
-
-                case 1:
-                    $controllerName = $parts[0];
-                    break;
+            if (count($parts) > 1) {
+                $moduleName     = $parts[2] ?? null;
+                $controllerName = $parts[1];
+                $actionName     = $parts[0];
+            } else {
+                $moduleName     = null;
+                $controllerName = $parts[0];
+                $actionName     = null;
             }
 
             $routePaths = [];
@@ -580,28 +569,25 @@ class Route implements RouteInterface
                 $routePaths["module"] = $moduleName;
             }
 
-            // Process controller name
-            if ($controllerName !== null) {
-                // Check if we need to obtain the namespace
-                if (str_contains($controllerName, "\\")) {
-                    $controllerNameArray = explode("\\", $controllerName);
+            // Check if we need to obtain the namespace
+            if (str_contains($controllerName, "\\")) {
+                $controllerNameArray = explode("\\", $controllerName);
 
-                    // Extract the real class name from the namespaced class
-                    $realClassName = array_pop($controllerNameArray);
+                // Extract the real class name from the namespaced class
+                $realClassName = array_pop($controllerNameArray);
 
-                    // Extract the namespace from the namespaced class
-                    $namespaceName = implode("\\", $controllerNameArray);
+                // Extract the namespace from the namespaced class
+                $namespaceName = implode("\\", $controllerNameArray);
 
-                    // Update the namespace
-                    if ($namespaceName) {
-                        $routePaths["namespace"] = $namespaceName;
-                    }
-                } else {
-                    $realClassName = $controllerName;
+                // Update the namespace
+                if ($namespaceName) {
+                    $routePaths["namespace"] = $namespaceName;
                 }
-
-                $routePaths["controller"] = $realClassName;
+            } else {
+                $realClassName = $controllerName;
             }
+
+            $routePaths["controller"] = $realClassName;
 
             // Process action name
             if ($actionName !== null) {
