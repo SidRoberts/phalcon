@@ -81,11 +81,11 @@ class Console extends AbstractApplication
             $router = $this->container->get("router");
         }
 
-        if (empty($arguments) && !empty($this->arguments)) {
-            $router->handle($this->arguments);
-        } else {
-            $router->handle($arguments);
+        if (empty($arguments)) {
+            $arguments = $this->arguments;
         }
+
+        $router->handle($arguments);
 
         /**
          * If the router does not return a valid module we use the default module
