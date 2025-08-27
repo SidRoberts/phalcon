@@ -392,15 +392,15 @@ class Gd extends AbstractAdapter
         }
 
         $x = 0;
+
         while ($x < $this->width) {
             $y = 0;
+
             while ($y < $this->height) {
                 $index = imagecolorat($maskImage, $x, $y);
                 $color = imagecolorsforindex($maskImage, $index);
 
-                if (isset($color["red"])) {
-                    $alpha = 127 - intval($color["red"] / 2);
-                }
+                $alpha = 127 - intval($color["red"] / 2);
 
                 $index = imagecolorat($this->image, $x, $y);
                 $color = imagecolorsforindex($this->image, $index);
