@@ -74,13 +74,8 @@ abstract class Select
             $params["id"] = $id;
         }
 
-        if (!isset($params["name"])) {
+        if (!isset($params["name"]) || !$params["name"]) {
             $params["name"] = $id;
-        } else {
-            $name = $params["name"];
-            if (!$name) {
-                $params["name"] = $id;
-            }
         }
 
         $value = $params["value"] ?? BaseTag::getValue($id, $params);
@@ -144,17 +139,15 @@ abstract class Select
                 $value,
                 self::OPTION_CLOSE . PHP_EOL
             );
-        } else {
-            if (is_array($options)) {
-                /**
-                 * Create the SELECT's option from an array
-                 */
-                $code .= self::optionsFromArray(
-                    $options,
-                    $value,
-                    self::OPTION_CLOSE . PHP_EOL
-                );
-            }
+        } elseif (is_array($options)) {
+            /**
+             * Create the SELECT's option from an array
+             */
+            $code .= self::optionsFromArray(
+                $options,
+                $value,
+                self::OPTION_CLOSE . PHP_EOL
+            );
         }
 
         $code .= self::SELECT_CLOSE;
