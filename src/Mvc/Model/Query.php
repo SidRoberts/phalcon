@@ -2514,7 +2514,6 @@ class Query implements QueryInterface, InjectionAwareInterface
         $sqlModelsAliases          = $this->sqlModelsAliases;
         $sqlAliasesModelsInstances = $this->sqlAliasesModelsInstances;
         $modelsInstances           = $this->modelsInstances;
-        $fromModels                = $models;
 
         $sqlJoins         = [];
         $joinModels       = [];
@@ -2522,8 +2521,6 @@ class Query implements QueryInterface, InjectionAwareInterface
         $joinTypes        = [];
         $joinPreCondition = [];
         $joinPrepared     = [];
-
-        $manager = $this->manager;
 
         $tables = $select["tables"];
 
@@ -2545,7 +2542,7 @@ class Query implements QueryInterface, InjectionAwareInterface
             /**
              * Check join alias
              */
-            $joinData       = $this->getJoin($manager, $joinItem);
+            $joinData       = $this->getJoin($this->manager, $joinItem);
             $source         = $joinData["source"];
             $schema         = $joinData["schema"];
             $model          = $joinData["model"];
@@ -2751,7 +2748,7 @@ class Query implements QueryInterface, InjectionAwareInterface
                     /**
                      * Check if the joined model is an alias
                      */
-                    $relation = $manager->getRelationByAlias(
+                    $relation = $this->manager->getRelationByAlias(
                         $fromModelName,
                         $modelNameAlias
                     );
@@ -2760,7 +2757,7 @@ class Query implements QueryInterface, InjectionAwareInterface
                         /**
                          * Check for relations between models
                          */
-                        $relations = $manager->getRelationsBetween(
+                        $relations = $this->manager->getRelationsBetween(
                             $fromModelName,
                             $modelNameAlias
                         );
