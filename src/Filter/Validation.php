@@ -319,6 +319,7 @@ class Validation extends Injectable implements ValidationInterface
         //  If the entity is an object use it to retrieve the values
         if (null !== $this->entity) {
             $value = $this->getValueByEntity($this->entity, $field);
+
             if (null === $value) {
                 $isRawFetched = true;
                 $value        = $this->getValueByData($this->data, $field);
