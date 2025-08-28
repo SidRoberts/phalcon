@@ -138,13 +138,13 @@ interface ValidationInterface
     /**
      * Adds filters to the field
      *
-     * @param string       $field
+     * @param string       $fields
      * @param array|string $filters
      *
      * @return ValidationInterface
      */
     public function setFilters(
-        string $field,
+        string $fields,
         array | string $filters
     ): ValidationInterface;
 

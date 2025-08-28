@@ -475,22 +475,21 @@ class Validation extends Injectable implements ValidationInterface
     /**
      * Adds filters to the field
      *
-     * @param array|string $field
+     * @param array|string $fields
      * @param array|string $filters
      *
      * @return ValidationInterface
      */
     public function setFilters(
-        array | string $field,
+        array | string $fields,
         array | string $filters
-    ): static {
-        $fields = $field;
-        if (!is_array($field)) {
-            $fields = [$field];
+    ): ValidationInterface {
+        if (!is_array($fields)) {
+            $fields = [$fields];
         }
 
-        foreach ($fields as $singleField) {
-            $this->filters[$singleField] = $filters;
+        foreach ($fields as $field) {
+            $this->filters[$field] = $filters;
         }
 
         return $this;
