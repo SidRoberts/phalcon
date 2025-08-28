@@ -827,6 +827,7 @@ class Response extends Injectable implements
         if (null === $message) {
             // See: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
             $statusCodes = $this->getPhrases();
+
             if (!isset($statusCodes[$code])) {
                 throw new NonStandardStatusCodeRequiresMessage();
             }
