@@ -911,6 +911,7 @@ abstract class Model extends AbstractInjectionAware implements
 
         $metaData  = $this->getModelsMetaData();
         $columnMap = null;
+
         if (Settings::get("orm.column_renaming")) {
             $columnMap = $metaData->getColumnMap($this);
         }
@@ -946,11 +947,10 @@ abstract class Model extends AbstractInjectionAware implements
             // Check if we there is data for the field
             if (isset($dataMapped[$attributeField])) {
                 $value = $dataMapped[$attributeField];
+
                 // If white-list exists check if the attribute is on that list
-                if (is_array($whiteList)) {
-                    if (!in_array($attributeField, $whiteList)) {
-                        continue;
-                    }
+                if (is_array($whiteList) && !in_array($attributeField, $whiteList)) {
+                    continue;
                 }
 
                 // Try to find a possible getter
