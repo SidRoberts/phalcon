@@ -299,13 +299,8 @@ class Response extends Injectable implements
         $header = null;
         if (true === $externalRedirect) {
             $header = $location;
-        } else {
-            if (str_contains($location, '://')) {
-                $matched = preg_match("/^[^:\\/?#]++:/", $location);
-                if ($matched) {
-                    $header = $location;
-                }
-            }
+        } elseif (str_contains($location, '://') && preg_match("/^[^:\\/?#]++:/", $location)) {
+            $header = $location;
         }
 
         $container = $this->getDI();
