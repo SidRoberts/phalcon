@@ -71,8 +71,10 @@ abstract class AbstractLinkProvider
     protected function doGetLinksByRel(string $rel): array
     {
         $filtered = [];
+
         foreach ($this->links as $link) {
             $rels = $link->getRels();
+
             if (true === in_array($rel, $rels)) {
                 $filtered[] = $link;
             }
