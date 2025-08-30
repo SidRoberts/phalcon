@@ -52,6 +52,10 @@ trait DiLoadTrait
      * ];
      * ```
      *
+     * @param string $filePath
+     *
+     * @return void
+     *
      * @link https://docs.phalcon.io/en/latest/di
      */
     public function loadFromPhp(string $filePath): void
@@ -92,6 +96,11 @@ trait DiLoadTrait
      *    className: \Acme\User
      * ```
      *
+     * @param string     $filePath
+     * @param array|null $callbacks
+     *
+     * @return void
+     *
      * @link https://docs.phalcon.io/latest/di
      */
     public function loadFromYaml(
@@ -105,6 +114,10 @@ trait DiLoadTrait
 
     /**
      * Loads services from a Config object.
+     *
+     * @param ConfigInterface $config
+     *
+     * @return void
      */
     protected function loadFromConfig(ConfigInterface $config): void
     {

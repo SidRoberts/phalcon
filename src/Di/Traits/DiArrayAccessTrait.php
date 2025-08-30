@@ -81,6 +81,8 @@ trait DiArrayAccessTrait
      *
      * @param mixed $name
      * @param mixed $definition
+     *
+     * @return void
      */
     #[ReturnTypeWillChange]
     public function offsetSet($name, $definition): void
@@ -92,6 +94,8 @@ trait DiArrayAccessTrait
      * Removes a service from the services container using the array syntax
      *
      * @param mixed $name
+     *
+     * @return void
      */
     #[ReturnTypeWillChange]
     public function offsetUnset($name): void
@@ -104,6 +108,8 @@ trait DiArrayAccessTrait
      * It also removes any shared instance created for the service
      *
      * @param string $name
+     *
+     * @return void
      */
     abstract public function remove(string $name): void;
 

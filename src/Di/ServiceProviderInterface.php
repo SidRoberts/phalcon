@@ -43,6 +43,8 @@ interface ServiceProviderInterface
      * Registers a service provider.
      *
      * @param DiInterface $container
+     *
+     * @return void
      */
     public function register(DiInterface $container): void;
 }

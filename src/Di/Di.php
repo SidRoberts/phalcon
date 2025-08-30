@@ -90,13 +90,13 @@ class Di extends stdClass implements DiInterface
     /**
      * List of registered services
      *
-     * @var ServiceInterface[]
+     * @var array<string, ServiceInterface>
      */
     protected array $services = [];
     /**
      * List of shared instances
      *
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $sharedInstances = [];
 
@@ -113,10 +113,11 @@ class Di extends stdClass implements DiInterface
     /**
      * Magic method to get or set services using setters/getters
      *
-     * @param string $method
-     * @param array  $arguments
+     * @param string       $method
+     * @param array<mixed> $arguments
      *
      * @return mixed|void
+     *
      * @throws Exception
      */
     public function __call(string $method, array $arguments = [])
@@ -158,13 +159,13 @@ class Di extends stdClass implements DiInterface
      * @param mixed  $definition
      * @param bool   $shared
      *
-     * @return bool|mixed|Service|ServiceInterface
+     * @return bool|ServiceInterface
      */
     public function attempt(
         string $name,
         mixed $definition,
         bool $shared = false
-    ) {
+    ): bool|ServiceInterface {
         if (isset($this->services[$name])) {
             return false;
         }
@@ -177,10 +178,11 @@ class Di extends stdClass implements DiInterface
     /**
      * Resolves the service based on its configuration
      *
-     * @param string     $name
-     * @param array|null $parameters
+     * @param string            $name
+     * @param array<mixed>|null $parameters
      *
      * @return mixed
+     *
      * @throws Exception
      */
     public function get(string $name, array | null $parameters = null): mixed
@@ -298,6 +300,7 @@ class Di extends stdClass implements DiInterface
      * @param string $name
      *
      * @return mixed
+     *
      * @throws Exception
      */
     public function getRaw(string $name): mixed
@@ -313,6 +316,7 @@ class Di extends stdClass implements DiInterface
      * @param string $name
      *
      * @return ServiceInterface
+     *
      * @throws Exception
      */
     public function getService(string $name): ServiceInterface
@@ -332,7 +336,7 @@ class Di extends stdClass implements DiInterface
     /**
      * Return the services registered in the DI
      *
-     * @return array
+     * @return array<string, ServiceInterface>
      */
     public function getServices(): array
     {
@@ -343,10 +347,11 @@ class Di extends stdClass implements DiInterface
      * Resolves a service, the resolved service is stored in the DI, subsequent
      * requests for this service will return the same instance
      *
-     * @param string     $name
-     * @param array|null $parameters
+     * @param string            $name
+     * @param array<mixed>|null $parameters
      *
      * @return mixed
+     *
      * @throws DiException
      */
     public function getShared(string $name, array | null $parameters = null): mixed
@@ -564,6 +569,8 @@ class Di extends stdClass implements DiInterface
      * Sets the internal event manager
      *
      * @param ManagerInterface $eventsManager
+     *
+     * @return void
      */
     public function setInternalEventsManager(ManagerInterface $eventsManager): void
     {
@@ -598,11 +605,12 @@ class Di extends stdClass implements DiInterface
 
     /**
      * @param string                $name
-     * @param array|null            $parameters
+     * @param array<mixed>|null     $parameters
      * @param ServiceInterface|null $service
      * @param mixed                 $instance
      *
      * @return mixed|null
+     *
      * @throws Exception
      */
     private function processObjectNotNullService(
@@ -630,11 +638,12 @@ class Di extends stdClass implements DiInterface
 
     /**
      * @param string                $name
-     * @param array|null            $parameters
+     * @param array<mixed>|null     $parameters
      * @param ServiceInterface|null $service
      * @param mixed                 $instance
      *
      * @return mixed|null
+     *
      * @throws Exception
      */
     private function processObjectNullService(

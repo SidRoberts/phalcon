@@ -51,8 +51,8 @@ interface ServiceInterface
     /**
      * Resolves the service
      *
-     * @param array|null       $parameters
-     * @param DiInterface|null $container
+     * @param array<mixed>|null $parameters
+     * @param DiInterface|null  $container
      *
      * @return mixed
      */

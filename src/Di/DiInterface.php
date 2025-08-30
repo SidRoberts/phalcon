@@ -39,8 +39,7 @@ interface DiInterface extends ArrayAccess
 
     /**
      * Resolves the service based on its configuration
-     */
-    /**
+     *
      * @param string     $name
      * @param array|null $parameters
      *
@@ -50,6 +49,8 @@ interface DiInterface extends ArrayAccess
 
     /**
      * Return the last DI created
+     *
+     * @return DiInterface|null
      */
     public static function getDefault(): object | null;
 
@@ -74,7 +75,7 @@ interface DiInterface extends ArrayAccess
     /**
      * Return the services registered in the DI
      *
-     * @return ServiceInterface[]
+     * @return array<string, ServiceInterface>
      */
     public function getServices(): array;
 
@@ -115,6 +116,8 @@ interface DiInterface extends ArrayAccess
      * Removes a service in the services container
      *
      * @param string $name
+     *
+     * @return void
      */
     public function remove(string $name): void;
 
@@ -134,6 +137,8 @@ interface DiInterface extends ArrayAccess
 
     /**
      * Resets the internal default DI
+     *
+     * @return void
      */
     public static function reset(): void;
 

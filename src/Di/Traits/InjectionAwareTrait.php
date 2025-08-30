@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Phalcon\Di\Traits;
 
+use Phalcon\Di\DiInterface;
+use Throwable;
+
 /**
  * This abstract class offers common access to the DI in a class
  *
@@ -31,6 +34,8 @@ trait InjectionAwareTrait
 
     /**
      * Returns the internal dependency injector
+     *
+     * @return DiInterface|null
      */
     public function getDI(): object | null
     {
@@ -39,6 +44,10 @@ trait InjectionAwareTrait
 
     /**
      * Sets the dependency injector
+     *
+     * @param DiInterface $container
+     *
+     * @return void
      */
     public function setDI(object $container): void
     {
@@ -46,7 +55,9 @@ trait InjectionAwareTrait
     }
 
     /**
-     * @param string $exceptionClass
+     * @param class-string<Throwable> $exceptionClass
+     * @param string                  $message
+     * @param int                     $code
      *
      * @return void
      */

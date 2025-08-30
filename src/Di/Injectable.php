@@ -86,7 +86,7 @@ abstract class Injectable extends stdClass implements InjectionAwareInterface
     /**
      * Magic method __get
      *
-     * @param string $propertyName
+     * @param non-empty-string $propertyName
      *
      * @return mixed|object|void
      */
@@ -138,6 +138,10 @@ abstract class Injectable extends stdClass implements InjectionAwareInterface
 
     /**
      * Magic method __isset
+     *
+     * @param non-empty-string $name
+     *
+     * @return bool
      */
     public function __isset(string $name): bool
     {
@@ -146,6 +150,8 @@ abstract class Injectable extends stdClass implements InjectionAwareInterface
 
     /**
      * Returns the internal dependency injector
+     *
+     * @return DiInterface
      */
     public function getDI(): object | null
     {

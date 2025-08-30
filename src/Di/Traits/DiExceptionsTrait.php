@@ -29,6 +29,8 @@ trait DiExceptionsTrait
      * @param int   $position
      * @param array $argument
      *
+     * @return void
+     *
      * @throws Exception
      */
     private function checkArgumentTypeExists(int $position, array $argument): void
@@ -45,6 +47,8 @@ trait DiExceptionsTrait
 
     /**
      * @param string $name
+     *
+     * @return void
      *
      * @throws Exception
      */
@@ -65,6 +69,8 @@ trait DiExceptionsTrait
     /**
      * @param array $definition
      *
+     * @return void
+     *
      * @throws Exception
      */
     private function checkClassNameExists(array $definition): void
@@ -83,6 +89,8 @@ trait DiExceptionsTrait
      * @param mixed $arguments
      * @param int   $position
      *
+     * @return void
+     *
      * @throws Exception
      */
     private function checkMethodArgumentsIsArray(mixed $arguments, int $position): void
@@ -98,6 +106,8 @@ trait DiExceptionsTrait
     /**
      * @param mixed $method
      * @param int   $position
+     *
+     * @return void
      *
      * @throws Exception
      */
@@ -118,6 +128,8 @@ trait DiExceptionsTrait
      * @param array $method
      * @param int   $position
      *
+     * @return void
+     *
      * @throws Exception
      */
     private function checkMethodMethodExists(array $method, int $position): void
@@ -136,6 +148,8 @@ trait DiExceptionsTrait
     /**
      * @param mixed $instance
      *
+     * @return void
+     *
      * @throws Exception
      */
     private function checkPropertiesInjectionConstruct(mixed $instance): void
@@ -151,6 +165,8 @@ trait DiExceptionsTrait
     /**
      * @param mixed $property
      * @param int   $position
+     *
+     * @return void
      *
      * @throws Exception
      */
@@ -171,6 +187,8 @@ trait DiExceptionsTrait
      * @param array $property
      * @param int   $position
      *
+     * @return void
+     *
      * @throws Exception
      */
     private function checkPropertyNameExists(array $property, int $position): void
@@ -189,6 +207,8 @@ trait DiExceptionsTrait
     /**
      * @param array $property
      * @param int   $position
+     *
+     * @return void
      *
      * @throws Exception
      */
@@ -210,6 +230,8 @@ trait DiExceptionsTrait
      * @param string $name
      * @param int    $position
      *
+     * @return void
+     *
      * @throws Exception
      */
     private function checkServiceParameters(
@@ -224,6 +246,8 @@ trait DiExceptionsTrait
 
     /**
      * @param mixed $instance
+     *
+     * @return void
      *
      * @throws Exception
      */
@@ -240,6 +264,8 @@ trait DiExceptionsTrait
     /**
      * @param mixed $parameters
      *
+     * @return void
+     *
      * @throws Exception
      */
     private function checkSetterInjectionParameters(mixed $parameters): void
@@ -254,6 +280,8 @@ trait DiExceptionsTrait
     /**
      * @param string $name
      *
+     * @return void
+     *
      * @throws Exception
      */
     private function throwCannotResolveService(string $name): void
@@ -265,6 +293,8 @@ trait DiExceptionsTrait
 
     /**
      * @param string $name
+     *
+     * @return void
      *
      * @throws Exception
      */
@@ -278,6 +308,8 @@ trait DiExceptionsTrait
 
     /**
      * @param string $method
+     *
+     * @return void
      *
      * @throws Exception
      */
@@ -293,6 +325,8 @@ trait DiExceptionsTrait
 
     /**
      * @param int $position
+     *
+     * @return void
      *
      * @throws Exception
      */

@@ -22,8 +22,8 @@ use function call_user_func_array;
 trait DiInstanceTrait
 {
     /**
-     * @param mixed      $instance
-     * @param array|null $parameters
+     * @param mixed             $instance
+     * @param array<mixed>|null $parameters
      *
      * @return mixed
      */
@@ -39,8 +39,8 @@ trait DiInstanceTrait
     }
 
     /**
-     * @param string     $name
-     * @param array|null $parameters
+     * @param class-string      $name
+     * @param array<mixed>|null $parameters
      *
      * @return mixed
      */

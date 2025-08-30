@@ -122,10 +122,11 @@ class Service implements ServiceInterface
     /**
      * Resolves the service
      *
-     * @param array|null       $parameters
-     * @param DiInterface|null $container
+     * @param array<mixed>|null $parameters
+     * @param DiInterface|null  $container
      *
      * @return mixed|null
+     *
      * @throws Exception
      * @throws ServiceResolutionException
      */
@@ -204,6 +205,8 @@ class Service implements ServiceInterface
      * Set the service definition
      *
      * @param mixed $definition
+     *
+     * @return void
      */
     public function setDefinition(mixed $definition): void
     {
@@ -217,6 +220,7 @@ class Service implements ServiceInterface
      * @param array $parameter
      *
      * @return ServiceInterface
+     *
      * @throws Exception
      */
     public function setParameter(int $position, array $parameter): ServiceInterface
@@ -241,6 +245,8 @@ class Service implements ServiceInterface
      * Sets if the service is shared or not
      *
      * @param bool $shared
+     *
+     * @return void
      */
     public function setShared(bool $shared): void
     {
@@ -251,6 +257,8 @@ class Service implements ServiceInterface
      * Sets/Resets the shared instance related to the service
      *
      * @param mixed $sharedInstance
+     *
+     * @return void
      */
     public function setSharedInstance(mixed $sharedInstance): void
     {
