@@ -93,9 +93,9 @@ class Tag
     protected static string $documentTitle = "";
 
     /**
-     * @var string|null
+     * @var string
      */
-    protected static string | null $documentTitleSeparator = "";
+    protected static string $documentTitleSeparator = "";
 
     /**
      * @var int
@@ -1042,7 +1042,7 @@ class Tag
         self::$documentTitle          = '';
         self::$documentAppendTitle    = [];
         self::$documentPrependTitle   = [];
-        self::$documentTitleSeparator = null;
+        self::$documentTitleSeparator = '';
     }
 
     /**
