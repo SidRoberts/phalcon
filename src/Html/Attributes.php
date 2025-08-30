@@ -73,6 +73,7 @@ class Attributes extends Collection implements RenderInterface
         unset($results['escape']);
 
         $result = "";
+
         foreach ($results as $key => $value) {
             if (is_string($key) && null !== $value) {
                 if (is_array($value) || is_resource($value)) {
