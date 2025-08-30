@@ -19,6 +19,7 @@ use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
 use Phalcon\Tests\Support\Traits\SessionTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 
 final class ExistsDestroyTest extends AbstractUnitTestCase
 {
@@ -31,11 +32,11 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2018-11-13
      */
+    #[BackupGlobals(true)]
     #[DataProvider('getClassNames')]
     public function testSessionManagerDestroySuperGlobal(
         string $name
     ): void {
-        $store    = $_SESSION ?? [];
         $_SESSION = [];
 
         $manager = new Manager();
@@ -57,19 +58,17 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
 
         $actual = $manager->exists();
         $this->assertFalse($actual);
-
-        $_SESSION = $store;
     }
 
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-09-09
      */
+    #[BackupGlobals(true)]
     #[DataProvider('getClassNames')]
     public function testSessionManagerDestroySuperGlobalUniquid(
         string $name
     ): void {
-        $store    = $_SESSION ?? [];
         $_SESSION = [];
 
         $manager = new Manager();
@@ -97,19 +96,17 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
 
         $actual = $manager->exists();
         $this->assertFalse($actual);
-
-        $_SESSION = $store;
     }
 
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2018-11-13
      */
+    #[BackupGlobals(true)]
     #[DataProvider('getClassNames')]
     public function testSessionManagerExistsDestroy(
         string $name
     ): void {
-        $store    = $_SESSION ?? [];
         $_SESSION = [];
 
         $manager = new Manager();
@@ -126,7 +123,5 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
 
         $actual = $manager->exists();
         $this->assertFalse($actual);
-
-        $_SESSION = $store;
     }
 }

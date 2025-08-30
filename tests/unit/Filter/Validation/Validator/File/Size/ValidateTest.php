@@ -113,6 +113,7 @@ final class ValidateTest extends AbstractUnitTestCase
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2023-09-28
      */
+    #[BackupGlobals(true)]
     #[DataProvider('getExamples')]
     public function testFilterValidationValidatorFileSize(
         string $class,
@@ -147,6 +148,7 @@ final class ValidateTest extends AbstractUnitTestCase
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2023-09-28
      */
+    #[BackupGlobals(true)]
     #[DataProvider('getExamplesErrors')]
     public function testFilterValidationValidatorFileSizeErrors(
         string $class,

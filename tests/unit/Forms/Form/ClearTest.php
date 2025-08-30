@@ -25,6 +25,7 @@ use Phalcon\Html\TagFactory;
 use Phalcon\Messages\Message;
 use Phalcon\Messages\Messages;
 use Phalcon\Tests\AbstractUnitTestCase;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 use stdClass;
 
 use function uniqid;
@@ -47,6 +48,7 @@ final class ClearTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2022-11-01
      */
+    #[BackupGlobals(true)]
     public function testFormsFormGet(): void
     {
         $addressValue = uniqid('add-');

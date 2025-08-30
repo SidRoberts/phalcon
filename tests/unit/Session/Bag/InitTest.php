@@ -17,6 +17,7 @@ use Phalcon\Session\Bag;
 use Phalcon\Session\Manager;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 
 use function uniqid;
 
@@ -28,6 +29,7 @@ final class InitTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
+    #[BackupGlobals(true)]
     public function testSessionBagInit(): void
     {
         $this->setNewFactoryDefault();

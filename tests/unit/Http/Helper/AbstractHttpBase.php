@@ -20,6 +20,7 @@ use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Page\Http;
 use Phalcon\Tests\Support\Traits\DiTrait;
 use Phalcon\Tests\Unit\Http\Fake\FakePhpStream;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 
 use function header_remove;
 use function stream_wrapper_register;
@@ -27,6 +28,7 @@ use function stream_wrapper_restore;
 use function stream_wrapper_unregister;
 use function time;
 
+#[BackupGlobals(true)]
 abstract class AbstractHttpBase extends AbstractUnitTestCase
 {
     use DiTrait;
@@ -38,12 +40,7 @@ abstract class AbstractHttpBase extends AbstractUnitTestCase
      */
     public function tearDown(): void
     {
-        $_SERVER  = $this->store['SERVER'];
-        $_REQUEST = $this->store['REQUEST'];
-        $_GET     = $this->store['GET'];
-        $_POST    = $this->store['POST'];
-        $_COOKIE  = $this->store['COOKIE'];
-        $_FILES   = $this->store['FILES'];
+        $_SERVER = $this->store['SERVER'];
     }
 
     /**
@@ -51,12 +48,7 @@ abstract class AbstractHttpBase extends AbstractUnitTestCase
      */
     public function setUp(): void
     {
-        $this->store['SERVER']  = $_SERVER ?? [];
-        $this->store['REQUEST'] = $_REQUEST ?? [];
-        $this->store['GET']     = $_GET ?? [];
-        $this->store['POST']    = $_POST ?? [];
-        $this->store['COOKIE']  = $_COOKIE ?? [];
-        $this->store['FILES']   = $_FILES ?? [];
+        $this->store['SERVER'] = $_SERVER ?? [];
 
         $time     = $_SERVER['REQUEST_TIME_FLOAT'] ?? time();
         $_SERVER  = [

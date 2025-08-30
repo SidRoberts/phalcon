@@ -18,6 +18,7 @@ use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
 use Phalcon\Tests\Unit\Mvc\Fake\RouterTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 
 final class SetBaseUriTest extends AbstractUnitTestCase
 {
@@ -234,14 +235,13 @@ final class SetBaseUriTest extends AbstractUnitTestCase
      * @author       Nikolaos Dimopoulos <nikos@phalcon.io>
      * @since        2014-09-04
      */
+    #[BackupGlobals(true)]
     #[DataProvider('getUrlToSetServer')]
     public function shouldGetCorrectUrlWithServer(
         string $phpSelf,
         string $name,
         string $expected
     ): void {
-        $store = $_SERVER;
-
         $_SERVER['PHP_SELF'] = $phpSelf;
         $url                 = $this->getService('url');
 

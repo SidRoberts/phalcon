@@ -17,6 +17,7 @@ use Phalcon\Support\Debug;
 use Phalcon\Support\Exception;
 use Phalcon\Support\Version;
 use Phalcon\Tests\AbstractUnitTestCase;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 
 final class RenderHtmlTest extends AbstractUnitTestCase
 {
@@ -60,7 +61,7 @@ final class RenderHtmlTest extends AbstractUnitTestCase
 <div align='center'>
     <div class='error-main'>
         <h1>Phalcon\Support\Exception: exception message</h1>
-        <span class='error-file'>" . __FILE__ . " (31)</span>
+        <span class='error-file'>" . __FILE__ . " (32)</span>
     </div>
     <script type='application/javascript'
             src='https://assets.phalcon.io/debug/6.0.x/assets/jquery/dist/jquery.min.js'></script>
@@ -126,17 +127,15 @@ final class RenderHtmlTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
+    #[BackupGlobals(true)]
     public function testSupportDebugRenderHtmlWithBacktrace(): void
     {
         $exception = new Exception('exception message', 1234);
         $debug = new Debug();
         $debug->setShowBackTrace(true);
-        $server = $_SERVER;
         $_SERVER['DATA_DEBUG_TEST'] = 'test';
 
         $actual = $debug->renderHtml($exception);
-
-        $_SERVER = $server;
 
         $this->assertStringContainsString(self::ERROR_DIV, $actual);
         $this->assertStringContainsString(
@@ -167,11 +166,11 @@ final class RenderHtmlTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
+    #[BackupGlobals(true)]
     public function testSupportDebugRenderHtmlWithBacktraceAndBlacklist(): void
     {
         $exception = new Exception('exception message', 1234);
         $debug = new Debug();
-        $server = $_SERVER;
         $_SERVER['DATA_DEBUG_TEST'] = 'test';
 
         $debug->setShowBackTrace(true);
@@ -182,7 +181,6 @@ final class RenderHtmlTest extends AbstractUnitTestCase
         );
 
         $actual = $debug->renderHtml($exception);
-        $_SERVER = $server;
 
         $this->assertStringContainsString(self::ERROR_DIV, $actual);
         $this->assertStringContainsString(

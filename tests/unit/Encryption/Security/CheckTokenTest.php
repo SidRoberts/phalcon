@@ -17,6 +17,7 @@ use Phalcon\Encryption\Security;
 use Phalcon\Session\Manager;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 
 final class CheckTokenTest extends AbstractUnitTestCase
 {
@@ -88,9 +89,9 @@ final class CheckTokenTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
+    #[BackupGlobals(true)]
     public function testEncryptionSecurityCheckTokenWithRequest(): void
     {
-        $store = $_POST ?? [];
         $_POST = [];
 
         /** @var Manager $session */
@@ -164,7 +165,5 @@ final class CheckTokenTest extends AbstractUnitTestCase
         $this->assertTrue($actual);
 
         $session->destroy();
-
-        $_POST = $store;
     }
 }

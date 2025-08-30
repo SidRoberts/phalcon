@@ -17,15 +17,11 @@ use Phalcon\Encryption\Security;
 use Phalcon\Session\Manager;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 
 final class GetRequestTokenTest extends AbstractUnitTestCase
 {
     use DiTrait;
-
-    /**
-     * @var array
-     */
-    protected array $store = [];
 
     /**
      * executed before each test
@@ -33,8 +29,6 @@ final class GetRequestTokenTest extends AbstractUnitTestCase
     public function setUp(): void
     {
         $this->checkExtensionIsLoaded('openssl');
-
-        $this->store = $_SESSION ?? [];
 
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
@@ -44,10 +38,9 @@ final class GetRequestTokenTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
+    #[BackupGlobals(true)]
     public function testEncryptionSecurityGetRequestTokenAndGetSessionToken(): void
     {
-        $store = $_POST ?? [];
-
         /** @var Manager $session */
         $session = $this->container->getShared('session');
 
@@ -97,8 +90,6 @@ final class GetRequestTokenTest extends AbstractUnitTestCase
         $this->assertNotEquals($requestToken, $security->getRequestToken());
 
         $session->destroy();
-
-        $_POST = $store;
     }
 
     /**

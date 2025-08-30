@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Http\Request;
 
 use Phalcon\Tests\Unit\Http\Helper\AbstractHttpBase;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 
 use function uniqid;
 
@@ -24,6 +25,7 @@ final class GetTest extends AbstractHttpBase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2014-10-04
      */
+    #[BackupGlobals(true)]
     public function testHttpRequestGet(): void
     {
         $key   = uniqid('key-');

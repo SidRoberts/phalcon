@@ -40,6 +40,7 @@ final class MimeTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
+    #[BackupGlobals(true)]
     public function testFilterValidationValidatorFileMimeTypeNotUploaded(): void
     {
         $_SERVER = [
@@ -73,6 +74,7 @@ final class MimeTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
+    #[BackupGlobals(true)]
     public function testFilterValidationValidatorFileMimeTypeWrongTypes(): void
     {
         $_SERVER = [
@@ -110,6 +112,7 @@ final class MimeTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
+    #[BackupGlobals(true)]
     public function testFilterValidationValidatorFileMimeType(): void
     {
         $_SERVER = [
@@ -143,6 +146,7 @@ final class MimeTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
+    #[BackupGlobals(true)]
     public function testFilterValidationValidatorFileMimeTypeException(): void
     {
         $_SERVER = [

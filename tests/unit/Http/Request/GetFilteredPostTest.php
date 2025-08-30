@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Unit\Http\Request;
 
 use Phalcon\Tests\Unit\Http\Helper\AbstractHttpBase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 
 use function ucfirst;
 
@@ -65,6 +66,7 @@ final class GetFilteredPostTest extends AbstractHttpBase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2019-02-01
      */
+    #[BackupGlobals(true)]
     public function testHttpRequestGetFilteredDefault(): void
     {
         $request = $this->getRequestObject();
@@ -88,6 +90,7 @@ final class GetFilteredPostTest extends AbstractHttpBase
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2019-02-01
      */
+    #[BackupGlobals(true)]
     #[DataProvider('getExamples')]
     public function testHttpRequestGetFilteredPost(
         string $method,

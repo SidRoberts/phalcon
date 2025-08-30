@@ -28,6 +28,7 @@ final class ValidateTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
+    #[BackupGlobals(true)]
     public function testFilterValidationValidatorFileValidate(): void
     {
         $_SERVER = ['REQUEST_METHOD' => 'POST'];

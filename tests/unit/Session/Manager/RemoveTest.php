@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Unit\Session\Manager;
 use Phalcon\Session\Manager;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\BackupGlobals;
 
 final class RemoveTest extends AbstractUnitTestCase
 {
@@ -25,9 +26,9 @@ final class RemoveTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
+    #[BackupGlobals(true)]
     public function testSessionManagerRemove(): void
     {
-        $store    = $_SESSION ?? [];
         $_SESSION = [];
 
         $manager = new Manager();
@@ -52,7 +53,5 @@ final class RemoveTest extends AbstractUnitTestCase
 
         $actual = $manager->exists();
         $this->assertFalse($actual);
-
-        $_SESSION = $store;
     }
 }
