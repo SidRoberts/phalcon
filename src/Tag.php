@@ -88,9 +88,9 @@ class Tag
     /**
      * HTML document title
      *
-     * @var string|null
+     * @var string
      */
-    protected static string | null $documentTitle = "";
+    protected static string $documentTitle = "";
 
     /**
      * @var string|null
@@ -1039,7 +1039,7 @@ class Tag
     public static function resetInput(): void
     {
         self::$displayValues          = [];
-        self::$documentTitle          = null;
+        self::$documentTitle          = '';
         self::$documentAppendTitle    = [];
         self::$documentPrependTitle   = [];
         self::$documentTitleSeparator = null;
