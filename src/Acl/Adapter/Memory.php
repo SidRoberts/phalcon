@@ -916,6 +916,7 @@ class Memory extends AbstractAdapter
 
             $accessKey                = $roleName . '!' . $componentName . '!' . $access;
             $this->access[$accessKey] = $action;
+
             if (null !== $function) {
                 $this->functions[$accessKey] = $function;
             }
