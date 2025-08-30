@@ -21,11 +21,11 @@ use function array_chunk;
 class Chunk
 {
     /**
-     * @param array<array-key, mixed> $collection
-     * @param int                     $size
-     * @param bool                    $preserveKeys
+     * @param array<mixed> $collection
+     * @param positive-int $size
+     * @param bool         $preserveKeys
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     public function __invoke(
         array $collection,

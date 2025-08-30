@@ -22,8 +22,8 @@ use function explode;
 class Decrement
 {
     /**
-     * @param string $text
-     * @param string $separator
+     * @param string           $text
+     * @param non-empty-string $separator
      *
      * @return string
      */

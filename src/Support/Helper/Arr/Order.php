@@ -29,12 +29,12 @@ class Order
     public const ORDER_DESC = 2;
 
     /**
-     * @param array<array-key, mixed> $collection
-     * @param string                  $attribute
-     * @param int                     $order
-     * @param int                     $flags
+     * @param array<mixed> $collection
+     * @param string       $attribute
+     * @param int          $order
+     * @param int          $flags
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     public function __invoke(
         array $collection,
@@ -55,11 +55,11 @@ class Order
     }
 
     /**
-     * @param array<array-key, mixed> $sorted
-     * @param string                  $attribute
-     * @param mixed                   $item
+     * @param array<mixed> $sorted
+     * @param string       $attribute
+     * @param mixed        $item
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     private function checkNonObject(
         array $sorted,
@@ -74,11 +74,11 @@ class Order
     }
 
     /**
-     * @param array<array-key, mixed> $sorted
-     * @param string                  $attribute
-     * @param mixed                   $item
+     * @param array<mixed> $sorted
+     * @param string       $attribute
+     * @param mixed        $item
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     private function checkObject(
         array $sorted,

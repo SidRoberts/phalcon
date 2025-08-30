@@ -37,6 +37,8 @@ interface SerializerInterface //extends Serializable
 
     /**
      * @param mixed $data
+     *
+     * @return void
      */
     public function setData(mixed $data): void;
 
@@ -44,6 +46,8 @@ interface SerializerInterface //extends Serializable
      * Unserializes data
      *
      * @param mixed $data
+     *
+     * @return void
      */
     public function unserialize(mixed $data): void;
 }

@@ -19,7 +19,7 @@ namespace Phalcon\Support\Helper\Arr;
 class ToObject
 {
     /**
-     * @param array<array-key, mixed> $collection
+     * @param array<mixed> $collection
      *
      * @return object
      */

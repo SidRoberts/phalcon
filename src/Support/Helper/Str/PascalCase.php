@@ -54,7 +54,7 @@ class PascalCase
      * @param string      $text
      * @param string|null $delimiters
      *
-     * @return string[]
+     * @return list<string>
      */
     protected function processArray(
         string $text,
@@ -69,7 +69,6 @@ class PascalCase
          */
         $delimiters = str_replace(['\-', '-'], ['-', '\-'], $delimiters);
 
-        /** @var list<string>|false $result */
         $result = preg_split(
             '/[' . $delimiters . ']+/',
             $text,

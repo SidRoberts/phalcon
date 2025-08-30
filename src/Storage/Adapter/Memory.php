@@ -59,6 +59,8 @@ class Memory extends AbstractAdapter
 
     /**
      * Flushes/clears the cache
+     *
+     * @return bool
      */
     public function clear(): bool
     {

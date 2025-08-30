@@ -21,10 +21,10 @@ use function array_slice;
 class SliceRight
 {
     /**
-     * @param array<array-key, mixed> $collection
-     * @param int                     $elements
+     * @param array<mixed> $collection
+     * @param int          $elements
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     public function __invoke(array $collection, int $elements = 1): array
     {

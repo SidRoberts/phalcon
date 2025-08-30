@@ -32,10 +32,10 @@ class Friendly
     use LowerTrait;
 
     /**
-     * @param string       $text
-     * @param string       $separator
-     * @param bool         $lowercase
-     * @param array|string $replace
+     * @param string               $text
+     * @param string               $separator
+     * @param bool                 $lowercase
+     * @param array<string>|string $replace
      *
      * @return string
      */
@@ -68,9 +68,9 @@ class Friendly
     }
 
     /**
-     * @param array<string, string> $replace
+     * @param array<string> $replace
      *
-     * @return array
+     * @return array<string, string>
      */
     private function getMatrix(array $replace): array
     {

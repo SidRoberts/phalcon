@@ -26,8 +26,8 @@ class LastKey
     use FilterTrait;
 
     /**
-     * @param array<array-key, mixed> $collection
-     * @param callable|null           $method
+     * @param array<mixed>  $collection
+     * @param callable|null $method
      *
      * @return int|string|null
      */

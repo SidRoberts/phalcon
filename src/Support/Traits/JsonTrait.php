@@ -20,6 +20,8 @@ trait JsonTrait
 {
     /**
      * @param mixed $value
+     *
+     * @return mixed
      */
     private function checkSerializable(mixed $value): mixed
     {

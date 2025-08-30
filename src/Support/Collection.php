@@ -47,6 +47,9 @@ use function unserialize;
 use const SORT_ASC;
 use const SORT_DESC;
 
+use const JSON_HEX_QUOT;
+use const JSON_UNESCAPED_SLASHES;
+
 /**
  * `Phalcon\Support\Collection` is a supercharged object-oriented array. It implements:
  * - [ArrayAccess](https://www.php.net/manual/en/class.arrayaccess.php)
@@ -71,22 +74,22 @@ class Collection implements
     use JsonTrait;
 
     /**
-     * @var array<int|string, mixed>
+     * @var array<mixed>
      */
     protected array $data = [];
 
     /**
-     * @var array<int|string, mixed>
+     * @var array<mixed>
      */
     protected array $lowerKeys = [];
 
     /**
      * Collection constructor.
      *
-     * @param array<int|string, mixed> $data
-     * @param bool                     $insensitive
-     * @param bool                     $strictNull
-     * @param string|null              $type
+     * @param array<mixed> $data
+     * @param bool         $insensitive
+     * @param bool         $strictNull
+     * @param string|null  $type
      */
     public function __construct(
         array $data = [],
@@ -101,7 +104,7 @@ class Collection implements
      * Returns the state of the collection for serialization, including
      * configuration flags so the round-trip restores full state.
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function __serialize(): array
     {
@@ -118,7 +121,7 @@ class Collection implements
      * emitted by __serialize() and the legacy flat-array format for BC
      * with previously serialized data.
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      *
      * @return void
      */
@@ -138,6 +141,8 @@ class Collection implements
 
     /**
      * Clears the internal collection
+     *
+     * @return void
      */
     public function clear(): void
     {
@@ -167,7 +172,7 @@ class Collection implements
     /**
      * Count elements of an object
      *
-     * @return int
+     * @return non-negative-int
      */
     public function count(): int
     {
@@ -287,7 +292,7 @@ class Collection implements
     /**
      * Returns the generator of the class
      *
-     * @return Generator<int|string, mixed>
+     * @return Generator<mixed>
      */
     public function getIterator(): Generator
     {
@@ -303,7 +308,7 @@ class Collection implements
      *
      * @param bool $insensitive Case-insensitive keys (default: true)
      *
-     * @return array<int|string, mixed>
+     * @return array<mixed>
      */
     public function getKeys(bool $insensitive = true): array
     {
@@ -325,7 +330,7 @@ class Collection implements
      *
      * @deprecated Use {@see self::values()} instead. Will be removed in a future major release.
      *
-     * @return array<int|string, mixed>
+     * @return array<mixed>
      */
     public function getValues(): array
     {
@@ -349,7 +354,9 @@ class Collection implements
     /**
      * Initialize internal array
      *
-     * @param array<int|string, mixed> $data Array to initialize the collection with
+     * @param array<string, mixed> $data Array to initialize the collection with
+     *
+     * @return void
      */
     public function init(array $data = []): void
     {
@@ -373,12 +380,12 @@ class Collection implements
      *
      * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return array<int|string, mixed>
+     * @return array<mixed>
      */
     public function jsonSerialize(): array
     {
         return array_map(
-            function ($value) {
+            function (mixed $value): mixed {
                 return $this->checkSerializable($value);
             },
             $this->data
@@ -465,6 +472,8 @@ class Collection implements
      * Delete the element from the collection
      *
      * @param string $element Name of the element
+     *
+     * @return void
      */
     public function remove(string $element): void
     {
@@ -504,8 +513,10 @@ class Collection implements
      *
      * @param string $element Name of the element
      * @param mixed  $value   Value to store for the element
+     *
+     * @return void
      */
-    public function set(string $element, $value): void
+    public function set(string $element, mixed $value): void
     {
         $this->setData($element, $value);
     }
@@ -541,9 +552,9 @@ class Collection implements
     /**
      * Returns the object in an array format
      *
-     * @phpstan-return array<array-key, T>
+     * @phpstan-return array<T>
      *
-     * @return array<int|string, mixed>
+     * @return array<mixed>
      */
     public function toArray(): array
     {
@@ -560,7 +571,7 @@ class Collection implements
      *
      * @see https://www.ietf.org/rfc/rfc4627.txt
      *
-     * @param int $options `
+     * @param int $options
      *
      * @return string
      */
@@ -668,6 +679,10 @@ class Collection implements
     /**
      * Checks if we need insensitive keys and if so, converts the element to
      * lowercase
+     *
+     * @param string $element
+     *
+     * @return string
      */
     protected function processKey(string $element): string
     {
@@ -685,6 +700,8 @@ class Collection implements
      *
      * @param string $element Name of the element
      * @param mixed  $value   Value to store for the element
+     *
+     * @return void
      */
     protected function setData(string $element, mixed $value): void
     {

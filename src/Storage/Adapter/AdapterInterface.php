@@ -22,6 +22,8 @@ interface AdapterInterface
 {
     /**
      * Flushes/clears the cache
+     *
+     * @return bool
      */
     public function clear(): bool;
 
@@ -129,6 +131,8 @@ interface AdapterInterface
 
     /**
      * @param string $serializer
+     *
+     * @return void
      */
     public function setDefaultSerializer(string $serializer): void;
 

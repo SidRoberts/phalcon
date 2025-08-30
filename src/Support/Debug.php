@@ -29,10 +29,20 @@ use function mb_strtolower;
 use function memory_get_usage;
 use function sprintf;
 
+/**
+ * @phpstan-type TTrace = array{
+ *     class?: class-string,
+ *     type?: string,
+ *     function: string,
+ *     args?: array,
+ *     file?: string,
+ *     line?: int
+ * }
+ */
 class Debug
 {
     /**
-     * @var array
+     * @var array{request?: array<string, mixed>, server?: array<string, mixed>}
      */
     protected array $blacklist = ["request" => [], "server" => []];
 
@@ -138,6 +148,8 @@ class Debug
 
     /**
      * Generates a link to the current version documentation
+     *
+     * @return string
      */
     public function getVersion(): string
     {
@@ -217,6 +229,7 @@ class Debug
      * @param Throwable $exception
      *
      * @return bool
+     *
      * @throws ReflectionException
      */
     public function onUncaughtException(Throwable $exception): bool
@@ -284,6 +297,7 @@ class Debug
      * @param Throwable $exception
      *
      * @return string
+     *
      * @throws ReflectionException
      */
     public function renderHtml(Throwable $exception): string
@@ -394,7 +408,7 @@ class Debug
     /**
      * Sets if files the exception's backtrace must be showed
      *
-     * @param array $blacklist
+     * @param array{request?: list<string>, server?: list<string>} $blacklist
      *
      * @return $this
      */
@@ -498,8 +512,8 @@ class Debug
     /**
      * Produces a recursive representation of an array
      *
-     * @param array $arguments
-     * @param int   $number
+     * @param array<mixed> $arguments
+     * @param int          $number
      *
      * @return string|null
      */
@@ -606,10 +620,11 @@ class Debug
     /**
      * Shows a backtrace item
      *
-     * @param int   $number
-     * @param array $trace
+     * @param int    $number
+     * @param TTrace $trace
      *
      * @return string
+     *
      * @throws ReflectionException
      */
     final protected function showTraceItem(int $number, array $trace): string
@@ -682,7 +697,6 @@ class Debug
         /**
          * Normally the backtrace contains only classes
          */
-        /** @var string $functionName */
         $functionName = $trace['function'];
 
         if (isset($trace['class'])) {
@@ -700,7 +714,6 @@ class Debug
                     /**
                      * Prepare function's name according to the conventions in the docs
                      */
-                    /** @var string $preparedFunctionName */
                     $preparedFunctionName = str_replace(
                         '_',
                         '-',
@@ -965,7 +978,8 @@ class Debug
     }
 
     /**
-     * @param array $source
+     * @param array<string, mixed> $source
+     * @param string               $div
      *
      * @return string
      */

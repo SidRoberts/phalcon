@@ -40,9 +40,9 @@ use const JSON_ERROR_NONE;
 class Encode
 {
     /**
-     * @param mixed $data    JSON data to parse
-     * @param int   $options Bitmask of JSON encode options.
-     * @param int   $depth   Recursion depth.
+     * @param mixed        $data    JSON data to parse
+     * @param int          $options Bitmask of JSON encode options.
+     * @param positive-int $depth   Recursion depth.
      *
      * @return string
      *

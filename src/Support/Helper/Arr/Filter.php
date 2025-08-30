@@ -24,10 +24,10 @@ class Filter
     use FilterTrait;
 
     /**
-     * @param array<array-key, mixed> $collection
-     * @param callable|null           $method
+     * @param array<mixed>  $collection
+     * @param callable|null $method
      *
-     * @return array
+     * @return array<mixed>
      */
     public function __invoke(array $collection, callable | null $method = null)
     {

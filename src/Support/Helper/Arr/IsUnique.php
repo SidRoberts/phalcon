@@ -23,7 +23,7 @@ use function count;
 class IsUnique
 {
     /**
-     * @param array<array-key, mixed> $collection
+     * @param array<mixed> $collection
      *
      * @return bool
      */

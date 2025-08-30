@@ -44,6 +44,8 @@ trait GetSetHasTrait
      *
      * @param string $element
      * @param mixed  $value
+     *
+     * @return void
      */
     public function __set(string $element, mixed $value): void
     {
@@ -54,6 +56,8 @@ trait GetSetHasTrait
      * Magic unset to remove an element from the collection
      *
      * @param string $element
+     *
+     * @return void
      */
     public function __unset(string $element): void
     {
@@ -88,6 +92,8 @@ trait GetSetHasTrait
      * Delete the element from the collection
      *
      * @param string $element
+     *
+     * @return void
      */
     abstract public function remove(string $element): void;
 
@@ -96,6 +102,8 @@ trait GetSetHasTrait
      *
      * @param string $element
      * @param mixed  $value
+     *
+     * @return void
      */
-    abstract public function set(string $element, $value): void;
+    abstract public function set(string $element, mixed $value): void;
 }

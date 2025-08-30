@@ -78,12 +78,12 @@ class Dump
     protected bool $detailed = false;
 
     /**
-     * @var array
+     * @var list<class-string>
      */
     protected array $methods = [];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected array $styles = [];
 
@@ -95,8 +95,8 @@ class Dump
     /**
      * Dump constructor.
      *
-     * @param array $styles
-     * @param bool  $detailed
+     * @param array<string, string> $styles
+     * @param bool                  $detailed
      */
     public function __construct(array $styles = [], bool $detailed = false)
     {
@@ -134,6 +134,7 @@ class Dump
      * @param string|null $name
      *
      * @return string
+     *
      * @throws ReflectionException
      */
     public function one(mixed $variable, string | null $name = null): string
@@ -143,6 +144,8 @@ class Dump
 
     /**
      * @param bool $flag
+     *
+     * @return void
      */
     public function setDetailed(bool $flag): void
     {
@@ -152,9 +155,9 @@ class Dump
     /**
      * Set styles for vars type
      *
-     * @param array $styles
+     * @param array<string, string> $styles
      *
-     * @return array
+     * @return array<string, string>
      */
     public function setStyles(array $styles = []): array
     {
@@ -198,8 +201,8 @@ class Dump
      * @param mixed $variable
      *
      * @return string
+     *
      * @throws InvalidArgumentException if the JSON cannot be encoded.
-     * @throws JsonException
      */
     public function toJson(mixed $variable): string
     {
@@ -220,6 +223,7 @@ class Dump
      * @param string|null $name
      *
      * @return string
+     *
      * @throws ReflectionException
      */
     public function variable(mixed $variable, string | null $name = null): string
@@ -282,6 +286,7 @@ class Dump
      * @param int         $tab
      *
      * @return string
+     *
      * @throws ReflectionException
      */
     protected function output(

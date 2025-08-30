@@ -17,6 +17,12 @@ use function str_replace;
 
 trait FilePathTrait
 {
+    /**
+     * @param string $key
+     * @param string $separator
+     *
+     * @return string
+     */
     public function prepareVirtualPath(string $key, string $separator = '_'): string
     {
         return str_replace(['/', '\\', ':'], $separator, $key);

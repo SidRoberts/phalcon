@@ -74,6 +74,7 @@ use Phalcon\Support\Helper\Str\Uncamelize;
 use Phalcon\Support\Helper\Str\Underscore;
 use Phalcon\Support\Helper\Str\Upper;
 use Phalcon\Traits\Factory\FactoryTrait;
+use Throwable;
 
 use function call_user_func_array;
 
@@ -147,7 +148,7 @@ class HelperFactory
     /**
      * Constructor.
      *
-     * @param array $services
+     * @param array<string, class-string> $services
      */
     public function __construct(array $services = [])
     {
@@ -155,10 +156,11 @@ class HelperFactory
     }
 
     /**
-     * @param string $name
-     * @param array  $arguments
+     * @param string       $name
+     * @param array<mixed> $arguments
      *
      * @return mixed
+     *
      * @throws BaseException
      */
     public function __call(string $name, array $arguments)
@@ -180,7 +182,7 @@ class HelperFactory
     }
 
     /**
-     * @return string
+     * @return class-string<Throwable>
      */
     protected function getExceptionClass(): string
     {
@@ -190,7 +192,7 @@ class HelperFactory
     /**
      * Returns the available adapters
      *
-     * @return string[]
+     * @return array<string, class-string>
      */
     protected function getServices(): array
     {

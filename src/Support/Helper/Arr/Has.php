@@ -22,8 +22,8 @@ use function array_key_exists;
 class Has
 {
     /**
-     * @param array<array-key, mixed> $collection
-     * @param string|int              $index
+     * @param array<mixed> $collection
+     * @param string|int   $index
      *
      * @return bool
      */

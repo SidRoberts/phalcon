@@ -25,10 +25,10 @@ use function is_string;
 class Group
 {
     /**
-     * @param array<array-key, mixed> $collection
-     * @param callable|string         $method
+     * @param array<mixed>    $collection
+     * @param callable|string $method
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     public function __invoke(array $collection, $method): array
     {
@@ -75,16 +75,16 @@ class Group
     }
 
     /**
-     * @param array<array-key, mixed> $filtered
-     * @param callable|string         $method
-     * @param mixed                   $element
+     * @param array<mixed>    $filtered
+     * @param callable|string $method
+     * @param mixed           $element
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     private function processCallable(array $filtered, $method, $element): array
     {
         if (true === $this->isCallable($method)) {
-            /** @var string $key */
+            /** @var string */
             $key              = call_user_func($method, $element);
             $filtered[$key][] = $element;
         }
@@ -93,11 +93,11 @@ class Group
     }
 
     /**
-     * @param array<array-key, mixed> $filtered
-     * @param callable|string         $method
-     * @param mixed                   $element
+     * @param array<mixed>    $filtered
+     * @param callable|string $method
+     * @param mixed           $element
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     private function processObject(array $filtered, $method, $element): array
     {
@@ -112,11 +112,11 @@ class Group
     }
 
     /**
-     * @param array<array-key, mixed> $filtered
-     * @param callable|string         $method
-     * @param mixed                   $element
+     * @param array<mixed>    $filtered
+     * @param callable|string $method
+     * @param mixed           $element
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     private function processOther(array $filtered, $method, $element): array
     {

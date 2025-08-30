@@ -29,10 +29,10 @@ class Whitelist
     use FilterTrait;
 
     /**
-     * @param array<array-key, mixed> $collection
-     * @param array<array-key, mixed> $whiteList
+     * @param array<mixed> $collection
+     * @param array<mixed> $whiteList
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     public function __invoke(array $collection, array $whiteList): array
     {
@@ -41,7 +41,7 @@ class Whitelist
          */
         $whiteList = $this->toFilter(
             $whiteList,
-            function ($element) {
+            function ($element): bool {
                 return is_int($element) || is_string($element);
             }
         );

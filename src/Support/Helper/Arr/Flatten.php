@@ -24,10 +24,10 @@ use function is_array;
 class Flatten
 {
     /**
-     * @param array<array-key, mixed> $collection
-     * @param bool                    $deep
+     * @param array<mixed> $collection
+     * @param bool         $deep
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     public function __invoke(array $collection, bool $deep = false): array
     {
@@ -43,11 +43,11 @@ class Flatten
     }
 
     /**
-     * @param array<array-key, mixed> $data
-     * @param mixed                   $item
-     * @param bool                    $deep
+     * @param array<mixed> $data
+     * @param mixed        $item
+     * @param bool         $deep
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     private function processArray(array $data, $item, bool $deep): array
     {
@@ -59,11 +59,11 @@ class Flatten
     }
 
     /**
-     * @param array<array-key, mixed> $data
-     * @param mixed                   $item
-     * @param bool                    $deep
+     * @param array<mixed> $data
+     * @param mixed        $item
+     * @param bool         $deep
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     private function processArrayDeep(array $data, $item, bool $deep): array
     {
@@ -75,10 +75,10 @@ class Flatten
     }
 
     /**
-     * @param array<array-key, mixed> $data
-     * @param mixed                   $item
+     * @param array<mixed> $data
+     * @param mixed        $item
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     private function processNotArray(array $data, $item): array
     {

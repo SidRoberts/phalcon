@@ -78,6 +78,8 @@ trait ArrayAccessTrait
      *
      * @param mixed $element
      * @param mixed $value
+     *
+     * @return void
      */
     public function offsetSet(mixed $element, mixed $value): void
     {
@@ -92,6 +94,8 @@ trait ArrayAccessTrait
      * @link https://php.net/manual/en/arrayaccess.offsetunset.php
      *
      * @param mixed $element
+     *
+     * @return void
      */
     public function offsetUnset(mixed $element): void
     {
@@ -104,6 +108,8 @@ trait ArrayAccessTrait
      * Delete the element from the collection
      *
      * @param string $element
+     *
+     * @return void
      */
     abstract public function remove(string $element): void;
 
@@ -112,6 +118,8 @@ trait ArrayAccessTrait
      *
      * @param string $element
      * @param mixed  $value
+     *
+     * @return void
      */
     abstract public function set(string $element, mixed $value): void;
 }

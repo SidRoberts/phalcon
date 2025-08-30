@@ -27,10 +27,10 @@ use function mb_substr_count;
 class Dynamic
 {
     /**
-     * @param string $text
-     * @param string $leftDelimiter
-     * @param string $rightDelimiter
-     * @param string $separator
+     * @param string           $text
+     * @param string           $leftDelimiter
+     * @param string           $rightDelimiter
+     * @param non-empty-string $separator
      *
      * @return string
      */

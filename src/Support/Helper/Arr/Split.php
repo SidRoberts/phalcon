@@ -23,9 +23,9 @@ use function array_values;
 class Split
 {
     /**
-     * @param array<array-key, mixed> $collection
+     * @param array<mixed> $collection
      *
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     public function __invoke(array $collection): array
     {

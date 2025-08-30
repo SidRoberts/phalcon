@@ -74,7 +74,7 @@ final class Registry extends Collection
     /**
      * Constructor
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      */
     final public function __construct(array $data = [])
     {
@@ -145,7 +145,7 @@ final class Registry extends Collection
      *
      * @link https://php.net/manual/en/countable.count.php
      *
-     * @return int
+     * @return non-negative-int
      */
     final public function count(): int
     {
@@ -194,7 +194,7 @@ final class Registry extends Collection
     /**
      * Initialize internal array
      *
-     * @param array $data
+     * @param array<string, mixed> $data
      *
      * @return void
      */
@@ -208,7 +208,7 @@ final class Registry extends Collection
      *
      * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
      *
-     * @return array|mixed[]
+     * @return array<mixed>
      */
     final public function jsonSerialize(): array
     {
@@ -312,7 +312,7 @@ final class Registry extends Collection
     /**
      * Returns the object in an array format
      *
-     * @return array|mixed[]
+     * @return array<string, mixed>
      */
     final public function toArray(): array
     {
@@ -343,11 +343,11 @@ final class Registry extends Collection
      *
      * @link https://php.net/manual/en/serializable.unserialize.php
      *
-     * @param $serialized
+     * @param string $serialized
      *
      * @return void
      */
-    final public function unserialize($serialized): void
+    final public function unserialize(string $serialized): void
     {
         parent::unserialize($serialized);
     }

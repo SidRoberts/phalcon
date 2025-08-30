@@ -38,10 +38,10 @@ use const JSON_ERROR_NONE;
 class Decode
 {
     /**
-     * @param string $data        JSON data to parse
-     * @param bool   $associative When `true`, objects are converted to arrays
-     * @param int    $depth       Recursion depth.
-     * @param int    $options     Bitmask of JSON decode options.
+     * @param string       $data        JSON data to parse
+     * @param bool         $associative When `true`, objects are converted to arrays
+     * @param positive-int $depth       Recursion depth.
+     * @param int          $options     Bitmask of JSON decode options.
      *
      * @return mixed
      *

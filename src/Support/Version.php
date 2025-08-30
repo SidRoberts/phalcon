@@ -185,7 +185,7 @@ class Version
      * D - Special release: 1 = alpha, 2 = beta, 3 = RC, 4 = stable
      * E - Special release version i.e. RC1, Beta2 etc.
      *
-     * @return int[]
+     * @return array{0: int, 1: int, 2: int, 3: int, 4: int}
      */
     protected function getVersion(): array
     {

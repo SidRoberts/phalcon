@@ -26,8 +26,8 @@ class ValidateAll
     use FilterTrait;
 
     /**
-     * @param array<array-key, mixed> $collection
-     * @param callable                $method
+     * @param array<mixed> $collection
+     * @param callable     $method
      *
      * @return bool
      */
