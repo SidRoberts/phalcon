@@ -142,10 +142,8 @@ class Reflection
     private function traverseCollection(string $element, string $collection): array
     {
         $reflectionArray = $this->reflectionData[$element] ?? null;
-        if (
-            is_array($reflectionArray) &&
-            count($reflectionArray) !== 0
-        ) {
+
+        if (is_array($reflectionArray)) {
             foreach ($reflectionArray as $key => $data) {
                 $this->{$collection}[$key] = $data;
             }
