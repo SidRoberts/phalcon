@@ -32,9 +32,9 @@ class Style extends AbstractSeries
     /**
      * Add an element to the list
      *
-     * @param string $url
-     * @param array  $attributes
-     * @param int    $position
+     * @param string               $url
+     * @param array<string, mixed> $attributes
+     * @param int                  $position
      *
      * @return static
      */
@@ -73,10 +73,10 @@ class Style extends AbstractSeries
     /**
      * Returns the necessary attributes
      *
-     * @param string $url
-     * @param array  $attributes
+     * @param string               $url
+     * @param array<string, mixed> $attributes
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getAttributes(string $url, array $attributes): array
     {

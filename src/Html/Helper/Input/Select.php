@@ -51,10 +51,10 @@ class Select extends AbstractList
     /**
      * Add an element to the list
      *
-     * @param string      $text
-     * @param string|null $value
-     * @param array       $attributes
-     * @param bool        $raw
+     * @param string               $text
+     * @param string|null          $value
+     * @param array<string, mixed> $attributes
+     * @param bool                 $raw
      *
      * @return Select
      */
@@ -83,10 +83,10 @@ class Select extends AbstractList
     /**
      * Add a placeholder to the element
      *
-     * @param string      $text
-     * @param string|null $value
-     * @param array       $attributes
-     * @param bool        $raw
+     * @param string               $text
+     * @param string|null          $value
+     * @param array<string, mixed> $attributes
+     * @param bool                 $raw
      *
      * @return static
      */
@@ -150,8 +150,8 @@ class Select extends AbstractList
     /**
      * Creates an option group
      *
-     * @param string|null $label
-     * @param array       $attributes
+     * @param string|null          $label
+     * @param array<string, mixed> $attributes
      *
      * @return Select
      */
@@ -258,8 +258,8 @@ class Select extends AbstractList
     }
 
     /**
-     * @param string $label
-     * @param array  $attributes
+     * @param string               $label
+     * @param array<string, mixed> $attributes
      *
      * @return string
      */
@@ -274,10 +274,10 @@ class Select extends AbstractList
      * Checks if the value has been passed and if it is the same as the
      * value stored in the object
      *
-     * @param array       $attributes
-     * @param string|null $value
+     * @param array<string, mixed> $attributes
+     * @param string|null          $value
      *
-     * @return array
+     * @return array<string, mixed>
      */
     private function processValue(
         array $attributes,

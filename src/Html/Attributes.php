@@ -32,6 +32,8 @@ class Attributes extends Collection implements RenderInterface
 {
     /**
      * Alias of the render method
+     *
+     * @return string
      */
     public function __toString(): string
     {
@@ -40,6 +42,8 @@ class Attributes extends Collection implements RenderInterface
 
     /**
      * Render attributes as HTML attributes
+     *
+     * @return string
      */
     public function render(): string
     {
@@ -47,6 +51,12 @@ class Attributes extends Collection implements RenderInterface
     }
 
     /**
+     * @param array<string, mixed> $attributes
+     *
+     * @return string
+     *
+     * @throws Exception
+     *
      * @todo remove this when we refactor forms. Maybe remove this class? Put it into traits
      */
     protected function renderAttributes(array $attributes): string

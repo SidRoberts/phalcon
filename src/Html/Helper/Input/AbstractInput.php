@@ -42,9 +42,9 @@ abstract class AbstractInput extends AbstractHelper
     protected array $attributes = [];
 
     /**
-     * @param string      $name
-     * @param string|null $value
-     * @param array       $attributes
+     * @param string               $name
+     * @param string|null          $value
+     * @param array<string, mixed> $attributes
      *
      * @return static
      */

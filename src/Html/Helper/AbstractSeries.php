@@ -24,7 +24,7 @@ namespace Phalcon\Html\Helper;
 abstract class AbstractSeries extends AbstractHelper
 {
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $attributes = [];
 

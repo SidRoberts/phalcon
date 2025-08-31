@@ -25,8 +25,8 @@ class Img extends AbstractHelper
     /**
      * Produce a `<img>` tag.
      *
-     * @param string $src
-     * @param array  $attributes
+     * @param string               $src
+     * @param array<string, mixed> $attributes
      *
      * @return string
      */

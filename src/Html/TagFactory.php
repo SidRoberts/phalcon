@@ -51,6 +51,8 @@ use Phalcon\Html\Helper\Ul;
 use Phalcon\Html\Helper\VoidTag;
 use Phalcon\Http\ResponseInterface;
 use Phalcon\Mvc\Url\UrlInterface;
+use Phalcon\Traits\Factory\FactoryTrait;
+use Throwable;
 
 use function call_user_func_array;
 
@@ -169,6 +171,7 @@ class TagFactory
      * @param array  $arguments
      *
      * @return mixed
+     *
      * @throws \Phalcon\Html\Exception
      */
     public function __call(string $name, array $arguments): mixed
@@ -194,7 +197,8 @@ class TagFactory
      * @param string $name
      *
      * @return object
-     * @throws \Phalcon\Html\Exception
+     *
+     * @throws Exception
      */
     public function newInstance(string $name): object
     {

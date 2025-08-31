@@ -58,7 +58,7 @@ class Breadcrumbs extends AbstractHelper
      */
     protected string $indent = '    ';
     /**
-     * @var array<string, string>
+     * @var array<string, mixed>
      */
     private array $attributes = [];
     /**
@@ -139,10 +139,10 @@ class Breadcrumbs extends AbstractHelper
      * $breadcrumbs->add("Users");
      * ```
      *
-     * @param string                $text
-     * @param string                $link
-     * @param string                $icon
-     * @param array<string, string> $attributes
+     * @param string               $text
+     * @param string               $link
+     * @param string               $icon
+     * @param array<string, mixed> $attributes
      *
      * @return static
      */
@@ -170,6 +170,8 @@ class Breadcrumbs extends AbstractHelper
      * ```php
      * $breadcrumbs->clear()
      * ```
+     *
+     * @return void
      */
     public function clear(): void
     {
@@ -191,7 +193,7 @@ class Breadcrumbs extends AbstractHelper
     /**
      * Get the attributes of the parent element
      *
-     * @return array<string, string>
+     * @return array<string, mixed>
      */
     public function getAttributes(): array
     {
@@ -296,7 +298,7 @@ class Breadcrumbs extends AbstractHelper
     /**
      * Set the attributes for the parent element
      *
-     * @param array<string, string> $attributes
+     * @param array<string, mixed> $attributes
      *
      * @return $this
      */
@@ -402,7 +404,7 @@ class Breadcrumbs extends AbstractHelper
     }
 
     /**
-     * @param array<string, string> $attributes
+     * @param array<string, mixed> $attributes
      *
      * @return string
      */

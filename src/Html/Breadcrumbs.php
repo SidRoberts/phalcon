@@ -37,7 +37,7 @@ class Breadcrumbs
     /**
      * Keeps all the breadcrumbs
      *
-     * @var array
+     * @var array<string, string>
      */
     private array $elements = [];
 
@@ -46,14 +46,14 @@ class Breadcrumbs
      *
      * @var string
      */
-    private $separator = " / ";
+    private string $separator = " / ";
 
     /**
      * The HTML template to use to render the breadcrumbs.
      *
      * @var string
      */
-    private $template = '<dt><a href="%link%">%label%</a></dt>';
+    private string $template = '<dt><a href="%link%">%label%</a></dt>';
 
     /**
      * Adds a new crumb.
@@ -84,6 +84,8 @@ class Breadcrumbs
      * ```php
      * $breadcrumbs->clear()
      * ```
+     *
+     * @return void
      */
     public function clear(): void
     {
@@ -111,6 +113,8 @@ class Breadcrumbs
      * ```
      *
      * @param string $link
+     *
+     * @return void
      */
     public function remove(string $link): void
     {
@@ -192,7 +196,7 @@ class Breadcrumbs
     /**
      * Returns the internal breadcrumbs array
      *
-     * @return array
+     * @return array<string, string>
      */
     public function toArray(): array
     {

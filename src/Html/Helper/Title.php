@@ -35,12 +35,12 @@ use const PHP_EOL;
 class Title extends AbstractHelper
 {
     /**
-     * @var array
+     * @var list<string>
      */
     protected array $append = [];
 
     /**
-     * @var array
+     * @var list<string>
      */
     protected array $prepend = [];
 

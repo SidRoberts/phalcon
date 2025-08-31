@@ -23,10 +23,11 @@ class Link extends AbstractLink implements LinkInterface
     /**
      * Returns a list of attributes that describe the target URI.
      *
-     * @return array
-     *   A key-value list of attributes, where the key is a string and the value
-     *  is either a PHP primitive or an array of PHP strings. If no values are
-     *  found an empty array MUST be returned.
+     * @return array<string, mixed> A key-value list of attributes, where the
+     *                              key is a string and the value is either a
+     *                              PHP primitive or an array of PHP strings. If
+     *                              no values are found an empty array MUST be
+     *                              returned.
      */
     public function getAttributes(): array
     {
@@ -67,8 +68,7 @@ class Link extends AbstractLink implements LinkInterface
     /**
      * Returns whether this is a templated link.
      *
-     * @return bool
-     *   True if this link object is templated, False otherwise.
+     * @return bool True if this link object is templated, False otherwise.
      */
     public function isTemplated(): bool
     {

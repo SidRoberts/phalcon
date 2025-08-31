@@ -25,7 +25,7 @@ use const PHP_EOL;
 abstract class AbstractList extends AbstractHelper
 {
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $attributes = [];
 
@@ -40,9 +40,9 @@ abstract class AbstractList extends AbstractHelper
     protected array $store = [];
 
     /**
-     * @param string      $indent
-     * @param string|null $delimiter
-     * @param array       $attributes
+     * @param string               $indent
+     * @param string|null          $delimiter
+     * @param array<string, mixed> $attributes
      *
      * @return static
      */

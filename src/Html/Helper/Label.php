@@ -49,9 +49,9 @@ class Label extends AbstractHelper
     /**
      * Produce a `<label>` tag.
      *
-     * @param string $label
-     * @param array  $attributes
-     * @param bool   $raw
+     * @param string               $label
+     * @param array<string, mixed> $attributes
+     * @param bool                 $raw
      *
      * @return string
      */

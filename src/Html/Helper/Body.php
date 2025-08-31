@@ -25,7 +25,7 @@ class Body extends AbstractHelper
     /**
      * Produce a `<body>` tag.
      *
-     * @param array $attributes
+     * @param array<string, mixed> $attributes
      *
      * @return string
      */

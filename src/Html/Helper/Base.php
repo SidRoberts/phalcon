@@ -19,8 +19,8 @@ class Base extends AbstractHelper
     /**
      * Produce a `<base>` tag.
      *
-     * @param string|null $href
-     * @param array       $attributes
+     * @param string|null          $href
+     * @param array<string, mixed> $attributes
      *
      * @return string
      */

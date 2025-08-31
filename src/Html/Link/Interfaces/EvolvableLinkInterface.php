@@ -26,6 +26,8 @@ interface EvolvableLinkInterface extends LinkInterface
      *
      * @param string $attribute The attribute to include.
      * @param string $value     The value of the attribute to set.
+     *
+     * @return EvolvableLinkInterface
      */
     public function withAttribute(string $attribute, string $value): EvolvableLinkInterface;
 
@@ -41,6 +43,8 @@ interface EvolvableLinkInterface extends LinkInterface
      *       - An object implementing __toString() that produces one of the
      *       above values.
      *
+     * @return EvolvableLinkInterface
+     *
      * An implementing library SHOULD evaluate a passed object to a string
      * immediately rather than waiting for it to be returned later.
      */
@@ -53,6 +57,8 @@ interface EvolvableLinkInterface extends LinkInterface
      * normally without errors, but without adding the rel a second time.
      *
      * @param string $rel The relationship value to add.
+     *
+     * @return EvolvableLinkInterface
      */
     public function withRel(string $rel): EvolvableLinkInterface;
 
@@ -63,6 +69,8 @@ interface EvolvableLinkInterface extends LinkInterface
      * normally without errors.
      *
      * @param string $attribute The attribute to remove.
+     *
+     * @return EvolvableLinkInterface
      */
     public function withoutAttribute(string $attribute): EvolvableLinkInterface;
 
@@ -73,6 +81,8 @@ interface EvolvableLinkInterface extends LinkInterface
      * normally without errors.
      *
      * @param string $rel The relationship value to exclude.
+     *
+     * @return EvolvableLinkInterface
      */
     public function withoutRel(string $rel): EvolvableLinkInterface;
 }

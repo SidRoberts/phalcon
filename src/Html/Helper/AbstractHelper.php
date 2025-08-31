@@ -198,8 +198,8 @@ abstract class AbstractHelper
     /**
      * Renders an element
      *
-     * @param string $tag
-     * @param array  $attributes
+     * @param string               $tag
+     * @param array<string, mixed> $attributes
      *
      * @return string
      */
@@ -236,9 +236,9 @@ abstract class AbstractHelper
     /**
      * Renders a tag
      *
-     * @param string $tag
-     * @param array  $attributes
-     * @param string $close
+     * @param string               $tag
+     * @param array<string, mixed> $attributes
+     * @param string               $close
      *
      * @return string
      */
@@ -261,8 +261,8 @@ abstract class AbstractHelper
     /**
      * Produces a self close tag i.e. <img />
      *
-     * @param string $tag
-     * @param array  $attributes
+     * @param string               $tag
+     * @param array<string, mixed> $attributes
      *
      * @return string
      */

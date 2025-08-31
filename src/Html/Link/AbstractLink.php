@@ -40,9 +40,9 @@ abstract class AbstractLink
     /**
      * Link constructor.
      *
-     * @param string $rel
-     * @param string $href
-     * @param array  $attributes
+     * @param string               $rel
+     * @param string               $href
+     * @param array<string, mixed> $attributes
      */
     public function __construct(
         string $rel = "",
@@ -62,10 +62,11 @@ abstract class AbstractLink
     /**
      * Returns a list of attributes that describe the target URI.
      *
-     * @return array
-     *   A key-value list of attributes, where the key is a string and the value
-     *  is either a PHP primitive or an array of PHP strings. If no values are
-     *  found an empty array MUST be returned.
+     * @return array<string, mixed> A key-value list of attributes, where the
+     *                              key is a string and the value is either a
+     *                              PHP primitive or an array of PHP strings. If
+     *                              no values are found an empty array MUST be
+     *                              returned.
      */
     protected function doGetAttributes(): array
     {

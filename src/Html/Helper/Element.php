@@ -42,10 +42,10 @@ class Element extends AbstractHelper
     /**
      * Produce a tag.
      *
-     * @param string $tag
-     * @param string $text
-     * @param array  $attributes
-     * @param bool   $raw
+     * @param string               $tag
+     * @param string               $text
+     * @param array<string, mixed> $attributes
+     * @param bool                 $raw
      *
      * @return string
      */

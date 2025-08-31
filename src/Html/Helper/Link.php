@@ -27,9 +27,9 @@ class Link extends Style
     /**
      * Add an element to the list
      *
-     * @param string $href
-     * @param array  $attributes
-     * @param int    $position
+     * @param string               $href
+     * @param array<string, mixed> $attributes
+     * @param int                  $position
      *
      * @return static
      */
@@ -54,10 +54,10 @@ class Link extends Style
     /**
      * Returns the necessary attributes
      *
-     * @param string                $href
-     * @param array<string, string> $attributes
+     * @param string               $href
+     * @param array<string, mixed> $attributes
      *
-     * @return array<string, string>
+     * @return array<string, mixed>
      */
     protected function getAttributes(string $href, array $attributes): array
     {

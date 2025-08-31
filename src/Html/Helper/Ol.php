@@ -42,9 +42,9 @@ class Ol extends AbstractList
     /**
      * Add an element to the list
      *
-     * @param string $text
-     * @param array  $attributes
-     * @param bool   $raw
+     * @param string               $text
+     * @param array<string, mixed> $attributes
+     * @param bool                 $raw
      *
      * @return static
      */

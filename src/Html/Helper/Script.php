@@ -27,9 +27,9 @@ class Script extends AbstractSeries
     /**
      * Add an element to the list
      *
-     * @param string $href
-     * @param array  $attributes
-     * @param int    $position
+     * @param string               $href
+     * @param array<string, mixed> $attributes
+     * @param int                  $position
      *
      * @return static
      */
@@ -96,10 +96,10 @@ class Script extends AbstractSeries
     /**
      * Returns the necessary attributes
      *
-     * @param string $src
-     * @param array  $attributes
+     * @param string               $src
+     * @param array<string, mixed> $attributes
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getAttributes(string $src, array $attributes): array
     {

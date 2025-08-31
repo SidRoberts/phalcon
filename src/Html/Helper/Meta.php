@@ -25,8 +25,8 @@ class Meta extends AbstractSeries
     /**
      * Add an element to the list
      *
-     * @param array $attributes
-     * @param int   $pos
+     * @param array<string, mixed> $attributes
+     * @param int                  $pos
      *
      * @return Meta
      */

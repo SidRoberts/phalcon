@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Phalcon\Html\Link\Serializer;
 
+use Phalcon\Html\Link\Interfaces\LinkInterface;
+
 use function implode;
 use function is_array;
 use function is_bool;
@@ -25,7 +27,7 @@ class Header implements SerializerInterface
     /**
      * Serializes all the passed links to a HTTP link header
      *
-     * @param array $links
+     * @param array<LinkInterface> $links
      *
      * @return string|null
      */
