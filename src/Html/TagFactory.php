@@ -221,6 +221,7 @@ class TagFactory
     public function set(string $name, Closure $definition): void
     {
         $this->factories[$name] = $definition;
+
         unset($this->instances[$name]);
     }
 
