@@ -37,7 +37,7 @@ class Debug
     protected array $blacklist = ["request" => [], "server" => []];
 
     /**
-     * @var array
+     * @var list<array{0: mixed, 1: array, 2: int}>
      */
     protected array $data = [];
 
