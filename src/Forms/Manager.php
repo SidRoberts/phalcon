@@ -49,10 +49,9 @@ class Manager
      */
     public function create(string $name, object | null $entity = null): Form
     {
-        $form               = new Form($entity);
-        $this->forms[$name] = $form;
+        $this->forms[$name] = new Form($entity);
 
-        return $form;
+        return $this->forms[$name];
     }
 
     /**
