@@ -314,18 +314,16 @@ class Form extends Injectable implements Countable, Iterator, AttributesInterfac
      */
     public function clear(array | string | null $fields = null): static
     {
-        $data = $this->data;
-
         /**
          * If fields is string, clear just that field.
          * If it's array, clear only fields in array.
          * If null, clear all
          */
         if (null === $fields) {
-            $data = [];
+            $this->data = [];
 
             foreach ($this->elements as $element) {
-                $data[$element->getName()] = $element->getDefault();
+                $this->data[$element->getName()] = $element->getDefault();
             }
         } else {
             if (is_string($fields)) {
@@ -338,19 +336,17 @@ class Form extends Injectable implements Countable, Iterator, AttributesInterfac
                  * recognized as present and unset before the default is
                  * assigned. [#CP-17042]
                  */
-                if (array_key_exists($field, $data)) {
-                    unset($data[$field]);
+                if (array_key_exists($field, $this->data)) {
+                    unset($this->data[$field]);
                 }
 
                 if (isset($this->elements[$field])) {
                     $element = $this->elements[$field];
 
-                    $data[$element->getName()] = $element->getDefault();
+                    $this->data[$element->getName()] = $element->getDefault();
                 }
             }
         }
-
-        $this->data = $data;
 
         return $this;
     }
