@@ -74,17 +74,17 @@ class Micro extends Injectable implements ArrayAccess, EventsAwareInterface
     protected mixed $activeHandler = null;
 
     /**
-     * @var array
+     * @var array<callable|MiddlewareInterface>
      */
     protected array $afterBindingHandlers = [];
 
     /**
-     * @var array
+     * @var list<callable|MiddlewareInterface>
      */
     protected array $afterHandlers = [];
 
     /**
-     * @var array
+     * @var list<callable|MiddlewareInterface>
      */
     protected array $beforeHandlers = [];
 
@@ -94,12 +94,12 @@ class Micro extends Injectable implements ArrayAccess, EventsAwareInterface
     protected mixed $errorHandler = null;
 
     /**
-     * @var array
+     * @var list<callable|MiddlewareInterface>
      */
     protected array $finishHandlers = [];
 
     /**
-     * @var array
+     * @var array<string, callable>
      */
     protected array $handlers = [];
 
@@ -269,7 +269,7 @@ class Micro extends Injectable implements ArrayAccess, EventsAwareInterface
     /**
      * Returns the internal handlers attached to the application
      *
-     * @return array
+     * @return array<string, callable>
      */
     public function getHandlers(): array
     {
@@ -323,6 +323,8 @@ class Micro extends Injectable implements ArrayAccess, EventsAwareInterface
     /**
      * Obtains a service from the DI
      *
+     * @param string $serviceName
+     *
      * @return object
      */
     public function getService(string $serviceName)
@@ -334,6 +336,8 @@ class Micro extends Injectable implements ArrayAccess, EventsAwareInterface
 
     /**
      * Obtains a shared service from the DI
+     *
+     * @param string $serviceName
      *
      * @return mixed
      */
@@ -380,10 +384,11 @@ class Micro extends Injectable implements ArrayAccess, EventsAwareInterface
             /**
              * Handling routing information
              */
-            /** @var Router $router */
             if ($this->container instanceof DiInterface) {
+                /** @var Router */
                 $router = $this->container->getShared("router");
             } else {
+                /** @var Router */
                 $router = $this->container->get("router");
             }
 
@@ -1067,6 +1072,8 @@ class Micro extends Injectable implements ArrayAccess, EventsAwareInterface
     /**
      * Stops the middleware execution avoiding than other middlewares be
      * executed
+     *
+     * @return void
      */
     public function stop(): void
     {

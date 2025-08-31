@@ -38,7 +38,7 @@ class Collection implements CollectionInterface
     protected mixed $handler;
 
     /**
-     * @var array
+     * @var array<array{0: array<string>|string, 1: string, 2: callable|string, 3: string|null}>
      */
     protected array $handlers = [];
 
@@ -103,7 +103,7 @@ class Collection implements CollectionInterface
     /**
      * Returns the registered handlers
      *
-     * @return array
+     * @return array<array{0: array<string>|string, 1: string, 2: callable|string, 3: string|null}>
      */
     public function getHandlers(): array
     {
@@ -180,10 +180,10 @@ class Collection implements CollectionInterface
      * );
      * ```
      *
-     * @param string          $routePattern
-     * @param callable|string $handler
-     * @param array|string    $method
-     * @param string|null     $name
+     * @param string              $routePattern
+     * @param callable|string     $handler
+     * @param list<string>|string $method
+     * @param string|null         $name
      *
      * @return CollectionInterface
      */
@@ -322,10 +322,10 @@ class Collection implements CollectionInterface
     /**
      * Internal function to add a handler to the group.
      *
-     * @param array|string    $method
-     * @param string          $routePattern
-     * @param callable|string $handler
-     * @param string|null     $name
+     * @param list<string>|string $method
+     * @param string              $routePattern
+     * @param callable|string     $handler
+     * @param string|null         $name
      *
      * @return void
      */

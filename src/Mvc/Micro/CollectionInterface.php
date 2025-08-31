@@ -58,7 +58,7 @@ interface CollectionInterface
     /**
      * Returns the registered handlers
      *
-     * @return array
+     * @return array<array{0: array<string>|string, 1: string, 2: callable|string, 3: string|null}>
      */
     public function getHandlers(): array;
 

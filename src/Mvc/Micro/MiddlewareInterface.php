@@ -22,6 +22,10 @@ interface MiddlewareInterface
 {
     /**
      * Calls the middleware
+     *
+     * @param Micro $application
+     *
+     * @return void
      */
-    public function call(Micro $application);
+    public function call(Micro $application): void;
 }

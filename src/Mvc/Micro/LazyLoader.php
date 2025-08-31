@@ -42,7 +42,7 @@ class LazyLoader
      * Calling __call method
      *
      * @param string               $method
-     * @param array                $arguments
+     * @param array<mixed>         $arguments
      * @param BinderInterface|null $modelBinder
      *
      * @return mixed

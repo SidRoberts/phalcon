@@ -23,7 +23,7 @@ class MyMiddleware implements MiddlewareInterface
      */
     protected $number = 0;
 
-    public function call(Micro $application)
+    public function call(Micro $application): void
     {
         $this->number++;
     }

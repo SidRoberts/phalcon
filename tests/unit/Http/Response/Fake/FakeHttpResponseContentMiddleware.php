@@ -18,7 +18,7 @@ use Phalcon\Mvc\Micro\MiddlewareInterface;
 
 final class FakeHttpResponseContentMiddleware implements MiddlewareInterface
 {
-    public function call(Micro $application)
+    public function call(Micro $application): void
     {
         $body = ['test' => 123];
         $application
