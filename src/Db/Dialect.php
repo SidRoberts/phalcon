@@ -1452,8 +1452,7 @@ abstract class Dialect implements DialectInterface
             isset($expression["column"]) ||
             (isset($expression["domain"]) && "" !== $expression["domain"])
         ) {
-            $domain = $expression["column"] ?? null;
-            $domain = (null !== $domain) ? $expression["domain"] : $domain;
+            $domain = $expression["domain"] ?? $expression["column"] ?? null;
 
             $objectExpression["domain"] = $domain;
         }
