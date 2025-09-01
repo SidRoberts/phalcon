@@ -61,15 +61,15 @@ class RedisCluster extends Redis
      * options eg `["verify_peer" => 0, "local_cert" => "file:///path/to/cert.pem"]`
      *
      * @param SerializerFactory $factory
-     * @param array             $options {
-     *                                   name: string | null,
-     *                                   hosts: array,
-     *                                   timeout: float,
-     *                                   readTimeout: float,
-     *                                   persistent: bool,
-     *                                   auth: string|array,
-     *                                   context: string
-     *                                   }
+     * @param array{
+     *     name?: string|null,
+     *     hosts?: array,
+     *     timeout?: float,
+     *     readTimeout?: float,
+     *     persistent?: bool,
+     *     auth?: string|array,
+     *     context?: string
+     * } $options
      *
      * @throws SupportException
      */
@@ -136,8 +136,12 @@ class RedisCluster extends Redis
         return $this->adapter;
     }
 
-
-    protected function getDefaultOptions($options): array
+    /**
+     * @param array<string, mixed> $options
+     *
+     * @return array<string, mixed>
+     */
+    protected function getDefaultOptions(array $options): array
     {
         /**
          * Lets set some defaults and options here
@@ -164,6 +168,8 @@ class RedisCluster extends Redis
      * the custom one is set.
      *
      * @param RedisService $connection
+     *
+     * @return void
      *
      * @throws SupportException
      */

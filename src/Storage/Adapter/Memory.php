@@ -27,7 +27,7 @@ use function is_int;
 class Memory extends AbstractAdapter
 {
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $data = [];
 
@@ -43,8 +43,8 @@ class Memory extends AbstractAdapter
     /**
      * Memory constructor.
      *
-     * @param SerializerFactory $factory
-     * @param array             $options
+     * @param SerializerFactory    $factory
+     * @param array<string, mixed> $options
      *
      * @throws BaseException
      */
@@ -72,7 +72,7 @@ class Memory extends AbstractAdapter
      *
      * @param string $prefix
      *
-     * @return array
+     * @return list<mixed>
      */
     public function getKeys(string $prefix = ''): array
     {

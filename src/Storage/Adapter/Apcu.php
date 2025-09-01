@@ -37,8 +37,8 @@ class Apcu extends AbstractAdapter
     /**
      * Apcu constructor.
      *
-     * @param SerializerFactory $factory
-     * @param array             $options
+     * @param SerializerFactory    $factory
+     * @param array<string, mixed> $options
      *
      * @throws Exception
      */
@@ -53,6 +53,8 @@ class Apcu extends AbstractAdapter
 
     /**
      * Flushes/clears the cache
+     *
+     * @return bool
      */
     public function clear(): bool
     {
@@ -73,7 +75,7 @@ class Apcu extends AbstractAdapter
      *
      * @param string $prefix
      *
-     * @return array
+     * @return list<mixed>
      */
     public function getKeys(string $prefix = ''): array
     {

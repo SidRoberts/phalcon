@@ -30,13 +30,14 @@ use Phalcon\Storage\Serializer\RedisNone;
 use Phalcon\Storage\Serializer\RedisPhp;
 use Phalcon\Storage\Serializer\SerializerInterface;
 use Phalcon\Traits\Factory\FactoryTrait;
+use Throwable;
 
 class SerializerFactory
 {
     use FactoryTrait;
 
     /**
-     * @param string[] $services
+     * @param array<string, class-string<SerializerInterface>> $services
      */
     public function __construct(array $services = [])
     {
@@ -51,11 +52,12 @@ class SerializerFactory
      */
     public function newInstance(string $name): SerializerInterface
     {
+        /** @var SerializerInterface */
         return $this->getCachedInstance($name);
     }
 
     /**
-     * @return string
+     * @return class-string<Throwable>
      */
     protected function getExceptionClass(): string
     {
@@ -63,7 +65,7 @@ class SerializerFactory
     }
 
     /**
-     * @return string[]
+     * @return array<string, class-string<SerializerInterface>>
      */
     protected function getServices(): array
     {

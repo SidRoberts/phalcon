@@ -30,7 +30,7 @@ class None extends AbstractSerializer
      *
      * @param string $data
      *
-     * @retrun void
+     * @return void
      */
     public function unserialize(mixed $data): void
     {

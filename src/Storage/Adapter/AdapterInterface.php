@@ -82,7 +82,7 @@ interface AdapterInterface
      *
      * @param string $prefix
      *
-     * @return array
+     * @return list<mixed>
      */
     public function getKeys(string $prefix = ''): array;
 

@@ -65,8 +65,8 @@ trait ActionTrait
      * an EventsException if the event cannot be processed, and an Exception if
      * any of the keys have wrong names.
      *
-     * @param iterable   $keys
-     * @param mixed|null $defaultValue
+     * @param iterable<string> $keys
+     * @param mixed|null       $defaultValue
      *
      * @return array<string, mixed>
      */
@@ -75,7 +75,7 @@ trait ActionTrait
         mixed $defaultValue = null
     ): array {
         $results = [];
-        /** @var string $element */
+
         foreach ($keys as $element) {
             $results[$element] = $this->get($element, $defaultValue);
         }
@@ -86,8 +86,8 @@ trait ActionTrait
     /**
      * Sets multiple keys. Returns true on success, false on failure.
      *
-     * @param iterable              $values
-     * @param DateInterval|int|null $ttl
+     * @param iterable<string, mixed> $values
+     * @param DateInterval|int|null   $ttl
      *
      * @return bool
      * @throws StorageException
@@ -97,10 +97,7 @@ trait ActionTrait
         DateInterval | int | null $ttl = null
     ): bool {
         $result = true;
-        /**
-         * @var string $key
-         * @var mixed  $value
-         */
+
         foreach ($values as $key => $value) {
             $this->assertKey($key);
 

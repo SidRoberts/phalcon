@@ -34,14 +34,13 @@ class Weak extends AbstractAdapter
     /**
      * @var array
      */
-
     protected array $weakList = [];
 
     /**
      * Constructor, there are no options
      *
-     * @param SerializerFactory $factory
-     * @param array             $options
+     * @param SerializerFactory    $factory
+     * @param array<string, mixed> $options
      */
     public function __construct(
         SerializerFactory $factory,
@@ -68,7 +67,7 @@ class Weak extends AbstractAdapter
      *
      * @param string $prefix
      *
-     * @return array
+     * @return list<mixed>
      */
     public function getKeys(string $prefix = ""): array
     {
@@ -93,6 +92,8 @@ class Weak extends AbstractAdapter
      * Will never set a serializer, WeakReference cannot be serialized
      *
      * @param string $serializer
+     *
+     * @return void
      */
     public function setDefaultSerializer(string $serializer): void
     {

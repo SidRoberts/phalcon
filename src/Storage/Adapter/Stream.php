@@ -123,7 +123,7 @@ class Stream extends AbstractAdapter
      *
      * @param string $prefix
      *
-     * @return array
+     * @return list<mixed>
      */
     public function getKeys(string $prefix = ''): array
     {
@@ -265,6 +265,7 @@ class Stream extends AbstractAdapter
      * @param int    $value
      *
      * @return false|int
+     *
      * @throws BaseException
      */
     protected function doIncrement(string $key, int $value = 1): false | int
@@ -296,6 +297,7 @@ class Stream extends AbstractAdapter
      * @param DateInterval|int|null $ttl
      *
      * @return bool
+     *
      * @throws BaseException
      */
     protected function doSet(string $key, mixed $value, mixed $ttl = null): bool
@@ -436,7 +438,7 @@ class Stream extends AbstractAdapter
     /**
      * Returns if the cache has expired for this item or not
      *
-     * @param array $payload
+     * @param array{created?: int, ttl?: int|string} $payload
      *
      * @return bool
      */
@@ -455,8 +457,8 @@ class Stream extends AbstractAdapter
     /**
      * Stores an array payload on the file system
      *
-     * @param array  $payload
-     * @param string $key
+     * @param array{created: int, ttl: int|string, content: mixed} $payload
+     * @param string                                               $key
      *
      * @return bool
      */

@@ -32,7 +32,7 @@ abstract class AbstractSerializer implements SerializerInterface
     /**
      * AbstractSerializer constructor.
      *
-     * @param null $data
+     * @param mixed $data
      */
     public function __construct($data = null)
     {
@@ -84,8 +84,10 @@ abstract class AbstractSerializer implements SerializerInterface
 
     /**
      * @param mixed $data
+     *
+     * @return void
      */
-    public function setData($data): void
+    public function setData(mixed $data): void
     {
         $this->data = $data;
     }

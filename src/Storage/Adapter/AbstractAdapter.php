@@ -58,7 +58,7 @@ abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
     protected int $lifetime = 3600;
 
     /**
-     * @var array
+     * @var array<string, mixed>
      */
     protected array $options = [];
 
@@ -77,8 +77,8 @@ abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
     /**
      * AbstractAdapter constructor.
      *
-     * @param SerializerFactory $serializerFactory
-     * @param array             $options
+     * @param SerializerFactory    $serializerFactory
+     * @param array<string, mixed> $options
      */
     protected function __construct(
         protected SerializerFactory $serializerFactory,
@@ -211,7 +211,7 @@ abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
      *
      * @param string $prefix
      *
-     * @return array
+     * @return list<mixed>
      */
     abstract public function getKeys(string $prefix = ''): array;
 
@@ -308,6 +308,8 @@ abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
 
     /**
      * @param string $serializer
+     *
+     * @return void
      */
     public function setDefaultSerializer(string $serializer): void
     {
@@ -354,6 +356,7 @@ abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
 
     /**
      * @param string $key
+     * @param mixed  $defaultValue
      *
      * @return mixed
      */
@@ -418,7 +421,7 @@ abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
      * @param mixed  $keys
      * @param string $prefix
      *
-     * @return array
+     * @return list<mixed>
      */
     protected function getFilteredKeys($keys, string $prefix): array
     {
@@ -453,6 +456,7 @@ abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
      * @param mixed $content
      *
      * @return mixed|string|null
+     *
      * @throws Exception
      */
     protected function getSerializedData(mixed $content): mixed
@@ -471,6 +475,7 @@ abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
      * @param DateInterval|int|null $ttl
      *
      * @return int
+     *
      * @throws Exception
      */
     protected function getTtl(mixed $ttl): int
@@ -519,6 +524,7 @@ abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
      * Initializes the serializer
      *
      * @return void
+     *
      * @throws Exception
      */
     protected function initSerializer(): void

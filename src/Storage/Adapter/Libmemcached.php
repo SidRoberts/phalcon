@@ -40,8 +40,8 @@ class Libmemcached extends AbstractAdapter
     /**
      * Libmemcached constructor.
      *
-     * @param SerializerFactory $factory
-     * @param array             $options
+     * @param SerializerFactory    $factory
+     * @param array<string, mixed> $options
      */
     public function __construct(
         SerializerFactory $factory,
@@ -79,14 +79,15 @@ class Libmemcached extends AbstractAdapter
      * Returns the already connected adapter or connects to the Memcached
      * server(s)
      *
-     * @return Memcached|mixed
+     * @return Memcached
+     *
      * @throws StorageException
      */
-    public function getAdapter(): mixed
+    public function getAdapter(): Memcached
     {
         if (null === $this->adapter) {
             $persistentId = $this->options['persistentId'] ?? 'ph-mcid-';
-            /** @var array $sasl */
+            /** @var array */
             $sasl       = $this->options['saslAuthData'] ?? [];
             $connection = new Memcached($persistentId);
             $serverList = $connection->getServerList();
@@ -94,13 +95,13 @@ class Libmemcached extends AbstractAdapter
             $connection->setOption(Memcached::OPT_PREFIX_KEY, $this->prefix);
 
             if (count($serverList) < 1) {
-                /** @var array $servers */
+                /** @var array */
                 $servers = $this->options['servers'] ?? [];
-                /** @var array $client */
+                /** @var array */
                 $client = $this->options['client'] ?? [];
-                /** @var string $saslUser */
+                /** @var string */
                 $saslUser = $sasl['user'] ?? '';
-                /** @var string $saslPass */
+                /** @var string */
                 $saslPass = $sasl['pass'] ?? '';
                 $failover = [
                     Memcached::OPT_CONNECT_TIMEOUT       => 10,
@@ -131,7 +132,8 @@ class Libmemcached extends AbstractAdapter
      *
      * @param string $prefix
      *
-     * @return array
+     * @return list<mixed>
+     *
      * @throws StorageException
      */
     public function getKeys(string $prefix = ''): array
@@ -151,6 +153,7 @@ class Libmemcached extends AbstractAdapter
      * @param mixed  $data
      *
      * @return bool
+     *
      * @throws StorageException
      */
     public function setForever(string $key, mixed $data): bool
@@ -169,6 +172,7 @@ class Libmemcached extends AbstractAdapter
      * @param int    $value
      *
      * @return false|int
+     *
      * @throws StorageException
      */
     protected function doDecrement(string $key, int $value = 1): false | int
@@ -184,6 +188,7 @@ class Libmemcached extends AbstractAdapter
      * @param string $key
      *
      * @return bool
+     *
      * @throws StorageException
      */
     protected function doDelete(string $key): bool
@@ -220,6 +225,7 @@ class Libmemcached extends AbstractAdapter
      * @param string $key
      *
      * @return bool
+     *
      * @throws StorageException
      */
     protected function doHas(string $key): bool
@@ -237,6 +243,7 @@ class Libmemcached extends AbstractAdapter
      * @param int    $value
      *
      * @return false|int
+     *
      * @throws StorageException
      */
     protected function doIncrement(string $key, int $value = 1): false | int
@@ -256,6 +263,7 @@ class Libmemcached extends AbstractAdapter
      * @param DateInterval|int|null $ttl
      *
      * @return bool
+     *
      * @throws BaseException
      * @throws StorageException
      */
@@ -277,10 +285,11 @@ class Libmemcached extends AbstractAdapter
     }
 
     /**
-     * @param Memcached $connection
-     * @param array     $client
+     * @param Memcached         $connection
+     * @param array<int, mixed> $client
      *
      * @return Libmemcached
+     *
      * @throws InvalidConfiguration
      */
     private function setOptions(Memcached $connection, array $client): static
@@ -317,6 +326,7 @@ class Libmemcached extends AbstractAdapter
      * @param Memcached $connection
      *
      * @return void
+     *
      * @throws SupportException
      */
     private function setSerializer(Memcached $connection): void
@@ -338,10 +348,11 @@ class Libmemcached extends AbstractAdapter
     }
 
     /**
-     * @param Memcached $connection
-     * @param array     $servers
+     * @param Memcached                                $connection
+     * @param array<array{0: string, 1: int, 2?: int}> $servers
      *
      * @return Libmemcached
+     *
      * @throws ConnectionFailed
      */
     private function setServers(Memcached $connection, array $servers): static

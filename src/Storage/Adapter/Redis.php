@@ -44,8 +44,8 @@ class Redis extends AbstractAdapter
     /**
      * Redis constructor.
      *
-     * @param SerializerFactory $factory
-     * @param array             $options
+     * @param SerializerFactory    $factory
+     * @param array<string, mixed> $options
      */
     public function __construct(
         SerializerFactory $factory,
@@ -114,7 +114,8 @@ class Redis extends AbstractAdapter
      *
      * @param string $prefix
      *
-     * @return array
+     * @return list<mixed>
+     *
      * @throws StorageException
      */
     public function getKeys(string $prefix = ''): array
@@ -255,9 +256,9 @@ class Redis extends AbstractAdapter
     }
 
     /**
-     * @param array $options
+     * @param array<string, mixed> $options
      *
-     * @return array
+     * @return array<string, mixed>
      */
     protected function getDefaultOptions(array $options): array
     {

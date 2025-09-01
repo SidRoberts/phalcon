@@ -39,8 +39,8 @@ class AdapterFactory
     /**
      * AdapterFactory constructor.
      *
-     * @param SerializerFactory $factory
-     * @param array             $services
+     * @param SerializerFactory                             $factory
+     * @param array<string, class-string<AdapterInterface>> $services
      */
     public function __construct(
         SerializerFactory $factory,
@@ -54,33 +54,35 @@ class AdapterFactory
     /**
      * Create a new instance of the adapter
      *
-     * @param string $name
-     * @param array  $options = [
-     *                        'servers' => [
-     *                        [
-     *                        'host' => '127.0.0.1',
-     *                        'port' => 11211,
-     *                        'weight' => 1
-     *                        ]
-     *                        ],
-     *                        'defaultSerializer' => 'Php',
-     *                        'lifetime' => 3600,
-     *                        'serializer' => null,
-     *                        'prefix' => '',
-     *                        'host' => '127.0.0.1',
-     *                        'port' => 6379,
-     *                        'index' => 0,
-     *                        'persistent' => false,
-     *                        'auth' => '',
-     *                        'socket' => '',
-     *                        'storageDir' => '',
-     *                        ]
+     * @param string               $name
+     * @param array<string, mixed> $options = [
+     *                                 'servers' => [
+     *                                     [
+     *                                         'host' => '127.0.0.1',
+     *                                         'port' => 11211,
+     *                                         'weight' => 1
+     *                                     ]
+     *                                 ],
+     *                                 'defaultSerializer' => 'Php',
+     *                                 'lifetime' => 3600,
+     *                                 'serializer' => null,
+     *                                 'prefix' => '',
+     *                                 'host' => '127.0.0.1',
+     *                                 'port' => 6379,
+     *                                 'index' => 0,
+     *                                 'persistent' => false,
+     *                                 'auth' => '',
+     *                                 'socket' => '',
+     *                                 'storageDir' => '',
+     *                             ]
      *
      * @return AdapterInterface
+     *
      * @throws BaseException
      */
     public function newInstance(string $name, array $options = []): AdapterInterface
     {
+        /** @var class-string<AdapterInterface> */
         $definition = $this->getService($name);
 
         return new $definition($this->serializerFactory, $options);
@@ -95,7 +97,7 @@ class AdapterFactory
     }
 
     /**
-     * @return string[]
+     * @return array<string, class-string<AdapterInterface>>
      */
     protected function getServices(): array
     {
