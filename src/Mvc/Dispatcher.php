@@ -19,6 +19,7 @@ use Phalcon\Dispatcher\AbstractDispatcher as BaseDispatcher;
 use Phalcon\Dispatcher\Exception as DispatcherException;
 use Phalcon\Events\Exception as EventsException;
 use Phalcon\Events\Traits\EventsAwareTrait;
+use Phalcon\Http\ResponseInterface;
 use Phalcon\Mvc\Dispatcher\Exception;
 use Phalcon\Mvc\Dispatcher\Exceptions\ResponseServiceUnavailable;
 
@@ -118,9 +119,16 @@ class Dispatcher extends BaseDispatcher implements DispatcherInterface
      * );
      * ```
      *
-     * @param array $forward
+     * @param array{
+     *     namespace?: string,
+     *     controller?: string,
+     *     task?: string,
+     *     action?: string,
+     *     params?: array<mixed>
+     * } $forward
      *
      * @return void
+     *
      * @throws EventsException
      * @throws DispatcherException
      */
@@ -250,6 +258,7 @@ class Dispatcher extends BaseDispatcher implements DispatcherInterface
      * @param BaseException $exception
      *
      * @return false|void
+     *
      * @throws EventsException
      */
     protected function handleException(BaseException $exception)
@@ -266,6 +275,7 @@ class Dispatcher extends BaseDispatcher implements DispatcherInterface
      * @param int    $exceptionCode
      *
      * @return false
+     *
      * @throws EventsException
      * @throws Exception
      */
@@ -278,8 +288,10 @@ class Dispatcher extends BaseDispatcher implements DispatcherInterface
         );
 
         if ($this->container instanceof DiInterface) {
+            /** @var ResponseInterface */
             $response = $this->container->getShared("response");
         } else {
+            /** @var ResponseInterface */
             $response = $this->container->get("response");
         }
 
