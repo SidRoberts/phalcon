@@ -104,7 +104,7 @@ class Request extends AbstractInjectionAware implements
      */
     protected array | null $postCache = null;
     /**
-     * @var array
+     * @var array<string, array<string, list<string>>>
      */
     protected array $queryFilters = [];
     /**
@@ -116,7 +116,7 @@ class Request extends AbstractInjectionAware implements
      */
     protected bool $strictHostCheck = false;
     /**
-     * @var array
+     * @var list<string>
      */
     protected array $trustedProxies = [];
     /**
@@ -166,7 +166,7 @@ class Request extends AbstractInjectionAware implements
      * Gets an array with mime/types and their quality accepted by the
      * browser/client from _SERVER["HTTP_ACCEPT"]
      *
-     * @return array
+     * @return list<array{accept: string, quality: double}>
      */
     public function getAcceptableContent(): array
     {
@@ -177,7 +177,7 @@ class Request extends AbstractInjectionAware implements
      * Gets auth info accepted by the browser/client from
      * $_SERVER["PHP_AUTH_USER"]
      *
-     * @return string[]|null
+     * @return array{username: null|string, password: null|string}|null
      */
     public function getBasicAuth(): array | null
     {
@@ -300,7 +300,7 @@ class Request extends AbstractInjectionAware implements
      * Gets a charsets array and their quality accepted by the browser/client
      * from _SERVER["HTTP_ACCEPT_CHARSET"]
      *
-     * @return array
+     * @return list<array{charset: string, quality: double}>
      */
     public function getClientCharsets(): array
     {
@@ -321,7 +321,7 @@ class Request extends AbstractInjectionAware implements
      * Gets auth info accepted by the browser/client from
      * $_SERVER["PHP_AUTH_DIGEST"]
      *
-     * @return array
+     * @return array<string, string>
      */
     public function getDigestAuth(): array
     {
@@ -523,7 +523,8 @@ class Request extends AbstractInjectionAware implements
      * echo $headers["Authorization"]; // Basic cGhhbGNvbjpzZWNyZXQ=
      * </code>
      *
-     * @return array
+     * @return array<string, string>
+     *
      * @throws EventsException
      */
     public function getHeaders(): array
@@ -610,6 +611,8 @@ class Request extends AbstractInjectionAware implements
      * $_SERVER["HTTP_HOST"] = "ExAmPlE.com";
      * $request->getHttpHost(); // example.com
      * ```
+     *
+     * @return string
      */
     public function getHttpHost(): string
     {
@@ -703,7 +706,7 @@ class Request extends AbstractInjectionAware implements
      * Gets languages array and their quality accepted by the browser/client
      * from _SERVER["HTTP_ACCEPT_LANGUAGE"]
      *
-     * @return array
+     * @return array<array{language: string, quality: double}>
      */
     public function getLanguages(): array
     {
@@ -1054,7 +1057,7 @@ class Request extends AbstractInjectionAware implements
      * @param bool $onlySuccessful
      * @param bool $namedKeys
      *
-     * @return FileInterface[]
+     * @return array<FileInterface>
      */
     public function getUploadedFiles(
         bool $onlySuccessful = false,
@@ -1287,14 +1290,14 @@ class Request extends AbstractInjectionAware implements
      * Check if HTTP method match any of the passed methods
      * When strict is true it checks if validated methods are real HTTP methods
      *
-     * @param array|string $methods
-     * @param bool         $strict
+     * @param list<string>|string $methods
+     * @param bool                $strict
      *
      * @return bool
      * @throws Exception
      * @todo check the $methods type - refactor this !!
      */
-    public function isMethod(mixed $methods, bool $strict = false): bool
+    public function isMethod(array | string $methods, bool $strict = false): bool
     {
         $httpMethod = $this->getMethod();
 
@@ -1514,9 +1517,9 @@ class Request extends AbstractInjectionAware implements
      * Sets automatic sanitizers/filters for a particular field and for
      * particular methods
      *
-     * @param string $name
-     * @param array  $filters
-     * @param array  $scope
+     * @param string       $name
+     * @param list<string> $filters
+     * @param array        $scope
      *
      * @return RequestInterface
      * @throws Exception
@@ -1572,8 +1575,10 @@ class Request extends AbstractInjectionAware implements
     /**
      * Set a trusted proxy list for X-Forwarded-For header
      *
-     * @param array $trustedProxies
+     * @param list<string> $trustedProxies
+     *
      * @return RequestInterface
+     *
      * @throws Exception
      */
     public function setTrustedProxies(array $trustedProxies): static
@@ -1582,6 +1587,7 @@ class Request extends AbstractInjectionAware implements
 
         // sanitize IPs
         foreach ($trustedProxies as $trustedProxy) {
+            /** @var string|false */
             $filtered = $filterService->sanitize($trustedProxy, "ip");
 
             if ($filtered !== false) {
@@ -1850,7 +1856,8 @@ class Request extends AbstractInjectionAware implements
     /**
      * Resolve authorization headers.
      *
-     * @return array
+     * @return array<string, string>
+     *
      * @throws EventsException
      */
     protected function resolveAuthorizationHeaders(): array
@@ -2155,12 +2162,12 @@ class Request extends AbstractInjectionAware implements
     }
 
     /**
-     * @param array  $files
-     * @param bool   $namedKeys
-     * @param array  $input
-     * @param string $key
+     * @param array<FileInterface> $files
+     * @param bool                 $namedKeys
+     * @param array                $input
+     * @param string               $key
      *
-     * @return array
+     * @return array<FileInterface>
      */
     private function processFiles(
         array $files,

@@ -46,6 +46,14 @@ use const PATHINFO_EXTENSION;
  *     }
  * }
  *```
+ *
+ * @phpstan-type TFile = array{
+ *     name?: string,
+ *     tmpName?: string,
+ *     size?: int,
+ *     type?: string,
+ *     error?: int
+ * }
  */
 class File implements FileInterface
 {
@@ -75,7 +83,7 @@ class File implements FileInterface
     protected string $realType;
 
     /**
-     * @var int
+     * @var non-negative-int
      */
     protected int $size = 0;
 
@@ -92,7 +100,7 @@ class File implements FileInterface
     /**
      * Constructor
      *
-     * @param array  $file
+     * @param TFile  $file
      * @param string $key
      */
     public function __construct(array $file, string $key = '')
@@ -141,6 +149,8 @@ class File implements FileInterface
 
     /**
      * Returns the real name of the uploaded file
+     *
+     * @return string
      */
     public function getName(): string
     {
@@ -172,7 +182,7 @@ class File implements FileInterface
     /**
      * Returns the file size of the uploaded file
      *
-     * @return int
+     * @return non-negative-int
      */
     public function getSize(): int
     {

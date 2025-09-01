@@ -54,7 +54,7 @@ interface RequestInterface
      * Return an array with mime/types and their quality accepted by the
      * browser/client from _SERVER["HTTP_ACCEPT"]
      *
-     * @return array
+     * @return list<array{accept: string, quality: double}>
      */
     public function getAcceptableContent(): array;
 
@@ -62,7 +62,7 @@ interface RequestInterface
      * Gets auth info accepted by the browser/client from
      * $_SERVER["PHP_AUTH_USER"]
      *
-     * @return array|null
+     * @return array{username: null|string, password: null|string}|null
      */
     public function getBasicAuth(): array | null;
 
@@ -105,7 +105,7 @@ interface RequestInterface
      * Return a charset array and their quality accepted by the browser/client
      * from _SERVER["HTTP_ACCEPT_CHARSET"]
      *
-     * @return array
+     * @return list<array{charset: string, quality: double}>
      */
     public function getClientCharsets(): array;
 
@@ -120,7 +120,7 @@ interface RequestInterface
      * Return the auth info accepted by the browser/client from
      * $_SERVER["PHP_AUTH_DIGEST"]
      *
-     * @return array
+     * @return array<string, string>
      */
     public function getDigestAuth(): array;
 
@@ -154,7 +154,7 @@ interface RequestInterface
      * echo $headers["Authorization"]; // Basic cGhhbGNvbjpzZWNyZXQ=
      * ```
      *
-     * @return array
+     * @return array<string, string>
      */
     public function getHeaders(): array;
 
@@ -209,7 +209,7 @@ interface RequestInterface
      * Return the languages array and their quality accepted by the
      * browser/client from _SERVER["HTTP_ACCEPT_LANGUAGE"]
      *
-     * @return array
+     * @return array<array{language: string, quality: double}>
      */
     public function getLanguages(): array;
 
@@ -503,12 +503,12 @@ interface RequestInterface
     /**
      * Return if the current HTTP method matches any of the passed methods
      *
-     * @param string|array $methods
-     * @param bool         $strict
+     * @param list<string>|string $methods
+     * @param bool                $strict
      *
      * @return bool
      */
-    public function isMethod($methods, bool $strict = false): bool;
+    public function isMethod(array | string $methods, bool $strict = false): bool;
 
     /**
      * Return whether the HTTP method is OPTIONS. if
