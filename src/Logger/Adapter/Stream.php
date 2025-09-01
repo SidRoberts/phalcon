@@ -60,8 +60,8 @@ class Stream extends AbstractAdapter
     /**
      * Stream constructor.
      *
-     * @param string $name
-     * @param array  $options
+     * @param string               $name
+     * @param array{mode?: string} $options
      *
      * @throws Exception
      */
@@ -79,6 +79,8 @@ class Stream extends AbstractAdapter
 
     /**
      * Closes the stream
+     *
+     * @return bool
      */
     public function close(): bool
     {
@@ -105,6 +107,8 @@ class Stream extends AbstractAdapter
      * Processes the message i.e. writes it to the file
      *
      * @param Item $item
+     *
+     * @return void
      */
     public function process(Item $item): void
     {

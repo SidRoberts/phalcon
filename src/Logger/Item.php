@@ -29,7 +29,7 @@ class Item
      * @param string            $levelName
      * @param int               $level
      * @param DateTimeImmutable $dateTime
-     * @param array             $context
+     * @param array<mixed>      $context
      */
     public function __construct(
         protected string $message,
@@ -41,7 +41,7 @@ class Item
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
     public function getContext(): array
     {

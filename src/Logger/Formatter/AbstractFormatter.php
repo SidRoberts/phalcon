@@ -50,6 +50,8 @@ abstract class AbstractFormatter implements FormatterInterface
 
     /**
      * @param string $format
+     *
+     * @return void
      */
     public function setDateFormat(string $format): void
     {

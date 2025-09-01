@@ -42,14 +42,14 @@ abstract class AbstractLogger
     /**
      * The adapter stack
      *
-     * @var AdapterInterface[]
+     * @var array<string, AdapterInterface>
      */
     protected array $adapters = [];
 
     /**
      * The excluded adapters for this log process
      *
-     * @var array
+     * @var array<AdapterInterface, bool>
      */
     protected array $excluded = [];
 
@@ -68,11 +68,12 @@ abstract class AbstractLogger
     /**
      * Constructor.
      *
-     * @param string            $name     The name of the logger
-     * @param array             $adapters The collection of adapters to be used
-     *                                    for logging (default [])
-     * @param DateTimeZone|null $timezone Timezone. If omitted,
-     *                                    date_Default_timezone_get() is used
+     * @param string                  $name     The name of the logger
+     * @param array<AdapterInterface> $adapters The collection of adapters to be
+     *                                          used for logging (default [])
+     * @param DateTimeZone|null       $timezone Timezone. If omitted,
+     *                                          date_default_timezone_get() is
+     *                                          used
      *
      * @throws Exception
      */
@@ -112,7 +113,7 @@ abstract class AbstractLogger
     /**
      * Exclude certain adapters.
      *
-     * @param array $adapters
+     * @param list<string> $adapters
      *
      * @return AbstractLogger
      */
@@ -159,7 +160,7 @@ abstract class AbstractLogger
     /**
      * Returns the adapter stack array
      *
-     * @return AdapterInterface[]
+     * @return array<string, AdapterInterface>
      */
     public function getAdapters(): array
     {
@@ -168,6 +169,8 @@ abstract class AbstractLogger
 
     /**
      * Returns the log level
+     *
+     * @return int
      */
     public function getLogLevel(): int
     {
@@ -176,6 +179,8 @@ abstract class AbstractLogger
 
     /**
      * Returns the name of the logger
+     *
+     * @return string
      */
     public function getName(): string
     {
@@ -188,6 +193,7 @@ abstract class AbstractLogger
      * @param string $name The name of the adapter
      *
      * @return AbstractLogger
+     *
      * @throws AdapterNotFound
      */
     public function removeAdapter(string $name): static
@@ -204,7 +210,7 @@ abstract class AbstractLogger
     /**
      * Sets the adapters stack overriding what is already there
      *
-     * @param array $adapters An array of adapters
+     * @param array<string, AdapterInterface> $adapters An array of adapters
      *
      * @return AbstractLogger
      */
@@ -234,11 +240,12 @@ abstract class AbstractLogger
     /**
      * Adds a message to each handler for processing
      *
-     * @param int    $level
-     * @param string $message
-     * @param array  $context
+     * @param int          $level
+     * @param string       $message
+     * @param array<mixed> $context
      *
      * @return bool
+     *
      * @throws Exception
      * @throws NoAdaptersConfigured
      */
@@ -311,7 +318,7 @@ abstract class AbstractLogger
     /**
      * Returns an array of log levels with integer to string conversion
      *
-     * @return string[]
+     * @return array<int, string>
      */
     protected function getLevels(): array
     {

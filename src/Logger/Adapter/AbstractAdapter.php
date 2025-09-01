@@ -30,7 +30,7 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Name of the default formatter class
      *
-     * @var string
+     * @var class-string<FormatterInterface>
      */
     protected string $defaultFormatter = Line::class;
 
@@ -51,7 +51,7 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Array with messages queued in the transaction
      *
-     * @var array
+     * @var array<Item>
      */
     protected array $queue = [];
 
@@ -126,6 +126,8 @@ abstract class AbstractAdapter implements AdapterInterface
 
     /**
      * Start a transaction
+     *
+     * @return AdapterInterface
      */
     public function begin(): AdapterInterface
     {

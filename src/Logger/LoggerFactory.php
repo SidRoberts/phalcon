@@ -17,6 +17,7 @@ use DateTimeZone;
 use Exception as BaseException;
 use Phalcon\Config\ConfigInterface;
 use Phalcon\Support\Traits\ConfigTrait;
+use Throwable;
 
 /**
  * Factory creating logger objects
@@ -110,7 +111,7 @@ class LoggerFactory
     }
 
     /**
-     * @return string
+     * @return class-string<Throwable>
      */
     protected function getExceptionClass(): string
     {

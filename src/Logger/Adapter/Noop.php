@@ -22,6 +22,8 @@ class Noop extends AbstractAdapter
 {
     /**
      * Closes the stream
+     *
+     * @return bool
      */
     public function close(): bool
     {
@@ -32,6 +34,8 @@ class Noop extends AbstractAdapter
      * Processes the message i.e. writes it to the file
      *
      * @param Item $item
+     *
+     * @return void
      */
     public function process(Item $item): void
     {

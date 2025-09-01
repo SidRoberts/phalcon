@@ -19,6 +19,7 @@ use Phalcon\Logger\Adapter\Noop;
 use Phalcon\Logger\Adapter\Stream;
 use Phalcon\Logger\Adapter\Syslog;
 use Phalcon\Traits\Factory\FactoryTrait;
+use Throwable;
 
 /**
  * Factory used to create adapters used for Logging
@@ -30,7 +31,7 @@ class AdapterFactory
     /**
      * AdapterFactory constructor.
      *
-     * @param array $services
+     * @param array<string, class-string<AdapterInterface>> $services
      */
     public function __construct(array $services = [])
     {
@@ -40,11 +41,12 @@ class AdapterFactory
     /**
      * Create a new instance of the adapter
      *
-     * @param string $name
-     * @param string $fileName
-     * @param array  $options
+     * @param string               $name
+     * @param string               $fileName
+     * @param array<string, mixed> $options
      *
      * @return AdapterInterface
+     *
      * @throws BaseException
      */
     public function newInstance(
@@ -52,13 +54,14 @@ class AdapterFactory
         string $fileName,
         array $options = []
     ): AdapterInterface {
+        /** @var class-string<AdapterInterface> */
         $definition = $this->getService($name);
 
         return new $definition($fileName, $options);
     }
 
     /**
-     * @return string
+     * @return class-string<Throwable>
      */
     protected function getExceptionClass(): string
     {
@@ -66,7 +69,7 @@ class AdapterFactory
     }
 
     /**
-     * @return string[]
+     * @return array<string, class-string<AdapterInterface>>
      */
     protected function getServices(): array
     {

@@ -46,6 +46,7 @@ class Line extends AbstractFormatter
      * @param Item $item
      *
      * @return string
+     *
      * @throws Exception
      */
     public function format(Item $item): string

@@ -34,9 +34,10 @@ class Logger extends AbstractLogger implements LoggerInterface
      *
      * @param mixed             $level
      * @param string|Stringable $message
-     * @param array             $context
+     * @param array<mixed>      $context
      *
      * @return void
+     *
      * @throws Exception
      */
     public function log(

@@ -72,6 +72,8 @@ interface AdapterInterface
      * Processes the message in the adapter
      *
      * @param Item $item
+     *
+     * @return void
      */
     public function process(Item $item): void;
 

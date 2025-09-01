@@ -55,8 +55,8 @@ class Syslog extends AbstractAdapter
     /**
      * Syslog constructor.
      *
-     * @param string $name
-     * @param array  $options
+     * @param string                              $name
+     * @param array{option?: int, facility?: int} $options
      */
     public function __construct(
         protected string $name,
@@ -68,6 +68,8 @@ class Syslog extends AbstractAdapter
 
     /**
      * Closes the logger
+     *
+     * @return bool
      */
     public function close(): bool
     {
