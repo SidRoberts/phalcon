@@ -86,9 +86,7 @@ abstract class AbstractAdapter implements SessionHandlerInterface
      */
     public function read(string $id): string
     {
-        $data = $this->adapter->get($id);
-
-        return null === $data ? '' : $data;
+        return $this->adapter->get($id) ?? '';
     }
 
     /**
