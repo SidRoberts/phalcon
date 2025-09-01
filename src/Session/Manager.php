@@ -33,6 +33,8 @@ use function session_status;
  * Phalcon\Session\Manager
  *
  * Session manager class
+ *
+ * @phpstan-type TOptions = array{uniqueId?: string}
  */
 class Manager implements ManagerInterface
 {
@@ -49,7 +51,7 @@ class Manager implements ManagerInterface
     private string $name = '';
 
     /**
-     * @var array
+     * @var TOptions
      */
     private array $options = [];
 
@@ -61,9 +63,7 @@ class Manager implements ManagerInterface
     /**
      * Manager constructor.
      *
-     * @param array $options = [
-     *                       'uniqueId' => null
-     *                       ]
+     * @param TOptions $options
      */
     public function __construct(array $options = [])
     {
@@ -99,6 +99,8 @@ class Manager implements ManagerInterface
      *
      * @param string $key
      * @param mixed  $value
+     *
+     * @return void
      */
     public function __set(string $key, mixed $value): void
     {
@@ -109,6 +111,8 @@ class Manager implements ManagerInterface
      * Alias: Removes a session variable from an application context
      *
      * @param string $key
+     *
+     * @return void
      */
     public function __unset(string $key): void
     {
@@ -117,6 +121,8 @@ class Manager implements ManagerInterface
 
     /**
      * Destroy/end a session
+     *
+     * @return void
      */
     public function destroy(): void
     {
@@ -202,7 +208,7 @@ class Manager implements ManagerInterface
     /**
      * Get internal options
      *
-     * @return array
+     * @return TOptions
      */
     public function getOptions(): array
     {
@@ -248,6 +254,8 @@ class Manager implements ManagerInterface
      * Removes a session variable from an application context
      *
      * @param string $key
+     *
+     * @return void
      */
     public function remove(string $key): void
     {
@@ -264,8 +272,10 @@ class Manager implements ManagerInterface
      *
      * @param string $key
      * @param mixed  $value
+     *
+     * @return void
      */
-    public function set(string $key, $value): void
+    public function set(string $key, mixed $value): void
     {
         // To use $_SESSION variable we need to start session first
         if (true === $this->exists()) {
@@ -295,6 +305,7 @@ class Manager implements ManagerInterface
      * @param string $sessionId
      *
      * @return ManagerInterface
+     *
      * @throws SessionAlreadyStarted
      */
     public function setId(string $sessionId): ManagerInterface
@@ -315,6 +326,7 @@ class Manager implements ManagerInterface
      * @param string $name
      *
      * @return ManagerInterface
+     *
      * @throws InvalidSessionName
      * @throws SessionModificationDenied
      */
@@ -338,7 +350,9 @@ class Manager implements ManagerInterface
     /**
      * Sets session's options
      *
-     * @param array $options
+     * @param TOptions $options
+     *
+     * @return void
      */
     public function setOptions(array $options): void
     {

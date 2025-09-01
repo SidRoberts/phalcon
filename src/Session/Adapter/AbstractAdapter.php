@@ -92,7 +92,6 @@ abstract class AbstractAdapter implements SessionHandlerInterface
     /**
      * Write
      *
-     *
      * @param string $id
      * @param string $data
      *

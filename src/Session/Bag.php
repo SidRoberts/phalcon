@@ -64,6 +64,8 @@ class Bag extends Collection implements BagInterface
 
     /**
      * Destroys the session bag
+     *
+     * @return void
      */
     public function clear(): void
     {
@@ -74,6 +76,10 @@ class Bag extends Collection implements BagInterface
 
     /**
      * Initialize internal array
+     *
+     * @param array<string, mixed> $data
+     *
+     * @return void
      */
     public function init(array $data = []): void
     {
@@ -84,6 +90,10 @@ class Bag extends Collection implements BagInterface
 
     /**
      * Removes a property from the internal bag
+     *
+     * @param string $element
+     *
+     * @return void
      */
     public function remove(string $element): void
     {
@@ -94,6 +104,11 @@ class Bag extends Collection implements BagInterface
 
     /**
      * Sets a value in the session bag
+     *
+     * @param string $element
+     * @param mixed  $value
+     *
+     * @return void
      */
     public function set(string $element, mixed $value): void
     {

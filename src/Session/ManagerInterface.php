@@ -49,6 +49,8 @@ interface ManagerInterface extends InjectionAwareInterface
      *
      * @param string $key
      * @param mixed  $value
+     *
+     * @return void
      */
     public function __set(string $key, $value): void;
 
@@ -56,12 +58,15 @@ interface ManagerInterface extends InjectionAwareInterface
      * Alias: Removes a session variable from an application context
      *
      * @param string $key
+     *
+     * @return void
      */
     public function __unset(string $key): void;
 
     /**
      * Destroy/end a session
      *
+     * @return void
      */
     public function destroy(): void;
 
@@ -133,6 +138,8 @@ interface ManagerInterface extends InjectionAwareInterface
      * Removes a session variable from an application context
      *
      * @param string $key
+     *
+     * @return void
      */
     public function remove(string $key): void;
 
@@ -141,8 +148,10 @@ interface ManagerInterface extends InjectionAwareInterface
      *
      * @param string $key
      * @param mixed  $value
+     *
+     * @return void
      */
-    public function set(string $key, $value): void;
+    public function set(string $key, mixed $value): void;
 
     /**
      * Set the adapter for the session
@@ -169,6 +178,7 @@ interface ManagerInterface extends InjectionAwareInterface
      * @param string $name
      *
      * @return ManagerInterface
+     *
      * @throws InvalidArgumentException
      */
     public function setName(string $name): ManagerInterface;
@@ -177,6 +187,8 @@ interface ManagerInterface extends InjectionAwareInterface
      * Sets session's options
      *
      * @param array $options
+     *
+     * @return void
      */
     public function setOptions(array $options): void;
 

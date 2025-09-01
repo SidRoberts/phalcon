@@ -47,6 +47,8 @@ use const DIRECTORY_SEPARATOR;
  * );
  * $session->setAdapter($files);
  * ```
+ *
+ * @phpstan-type TOptions = array{prefix?: string, savePath?: string}
  */
 class Stream extends Noop
 {
@@ -57,7 +59,7 @@ class Stream extends Noop
     /**
      * Session options
      *
-     * @var array
+     * @var TOptions
      */
     protected array $options = [];
 
@@ -78,10 +80,7 @@ class Stream extends Noop
     /**
      * Stream constructor.
      *
-     * @param array $options = [
-     *                       'prefix'   => '',
-     *                       'savePath' => ''
-     *                       ]
+     * @param TOptions $options
      *
      * @throws InvalidSavePath
      * @throws SavePathUnavailable
@@ -214,7 +213,7 @@ class Stream extends Noop
      *
      * @param string $pattern
      *
-     * @return array|false
+     * @return list<string>|false
      */
     protected function getGlobFiles(string $pattern): array | false
     {

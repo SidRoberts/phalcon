@@ -35,6 +35,8 @@ class Noop implements SessionHandlerInterface
 {
     /**
      * Close
+     *
+     * @return bool
      */
     public function close(): bool
     {
