@@ -19,9 +19,34 @@ use Phalcon\Config\ConfigInterface;
 use Phalcon\Support\Exception as SupportException;
 use Phalcon\Support\Traits\ConfigTrait;
 use Psr\SimpleCache\CacheInterface;
+use Throwable;
 
 /**
  * Creates a new Cache class
+ *
+ * @phpstan-type TConfig = array{
+ *     adapter?: string,
+ *     options?: array{
+ *         servers?: list<
+ *             array{
+ *                 host: string,
+ *                 port?: int,
+ *                 weight?: int
+ *             }
+ *         >
+ *     },
+ *     host?: string,
+ *     port?: int,
+ *     index?: int,
+ *     persistent?: bool,
+ *     auth?: string,
+ *     socket?: string,
+ *     defaultSerializer?: string,
+ *     lifetime?: int,
+ *     serializer?: null,
+ *     prefix?: string,
+ *     storageDir?: string
+ * }
  */
 class CacheFactory
 {
@@ -29,6 +54,8 @@ class CacheFactory
 
     /**
      * Constructor
+     *
+     * @param AdapterFactory $adapterFactory
      */
     public function __construct(
         protected AdapterFactory $adapterFactory
@@ -38,31 +65,10 @@ class CacheFactory
     /**
      * Factory to create an instance from a Config object
      *
-     * @param array<string, mixed>|ConfigInterface $config = [
-     *                                                     'adapter' => 'apcu',
-     *                                                     'options' => [
-     *                                                     'servers' => [
-     *                                                     [
-     *                                                     'host' => 'localhost',
-     *                                                     'port' => 11211,
-     *                                                     'weight' => 1,
-     *                                                     ]
-     *                                                     ],
-     *                                                     'host' => '127.0.0.1',
-     *                                                     'port' => 6379,
-     *                                                     'index' => 0,
-     *                                                     'persistent' => false,
-     *                                                     'auth' => '',
-     *                                                     'socket' => '',
-     *                                                     'defaultSerializer' => 'Php',
-     *                                                     'lifetime' => 3600,
-     *                                                     'serializer' => null,
-     *                                                     'prefix' => 'phalcon',
-     *                                                     'storageDir' => ''
-     *                                                     ]
-     *                                                     ]
+     * @param TConfig|ConfigInterface $config
      *
      * @return CacheInterface
+     *
      * @throws BaseException
      * @throws SupportException
      */
@@ -71,7 +77,6 @@ class CacheFactory
         $config = $this->checkConfig($config);
         $this->checkConfigElement($config, 'adapter');
 
-        /** @var string $name */
         $name    = $config['adapter'];
         $options = $config['options'] ?? [];
 
@@ -81,29 +86,11 @@ class CacheFactory
     /**
      * Constructs a new Cache instance.
      *
-     * @param string               $name
-     * @param array<string, mixed> $options = [
-     *                                      'servers'           => [
-     *                                      [
-     *                                      'host'   => 'localhost',
-     *                                      'port'   => 11211,
-     *                                      'weight' => 1,
-     *                                      ]
-     *                                      ],
-     *                                      'host'              => '127.0.0.1',
-     *                                      'port'              => 6379,
-     *                                      'index'             => 0,
-     *                                      'persistent'        => false,
-     *                                      'auth'              => '',
-     *                                      'socket'            => '',
-     *                                      'defaultSerializer' => 'Php',
-     *                                      'lifetime'          => 3600,
-     *                                      'serializer'        => null,
-     *                                      'prefix'            => 'phalcon',
-     *                                      'storageDir'        => '',
-     *                                      ]
+     * @param string  $name
+     * @param TConfig $options
      *
      * @return CacheInterface
+     *
      * @throws BaseException
      */
     public function newInstance(string $name, array $options = []): CacheInterface
@@ -116,7 +103,7 @@ class CacheFactory
     /**
      * Returns the exception class for the factory
      *
-     * @return string
+     * @return class-string<Throwable>
      */
     protected function getExceptionClass(): string
     {

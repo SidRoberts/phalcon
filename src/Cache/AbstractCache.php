@@ -59,6 +59,8 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
      *
      * @param string $key
      *
+     * @return void
+     *
      * @throws Exception
      */
     protected function checkKey(string $key): void
@@ -100,8 +102,8 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
      * @return bool True if the item was successfully removed. False if there
      *              was an error.
      *
-     * @throws Exception MUST be thrown if the $key string is
-     *                                  not a legal value.
+     * @throws Exception       MUST be thrown if the $key string is not a legal
+     *                         value.
      * @throws EventsException
      */
     protected function doDelete(string $key): bool
@@ -120,14 +122,14 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
     /**
      * Deletes multiple cache items in a single operation.
      *
-     * @param iterable<mixed, mixed> $keys A list of string-based keys to be deleted.
+     * @param iterable<string> $keys A list of string-based keys to be deleted.
      *
      * @return bool True if the items were successfully removed. False if there
      *              was an error.
      *
-     * @throws Exception MUST be thrown if $keys is neither an
-     *                                  array nor a Traversable, or if any of
-     *                                  the $keys are not a legal value.
+     * @throws Exception       MUST be thrown if $keys is neither an array nor a
+     *                         a Traversable, or if any of the $keys are not a
+     *                         legal value.
      * @throws EventsException
      */
     protected function doDeleteMultiple(iterable $keys): bool
@@ -137,6 +139,7 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
         $this->fire("cache:beforeDeleteMultiple", $keys);
 
         $keysArray = [];
+
         /** @var string $key */
         foreach ($keys as $key) {
             $this->checkKey($key);
@@ -157,10 +160,10 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
      * @param mixed  $default Default value to return if the key does not exist.
      *
      * @return mixed The value of the item from the cache, or $default in case
-     * of cache miss.
+     *               of cache miss.
      *
-     * @throws Exception MUST be thrown if the $key string is
-     * not a legal value.
+     * @throws Exception       MUST be thrown if the $key string is not a legal
+     *                         value.
      * @throws EventsException
      */
     protected function doGet(string $key, mixed $default = null)
@@ -179,16 +182,18 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
     /**
      * Obtains multiple cache items by their unique keys.
      *
-     * @param iterable<mixed, mixed> $keys    A list of keys that can obtained
-     *                                        in a single operation.
-     * @param mixed                  $default Default value to return for keys
-     *                                        that do not exist.
+     * @param iterable<string> $keys    A list of keys that can obtained in a
+     *                                  single operation.
+     * @param mixed            $default Default value to return for keys that do
+     *                                  not exist.
      *
      * @return iterable<array-key, mixed> A list of key => value pairs. Cache
-     * keys that do not exist or are stale will have $default as value.
+     *                                    keys that do not exist or are stale
+     *                                    will have $default as value.
      *
-     * @throws Exception MUST be thrown if $keys is neither an
-     * array nor a Traversable, or if any of the $keys are not a legal value.
+     * @throws Exception       MUST be thrown if $keys is neither an array nor a
+     *                         Traversable, or if any of the $keys are not a
+     *                         legal value.
      * @throws EventsException
      */
     protected function doGetMultiple(iterable $keys, mixed $default = null): iterable
@@ -213,7 +218,7 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
             $results    = array_combine($keys, $results);
         } else {
             $results = [];
-            /** @var string $element */
+
             foreach ($keys as $element) {
                 $results[$element] = $this->get($element, $default);
             }
@@ -231,8 +236,8 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
      *
      * @return bool
      *
-     * @throws Exception MUST be thrown if the $key string is
-     * not a legal value.
+     * @throws Exception       MUST be thrown if the $key string is not a legal
+     *                         value.
      * @throws EventsException
      */
     protected function doHas(string $key): bool
@@ -252,19 +257,19 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
      * Persists data in the cache, uniquely referenced by a key with an optional
      * expiration TTL time.
      *
-     * @param string                $key    The key of the item to store.
-     * @param mixed                 $value  The value of the item to store.
-     *                                      Must be serializable.
-     * @param null|int|DateInterval $ttl    Optional. The TTL value of this
-     *                                      item. If no value is sent and the
-     *                                      driver supports TTL then the library
-     *                                      may set a default value for it or
-     *                                      let the driver take care of that.
+     * @param string                $key   The key of the item to store.
+     * @param mixed                 $value The value of the item to store. Must
+     *                                     be serializable.
+     * @param null|int|DateInterval $ttl   Optional. The TTL value of this item.
+     *                                     If no value is sent and the driver
+     *                                     supports TTL then the library may set
+     *                                     a default value for it or let the
+     *                                     driver take care of that.
      *
      * @return bool True on success and false on failure.
      *
-     * @throws Exception MUST be thrown if the $key string is not
-     * a legal value.
+     * @throws Exception       MUST be thrown if the $key string is not a legal
+     *                         value.
      * @throws EventsException
      */
     protected function doSet(
@@ -286,19 +291,20 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
     /**
      * Persists a set of key => value pairs in the cache, with an optional TTL.
      *
-     * @param iterable<mixed, mixed> $values A list of key => value pairs for a
-     *                                       multiple-set operation.
-     * @param null|int|DateInterval  $ttl    Optional. The TTL value of this
-     *                                       item. If no value is sent and the
-     *                                       driver supports TTL then the
-     *                                       library may set a default value for
-     *                                       it or let the driver take care of
-     *                                       that.
+     * @param iterable<string, mixed> $values A list of key => value pairs for a
+     *                                        multiple-set operation.
+     * @param null|int|DateInterval   $ttl    Optional. The TTL value of this
+     *                                        item. If no value is sent and the
+     *                                        driver supports TTL then the
+     *                                        library may set a default value
+     *                                        for it or let the driver take care
+     *                                        of that.
      *
      * @return bool True on success and false on failure.
      *
-     * @throws Exception MUST be thrown if $values is neither an
-     * array nor a Traversable, or if any of the $values are not a legal value.
+     * @throws Exception       MUST be thrown if $values is neither an array nor
+     *                         a Traversable, or if any of the $values are not a
+     *                         legal value.
      * @throws EventsException
      */
     protected function doSetMultiple(iterable $values, mixed $ttl = null): bool
@@ -308,10 +314,7 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
         $this->fire("cache:beforeSetMultiple", array_keys((array)$values));
 
         $result = true;
-        /**
-         * @var string $key
-         * @var mixed  $value
-         */
+
         foreach ($values as $key => $value) {
             if (true !== $this->set($key, $value, $ttl)) {
                 $result = false;

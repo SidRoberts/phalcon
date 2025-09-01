@@ -37,8 +37,8 @@ class AdapterFactory
     /**
      * AdapterFactory constructor.
      *
-     * @param SerializerFactory     $serializerFactory
-     * @param array<string, string> $services
+     * @param SerializerFactory                             $serializerFactory
+     * @param array<string, class-string<AdapterInterface>> $services
      */
     public function __construct(
         protected readonly SerializerFactory $serializerFactory,
@@ -73,11 +73,12 @@ class AdapterFactory
      *                                      ]
      *
      * @return AdapterInterface
+     *
      * @throws BaseException
      */
     public function newInstance(string $name, array $options = []): AdapterInterface
     {
-        /** @var class-string $definition */
+        /** @var class-string<AdapterInterface> */
         $definition = $this->getService($name);
 
         return new $definition(
@@ -97,7 +98,7 @@ class AdapterFactory
     /**
      * Returns the available adapters
      *
-     * @return string[]
+     * @return array<string, class-string<AdapterInterface>>
      */
     protected function getServices(): array
     {
