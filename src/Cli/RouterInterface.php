@@ -22,7 +22,7 @@ use Phalcon\Cli\Router\RouteInterface;
  *      module?: string,
  *      task?: string,
  *      action?: string,
- *      params?: string
+ *      params?: array
  * }
  */
 interface RouterInterface
@@ -54,7 +54,7 @@ interface RouterInterface
     /**
      * Return the sub expressions in the regular expression matched
      *
-     * @return array<array-key, string>
+     * @return array<string>
      */
     public function getMatches(): array;
 
@@ -101,7 +101,7 @@ interface RouterInterface
     /**
      * Return all the routes defined in the router
      *
-     * @return RouteInterface[]
+     * @return array<string, RouteInterface>
      */
     public function getRoutes(): array;
 

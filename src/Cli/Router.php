@@ -82,7 +82,7 @@ class Router extends AbstractInjectionAware implements RouterInterface
     protected ?RouteInterface $matchedRoute = null;
 
     /**
-     * @var array<array-key, string>
+     * @var array<string>
      */
     protected array $matches = [];
 
@@ -97,7 +97,7 @@ class Router extends AbstractInjectionAware implements RouterInterface
     protected array $parameters = [];
 
     /**
-     * @var array
+     * @var array<string, RouteInterface>
      */
     protected array $routes = [];
 
@@ -187,7 +187,7 @@ class Router extends AbstractInjectionAware implements RouterInterface
     /**
      * Returns the sub expressions in the regular expression matched
      *
-     * @return array<array-key, string>
+     * @return array<string>
      */
     public function getMatches(): array
     {
@@ -218,6 +218,7 @@ class Router extends AbstractInjectionAware implements RouterInterface
      * Returns processed extra params
      *
      * @return array
+     *
      * @todo deprecate this in future versions
      */
     public function getParams(): array
@@ -246,7 +247,6 @@ class Router extends AbstractInjectionAware implements RouterInterface
      */
     public function getRouteByName(string $name): RouteInterface | bool
     {
-        /** @var RouteInterface $route */
         foreach ($this->routes as $route) {
             if ($name === $route->getName()) {
                 return $route;
@@ -259,7 +259,7 @@ class Router extends AbstractInjectionAware implements RouterInterface
     /**
      * Returns all the routes defined in the router
      *
-     * @return Route[]
+     * @return array<string, RouteInterface>
      */
     public function getRoutes(): array
     {
@@ -282,6 +282,7 @@ class Router extends AbstractInjectionAware implements RouterInterface
      * @param array|string $arguments
      *
      * @return void
+     *
      * @throws Exception
      */
     public function handle(array | string $arguments = []): void

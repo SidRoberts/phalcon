@@ -53,7 +53,7 @@ interface RouteInterface
     /**
      * Set the routing delimiter
      *
-     * @param string $delimiter
+     * @param non-empty-string $delimiter
      *
      * @return mixed
      */
@@ -76,14 +76,14 @@ interface RouteInterface
     /**
      * Returns the router converter
      *
-     * @return array
+     * @return array<string, callable>
      */
     public function getConverters(): array;
 
     /**
      * Get routing delimiter
      *
-     * @return string
+     * @return non-empty-string
      */
     public static function getDelimiter(): string;
 

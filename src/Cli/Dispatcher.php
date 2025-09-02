@@ -62,7 +62,7 @@ class Dispatcher extends CliDispatcher implements DispatcherInterface
     protected string $handlerSuffix = "Task";
 
     /**
-     * @var array
+     * @var array<string, true|string>
      */
     protected array $options = [];
 
@@ -142,10 +142,11 @@ class Dispatcher extends CliDispatcher implements DispatcherInterface
             DispatcherException::EXCEPTION_NO_DI
         );
 
-        /** @var Filter $filter */
         if ($this->container instanceof DiInterface) {
+            /** @var Filter */
             $filter = $this->container->getShared("filter");
         } else {
+            /** @var Filter */
             $filter = $this->container->get("filter");
         }
 
@@ -155,7 +156,7 @@ class Dispatcher extends CliDispatcher implements DispatcherInterface
     /**
      * Get dispatched options
      *
-     * @return array
+     * @return array<string, true|string>
      */
     public function getOptions(): array
     {
@@ -209,7 +210,7 @@ class Dispatcher extends CliDispatcher implements DispatcherInterface
     /**
      * Set the options to be dispatched
      *
-     * @param array $options
+     * @param array<string, true|string> $options
      *
      * @return void
      */

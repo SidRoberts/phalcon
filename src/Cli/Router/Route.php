@@ -50,17 +50,17 @@ class Route implements RouteInterface
     protected string $compiledPattern = "";
 
     /**
-     * @var array
+     * @var array<string, callable>
      */
     protected array $converters = [];
 
     /**
-     * @var string
+     * @var non-empty-string
      */
     protected string $delimiter;
 
     /**
-     * @var string
+     * @var non-empty-string
      */
     protected static string $delimiterPath = self::DEFAULT_DELIMITER;
 
@@ -190,7 +190,7 @@ class Route implements RouteInterface
     /**
      * Set the routing delimiter
      *
-     * @param string $delimiter
+     * @param non-empty-string $delimiter
      *
      * @return void
      */
@@ -204,7 +204,7 @@ class Route implements RouteInterface
      *
      * @param string $pattern
      *
-     * @return array|bool
+     * @return array{0: string, 1: array<string, int>}|bool
      */
     public function extractNamedParams(string $pattern): array | bool
     {
@@ -371,7 +371,7 @@ class Route implements RouteInterface
     /**
      * Returns the router converter
      *
-     * @return array
+     * @return array<string, callable>
      */
     public function getConverters(): array
     {
@@ -381,7 +381,7 @@ class Route implements RouteInterface
     /**
      * Get routing delimiter
      *
-     * @return string
+     * @return non-empty-string
      */
     public static function getDelimiter(): string
     {
@@ -542,7 +542,7 @@ class Route implements RouteInterface
                 /**
                  * The route has named parameters, so we need to extract them
                  */
-                /** @var array $extracted */
+                /** @var array */
                 $extracted   = $this->extractNamedParams($pattern);
                 $pcrePattern = $extracted[0];
                 $routePaths  = array_merge($routePaths, $extracted[1]);

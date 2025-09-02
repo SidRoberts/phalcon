@@ -46,7 +46,7 @@ class Console extends AbstractApplication
     protected array | string $arguments = [];
 
     /**
-     * @var array
+     * @var array<string, true|string>
      */
     protected array $options = [];
 
@@ -74,9 +74,16 @@ class Console extends AbstractApplication
             return false;
         }
 
-        /** @var Router $router */
         if ($this->container instanceof DiInterface) {
+            /** @var Router */
             $router = $this->container->getShared("router");
+        } else {
+            /** @var Router */
+            $router = $this->container->get("router");
+        }
+
+        if (empty($arguments) && !empty($this->arguments)) {
+            $router->handle($this->arguments);
         } else {
             $router = $this->container->get("router");
         }
@@ -134,10 +141,11 @@ class Console extends AbstractApplication
             }
         }
 
-        /** @var Dispatcher $dispatcher */
         if ($this->container instanceof DiInterface) {
+            /** @var Dispatcher */
             $dispatcher = $this->container->getShared("dispatcher");
         } else {
+            /** @var Dispatcher */
             $dispatcher = $this->container->get("dispatcher");
         }
 
