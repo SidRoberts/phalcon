@@ -190,6 +190,7 @@ class Gd extends AbstractAdapter
 
     /**
      * @return string
+     *
      * @throws Exception
      */
     public function getVersion(): string
@@ -225,6 +226,7 @@ class Gd extends AbstractAdapter
      * @param int $green
      * @param int $blue
      * @param int $opacity
+     * @param int<0, 100> $opacity
      *
      * @return void
      */
@@ -283,8 +285,8 @@ class Gd extends AbstractAdapter
     }
 
     /**
-     * @param int $width
-     * @param int $height
+     * @param positive-int $width
+     * @param positive-int $height
      *
      * @return false|GdImage|resource
      */
@@ -299,10 +301,10 @@ class Gd extends AbstractAdapter
     }
 
     /**
-     * @param int $width
-     * @param int $height
-     * @param int $offsetX
-     * @param int $offsetY
+     * @param positive-int     $width
+     * @param positive-int     $height
+     * @param non-negative-int $offsetX
+     * @param non-negative-int $offsetY
      *
      * @return void
      */
@@ -470,9 +472,9 @@ class Gd extends AbstractAdapter
     }
 
     /**
-     * @param int  $height
-     * @param int  $opacity
-     * @param bool $fadeIn
+     * @param positive-int $height
+     * @param int<0, 100>  $opacity
+     * @param bool         $fadeIn
      *
      * @return void
      */
@@ -569,6 +571,7 @@ class Gd extends AbstractAdapter
      * @param int    $quality
      *
      * @return false|string
+     *
      * @throws Exception
      */
     protected function processRender(string $extension, int $quality)
@@ -605,8 +608,8 @@ class Gd extends AbstractAdapter
     }
 
     /**
-     * @param int $width
-     * @param int $height
+     * @param positive-int $width
+     * @param positive-int $height
      *
      * @return void
      */
@@ -677,11 +680,11 @@ class Gd extends AbstractAdapter
      * @param int    $quality
      *
      * @return bool
+     *
      * @throws Exception
      */
     protected function processSave(string $file, int $quality): bool
     {
-        /** @var string $extension */
         $extension = pathinfo($file, PATHINFO_EXTENSION);
 
         // If no extension is given, revert to the original type.
@@ -772,6 +775,7 @@ class Gd extends AbstractAdapter
      * @param string|null $fontFile
      *
      * @return void
+     *
      * @throws Exception
      */
     protected function processText(
@@ -870,6 +874,14 @@ class Gd extends AbstractAdapter
         }
     }
 
+    /**
+     * @param AdapterInterface $watermark
+     * @param non-negative-int $offsetX
+     * @param non-negative-int $offsetY
+     * @param int              $opacity
+     *
+     * @return void
+     */
     protected function processWatermark(
         AdapterInterface $watermark,
         int $offsetX,
@@ -925,6 +937,7 @@ class Gd extends AbstractAdapter
      * Checks the installed version of GD
      *
      * @return void
+     *
      * @throws Exception
      */
     private function check(): void

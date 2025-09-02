@@ -20,6 +20,7 @@ use Phalcon\Image\Adapter\Gd;
 use Phalcon\Image\Adapter\Imagick;
 use Phalcon\Support\Traits\ConfigTrait;
 use Phalcon\Traits\Factory\FactoryTrait;
+use Throwable;
 
 /**
  * Factory to create adapters for image manipulation
@@ -31,6 +32,8 @@ class ImageFactory
 
     /**
      * Constructor
+     *
+     * @param array<string, class-string<AdapterInterface>> $services
      */
     public function __construct(array $services = [])
     {
@@ -40,12 +43,9 @@ class ImageFactory
     /**
      * Factory to create an instance from a Config object
      *
-     * @param array|ConfigInterface $config        = [
-     *                                             'adapter' => 'gd',
-     *                                             'file'    => 'image.jpg',
-     *                                             'height'  => null,
-     *                                             'width'   => null
-     *                                             ]
+     * @param array{adapter: string, file: string, height?: int, width?: int}|ConfigInterface $config
+     *
+     * @return AdapterInterface
      *
      * @throws BaseException
      */
@@ -75,6 +75,7 @@ class ImageFactory
      * @param int|null $height
      *
      * @return AdapterInterface
+     *
      * @throws BaseException
      */
     public function newInstance(
@@ -83,13 +84,14 @@ class ImageFactory
         int | null $width = null,
         int | null $height = null
     ): AdapterInterface {
+        /** @var class-string<AdapterInterface> */
         $definition = $this->getService($name);
 
         return new $definition($file, $width, $height);
     }
 
     /**
-     * @return string
+     * @return class-string<Throwable>
      */
     protected function getExceptionClass(): string
     {
@@ -99,7 +101,7 @@ class ImageFactory
     /**
      * Returns the available adapters
      *
-     * @return string[]
+     * @return array<string, class-string<AdapterInterface>>
      */
     protected function getServices(): array
     {

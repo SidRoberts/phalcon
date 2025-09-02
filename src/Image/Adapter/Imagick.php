@@ -228,8 +228,10 @@ class Imagick extends AbstractAdapter
      * @param int $green
      * @param int $blue
      * @param int $opacity
+     * @param int<0, 100> $opacity
      *
      * @return void
+     *
      * @throws Exception
      * @throws ImagickException
      * @throws ImagickPixelException
@@ -320,12 +322,13 @@ class Imagick extends AbstractAdapter
     /**
      * Execute a crop.
      *
-     * @param int $width
-     * @param int $height
-     * @param int $offsetX
-     * @param int $offsetY
+     * @param positive-int     $width
+     * @param positive-int     $height
+     * @param non-negative-int $offsetX
+     * @param non-negative-int $offsetY
      *
      * @return void
+     *
      * @throws ImagickException
      */
     protected function processCrop(
@@ -357,6 +360,7 @@ class Imagick extends AbstractAdapter
      * @param int $direction
      *
      * @return void
+     *
      * @throws ImagickException
      */
     protected function processFlip(int $direction): void
@@ -380,6 +384,7 @@ class Imagick extends AbstractAdapter
      * @param AdapterInterface $image
      *
      * @return void
+     *
      * @throws Exception
      * @throws ImagickException
      */
@@ -419,6 +424,7 @@ class Imagick extends AbstractAdapter
      * @param int $amount amount to pixelate
      *
      * @return void
+     *
      * @throws ImagickException
      */
     protected function processPixelate(int $amount): void
@@ -441,11 +447,12 @@ class Imagick extends AbstractAdapter
     /**
      * Execute a reflection.
      *
-     * @param int  $height
-     * @param int  $opacity
-     * @param bool $fadeIn
+     * @param positive-int $height
+     * @param int<0, 100>  $opacity
+     * @param bool         $fadeIn
      *
      * @return void
+     *
      * @throws Exception
      * @throws ImagickException
      */
@@ -586,6 +593,7 @@ class Imagick extends AbstractAdapter
      * @param int    $quality
      *
      * @return string
+     *
      * @throws ImagickException
      */
     protected function processRender(string $extension, int $quality): string
@@ -616,10 +624,11 @@ class Imagick extends AbstractAdapter
     /**
      * Execute a resize.
      *
-     * @param int $width
-     * @param int $height
+     * @param positive-int $width
+     * @param positive-int $height
      *
      * @return void
+     *
      * @throws ImagickException
      */
     protected function processResize(int $width, int $height): void
@@ -645,6 +654,7 @@ class Imagick extends AbstractAdapter
      * @param int $degrees
      *
      * @return void
+     *
      * @throws ImagickException
      */
     protected function processRotate(int $degrees): void
@@ -679,11 +689,11 @@ class Imagick extends AbstractAdapter
      * @param int    $quality
      *
      * @return bool
+     *
      * @throws ImagickException
      */
     protected function processSave(string $file, int $quality): bool
     {
-        /** @var string $extension */
         $extension = pathinfo($file, PATHINFO_EXTENSION);
 
         $this->image->setFormat($extension);
@@ -724,6 +734,7 @@ class Imagick extends AbstractAdapter
      * @param int $amount
      *
      * @return void
+     *
      * @throws ImagickException
      */
     protected function processSharpen(int $amount): void
@@ -756,6 +767,7 @@ class Imagick extends AbstractAdapter
      * @param string|null $fontFile
      *
      * @return void
+     *
      * @throws ImagickDrawException
      * @throws ImagickException
      * @throws ImagickPixelException
@@ -857,6 +869,7 @@ class Imagick extends AbstractAdapter
      * @param int              $opacity
      *
      * @return void
+     *
      * @throws Exception
      * @throws ImagickException
      */
@@ -903,6 +916,7 @@ class Imagick extends AbstractAdapter
      * Checks if Imagick is enabled
      *
      * @return void
+     *
      * @throws Exception
      */
     private function check(): void

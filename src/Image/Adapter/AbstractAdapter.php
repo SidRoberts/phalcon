@@ -44,7 +44,7 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Image height
      *
-     * @var int
+     * @var positive-int
      */
     protected int $height;
 
@@ -77,17 +77,18 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Image width
      *
-     * @var int
+     * @var positive-int
      */
     protected int $width;
 
     /**
      * Set the background color of an image
      *
-     * @param string $color
-     * @param int    $opacity
+     * @param string      $color
+     * @param int<0, 100> $opacity
      *
      * @return AdapterInterface
+     *
      * @throws Exception
      */
     public function background(
@@ -120,10 +121,10 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Crop an image to the given size
      *
-     * @param int      $width
-     * @param int      $height
-     * @param int|null $offsetX
-     * @param int|null $offsetY
+     * @param positive-int          $width
+     * @param positive-int          $height
+     * @param non-negative-int|null $offsetX
+     * @param non-negative-int|null $offsetY
      *
      * @return AdapterInterface
      */
@@ -261,9 +262,9 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Add a reflection to an image
      *
-     * @param int  $height
-     * @param int  $opacity
-     * @param bool $fadeIn
+     * @param positive-int $height
+     * @param int<0, 100>  $opacity
+     * @param bool         $fadeIn
      *
      * @return AdapterInterface
      */
@@ -438,6 +439,7 @@ abstract class AbstractAdapter implements AdapterInterface
      * @param string|null $fontFile
      *
      * @return AdapterInterface
+     *
      * @throws Exception
      */
     public function text(
@@ -472,8 +474,8 @@ abstract class AbstractAdapter implements AdapterInterface
      * Add a watermark to an image with the specified opacity
      *
      * @param AdapterInterface $watermark
-     * @param int              $offsetX
-     * @param int              $offsetY
+     * @param non-negative-int $offsetX
+     * @param non-negative-int $offsetY
      * @param int              $opacity
      *
      * @return AdapterInterface
@@ -515,6 +517,7 @@ abstract class AbstractAdapter implements AdapterInterface
      * @param int $green
      * @param int $blue
      * @param int $opacity
+     * @param int<0, 100> $opacity
      *
      * @return void
      */
@@ -533,10 +536,10 @@ abstract class AbstractAdapter implements AdapterInterface
     abstract protected function processBlur(int $radius): void;
 
     /**
-     * @param int $width
-     * @param int $height
-     * @param int $offsetX
-     * @param int $offsetY
+     * @param positive-int     $width
+     * @param positive-int     $height
+     * @param non-negative-int $offsetX
+     * @param non-negative-int $offsetY
      *
      * @return void
      */
@@ -569,9 +572,9 @@ abstract class AbstractAdapter implements AdapterInterface
     abstract protected function processPixelate(int $amount): void;
 
     /**
-     * @param int  $height
-     * @param int  $opacity
-     * @param bool $fadeIn
+     * @param positive-int $height
+     * @param int<0, 100>  $opacity
+     * @param bool         $fadeIn
      *
      * @return void
      */
@@ -591,8 +594,8 @@ abstract class AbstractAdapter implements AdapterInterface
     abstract protected function processRender(string $extension, int $quality);
 
     /**
-     * @param int $width
-     * @param int $height
+     * @param positive-int $width
+     * @param positive-int $height
      *
      * @return void
      */
@@ -633,6 +636,7 @@ abstract class AbstractAdapter implements AdapterInterface
      * @param string|null $fontFile
      *
      * @return void
+     *
      * @throws Exception
      */
     abstract protected function processText(
@@ -665,11 +669,12 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Resize the image to the given size
      *
-     * @param int|null $width
-     * @param int|null $height
-     * @param int      $master
+     * @param positive-int|null $width
+     * @param positive-int|null $height
+     * @param int               $master
      *
      * @return void
+     *
      * @throws Exception
      */
     private function checkResizeInput(
@@ -701,9 +706,9 @@ abstract class AbstractAdapter implements AdapterInterface
     }
 
     /**
-     * @param int|null $width
-     * @param int|null $height
-     * @param int      $master
+     * @param positive-int|null $width
+     * @param positive-int|null $height
+     * @param int               $master
      *
      * @return int
      */
@@ -731,6 +736,7 @@ abstract class AbstractAdapter implements AdapterInterface
      * @param string $color
      *
      * @return array
+     *
      * @throws Exception
      */
     private function getColors(string $color): array

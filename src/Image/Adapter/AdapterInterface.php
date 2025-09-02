@@ -23,8 +23,8 @@ interface AdapterInterface
     /**
      * Add a background to an image
      *
-     * @param string $color
-     * @param int    $opacity
+     * @param string      $color
+     * @param int<0, 100> $opacity
      *
      * @return AdapterInterface
      */
@@ -45,10 +45,10 @@ interface AdapterInterface
     /**
      * Crop an image
      *
-     * @param int      $width
-     * @param int      $height
-     * @param int|null $offsetX
-     * @param int|null $offsetY
+     * @param positive-int          $width
+     * @param positive-int          $height
+     * @param non-negative-int|null $offsetX
+     * @param non-negative-int|null $offsetY
      *
      * @return AdapterInterface
      */
@@ -99,9 +99,9 @@ interface AdapterInterface
     /**
      * Reflect an image
      *
-     * @param int  $height
-     * @param int  $opacity
-     * @param bool $fadeIn
+     * @param positive-int $height
+     * @param int<0, 100>  $opacity
+     * @param bool         $fadeIn
      *
      * @return AdapterInterface
      */
@@ -173,13 +173,13 @@ interface AdapterInterface
     /**
      * Adds text on an image
      *
-     * @param string      $text
-     * @param int         $offsetX
-     * @param int         $offsetY
-     * @param int         $opacity
-     * @param string      $color
-     * @param int         $size
-     * @param string|null $fontFile
+     * @param string           $text
+     * @param non-negative-int $offsetX
+     * @param non-negative-int $offsetY
+     * @param int              $opacity
+     * @param string           $color
+     * @param int              $size
+     * @param string|null      $fontFile
      *
      * @return AdapterInterface
      */
@@ -197,8 +197,8 @@ interface AdapterInterface
      * Add a watermark on an image
      *
      * @param AdapterInterface $watermark
-     * @param int              $offsetX
-     * @param int              $offsetY
+     * @param non-negative-int $offsetX
+     * @param non-negative-int $offsetY
      * @param int              $opacity
      *
      * @return AdapterInterface
