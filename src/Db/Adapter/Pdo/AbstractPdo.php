@@ -766,9 +766,6 @@ abstract class AbstractPdo extends AbstractAdapter
             }
         }
 
-        $params = (!empty($bindParams)) ? $bindParams : [];
-        $types  = (!empty($bindTypes)) ? $bindTypes : [];
-
         $statement = $this->pdo->prepare($sqlStatement);
         if (false === $statement) {
             throw new CannotPrepareStatement();
@@ -776,7 +773,7 @@ abstract class AbstractPdo extends AbstractAdapter
 
         $this->prepareRealSql($sqlStatement, $bindParams);
 
-        $statement = $this->executePrepared($statement, $params, $types);
+        $statement = $this->executePrepared($statement, $bindParams, $bindTypes);
 
         /**
          * Execute the afterQuery event if an EventsManager is available
