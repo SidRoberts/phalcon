@@ -110,6 +110,13 @@ interface RouteInterface
     public function getHttpMethods(): array | string | null;
 
     /**
+     * Returns the 'match' callback if any
+     *
+     * @return callable|null
+     */
+    public function getMatch(): callable | null;
+
+    /**
      * Returns the route's name
      *
      * @return string|null
