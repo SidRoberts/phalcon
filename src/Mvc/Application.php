@@ -23,6 +23,7 @@ use Phalcon\Mvc\Application\Exception;
 use Phalcon\Mvc\Application\Exceptions\ContainerRequired;
 use Phalcon\Mvc\Application\Exceptions\InvalidModuleDefinition;
 use Phalcon\Mvc\Application\Exceptions\ModuleDefinitionPathNotFound;
+use Phalcon\Mvc\View\ViewInterface;
 use Phalcon\Traits\Php\FileTrait;
 
 use function call_user_func_array;
@@ -100,6 +101,7 @@ class Application extends AbstractApplication
      * @param string $uri
      *
      * @return ResponseInterface|bool
+     *
      * @throws ApplicationException
      * @throws Exception
      * @throws EventsException
@@ -117,8 +119,10 @@ class Application extends AbstractApplication
         }
 
         if ($this->container instanceof DiInterface) {
+            /** @var RouterInterface */
             $router = $this->container->getShared("router");
         } else {
+            /** @var RouterInterface */
             $router = $this->container->get("router");
         }
 
@@ -268,8 +272,10 @@ class Application extends AbstractApplication
         $view = null;
         if (true === $this->implicitView) {
             if ($this->container instanceof DiInterface) {
+                /** @var ViewInterface */
                 $view = $this->container->getShared("view");
             } else {
+                /** @var ViewInterface */
                 $view = $this->container->get("view");
             }
         }
@@ -387,12 +393,16 @@ class Application extends AbstractApplication
                     /**
                      * We don't need to create a response because there is one
                      * already created
+                     *
+                     * @var ResponseInterface
                      */
                     $response = $possibleResponse;
                 } else {
                     if ($this->container instanceof DiInterface) {
+                        /** @var ResponseInterface */
                         $response = $this->container->getShared("response");
                     } else {
+                        /** @var ResponseInterface */
                         $response = $this->container->get("response");
                     }
 
