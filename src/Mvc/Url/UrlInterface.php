@@ -15,6 +15,8 @@ namespace Phalcon\Mvc\Url;
 
 /**
  * Interface for Phalcon\Mvc\Url\UrlInterface
+ *
+ * @phpstan-type TUri = array{for: string, title?: string, id?: int}|string
  */
 interface UrlInterface
 {

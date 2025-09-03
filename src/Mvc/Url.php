@@ -49,6 +49,8 @@ use function substr;
  *     ]
  * );
  *```
+ *
+ * @phpstan-import-type TUri from UrlInterface
  */
 class Url extends AbstractInjectionAware implements UrlInterface
 {
@@ -65,6 +67,9 @@ class Url extends AbstractInjectionAware implements UrlInterface
      */
     protected string | null $staticBaseUri = null;
 
+    /**
+     * @param RouterInterface|null $router
+     */
     public function __construct(
         protected RouterInterface | null $router = null
     ) {
@@ -103,19 +108,18 @@ class Url extends AbstractInjectionAware implements UrlInterface
      * );
      *```
      *
-     * @param array|string|null $uri = [
-     *                               'for' => '',
-     *                               ]
-     * @param mixed|null        $arguments
-     * @param bool|null         $local
-     * @param mixed|null        $baseUri
+     * @param TUri|null                $uri
+     * @param array<mixed>|object|null $arguments
+     * @param bool|null                $local
+     * @param mixed|null               $baseUri
      *
      * @return string
+     *
      * @throws Exception
      */
     public function get(
         array | string | null $uri = null,
-        mixed $arguments = null,
+        array | object | null $arguments = null,
         ?bool $local = null,
         mixed $baseUri = null,
         bool $replaceArgs = false
@@ -159,8 +163,10 @@ class Url extends AbstractInjectionAware implements UrlInterface
                 }
 
                 if ($this->container instanceof DiInterface) {
+                    /** @var RouterInterface */
                     $this->router = $this->container->getShared("router");
                 } else {
+                    /** @var RouterInterface */
                     $this->router = $this->container->get("router");
                 }
             }
@@ -287,9 +293,7 @@ class Url extends AbstractInjectionAware implements UrlInterface
      * );
      *```
      *
-     * @param array|string|null $uri = [
-     *                               'for' => ''
-     *                               ]
+     * @param TUri|null $uri
      *
      * @return string
      * @throws Exception
