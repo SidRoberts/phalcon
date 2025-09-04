@@ -129,10 +129,11 @@ abstract class AbstractFlash implements FlashInterface, InjectionAwareInterface
      * $flash->outputMessage("error", $message);
      *```
      *
-     * @param string       $type
-     * @param array|string $message
+     * @param string              $type
+     * @param string|list<string> $message
      *
      * @return string|null
+     *
      * @throws Exception
      */
     public function outputMessage(string $type, mixed $message): string | null
@@ -200,7 +201,7 @@ abstract class AbstractFlash implements FlashInterface, InjectionAwareInterface
     /**
      * Set an array with CSS classes to format the messages
      *
-     * @param array $cssClasses
+     * @param array<string, string> $cssClasses
      *
      * @return $this
      */
@@ -214,7 +215,7 @@ abstract class AbstractFlash implements FlashInterface, InjectionAwareInterface
     /**
      * Set an array with CSS classes to format the icon messages
      *
-     * @param array $cssIconClasses
+     * @param array<string, string> $cssIconClasses
      *
      * @return $this
      */
@@ -304,8 +305,8 @@ abstract class AbstractFlash implements FlashInterface, InjectionAwareInterface
      * Checks the collection and returns the content as a string
      * (array is joined)
      *
-     * @param array  $collection
-     * @param string $type
+     * @param array<string, string> $collection
+     * @param string                $type
      *
      * @return string
      */

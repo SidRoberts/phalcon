@@ -40,12 +40,12 @@ trait FlashGettersTrait
     protected bool $automaticHtml = true;
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected array $cssClasses = [];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected array $cssIconClasses = [];
 
@@ -65,7 +65,7 @@ trait FlashGettersTrait
     protected bool $implicitFlush = true;
 
     /**
-     * @var array
+     * @var list<string>
      */
     protected array $messages = [];
 
@@ -76,6 +76,8 @@ trait FlashGettersTrait
 
     /**
      * Clears accumulated messages when implicit flush is disabled
+     *
+     * @return void
      */
     public function clear(): void
     {
@@ -106,7 +108,7 @@ trait FlashGettersTrait
      * Returns the array of the CSS classes for formatting messages. The key is
      * the type of message and the value is the CSS class
      *
-     * @return array
+     * @return array<string, string>
      */
     public function getCssClasses(): array
     {
@@ -117,7 +119,7 @@ trait FlashGettersTrait
      * Returns the array of the icon CSS classes for formatting messages. The
      * key is the type of message and the value is the icon CSS class
      *
-     * @return array
+     * @return array<string, string>
      */
     public function getCssIconClasses(): array
     {

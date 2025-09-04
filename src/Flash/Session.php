@@ -33,6 +33,8 @@ class Session extends AbstractFlash
     /**
      * Clear messages in the session messenger
      *
+     * @return void
+     *
      * @throws Exception
      */
     public function clear(): void
@@ -48,6 +50,7 @@ class Session extends AbstractFlash
      * @param bool        $remove
      *
      * @return array
+     *
      * @throws Exception
      */
     public function getMessages(string | null $type = null, bool $remove = true): array
@@ -105,6 +108,7 @@ class Session extends AbstractFlash
      * @param mixed  $message
      *
      * @return string|null
+     *
      * @throws Exception
      */
     public function message(string $type, $message): string | null
@@ -127,6 +131,8 @@ class Session extends AbstractFlash
      *
      * @param bool $remove
      *
+     * @return void
+     *
      * @throws Exception
      */
     public function output(bool $remove = true): void
@@ -147,6 +153,7 @@ class Session extends AbstractFlash
      * @param string|null $type
      *
      * @return array
+     *
      * @throws Exception
      */
     protected function getSessionMessages(bool $remove, string | null $type = null): array
