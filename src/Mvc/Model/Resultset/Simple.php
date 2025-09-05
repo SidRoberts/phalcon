@@ -185,6 +185,7 @@ class Simple extends Resultset
     public function serialize(): string
     {
         $container = Di::getDefault();
+
         if ($container === null) {
             throw new InvalidContainer();
         }
