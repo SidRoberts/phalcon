@@ -26,14 +26,16 @@ final class GetSetDefaultModuleTest extends AbstractUnitTestCase
     {
         $application = new FakeApplication();
 
-        $expected = '';
-        $actual   = $application->getDefaultModule();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $application->getDefaultModule()
+        );
 
         $application->setDefaultModule('admin');
 
-        $expected = 'admin';
-        $actual   = $application->getDefaultModule();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'admin',
+            $application->getDefaultModule()
+        );
     }
 }

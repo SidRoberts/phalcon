@@ -20,6 +20,8 @@ use Phalcon\Tests\Unit\Application\Fake\FakeApplication;
 final class GetSetDITest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Application\* :: getDI()/setDI() - construct
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -28,9 +30,10 @@ final class GetSetDITest extends AbstractUnitTestCase
         $container   = new FactoryDefault();
         $application = new FakeApplication($container);
 
-        $expected = $container;
-        $actual   = $application->getDI();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $container,
+            $application->getDI()
+        );
     }
 
     /**
@@ -44,8 +47,9 @@ final class GetSetDITest extends AbstractUnitTestCase
 
         $application->setDI($container);
 
-        $expected = $container;
-        $actual   = $application->getDI();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $container,
+            $application->getDI()
+        );
     }
 }

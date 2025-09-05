@@ -20,6 +20,8 @@ use Phalcon\Tests\Unit\Application\Fake\FakeApplication;
 final class GetRegisterModulesTest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Application\* :: registerModules()
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -33,9 +35,10 @@ final class GetRegisterModulesTest extends AbstractUnitTestCase
         ];
         $application->registerModules($modules);
 
-        $expected = $modules;
-        $actual   = $application->getModules();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $modules,
+            $application->getModules()
+        );
     }
 
     /**
@@ -58,15 +61,19 @@ final class GetRegisterModulesTest extends AbstractUnitTestCase
         ];
         $application->registerModules($modules2);
 
-        $expected = $modules2;
-        $actual   = $application->getModules();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $modules2,
+            $application->getModules()
+        );
 
         $application->registerModules($modules1, true);
 
         $expected = array_merge($modules2, $modules1);
-        $actual   = $application->getModules();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $application->getModules()
+        );
     }
 
     /**
@@ -84,8 +91,11 @@ final class GetRegisterModulesTest extends AbstractUnitTestCase
         $application->registerModules($modules);
 
         $expected = [1];
-        $actual   = $application->getModule('admin');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $application->getModule('admin')
+        );
     }
 
     /**
@@ -100,6 +110,7 @@ final class GetRegisterModulesTest extends AbstractUnitTestCase
         );
 
         $application = new FakeApplication();
+
         $application->getModule('no-module');
     }
 }

@@ -29,14 +29,10 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $application = new FakeApplication();
 
-        $class  = EventsAwareInterface::class;
-        $actual = $application;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(EventsAwareInterface::class, $application);
 
-        $class = InjectionAwareInterface::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(InjectionAwareInterface::class, $application);
 
-        $class = AbstractApplication::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(AbstractApplication::class, $application);
     }
 }
