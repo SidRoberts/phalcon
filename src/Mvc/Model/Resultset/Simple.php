@@ -301,6 +301,7 @@ class Simple extends Resultset
     public function unserialize(mixed $data): void
     {
         $container = Di::getDefault();
+
         if ($container === null) {
             throw new InvalidContainer();
         }
