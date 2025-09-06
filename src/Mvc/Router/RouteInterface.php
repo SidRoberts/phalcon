@@ -82,6 +82,13 @@ interface RouteInterface
     public function getCompiledPattern(): string;
 
     /**
+     * Returns the group associated with the route
+     *
+     * @return GroupInterface|null
+     */
+    public function getGroup(): GroupInterface | null;
+
+    /**
      * Returns the hostname restriction if any
      *
      * @return string|null
