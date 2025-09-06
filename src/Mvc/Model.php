@@ -2370,9 +2370,7 @@ abstract class Model extends AbstractInjectionAware implements
      */
     public function getChangedFields(): array
     {
-        $snapshot = $this->snapshot;
-
-        if (!is_array($snapshot)) {
+        if (!is_array($this->snapshot)) {
             throw new SnapshotsDisabled(get_class($this));
         }
 
@@ -2407,7 +2405,7 @@ abstract class Model extends AbstractInjectionAware implements
              * `null` (e.g. a nullable DB column loaded from a fresh row) is
              * not mistaken for absent. [#17042]
              */
-            if (!array_key_exists($name, $snapshot)) {
+            if (!array_key_exists($name, $this->snapshot)) {
                 $changed[] = $name;
 
                 continue;
@@ -2428,7 +2426,7 @@ abstract class Model extends AbstractInjectionAware implements
             /**
              * Check if the field has changed
              */
-            if ($value !== $snapshot[$name]) {
+            if ($value !== $this->snapshot[$name]) {
                 $changed[] = $name;
             }
         }
