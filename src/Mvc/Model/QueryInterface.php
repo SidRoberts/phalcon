@@ -85,6 +85,11 @@ interface QueryInterface
     public function getSql(): array;
 
     /**
+     * @return TransactionInterface|null
+     */
+    public function getTransaction(): TransactionInterface | null;
+
+    /**
      * Check if the query is programmed to get only the first row in
      * the resultset
      *
@@ -135,6 +140,15 @@ interface QueryInterface
      * @return QueryInterface
      */
     public function setSharedLock(bool $sharedLock = false): QueryInterface;
+
+    /**
+     * allows to wrap a transaction around all queries
+     *
+     * @param TransactionInterface $transaction
+     *
+     * @return QueryInterface
+     */
+    public function setTransaction(TransactionInterface $transaction): QueryInterface;
 
     /**
      * Tells to the query if only the first row in the resultset must be returned
