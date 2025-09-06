@@ -4678,6 +4678,7 @@ abstract class Model extends AbstractInjectionAware implements
         if ($useDynamicUpdate && is_array($snapshot)) {
             foreach ($nonPrimary as $field) {
                 $changed = false;
+
                 if (is_array($columnMap)) {
                     if (!isset($columnMap[$field])) {
                         if (!Settings::get("orm.ignore_unknown_columns")) {
@@ -4689,6 +4690,7 @@ abstract class Model extends AbstractInjectionAware implements
                 } else {
                     $attributeField = $field;
                 }
+
                 if (!isset($automaticAttributes[$attributeField])) {
                     /**
                      * Check a bind type for field to update
@@ -4711,6 +4713,7 @@ abstract class Model extends AbstractInjectionAware implements
                         $newSnapshot[$attributeField] = $rawValue;
                     } elseif (property_exists($this, $attributeField)) {
                         $value = $this->$attributeField;
+
                         /**
                          * If the field is not part of the snapshot we add them as changed
                          */
@@ -4718,6 +4721,7 @@ abstract class Model extends AbstractInjectionAware implements
                             $changed = true;
                         } else {
                             $snapshotValue = $snapshot[$attributeField];
+
                             /**
                              * See https://github.com/phalcon/cphalcon/issues/3247
                              * Take a TEXT column with value '4' and replace it by
@@ -4773,6 +4777,7 @@ abstract class Model extends AbstractInjectionAware implements
                                 }
                             }
                         }
+
                         /**
                          * Only changed values are added to the SQL Update
                          */
@@ -4781,6 +4786,7 @@ abstract class Model extends AbstractInjectionAware implements
                             $values[]    = $value;
                             $bindTypes[] = $bindType;
                         }
+
                         $newSnapshot[$attributeField] = $value;
                     } else {
                         $newSnapshot[$attributeField] = null;
@@ -4792,6 +4798,7 @@ abstract class Model extends AbstractInjectionAware implements
              */
             if (!count($fields)) {
                 $this->oldSnapshot = $snapshot;
+
                 return true;
             }
         } else {
