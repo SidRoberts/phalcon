@@ -28,6 +28,7 @@ class SetEventsManagerTest extends AbstractUnitTestCase
         $controller = new ViewRequestController();
 
         $eventsManager = new EventsManager();
+
         $controller->setEventsManager($eventsManager);
 
         $this->assertInstanceOf(

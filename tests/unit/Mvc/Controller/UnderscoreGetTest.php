@@ -31,6 +31,7 @@ class UnderscoreGetTest extends AbstractUnitTestCase
         $di = $this->newService('factoryDefault');
 
         $controller = new ViewRequestController();
+
         $controller->setDI($di);
 
         $this->assertInstanceOf(Request::class, $controller->request);

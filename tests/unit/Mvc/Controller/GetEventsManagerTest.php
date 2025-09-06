@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Mvc\Controller;
 
+use Phalcon\Di\DiInterface;
 use Phalcon\Events\Manager as EventsManager;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Controllers\ViewRequestController;
@@ -28,6 +29,7 @@ class GetEventsManagerTest extends AbstractUnitTestCase
      */
     public function testMvcControllerGetEventsManager(): void
     {
+        /** @var DiInterface */
         $di = $this->newService('factoryDefault');
 
         $controller = new ViewRequestController();

@@ -30,6 +30,7 @@ class GetDITest extends AbstractUnitTestCase
         $di = $this->newService('factoryDefault');
 
         $controller = new ViewRequestController();
+
         $controller->setDI($di);
 
         $this->assertSame($di, $controller->getDI());
