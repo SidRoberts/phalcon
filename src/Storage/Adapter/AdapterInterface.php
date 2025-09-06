@@ -71,6 +71,13 @@ interface AdapterInterface
     public function getAdapter(): mixed;
 
     /**
+     * Name of the default serializer class
+     *
+     * @return string
+     */
+    public function getDefaultSerializer(): string;
+
+    /**
      * Returns all the keys stored
      *
      * @param string $prefix
@@ -119,6 +126,11 @@ interface AdapterInterface
      * @return bool
      */
     public function set(string $key, mixed $value, mixed $ttl = null): bool;
+
+    /**
+     * @param string $serializer
+     */
+    public function setDefaultSerializer(string $serializer): void;
 
     /**
      * Stores data in the adapter forever. The key needs to be manually deleted
