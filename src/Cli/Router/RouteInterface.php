@@ -41,6 +41,17 @@ interface RouteInterface
     public function compilePattern(string $pattern): string;
 
     /**
+     * Adds a converter to perform an additional transformation for certain
+     * parameter
+     *
+     * @param string   $name
+     * @param callable $converter
+     *
+     * @return RouteInterface
+     */
+    public function convert(string $name, callable $converter): RouteInterface;
+
+    /**
      * Set the routing delimiter
      *
      * @param string $delimiter
