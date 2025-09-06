@@ -18,6 +18,18 @@ namespace Phalcon\Cli\Router;
  */
 interface RouteInterface
 {
+
+    /**
+     * Sets a callback that is called if the route is matched.
+     * The developer can implement any arbitrary conditions here
+     * If the callback returns false the route is treated as not matched
+     *
+     * @param callable $callback
+     *
+     * @return RouteInterface
+     */
+    public function beforeMatch(callable $callback): RouteInterface;
+
     /**
      * Replaces placeholders from pattern returning a valid PCRE regular
      * expression
