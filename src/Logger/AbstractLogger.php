@@ -248,7 +248,7 @@ abstract class AbstractLogger
         array $context = []
     ): bool {
         if ($this->logLevel >= $level) {
-            if (count($this->adapters) === 0) {
+            if (empty($this->adapters)) {
                 throw new NoAdaptersConfigured();
             }
 
@@ -267,13 +267,13 @@ abstract class AbstractLogger
              * Log only if the key does not exist in the excluded ones
              */
             $collection = array_diff_key($this->adapters, $this->excluded);
-            foreach ($collection as $adapter) {
-                $method = 'process';
-                if (true === $adapter->inTransaction()) {
-                    $method = 'add';
-                }
 
-                $adapter->$method($item);
+            foreach ($collection as $adapter) {
+                if (true === $adapter->inTransaction()) {
+                    $adapter->add($item);
+                } else {
+                    $adapter->process($item);
+                }
             }
 
             /**
