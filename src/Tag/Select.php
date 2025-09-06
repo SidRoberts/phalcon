@@ -258,6 +258,7 @@ abstract class Select
         }
 
         $escaper = BaseTag::getEscaperService();
+
         foreach ($resultset as $option) {
             if (is_array($using)) {
                 if (is_object($option)) {
