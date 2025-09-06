@@ -17,9 +17,7 @@ use Exception;
 use Memcached;
 use Predis\Client as RedisDriver;
 
-use function array_slice;
 use function call_user_func_array;
-use function func_get_args;
 use function getOptionsLibmemcached;
 use function getOptionsRedis;
 
@@ -55,10 +53,9 @@ abstract class AbstractServicesTestCase extends AbstractUnitTestCase
     /**
      * Returns the value of a given key
      *
-     * @param string     $key
-     * @param mixed|null $value
+     * @param string $key
      *
-     * @return void
+     * @return mixed|null
      */
     public function getMemcachedKey(string $key): mixed
     {
@@ -114,11 +111,11 @@ abstract class AbstractServicesTestCase extends AbstractUnitTestCase
      *
      * @return mixed
      */
-    public function sendRedisCommand(string $command): mixed
+    public function sendRedisCommand(string $command, ...$arguments): mixed
     {
         return call_user_func_array(
             [$this->getRedis(), $command],
-            array_slice(func_get_args(), 1)
+            $arguments
         );
     }
 
@@ -138,7 +135,9 @@ abstract class AbstractServicesTestCase extends AbstractUnitTestCase
     ): void {
         $adapter = $this->getMemcached();
 
-        $this->assertTrue($adapter->set($key, $value, $expiration));
+        $this->assertTrue(
+            $adapter->set($key, $value, $expiration)
+        );
     }
 
     /**

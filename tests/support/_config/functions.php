@@ -203,7 +203,7 @@ if (!function_exists('supportDir')) {
  * Utility
  *******************************************************************************/
 if (!function_exists('env')) {
-    function env(string $key, $default = null)
+    function env(string $key, mixed $default = null): mixed
     {
         if (defined($key)) {
             return constant($key);
@@ -237,6 +237,8 @@ if (!function_exists('defineFromEnv')) {
 if (!function_exists('getOptionsModelCacheStream')) {
     /**
      * Get Model cache options - Stream
+     *
+     * @return array<string, mixed>
      */
     function getOptionsModelCacheStream(): array
     {
@@ -254,6 +256,9 @@ if (!function_exists('getOptionsModelCacheStream')) {
 }
 
 if (!function_exists('getOptionsLibmemcached')) {
+    /**
+     * @return array<string, mixed>
+     */
     function getOptionsLibmemcached(): array
     {
         return [
@@ -272,6 +277,8 @@ if (!function_exists('getOptionsLibmemcached')) {
 if (!function_exists('getOptionsMysql')) {
     /**
      * Get mysql db options
+     *
+     * @return array<string, mixed>
      */
     function getOptionsMysql(): array
     {
@@ -289,6 +296,8 @@ if (!function_exists('getOptionsMysql')) {
 if (!function_exists('getOptionsMariadb')) {
     /**
      * Get mariadb db options
+     *
+     * @return array<string, mixed>
      */
     function getOptionsMariadb(): array
     {
@@ -304,6 +313,11 @@ if (!function_exists('getOptionsMariadb')) {
 }
 
 if (!function_exists('getOptionsPostgresql')) {
+    /**
+     * Get postgresql db options
+     *
+     * @return array<string, mixed>
+     */
     function getOptionsPostgresql(): array
     {
         return [
@@ -318,6 +332,9 @@ if (!function_exists('getOptionsPostgresql')) {
 }
 
 if (!function_exists('getOptionsRedis')) {
+    /**
+     * @return array<string, mixed>
+     */
     function getOptionsRedis(): array
     {
         return [
@@ -329,6 +346,9 @@ if (!function_exists('getOptionsRedis')) {
 }
 
 if (!function_exists('getOptionsRedisCluster')) {
+    /**
+     * @return array<string, mixed>
+     */
     function getOptionsRedisCluster(): array
     {
         return [
@@ -341,6 +361,8 @@ if (!function_exists('getOptionsRedisCluster')) {
 if (!function_exists('getOptionsSessionStream')) {
     /**
      * Get Session Stream options
+     *
+     * @return array<string, mixed>
      */
     function getOptionsSessionStream(): array
     {
@@ -357,6 +379,8 @@ if (!function_exists('getOptionsSessionStream')) {
 if (!function_exists('getOptionsSqlite')) {
     /**
      * Get sqlite db options
+     *
+     * @return array<string, mixed>
      */
     function getOptionsSqlite(): array
     {

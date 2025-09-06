@@ -60,10 +60,11 @@ foreach ($drivers as $driver) {
 }
 
 
-function cleanFile(string $schema)
+function cleanFile(string $schema): void
 {
     if (file_exists($schema)) {
         $handle = fopen($schema, "r+");
+
         if ($schema !== false) {
             ftruncate($handle, 0);
             fclose($handle);
@@ -80,6 +81,7 @@ function getMigrations(string $root): array
 {
     $path       = $root . '/tests/support/Migrations/';
     $migrations = [];
+
     foreach (glob($path . '*.php') as $file) {
         $file = str_replace([$path, '.php'], '', $file);
         if ($file !== 'AbstractMigration' && $file !== 'BootstrapMigration' && $file !== 'FooterMigration') {
@@ -92,7 +94,7 @@ function getMigrations(string $root): array
     return $migrations;
 }
 
-function logStatements(array $statements, string $schema)
+function logStatements(array $statements, string $schema): void
 {
     foreach ($statements as $statement) {
         error_log(PHP_EOL . $statement . PHP_EOL, 3, $schema);

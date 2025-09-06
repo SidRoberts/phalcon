@@ -33,10 +33,8 @@ foreach ($argv as $k => $arg) {
 
 try {
     $console->handle($arguments);
-} catch (\Exception $e) {
-    fwrite(STDERR, $e->getMessage() . PHP_EOL);
-    exit(1);
 } catch (Throwable $throwable) {
     fwrite(STDERR, $throwable->getMessage() . PHP_EOL);
+
     exit(1);
 }

@@ -141,7 +141,7 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
     }
 
     /**
-     * @return array
+     * @return array<string, mixed>
      */
     public static function getDatabaseOptions(): array
     {
@@ -179,8 +179,8 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
     }
 
     /**
-     * @param string $table
-     * @param array  $criteria
+     * @param non-empty-string     $table
+     * @param array<string, mixed> $criteria
      *
      * @return void
      */
@@ -192,8 +192,8 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
     }
 
     /**
-     * @param string $table
-     * @param array  $criteria
+     * @param non-empty-string     $table
+     * @param array<string, mixed> $criteria
      *
      * @return void
      */
@@ -229,6 +229,7 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
 
             $queries = explode(';', env('initial_queries', ''));
             $queries = array_filter($queries);
+
             foreach ($queries as $query) {
                 self::$connection->exec($query);
             }
@@ -257,7 +258,7 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
     /**
      * Load a SQL file into the database
      *
-     * @param array $sql
+     * @param list<string> $sql
      *
      * @return void
      */
@@ -279,6 +280,7 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
             if (preg_match('#DELIMITER ([\;\$\|\\\]+)#i', $singleSql, $match)) {
                 $delimiter       = $match[1];
                 $delimiterLength = strlen($delimiter);
+
                 continue;
             }
 
@@ -295,7 +297,10 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
 
             // Execute the query if it ends with the delimiter
             if (substr($query, -$delimiterLength) === $delimiter) {
-                self::$connection->exec(substr($query, 0, -$delimiterLength));
+                self::$connection->exec(
+                    substr($query, 0, -$delimiterLength)
+                );
+
                 $query = '';
             }
         }
@@ -309,8 +314,8 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
     /**
      * Return records from the database
      *
-     * @param string $table
-     * @param array  $criteria
+     * @param non-empty-string     $table
+     * @param array<string, mixed> $criteria
      *
      * @return array
      */
@@ -318,14 +323,17 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
     {
         $sql   = 'SELECT * FROM ' . $table . ' WHERE ';
         $where = [];
+
         foreach ($criteria as $key => $value) {
             $val = $value;
+
             if (is_string($value)) {
                 $val = "'" . $value . "'";
             }
 
             $where[] = $key . ' = ' . $val;
         }
+
         $sql .= implode(' AND ', $where);
 
         $connection = self::$connection;
@@ -336,11 +344,12 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
     }
 
     /**
-     * @param object $object
-     * @param string $methodName
-     * @param array  $parameters
+     * @param object           $object
+     * @param non-empty-string $methodName
+     * @param array<mixed>     $parameters
      *
      * @return mixed
+     *
      * @throws ReflectionException
      */
     protected function invokeMethod(
@@ -350,6 +359,7 @@ abstract class AbstractDatabaseTestCase extends AbstractUnitTestCase
     ): mixed {
         $reflection = new ReflectionClass(get_class($object));
         $method     = $reflection->getMethod($methodName);
+
         $method->setAccessible(true);
 
         return $method->invokeArgs($object, $parameters);

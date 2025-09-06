@@ -21,12 +21,10 @@ use RecursiveIteratorIterator;
 use ReflectionClass;
 use ReflectionException;
 
-use function array_slice;
 use function array_unshift;
 use function call_user_func_array;
 use function extension_loaded;
 use function file_exists;
-use function func_get_args;
 use function gc_collect_cycles;
 use function is_dir;
 use function is_file;
@@ -50,6 +48,7 @@ abstract class AbstractUnitTestCase extends TestCase
     public function assertFileContentsContains(string $fileName, string $stream): void
     {
         $contents = file_get_contents($fileName);
+
         $this->assertStringContainsString($stream, $contents);
     }
 
@@ -62,6 +61,7 @@ abstract class AbstractUnitTestCase extends TestCase
     public function assertFileContentsEqual(string $fileName, string $stream): void
     {
         $contents = file_get_contents($fileName);
+
         $this->assertEquals($contents, $stream);
     }
 
@@ -70,13 +70,16 @@ abstract class AbstractUnitTestCase extends TestCase
      *
      * @param string|object $obj
      * @param string        $method
+     * @param               $args
+     *
+     * @return mixed
      *
      * @throws ReflectionException
-     * @return mixed
      */
     public function callProtectedMethod(
         string | object $obj,
-        string $method
+        string $method,
+        ...$args
     ): mixed {
         $reflectionClass  = new ReflectionClass($obj);
         $reflectionMethod = $reflectionClass->getMethod($method);
@@ -85,9 +88,6 @@ abstract class AbstractUnitTestCase extends TestCase
         if (!is_object($obj)) {
             $obj = $reflectionClass->newInstanceWithoutConstructor();
         }
-
-        // $obj, $method
-        $args = array_slice(func_get_args(), 2);
 
         array_unshift($args, $obj);
 
@@ -133,7 +133,7 @@ abstract class AbstractUnitTestCase extends TestCase
      *
      * @return string
      */
-    public function getNewFileName(string $prefix = '', string $suffix = 'log')
+    public function getNewFileName(string $prefix = '', string $suffix = 'log'): string
     {
         $prefix = ($prefix) ? $prefix . '_' : '';
         $suffix = ($suffix) ?: 'log';
