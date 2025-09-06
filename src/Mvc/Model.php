@@ -3175,7 +3175,7 @@ abstract class Model extends AbstractInjectionAware implements
 
         if (
             $manager->isKeepingSnapshots($this) &&
-            $this->snapshot != null &&
+            $this->snapshot !== null &&
             $attributes != $this->snapshot
         ) {
             $snapshot = $this->snapshot;
