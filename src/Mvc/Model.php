@@ -2720,14 +2720,11 @@ abstract class Model extends AbstractInjectionAware implements
      */
     public function getUpdatedFields(): array
     {
-        $snapshot    = $this->snapshot;
-        $oldSnapshot = $this->oldSnapshot;
-
         if (!Settings::get("orm.update_snapshot_on_save")) {
             throw new UpdateSnapshotDisabled(get_class($this));
         }
 
-        if (!is_array($snapshot)) {
+        if (!is_array($this->snapshot)) {
             throw new SnapshotsDisabled(get_class($this));
         }
 
@@ -2740,13 +2737,13 @@ abstract class Model extends AbstractInjectionAware implements
 
         $updated = [];
 
-        foreach ($snapshot as $name => $value) {
+        foreach ($this->snapshot as $name => $value) {
             /**
              * If some attribute is not present in the oldSnapshot, we assume
              * the record as changed. array_key_exists() is used so a stored
              * `null` is not mistaken for an absent key. [#17042]
              */
-            if (!array_key_exists($name, $oldSnapshot) || $value !== $oldSnapshot[$name]) {
+            if (!array_key_exists($name, $this->oldSnapshot) || $value !== $this->oldSnapshot[$name]) {
                 $updated[] = $name;
             }
         }
