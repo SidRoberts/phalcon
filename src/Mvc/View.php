@@ -819,10 +819,8 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
         /**
          * Check if the user has defined a custom layout
          */
-        $layout = $this->layout;
-
-        if ($layout) {
-            $layoutName = $layout;
+        if ($this->layout) {
+            $layoutName = $this->layout;
         } else {
             $layoutName = $controllerName;
         }
@@ -835,22 +833,20 @@ class View extends Injectable implements ViewInterface, EventsAwareInterface
         /**
          * Check if the user has picked a view different than the automatic
          */
-        $pickView = $this->pickView;
-
-        if ($pickView === null) {
+        if ($this->pickView === null) {
             $renderView = $controllerName . "/" . $actionName;
         } else {
             /**
              * The 'picked' view is an array, where the first element is
              * controller and the second the action
              */
-            $renderView = $pickView[0];
+            $renderView = $this->pickView[0];
 
             if (
                 $layoutName === null &&
-                isset($pickView[1])
+                isset($this->pickView[1])
             ) {
-                $layoutName = $pickView[1];
+                $layoutName = $this->pickView[1];
             }
         }
 
