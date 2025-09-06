@@ -68,4 +68,11 @@ interface HeadersInterface
      * @return HeadersInterface
      */
     public function setRaw(string $header): HeadersInterface;
+
+    /**
+     * Returns the current headers as an array
+     *
+     * @return array<string, string>
+     */
+    public function toArray(): array;
 }
