@@ -3369,7 +3369,6 @@ abstract class Model extends AbstractInjectionAware implements
             $snapshot = $data;
         }
 
-
         $this->snapshot = $snapshot;
     }
 
