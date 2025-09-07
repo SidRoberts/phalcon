@@ -23,8 +23,8 @@ class PayloadFactory
     /**
      * Instantiate a new object
      *
-     * @param string                  $status
-     * @param array<array-key, mixed> $result
+     * @param string       $status
+     * @param array<mixed> $result
      *
      * @return DomainPayload
      */

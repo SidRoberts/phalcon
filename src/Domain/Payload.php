@@ -20,8 +20,8 @@ class Payload implements DomainPayload
     /**
      * Payload constructor.
      *
-     * @param string                  $status
-     * @param array<array-key, mixed> $result
+     * @param string       $status
+     * @param array<mixed> $result
      */
     public function __construct(
         protected string $status,
@@ -30,7 +30,7 @@ class Payload implements DomainPayload
     }
 
     /**
-     * @return array<array-key, mixed>
+     * @return array<mixed>
      */
     public function getResult(): array
     {
