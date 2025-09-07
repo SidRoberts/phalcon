@@ -42,6 +42,8 @@ class Message implements MessageInterface, JsonSerializable
 
     /**
      * Magic __toString method returns verbose message
+     *
+     * @return string
      */
     public function __toString(): string
     {
@@ -91,7 +93,7 @@ class Message implements MessageInterface, JsonSerializable
     /**
      * Serializes the object for json_encode
      *
-     * @return array
+     * @return array{field: string, message: string, type: string, code: int, metaData: array}
      *
      * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
      */

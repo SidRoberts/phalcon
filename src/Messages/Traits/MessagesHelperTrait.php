@@ -23,7 +23,7 @@ use Phalcon\Messages\MessageInterface;
 trait MessagesHelperTrait
 {
     /**
-     * @var array
+     * @var list<MessageInterface>
      */
     protected array $messages = [];
 
@@ -35,7 +35,7 @@ trait MessagesHelperTrait
     /**
      * Returns the number of messages in the list
      *
-     * @return int
+     * @return non-negative-int
      */
     public function count(): int
     {
@@ -64,6 +64,8 @@ trait MessagesHelperTrait
 
     /**
      * Moves the internal iteration pointer to the next position
+     *
+     * @return void
      */
     public function next(): void
     {
@@ -135,6 +137,8 @@ trait MessagesHelperTrait
      *```
      *
      * @param mixed $offset
+     *
+     * @return void
      */
     public function offsetUnset($offset): void
     {
@@ -145,6 +149,8 @@ trait MessagesHelperTrait
 
     /**
      * Rewinds the internal iterator
+     *
+     * @return void
      */
     public function rewind(): void
     {

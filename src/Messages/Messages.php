@@ -38,7 +38,7 @@ class Messages implements ArrayAccess, Countable, Iterator, JsonSerializable
     /**
      * Phalcon\Messages\Messages constructor
      *
-     * @param array $messages
+     * @param list<MessageInterface> $messages
      */
     public function __construct(array $messages = [])
     {
@@ -55,6 +55,8 @@ class Messages implements ArrayAccess, Countable, Iterator, JsonSerializable
      *```
      *
      * @param MessageInterface $message
+     *
+     * @return void
      */
     public function appendMessage(MessageInterface $message): void
     {
@@ -68,7 +70,9 @@ class Messages implements ArrayAccess, Countable, Iterator, JsonSerializable
      * $messages->appendMessages($messagesArray);
      *```
      *
-     * @param MessageInterface[]|Iterator $messages
+     * @param list<MessageInterface>|Iterator $messages
+     *
+     * @return void
      *
      * @throws MessagesNotIterable
      */
@@ -143,6 +147,7 @@ class Messages implements ArrayAccess, Countable, Iterator, JsonSerializable
      *```
      *
      * @return array
+     *
      * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
      */
     public function jsonSerialize(): array
