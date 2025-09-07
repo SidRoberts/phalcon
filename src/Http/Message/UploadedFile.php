@@ -328,22 +328,20 @@ class UploadedFile implements UploadedFileInterface
      */
     private function checkStream($stream, int $error): void
     {
-        if (0 === $error) {
-            switch (true) {
-                case is_string($stream):
-                    $this->fileName = $stream;
-                    break;
-                case is_resource($stream):
-                    $this->stream = new Stream($stream);
-                    break;
-                case $stream instanceof StreamInterface:
-                    $this->stream = $stream;
-                    break;
-                default:
-                    throw new InvalidArgumentException(
-                        "Invalid stream or file passed"
-                    );
-            }
+        if (0 !== $error) {
+            return;
+        }
+
+        if (is_string($stream)) {
+            $this->fileName = $stream;
+        } elseif (is_resource($stream)) {
+            $this->stream = new Stream($stream);
+        } elseif ($stream instanceof StreamInterface) {
+            $this->stream = $stream;
+        } else {
+            throw new InvalidArgumentException(
+                "Invalid stream or file passed"
+            );
         }
     }
 
