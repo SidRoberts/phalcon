@@ -20,12 +20,57 @@ final class GetHttpMethodsTest extends AbstractUnitTestCase
 {
     /**
      * @author Phalcon Team <team@phalcon.io>
-     * @since  2018-11-13
+     * @since  2025-09-07
      */
-    public function testMvcRouterRouteGetHttpMethods(): void
+    public function testMvcRouterRouteGetHttpMethodsDefault(): void
     {
-        $route = new Route('/test');
+        $route = new Route("/");
+
+        $this->assertNull(
+            $route->getHttpMethods()
+        );
+
         $route->setHttpMethods('GET');
-        $this->assertSame('GET', $route->getHttpMethods());
+
+        $this->assertSame(
+            'GET',
+            $route->getHttpMethods()
+        );
+    }
+
+    /**
+     * Tests Phalcon\Mvc\Router\Route :: getHttpMethods() - array
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-09-07
+     */
+    public function testMvcRouterRouteGetHttpMethodsArray(): void
+    {
+        $methods = ["GET", "POST"];
+
+        $route = new Route("/", null, $methods);
+
+        $this->assertSame(
+            $methods,
+            $route->getHttpMethods()
+        );
+    }
+
+    /**
+     * Tests Phalcon\Mvc\Router\Route :: getHttpMethods() - string
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-09-07
+     */
+    public function testMvcRouterRouteGetHttpMethodsString(): void
+    {
+        $methods = "GET";
+
+        $route = new Route("/", null, $methods);
+
+        $this->assertSame(
+            $methods,
+            $route->getHttpMethods()
+        );
     }
 }
