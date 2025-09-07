@@ -420,9 +420,7 @@ class Tag
      */
     public static function getEscaper(array $parameters): EscaperInterface | null
     {
-        $autoescape = isset($parameters["escape"])
-            ? $parameters["escape"]
-            : self::$autoEscape;
+        $autoescape = $parameters["escape"] ?? self::$autoEscape;
 
         if (true !== $autoescape) {
             return null;
