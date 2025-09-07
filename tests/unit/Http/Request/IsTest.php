@@ -146,6 +146,18 @@ final class IsTest extends AbstractHttpBase
             [
                 [],
                 false,
+                'isTrace',
+            ],
+            [
+                [
+                    'REQUEST_METHOD' => 'TRACE',
+                ],
+                true,
+                'isTrace',
+            ],
+            [
+                [],
+                false,
                 'isSecure',
             ],
             [
