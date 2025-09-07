@@ -74,6 +74,7 @@ interface AdapterInterface
      * Return the current schema name
      *
      * @return string
+     *
      * @throws Exception
      */
     public function getCurrentSchema(): string;
@@ -85,6 +86,7 @@ interface AdapterInterface
      * @param string $table
      *
      * @return array<string, ColumnDefinition>
+     *
      * @throws Exception
      */
     public function listColumns(string $schema, string $table): array;
@@ -92,9 +94,10 @@ interface AdapterInterface
     /**
      * Return an array with the schema and table name
      *
-     * @param string $schemaTable
+     * @param non-empty-string $schemaTable
      *
-     * @return string[]
+     * @return array{string, string}
+     *
      * @throws Exception
      */
     public function listSchemaTable(string $schemaTable): array;
@@ -104,7 +107,8 @@ interface AdapterInterface
      *
      * @param string $schema
      *
-     * @return array<array-key, string>
+     * @return array<string>
+     *
      * @throws Exception
      */
     public function listTables(string $schema): array;

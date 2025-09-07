@@ -33,7 +33,8 @@ class Mysql extends AbstractAdapter
      *
      * @param string $schema
      *
-     * @return array<array-key, string>
+     * @return array<string>
+     *
      * @throws Exception
      */
     public function listTables(string $schema): array

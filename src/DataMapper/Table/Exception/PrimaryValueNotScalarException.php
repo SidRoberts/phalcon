@@ -26,6 +26,10 @@ use function gettype;
  */
 class PrimaryValueNotScalarException extends Exception
 {
+    /**
+     * @param string $column
+     * @param mixed  $value
+     */
     public function __construct(string $column, mixed $value)
     {
         parent::__construct(

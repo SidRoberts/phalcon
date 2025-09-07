@@ -42,12 +42,12 @@ class Connection extends AbstractConnection
      * This overrides the parent so that it can take connection attributes as a
      * constructor parameter, and set them after connection.
      *
-     * @param PDO|string               $dsnPdo
-     * @param string|null              $username
-     * @param string|null              $password
-     * @param array<int, int>          $options
-     * @param array<array-key, string> $queries
-     * @param ProfilerInterface|null   $profiler
+     * @param PDO|string             $dsnPdo
+     * @param string|null            $username
+     * @param string|null            $password
+     * @param array<int, int>        $options
+     * @param array<string>          $queries
+     * @param ProfilerInterface|null $profiler
      */
     public function __construct(
         PDO | string $dsnPdo,

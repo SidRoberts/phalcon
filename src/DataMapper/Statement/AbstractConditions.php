@@ -252,6 +252,8 @@ abstract class AbstractConditions extends AbstractStatement
      * @param string     $condition
      * @param mixed|null $value
      * @param int        $type
+     *
+     * @return void
      */
     protected function addCondition(
         string $store,
@@ -278,6 +280,8 @@ abstract class AbstractConditions extends AbstractStatement
      * @param string $condition
      * @param mixed  $value
      * @param int    $type
+     *
+     * @return void
      */
     protected function appendCondition(
         string $store,

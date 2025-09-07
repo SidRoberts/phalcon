@@ -64,6 +64,7 @@ abstract class AbstractAdapter implements AdapterInterface
      * Return the current schema name
      *
      * @return string
+     *
      * @throws Exception
      */
     public function getCurrentSchema(): string
@@ -79,6 +80,7 @@ abstract class AbstractAdapter implements AdapterInterface
      * @param string $table
      *
      * @return array<string, ColumnDefinition>
+     *
      * @throws Exception
      */
     public function listColumns(string $schema, string $table): array
@@ -86,10 +88,10 @@ abstract class AbstractAdapter implements AdapterInterface
         $statement = $this->getListColumnSql($schema, $table);
 
         if (get_class($this) === Sqlite::class) {
-            /** @var ColumnDefinitionSql[] $columns */
+            /** @var ColumnDefinitionSql[] */
             $columns = $this->connection->fetchAll($statement);
         } else {
-            /** @var ColumnDefinitionSql[] $columns */
+            /** @var ColumnDefinitionSql[] */
             $columns = $this->connection->fetchAll(
                 $statement,
                 [
@@ -110,9 +112,10 @@ abstract class AbstractAdapter implements AdapterInterface
     /**
      * Return an array with the schema and table name
      *
-     * @param string $schemaTable
+     * @param non-empty-string $schemaTable
      *
-     * @return string[]
+     * @return array{string, string}
+     *
      * @throws Exception
      */
     public function listSchemaTable(string $schemaTable): array
@@ -325,7 +328,7 @@ abstract class AbstractAdapter implements AdapterInterface
      * @param mixed  $defaultValue
      * @param string $type
      *
-     * @return array<array-key, bool|mixed>
+     * @return array<bool|mixed>
      */
     protected function processDefault(mixed $defaultValue, string $type): array
     {
@@ -356,9 +359,9 @@ abstract class AbstractAdapter implements AdapterInterface
     }
 
     /**
-     * @param ColumnDefinitionSql[] $columns
+     * @param list<ColumnDefinitionSql> $columns
      *
-     * @return ColumnDefinition[]
+     * @return list<ColumnDefinition>
      */
     protected function transformColumns(array $columns): array
     {

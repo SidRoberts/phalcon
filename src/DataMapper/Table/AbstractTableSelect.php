@@ -64,7 +64,7 @@ abstract class AbstractTableSelect extends Select
     /**
      * Return the rows of a resultset as an array
      *
-     * @return AbstractRow[]
+     * @return list<AbstractRow>
      */
     public function fetchRows(): array
     {
@@ -87,10 +87,10 @@ abstract class AbstractTableSelect extends Select
      */
     public static function new(mixed $argument, mixed ...$arguments): static
     {
-        /** @var array $whereEquals */
+        /** @var array */
         $whereEquals = array_pop($arguments) ?? [];
 
-        /** @var AbstractTable $table */
+        /** @var AbstractTable */
         $table  = array_pop($arguments);
         $select = parent::new($argument, ...$arguments);
 

@@ -324,6 +324,8 @@ class Select extends AbstractConditions
 
     /**
      * Resets the internal collections
+     *
+     * @return void
      */
     public function reset(): void
     {

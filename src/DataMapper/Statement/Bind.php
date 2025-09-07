@@ -92,6 +92,8 @@ class Bind
      * Removes a value from the store
      *
      * @param string $key
+     *
+     * @return void
      */
     public function remove(string $key): void
     {
@@ -115,6 +117,8 @@ class Bind
      * @param string $key
      * @param mixed  $value
      * @param int    $type
+     *
+     * @return void
      */
     public function setValue(string $key, mixed $value, int $type = -1): void
     {
@@ -128,6 +132,8 @@ class Bind
      *
      * @param array $values
      * @param int   $type
+     *
+     * @return void
      */
     public function setValues(array $values, int $type = -1): void
     {

@@ -63,7 +63,7 @@ abstract class AbstractRow implements IteratorAggregate, JsonSerializable
     private string | null $lastAction = null;
 
     /**
-     * @param array $columns
+     * @param array<string, mixed> $columns
      *
      * @throws ImmutableAfterDeletedException
      * @throws PropertyDoesNotExistException
@@ -82,6 +82,7 @@ abstract class AbstractRow implements IteratorAggregate, JsonSerializable
      * @param array  $filters
      *
      * @return mixed
+     *
      * @throws PropertyDoesNotExistException
      */
     public function get(string $column, array $filters = []): mixed
@@ -106,6 +107,7 @@ abstract class AbstractRow implements IteratorAggregate, JsonSerializable
      * the current ones
      *
      * @return array<string, mixed>
+     *
      * @throws PropertyDoesNotExistException
      */
     public function getDiff(): array
@@ -194,9 +196,10 @@ abstract class AbstractRow implements IteratorAggregate, JsonSerializable
     /**
      * Set the column properties of this object and its values
      *
-     * @param array $columns
+     * @param array<string, mixed> $columns
      *
      * @return void
+     *
      * @throws ImmutableAfterDeletedException
      * @throws PropertyDoesNotExistException
      */
@@ -210,7 +213,7 @@ abstract class AbstractRow implements IteratorAggregate, JsonSerializable
     /**
      * Returns the array for jsonSerialize
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function jsonSerialize(): array
     {
@@ -223,6 +226,7 @@ abstract class AbstractRow implements IteratorAggregate, JsonSerializable
      * @param string $column
      *
      * @return void
+     *
      * @throws ImmutableAfterDeletedException
      * @throws PropertyDoesNotExistException
      */
@@ -241,6 +245,7 @@ abstract class AbstractRow implements IteratorAggregate, JsonSerializable
      * @param mixed  $value
      *
      * @return static
+     *
      * @throws ImmutableAfterDeletedException
      * @throws PropertyDoesNotExistException
      */
@@ -278,6 +283,7 @@ abstract class AbstractRow implements IteratorAggregate, JsonSerializable
      * @param string $lastAction
      *
      * @return static
+     *
      * @throws InvalidOptionException
      */
     public function setLastAction(string $lastAction): static
@@ -306,6 +312,7 @@ abstract class AbstractRow implements IteratorAggregate, JsonSerializable
      * @param string $column
      *
      * @return void
+     *
      * @throws PropertyDoesNotExistException
      */
     protected function assertHas(string $column): void

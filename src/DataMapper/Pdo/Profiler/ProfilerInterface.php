@@ -87,7 +87,6 @@ interface ProfilerInterface
      * @param int $logLevel
      *
      * @return ProfilerInterface
-     *
      */
     public function setLogLevel(int $logLevel): ProfilerInterface;
 
@@ -95,6 +94,8 @@ interface ProfilerInterface
      * Starts a profile entry.
      *
      * @param string $method
+     *
+     * @return void
      */
     public function start(string $method): void;
 }

@@ -83,7 +83,8 @@ class Pgsql extends AbstractAdapter
      *
      * @param string $schema
      *
-     * @return array<array-key, string>
+     * @return array<string>
+     *
      * @throws Exception
      */
     public function listTables(string $schema): array
@@ -146,7 +147,7 @@ class Pgsql extends AbstractAdapter
             WHERE i.table_schema = :schema
             AND i.table_name = :table
         ";
-        /** @var array<string, string> $comments */
+        /** @var array<string, string> */
         $comments = $this->connection->fetchPairs(
             $statement,
             [
@@ -171,7 +172,7 @@ class Pgsql extends AbstractAdapter
      * @param mixed  $defaultValue
      * @param string $type
      *
-     * @return array<array-key, bool|mixed>
+     * @return array<bool|mixed>
      */
     protected function processDefault(mixed $defaultValue, string $type): array
     {

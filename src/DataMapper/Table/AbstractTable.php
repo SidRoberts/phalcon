@@ -47,6 +47,10 @@ abstract class AbstractTable
     public const PRIMARY_KEY   = [];
     public const ROW_CLASS     = '';
 
+    /**
+     * @param ConnectionLocator   $connectionLocator
+     * @param AbstractTableEvents $tableEvents
+     */
     public function __construct(
         protected ConnectionLocator $connectionLocator,
         protected AbstractTableEvents $tableEvents
@@ -57,6 +61,7 @@ abstract class AbstractTable
      * Creates a new Delete object
      *
      * @return Delete
+     *
      * @throws ConnectionNotFound
      */
     public function delete(): Delete
@@ -262,7 +267,7 @@ abstract class AbstractTable
             throw new UnexpectedRowCountAffectedException($rowCount);
         }
 
-        /** @var null|string $autoinc */
+        /** @var null|string */
         $autoinc = static::AUTOINC_COLUMN;
         if ($autoinc !== null) {
             $row->set(
@@ -294,7 +299,7 @@ abstract class AbstractTable
         }
 
         $insert = $this->insert();
-        /** @var null|string $autoinc */
+        /** @var null|string */
         $autoinc = static::AUTOINC_COLUMN;
         if (null !== $autoinc && true !== isset($copy[$autoinc])) {
             unset($copy[$autoinc]);
@@ -343,7 +348,7 @@ abstract class AbstractTable
      */
     public function select(array $whereEquals = []): AbstractTableSelect
     {
-        /** @var class-string $class */
+        /** @var class-string */
         $class  = get_class($this) . 'Select';
         $select = $class::new($this->getReadConnection(), $this, $whereEquals);
         $this->tableEvents->modifySelect($this, $select);

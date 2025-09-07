@@ -44,6 +44,8 @@ class Insert extends AbstractStatement
      * Sets a column for the `INSERT` query
      *
      * @param string $column
+     * @param mixed  $value
+     * @param int    $type
      *
      * @return static
      */

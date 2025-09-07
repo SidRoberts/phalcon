@@ -123,6 +123,7 @@ class ConnectionLocator
      * @param mixed ...$arguments
      *
      * @return static
+     *
      * @throws ConnectionNotFound
      */
     public static function new(mixed $argument, mixed ...$arguments): static

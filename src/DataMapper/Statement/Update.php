@@ -50,7 +50,7 @@ class Update extends Delete
     /**
      * Mass sets columns and values for the `UPDATE`
      *
-     * @param array<array-key, mixed> $columns
+     * @param array<mixed> $columns
      *
      * @return static
      */

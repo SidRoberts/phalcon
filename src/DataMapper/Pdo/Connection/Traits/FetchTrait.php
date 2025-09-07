@@ -98,7 +98,7 @@ trait FetchTrait
      * @param array  $values
      * @param int    $column
      *
-     * @return array<array-key, string>
+     * @return array<string>
      */
     public function fetchColumn(
         string $statement,

@@ -55,7 +55,10 @@ abstract class AbstractStatement
         $this->reset();
     }
 
-    public function __clone()
+    /**
+     * @return void
+     */
+    public function __clone(): void
     {
         $vars = get_object_vars($this);
 
@@ -433,6 +436,8 @@ abstract class AbstractStatement
      *
      * @param string       $store
      * @param array|string $data
+     *
+     * @return void
      */
     protected function processValue(string $store, array | string $data): void
     {

@@ -36,7 +36,7 @@ class Profiler implements ProfilerInterface
     use JsonTrait;
 
     /**
-     * @var array<array-key, mixed>
+     * @var array<mixed>
      */
     protected array $context = [];
 
@@ -190,6 +190,8 @@ class Profiler implements ProfilerInterface
      * Starts a profile entry.
      *
      * @param string $method
+     *
+     * @return void
      */
     public function start(string $method): void
     {
@@ -207,8 +209,8 @@ class Profiler implements ProfilerInterface
      * @param int   $depth
      *
      * @return string
-     * @todo This will be removed when traits are introduced
      *
+     * @todo This will be removed when traits are introduced
      */
     private function encode(
         mixed $data,

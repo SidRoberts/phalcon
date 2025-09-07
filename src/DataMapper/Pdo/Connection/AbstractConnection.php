@@ -93,11 +93,15 @@ abstract class AbstractConnection
 
     /**
      * Connects to the database.
+     *
+     * @return void
      */
     abstract public function connect(): void;
 
     /**
      * Disconnects from the database.
+     *
+     * @return void
      */
     abstract public function disconnect(): void;
 
@@ -135,6 +139,8 @@ abstract class AbstractConnection
 
     /**
      * Return an array of available PDO drivers
+     *
+     * @return array
      */
     public static function getAvailableDrivers(): array
     {
@@ -312,6 +318,8 @@ abstract class AbstractConnection
      * @param PDOStatement $statement
      * @param mixed        $name
      * @param mixed        $arguments
+     *
+     * @return void
      */
     protected function performBind(
         PDOStatement $statement,

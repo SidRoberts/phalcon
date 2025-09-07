@@ -41,7 +41,7 @@ class Info
     /**
      * Returns the autoincrement or sequence
      *
-     * @param string $schemaTable
+     * @param non-empty-string $schemaTable
      *
      * @return string|null
      */
@@ -56,6 +56,7 @@ class Info
      * Return the current schema name
      *
      * @return string
+     *
      * @throws Exception
      */
     public function getCurrentSchema(): string
@@ -66,9 +67,10 @@ class Info
     /**
      * Return the columns in an array with their respective properties
      *
-     * @param string $schemaTable
+     * @param non-empty-string $schemaTable
      *
-     * @return ColumnDefinition[]
+     * @return array<string, ColumnDefinition>
+     *
      * @throws Exception
      */
     public function listColumns(string $schemaTable): array
@@ -83,7 +85,8 @@ class Info
      *
      * @param string|null $schema
      *
-     * @return array<array-key, string>
+     * @return array<string>
+     *
      * @throws Exception
      */
     public function listTables(string | null $schema = null): array
@@ -113,7 +116,7 @@ class Info
     /**
      * Returns the available adapters
      *
-     * @return string[]
+     * @return array<string, class-string<AdapterInterface>>
      */
     protected static function getAdapters(): array
     {
