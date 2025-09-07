@@ -20,16 +20,29 @@ final class GetBeforeMatchTest extends AbstractUnitTestCase
 {
     /**
      * @author Phalcon Team <team@phalcon.io>
-     * @since  2018-11-13
+     * @since  2025-09-07
      */
     public function testMvcRouterRouteGetBeforeMatch(): void
     {
         $route = new Route('/test');
-        $this->assertNull($route->getBeforeMatch());
-        $callback = function () {
+
+        $this->assertNull(
+            $route->getBeforeMatch()
+        );
+
+        $callback = function (): bool {
             return true;
         };
+
         $route->beforeMatch($callback);
-        $this->assertIsCallable($route->getBeforeMatch());
+
+        $this->assertIsCallable(
+            $route->getBeforeMatch()
+        );
+
+        $this->assertSame(
+            $callback,
+            $route->getBeforeMatch()
+        );
     }
 }
