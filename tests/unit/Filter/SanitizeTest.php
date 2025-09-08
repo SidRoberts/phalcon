@@ -27,7 +27,7 @@ final class SanitizeTest extends AbstractUnitTestCase
     public static function getExamples(): array
     {
         return [
-            /*[
+            [
                 'absint',
                 '',
                 -125,
@@ -774,7 +774,7 @@ final class SanitizeTest extends AbstractUnitTestCase
                 'url',
                 ['https://pha�lc�on.i�o'],
                 'https://phalcon.io',
-            ],*/
+            ],
             // IPv4 Test dataset
             [
                 'ip',
