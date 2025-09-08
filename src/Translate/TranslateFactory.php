@@ -65,7 +65,7 @@ class TranslateFactory
         /** @var TConfig $config */
         $config  = $this->checkConfig($config);
         $name    = (string)$config['adapter'];
-        $options = isset($config['options']) ? (array)$config['options'] : [];
+        $options = (array) ($config['options'] ?? []);
 
         return $this->newInstance($name, $options);
     }
