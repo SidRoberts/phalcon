@@ -373,8 +373,10 @@ class Manager implements ManagerInterface
          * unset the cookie to allow it to be created by session_start().
          */
         $name = $this->getName();
+
         if (isset($_COOKIE[$name])) {
             $value = $_COOKIE[$name];
+
             if (!preg_match("/^[a-z0-9]+$/iD", $value)) {
                 unset($_COOKIE[$name]);
             }
