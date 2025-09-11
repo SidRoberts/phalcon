@@ -13,7 +13,10 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Database\Mvc\Model;
 
+use Phalcon\Di\Di;
+use Phalcon\Di\Exception as DiException;
 use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Exception;
 use Phalcon\Mvc\ModelInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Models\Invoices;
@@ -22,12 +25,6 @@ use Phalcon\Tests\Support\Traits\DiTrait;
 final class ConstructTest extends AbstractDatabaseTestCase
 {
     use DiTrait;
-
-    public function setUp(): void
-    {
-        $this->setNewFactoryDefault();
-        $this->setDatabase();
-    }
 
     /**
      * @author Phalcon Team <team@phalcon.io>
@@ -39,6 +36,9 @@ final class ConstructTest extends AbstractDatabaseTestCase
      */
     public function testMvcModelConstruct(): void
     {
+        $this->setNewFactoryDefault();
+        $this->setDatabase();
+
         $invoice = new Invoices();
 
         $this->assertInstanceOf(
@@ -49,5 +49,47 @@ final class ConstructTest extends AbstractDatabaseTestCase
             ModelInterface::class,
             $invoice
         );
+    }
+
+    /**
+     * Tests Phalcon\Mvc\Model :: __construct() - without a DI
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-09-12
+     *
+     * @group mysql
+     */
+    public function testMvcModelConstructWithoutADI(): void
+    {
+        $this->expectException(Exception::class);
+
+        $this->expectExceptionMessage(
+            "A dependency injection container is required to access the services related to the ODM in '"
+                . Invoices::class . "'"
+        );
+
+        Di::reset();
+
+        $invoice = new Invoices();
+    }
+
+    /**
+     * Tests Phalcon\Mvc\Model :: __construct() - without a Models Manager
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-09-12
+     *
+     * @group mysql
+     */
+    public function testMvcModelConstructWithoutAModelsManager(): void
+    {
+        $this->expectException(DiException::class);
+        $this->expectExceptionMessage("Service 'modelsManager' is not registered in the container");
+
+        Di::reset();
+
+        $di = new Di();
+
+        $invoice = new Invoices();
     }
 }
