@@ -74,7 +74,7 @@ abstract class AbstractValidator implements ValidatorInterface
             // save custom message in options
             $options["message"] = $template;
 
-            unset($options["template"], $options[0]);
+            unset($options["template"]);
         }
 
         $this->options = $options;

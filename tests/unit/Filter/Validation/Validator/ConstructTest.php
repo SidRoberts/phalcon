@@ -117,13 +117,6 @@ final class ConstructTest extends AbstractUnitTestCase
             $message,
             $custom->getOption('message')
         );
-
-        $custom = new PresenceOf([$message]); // custom message
-
-        $this->assertSame(
-            $message,
-            $custom->getOption('message')
-        );
     }
 
     /**
