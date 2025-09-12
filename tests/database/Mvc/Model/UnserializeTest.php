@@ -13,9 +13,12 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Database\Mvc\Model;
 
+use Phalcon\Di\Di;
+use Phalcon\Mvc\Model\Exception;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Models\Invoices;
+use Phalcon\Tests\Support\Models\Products;
 use Phalcon\Tests\Support\Traits\DiTrait;
 
 use function date;
@@ -69,5 +72,29 @@ final class UnserializeTest extends AbstractDatabaseTestCase
             $data,
             $newModel->toArray()
         );
+    }
+
+    /**
+     * Tests Phalcon\Mvc\Model :: unserialize() - without a DI
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-09-12
+     *
+     * @group mysql
+     */
+    public function testMvcModelUnserializeWithoutADI(): void
+    {
+        $this->expectException(Exception::class);
+
+        $this->expectExceptionMessage(
+            "A dependency injection container is required to access the services related to the ODM in '"
+                . Products::class . "'"
+        );
+
+        $product = new Products();
+
+        Di::reset();
+
+        $product->unserialize('a:0:{}');
     }
 }
