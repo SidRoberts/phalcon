@@ -259,9 +259,6 @@ abstract class Model extends AbstractInjectionAware implements
          */
         if ($modelsManager === null) {
             $modelsManager = $container->get("modelsManager");
-            if ($modelsManager === null) {
-                throw new InvalidModelsManagerService(get_class($this));
-            }
         }
 
         /**
