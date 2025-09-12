@@ -71,4 +71,22 @@ final class GetSetDITest extends AbstractUnitTestCase
         $this->expectExceptionMessage("A dependency injection container is required");
         $response->getDI();
     }
+
+    /**
+     * Tests Phalcon\Http\Response :: getDI() / setDI()
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-09-12
+     */
+    public function testHttpResponseGetDIWithoutDI(): void
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("A dependency injection container is required to access the 'url' service");
+
+        Di::reset();
+
+        $response = new Response();
+
+        $di = $response->getDI();
+    }
 }
