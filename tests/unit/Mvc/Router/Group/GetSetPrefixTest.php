@@ -26,9 +26,9 @@ final class GetSetPrefixTest extends AbstractUnitTestCase
     {
         $group = new Group();
 
-        $expected = null;
-        $actual   = $group->getPrefix();
-        $this->assertSame($expected, $actual);
+        $this->assertNull(
+            $group->getPrefix()
+        );
     }
 
     /**
@@ -41,8 +41,9 @@ final class GetSetPrefixTest extends AbstractUnitTestCase
 
         $group->setPrefix('/blog');
 
-        $expected = '/blog';
-        $actual   = $group->getPrefix();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '/blog',
+            $group->getPrefix()
+        );
     }
 }

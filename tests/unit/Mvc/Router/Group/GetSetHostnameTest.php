@@ -23,6 +23,9 @@ final class GetSetHostnameTest extends AbstractUnitTestCase
 {
     use RouterTrait;
 
+    /**
+     * @return array<array{0: ?string, 1: ?string, 2: string}>
+     */
     public static function getHostnameRoutes(): array
     {
         return [
@@ -45,7 +48,7 @@ final class GetSetHostnameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array
+     * @return array<array{0: ?string, 1: ?string, 2: string}>
      */
     public static function getHostnameRoutesRegex(): array
     {
@@ -76,15 +79,18 @@ final class GetSetHostnameTest extends AbstractUnitTestCase
     {
         $group = new Group();
 
-        $actual = $group->getHostname();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $group->getHostname()
+        );
 
         $hostname = 'https://phalcon.io';
+
         $group->setHostname($hostname);
 
-        $expected = $hostname;
-        $actual   = $group->getHostname();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $hostname,
+            $group->getHostname()
+        );
     }
 
     #[DataProvider('getHostnameRoutesRegex')]
@@ -128,9 +134,13 @@ final class GetSetHostnameTest extends AbstractUnitTestCase
             $router->getControllerName()
         );
 
+        $matchedRoute = $router->getMatchedRoute();
+
+        $this->assertNotNull($matchedRoute);
+
         $this->assertSame(
             $expectedHost,
-            $router->getMatchedRoute()->getHostname()
+            $matchedRoute->getHostname()
         );
     }
 
@@ -175,9 +185,13 @@ final class GetSetHostnameTest extends AbstractUnitTestCase
             $router->getControllerName()
         );
 
+        $matchedRoute = $router->getMatchedRoute();
+
+        $this->assertNotNull($matchedRoute);
+
         $this->assertSame(
             $expectedHost,
-            $router->getMatchedRoute()->getHostname()
+            $matchedRoute->getHostname()
         );
     }
 }

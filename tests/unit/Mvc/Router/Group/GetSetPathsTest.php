@@ -26,16 +26,20 @@ final class GetSetPathsTest extends AbstractUnitTestCase
     {
         $group = new Group();
 
-        $actual = $group->getPaths();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $group->getPaths()
+        );
 
         $paths = [
             'one',
             'two',
         ];
+
         $group->setPaths($paths);
-        $expected = $paths;
-        $actual   = $group->getPaths();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $paths,
+            $group->getPaths()
+        );
     }
 }
