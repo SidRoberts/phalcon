@@ -14,12 +14,14 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Database\Mvc\Model;
 
 use PDO;
+use Phalcon\Mvc\Model\Exception;
 use Phalcon\Mvc\Model\Transaction\Manager;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\CustomersMigration;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Models\Customers;
 use Phalcon\Tests\Support\Models\Invoices;
+use Phalcon\Tests\Support\Models\NoPrimaryKey;
 use Phalcon\Tests\Support\Traits\DiTrait;
 
 use function date;
@@ -398,5 +400,32 @@ final class DeleteTest extends AbstractDatabaseTestCase
          */
         $actual = $customer->delete();
         $this->assertFalse($actual);
+    }
+
+    /**
+     * Tests Phalcon\Mvc\Model :: delete() without a primary key
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-09-12
+     *
+     * @group mysql
+     */
+    public function testMvcModelDeleteWithoutAPrimaryKey(): void
+    {
+        $model = new NoPrimaryKey();
+
+        $model->nokey_id = 123;
+        $model->nokey_name = "John Smith";
+
+        $model->save();
+
+        $this->expectException(Exception::class);
+
+        $this->expectExceptionMessage(
+            "A primary key must be defined in the model in order to perform the operation in '"
+                . NoPrimaryKey::class . "'"
+        );
+
+        $model->delete();
     }
 }
