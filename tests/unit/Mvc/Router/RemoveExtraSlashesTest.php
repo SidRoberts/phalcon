@@ -22,7 +22,7 @@ final class RemoveExtraSlashesTest extends AbstractUnitTestCase
     use RouterTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: array{controller: string, action: string}}>
      */
     public static function getMatchingWithExtraSlashes(): array
     {
@@ -54,6 +54,9 @@ final class RemoveExtraSlashesTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param string                                    $route
+     * @param array{controller: string, action: string} $params
+     *
      * @author Andy Gutierrez <andres.gutierrez@phalcon.io>
      * @since  2012-12-16
      */
@@ -68,15 +71,18 @@ final class RemoveExtraSlashesTest extends AbstractUnitTestCase
 
         $router->handle($route);
 
-        $actual = $router->wasMatched();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $router->wasMatched()
+        );
 
-        $expected = $params['controller'];
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $params['controller'],
+            $router->getControllerName()
+        );
 
-        $expected = $params['action'];
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $params['action'],
+            $router->getActionName()
+        );
     }
 }

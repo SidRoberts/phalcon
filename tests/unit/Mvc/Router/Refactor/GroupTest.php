@@ -39,6 +39,7 @@ final class GroupTest extends AbstractUnitTestCase
         Route::reset();
 
         $router = new Router(false);
+
         $router->setDI(new FactoryDefault());
 
         $blog = new Group(
@@ -76,21 +77,29 @@ final class GroupTest extends AbstractUnitTestCase
 
         $router->handle($route);
 
-        $this->assertTrue($router->wasMatched());
+        $this->assertTrue(
+            $router->wasMatched()
+        );
 
-        $expected = $module;
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $module,
+            $router->getModuleName()
+        );
 
-        $expected = $controller;
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $controller,
+            $router->getControllerName()
+        );
 
-        $expected = $action;
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $action,
+            $router->getActionName()
+        );
 
-        $this->assertSame($blog, $router->getMatchedRoute()->getGroup());
+        $this->assertSame(
+            $blog,
+            $router->getMatchedRoute()->getGroup()
+        );
     }
 
     /**
@@ -137,13 +146,15 @@ final class GroupTest extends AbstractUnitTestCase
 
         $router->handle('/edit');
 
-        $expected = $controller;
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $controller,
+            $router->getControllerName()
+        );
 
-        $expected = $expectedHost;
-        $actual   = $router->getMatchedRoute()->getHostname();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expectedHost,
+            $router->getMatchedRoute()->getHostname()
+        );
     }
 
     /**

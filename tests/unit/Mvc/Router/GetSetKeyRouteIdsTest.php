@@ -42,13 +42,17 @@ final class GetSetKeyRouteIdsTest extends AbstractUnitTestCase
             ->setName('usersAdd')
         ;
 
-        $expected = $usersFind;
-        $actual   = $router->getRouteById(0);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $usersFind,
+            $router->getRouteById(0)
+        );
 
         $expected = [0 => 0];
-        $actual   = $router->getKeyRouteIds();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getKeyRouteIds()
+        );
     }
 
     /**
@@ -59,7 +63,8 @@ final class GetSetKeyRouteIdsTest extends AbstractUnitTestCase
     {
         Route::reset();
 
-        $router    = $this->getRouter(false);
+        $router = $this->getRouter(false);
+
         $usersFind = $router
             ->add('/api/users/find')
             ->setHttpMethods('GET')
@@ -71,18 +76,25 @@ final class GetSetKeyRouteIdsTest extends AbstractUnitTestCase
             ->setName('usersAdd')
         ;
 
-        $expected = $usersFind;
-        $actual   = $router->getRouteById(0);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $usersFind,
+            $router->getRouteById(0)
+        );
 
         $expected = [0 => 0];
-        $actual   = $router->getKeyRouteIds();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getKeyRouteIds()
+        );
 
         $router->setKeyRouteIds([1 => 0]);
 
         $expected = [1 => 0];
-        $actual   = $router->getKeyRouteIds();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getKeyRouteIds()
+        );
     }
 }

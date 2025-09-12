@@ -31,9 +31,10 @@ final class AttachTest extends AbstractUnitTestCase
     {
         $router = $this->getRouter(false);
 
-        $expected = 0;
-        $actual   = $router->getRoutes();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            0,
+            $router->getRoutes()
+        );
 
         $router->attach(
             new Route(
@@ -47,9 +48,10 @@ final class AttachTest extends AbstractUnitTestCase
             Router::POSITION_FIRST
         );
 
-        $expected = 1;
-        $actual   = $router->getRoutes();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            1,
+            $router->getRoutes()
+        );
     }
 
     /**
@@ -62,6 +64,7 @@ final class AttachTest extends AbstractUnitTestCase
         $this->expectExceptionMessage('Invalid route position');
 
         $router = $this->getRouter(false);
+
         $router->attach(
             new Route(
                 '/about',

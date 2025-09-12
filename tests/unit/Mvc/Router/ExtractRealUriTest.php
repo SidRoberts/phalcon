@@ -31,18 +31,28 @@ final class ExtractRealUriTest extends AbstractUnitTestCase
     public function testExtractRealUri(): void
     {
         $router = new FakeRouter(false);
-        $router->setDI(new FactoryDefault());
 
-        $expected = '/admin/private/businesses/list/my/123';
-        $actual   = $router->protectedExtractRealUri(
+        $router->setDI(
+            new FactoryDefault()
+        );
+
+        $actual = $router->protectedExtractRealUri(
             '/admin/private/businesses/list/my/123?query=string'
         );
-        $this->assertSame($expected, $actual);
 
-        $expected = '/admin/private/businesses/list/my/123';
+        $this->assertSame(
+            '/admin/private/businesses/list/my/123',
+            $actual
+        );
+
+
         $actual = $router->protectedExtractRealUri(
             '/admin/private/businesses/list/my/123'
         );
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            '/admin/private/businesses/list/my/123',
+            $actual
+        );
     }
 }

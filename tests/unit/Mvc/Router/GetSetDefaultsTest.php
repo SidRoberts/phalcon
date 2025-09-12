@@ -33,8 +33,11 @@ final class GetSetDefaultsTest extends AbstractUnitTestCase
             'action'     => '',
             'params'     => [],
         ];
-        $actual   = $router->getDefaults();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getDefaults()
+        );
 
         $defaults = [
             'namespace'  => 'Phalcon',
@@ -46,8 +49,9 @@ final class GetSetDefaultsTest extends AbstractUnitTestCase
 
         $router->setDefaults($defaults);
 
-        $expected = $defaults;
-        $actual   = $router->getDefaults();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $defaults,
+            $router->getDefaults()
+        );
     }
 }

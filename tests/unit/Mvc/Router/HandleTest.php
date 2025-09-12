@@ -29,7 +29,7 @@ final class HandleTest extends AbstractUnitTestCase
     use RouterTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getUrlsWithColons(): array
     {
@@ -42,7 +42,7 @@ final class HandleTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: string, 3: string}>
      */
     public static function groupsProvider(): array
     {
@@ -86,17 +86,20 @@ final class HandleTest extends AbstractUnitTestCase
 
         $router->handle('/admin/invoices/list');
 
-        $expected = 'invoices';
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'invoices',
+            $router->getControllerName()
+        );
 
-        $expected = 'list';
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'list',
+            $router->getActionName()
+        );
 
-        $expected = [];
-        $actual   = $router->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $router->getParams()
+        );
     }
 
     #[DataProvider('groupsProvider')]
@@ -144,10 +147,24 @@ final class HandleTest extends AbstractUnitTestCase
         $router->mount($blog);
         $router->handle($route);
 
-        $this->assertTrue($router->wasMatched());
-        $this->assertSame($module, $router->getModuleName());
-        $this->assertSame($controller, $router->getControllerName());
-        $this->assertSame($action, $router->getActionName());
+        $this->assertTrue(
+            $router->wasMatched()
+        );
+
+        $this->assertSame(
+            $module,
+            $router->getModuleName()
+        );
+
+        $this->assertSame(
+            $controller,
+            $router->getControllerName()
+        );
+
+        $this->assertSame(
+            $action,
+            $router->getActionName()
+        );
 
         $this->assertSame(
             $blog,
@@ -162,27 +179,33 @@ final class HandleTest extends AbstractUnitTestCase
     public function testMvcRouterHandleNumeric(): void
     {
         $router = $this->getRouter();
+
         $router->handle('/12/34/56');
 
-        $expected = '';
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getModuleName()
+        );
 
-        $expected = '';
-        $actual   = $router->getNamespaceName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getNamespaceName()
+        );
 
-        $expected = '12';
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '12',
+            $router->getControllerName()
+        );
 
-        $expected = '34';
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '34',
+            $router->getActionName()
+        );
 
-        $expected = ['56'];
-        $actual   = $router->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            ['56'],
+            $router->getParams()
+        );
     }
 
     /**
@@ -192,37 +215,46 @@ final class HandleTest extends AbstractUnitTestCase
     public function testMvcRouterHandleShortSyntax(): void
     {
         $router = $this->getRouter(false);
+
         $router->add("/about", "About::content");
 
         $router->handle('/about');
 
-        $expected = '';
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getModuleName()
+        );
 
-        $expected = '';
-        $actual   = $router->getNamespaceName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getNamespaceName()
+        );
 
-        $expected = 'About';
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'About',
+            $router->getControllerName()
+        );
 
-        $expected = 'content';
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'content',
+            $router->getActionName()
+        );
 
-        $expected = [];
-        $actual   = $router->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $router->getParams()
+        );
 
         $_SERVER['REQUEST_METHOD'] = 'POST';
 
         $container = new FactoryDefault();
+
         $container->set('request', new Request());
 
         $router = new Router(false);
+
         $router->setDI($container);
+
         $router->add(
             "/about",
             "About::content",
@@ -231,19 +263,23 @@ final class HandleTest extends AbstractUnitTestCase
 
         $router->handle('/about');
 
-        $actual = $router->getMatchedRoute();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $router->getMatchedRoute()
+        );
 
-        $expected = '';
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getControllerName()
+        );
 
-        $expected = '';
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getActionName()
+        );
 
-        $actual = $router->getParams();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $router->getParams()
+        );
 
         $router->add(
             "/about",
@@ -254,25 +290,30 @@ final class HandleTest extends AbstractUnitTestCase
 
         $router->handle('/about');
 
-        $expected = '';
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getModuleName()
+        );
 
-        $expected = '';
-        $actual   = $router->getNamespaceName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getNamespaceName()
+        );
 
-        $expected = 'About';
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'About',
+            $router->getControllerName()
+        );
 
-        $expected = 'content';
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'content',
+            $router->getActionName()
+        );
 
-        $expected = [];
-        $actual   = $router->getParams();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $router->getParams()
+        );
     }
 
     /**
@@ -285,7 +326,9 @@ final class HandleTest extends AbstractUnitTestCase
     public function testMvcRouterHandleWithColons(string $url): void
     {
         $this->setNewFactoryDefault();
+
         $router = new Router(false);
+
         $router->setDI($this->container);
 
         // Simple catch-all route
@@ -303,6 +346,7 @@ final class HandleTest extends AbstractUnitTestCase
         $router->handle($url);
 
         $route = $router->getMatchedRoute();
+
         $this->assertInstanceOf(Route::class, $route);
     }
 
@@ -316,6 +360,7 @@ final class HandleTest extends AbstractUnitTestCase
          * Regular placeholders
          */
         $router = $this->getRouter(false);
+
         $router->add(
             '/:module/:namespace/:controller/:action/:params/:int',
             [
@@ -330,28 +375,35 @@ final class HandleTest extends AbstractUnitTestCase
 
         $router->handle('/admin/private/businesses/list/my/123');
 
-        $expected = 'admin';
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'admin',
+            $router->getModuleName()
+        );
 
-        $expected = 'private';
-        $actual   = $router->getNamespaceName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'private',
+            $router->getNamespaceName()
+        );
 
-        $expected = 'businesses';
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'businesses',
+            $router->getControllerName()
+        );
 
-        $expected = 'list';
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'list',
+            $router->getActionName()
+        );
 
         $expected = [
             'my',
             'my-number' => '123',
         ];
-        $actual   = $router->getParams();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getParams()
+        );
 
         /**
          * Parameters
@@ -366,21 +418,25 @@ final class HandleTest extends AbstractUnitTestCase
 
         $router->handle('/admin/2020/october/21/456');
 
-        $expected = '';
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getModuleName()
+        );
 
-        $expected = '';
-        $actual   = $router->getNamespaceName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getNamespaceName()
+        );
 
-        $expected = 'invoices';
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'invoices',
+            $router->getControllerName()
+        );
 
-        $expected = 'view';
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'view',
+            $router->getActionName()
+        );
 
         $expected = [
             'year'      => '2020',
@@ -388,8 +444,11 @@ final class HandleTest extends AbstractUnitTestCase
             'day'       => '21',
             'invoiceNo' => '456',
         ];
-        $actual   = $router->getParams();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getParams()
+        );
 
         /**
          * Named parameters
@@ -408,21 +467,25 @@ final class HandleTest extends AbstractUnitTestCase
 
         $router->handle('/admin/2020/10/21/456');
 
-        $expected = '';
-        $actual   = $router->getModuleName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getModuleName()
+        );
 
-        $expected = '';
-        $actual   = $router->getNamespaceName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $router->getNamespaceName()
+        );
 
-        $expected = 'history';
-        $actual   = $router->getControllerName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'history',
+            $router->getControllerName()
+        );
 
-        $expected = 'search';
-        $actual   = $router->getActionName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'search',
+            $router->getActionName()
+        );
 
         $expected = [
             '456',
@@ -430,8 +493,11 @@ final class HandleTest extends AbstractUnitTestCase
             'month' => '10',
             'day'   => '21',
         ];
-        $actual   = $router->getParams();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getParams()
+        );
     }
 
     /**

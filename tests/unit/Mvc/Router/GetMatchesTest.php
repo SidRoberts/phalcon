@@ -29,10 +29,12 @@ final class GetMatchesTest extends AbstractUnitTestCase
         $route = '/users/edit/100/';
 
         $router = $this->getRouter();
+
         $router->handle($route);
 
-        $actual = $router->wasMatched();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $router->wasMatched()
+        );
 
         $expected = [
             0 => '/users/edit/100/',
@@ -40,7 +42,10 @@ final class GetMatchesTest extends AbstractUnitTestCase
             2 => 'edit',
             3 => '/100/',
         ];
-        $actual   = $router->getMatches();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getMatches()
+        );
     }
 }

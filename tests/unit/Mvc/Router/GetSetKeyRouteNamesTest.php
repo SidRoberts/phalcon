@@ -39,17 +39,21 @@ final class GetSetKeyRouteNamesTest extends AbstractUnitTestCase
             ->setName('usersAdd')
         ;
 
-        $expected = $usersAdd;
-        $actual   = $router->getRouteByName('usersAdd');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $usersAdd,
+            $router->getRouteByName('usersAdd')
+        );
 
         // second check when the same route goes from name lookup
         $expected = [
             'usersFind' => 0,
             'usersAdd'  => 1,
         ];
-        $actual   = $router->getKeyRouteNames();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getKeyRouteNames()
+        );
     }
 
     /**
@@ -71,20 +75,25 @@ final class GetSetKeyRouteNamesTest extends AbstractUnitTestCase
             ->setName('usersAdd')
         ;
 
-        $actual = $router->getRouteByName('unknown');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $router->getRouteByName('unknown')
+        );
 
-        $expected = $usersAdd;
-        $actual   = $router->getRouteByName('usersAdd');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $usersAdd,
+            $router->getRouteByName('usersAdd')
+        );
 
         // second check when the same route goes from name lookup
         $expected = [
             'usersFind' => 0,
             'usersAdd'  => 1,
         ];
-        $actual   = $router->getKeyRouteNames();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $router->getKeyRouteNames()
+        );
 
         $names = [
             'usersAdd'  => 0,
@@ -92,8 +101,9 @@ final class GetSetKeyRouteNamesTest extends AbstractUnitTestCase
         ];
         $router->setKeyRouteNames($names);
 
-        $expected = $names;
-        $actual   = $router->getKeyRouteNames();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $names,
+            $router->getKeyRouteNames()
+        );
     }
 }

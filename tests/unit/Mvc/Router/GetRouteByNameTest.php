@@ -45,10 +45,10 @@ final class GetRouteByNameTest extends AbstractUnitTestCase
          * We reverse routes so we first check last added route
          */
         foreach (array_reverse($router->getRoutes()) as $route) {
-            $expected = $router->getRouteByName($route->getName());
-            $actual   = $route;
-
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $route,
+                $router->getRouteByName($route->getName())
+            );
         }
     }
 
@@ -71,13 +71,15 @@ final class GetRouteByNameTest extends AbstractUnitTestCase
             ->setName('usersAdd')
         ;
 
-        $expected = $usersAdd;
-        $actual   = $router->getRouteByName('usersAdd');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $usersAdd,
+            $router->getRouteByName('usersAdd')
+        );
 
         // second check when the same route goes from name lookup
-        $expected = $usersAdd;
-        $actual   = $router->getRouteByName('usersAdd');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $usersAdd,
+            $router->getRouteByName('usersAdd')
+        );
     }
 }

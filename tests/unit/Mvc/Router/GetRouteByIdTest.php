@@ -87,15 +87,18 @@ final class GetRouteByIdTest extends AbstractUnitTestCase
             ->setName('usersAdd')
         ;
 
-        $actual = $router->getRouteById(99);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $router->getRouteById(99)
+        );
 
-        $expected = $usersFind;
-        $actual   = $router->getRouteById(0);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $usersFind,
+            $router->getRouteById(0)
+        );
 
-        $expected = $usersAdd;
-        $actual   = $router->getRouteById(1);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $usersAdd,
+            $router->getRouteById(1)
+        );
     }
 }
