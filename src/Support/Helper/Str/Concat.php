@@ -42,7 +42,7 @@ class Concat
     ): string {
         $data       = [];
         $parameters = array_merge([$first, $second], $arguments);
-        $last       = end($parameters) ?? $second;
+        $last       = end($parameters);
 
         $prefix = str_starts_with($first, $delimiter) ? $delimiter : '';
         $suffix = str_ends_with($last, $delimiter) ? $delimiter : '';
