@@ -1840,7 +1840,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
             return true;
         }
 
-        return $this->dynamicUpdate[mb_strtolower(get_class($model))] ?? false;
+        $entityName = mb_strtolower(get_class($model));
+
+        return $this->dynamicUpdate[$entityName] ?? false;
     }
 
     /**
