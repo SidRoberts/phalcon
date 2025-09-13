@@ -995,7 +995,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
         ModelInterface $model,
         array $connectionServices
     ): string {
-        return $connectionServices[mb_strtolower(get_class($model))] ?? 'db';
+        $entityName = mb_strtolower(get_class($model));
+
+        return $connectionServices[$entityName] ?? 'db';
     }
 
     /**
