@@ -6194,6 +6194,7 @@ abstract class Model extends AbstractInjectionAware implements
                          */
                         if (isset($this->$attributeField)) {
                             $value = $this->$attributeField;
+
                             /**
                              * Objects are never treated as null, numeric fields
                              * must be numeric to be accepted as not null
