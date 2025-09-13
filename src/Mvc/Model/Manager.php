@@ -1822,7 +1822,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
             return true;
         }
 
-        return $this->keepSnapshots[mb_strtolower(get_class($model))] ?? false;
+        $entityName = mb_strtolower(get_class($model));
+
+        return $this->keepSnapshots[$entityName] ?? false;
     }
 
     /**
