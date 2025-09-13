@@ -344,8 +344,7 @@ class Complex extends Resultset
         $this->rewind();
 
         while ($this->valid()) {
-            $current   = $this->current();
-            $records[] = $current;
+            $records[] = $this->current();
 
             $this->next();
         }
