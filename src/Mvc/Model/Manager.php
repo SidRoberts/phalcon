@@ -1095,7 +1095,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
      */
     public function getHasOne(ModelInterface $model): array
     {
-        return $this->hasOneSingle[mb_strtolower(get_class($model))] ?? [];
+        $entityName = mb_strtolower(get_class($model));
+
+        return $this->hasOneSingle[$entityName] ?? [];
     }
 
     /**
