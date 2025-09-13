@@ -389,7 +389,7 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
         /**
          * Check if the number of fields are the same
          */
-        if (is_array($referencedFields) && count($fields) != count($referencedFields)) {
+        if (is_array($referencedFields) && count($fields) !== count($referencedFields)) {
             throw new ReferencedFieldsMismatch(
                 "HasMany",
                 $entityName,
