@@ -134,7 +134,7 @@ class Ini extends Config
         $ini      = (string)$ini;
         $lowerIni = strtolower($ini);
 
-        // Decode null/boolean
+        // Decode null
         if ('null' === $lowerIni) {
             return null;
         }
