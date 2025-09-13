@@ -1166,7 +1166,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
      */
     public function getHasOneThrough(ModelInterface $model): array
     {
-        return $this->hasOneThroughSingle[mb_strtolower(get_class($model))] ?? [];
+        $entityName = mb_strtolower(get_class($model));
+
+        return $this->hasOneThroughSingle[$entityName] ?? [];
     }
 
     /**
