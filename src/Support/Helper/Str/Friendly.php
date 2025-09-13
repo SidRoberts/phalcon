@@ -17,7 +17,7 @@ use Phalcon\Traits\Helper\Str\LowerTrait;
 
 use function array_keys;
 use function array_values;
-use function is_string;
+use function is_array;
 use function preg_replace;
 use function str_replace;
 use function trim;
@@ -45,7 +45,7 @@ class Friendly
         bool $lowercase = true,
         array | string $replace = []
     ): string {
-        if (is_string($replace)) {
+        if (!is_array($replace)) {
             $replace = [$replace];
         }
 
