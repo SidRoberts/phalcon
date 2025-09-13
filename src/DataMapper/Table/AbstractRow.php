@@ -111,6 +111,7 @@ abstract class AbstractRow implements IteratorAggregate, JsonSerializable
     public function getDiff(): array
     {
         $diff = [];
+
         foreach ($this->initStore as $column => $old) {
             if ($this->isModified($column, $old)) {
                 $diff[$column] = $this->get($column);
