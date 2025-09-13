@@ -2086,7 +2086,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
         ModelInterface $model,
         EventsManagerInterface $eventsManager
     ): void {
-        $this->customEventsManager[mb_strtolower(get_class($model))] = $eventsManager;
+        $entityName = mb_strtolower(get_class($model));
+
+        $this->customEventsManager[$entityName] = $eventsManager;
     }
 
     /**
