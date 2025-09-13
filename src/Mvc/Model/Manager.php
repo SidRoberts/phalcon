@@ -2191,7 +2191,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
      */
     public function setWriteConnectionService(ModelInterface $model, string $connectionService): void
     {
-        $this->writeConnectionServices[mb_strtolower(get_class($model))] = $connectionService;
+        $entityName = mb_strtolower(get_class($model));
+
+        $this->writeConnectionServices[$entityName] = $connectionService;
     }
 
     /**
