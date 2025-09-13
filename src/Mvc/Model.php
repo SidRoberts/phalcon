@@ -6724,6 +6724,7 @@ abstract class Model extends AbstractInjectionAware implements
         string $key
     ): string {
         $keys = array_keys($columnMap);
+
         foreach ($keys as $cmKey) {
             if (strtolower($cmKey) == strtolower($key)) {
                 return $cmKey;
