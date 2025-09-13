@@ -6763,12 +6763,14 @@ abstract class Model extends AbstractInjectionAware implements
          */
         if (isset($params["bind"])) {
             $bindParams = $params["bind"];
+
             if (is_array($bindParams)) {
                 $query->setBindParams($bindParams, true);
             }
 
             if (isset($params["bindTypes"])) {
                 $bindTypes = $params["bindTypes"];
+
                 if (is_array($bindTypes)) {
                     $query->setBindTypes($bindTypes, true);
                 }
@@ -6777,6 +6779,7 @@ abstract class Model extends AbstractInjectionAware implements
 
         if (isset($params[self::TRANSACTION_INDEX])) {
             $transaction = $params[self::TRANSACTION_INDEX];
+
             if ($transaction instanceof TransactionInterface) {
                 $query->setTransaction($transaction);
             }
