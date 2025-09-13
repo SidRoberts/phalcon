@@ -925,7 +925,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
      */
     public function getBelongsTo(ModelInterface $model): array
     {
-        return $this->belongsToSingle[mb_strtolower(get_class($model))] ?? [];
+        $entityName = mb_strtolower(get_class($model));
+
+        return $this->belongsToSingle[$entityName] ?? [];
     }
 
     /**
