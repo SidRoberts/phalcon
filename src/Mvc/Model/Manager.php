@@ -1987,11 +1987,13 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
     {
         $status = true;
 
+        $entityName = mb_strtolower(get_class($model));
+
         /**
          * Dispatch events to the global events manager
          */
-        if (isset($this->behaviors[mb_strtolower(get_class($model))])) {
-            $modelsBehaviors = $this->behaviors[mb_strtolower(get_class($model))];
+        if (isset($this->behaviors[$entityName])) {
+            $modelsBehaviors = $this->behaviors[$entityName];
 
             /**
              * Notify all the events on the behavior
@@ -2019,8 +2021,8 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
         /**
          * A model can has a specific events manager for it
          */
-        if (isset($this->customEventsManager[mb_strtolower(get_class($model))])) {
-            $customEventsManager = $this->customEventsManager[mb_strtolower(get_class($model))];
+        if (isset($this->customEventsManager[$entityName])) {
+            $customEventsManager = $this->customEventsManager[$entityName];
             $status              = $customEventsManager->fire(
                 "model:" . $eventName,
                 $model
