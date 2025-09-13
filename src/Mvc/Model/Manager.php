@@ -2162,7 +2162,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
      */
     public function setReadConnectionService(ModelInterface $model, string $connectionService): void
     {
-        $this->readConnectionServices[mb_strtolower(get_class($model))] = $connectionService;
+        $entityName = mb_strtolower(get_class($model));
+
+        $this->readConnectionServices[$entityName] = $connectionService;
     }
 
     /**
