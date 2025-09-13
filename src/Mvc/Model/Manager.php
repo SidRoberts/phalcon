@@ -1938,11 +1938,14 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
         string $eventName,
         mixed $data
     ): mixed {
+        $entityName = mb_strtolower(get_class($model));
+
         /**
          * Dispatch events to the global events manager
          */
-        if (isset($this->behaviors[mb_strtolower(get_class($model))])) {
-            $modelsBehaviors = $this->behaviors[mb_strtolower(get_class($model))];
+        if (isset($this->behaviors[$entityName])) {
+            $modelsBehaviors = $this->behaviors[$entityName];
+
             /**
              * Notify all the events on the behavior
              */
