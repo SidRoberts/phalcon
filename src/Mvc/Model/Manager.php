@@ -1011,7 +1011,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
     public function getCustomEventsManager(
         ModelInterface $model
     ): EventsManagerInterface | null {
-        return $this->customEventsManager[mb_strtolower(get_class($model))] ?? null;
+        $entityName = mb_strtolower(get_class($model));
+
+        return $this->customEventsManager[$entityName] ?? null;
     }
 
     /**
