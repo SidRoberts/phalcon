@@ -1210,7 +1210,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
      */
     public function getModelSchema(ModelInterface $model): string | null
     {
-        return $this->schemas[mb_strtolower(get_class($model))] ?? null;
+        $entityName = mb_strtolower(get_class($model));
+
+        return $this->schemas[$entityName] ?? null;
     }
 
     /**
