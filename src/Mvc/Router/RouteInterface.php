@@ -82,6 +82,13 @@ interface RouteInterface
     public function getCompiledPattern(): string;
 
     /**
+     * Returns the router converter
+     *
+     * @return array<string, mixed>
+     */
+    public function getConverters(): array;
+
+    /**
      * Returns the group associated with the route
      *
      * @return GroupInterface|null
