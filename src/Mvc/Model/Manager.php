@@ -499,17 +499,11 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
          * Check if the number of fields are the same from the intermediate
          * model to the referenced model
          */
-<<<<<<< HEAD
-        if (is_array($intermediateReferencedFields) && count($fields) != count($intermediateFields)) {
+        if (is_array($intermediateReferencedFields) && count($fields) !== count($intermediateFields)) {
             throw new ReferencedFieldsMismatch(
                 "HasManytoMany",
                 $entityName,
                 $referencedEntity
-=======
-        if (is_array($intermediateReferencedFields) && count($fields) !== count($intermediateFields)) {
-            throw new Exception(
-                "Number of referenced fields are not the same"
->>>>>>> affe6ea634 (Refactored `Mvc\Model\Manager::addHasManyToMany()`.)
             );
         }
 
@@ -611,7 +605,7 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
         /**
          * Check if the number of fields are the same
          */
-        if (is_array($referencedFields) && count($fields) != count($referencedFields)) {
+        if (is_array($referencedFields) && count($fields) !== count($referencedFields)) {
             throw new ReferencedFieldsMismatch(
                 "HasOne",
                 $entityName,
