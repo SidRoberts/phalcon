@@ -2147,7 +2147,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
      */
     public function setModelSource(ModelInterface $model, string $source): void
     {
-        $this->sources[mb_strtolower(get_class($model))] = $source;
+        $entityName = mb_strtolower(get_class($model));
+
+        $this->sources[$entityName] = $source;
     }
 
     /**
