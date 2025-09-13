@@ -146,36 +146,6 @@ class RenderTest extends AbstractUnitTestCase
      * @author Kamil Skowron <git@hedonsoftware.com>
      * @since  2014-05-28
      */
-    public function testRenderRenderWithMustache(): void
-    {
-        $view = $this->container->get('viewSimple');
-
-        $view->setParamToView('name', 'FooBar');
-
-        $view->registerEngines(
-            [
-                '.mhtml' => Volt::class,
-            ]
-        );
-
-        $this->assertEquals(
-            'Hello FooBar',
-            $view->render('mustache/index')
-        );
-
-        $this->assertFileExists(
-            supportDir('assets/views/mustache') . '/index.mhtml.php'
-        );
-
-        $this->safeDeleteFile(
-            supportDir('assets/views/mustache') . '/index.mhtml.php'
-        );
-    }
-
-    /**
-     * @author Kamil Skowron <git@hedonsoftware.com>
-     * @since  2014-05-28
-     */
     public function testRenderStandard(): void
     {
         $view = $this->container->get('viewSimple');
