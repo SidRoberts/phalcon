@@ -1894,7 +1894,9 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
      */
     public function keepSnapshots(ModelInterface $model, bool $keepSnapshots): void
     {
-        $this->keepSnapshots[mb_strtolower(get_class($model))] = $keepSnapshots;
+        $entityName = mb_strtolower(get_class($model));
+
+        $this->keepSnapshots[$entityName] = $keepSnapshots;
     }
 
     /**
