@@ -142,7 +142,7 @@ class Annotations extends Router
     }
 
     /**
-     * Produce the routing parameters from the rewrite information
+     * Produce the routing parameters from a URI
      *
      * @param string $uri
      *
