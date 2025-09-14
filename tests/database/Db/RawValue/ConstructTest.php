@@ -36,9 +36,15 @@ final class ConstructTest extends AbstractDatabaseTestCase
     ): void {
         $rawValue = new RawValue($value);
 
-        $this->assertEquals($expected, $rawValue->getValue());
+        $this->assertEquals(
+            $expected,
+            $rawValue->getValue()
+        );
     }
 
+    /**
+     * @return array<array{0: mixed, 1: string}>
+     */
     public static function valueProvider(): array
     {
         return [
