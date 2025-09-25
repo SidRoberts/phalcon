@@ -40,7 +40,7 @@ class Anchor extends AbstractHelper
     }
 
     /**
-     * Produce a <a> tag
+     * Produce a `<a>` tag
      *
      * @param string $href
      * @param string $text

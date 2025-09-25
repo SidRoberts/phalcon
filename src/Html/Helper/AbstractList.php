@@ -85,7 +85,6 @@ abstract class AbstractList extends AbstractHelper
     }
 
     /**
-     *
      * Returns the tag name.
      *
      * @return string

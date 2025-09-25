@@ -23,7 +23,7 @@ namespace Phalcon\Html\Helper;
 class Img extends AbstractHelper
 {
     /**
-     * Produce a <img> tag.
+     * Produce a `<img>` tag.
      *
      * @param string $src
      * @param array  $attributes

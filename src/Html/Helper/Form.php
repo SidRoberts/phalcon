@@ -23,7 +23,7 @@ namespace Phalcon\Html\Helper;
 class Form extends AbstractHelper
 {
     /**
-     * Produce a <form> tag.
+     * Produce a `<form>` tag.
      *
      * @param array $attributes
      *

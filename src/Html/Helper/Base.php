@@ -17,7 +17,7 @@ namespace Phalcon\Html\Helper;
 class Base extends AbstractHelper
 {
     /**
-     * Produce a `<base/>` tag.
+     * Produce a `<base>` tag.
      *
      * @param string|null $href
      * @param array       $attributes

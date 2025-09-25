@@ -47,7 +47,7 @@ class Doctype
     private int $type = self::HTML5;
 
     /**
-     * Produce a <doctype> tag
+     * Produce a `<doctype>` tag
      *
      * @param int    $type
      * @param string $delimiter
