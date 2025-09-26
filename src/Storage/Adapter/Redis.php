@@ -264,18 +264,26 @@ class Redis extends AbstractAdapter
         /**
          * Lets set some defaults and options here
          */
-        $options["host"]           = $options["host"] ?? "127.0.0.1";
-        $options["port"]           = (int)($options["port"] ?? 6379);
-        $options["index"]          = $options["index"] ?? 0;
-        $options["timeout"]        = $options["timeout"] ?? 0;
-        $options["persistent"]     = (bool)($options["persistent"] ?? false);
-        $options["persistentId"]   = (string)($options["persistentId"] ?? "");
-        $options["auth"]           = $options["auth"] ?? '';
-        $options["socket"]         = $options["socket"] ?? "";
-        $options["connectTimeout"] = $options["connectTimeout"] ?? 0;
-        $options["retryInterval"]  = $options["retryInterval"] ?? 0;
-        $options["readTimeout"]    = $options["readTimeout"] ?? 0;
-        $options["ssl"]            = $options["ssl"] ?? [];
+        $defaults = [
+            "host"           => "127.0.0.1",
+            "port"           => 6379,
+            "index"          => 0,
+            "timeout"        => 0,
+            "persistent"     => false,
+            "persistentId"   => "",
+            "auth"           => '',
+            "socket"         => "",
+            "connectTimeout" => 0,
+            "retryInterval"  => 0,
+            "readTimeout"    => 0,
+            "ssl"            => [],
+        ];
+
+        $options = array_merge($defaults, $options);
+
+        $options["port"]         = (int) $options["port"];
+        $options["persistent"]   = (bool) $options["persistent"];
+        $options["persistentId"] = (string) $options["persistentId"];
 
         return $options;
     }
