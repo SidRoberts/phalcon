@@ -142,13 +142,19 @@ class RedisCluster extends Redis
         /**
          * Lets set some defaults and options here
          */
-        $options["name"]        = $options["name"] ?? null;
-        $options["hosts"]       = $options["hosts"] ?? ["127.0.0.1:6379"];
-        $options["timeout"]     = $options["timeout"] ?? 0;
-        $options["readTimeout"] = $options["readTimeout"] ?? 0;
-        $options["persistent"]  = (bool)($options["persistent"] ?? false);
-        $options["auth"]        = $options["auth"] ?? "";
-        $options["context"]     = $options["context"] ?? null;
+        $defaults = [
+            "name"        => null,
+            "hosts"       => ["127.0.0.1:6379"],
+            "timeout"     => 0,
+            "readTimeout" => 0,
+            "persistent"  => false,
+            "auth"        => "",
+            "context"     => null,
+        ];
+
+        $options = array_merge($defaults, $options);
+
+        $options["persistent"] = (bool) $options["persistent"];
 
         return $options;
     }
