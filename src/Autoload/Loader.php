@@ -57,7 +57,7 @@ class Loader
     protected string | null $checkedPath = null;
 
     /**
-     * @var TStrings
+     * @var array<class-string, string>
      */
     protected array $classes = [];
 
@@ -108,6 +108,8 @@ class Loader
 
     /**
      * Loader constructor.
+     *
+     * @param bool $isDebug
      */
     public function __construct(bool $isDebug = false)
     {
@@ -207,9 +209,10 @@ class Loader
     /**
      * Autoloads the registered classes
      *
-     * @param string $className
+     * @param class-string $className
      *
      * @return bool
+     *
      * @throws EventsException
      */
     public function autoload(string $className): bool
@@ -263,7 +266,7 @@ class Loader
     /**
      * Returns the class-map currently registered in the autoloader
      *
-     * @return string[]
+     * @return array<class-string, string>
      */
     public function getClasses(): array
     {
@@ -273,7 +276,7 @@ class Loader
     /**
      * Returns debug information collected
      *
-     * @return string[]
+     * @return array<int, string>
      */
     public function getDebug(): array
     {
@@ -283,7 +286,7 @@ class Loader
     /**
      * Returns the directories currently registered in the autoloader
      *
-     * @return string[]
+     * @return TStrings
      */
     public function getDirectories(): array
     {
@@ -293,7 +296,7 @@ class Loader
     /**
      * Returns the file extensions registered in the loader
      *
-     * @return string[]
+     * @return TStrings
      */
     public function getExtensions(): array
     {
@@ -303,7 +306,7 @@ class Loader
     /**
      * Returns the files currently registered in the autoloader
      *
-     * @return string[]
+     * @return TStrings
      */
     public function getFiles(): array
     {
@@ -334,6 +337,7 @@ class Loader
      * Checks if a file exists and then adds the file by doing virtual require
      *
      * @return void
+     *
      * @throws EventsException
      */
     public function loadFiles(): void
@@ -354,6 +358,7 @@ class Loader
      * @param bool $prepend
      *
      * @return $this
+     *
      * @throws EventsException
      */
     public function register(bool $prepend = false): static
@@ -447,6 +452,7 @@ class Loader
      * @param string|callable|null $method
      *
      * @return Loader
+     *
      * @throws Exception
      */
     public function setFileCheckingCallback(mixed $method = null): static
@@ -544,6 +550,7 @@ class Loader
      * @param string $file The file to require
      *
      * @return bool
+     *
      * @throws EventsException
      */
     protected function requireFile(string $file): bool
@@ -575,6 +582,8 @@ class Loader
      * Adds a debugging message in the collection
      *
      * @param string $message
+     *
+     * @return void
      */
     private function addDebug(string $message): void
     {
@@ -615,9 +624,10 @@ class Loader
      * Checks the registered classes to find the class. Includes the file if
      * found and returns true; false otherwise
      *
-     * @param string $className
+     * @param class-string $className
      *
      * @return bool
+     *
      * @throws EventsException
      */
     private function autoloadCheckClasses(string $className): bool
@@ -639,11 +649,12 @@ class Loader
      * Checks the registered directories to find the class. Includes the file if
      * found and returns true; false otherwise
      *
-     * @param TStrings $directories
-     * @param string   $className
-     * @param bool     $isDirectory
+     * @param TStrings     $directories
+     * @param class-string $className
+     * @param bool         $isDirectory
      *
      * @return bool
+     *
      * @throws EventsException
      */
     private function autoloadCheckDirectories(
@@ -686,9 +697,10 @@ class Loader
      * Checks the registered namespaces to find the class. Includes the file if
      * found and returns true; false otherwise
      *
-     * @param string $className
+     * @param class-string $className
      *
      * @return bool
+     *
      * @throws EventsException
      */
     private function autoloadCheckNamespaces(string $className): bool
@@ -722,8 +734,8 @@ class Loader
      * to normalize the directories with the proper directory separator at the
      * end
      *
-     * @param TStrings|string $directories
-     * @param string          $dirSeparator
+     * @param TStrings|string  $directories
+     * @param non-empty-string $dirSeparator
      *
      * @return TStrings
      */
