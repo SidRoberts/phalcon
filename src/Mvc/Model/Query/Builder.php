@@ -1669,13 +1669,7 @@ class Builder implements BuilderInterface, InjectionAwareInterface
     public function setBindTypes(array $bindTypes, bool $merge = false): BuilderInterface
     {
         if ($merge) {
-            $currentBindTypes = $this->bindTypes;
-
-            if (is_array($currentBindTypes)) {
-                $this->bindTypes = $currentBindTypes + $bindTypes;
-            } else {
-                $this->bindTypes = $bindTypes;
-            }
+            $this->bindTypes = $this->bindTypes + $bindTypes;
         } else {
             $this->bindTypes = $bindTypes;
         }
