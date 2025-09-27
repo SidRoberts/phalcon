@@ -85,10 +85,6 @@ class Transaction implements TransactionInterface
     protected ManagerInterface | null $manager = null;
 
     /**
-     * @var array
-     */
-    protected array $messages = [];
-    /**
      * @var bool
      */
     protected bool $rollbackOnAbort = false;
@@ -161,16 +157,6 @@ class Transaction implements TransactionInterface
         }
 
         return $this->connection;
-    }
-
-    /**
-     * Returns validations messages from last save try
-     *
-     * @return array
-     */
-    public function getMessages(): array
-    {
-        return $this->messages;
     }
 
     /**

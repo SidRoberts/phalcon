@@ -44,13 +44,6 @@ interface TransactionInterface
     public function getConnection(): AdapterInterface;
 
     /**
-     * Returns validations messages from last save try
-     *
-     * @return array
-     */
-    public function getMessages(): array;
-
-    /**
      * Checks whether transaction is managed by a transaction manager
      *
      * @return bool
