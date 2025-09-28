@@ -28,7 +28,7 @@ trait StatusPhrasesTrait
     /**
      * Returns the list of status codes available
      *
-     * @return string[]
+     * @return array<int, string>
      */
     protected function getPhrases(): array
     {
