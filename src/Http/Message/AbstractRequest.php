@@ -226,21 +226,21 @@ abstract class AbstractRequest extends AbstractMessage implements
     {
         if ("" !== $method) {
             $methods = [
-                "CONNECT" => 1,
-                "DELETE"  => 1,
-                "GET"     => 1,
-                "HEAD"    => 1,
-                "OPTIONS" => 1,
-                "PATCH"   => 1,
-                "POST"    => 1,
-                "PURGE"   => 1,
-                "PUT"     => 1,
-                "TRACE"   => 1,
+                "CONNECT",
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PURGE",
+                "PUT",
+                "TRACE",
             ];
 
             $method = strtoupper($method);
 
-            if (!isset($methods[$method])) {
+            if (!in_array($method, $methods)) {
                 throw new InvalidArgumentException(
                     "Invalid or unsupported method " . $method
                 );
