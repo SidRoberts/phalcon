@@ -366,9 +366,11 @@ abstract class AbstractAdapter implements AdapterInterface
         $previous  = null;
         $first     = reset($columns);
         $firstName = $first['name'];
+
         foreach ($columns as $column) {
             $name           = $column['name'];
             $results[$name] = $this->processColumn($column);
+
             if ($name === $firstName) {
                 $results[$name]['isFirst'] = true;
             }
