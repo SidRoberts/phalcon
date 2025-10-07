@@ -615,15 +615,11 @@ class Security extends AbstractInjectionAware implements SecurityContract
      */
     private function processAlgorithm(): string
     {
-        $algorithm = PASSWORD_BCRYPT;
-
-        if ($this->defaultHash === self::CRYPT_ARGON2I) {
-            $algorithm = PASSWORD_ARGON2I;
-        } elseif ($this->defaultHash === self::CRYPT_ARGON2ID) {
-            $algorithm = PASSWORD_ARGON2ID;
-        }
-
-        return $algorithm;
+        return match ($this->defaultHash) {
+            self::CRYPT_ARGON2I  => PASSWORD_ARGON2I,
+            self::CRYPT_ARGON2ID => PASSWORD_ARGON2ID,
+            default              => PASSWORD_BCRYPT,
+        };
     }
 
     /**
