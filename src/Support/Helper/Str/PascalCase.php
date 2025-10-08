@@ -61,6 +61,7 @@ class PascalCase
         string | null $delimiters = null
     ): array {
         $delimiters = $delimiters ?: '\-_';
+
         /**
          * Escape the `-` if it exists so that it does not get interpreted
          * as a range. First remove any escaping for the `-` if present and then
@@ -76,6 +77,6 @@ class PascalCase
             PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
         );
 
-        return (false === $result) ? [] : $result;
+        return $result ?: [];
     }
 }
