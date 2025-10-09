@@ -544,14 +544,6 @@ class Debug
      */
     protected function getVarDump(mixed $variable): string
     {
-        if (true === $variable) {
-            return 'true';
-        }
-
-        if (false === $variable) {
-            return 'false';
-        }
-
         /**
          * String variables are escaped to avoid XSS injections
          */
@@ -599,17 +591,16 @@ class Debug
             return 'Array(' . $this->getArrayDump($variable) . ')';
         }
 
-        /**
-         * Null variables are represented as 'null'
-         */
-        if (null === $variable) {
-            return 'null';
-        }
+        return match ($variable) {
+            true  => 'true',
+            false => 'false',
+            null  => 'null',
 
-        /**
-         * Other types are represented by its type
-         */
-        return gettype($variable);
+            /**
+             * Other types are represented by its type
+             */
+            default => gettype($variable),
+        };
     }
 
     /**
