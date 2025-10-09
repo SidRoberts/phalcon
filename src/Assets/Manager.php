@@ -278,6 +278,7 @@ class Manager implements InjectionAwareInterface
     public function collectionAssetsByType(array $assets, string $type): array
     {
         $filtered = [];
+
         foreach ($assets as $asset) {
             if (
                 $asset instanceof AssetInterface &&
