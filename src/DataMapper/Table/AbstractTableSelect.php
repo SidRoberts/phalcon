@@ -69,6 +69,7 @@ abstract class AbstractTableSelect extends Select
     public function fetchRows(): array
     {
         $rows = [];
+
         foreach ($this->yieldAll() as $columns) {
             $rows[] = $this->table->newSelectedRow($columns);
         }
