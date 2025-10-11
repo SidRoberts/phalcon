@@ -26,8 +26,6 @@ use ReflectionProperty;
 use stdClass;
 
 use function array_merge;
-use function call_user_func_array;
-use function func_get_args;
 use function get_class;
 use function get_class_methods;
 use function get_object_vars;
@@ -112,17 +110,13 @@ class Dump
     /**
      * Alias of variables() method
      *
+     * @param mixed ...$args
+     *
      * @return string
      */
-    public function all(): string
+    public function all(...$args): string
     {
-        return call_user_func_array(
-            [
-                $this,
-                'variables',
-            ],
-            func_get_args()
-        );
+        return $this->variables(...$args);
     }
 
     /**
