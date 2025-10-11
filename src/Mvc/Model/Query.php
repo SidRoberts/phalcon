@@ -3941,14 +3941,11 @@ class Query implements QueryInterface, InjectionAwareInterface
             $selectColumns = $columns;
         }
 
-        $manager  = $this->manager;
-        $metaData = $this->metaData;
-
-        if (!is_object($manager)) {
+        if (!is_object($this->manager)) {
             throw new MissingModelsManager();
         }
 
-        if (!is_object($metaData)) {
+        if (!is_object($this->metaData)) {
             throw new MissingMetaData();
         }
 
@@ -3961,7 +3958,7 @@ class Query implements QueryInterface, InjectionAwareInterface
             $modelName     = $qualifiedName["name"];
 
             // Load a model instance from the models manager
-            $model = $manager->load($modelName);
+            $model = $this->manager->load($modelName);
 
             // Define a complete schema/source
             $schema = $model->getSchema();
@@ -4023,7 +4020,7 @@ class Query implements QueryInterface, InjectionAwareInterface
                     $joinAlias     = "AA" . $number;
                     $relationModel = $withItem["name"];
 
-                    $relation = $manager->getRelationByAlias(
+                    $relation = $this->manager->getRelationByAlias(
                         $modelName,
                         $relationModel
                     );
@@ -4033,7 +4030,7 @@ class Query implements QueryInterface, InjectionAwareInterface
                         $relationModel = $relation->getReferencedModel();
                         $eagerType     = $relation->getType();
                     } else {
-                        $relation = $manager->getRelationsBetween(
+                        $relation = $this->manager->getRelationsBetween(
                             $modelName,
                             $relationModel
                         );
