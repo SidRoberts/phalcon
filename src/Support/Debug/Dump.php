@@ -245,13 +245,15 @@ class Dump
      * echo (new \Phalcon\Debug\Dump())->variables($foo, $bar, $baz);
      * ```
      *
+     * @param mixed ...$args
+     *
      * @return string
+     *
      * @throws ReflectionException
      */
-    public function variables(): string
+    public function variables(...$args): string
     {
         $output = "";
-        $args   = func_get_args();
 
         foreach ($args as $key => $value) {
             $output .= $this->one($value, 'var ' . $key);
