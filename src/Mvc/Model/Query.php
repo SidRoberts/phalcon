@@ -4279,21 +4279,17 @@ class Query implements QueryInterface, InjectionAwareInterface
         $sqlAliasesModelsInstances = [];
 
         if (!isset($tables[0])) {
-            $updateTables = [$tables];
-        } else {
-            $updateTables = $tables;
+            $tables = [$tables];
         }
 
-        $manager = $this->manager;
-
-        foreach ($updateTables as $table) {
+        foreach ($tables as $table) {
             $qualifiedName = $table["qualifiedName"];
             $modelName     = $qualifiedName["name"];
 
             /**
              * Load a model instance from the models manager
              */
-            $model  = $manager->load($modelName);
+            $model  = $this->manager->load($modelName);
             $source = $model->getSource();
             $schema = $model->getSchema();
 
@@ -4339,14 +4335,12 @@ class Query implements QueryInterface, InjectionAwareInterface
         $sqlValues = [];
 
         if (!isset($values[0])) {
-            $updateValues = [$values];
-        } else {
-            $updateValues = $values;
+            $values = [$values];
         }
 
         $notQuoting = false;
 
-        foreach ($updateValues as $updateValue) {
+        foreach ($values as $updateValue) {
             $sqlFields[] = $this->getExpression($updateValue["column"], $notQuoting);
             $exprColumn  = $updateValue["expr"];
             $sqlValues[] = [
