@@ -270,10 +270,9 @@ class UploadedFile implements UploadedFileInterface
          * All together for early failure
          */
         if (
-            !(is_string($targetPath) &&
-                !empty($targetPath) &&
-                is_dir(dirname($targetPath)) &&
-                is_writable(dirname($targetPath)))
+            empty($targetPath) ||
+            !is_dir(dirname($targetPath)) ||
+            !is_writable(dirname($targetPath))
         ) {
             throw new InvalidArgumentException(
                 "Target folder is empty string, not a folder or not writable"
