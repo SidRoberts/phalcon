@@ -27,6 +27,8 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
     use SessionTrait;
 
     /**
+     * @throws Exception
+     *
      * @issue https://github.com/phalcon/cphalcon/issues/12326
      * @issue https://github.com/phalcon/cphalcon/issues/12835
      *
@@ -44,11 +46,13 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
         $files   = $this->newService($name);
         $manager->setAdapter($files);
 
-        $actual = $manager->start();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->start()
+        );
 
-        $actual = $manager->exists();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->exists()
+        );
 
         $manager->set('test1', __METHOD__);
         $this->assertArrayHasKey('test1', $_SESSION);
@@ -57,11 +61,14 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
         $manager->destroy();
         $this->assertArrayNotHasKey('test1', $_SESSION);
 
-        $actual = $manager->exists();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->exists()
+        );
     }
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -81,11 +88,13 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
             ]
         );
 
-        $actual = $manager->start();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->start()
+        );
 
-        $actual = $manager->exists();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->exists()
+        );
 
         $manager->set('test1', __METHOD__);
 
@@ -95,8 +104,9 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
         $manager->destroy();
         $this->assertArrayNotHasKey('aaa#test1', $_SESSION);
 
-        $actual = $manager->exists();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->exists()
+        );
     }
 
     /**
@@ -112,17 +122,21 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
 
         $manager = new Manager();
         $files   = $this->newService($name);
+
         $manager->setAdapter($files);
 
-        $actual = $manager->start();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->start()
+        );
 
-        $actual = $manager->exists();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->exists()
+        );
 
         $manager->destroy();
 
-        $actual = $manager->exists();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->exists()
+        );
     }
 }

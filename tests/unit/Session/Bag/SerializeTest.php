@@ -32,13 +32,16 @@ final class SerializeTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
+
         $data = [
             'one'   => 'two',
             'three' => 'four',
             'five'  => 'six',
         ];
 
-        $collection = new Bag($this->container->get("session"), 'BagTest');
+        $session = $this->container->get("session");
+
+        $collection = new Bag($session, 'BagTest');
 
         $collection->init($data);
 
@@ -50,7 +53,10 @@ final class SerializeTest extends AbstractUnitTestCase
                 'type'        => null,
             ]
         );
-        $actual   = $collection->serialize();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $collection->serialize()
+        );
     }
 }

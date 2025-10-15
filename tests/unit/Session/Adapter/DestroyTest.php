@@ -13,6 +13,10 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Session\Adapter;
 
+use Phalcon\Session\Adapter\Libmemcached;
+use Phalcon\Session\Adapter\Noop;
+use Phalcon\Session\Adapter\Redis;
+use Phalcon\Session\Adapter\Stream;
 use Phalcon\Tests\AbstractServicesTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
 
@@ -31,6 +35,7 @@ final class DestroyTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterLibmemcachedDestroy(): void
     {
+        /** @var Libmemcached */
         $adapter = $this->newService('sessionLibmemcached');
 
         $value  = uniqid();
@@ -39,11 +44,11 @@ final class DestroyTest extends AbstractServicesTestCase
 
         $this->setMemcachedKey($key, $actual, 0);
 
-        $actual = serialize($value);
         $this->hasMemcachedKey($key);
 
-        $actual = $adapter->destroy('test1');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->destroy('test1')
+        );
 
         $this->doesNotHaveMemcachedKey($key);
     }
@@ -54,10 +59,12 @@ final class DestroyTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterNoopDestroy(): void
     {
+        /** @var Noop */
         $adapter = $this->newService('sessionNoop');
 
-        $actual = $adapter->destroy('test1');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->destroy('test1')
+        );
     }
 
     /**
@@ -66,18 +73,19 @@ final class DestroyTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterRedisDestroy(): void
     {
+        /** @var Redis */
         $adapter = $this->newService('sessionRedis');
 
         $value = uniqid();
 
         $this->setRedisKey(
-            'string',
             'sess-reds-test1',
             serialize($value)
         );
 
-        $actual = $adapter->destroy('test1');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->destroy('test1')
+        );
 
         $this->doesNotHaveRedisKey('sess-reds-test1');
     }
@@ -88,6 +96,7 @@ final class DestroyTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterStreamDestroy(): void
     {
+        /** @var Stream */
         $adapter = $this->newService('sessionStream');
 
         /**
@@ -98,9 +107,12 @@ final class DestroyTest extends AbstractServicesTestCase
             uniqid()
         );
 
-        $actual = $adapter->destroy('test1');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->destroy('test1')
+        );
 
-        $this->assertFileDoesNotExist(cacheDir('sessions/test1'));
+        $this->assertFileDoesNotExist(
+            cacheDir('sessions/test1')
+        );
     }
 }

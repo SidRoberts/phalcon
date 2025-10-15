@@ -46,6 +46,7 @@ final class ManagerTest extends AbstractUnitTestCase
     public function testSessionManagerStart(): void
     {
         $session = new Manager();
+
         $session->setAdapter(new Noop());
 
         if (PHP_SESSION_ACTIVE === session_status()) {
@@ -54,13 +55,15 @@ final class ManagerTest extends AbstractUnitTestCase
             unset($_SESSION);
         }
 
-        $actual = $session->start();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $session->start()
+        );
+
         $session->destroy();
     }
 
     /**
-     * @since   2021-02-02
+     * @since 2021-02-02
      */
     #[DataProvider('providerSessionValues')]
     public function testValidateSessionValue(
@@ -68,6 +71,7 @@ final class ManagerTest extends AbstractUnitTestCase
         bool $expected
     ): void {
         $name = session_name();
+
         if (PHP_SESSION_ACTIVE === session_status()) {
             // Please note: further tests may need $_SESSION variable
             @session_destroy();
@@ -86,6 +90,7 @@ final class ManagerTest extends AbstractUnitTestCase
         // Check if session value has been sanitized
         $actual = isset($_COOKIE[$name]);
         $this->assertSame($expected, $actual);
+
         $session->destroy();
     }
 }

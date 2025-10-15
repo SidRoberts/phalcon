@@ -33,23 +33,28 @@ final class HasTest extends AbstractUnitTestCase
 
         $manager->setAdapter($files);
 
-        $actual = $manager->has('test');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->has('test')
+        );
 
-        $actual = $manager->start();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->start()
+        );
 
-        $actual = $manager->has('test');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->has('test')
+        );
 
         $manager->set('test', 'myval');
 
-        $actual = $manager->has('test');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->has('test')
+        );
 
         $manager->destroy();
 
-        $actual = $manager->exists();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->exists()
+        );
     }
 }

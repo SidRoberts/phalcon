@@ -29,23 +29,28 @@ final class StatusTest extends AbstractUnitTestCase
     {
         $manager = new Manager();
         $files   = $this->newService('sessionStream');
+
         $manager->setAdapter($files);
 
-        $expected = $manager::SESSION_NONE;
-        $actual   = $manager->status();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $manager::SESSION_NONE,
+            $manager->status()
+        );
 
-        $actual = $manager->start();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->start()
+        );
 
-        $expected = $manager::SESSION_ACTIVE;
-        $actual   = $manager->status();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $manager::SESSION_ACTIVE,
+            $manager->status()
+        );
 
         $manager->destroy();
 
-        $expected = $manager::SESSION_NONE;
-        $actual   = $manager->status();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $manager::SESSION_NONE,
+            $manager->status()
+        );
     }
 }

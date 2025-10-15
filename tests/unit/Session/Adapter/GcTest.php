@@ -13,6 +13,10 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Session\Adapter;
 
+use Phalcon\Session\Adapter\Libmemcached;
+use Phalcon\Session\Adapter\Noop;
+use Phalcon\Session\Adapter\Redis;
+use Phalcon\Session\Adapter\Stream;
 use Phalcon\Session\Exception;
 use Phalcon\Tests\AbstractServicesTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
@@ -34,6 +38,7 @@ final class GcTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterLibmemcachedGc(): void
     {
+        /** @var Libmemcached */
         $adapter = $this->newService('sessionLibmemcached');
 
         /**
@@ -41,12 +46,16 @@ final class GcTest extends AbstractServicesTestCase
          */
         $this->setMemcachedKey('sess-memc-gc_1', uniqid(), 1);
         $this->setMemcachedKey('sess-memc-gc_2', uniqid(), 1);
+
         /**
          * Sleep to make sure that the time expired
          */
         sleep(2);
-        $actual = $adapter->gc(1);
-        $this->assertNotFalse($actual);
+
+        $this->assertNotFalse(
+            $adapter->gc(1)
+        );
+
         $this->doesNotHaveMemcachedKey('sess-memc-gc_1');
         $this->doesNotHaveRedisKey('sess-memc-gc_2');
     }
@@ -57,10 +66,12 @@ final class GcTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterNoopGc(): void
     {
+        /** @var Noop */
         $adapter = $this->newService('sessionNoop');
 
-        $actual = $adapter->gc(1);
-        $this->assertNotFalse($actual);
+        $this->assertNotFalse(
+            $adapter->gc(1)
+        );
     }
 
     /**
@@ -69,10 +80,12 @@ final class GcTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterRedisGc(): void
     {
+        /** @var Redis */
         $adapter = $this->newService('sessionRedis');
 
-        $actual = $adapter->gc(1);
-        $this->assertNotFalse($actual);
+        $this->assertNotFalse(
+            $adapter->gc(1)
+        );
     }
 
     /**
@@ -81,24 +94,28 @@ final class GcTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterStreamGc(): void
     {
+        /** @var Stream */
         $adapter = $this->newService('sessionStream');
 
         /**
          * Add two session files
          */
-        $actual = file_put_contents(cacheDir('sessions/gc_1'), uniqid());
-        $this->assertNotFalse($actual);
+        $this->assertNotFalse(
+            file_put_contents(cacheDir('sessions/gc_1'), uniqid())
+        );
 
-        $actual = file_put_contents(cacheDir('sessions/gc_2'), uniqid());
-        $this->assertNotFalse($actual);
+        $this->assertNotFalse(
+            file_put_contents(cacheDir('sessions/gc_2'), uniqid())
+        );
 
         /**
          * Sleep to make sure that the time expired
          */
         sleep(2);
 
-        $actual = $adapter->gc(1);
-        $this->assertNotFalse($actual);
+        $this->assertNotFalse(
+            $adapter->gc(1)
+        );
 
         $this->assertFileDoesNotExist(cacheDir('sessions/gc_1'));
         $this->assertFileDoesNotExist(cacheDir('sessions/gc_2'));

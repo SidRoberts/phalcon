@@ -29,10 +29,12 @@ final class StartTest extends AbstractUnitTestCase
     {
         $manager = new FakeManagerHeadersSent();
         $files   = $this->newService('sessionStream');
+
         $manager->setAdapter($files);
 
-        $actual = $manager->start();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->start()
+        );
 
         $manager->destroy();
     }

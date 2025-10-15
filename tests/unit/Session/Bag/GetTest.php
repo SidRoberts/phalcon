@@ -29,28 +29,44 @@ final class GetTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
+
         $data       = [
             'one'   => 'two',
             'three' => 'four',
             'five'  => 'six',
         ];
-        $collection = new Bag($this->container->get("session"), 'BagTest');
+
+        $session = $this->container->get("session");
+
+        $collection = new Bag($session, 'BagTest');
+
         $collection->init($data);
 
         $expected = 'four';
-        $actual   = $collection->get('three');
-        $this->assertEquals($expected, $actual);
 
-        $actual = $collection->get('THREE');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $collection->get('three')
+        );
 
-        $actual = $collection['three'];
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $collection->get('THREE')
+        );
 
-        $actual = $collection->three;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $collection['three']
+        );
 
-        $actual = $collection->offsetGet('three');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $collection->three
+        );
+
+        $this->assertEquals(
+            $expected,
+            $collection->offsetGet('three')
+        );
     }
 }

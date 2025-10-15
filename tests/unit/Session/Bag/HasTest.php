@@ -29,34 +29,45 @@ final class HasTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
+
         $data = [
             'one'   => 'two',
             'three' => 'four',
             'five'  => 'six',
         ];
 
-        $collection = new Bag($this->container->get("session"), 'BagTest');
+        $session = $this->container->get("session");
+
+        $collection = new Bag($session, 'BagTest');
+
         $collection->init($data);
 
-        $actual = $collection->has('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->has('three')
+        );
 
-        $actual = $collection->has('THREE');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->has('THREE')
+        );
 
-        $actual = $collection->has(uniqid());
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->has(uniqid())
+        );
 
-        $actual = isset($collection['three']);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($collection['three'])
+        );
 
-        $actual = isset($collection[uniqid()]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($collection[uniqid()])
+        );
 
-        $actual = $collection->offsetExists('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->offsetExists('three')
+        );
 
-        $actual = $collection->offsetExists(uniqid());
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->offsetExists(uniqid())
+        );
     }
 }

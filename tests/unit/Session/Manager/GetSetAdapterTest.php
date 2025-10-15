@@ -30,10 +30,12 @@ final class GetSetAdapterTest extends AbstractUnitTestCase
     {
         $manager = new Manager();
         $files   = $this->newService('sessionStream');
+
         $manager->setAdapter($files);
 
-        $actual = $manager->getAdapter();
-        $class  = SessionHandlerInterface::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            SessionHandlerInterface::class,
+            $manager->getAdapter()
+        );
     }
 }

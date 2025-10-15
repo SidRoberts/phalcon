@@ -32,25 +32,36 @@ final class SetTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
-        $collection = new Bag($this->container->get("session"), 'BagTest');
+
+        $session = $this->container->get("session");
+
+        $collection = new Bag($session, 'BagTest');
 
         $collection->set('three', 'two');
-        $expected = 'two';
-        $actual   = $collection->get('three');
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            'two',
+            $collection->get('three')
+        );
 
         $collection->three = 'Phalcon';
-        $expected          = 'Phalcon';
-        $actual            = $collection->get('three');
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            'Phalcon',
+            $collection->get('three')
+        );
 
         $collection->offsetSet('three', 123);
-        $expected = 123;
-        $actual   = $collection->get('three');
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            123,
+            $collection->get('three')
+        );
 
         $collection['three'] = true;
-        $actual              = $collection->get('three');
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $collection->get('three')
+        );
     }
 }

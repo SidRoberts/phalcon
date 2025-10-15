@@ -30,17 +30,24 @@ final class GetSetDITest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
+
         $session   = $this->container->get('session');
         $container = $this->container;
 
-        $bag    = new Bag($session, 'DiTest');
-        $actual = $bag->getDI();
-        $this->assertSame($container, $actual);
+        $bag = new Bag($session, 'DiTest');
+
+        $this->assertSame(
+            $container,
+            $bag->getDI()
+        );
 
         $container = new FactoryDefault();
+
         $bag->setDI($container);
 
-        $actual = $bag->getDI();
-        $this->assertSame($container, $actual);
+        $this->assertSame(
+            $container,
+            $bag->getDI()
+        );
     }
 }

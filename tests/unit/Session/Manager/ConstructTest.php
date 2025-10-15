@@ -45,6 +45,7 @@ final class ConstructTest extends AbstractUnitTestCase
         $this->assertInstanceOf(ManagerInterface::class, $manager);
 
         $adapter = $manager->getAdapter();
+
         $this->assertInstanceOf(Noop::class, $adapter);
         $this->assertInstanceOf(SessionHandlerInterface::class, $adapter);
     }

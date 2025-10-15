@@ -29,13 +29,16 @@ final class CountTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
+
         $data = [
             'one'   => 'two',
             'three' => 'four',
             'five'  => 'six',
         ];
 
-        $collection = new Bag($this->container->get("session"), 'BagTest');
+        $session = $this->container->get("session");
+
+        $collection = new Bag($session, 'BagTest');
 
         $collection->init($data);
 

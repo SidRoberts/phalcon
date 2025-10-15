@@ -39,7 +39,11 @@ final class InjectableTest extends AbstractUnitTestCase
             'three' => 'four',
             'five'  => 'six',
         ];
-        $collection = new Bag($this->container->get("session"), 'BagTest');
+
+        $session = $this->container->get("session");
+
+        $collection = new Bag($session, 'BagTest');
+
         $collection->init($data);
 
         /**
@@ -52,17 +56,19 @@ final class InjectableTest extends AbstractUnitTestCase
          * instance, and set the container
          */
         $injectable = new FakeInjectableBag();
+
         $injectable->setDI($this->container);
 
         /**
          * Get the `persistent` property
          */
-        $class      = Bag::class;
         $sessionBag = $injectable->persistent;
-        $this->assertInstanceOf($class, $sessionBag);
 
-        $expected = $data;
-        $actual   = $sessionBag->toArray();
-        $this->assertEquals($expected, $actual);
+        $this->assertInstanceOf(Bag::class, $sessionBag);
+
+        $this->assertEquals(
+            $data,
+            $sessionBag->toArray()
+        );
     }
 }

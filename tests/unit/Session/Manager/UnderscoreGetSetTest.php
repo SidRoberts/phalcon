@@ -33,8 +33,9 @@ final class UnderscoreGetSetTest extends AbstractUnitTestCase
 
         $manager->setAdapter($files);
 
-        $actual = $manager->start();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->start()
+        );
 
         $expected      = 'myval';
         $manager->test = $expected;
@@ -43,7 +44,8 @@ final class UnderscoreGetSetTest extends AbstractUnitTestCase
 
         $manager->destroy();
 
-        $actual = $manager->exists();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->exists()
+        );
     }
 }

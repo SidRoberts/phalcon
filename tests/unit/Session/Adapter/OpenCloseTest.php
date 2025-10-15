@@ -32,8 +32,10 @@ final class OpenCloseTest extends AbstractUnitTestCase
         string $name
     ): void {
         $adapter = $this->newService($name);
-        $actual  = $adapter->close();
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $adapter->close()
+        );
     }
 
     /**
@@ -45,10 +47,13 @@ final class OpenCloseTest extends AbstractUnitTestCase
         string $name
     ): void {
         $adapter = $this->newService($name);
-        $actual  = $adapter->open('test', 'test1');
-        $this->assertTrue($actual);
 
-        $actual = $adapter->close();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->open('test', 'test1')
+        );
+
+        $this->assertTrue(
+            $adapter->close()
+        );
     }
 }

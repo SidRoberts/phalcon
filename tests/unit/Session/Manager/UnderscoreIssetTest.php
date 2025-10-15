@@ -29,21 +29,27 @@ final class UnderscoreIssetTest extends AbstractUnitTestCase
     {
         $manager = new Manager();
         $files   = $this->newService('sessionStream');
+
         $manager->setAdapter($files);
 
-        $actual = $manager->start();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->start()
+        );
 
-        $actual = isset($manager->test);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($manager->test)
+        );
 
         $manager->set('test', 'myval');
-        $actual = isset($manager->test);
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            isset($manager->test)
+        );
 
         $manager->destroy();
 
-        $actual = $manager->exists();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->exists()
+        );
     }
 }

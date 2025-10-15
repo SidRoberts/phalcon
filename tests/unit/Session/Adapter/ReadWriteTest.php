@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Session\Adapter;
 
+use Phalcon\Session\Adapter\Libmemcached;
+use Phalcon\Session\Adapter\Noop;
+use Phalcon\Session\Adapter\Stream;
 use Phalcon\Session\Adapter\Redis;
 use Phalcon\Tests\AbstractServicesTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
@@ -32,19 +35,23 @@ final class ReadWriteTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterLibmemcachedReadWrite(): void
     {
+        /** @var Libmemcached */
         $adapter = $this->newService('sessionLibmemcached');
 
         $value = uniqid();
 
         $adapter->write('test1', $value);
 
-        $actual = $adapter->read('test1');
-        $this->assertEquals($value, $actual);
+        $this->assertEquals(
+            $value,
+            $adapter->read('test1')
+        );
 
         $this->clearMemcached();
 
-        $actual = $adapter->read('test1');
-        $this->assertNotNull($actual);
+        $this->assertNotNull(
+            $adapter->read('test1')
+        );
     }
 
     /**
@@ -55,8 +62,9 @@ final class ReadWriteTest extends AbstractServicesTestCase
     {
         $adapter = $this->newService('sessionNoop');
 
-        $actual = $adapter->write('test1', uniqid());
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->write('test1', uniqid())
+        );
     }
 
     /**
@@ -65,14 +73,16 @@ final class ReadWriteTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterNoopReadWrite(): void
     {
+        /** @var Noop */
         $adapter = $this->newService('sessionNoop');
         $value   = uniqid();
 
         $adapter->write('test1', $value);
 
-        $expected = '';
-        $actual   = $adapter->read('test1');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '',
+            $adapter->read('test1')
+        );
     }
 
     /**
@@ -81,19 +91,22 @@ final class ReadWriteTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterRedisReadWrite(): void
     {
-        /** @var Redis $adapter */
+        /** @var Redis */
         $adapter = $this->newService('sessionRedis');
         $value   = uniqid();
 
         $adapter->write('test1', $value);
 
-        $expected = $value;
-        $actual   = $adapter->read('test1');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $value,
+            $adapter->read('test1')
+        );
+
         $this->sendRedisCommand('del', 'sess-reds-test1');
 
-        $actual = $adapter->read('test1');
-        $this->assertNotNull($actual);
+        $this->assertNotNull(
+            $adapter->read('test1')
+        );
     }
 
     /**
@@ -102,15 +115,21 @@ final class ReadWriteTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterStreamRead(): void
     {
+        /** @var Stream */
         $adapter = $this->newService('sessionStream');
 
         $value = uniqid();
+
         $adapter->write('test1', $value);
 
-        $actual = $adapter->read('test1');
-        $this->assertEquals($value, $actual);
+        $this->assertEquals(
+            $value,
+            $adapter->read('test1')
+        );
 
-        $this->safeDeleteFile(cacheDir('sessions/test1'));
+        $this->safeDeleteFile(
+            cacheDir('sessions/test1')
+        );
     }
 
     /**
@@ -121,12 +140,16 @@ final class ReadWriteTest extends AbstractServicesTestCase
     {
         $adapter = new FakeStreamFileGetContents(getOptionsSessionStream());
         $value   = uniqid();
+
         $adapter->write('test1', $value);
 
-        $actual = $adapter->read('test1');
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $adapter->read('test1')
+        );
 
-        $this->safeDeleteFile(cacheDir('sessions/test1'));
+        $this->safeDeleteFile(
+            cacheDir('sessions/test1')
+        );
     }
 
     /**
@@ -135,14 +158,19 @@ final class ReadWriteTest extends AbstractServicesTestCase
      */
     public function testSessionAdapterStreamWrite(): void
     {
+        /** @var Stream */
         $adapter = $this->newService('sessionStream');
-        $value   = uniqid();
+
+        $value = uniqid();
+
         $adapter->write('test1', $value);
 
         $file = cacheDir('sessions/test1');
+
         $this->assertFileExists($file);
 
         $this->assertFileContentsContains($file, $value);
+
         $this->safeDeleteFile($file);
     }
 }

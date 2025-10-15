@@ -29,22 +29,29 @@ final class ClearTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
+
         $data = [
             'one'   => 'two',
             'three' => 'four',
             'five'  => 'six',
         ];
 
-        $collection = new Bag($this->container->get("session"), 'BagTest');
+        $session = $this->container->get("session");
+
+        $collection = new Bag($session, 'BagTest');
 
         $collection->init($data);
 
-        $actual = $collection->toArray();
-        $this->assertEquals($data, $actual);
+        $this->assertEquals(
+            $data,
+            $collection->toArray()
+        );
 
         $collection->clear();
 
-        $actual = $collection->count();
-        $this->assertEquals(0, $actual);
+        $this->assertEquals(
+            0,
+            $collection->count()
+        );
     }
 }

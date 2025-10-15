@@ -29,6 +29,7 @@ final class UnserializeTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
+
         $data = [
             'one'   => 'two',
             'three' => 'four',
@@ -36,9 +37,16 @@ final class UnserializeTest extends AbstractUnitTestCase
         ];
 
         $serialized = serialize($data);
-        $collection = new Bag($this->container->get("session"), 'BagTest');
+
+        $session = $this->container->get("session");
+
+        $collection = new Bag($session, 'BagTest');
 
         $collection->unserialize($serialized);
-        $this->assertEquals($data, $collection->toArray());
+
+        $this->assertEquals(
+            $data,
+            $collection->toArray()
+        );
     }
 }

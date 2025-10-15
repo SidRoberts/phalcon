@@ -44,8 +44,7 @@ final class ConstructTest extends AbstractUnitTestCase
     ): void {
         $adapter = $this->newService($name);
 
-        $class = SessionHandlerInterface::class;
-        $this->assertInstanceOf($class, $adapter);
+        $this->assertInstanceOf(SessionHandlerInterface::class, $adapter);
     }
 
     /**
@@ -62,22 +61,21 @@ final class ConstructTest extends AbstractUnitTestCase
 
         $memcachedSession = new Libmemcached($factory, $options);
 
-        $actual = $memcachedSession->write(
-            'my-session-prefixed-key',
-            'test-data'
+        $this->assertTrue(
+            $memcachedSession->write('my-session-prefixed-key', 'test-data')
         );
-
-        $this->assertTrue($actual);
 
         $memcachedStorage = $factory->newInstance('libmemcached', $options);
 
-        $expected = 'my-custom-prefix-';
-        $actual   = $memcachedStorage->getPrefix();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'my-custom-prefix-',
+            $memcachedStorage->getPrefix()
+        );
 
-        $expected = 'test-data';
-        $actual   = $memcachedStorage->get('my-session-prefixed-key');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'test-data',
+            $memcachedStorage->get('my-session-prefixed-key')
+        );
     }
 
     /**
@@ -94,22 +92,21 @@ final class ConstructTest extends AbstractUnitTestCase
 
         $redisSession = new Redis($factory, $options);
 
-        $actual = $redisSession->write(
-            'my-session-prefixed-key',
-            'test-data'
+        $this->assertTrue(
+            $redisSession->write('my-session-prefixed-key', 'test-data')
         );
-
-        $this->assertTrue($actual);
 
         $redisStorage = $factory->newInstance('redis', $options);
 
-        $expected = 'my-custom-prefix-';
-        $actual   = $redisStorage->getPrefix();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'my-custom-prefix-',
+            $redisStorage->getPrefix()
+        );
 
-        $expected = 'test-data';
-        $actual   = $redisStorage->get('my-session-prefixed-key');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'test-data',
+            $redisStorage->get('my-session-prefixed-key')
+        );
     }
 
     /**
@@ -137,6 +134,7 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $options  = getOptionsSessionStream();
         $savePath = $options['savePath'];
+
         $this->expectException(Exception::class);
         $this->expectExceptionMessage(
             'The session save path [' . $savePath . '] is not writable'

@@ -34,14 +34,18 @@ final class GetSetIdTest extends AbstractUnitTestCase
         $files   = $this->newService('sessionStream');
         $manager->setAdapter($files);
 
-        $actual = $manager->getId();
-        $this->assertEquals('', $actual);
+        $this->assertEquals(
+            '',
+            $manager->getId()
+        );
 
         $id = uniqid();
         $manager->setId($id);
 
-        $actual = $manager->getId();
-        $this->assertEquals($id, $actual);
+        $this->assertEquals(
+            $id,
+            $manager->getId()
+        );
 
         $manager->destroy();
     }
@@ -54,21 +58,29 @@ final class GetSetIdTest extends AbstractUnitTestCase
     {
         $manager = new Manager();
         $files   = $this->newService('sessionStream');
+
         $manager->setAdapter($files);
 
         try {
             $manager->start();
 
             $id = uniqid();
+
             $manager->setId($id);
-            $valid   = false;
+
+            $valid = false;
         } catch (Exception $ex) {
             $manager->destroy();
-            $valid    = true;
+
+            $valid = true;
+
             $expected = 'The session has already been started. ' .
                 'To change the id, use regenerateId()';
-            $actual   = $ex->getMessage();
-            $this->assertEquals($expected, $actual);
+
+            $this->assertEquals(
+                $expected,
+                $ex->getMessage()
+            );
         }
 
         $this->assertTrue($valid);

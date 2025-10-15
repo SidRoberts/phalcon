@@ -32,21 +32,27 @@ final class ToJsonTest extends AbstractUnitTestCase
     {
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
+
         $data = [
             'one'   => 'two',
             'three' => 'four',
             'five'  => 'six',
         ];
 
-        $collection = new Bag($this->container->get("session"), 'BagTest');
+        $session = $this->container->get("session");
+
+        $collection = new Bag($session, 'BagTest');
 
         $collection->init($data);
-        $expected = json_encode($data);
-        $actual   = $collection->toJson();
-        $this->assertEquals($expected, $actual);
 
-        $expected = json_encode($data, JSON_PRETTY_PRINT);
-        $actual   = $collection->toJson(JSON_PRETTY_PRINT);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            json_encode($data),
+            $collection->toJson()
+        );
+
+        $this->assertEquals(
+            json_encode($data, JSON_PRETTY_PRINT),
+            $collection->toJson(JSON_PRETTY_PRINT)
+        );
     }
 }

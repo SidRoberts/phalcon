@@ -33,15 +33,17 @@ final class GetSetOptionsTest extends AbstractUnitTestCase
         ];
 
         $manager = new Manager($options);
+
         $options = [
             'test3' => 'option3',
         ];
 
-
         $manager->setOptions($options);
 
-        $actual = $manager->getOptions();
-        $this->assertEquals($options, $actual);
+        $this->assertEquals(
+            $options,
+            $manager->getOptions()
+        );
     }
 
     /**
@@ -57,7 +59,9 @@ final class GetSetOptionsTest extends AbstractUnitTestCase
 
         $manager = new Manager($options);
 
-        $actual = $manager->getOptions();
-        $this->assertEquals($options, $actual);
+        $this->assertEquals(
+            $options,
+            $manager->getOptions()
+        );
     }
 }

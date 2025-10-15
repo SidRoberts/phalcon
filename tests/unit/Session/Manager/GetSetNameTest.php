@@ -33,6 +33,7 @@ final class GetSetNameTest extends AbstractServicesTestCase
 
         $manager = new Manager();
         $files   = $this->newService('sessionStream');
+
         $manager->setAdapter($files);
 
         $manager->setName('%-gga34');
@@ -47,6 +48,7 @@ final class GetSetNameTest extends AbstractServicesTestCase
         $valid   = false;
         $manager = new Manager();
         $files   = $this->newService('sessionStream');
+
         $manager->setAdapter($files);
 
         try {
@@ -54,10 +56,13 @@ final class GetSetNameTest extends AbstractServicesTestCase
             $manager->setName('%-gga34');
         } catch (Exception $ex) {
             $manager->destroy();
-            $valid    = true;
-            $expected = 'Cannot set session name after a session has started';
-            $actual   = $ex->getMessage();
-            $this->assertEquals($expected, $actual);
+
+            $valid = true;
+
+            $this->assertEquals(
+                'Cannot set session name after a session has started',
+                $ex->getMessage()
+            );
         }
 
         $this->assertTrue($valid);
@@ -71,6 +76,7 @@ final class GetSetNameTest extends AbstractServicesTestCase
     {
         $manager = new Manager();
         $files   = $this->newService('sessionStream');
+
         $manager->setAdapter($files);
 
         if (false !== $manager->exists()) {
@@ -78,8 +84,10 @@ final class GetSetNameTest extends AbstractServicesTestCase
         }
 
         $manager->setName('myname');
-        $expected = 'myname';
-        $actual   = $manager->getName();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            'myname',
+            $manager->getName()
+        );
     }
 }

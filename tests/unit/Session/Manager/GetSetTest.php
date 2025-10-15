@@ -31,37 +31,49 @@ final class GetSetTest extends AbstractUnitTestCase
     {
         $manager = new Manager();
         $files   = $this->newService('sessionStream');
+
         $manager->setAdapter($files);
 
-        $actual = $manager->get('test');
-        $this->assertNull($actual);
+        $this->assertNull(
+            $manager->get('test')
+        );
 
-        $actual = $manager->start();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->start()
+        );
 
         $expected = 'myval';
         $manager->set('test', $expected);
 
-        $actual = $manager->get('test');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $manager->get('test')
+        );
 
-        $actual = $manager->has('test');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $manager->has('test')
+        );
 
-        $actual = $manager->get('test', null, true);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $manager->get('test', null, true)
+        );
 
-        $actual = $manager->has('test');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->has('test')
+        );
 
-        $name     = uniqid();
-        $expected = $name;
-        $actual   = $manager->get('test', $name);
-        $this->assertEquals($expected, $actual);
+        $name = uniqid();
+
+        $this->assertEquals(
+            $name,
+            $manager->get('test', $name)
+        );
 
         $manager->destroy();
 
-        $actual = $manager->exists();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $manager->exists()
+        );
     }
 }

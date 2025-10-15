@@ -30,7 +30,9 @@ final class GetSetDITest extends AbstractUnitTestCase
 
         $session->setDI($container);
 
-        $actual = $session->getDI();
-        $this->assertEquals($container, $actual);
+        $this->assertEquals(
+            $container,
+            $session->getDI()
+        );
     }
 }
