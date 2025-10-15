@@ -24,6 +24,7 @@ final class SettingsGetSetTest extends AbstractUnitTestCase
     protected function tearDown(): void
     {
         Settings::reset();
+
         parent::tearDown();
     }
 
@@ -33,88 +34,109 @@ final class SettingsGetSetTest extends AbstractUnitTestCase
      */
     public function testSupportSettingsDefaults(): void
     {
-        $expected = true;
-        $actual = Settings::get('db.escape_identifiers');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('db.escape_identifiers')
+        );
 
-        $expected = false;
-        $actual = Settings::get('db.force_casting');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            false,
+            Settings::get('db.force_casting')
+        );
 
-        $expected = false;
-        $actual = Settings::get('form.strict_entity_property_check');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            false,
+            Settings::get('form.strict_entity_property_check')
+        );
 
-        $expected = false;
-        $actual = Settings::get('orm.case_insensitive_column_map');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            false,
+            Settings::get('orm.case_insensitive_column_map')
+        );
 
-        $expected = false;
-        $actual = Settings::get('orm.cast_last_insert_id_to_int');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            false,
+            Settings::get('orm.cast_last_insert_id_to_int')
+        );
 
-        $expected = false;
-        $actual = Settings::get('orm.cast_on_hydrate');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            false,
+            Settings::get('orm.cast_on_hydrate')
+        );
 
-        $expected = true;
-        $actual = Settings::get('orm.column_renaming');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('orm.column_renaming')
+        );
 
-        $expected = false;
-        $actual = Settings::get('orm.disable_assign_setters');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            false,
+            Settings::get('orm.disable_assign_setters')
+        );
 
-        $expected = true;
-        $actual = Settings::get('orm.enable_implicit_joins');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('orm.enable_implicit_joins')
+        );
 
-        $expected = true;
-        $actual = Settings::get('orm.enable_literals');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('orm.enable_literals')
+        );
 
-        $expected = true;
-        $actual = Settings::get('orm.events');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('orm.events')
+        );
 
-        $expected = false;
-        $actual = Settings::get('orm.exception_on_failed_save');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            false,
+            Settings::get('orm.exception_on_failed_save')
+        );
 
-        $expected = true;
-        $actual = Settings::get('orm.exception_on_failed_metadata_save');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('orm.exception_on_failed_metadata_save')
+        );
 
-        $expected = false;
-        $actual = Settings::get('orm.ignore_unknown_columns');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            false,
+            Settings::get('orm.ignore_unknown_columns')
+        );
 
-        $expected = false;
-        $actual = Settings::get('orm.late_state_binding');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            false,
+            Settings::get('orm.late_state_binding')
+        );
 
-        $expected = true;
-        $actual = Settings::get('orm.not_null_validations');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('orm.not_null_validations')
+        );
 
-        $expected = 0;
-        $actual = Settings::get('orm.resultset_prefetch_records');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            Settings::get('orm.resultset_prefetch_records')
+        );
 
-        $expected = true;
-        $actual = Settings::get('orm.update_snapshot_on_save');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('orm.update_snapshot_on_save')
+        );
 
-        $expected = true;
-        $actual = Settings::get('orm.virtual_foreign_keys');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('orm.virtual_foreign_keys')
+        );
 
-        $expected = true;
-        $actual = Settings::get('orm.dynamic_update');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('orm.dynamic_update')
+        );
 
-        $actual = Settings::get('unknown');
-        $this->assertNull($actual);
+        $this->assertNull(
+            Settings::get('unknown')
+        );
     }
 
     /**
@@ -123,23 +145,29 @@ final class SettingsGetSetTest extends AbstractUnitTestCase
      */
     public function testSupportSettingsGetSet(): void
     {
-        $expected = true;
-        $actual = Settings::get('db.escape_identifiers');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            true,
+            Settings::get('db.escape_identifiers')
+        );
 
-        $expected = false;
-        $actual = Settings::get('db.force_casting');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            false,
+            Settings::get('db.force_casting')
+        );
 
         Settings::set('db.escape_identifiers', false);
-        $expected = false;
-        $actual = Settings::get('db.escape_identifiers');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            false,
+            Settings::get('db.escape_identifiers')
+        );
 
         Settings::set('db.force_casting', true);
-        $expected = true;
-        $actual = Settings::get('db.force_casting');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            true,
+            Settings::get('db.force_casting')
+        );
     }
 
     /**
@@ -170,10 +198,15 @@ final class SettingsGetSetTest extends AbstractUnitTestCase
 
         foreach ($keys as $key) {
             $original = Settings::get($key);
+
             Settings::set($key, true);
-            $actual = Settings::get($key);
-            $this->assertTrue($actual);
+
+            $this->assertTrue(
+                Settings::get($key)
+            );
+
             Settings::reset();
+
             $this->assertSame($original, Settings::get($key));
         }
     }
@@ -185,8 +218,10 @@ final class SettingsGetSetTest extends AbstractUnitTestCase
     public function testSupportSettingsSetUnknownKeyIgnored(): void
     {
         Settings::set('unknown.key', true);
-        $actual = Settings::get('unknown.key');
-        $this->assertNull($actual);
+
+        $this->assertNull(
+            Settings::get('unknown.key')
+        );
     }
 
     /**
