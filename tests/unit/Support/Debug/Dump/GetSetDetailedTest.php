@@ -26,11 +26,14 @@ final class GetSetDetailedTest extends AbstractUnitTestCase
     {
         $dump = new Dump([], false);
 
-        $actual = $dump->getDetailed();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $dump->getDetailed()
+        );
 
         $dump->setDetailed(true);
-        $actual = $dump->getDetailed();
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $dump->getDetailed()
+        );
     }
 }

@@ -43,7 +43,10 @@ final class VariablesTest extends AbstractUnitTestCase
                 supportDir('assets/Support/Dump/variables_output.txt'),
             ),
         );
-        $actual = $dump->variables($test1, $test2, $test3);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dump->variables($test1, $test2, $test3)
+        );
     }
 }

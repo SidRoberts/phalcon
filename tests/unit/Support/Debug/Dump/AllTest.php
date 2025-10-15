@@ -41,7 +41,9 @@ final class AllTest extends AbstractUnitTestCase
             ),
         );
 
-        $actual = $dump->all($test1, $test2, $test3);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dump->all($test1, $test2, $test3)
+        );
     }
 }

@@ -33,8 +33,10 @@ final class VariableTest extends AbstractUnitTestCase
             ),
         );
 
-        $actual = $dump->variable($test, 'super');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dump->variable($test, 'super')
+        );
     }
 
     /**
@@ -51,7 +53,10 @@ final class VariableTest extends AbstractUnitTestCase
                 supportDir('assets/Support/Dump/variable_output.txt'),
             ),
         );
-        $actual = $dump->variable($test);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dump->variable($test)
+        );
     }
 }

@@ -39,7 +39,6 @@ final class RenderHtmlTest extends AbstractUnitTestCase
                 . "."
                 . $version->getPart(Version::VERSION_MEDIUM);
 
-
         $expected = "<!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -77,8 +76,10 @@ final class RenderHtmlTest extends AbstractUnitTestCase
     </body>
 </html>";
 
-        $actual = $debug->renderHtml($exception);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $debug->renderHtml($exception)
+        );
     }
 
     /**
@@ -89,6 +90,7 @@ final class RenderHtmlTest extends AbstractUnitTestCase
     {
         $exception = new Exception('exception message', 1234);
         $debug = new Debug();
+
         $debug->setShowBackTrace(true);
         $debug->setShowFileFragment(true);
 
@@ -110,6 +112,7 @@ final class RenderHtmlTest extends AbstractUnitTestCase
     {
         $exception = new Exception('exception message', 1234);
         $debug = new Debug();
+
         $debug->setShowBackTrace(true);
         $debug->setShowFiles(false);
 

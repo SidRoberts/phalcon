@@ -37,6 +37,7 @@ final class DebugVarTest extends AbstractUnitTestCase
     public function testSupportDebugDebugVarAndClearVars(): void
     {
         $debug = new Debug();
+
         $debug->debugVar('first variable');
         $debug->debugVar('second variable');
 

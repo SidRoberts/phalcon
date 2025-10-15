@@ -16,9 +16,6 @@ namespace Phalcon\Tests\Unit\Support\Debug;
 use Phalcon\Support\Debug;
 use Phalcon\Tests\AbstractUnitTestCase;
 
-/**
- * Class GetCssSourcesTest extends AbstractUnitTestCase
- */
 final class GetCssSourcesTest extends AbstractUnitTestCase
 {
     /**
@@ -41,7 +38,9 @@ final class GetCssSourcesTest extends AbstractUnitTestCase
           rel='stylesheet'
           type='text/css' />";
 
-        $actual = $debug->getCssSources();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $debug->getCssSources()
+        );
     }
 }

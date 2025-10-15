@@ -38,7 +38,9 @@ final class GetVersionTest extends AbstractUnitTestCase
     Phalcon Framework <a href={$uri} target={$target}>{$version}</a>
 </div>";
 
-        $actual = $debug->getVersion();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $debug->getVersion()
+        );
     }
 }

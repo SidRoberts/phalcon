@@ -27,10 +27,12 @@ final class ToJsonTest extends AbstractUnitTestCase
         $test = [
             'key' => 'value',
         ];
+
         $dump = new Dump();
 
-        $expected = "{\n    \"key\": \"value\"\n}";
-        $actual = $dump->toJson($test);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "{\n    \"key\": \"value\"\n}",
+            $dump->toJson($test)
+        );
     }
 }

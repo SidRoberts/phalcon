@@ -39,7 +39,9 @@ final class GetJsSourcesTest extends AbstractUnitTestCase
     <script type='application/javascript'
             src='{$uri}pretty.js'></script>";
 
-        $actual = $debug->getJsSources();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $debug->getJsSources()
+        );
     }
 }

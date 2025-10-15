@@ -27,7 +27,9 @@ final class HaltTest extends AbstractUnitTestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('Halted request');
+
         $debug = new Debug();
+
         $debug->halt();
     }
 }
