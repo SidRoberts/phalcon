@@ -13,6 +13,7 @@ namespace Phalcon\Tests\Unit\Storage\Adapter;
 
 use Phalcon\Events\Event;
 use Phalcon\Events\Manager;
+use Phalcon\Storage\Adapter\AdapterInterface;
 use Phalcon\Storage\Adapter\Apcu;
 use Phalcon\Storage\Adapter\Libmemcached;
 use Phalcon\Storage\Adapter\Memory;
@@ -33,7 +34,7 @@ use function outputDir;
 final class EventsTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: class-string<AdapterInterface>, 2: array<string, mixed>}>
      */
     public static function getExamples(): array
     {
@@ -79,7 +80,7 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: string}>
      */
     public static function getAdapters(): array
     {
@@ -120,6 +121,10 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $adapterClass
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -136,10 +141,16 @@ final class EventsTest extends AbstractUnitTestCase
         $serializer = new SerializerFactory();
         $adapter    = new $adapterClass($serializer, $options);
 
-        $this->assertNull($adapter->getEventsManager());
+        $this->assertNull(
+            $adapter->getEventsManager()
+        );
     }
 
     /**
+     * @param class-string<AdapterInterface> $adapterClass
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -158,10 +169,17 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager(new Manager());
 
-        $this->assertInstanceOf(Manager::class, $adapter->getEventsManager());
+        $this->assertInstanceOf(
+            Manager::class,
+            $adapter->getEventsManager()
+        );
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -191,14 +209,17 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager($manager);
 
-        call_user_func_array([$adapter, 'decrement'], ['test']);
-        call_user_func_array([$adapter, 'decrement'], ['test']);
+        $adapter->decrement('test');
+        $adapter->decrement('test');
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -228,14 +249,17 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager($manager);
 
-        call_user_func_array([$adapter, 'delete'], ['test']);
-        call_user_func_array([$adapter, 'delete'], ['test']);
+        $adapter->delete('test');
+        $adapter->delete('test');
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -266,14 +290,18 @@ final class EventsTest extends AbstractUnitTestCase
         $adapter->setEventsManager($manager);
 
         $adapter->set('test', 'value');
-        call_user_func_array([$adapter, 'get'], ['test']);
-        call_user_func_array([$adapter, 'get'], ['test']);
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $adapter->get('test');
+        $adapter->get('test');
+
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -303,14 +331,17 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager($manager);
 
-        call_user_func_array([$adapter, 'has'], ['test']);
-        call_user_func_array([$adapter, 'has'], ['test']);
+        $adapter->has('test');
+        $adapter->has('test');
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -340,14 +371,17 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager($manager);
 
-        call_user_func_array([$adapter, 'increment'], ['test']);
-        call_user_func_array([$adapter, 'increment'], ['test']);
+        $adapter->increment('test');
+        $adapter->increment('test');
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -377,14 +411,17 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager($manager);
 
-        call_user_func_array([$adapter, 'set'], ['test', 'test']);
-        call_user_func_array([$adapter, 'set'], ['test', 'test']);
+        $adapter->set('test', 'test');
+        $adapter->set('test', 'test');
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -414,14 +451,17 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager($manager);
 
-        call_user_func_array([$adapter, 'decrement'], ['test']);
-        call_user_func_array([$adapter, 'decrement'], ['test']);
+        $adapter->decrement('test');
+        $adapter->decrement('test');
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -451,14 +491,17 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager($manager);
 
-        call_user_func_array([$adapter, 'delete'], ['test']);
-        call_user_func_array([$adapter, 'delete'], ['test']);
+        $adapter->delete('test');
+        $adapter->delete('test');
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -489,14 +532,18 @@ final class EventsTest extends AbstractUnitTestCase
         $adapter->setEventsManager($manager);
 
         $adapter->set('test', 'value');
-        call_user_func_array([$adapter, 'get'], ['test']);
-        call_user_func_array([$adapter, 'get'], ['test']);
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $adapter->get('test');
+        $adapter->get('test');
+
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -526,14 +573,17 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager($manager);
 
-        call_user_func_array([$adapter, 'has'], ['test']);
-        call_user_func_array([$adapter, 'has'], ['test']);
+        $adapter->has('test');
+        $adapter->has('test');
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -563,14 +613,17 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager($manager);
 
-        call_user_func_array([$adapter, 'increment'], ['test']);
-        call_user_func_array([$adapter, 'increment'], ['test']);
+        $adapter->increment('test');
+        $adapter->increment('test');
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $this->assertEquals(2, $counter);
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
      * @author n[oO]ne <lominum@protonmail.com>
      * @since  2024-06-07
      */
@@ -600,10 +653,9 @@ final class EventsTest extends AbstractUnitTestCase
 
         $adapter->setEventsManager($manager);
 
-        call_user_func_array([$adapter, 'set'], ['test', 'test']);
-        call_user_func_array([$adapter, 'set'], ['test', 'test']);
+        $adapter->set('test', 'test');
+        $adapter->set('test', 'test');
 
-        $expected = 2;
-        $this->assertEquals($expected, $counter);
+        $this->assertEquals(2, $counter);
     }
 }

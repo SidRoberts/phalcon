@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Storage\Adapter;
 
+use Phalcon\Storage\Adapter\AdapterInterface;
 use Phalcon\Storage\Adapter\Apcu;
 use Phalcon\Storage\Adapter\Libmemcached;
 use Phalcon\Storage\Adapter\Memory;
@@ -34,7 +35,7 @@ use function uniqid;
 final class GetSetForeverTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: string}>
      */
     public static function getExamples(): array
     {
@@ -75,6 +76,10 @@ final class GetSetForeverTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -93,18 +98,22 @@ final class GetSetForeverTest extends AbstractUnitTestCase
 
         $key = uniqid();
 
-        $result = $adapter->setForever($key, "test");
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->setForever($key, "test")
+        );
 
         sleep(2);
-        $result = $adapter->has($key);
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $adapter->has($key)
+        );
 
         /**
          * Delete it
          */
-        $result = $adapter->delete($key);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->delete($key)
+        );
     }
 
     /**
@@ -116,19 +125,28 @@ final class GetSetForeverTest extends AbstractUnitTestCase
         $serializer = new SerializerFactory();
         $adapter    = new Weak($serializer);
 
-        $key    = uniqid();
-        $obj    = new stdClass();
-        $result = $adapter->setForever($key, "test");
-        $this->assertFalse($result);
-        $result = $adapter->setForever($key, $obj);
-        $this->assertTrue($result);
+        $key = uniqid();
+        $obj = new stdClass();
+
+        $this->assertFalse(
+            $adapter->setForever($key, "test")
+        );
+
+        $this->assertTrue(
+            $adapter->setForever($key, $obj)
+        );
+
         sleep(2);
-        $result = $adapter->has($key);
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $adapter->has($key)
+        );
+
         /**
          * Delete it
          */
-        $result = $adapter->delete($key);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $adapter->delete($key)
+        );
     }
 }

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Storage\AdapterFactory;
 
+use Phalcon\Storage\Adapter\AdapterInterface;
 use Phalcon\Storage\Adapter\Apcu;
 use Phalcon\Storage\Adapter\Libmemcached;
 use Phalcon\Storage\Adapter\Memory;
@@ -34,6 +35,9 @@ use function uniqid;
 
 final class NewInstanceTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: string, 1: class-string<AdapterInterface>, 2: array<string, mixed>}>
+     */
     public static function getExamples(): array
     {
         return [
@@ -78,6 +82,12 @@ final class NewInstanceTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param string                         $name
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     *
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -102,6 +112,7 @@ final class NewInstanceTest extends AbstractUnitTestCase
     public function testStorageSerializerFactoryNewInstanceException(): void
     {
         $name = uniqid();
+
         $this->expectException(Exception::class);
         $this->expectExceptionMessage(
             'Service ' . $name . ' is not registered'

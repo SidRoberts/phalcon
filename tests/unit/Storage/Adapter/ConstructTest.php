@@ -37,7 +37,7 @@ use function outputDir;
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: string}>
      */
     public static function getExamples(): array
     {
@@ -83,6 +83,10 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -104,12 +108,15 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws SupportException
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
     public function testStorageAdapterLibmemcachedConstructEmptyOptions(): void
     {
         $this->checkExtensionIsLoaded('memcached');
+
         $serializer = new SerializerFactory();
         $adapter    = new FakeLibmemcached($serializer);
 
@@ -122,8 +129,11 @@ final class ConstructTest extends AbstractUnitTestCase
                 ],
             ],
         ];
-        $actual   = $adapter->getOptions();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $adapter->getOptions()
+        );
     }
 
     /**
@@ -133,24 +143,29 @@ final class ConstructTest extends AbstractUnitTestCase
     public function testStorageAdapterLibmemcachedConstructGetTtl(): void
     {
         $this->checkExtensionIsLoaded('memcached');
+
         $serializer = new SerializerFactory();
         $adapter    = new FakeLibmemcached(
             $serializer,
             getOptionsLibmemcached()
         );
 
-        $expected = 3600;
-        $actual   = $adapter->getTtl(null);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            3600,
+            $adapter->getTtl(null)
+        );
 
-        $expected = 20;
-        $actual   = $adapter->getTtl(20);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            20,
+            $adapter->getTtl(20)
+        );
 
-        $time     = new DateInterval('PT5S');
-        $expected = 5;
-        $actual   = $adapter->getTtl($time);
-        $this->assertSame($expected, $actual);
+        $time = new DateInterval('PT5S');
+
+        $this->assertSame(
+            5,
+            $adapter->getTtl($time)
+        );
     }
 
     /**
@@ -165,6 +180,7 @@ final class ConstructTest extends AbstractUnitTestCase
         );
 
         $serializer = new SerializerFactory();
+
         (new Stream($serializer));
     }
 }

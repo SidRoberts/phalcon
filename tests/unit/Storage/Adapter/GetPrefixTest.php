@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Storage\Adapter;
 
+use Phalcon\Storage\Adapter\AdapterInterface;
 use Phalcon\Storage\Adapter\Apcu;
 use Phalcon\Storage\Adapter\Libmemcached;
 use Phalcon\Storage\Adapter\Memory;
@@ -31,6 +32,9 @@ use function outputDir;
 
 final class GetPrefixTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: string, 3: string}>
+     */
     public static function getExamples(): array
     {
         return [
@@ -229,6 +233,11 @@ final class GetPrefixTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $expected
+     * @param string                         $extension
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -246,7 +255,9 @@ final class GetPrefixTest extends AbstractUnitTestCase
         $serializer = new SerializerFactory();
         $adapter    = new $class($serializer, $options);
 
-        $actual = $adapter->getPrefix();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $adapter->getPrefix()
+        );
     }
 }

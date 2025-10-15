@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Storage\Adapter;
 
 use Memcached as NativeMemcached;
+use Phalcon\Storage\Adapter\AdapterInterface;
 use Phalcon\Storage\Adapter\Apcu;
 use Phalcon\Storage\Adapter\Libmemcached;
 use Phalcon\Storage\Adapter\Memory;
@@ -35,7 +36,7 @@ use function outputDir;
 final class GetAdapterTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: ?class-string, 3: string}>
      */
     public static function getExamples(): array
     {
@@ -88,6 +89,11 @@ final class GetAdapterTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param ?class-string                  $expected
+     * @param string                         $extension
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */

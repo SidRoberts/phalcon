@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Storage\Adapter;
 
+use Phalcon\Storage\Adapter\AdapterInterface;
 use Phalcon\Storage\Adapter\Apcu;
 use Phalcon\Storage\Adapter\Libmemcached;
 use Phalcon\Storage\Adapter\Memory;
@@ -32,48 +33,42 @@ use function uniqid;
 final class DecrementTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: string, 3: mixed}>
      */
     public static function getExamples(): array
     {
         return [
             [
-                'Apcu',
                 Apcu::class,
                 [],
                 'apcu',
                 -1,
             ],
             [
-                'Libmemcached',
                 Libmemcached::class,
                 getOptionsLibmemcached(),
                 'memcached',
                 false,
             ],
             [
-                'Memory',
                 Memory::class,
                 [],
                 '',
                 false,
             ],
             [
-                'Redis',
                 Redis::class,
                 getOptionsRedis(),
                 'redis',
                 -1
             ],
             [
-                'RedisCluster',
                 RedisCluster::class,
                 getOptionsRedisCluster(),
                 'redis',
                 -1
             ],
             [
-                'Stream',
                 Stream::class,
                 [
                     'storageDir' => outputDir(),
@@ -85,12 +80,16 @@ final class DecrementTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     * @param mixed                          $unknown
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterDecrement(
-        string $className,
         string $class,
         array $options,
         string $extension,
@@ -103,33 +102,43 @@ final class DecrementTest extends AbstractUnitTestCase
         $serializer = new SerializerFactory();
         $adapter    = new $class($serializer, $options);
 
-        $key    = uniqid();
-        $result = $adapter->set($key, 100);
-        $this->assertTrue($result);
+        $key = uniqid();
 
-        $expected = 99;
-        $actual   = $adapter->decrement($key);
-        $this->assertEquals($expected, $actual);
+        $this->assertTrue(
+            $adapter->set($key, 100)
+        );
 
-        $actual = $adapter->get($key);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            99,
+            $adapter->decrement($key)
+        );
 
-        $expected = 90;
-        $actual   = $adapter->decrement($key, 9);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            99,
+            $adapter->get($key)
+        );
 
-        $actual = $adapter->get($key);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            90,
+            $adapter->decrement($key, 9)
+        );
+
+        $this->assertEquals(
+            90,
+            $adapter->get($key)
+        );
 
         /**
          * unknown key
          */
-        $key      = uniqid();
-        $expected = $unknown;
-        $actual   = $adapter->decrement($key);
-        $this->assertEquals($expected, $actual);
+        $key = uniqid();
 
-        if ('Stream' === $className) {
+        $this->assertEquals(
+            $unknown,
+            $adapter->decrement($key)
+        );
+
+        if (Stream::class === $class) {
             $this->safeDeleteDirectory(outputDir('ph-strm'));
         }
     }

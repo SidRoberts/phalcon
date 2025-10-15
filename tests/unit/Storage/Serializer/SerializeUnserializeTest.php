@@ -27,6 +27,7 @@ use Phalcon\Storage\Serializer\RedisJson;
 use Phalcon\Storage\Serializer\RedisMsgpack;
 use Phalcon\Storage\Serializer\RedisNone;
 use Phalcon\Storage\Serializer\RedisPhp;
+use Phalcon\Storage\Serializer\SerializerInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use stdClass;
@@ -40,7 +41,7 @@ final class SerializeUnserializeTest extends AbstractUnitTestCase
     private const TEXT = 'Phalcon Framework';
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<SerializerInterface>, 1: mixed, 2: mixed}>
      */
     public static function getExamples(): array
     {
@@ -296,6 +297,8 @@ final class SerializeUnserializeTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<SerializerInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2022-02-24
      */
@@ -308,8 +311,7 @@ final class SerializeUnserializeTest extends AbstractUnitTestCase
         $serializer = new $class($data);
         $serialized = $serializer->serialize();
 
-        $actual = $serialized;
-        $this->assertSame($expected, $actual);
+        $this->assertSame($expected, $serialized);
 
         $serializer = new $class();
         $serializer->unserialize($serialized);
@@ -318,9 +320,13 @@ final class SerializeUnserializeTest extends AbstractUnitTestCase
          * assertEquals here because stdClass will not refer to the same
          * object when unserialized
          */
-        $expected = $data;
-        $actual   = $serializer->getData();
-        $this->assertEquals($expected, $actual);
-        $this->assertTrue($serializer->isSuccess());
+        $this->assertEquals(
+            $data,
+            $serializer->getData()
+        );
+
+        $this->assertTrue(
+            $serializer->isSuccess()
+        );
     }
 }

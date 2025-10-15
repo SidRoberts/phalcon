@@ -27,13 +27,14 @@ use Phalcon\Storage\Serializer\RedisJson;
 use Phalcon\Storage\Serializer\RedisMsgpack;
 use Phalcon\Storage\Serializer\RedisNone;
 use Phalcon\Storage\Serializer\RedisPhp;
+use Phalcon\Storage\Serializer\SerializerInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class GetSetDataTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: class-string<SerializerInterface>}>
      */
     public static function getExamples(): array
     {
@@ -84,6 +85,8 @@ final class GetSetDataTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<SerializerInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2022-02-24
      */
@@ -91,16 +94,19 @@ final class GetSetDataTest extends AbstractUnitTestCase
     public function testStorageSerializerGetSetData(
         string $class
     ) {
-        $data       = ['Phalcon Framework'];
         $serializer = new $class();
 
-        $actual = $serializer->getData();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $serializer->getData()
+        );
+
+        $data = ['Phalcon Framework'];
 
         $serializer->setData($data);
 
-        $expected = $data;
-        $actual   = $serializer->getData();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $serializer->getData()
+        );
     }
 }

@@ -41,7 +41,7 @@ use function version_compare;
 final class GetKeysTest extends AbstractUnitTestCase
 {
     /**
-     *
+     * @return array<array{0: string, 1: class-string<AdapterInterface>, 2: array<string, mixed>, 3: string}>
      */
     public static function getAdapters(): array
     {
@@ -88,6 +88,11 @@ final class GetKeysTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param string                         $extension
+     * @param class-string<AdapterInterface> $adapterClass
+     * @param array<string, mixed>           $options
+     * @param string                         $prefix
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -105,7 +110,9 @@ final class GetKeysTest extends AbstractUnitTestCase
         $serializer = new SerializerFactory();
         $adapter    = new $adapterClass($serializer, $options);
 
-        $this->assertTrue($adapter->clear());
+        $this->assertTrue(
+            $adapter->clear()
+        );
 
         $this->runTests($adapter, $prefix);
 
@@ -171,7 +178,9 @@ final class GetKeysTest extends AbstractUnitTestCase
             }
         }
 
-        $this->assertTrue($adapter->clear());
+        $this->assertTrue(
+            $adapter->clear()
+        );
 
         $this->runTests($adapter, 'ph-memc-');
     }
@@ -194,10 +203,13 @@ final class GetKeysTest extends AbstractUnitTestCase
 
         $adapter->clear();
 
-        $actual = $adapter->set('key', 'test');
-        $this->assertNotFalse($actual);
-        $actual = $adapter->set('key1', 'test');
-        $this->assertNotFalse($actual);
+        $this->assertNotFalse(
+            $adapter->set('key', 'test')
+        );
+
+        $this->assertNotFalse(
+            $adapter->set('key1', 'test')
+        );
 
         $expected = [
             'basePrefix-key',
@@ -210,8 +222,9 @@ final class GetKeysTest extends AbstractUnitTestCase
         $this->assertSame($expected, $actual);
 
         foreach ($expected as $key) {
-            $actual = $adapter->delete($key);
-            $this->assertTrue($actual);
+            $this->assertTrue(
+                $adapter->delete($key)
+            );
         }
 
         $this->safeDeleteDirectory(outputDir('basePrefix-'));
@@ -233,19 +246,29 @@ final class GetKeysTest extends AbstractUnitTestCase
             ]
         );
 
-        $actual = $adapter->clear();
-        $this->assertTrue($actual);
-        $actual = $adapter->getKeys();
-        $this->assertEmpty($actual);
+        $this->assertTrue(
+            $adapter->clear()
+        );
 
-        $actual = $adapter->set('key', 'test');
-        $this->assertNotFalse($actual);
-        $actual = $adapter->set('key1', 'test');
-        $this->assertNotFalse($actual);
-        $actual = $adapter->set('somekey', 'test');
-        $this->assertNotFalse($actual);
-        $actual = $adapter->set('somekey1', 'test');
-        $this->assertNotFalse($actual);
+        $this->assertEmpty(
+            $adapter->getKeys()
+        );
+
+        $this->assertNotFalse(
+            $adapter->set('key', 'test')
+        );
+
+        $this->assertNotFalse(
+            $adapter->set('key1', 'test')
+        );
+
+        $this->assertNotFalse(
+            $adapter->set('somekey', 'test')
+        );
+
+        $this->assertNotFalse(
+            $adapter->set('somekey1', 'test')
+        );
 
         $expected = [
             'pref-key',
@@ -266,8 +289,9 @@ final class GetKeysTest extends AbstractUnitTestCase
         sort($actual);
         $this->assertSame($expected, $actual);
 
-        $actual = $adapter->clear();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->clear()
+        );
 
         $this->safeDeleteDirectory(outputDir('pref-'));
     }
@@ -281,12 +305,13 @@ final class GetKeysTest extends AbstractUnitTestCase
         $serializer = new SerializerFactory();
         $adapter    = new Weak($serializer);
 
-        $this->assertTrue($adapter->clear());
+        $this->assertTrue(
+            $adapter->clear()
+        );
 
         $obj1 = new stdClass();
         $obj2 = new stdClass();
         $obj3 = new stdClass();
-
 
         $adapter->set('key-1', $obj1);
         $adapter->set('key-2', $obj2);
@@ -373,6 +398,9 @@ final class GetKeysTest extends AbstractUnitTestCase
         $this->assertSame($expected, $actual);
     }
 
+    /**
+     * @return array{0: string, 1: string, 2: string, 3: string}
+     */
     private function setupTest(AdapterInterface $adapter): array
     {
         $key1 = uniqid('key');
@@ -380,23 +408,37 @@ final class GetKeysTest extends AbstractUnitTestCase
         $key3 = uniqid('one');
         $key4 = uniqid('one');
 
-        $result = $adapter->set($key1, 'test');
-        $this->assertNotFalse($result);
-        $result = $adapter->set($key2, 'test');
-        $this->assertNotFalse($result);
-        $result = $adapter->set($key3, 'test');
-        $this->assertNotFalse($result);
-        $result = $adapter->set($key4, 'test');
-        $this->assertNotFalse($result);
+        $this->assertNotFalse(
+            $adapter->set($key1, 'test')
+        );
 
-        $actual = $adapter->has($key1);
-        $this->assertTrue($actual);
-        $actual = $adapter->has($key2);
-        $this->assertTrue($actual);
-        $actual = $adapter->has($key3);
-        $this->assertTrue($actual);
-        $actual = $adapter->has($key4);
-        $this->assertTrue($actual);
+        $this->assertNotFalse(
+            $adapter->set($key2, 'test')
+        );
+
+        $this->assertNotFalse(
+            $adapter->set($key3, 'test')
+        );
+
+        $this->assertNotFalse(
+            $adapter->set($key4, 'test')
+        );
+
+        $this->assertTrue(
+            $adapter->has($key1)
+        );
+
+        $this->assertTrue(
+            $adapter->has($key2)
+        );
+
+        $this->assertTrue(
+            $adapter->has($key3)
+        );
+
+        $this->assertTrue(
+            $adapter->has($key4)
+        );
 
         return [$key1, $key2, $key3, $key4];
     }

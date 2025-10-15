@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Storage\Adapter;
 
+use Phalcon\Storage\Adapter\AdapterInterface;
 use Phalcon\Storage\Adapter\Apcu;
 use Phalcon\Storage\Adapter\Libmemcached;
 use Phalcon\Storage\Adapter\Memory;
@@ -32,7 +33,7 @@ use function outputDir;
 final class GetSetDefaultSerializerTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: string}>
      */
     public static function getExamples(): array
     {
@@ -73,6 +74,10 @@ final class GetSetDefaultSerializerTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param string                         $extension
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -89,14 +94,17 @@ final class GetSetDefaultSerializerTest extends AbstractUnitTestCase
         $serializer = new SerializerFactory();
         $adapter    = new $class($serializer, $options);
 
-        $expected = 'php';
-        $actual   = $adapter->getDefaultSerializer();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'php',
+            $adapter->getDefaultSerializer()
+        );
 
         $adapter->setDefaultSerializer('Base64');
-        $expected = 'base64';
-        $actual   = $adapter->getDefaultSerializer();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            'base64',
+            $adapter->getDefaultSerializer()
+        );
     }
 
     /**
@@ -108,11 +116,16 @@ final class GetSetDefaultSerializerTest extends AbstractUnitTestCase
         $serializer = new SerializerFactory();
         $adapter    = new Weak($serializer);
 
-        $actual = $adapter->getDefaultSerializer();
-        $this->assertEquals('none', $actual);
+        $this->assertEquals(
+            'none',
+            $adapter->getDefaultSerializer()
+        );
 
         $adapter->setDefaultSerializer('Base64');
-        $actual = $adapter->getDefaultSerializer();
-        $this->assertEquals('none', $actual);
+
+        $this->assertEquals(
+            'none',
+            $adapter->getDefaultSerializer()
+        );
     }
 }

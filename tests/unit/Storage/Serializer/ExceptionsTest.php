@@ -40,9 +40,10 @@ final class ExceptionsTest extends AbstractUnitTestCase
         $data       = ['Phalcon', 'Framework'];
         $serializer = new None($data);
 
-        $expected = $data;
-        $actual   = $serializer->__serialize();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $serializer->__serialize()
+        );
     }
 
     /**
@@ -53,9 +54,10 @@ final class ExceptionsTest extends AbstractUnitTestCase
     {
         $serializer = new None('Phalcon Framework');
 
-        $expected = [];
-        $actual   = $serializer->__serialize();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $serializer->__serialize()
+        );
     }
 
     /**
@@ -68,9 +70,10 @@ final class ExceptionsTest extends AbstractUnitTestCase
         $serializer = new None();
         $serializer->__unserialize($data);
 
-        $expected = $data;
-        $actual   = $serializer->getData();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $serializer->getData()
+        );
     }
 
     /**
@@ -85,6 +88,7 @@ final class ExceptionsTest extends AbstractUnitTestCase
         );
 
         $serializer = new Base64(1234);
+
         $serializer->serialize();
     }
 
@@ -100,6 +104,7 @@ final class ExceptionsTest extends AbstractUnitTestCase
         );
 
         $serializer = new Base64();
+
         $serializer->unserialize(1234);
     }
 
@@ -112,11 +117,14 @@ final class ExceptionsTest extends AbstractUnitTestCase
         $serializer = new FakeBase64Decode();
 
         $serializer->unserialize("Phalcon Framework");
-        $actual = $serializer->getData();
-        $this->assertEmpty($actual);
 
-        $actual = $serializer->isSuccess();
-        $this->assertFalse($actual);
+        $this->assertEmpty(
+            $serializer->getData()
+        );
+
+        $this->assertFalse(
+            $serializer->isSuccess()
+        );
     }
 
     /**
@@ -128,11 +136,14 @@ final class ExceptionsTest extends AbstractUnitTestCase
         $serializer = new FakeIgbinarySerialize();
 
         $serializer->setData('Phalcon Framework');
-        $actual = $serializer->serialize();
-        $this->assertEmpty($actual);
 
-        $actual = $serializer->isSuccess();
-        $this->assertFalse($actual);
+        $this->assertEmpty(
+            $serializer->serialize()
+        );
+
+        $this->assertFalse(
+            $serializer->isSuccess()
+        );
     }
 
     /**
@@ -144,11 +155,14 @@ final class ExceptionsTest extends AbstractUnitTestCase
         $serializer = new FakeIgbinaryUnserialize();
 
         $serializer->unserialize("Phalcon Framework");
-        $actual = $serializer->getData();
-        $this->assertEmpty($actual);
 
-        $actual = $serializer->isSuccess();
-        $this->assertFalse($actual);
+        $this->assertEmpty(
+            $serializer->getData()
+        );
+
+        $this->assertFalse(
+            $serializer->isSuccess()
+        );
     }
 
     /**
@@ -160,11 +174,14 @@ final class ExceptionsTest extends AbstractUnitTestCase
         $serializer = new FakeIgbinaryUnserializeWarning();
 
         $serializer->unserialize("Phalcon Framework");
-        $actual = $serializer->getData();
-        $this->assertEmpty($actual);
 
-        $actual = $serializer->isSuccess();
-        $this->assertFalse($actual);
+        $this->assertEmpty(
+            $serializer->getData()
+        );
+
+        $this->assertFalse(
+            $serializer->isSuccess()
+        );
     }
 
     /**
@@ -187,9 +204,11 @@ final class ExceptionsTest extends AbstractUnitTestCase
                 'one' => 'two',
             ],
         ];
-        $expected = json_encode($data);
-        $actual   = $serializer->serialize();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            json_encode($data),
+            $serializer->serialize()
+        );
     }
 
     /**
@@ -203,7 +222,9 @@ final class ExceptionsTest extends AbstractUnitTestCase
         $serialized = '??hello?messagepack"';
         $serializer->unserialize($serialized);
 
-        $this->assertEmpty($serializer->getData());
+        $this->assertEmpty(
+            $serializer->getData()
+        );
     }
 
     /**
@@ -217,7 +238,9 @@ final class ExceptionsTest extends AbstractUnitTestCase
         $serialized = '{??hello?unserialize"';
         $serializer->unserialize($serialized);
 
-        $this->assertEmpty($serializer->getData());
+        $this->assertEmpty(
+            $serializer->getData()
+        );
     }
 
     /**
@@ -234,6 +257,7 @@ final class ExceptionsTest extends AbstractUnitTestCase
         $serializer = new Php();
 
         $serialized = new stdClass();
+
         $serializer->unserialize($serialized);
     }
 }

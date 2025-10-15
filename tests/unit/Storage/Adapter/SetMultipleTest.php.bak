@@ -23,6 +23,7 @@ use Phalcon\Storage\Adapter\Weak;
 use Phalcon\Storage\Exception;
 use Phalcon\Storage\SerializerFactory;
 use Phalcon\Tests\AbstractUnitTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 use function getOptionsLibmemcached;
 use function getOptionsRedis;
@@ -81,11 +82,10 @@ final class SetMultipleTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Storage\Adapter\* :: setMultiple()
      *
-     * @dataProvider getExamples
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
+    #[DataProvider('getExamples')]
     public function testStorageAdapterSetMultiple(
         string $extension,
         string $class,
@@ -100,6 +100,7 @@ final class SetMultipleTest extends AbstractUnitTestCase
 
         $key1 = uniqid();
         $key2 = uniqid();
+
         $adapter->setMultiple(
             [
                 $key1 => 'test1',
@@ -107,8 +108,13 @@ final class SetMultipleTest extends AbstractUnitTestCase
             ]
         );
 
-        $this->assertTrue($adapter->has($key1));
-        $this->assertTrue($adapter->has($key2));
+        $this->assertTrue(
+            $adapter->has($key1)
+        );
+
+        $this->assertTrue(
+            $adapter->has($key2)
+        );
 
         $expected = [
             $key1     => 'test1',

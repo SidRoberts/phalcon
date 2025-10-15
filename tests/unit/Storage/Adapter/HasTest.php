@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Storage\Adapter;
 
+use Phalcon\Storage\Adapter\AdapterInterface;
 use Phalcon\Storage\Adapter\Apcu;
 use Phalcon\Storage\Adapter\Libmemcached;
 use Phalcon\Storage\Adapter\Memory;
@@ -21,6 +22,7 @@ use Phalcon\Storage\Adapter\RedisCluster;
 use Phalcon\Storage\Adapter\Stream;
 use Phalcon\Storage\Adapter\Weak;
 use Phalcon\Storage\Exception as StorageException;
+use Phalcon\Storage\Serializer\SerializerInterface;
 use Phalcon\Storage\SerializerFactory;
 use Phalcon\Support\Exception as HelperException;
 use Phalcon\Tests\AbstractUnitTestCase;
@@ -38,7 +40,7 @@ use function uniqid;
 final class HasTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AdapterInterface>, 1: array<string, mixed>, 2: ?string}>
      */
     public static function getExamples(): array
     {
@@ -79,6 +81,10 @@ final class HasTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AdapterInterface> $class
+     * @param array<string, mixed>           $options
+     * @param ?string                        $extension
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -97,12 +103,15 @@ final class HasTest extends AbstractUnitTestCase
 
         $key = uniqid();
 
-        $actual = $adapter->has($key);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $adapter->has($key)
+        );
 
         $adapter->set($key, 'test');
-        $actual = $adapter->has($key);
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $adapter->has($key)
+        );
     }
 
     /**
@@ -119,12 +128,15 @@ final class HasTest extends AbstractUnitTestCase
             ],
         );
 
-        $key    = uniqid();
-        $actual = $adapter->set($key, 'test');
-        $this->assertTrue($actual);
+        $key = uniqid();
 
-        $actual = $adapter->has($key);
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $adapter->set($key, 'test')
+        );
+
+        $this->assertFalse(
+            $adapter->has($key)
+        );
     }
 
     /**
@@ -141,12 +153,15 @@ final class HasTest extends AbstractUnitTestCase
             ],
         );
 
-        $key    = uniqid();
-        $actual = $adapter->set($key, 'test');
-        $this->assertTrue($actual);
+        $key = uniqid();
 
-        $actual = $adapter->has($key);
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $adapter->set($key, 'test')
+        );
+
+        $this->assertFalse(
+            $adapter->has($key)
+        );
     }
 
     /**
@@ -160,13 +175,16 @@ final class HasTest extends AbstractUnitTestCase
 
         $obj1 = new stdClass();
 
-        $key1   = uniqid();
-        $actual = $adapter->has($key1);
-        $this->assertFalse($actual);
+        $key1 = uniqid();
+
+        $this->assertFalse(
+            $adapter->has($key1)
+        );
 
         $adapter->set($key1, $obj1);
 
-        $actual = $adapter->has($key1);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $adapter->has($key1)
+        );
     }
 }
