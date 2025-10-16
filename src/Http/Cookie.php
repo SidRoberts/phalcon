@@ -621,13 +621,14 @@ class Cookie extends AbstractInjectionAware implements
      */
     private function getCookieOptions(int $expiresDefault): array
     {
-        $options             = $this->options;
-        $options['expires']  = $options['expires'] ?? $expiresDefault;
-        $options['domain']   = $options['domain'] ?? $this->domain;
-        $options['path']     = $options['path'] ?? $this->path;
-        $options['secure']   = $options['secure'] ?? $this->secure;
-        $options['httponly'] = $options['httponly'] ?? $this->httpOnly;
+        $defaults = [
+            'expires'  => $expiresDefault,
+            'domain'   => $this->domain,
+            'path'     => $this->path,
+            'secure'   => $this->secure,
+            'httponly' => $this->httpOnly,
+        ];
 
-        return $options;
+        return array_merge($defaults, $this->options);
     }
 }
