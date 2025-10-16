@@ -201,8 +201,9 @@ abstract class AbstractCache implements CacheInterface, EventsAwareInterface
             $results    = $this->adapter->getAdapter()->mget($keys);
             $serializer = $this->adapter->getSerializer();
             $results    = array_map(
-                function ($element) use ($serializer, $default) {
+                function ($element) use ($serializer, $default): mixed {
                     $serializer->unserialize($element);
+
                     return false === $element
                         ? $default
                         : $serializer->getData();
