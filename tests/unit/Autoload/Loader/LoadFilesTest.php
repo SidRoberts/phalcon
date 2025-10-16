@@ -31,11 +31,13 @@ final class LoadFilesTest extends AbstractUnitTestCase
     {
         $loader = new Loader();
 
-        $actual = function_exists('noClass2Foo');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            function_exists('noClass2Foo')
+        );
 
-        $actual = function_exists('noClass2Bar');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            function_exists('noClass2Bar')
+        );
 
         $loader
             ->addFile(
@@ -48,10 +50,12 @@ final class LoadFilesTest extends AbstractUnitTestCase
 
         $loader->loadFiles();
 
-        $actual = function_exists('noClass2Foo');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            function_exists('noClass2Foo')
+        );
 
-        $actual = function_exists('noClass2Bar');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            function_exists('noClass2Bar')
+        );
     }
 }

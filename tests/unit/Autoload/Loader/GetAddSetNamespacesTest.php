@@ -25,6 +25,8 @@ final class GetAddSetNamespacesTest extends AbstractUnitTestCase
     use LoaderTrait;
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -36,9 +38,10 @@ final class GetAddSetNamespacesTest extends AbstractUnitTestCase
 
         $loader = new Loader();
 
-        $expected = [];
-        $actual   = $loader->getNamespaces();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $loader->getNamespaces()
+        );
 
         $loader->setNamespaces(
             [
@@ -59,17 +62,21 @@ final class GetAddSetNamespacesTest extends AbstractUnitTestCase
                 '/path/to/provider/target/' => '/path/to/provider/target/',
             ],
         ];
-        $actual   = $loader->getNamespaces();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getNamespaces()
+        );
 
         /**
          * Clear
          */
         $loader->setNamespaces([]);
 
-        $expected = [];
-        $actual   = $loader->getNamespaces();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $loader->getNamespaces()
+        );
 
         $loader
             ->addNamespace(
@@ -98,17 +105,21 @@ final class GetAddSetNamespacesTest extends AbstractUnitTestCase
                 '/path/to/provider/target/' => '/path/to/provider/target/',
             ],
         ];
-        $actual   = $loader->getNamespaces();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getNamespaces()
+        );
 
         /**
          * Clear - prepend
          */
         $loader->setNamespaces([]);
 
-        $expected = [];
-        $actual   = $loader->getNamespaces();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $loader->getNamespaces()
+        );
 
         $loader
             ->addNamespace(
@@ -137,8 +148,11 @@ final class GetAddSetNamespacesTest extends AbstractUnitTestCase
                 '/path/to/provider/source/' => '/path/to/provider/source/',
             ],
         ];
-        $actual   = $loader->getNamespaces();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getNamespaces()
+        );
     }
 
     /**

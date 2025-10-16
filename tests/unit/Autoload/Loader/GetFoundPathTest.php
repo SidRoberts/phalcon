@@ -25,6 +25,8 @@ final class GetFoundPathTest extends AbstractUnitTestCase
     use LoaderTrait;
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -36,15 +38,18 @@ final class GetFoundPathTest extends AbstractUnitTestCase
 
         $loader = new Loader();
         $file   = supportDir('assets/Loader/Example/Functions/FunctionsNoClass.php');
+
         $loader->addFile($file);
 
         $loader->loadFiles();
 
-        $actual = function_exists('noClassFoo');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            function_exists('noClassFoo')
+        );
 
-        $expected = $file;
-        $actual   = $loader->getFoundPath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $file,
+            $loader->getFoundPath()
+        );
     }
 }

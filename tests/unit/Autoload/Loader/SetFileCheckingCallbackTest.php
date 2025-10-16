@@ -28,7 +28,7 @@ final class SetFileCheckingCallbackTest extends AbstractUnitTestCase
     use LoaderTrait;
 
     /**
-     * @return array
+     * @return array<array{0: ?string}>
      */
     public static function getExamples(): array
     {
@@ -43,6 +43,9 @@ final class SetFileCheckingCallbackTest extends AbstractUnitTestCase
     }
 
     /**
+     * @throws EventsException
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -78,25 +81,33 @@ final class SetFileCheckingCallbackTest extends AbstractUnitTestCase
                 true
             )
             ->setFileCheckingCallback(
-                function ($file) {
+                function ($file): bool {
                     return false;
                 }
             )
             ->register()
         ;
 
-        $actual = function_exists('noClass3Foo');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            function_exists('noClass3Foo')
+        );
 
-        $actual = function_exists('noClass3Bar');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            function_exists('noClass3Bar')
+        );
 
         $loader->unregister();
     }
 
     /**
+     * @param string|null $callback
+     *
+     * @throws Exception
+     * @throws EventsException
+     *
      * @issue https://github.com/phalcon/cphalcon/issues/13360
      * @issue https://github.com/phalcon/cphalcon/issues/10472
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -122,14 +133,17 @@ final class SetFileCheckingCallbackTest extends AbstractUnitTestCase
             ->register()
         ;
 
-        $actual = function_exists('noClass3Foo');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            function_exists('noClass3Foo')
+        );
 
-        $actual = function_exists('noClass3Bar');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            function_exists('noClass3Bar')
+        );
 
-        $actual = class_exists('\Example\Namespaces\Engines\Diesel');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            class_exists('\Example\Namespaces\Engines\Diesel')
+        );
 
         $loader->unregister();
     }

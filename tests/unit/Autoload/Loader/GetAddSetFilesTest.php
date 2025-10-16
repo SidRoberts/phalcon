@@ -31,9 +31,10 @@ final class GetAddSetFilesTest extends AbstractUnitTestCase
     {
         $loader = new Loader();
 
-        $expected = [];
-        $actual   = $loader->getFiles();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $loader->getFiles()
+        );
 
         $loader->setFiles(
             [
@@ -42,18 +43,23 @@ final class GetAddSetFilesTest extends AbstractUnitTestCase
                 'classOne.php',
             ]
         );
+
         $expected = ['classOne.php' => 'classOne.php'];
-        $actual   = $loader->getFiles();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getFiles()
+        );
 
         /**
          * Clear
          */
         $loader->setFiles([]);
 
-        $expected = [];
-        $actual   = $loader->getFiles();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $loader->getFiles()
+        );
 
         $loader
             ->addFile('classOne.php')
@@ -65,7 +71,10 @@ final class GetAddSetFilesTest extends AbstractUnitTestCase
             'classOne.php' => 'classOne.php',
             'classTwo.php' => 'classTwo.php',
         ];
-        $actual   = $loader->getFiles();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getFiles()
+        );
     }
 }

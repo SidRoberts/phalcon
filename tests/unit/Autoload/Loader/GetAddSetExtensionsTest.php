@@ -32,8 +32,11 @@ final class GetAddSetExtensionsTest extends AbstractUnitTestCase
         $loader = new Loader();
 
         $expected = ['php' => 'php'];
-        $actual   = $loader->getExtensions();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getExtensions()
+        );
 
         $loader->setExtensions(
             [
@@ -47,16 +50,23 @@ final class GetAddSetExtensionsTest extends AbstractUnitTestCase
             'php' => 'php',
             'inc' => 'inc',
         ];
-        $actual   = $loader->getExtensions();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getExtensions()
+        );
 
         /**
          * Clear
          */
         $loader->setExtensions([]);
+
         $expected = ['php' => 'php'];
-        $actual   = $loader->getExtensions();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getExtensions()
+        );
 
         $loader
             ->addExtension('inc')
@@ -68,7 +78,10 @@ final class GetAddSetExtensionsTest extends AbstractUnitTestCase
             'inc'  => 'inc',
             'phpt' => 'phpt',
         ];
-        $actual   = $loader->getExtensions();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getExtensions()
+        );
     }
 }

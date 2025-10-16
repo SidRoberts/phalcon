@@ -31,9 +31,10 @@ final class GetAddSetDirectoriesTest extends AbstractUnitTestCase
     {
         $loader = new Loader();
 
-        $expected = [];
-        $actual   = $loader->getDirectories();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $loader->getDirectories()
+        );
 
         $loader->setDirectories(
             [
@@ -42,18 +43,23 @@ final class GetAddSetDirectoriesTest extends AbstractUnitTestCase
                 '/phalcon/public/css',
             ]
         );
+
         $expected = ['/phalcon/public/css' => '/phalcon/public/css'];
-        $actual   = $loader->getDirectories();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getDirectories()
+        );
 
         /**
          * Clear
          */
         $loader->setDirectories([]);
 
-        $expected = [];
-        $actual   = $loader->getDirectories();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $loader->getDirectories()
+        );
 
         $loader
             ->addDirectory('/phalcon/public/css')
@@ -65,7 +71,10 @@ final class GetAddSetDirectoriesTest extends AbstractUnitTestCase
             '/phalcon/public/css' => '/phalcon/public/css',
             '/phalcon/public/js'  => '/phalcon/public/js',
         ];
-        $actual   = $loader->getDirectories();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getDirectories()
+        );
     }
 }

@@ -60,7 +60,7 @@ final class RegisterUnregisterTest extends AbstractUnitTestCase
 
         $manager->attach(
             'loader',
-            function ($event, $loader) use (&$trace) {
+            function ($event, $loader) use (&$trace): void {
                 $type = $event->getType();
 
                 if (!isset($trace[$type])) {
@@ -102,13 +102,21 @@ final class RegisterUnregisterTest extends AbstractUnitTestCase
     {
         $loader = new Loader();
 
-        $this->assertFalse($loader->isRegistered());
+        $this->assertFalse(
+            $loader->isRegistered()
+        );
 
         $loader->register();
-        $this->assertTrue($loader->isRegistered());
+
+        $this->assertTrue(
+            $loader->isRegistered()
+        );
 
         $loader->unregister();
-        $this->assertFalse($loader->isRegistered());
+
+        $this->assertFalse(
+            $loader->isRegistered()
+        );
     }
 
     /**
@@ -118,6 +126,7 @@ final class RegisterUnregisterTest extends AbstractUnitTestCase
     public function testAutoloaderLoaderRegisterUnregister(): void
     {
         $loader = new Loader();
+
         $loader->register();
 
         $functions = spl_autoload_functions();
@@ -125,9 +134,10 @@ final class RegisterUnregisterTest extends AbstractUnitTestCase
 
         $this->assertSame($loader, $item[0]);
 
-        $expected = 'autoload';
-        $actual   = $item[1];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'autoload',
+            $item[1]
+        );
 
         $loader->unregister();
     }

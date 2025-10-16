@@ -23,6 +23,8 @@ final class GetCheckedPathTest extends AbstractUnitTestCase
     use LoaderTrait;
 
     /**
+     * @throws Exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -34,6 +36,7 @@ final class GetCheckedPathTest extends AbstractUnitTestCase
 
         $loader    = new Loader(true);
         $directory = supportDir('assets/Loader/Example/Folders/Types/');
+
         $loader->addDirectory($directory);
 
         $loader->autoload('Integer');
@@ -45,11 +48,15 @@ final class GetCheckedPathTest extends AbstractUnitTestCase
             'Require: ' . $directory . 'Integer.php',
             'Directories: ' . $directory . 'Integer.php',
         ];
-        $actual   = $loader->getDebug();
-        $this->assertSame($expected, $actual);
 
-        $expected = $directory . 'Integer.php';
-        $actual   = $loader->getCheckedPath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $loader->getDebug()
+        );
+
+        $this->assertSame(
+            $directory . 'Integer.php',
+            $loader->getCheckedPath()
+        );
     }
 }

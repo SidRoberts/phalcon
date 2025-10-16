@@ -49,8 +49,11 @@ final class AutoloadTest extends AbstractUnitTestCase
             'Require: ' . supportDir('assets/Loader/Example/Classes/One.php'),
             'Class: load: ' . supportDir('assets/Loader/Example/Classes/One.php'),
         ];
-        $actual   = $loader->getDebug();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getDebug()
+        );
 
         $loader->autoload('Two');
 
@@ -59,8 +62,11 @@ final class AutoloadTest extends AbstractUnitTestCase
             'Require: ' . supportDir('assets/Loader/Example/Classes/Two.php'),
             'Class: load: ' . supportDir('assets/Loader/Example/Classes/Two.php'),
         ];
-        $actual   = $loader->getDebug();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getDebug()
+        );
 
         $loader->autoload('Three');
 
@@ -70,8 +76,11 @@ final class AutoloadTest extends AbstractUnitTestCase
             'Namespace: 404: Three',
             'Directories: 404: Three',
         ];
-        $actual   = $loader->getDebug();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getDebug()
+        );
     }
 
     /**
@@ -85,6 +94,7 @@ final class AutoloadTest extends AbstractUnitTestCase
         }
 
         $loader = new Loader(true);
+
         $loader
             ->setExtensions(
                 [
@@ -112,8 +122,11 @@ final class AutoloadTest extends AbstractUnitTestCase
             'Namespace: Example\Namespaces\ - ' .
             supportDir('assets/Loader/Example/Namespaces/Engines/Alcohol.inc'),
         ];
-        $actual   = $loader->getDebug();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getDebug()
+        );
     }
 
     /**
@@ -127,6 +140,7 @@ final class AutoloadTest extends AbstractUnitTestCase
         }
 
         $loader = new Loader(true);
+
         $loader
             ->addNamespace(
                 'Example\Namespaces\Base',
@@ -154,8 +168,11 @@ final class AutoloadTest extends AbstractUnitTestCase
             supportDir('assets/Loader/Example/Namespaces/Adapter/') .
             'Mongo.php',
         ];
-        $actual   = $loader->getDebug();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getDebug()
+        );
     }
 
     /**
@@ -169,12 +186,11 @@ final class AutoloadTest extends AbstractUnitTestCase
         }
 
         $loader = new Loader(true);
-        $loader
-            ->addNamespace(
-                'Example\Namespaces\Adapter',
-                supportDir('assets/Loader/Example/Namespaces/Adapter/')
-            )
-        ;
+
+        $loader->addNamespace(
+            'Example\Namespaces\Adapter',
+            supportDir('assets/Loader/Example/Namespaces/Adapter/')
+        );
 
         $loader->autoload('Example\Namespaces\Adapter\Unknown');
 
@@ -186,8 +202,11 @@ final class AutoloadTest extends AbstractUnitTestCase
             'Namespace: 404: Example\Namespaces\Adapter\Unknown',
             'Directories: 404: Example\Namespaces\Adapter\Unknown',
         ];
-        $actual   = $loader->getDebug();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getDebug()
+        );
     }
 
     /**
@@ -201,6 +220,7 @@ final class AutoloadTest extends AbstractUnitTestCase
         }
 
         $loader = new Loader(true);
+
         $loader
             ->addNamespace(
                 'Example\Namespaces\Base',
@@ -238,8 +258,11 @@ final class AutoloadTest extends AbstractUnitTestCase
             'Namespace: Example\Namespaces\Adapter\ - ' .
             supportDir('assets/Loader/Example/Namespaces/Plugin/Another.php'),
         ];
-        $actual   = $loader->getDebug();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getDebug()
+        );
     }
 
     /**
@@ -253,6 +276,7 @@ final class AutoloadTest extends AbstractUnitTestCase
         }
 
         $loader = new Loader(true);
+
         $loader->autoload(Mongo::class);
 
         $expected = [
@@ -261,7 +285,10 @@ final class AutoloadTest extends AbstractUnitTestCase
             'Namespace: 404: Example\Namespaces\Adapter\Mongo',
             'Directories: 404: Example\Namespaces\Adapter\Mongo',
         ];
-        $actual   = $loader->getDebug();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $loader->getDebug()
+        );
     }
 }

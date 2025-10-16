@@ -48,10 +48,8 @@ trait LoaderTrait
     {
         $loaders = spl_autoload_functions();
 
-        if (is_array($loaders)) {
-            foreach ($loaders as $loader) {
-                spl_autoload_unregister($loader);
-            }
+        foreach ($loaders as $loader) {
+            spl_autoload_unregister($loader);
         }
 
         foreach ($this->loaders as $loader) {

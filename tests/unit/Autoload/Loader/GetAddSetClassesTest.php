@@ -29,36 +29,41 @@ final class GetAddSetClassesTest extends AbstractUnitTestCase
     {
         $loader = new Loader();
 
-        $expected = [];
-        $actual   = $loader->getClasses();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $loader->getClasses()
+        );
 
         $source = [
             'one' => 'classOne.php',
             'two' => 'classTwo.php',
         ];
+
         $loader->setClasses($source);
 
-        $expected = $source;
-        $actual   = $loader->getClasses();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $source,
+            $loader->getClasses()
+        );
 
         /**
          * Clear
          */
         $loader->setClasses([]);
 
-        $expected = [];
-        $actual   = $loader->getClasses();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $loader->getClasses()
+        );
 
         $loader
             ->addClass('one', 'classOne.php')
             ->addClass('two', 'classTwo.php')
             ->addClass('one', 'classOne.php')
         ;
-        $expected = $source;
-        $actual   = $loader->getClasses();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $source,
+            $loader->getClasses()
+        );
     }
 }
