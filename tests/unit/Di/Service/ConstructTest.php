@@ -24,7 +24,7 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2019-09-09
      */
-    public function testDiServiceConstruct(): void
+    public function testDiServiceInstanceofServiceInterface(): void
     {
         $service = new Service(Escaper::class, false);
 

@@ -27,17 +27,39 @@ final class ConstructTest extends AbstractUnitTestCase
     use TranslateNativeArrayTrait;
 
     /**
+     * Tests Phalcon\Translate\Adapter\NativeArray :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
-    public function testTranslateAdapterNativeArrayConstruct(): void
+    public function testTranslateAdapterNativeArrayInstanceOfArrayAccess(): void
     {
-
         $language = $this->getArrayConfig()['en'];
 
-        $translator = new NativeArray(new InterpolatorFactory(), ['content' => $language,]);
+        $translator = new NativeArray(
+            new InterpolatorFactory(),
+            [
+                'content' => $language,
+            ]
+        );
 
         $this->assertInstanceOf(ArrayAccess::class, $translator);
+    }
+
+    /**
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
+     */
+    public function testTranslateAdapterNativeArrayInstanceOfAdapterInterface(): void
+    {
+        $language = $this->getArrayConfig()['en'];
+
+        $translator = new NativeArray(
+            new InterpolatorFactory(),
+            [
+                'content' => $language,
+            ]
+        );
 
         $this->assertInstanceOf(AdapterInterface::class, $translator);
     }

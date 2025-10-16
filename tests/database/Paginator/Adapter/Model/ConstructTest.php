@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Database\Paginator\Adapter\Model;
 
 use PDO;
+use Phalcon\DataMapper\Info\Adapter\AdapterInterface;
 use Phalcon\Paginator\Adapter\Model;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
@@ -35,6 +36,21 @@ final class ConstructTest extends AbstractDatabaseTestCase
         /** @var PDO $connection */
         $connection = self::getConnection();
         (new InvoicesMigration($connection));
+    }
+
+    /**
+     * Tests Phalcon\Paginator\Adapter\Model :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-13
+     */
+    public function testPaginatorAdapterModelInstanceOfAdapterInterface(): void
+    {
+        $paginator = new Model(
+            []
+        );
+
+        $this->assertInstanceOf(AdapterInterface::class, $paginator);
     }
 
     /**

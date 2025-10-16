@@ -31,13 +31,26 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
-    public function testTranslateAdapterGettextConstruct(): void
+    public function testTranslateAdapterGettextInstanceOfAdapterInterface(): void
+    {
+        $params     = $this->getGettextConfig();
+        $translator = new Gettext(new InterpolatorFactory(), $params);
+
+        $this->assertInstanceOf(AdapterInterface::class, $translator);
+    }
+
+    /**
+     * Tests Phalcon\Translate\Adapter\Gettext :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
+     */
+    public function testTranslateAdapterGettextInstanceOfArrayInterface(): void
     {
         $params     = $this->getGettextConfig();
         $translator = new Gettext(new InterpolatorFactory(), $params);
 
         $this->assertInstanceOf(ArrayAccess::class, $translator);
-        $this->assertInstanceOf(AdapterInterface::class, $translator);
     }
 
     /**

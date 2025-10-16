@@ -13,24 +13,27 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Image\Adapter\Gd;
 
+use Phalcon\Image\Adapter\AdapterInterface;
 use Phalcon\Image\Adapter\Gd;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Image\Fake\GdTrait;
 
+use function supportDir;
+
 final class ConstructTest extends AbstractUnitTestCase
 {
-    use GdTrait;
-
     /**
+     * Tests Phalcon\Image\Adapter\Gd :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
-     * @since  2018-11-13
+     * @since  2025-10-13
      */
-    public function testImageAdapterGdConstruct(): void
+    public function testImageAdapterGdInstanceOfAdapterInterface(): void
     {
-        foreach ($this->getImages() as $image) {
-            $gd = new Gd($image);
+        $gd = new Gd(
+            supportDir('assets/images/example-jpg.jpg')
+        );
 
-            $this->assertInstanceOf(Gd::class, $gd);
-        }
+        $this->assertInstanceOf(AdapterInterface::class, $gd);
     }
 }

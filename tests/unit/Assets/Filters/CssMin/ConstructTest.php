@@ -20,6 +20,22 @@ use Phalcon\Tests\AbstractUnitTestCase;
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Assets\Filters\Cssmin :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
+     */
+    public function testAssetsFiltersCssminInstanceOfFilterInterface(): void
+    {
+        $cssMin = new Cssmin();
+
+        $this->assertInstanceOf(FilterInterface::class, $cssMin);
+    }
+
+    /**
+     * Tests Phalcon\Assets\Filters\CssMin :: __construct() - no string
+     * exception
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -27,11 +43,6 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $cssMin = new CssMin();
 
-        $class  = CssMin::class;
-        $actual = $cssMin;
-        $this->assertInstanceOf($class, $actual);
-
-        $class = FilterInterface::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(FilterInterface::class, $cssMin);
     }
 }

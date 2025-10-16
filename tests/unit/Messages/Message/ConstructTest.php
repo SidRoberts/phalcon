@@ -14,11 +14,27 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Messages\Message;
 
 use Phalcon\Messages\Message;
+use Phalcon\Messages\MessageInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
+     */
+    public function testMessagesMessageInstanceOfMessageInterface(): void
+    {
+        $message = new Message(
+            'This is a message'
+        );
+
+        $this->assertInstanceOf(MessageInterface::class, $message);
+    }
+
+    /**
+     * Tests Phalcon\Messages\Message :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */

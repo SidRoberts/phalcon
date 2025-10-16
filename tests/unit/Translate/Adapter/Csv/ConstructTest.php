@@ -33,13 +33,26 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
-    public function testTranslateAdapterCsvConstruct(): void
+    public function testTranslateAdapterCsvInstanceOfAdapterInterface(): void
+    {
+        $language   = $this->getCsvConfig()['en'];
+        $translator = new Csv(new InterpolatorFactory(), $language);
+
+        $this->assertInstanceOf(AdapterInterface::class, $translator);
+    }
+
+    /**
+     * Tests Phalcon\Translate\Adapter\Csv :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
+     */
+    public function testTranslateAdapterCsvInstanceOfArrayAccess(): void
     {
         $language   = $this->getCsvConfig()['en'];
         $translator = new Csv(new InterpolatorFactory(), $language);
 
         $this->assertInstanceOf(ArrayAccess::class, $translator);
-        $this->assertInstanceOf(AdapterInterface::class, $translator);
     }
 
     /**

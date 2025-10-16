@@ -11,22 +11,24 @@
 
 declare(strict_types=1);
 
-namespace Phalcon\Tests\Unit\Cli\Router\Route;
+namespace Phalcon\Tests\Unit\Html\Escaper;
 
-use Phalcon\Cli\Router\Route;
-use Phalcon\Cli\Router\RouteInterface;
+use Phalcon\Html\Escaper;
+use Phalcon\Html\Escaper\EscaperInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Html\Escaper :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
-     * @since  2020-01-05
+     * @since  2025-10-13
      */
-    public function testCliRouterRouteInstanceOfRouteInterface(): void
+    public function testHtmlEscaperInstanceOfEscaperInterface(): void
     {
-        $route = new Route('test');
+        $escaper = new Escaper();
 
-        $this->assertInstanceOf(RouteInterface::class, $route);
+        $this->assertInstanceOf(EscaperInterface::class, $escaper);
     }
 }

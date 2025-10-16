@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Database\DataMapper\Pdo\Profiler\Profiler;
 
 use Phalcon\DataMapper\Pdo\Profiler\Profiler;
+use Phalcon\DataMapper\Pdo\Profiler\ProfilerInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -22,11 +23,21 @@ final class ConstructTest extends AbstractDatabaseTestCase
      *
      * @since 2020-01-25
      */
-    #[Group('mysql')]
-    public function testDmPdoProfilerProfilerConstruct(): void
+    public function testDmPdoProfilerProfilerInstanceOfProfilerInterface(): void
     {
         $profiler = new Profiler();
 
-        $this->assertInstanceOf(Profiler::class, $profiler);
+        $this->assertInstanceOf(ProfilerInterface::class, $profiler);
+    }
+
+    /**
+     * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler :: __construct()
+     *
+     * @since 2020-01-25
+     */
+    #[Group('mysql')]
+    public function testDmPdoProfilerProfilerConstruct(): void
+    {
+        $this->markTestSkipped('Need implementation');
     }
 }

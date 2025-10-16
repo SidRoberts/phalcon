@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Session\Bag;
 
 use Phalcon\Session\Bag;
+use Phalcon\Session\BagInterface;
 use Phalcon\Session\ManagerInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
@@ -26,7 +27,7 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
-    public function testSessionBagConstruct(): void
+    public function testSessionBagInstanceOfBagInterface(): void
     {
         $this->setNewFactoryDefault();
         $this->setDiService('sessionStream');
@@ -34,8 +35,8 @@ final class ConstructTest extends AbstractUnitTestCase
         /** @var ManagerInterface */
         $session = $this->container->get("session");
 
-        $collection = new Bag($session, 'BagTest');
+        $bag = new Bag($session, 'BagTest');
 
-        $this->assertInstanceOf(Bag::class, $collection);
+        $this->assertInstanceOf(BagInterface::class, $bag);
     }
 }

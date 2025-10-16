@@ -21,6 +21,19 @@ final class ConstructTest extends AbstractUnitTestCase
 {
     /**
      * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-12
+     */
+    public function testMvcRouterGroupInstanceOfGroupInterface(): void
+    {
+        $group = new Group();
+
+        $this->assertInstanceOf(GroupInterface::class, $group);
+    }
+
+    /**
+     * Tests Phalcon\Mvc\Router\Group :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
     public function testMvcRouterGroupConstruct(): void

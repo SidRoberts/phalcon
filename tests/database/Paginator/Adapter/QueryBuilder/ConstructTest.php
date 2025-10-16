@@ -42,6 +42,34 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Tests Phalcon\Paginator\Adapter\QueryBuilder :: __construct()
      *
      * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-13
+     *
+     * @group mysql
+     */
+    public function testPaginatorAdapterQueryBuilderInstanceOfAdapterInterface(): void
+    {
+        $manager = $this->getService('modelsManager');
+
+        $builder = $manager
+            ->createBuilder()
+            ->from(Invoices::class)
+        ;
+
+        $paginator = new QueryBuilder(
+            [
+                'builder' => $builder,
+                'limit'   => 5,
+                'page'    => 1,
+            ]
+        );
+
+        $this->assertInstanceOf(AdapterInterface::class, $paginator);
+    }
+
+    /**
+     * Tests Phalcon\Paginator\Adapter\QueryBuilder :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
      * @since  2020-02-01
      */
     #[Group('mysql')]
@@ -65,7 +93,6 @@ final class ConstructTest extends AbstractDatabaseTestCase
         );
 
         $this->assertInstanceOf(QueryBuilder::class, $paginator);
-        $this->assertInstanceOf(AdapterInterface::class, $paginator);
     }
 
     /**

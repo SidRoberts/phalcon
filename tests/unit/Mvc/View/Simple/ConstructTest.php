@@ -23,7 +23,7 @@ class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
-    public function testMvcViewSimpleConstruct(): void
+    public function testMvcViewSimpleInstanceOfViewBaseInterface(): void
     {
         $view = new Simple();
 

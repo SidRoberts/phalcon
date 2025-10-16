@@ -11,24 +11,23 @@
 
 declare(strict_types=1);
 
-namespace Phalcon\Tests\Unit\Mvc\Router;
+namespace Phalcon\Tests\Unit\Logger\Adapter\Stream;
 
-use Phalcon\Mvc\Router;
-use Phalcon\Mvc\RouterInterface;
+use Phalcon\Logger\Adapter\AdapterInterface;
+use Phalcon\Logger\Adapter\Stream;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
-     * Tests Phalcon\Mvc\Router :: __construct()
+     * Tests Phalcon\Logger\Adapter\Stream :: __construct()
      *
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2018-11-13
+     * @since 2025-10-13
      */
-    public function testMvcRouterInstanceOfRouterInterface(): void
+    public function testLoggerAdapterStreamInstanceOfAdapterInterface(): void
     {
-        $router = new Router();
+        $adapter = new Stream('');
 
-        $this->assertInstanceOf(RouterInterface::class, $router);
+        $this->assertInstanceOf(AdapterInterface::class, $adapter);
     }
 }

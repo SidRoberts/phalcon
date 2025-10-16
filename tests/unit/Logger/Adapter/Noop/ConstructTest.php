@@ -11,22 +11,23 @@
 
 declare(strict_types=1);
 
-namespace Phalcon\Tests\Unit\Cli\Router\Route;
+namespace Phalcon\Tests\Unit\Logger\Adapter\Noop;
 
-use Phalcon\Cli\Router\Route;
-use Phalcon\Cli\Router\RouteInterface;
+use Phalcon\Logger\Adapter\AdapterInterface;
+use Phalcon\Logger\Adapter\Noop;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
-     * @author Phalcon Team <team@phalcon.io>
-     * @since  2020-01-05
+     * Tests Phalcon\Logger\Adapter\Noop :: __construct()
+     *
+     * @since 2025-10-13
      */
-    public function testCliRouterRouteInstanceOfRouteInterface(): void
+    public function testLoggerAdapterNoopInstanceOfAdapterInterface(): void
     {
-        $route = new Route('test');
+        $adapter = new Noop();
 
-        $this->assertInstanceOf(RouteInterface::class, $route);
+        $this->assertInstanceOf(AdapterInterface::class, $adapter);
     }
 }

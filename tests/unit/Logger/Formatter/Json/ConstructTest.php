@@ -11,22 +11,24 @@
 
 declare(strict_types=1);
 
-namespace Phalcon\Tests\Unit\Cli\Router\Route;
+namespace Phalcon\Tests\Unit\Logger\Formatter\Json;
 
-use Phalcon\Cli\Router\Route;
-use Phalcon\Cli\Router\RouteInterface;
+use Phalcon\Logger\Formatter\FormatterInterface;
+use Phalcon\Logger\Formatter\Json;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Logger\Formatter\Json :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
-     * @since  2020-01-05
+     * @since  2025-10-13
      */
-    public function testCliRouterRouteInstanceOfRouteInterface(): void
+    public function testLoggerFormatterJsonInstanceOfFormatterInterface(): void
     {
-        $route = new Route('test');
+        $formatter = new Json();
 
-        $this->assertInstanceOf(RouteInterface::class, $route);
+        $this->assertInstanceOf(FormatterInterface::class, $formatter);
     }
 }

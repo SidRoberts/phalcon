@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Acl\Adapter\Memory;
 
+use Phalcon\Acl\Adapter\AdapterInterface;
 use Phalcon\Acl\Adapter\Memory;
 use Phalcon\Acl\Component;
 use Phalcon\Acl\Enum;
@@ -31,11 +32,11 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
-    public function testAclAdapterMemoryConstruct(): void
+    public function testAclAdapterMemoryInstanceOfAdapterInterface(): void
     {
         $acl = new Memory();
 
-        $this->assertInstanceOf(Memory::class, $acl);
+        $this->assertInstanceOf(AdapterInterface::class, $acl);
     }
 
     /**

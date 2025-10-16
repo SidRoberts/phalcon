@@ -14,11 +14,25 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Support\Collection;
 
 use Phalcon\Support\Collection;
+use Phalcon\Support\Collection\CollectionInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class ConstructTest extends AbstractCollectionTestCase
 {
     /**
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-13
+     */
+    public function testSupportCollectionInstanceOfCollection(): void
+    {
+        $collection = new Collection();
+
+        $this->assertInstanceOf(CollectionInterface::class, $collection);
+    }
+
+    /**
+     * Tests Phalcon\Support\Collection :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */

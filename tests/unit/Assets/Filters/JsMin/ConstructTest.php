@@ -20,18 +20,15 @@ use Phalcon\Tests\AbstractUnitTestCase;
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Assets\Filters\Jsmin :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
-    public function testAssetsFiltersJsMinConstruct(): void
+    public function testAssetsFiltersJsminInstanceOfFilterInterface(): void
     {
-        $jsMin = new JsMin();
+        $jsMin = new Jsmin();
 
-        $class  = JsMin::class;
-        $actual = $jsMin;
-        $this->assertInstanceOf($class, $actual);
-
-        $class = FilterInterface::class;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(FilterInterface::class, $jsMin);
     }
 }

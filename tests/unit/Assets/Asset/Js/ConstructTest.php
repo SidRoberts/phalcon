@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Assets\Asset\Js;
 
 use Phalcon\Assets\Asset\Js;
+use Phalcon\Assets\AssetInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Assets\Fake\AssetsTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -23,6 +24,21 @@ final class ConstructTest extends AbstractUnitTestCase
     use AssetsTrait;
 
     /**
+     * Tests Phalcon\Assets\Asset\Js :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-13
+     */
+    public function testAssetsAssetJsInstanceOfAssetInterface(): void
+    {
+        $asset = new Js('js/jquery.js');
+
+        $this->assertInstanceOf(AssetInterface::class, $asset);
+    }
+
+    /**
+     * Tests Phalcon\Assets\Asset\Js :: __construct() - attributes
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */

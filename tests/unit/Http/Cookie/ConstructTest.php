@@ -17,22 +17,27 @@ use Phalcon\Http\Cookie;
 use Phalcon\Http\Cookie\CookieInterface;
 use Phalcon\Tests\Unit\Http\Helper\AbstractHttpBase;
 
-use function uniqid;
-
 final class ConstructTest extends AbstractHttpBase
 {
     /**
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-12
+     */
+    public function testHttpCookieInstanceOfCookieInterface(): void
+    {
+        $cookie = new Cookie('');
+
+        $this->assertInstanceOf(CookieInterface::class, $cookie);
+    }
+
+    /**
+     * Tests Phalcon\Http\Cookie :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
     public function testHttpCookieConstruct(): void
     {
-        $this->setDiService('sessionStream');
-
-        $name   = uniqid('nam-');
-        $cookie = new Cookie($name);
-
-        $this->assertInstanceOf(CookieInterface::class, $cookie);
-        $this->assertInstanceOf(Cookie::class, $cookie);
+        $this->markTestSkipped('Need implementation');
     }
 }

@@ -16,6 +16,8 @@ namespace Phalcon\Tests\Database\Mvc\Model\Behavior;
 use DateTime;
 use Phalcon\Events\Event;
 use Phalcon\Events\Manager as EventManager;
+use Phalcon\Mvc\Model\Behavior\Timestampable;
+use Phalcon\Mvc\Model\BehaviorInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Models\Invoices;

@@ -23,7 +23,7 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-03-17
      */
-    public function testHttpRequestConstruct(): void
+    public function testHttpRequestInstanceOfRequestInterface(): void
     {
         $actual = new Request();
 

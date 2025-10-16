@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Database\Paginator\Adapter\NativeArray;
 
 use ArgumentCountError;
+use Phalcon\DataMapper\Info\Adapter\AdapterInterface;
 use Phalcon\Paginator\Adapter\NativeArray;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 
@@ -30,5 +31,17 @@ final class ConstructTest extends AbstractDatabaseTestCase
         $this->expectException(ArgumentCountError::class);
 
         $paginator = new NativeArray();
+    }
+
+    /**
+     * @since  2025-10-13
+     */
+    public function testPaginatorAdapterNativeArrayInstanceOfAdapterInterface(): void
+    {
+        $paginator = new NativeArray(
+            []
+        );
+
+        $this->assertInstanceOf(AdapterInterface::class, $paginator);
     }
 }

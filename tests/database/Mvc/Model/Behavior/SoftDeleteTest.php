@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Mvc\Model\Behavior;
 use Phalcon\Events\Event;
 use Phalcon\Events\Manager as EventManager;
 use Phalcon\Mvc\Model\Behavior\SoftDelete;
+use Phalcon\Mvc\Model\BehaviorInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\CustomersMigration;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;

@@ -13,12 +13,25 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Logger\Adapter\Syslog;
 
+use Phalcon\Logger\Adapter\AdapterInterface;
 use Phalcon\Logger\Adapter\Syslog;
 use Phalcon\Tests\AbstractUnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
+    /**
+     * Tests Phalcon\Logger\Adapter\Syslog :: __construct()
+     *
+     * @since 2025-10-13
+     */
+    public function testLoggerAdapterSyslogInstanceOfAdapterInterface(): void
+    {
+        $adapter = new Syslog('');
+
+        $this->assertInstanceOf(AdapterInterface::class, $adapter);
+    }
+
     /**
      * @return array<array{0: array{option?: int, facility?: int}, 1: string, 2: int}>
      */

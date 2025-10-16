@@ -14,11 +14,25 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Di;
 
 use Phalcon\Di\Di;
+use Phalcon\Di\DiInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-13
+     */
+    public function testDiInstanceOfDiInterface(): void
+    {
+        $di = new Di();
+
+        $this->assertInstanceOf(DiInterface::class, $di);
+    }
+
+    /**
+     * Tests Phalcon\Di\Di :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2019-09-09
      */

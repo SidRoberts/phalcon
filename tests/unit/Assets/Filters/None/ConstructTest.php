@@ -11,22 +11,24 @@
 
 declare(strict_types=1);
 
-namespace Phalcon\Tests\Unit\Cli\Router\Route;
+namespace Phalcon\Tests\Unit\Assets\Filters\None;
 
-use Phalcon\Cli\Router\Route;
-use Phalcon\Cli\Router\RouteInterface;
+use Phalcon\Assets\FilterInterface;
+use Phalcon\Assets\Filters\None;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Assets\Filters\None :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
-     * @since  2020-01-05
+     * @since  2025-10-13
      */
-    public function testCliRouterRouteInstanceOfRouteInterface(): void
+    public function testAssetsFiltersNoneInstanceOfFilterInterface(): void
     {
-        $route = new Route('test');
+        $none = new None();
 
-        $this->assertInstanceOf(RouteInterface::class, $route);
+        $this->assertInstanceOf(FilterInterface::class, $none);
     }
 }

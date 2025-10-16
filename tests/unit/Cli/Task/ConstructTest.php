@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Cli\Task;
 
+use Phalcon\Cli\Task;
+use Phalcon\Cli\TaskInterface;
 use Phalcon\Di\FactoryDefault\Cli as DiFactoryDefault;
 use Phalcon\Support\Registry;
 use Phalcon\Tests\AbstractUnitTestCase;
@@ -21,6 +23,19 @@ use Phalcon\Tests\Support\Tasks\MainTask;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
+    /**
+     * Tests Phalcon\Cli\Task :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-13
+     */
+    public function testCliTaskInstanceOfTaskInterface(): void
+    {
+        $task = new Task();
+
+        $this->assertInstanceOf(TaskInterface::class, $task);
+    }
+
     public function testEchoTask(): void
     {
         $task = new EchoTask();

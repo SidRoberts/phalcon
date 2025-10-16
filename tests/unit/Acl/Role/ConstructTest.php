@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Unit\Acl\Role;
 
 use Phalcon\Acl\Exception;
 use Phalcon\Acl\Role;
+use Phalcon\Acl\RoleInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
@@ -23,11 +24,11 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
-    public function testAclRoleConstruct(): void
+    public function testAclRoleInstanceOfRoleInterface(): void
     {
         $role = new Role('Administrator');
 
-        $this->assertInstanceOf(Role::class, $role);
+        $this->assertInstanceOf(RoleInterface::class, $role);
     }
 
     /**

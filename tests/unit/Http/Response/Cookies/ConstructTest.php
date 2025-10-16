@@ -23,7 +23,7 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Jeremy PASTOURET <https://github.com/jenovateurs>
      * @since  2020-01-06
      */
-    public function testHttpResponseCookiesConstruct(): void
+    public function testHttpResponseCookiesInstanceOfCookiesInterface(): void
     {
         $cookies = new Cookies();
 

@@ -13,9 +13,10 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Image\Adapter\Imagick;
 
+use Phalcon\Tests\AbstractUnitTestCase;
+use Phalcon\Image\Adapter\AdapterInterface;
 use Phalcon\Image\Adapter\Imagick;
 use Phalcon\Image\Exception;
-use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Image\Fake\ImagickTrait;
 
 use function supportDir;
@@ -23,6 +24,21 @@ use function supportDir;
 final class ConstructTest extends AbstractUnitTestCase
 {
     use ImagickTrait;
+
+    /**
+     * Tests Phalcon\Image\Adapter\Imagick :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-13
+     */
+    public function testImageAdapterImagickInstanceOfAdapterInterface(): void
+    {
+        $imagick = new Imagick(
+            supportDir('assets/images/example-jpg.jpg')
+        );
+
+        $this->assertInstanceOf(AdapterInterface::class, $imagick);
+    }
 
     /**
      * @author Phalcon Team <team@phalcon.io>
@@ -47,13 +63,15 @@ final class ConstructTest extends AbstractUnitTestCase
 
         $this->assertInstanceOf(Imagick::class, $image);
 
-        $expected = 100;
-        $actual   = $image->getWidth();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            100,
+            $image->getWidth()
+        );
 
-        $expected = 100;
-        $actual   = $image->getHeight();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            100,
+            $image->getHeight()
+        );
     }
 
     /**

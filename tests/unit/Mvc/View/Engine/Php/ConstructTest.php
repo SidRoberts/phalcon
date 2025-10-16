@@ -24,7 +24,7 @@ class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
-    public function testMvcViewEnginePhpConstruct(): void
+    public function testMvcViewEnginePhpInstanceOfEngineInterface(): void
     {
         $view   = new View();
         $engine = new PhpEngine($view);

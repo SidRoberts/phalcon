@@ -26,6 +26,34 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-02-01
      */
+    public function testDbColumnInstanceOfColumnInterface(): void
+    {
+        $options = [
+            'type'          => Column::TYPE_INTEGER,
+            'isNumeric'     => true,
+            'size'          => 11,
+            'scale'         => 0,
+            'default'       => null,
+            'unsigned'      => false,
+            'notNull'       => true,
+            'autoIncrement' => true,
+            'primary'       => true,
+            'first'         => true,
+            'after'         => null,
+            'bindType'      => Column::BIND_PARAM_INT,
+        ];
+
+        $column = new Column('field_primary', $options);
+
+        $this->assertInstanceOf(ColumnInterface::class, $column);
+    }
+
+    /**
+     * Tests Phalcon\Db\Column :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-02-01
+     */
     #[Group('mysql')]
     #[Group('pgsql')]
     #[Group('sqlite')]
@@ -47,7 +75,7 @@ final class ConstructTest extends AbstractDatabaseTestCase
         ];
 
         $column = new Column('field_primary', $options);
+
         $this->assertInstanceOf(Column::class, $column);
-        $this->assertInstanceOf(ColumnInterface::class, $column);
     }
 }

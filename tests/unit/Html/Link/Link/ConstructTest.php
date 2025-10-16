@@ -23,7 +23,7 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
-    public function testLinkLinkConstruct(): void
+    public function testLinkLinkInstanceOfLinkInterface(): void
     {
         $link = new Link('payment', 'https://dev.phalcon.ld');
 

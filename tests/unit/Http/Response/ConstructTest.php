@@ -27,11 +27,9 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2019-12-08
      */
-    public function testHttpResponseConstruct(): void
+    public function testHttpResponseInstanceOfResponseInterface(): void
     {
         $response = new Response();
-
-        $this->assertInstanceOf(Response::class, $response);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
 

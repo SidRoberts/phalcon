@@ -11,22 +11,24 @@
 
 declare(strict_types=1);
 
-namespace Phalcon\Tests\Unit\Cli\Router\Route;
+namespace Phalcon\Tests\Unit\Http\Message\UriFactory;
 
-use Phalcon\Cli\Router\Route;
-use Phalcon\Cli\Router\RouteInterface;
+use Phalcon\Http\Message\Factories\UriFactory;
+use Phalcon\Http\Message\Interfaces\UriFactoryInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Http\Message\UriFactory :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
-     * @since  2020-01-05
+     * @since  2019-02-07
      */
-    public function testCliRouterRouteInstanceOfRouteInterface(): void
+    public function testHttpUriFactoryInstanceOfUriFactoryInterface(): void
     {
-        $route = new Route('test');
+        $factory = new UriFactory();
 
-        $this->assertInstanceOf(RouteInterface::class, $route);
+        $this->assertInstanceOf(UriFactoryInterface::class, $factory);
     }
 }

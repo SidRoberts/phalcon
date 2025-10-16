@@ -11,22 +11,24 @@
 
 declare(strict_types=1);
 
-namespace Phalcon\Tests\Unit\Cli\Router\Route;
+namespace Phalcon\Tests\Unit\Http\Response\Headers;
 
-use Phalcon\Cli\Router\Route;
-use Phalcon\Cli\Router\RouteInterface;
+use Phalcon\Http\Response\Headers;
+use Phalcon\Http\Response\HeadersInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Http\Response\Headers :: get()
+     *
      * @author Phalcon Team <team@phalcon.io>
-     * @since  2020-01-05
+     * @since  2025-10-13
      */
-    public function testCliRouterRouteInstanceOfRouteInterface(): void
+    public function testHttpResponseHeadersInstanceOfHeadersInterface(): void
     {
-        $route = new Route('test');
+        $headers = new Headers();
 
-        $this->assertInstanceOf(RouteInterface::class, $route);
+        $this->assertInstanceOf(HeadersInterface::class, $headers);
     }
 }

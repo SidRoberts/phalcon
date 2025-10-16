@@ -25,7 +25,7 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
-    public function testHttpMessageUriConstruct(): void
+    public function testHttpMessageUriInstanceOfUriInterface(): void
     {
         $uri = new Uri('https://user:pass@example.com:8080/path?q=1#frag');
 

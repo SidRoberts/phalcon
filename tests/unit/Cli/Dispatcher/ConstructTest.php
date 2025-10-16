@@ -11,22 +11,24 @@
 
 declare(strict_types=1);
 
-namespace Phalcon\Tests\Unit\Cli\Router\Route;
+namespace Phalcon\Tests\Unit\Cli\Dispatcher;
 
-use Phalcon\Cli\Router\Route;
-use Phalcon\Cli\Router\RouteInterface;
+use Phalcon\Cli\Dispatcher;
+use Phalcon\Cli\DispatcherInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Cli\Dispatcher :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
-     * @since  2020-01-05
+     * @since  2025-10-13
      */
-    public function testCliRouterRouteInstanceOfRouteInterface(): void
+    public function testCliDispatcherInstanceOfDispatcherInterface(): void
     {
-        $route = new Route('test');
+        $dispatcher = new Dispatcher();
 
-        $this->assertInstanceOf(RouteInterface::class, $route);
+        $this->assertInstanceOf(DispatcherInterface::class, $dispatcher);
     }
 }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Filter\Validation;
 
 use Phalcon\Filter\Validation;
+use Phalcon\Filter\Validation\ValidationInterface;
 use Phalcon\Filter\Validation\Validator\Date;
 use Phalcon\Filter\Validation\Validator\Email;
 use Phalcon\Tests\AbstractUnitTestCase;
@@ -21,6 +22,19 @@ use Phalcon\Tests\AbstractUnitTestCase;
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * @author Sid Roberts <https://github.com/SidRoberts>
+     * @since  2025-10-13
+     */
+    public function testFilterValidationInstanceOfValidationInterface(): void
+    {
+        $validation = new Validation();
+
+        $this->assertInstanceOf(ValidationInterface::class, $validation);
+    }
+
+    /**
+     * Tests Phalcon\Filter\Validation :: __construct()
+     *
      * @author Sid Roberts <https://github.com/SidRoberts>
      * @since  2019-05-25
      */

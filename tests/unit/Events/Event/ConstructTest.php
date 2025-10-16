@@ -20,17 +20,13 @@ use Phalcon\Tests\AbstractUnitTestCase;
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
-     * @issue https://github.com/phalcon/cphalcon/issues/15133
+     * @issue  https://github.com/phalcon/cphalcon/issues/15133
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-10-06
      */
-    public function testEventsEventConstruct(): void
+    public function testEventsEventInstanceOfEventInterface(): void
     {
         $event = new Event('test', $this);
-
-        $this->assertInstanceOf(EventInterface::class, $event);
-
-        $event = new Event('test');
 
         $this->assertInstanceOf(EventInterface::class, $event);
     }

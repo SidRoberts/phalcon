@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Acl\Component;
 
 use Phalcon\Acl\Component;
+use Phalcon\Acl\ComponentInterface;
 use Phalcon\Acl\Exception;
 use Phalcon\Tests\AbstractUnitTestCase;
 
@@ -23,11 +24,11 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
      */
-    public function testAclComponentConstruct(): void
+    public function testAclComponentInstanceOfComponentInterface(): void
     {
         $component = new Component('Customers');
 
-        $this->assertInstanceOf(Component::class, $component);
+        $this->assertInstanceOf(ComponentInterface::class, $component);
     }
 
     /**

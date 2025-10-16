@@ -26,7 +26,7 @@ final class ConstructTest extends AbstractUnitTestCase
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
-    public function testHttpMessageResponseConstruct(): void
+    public function testHttpMessageResponseInstanceOfResponseInterface(): void
     {
         $response = new Response();
 

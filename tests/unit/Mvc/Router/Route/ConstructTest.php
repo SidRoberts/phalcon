@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Mvc\Router\Route;
 
 use Phalcon\Mvc\Router\Route;
+use Phalcon\Mvc\Router\RouteInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 use function uniqid;
@@ -21,6 +22,19 @@ use function uniqid;
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-12
+     */
+    public function testMvcRouterRouteInstanceOfRouteInterface(): void
+    {
+        $route = new Route('');
+
+        $this->assertInstanceOf(RouteInterface::class, $route);
+    }
+
+    /**
+     * Tests Phalcon\Mvc\Router\Route :: __construct()
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2022-01-27
      */

@@ -13,12 +13,28 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Assets\Inline;
 
+use Phalcon\Assets\AssetInterface;
 use Phalcon\Assets\Inline;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
     /**
+     * Tests Phalcon\Assets\Inline :: __construct()
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-10-13
+     */
+    public function testAssetsInlineCssInstanceOfAssetInterface(): void
+    {
+        $asset = new Inline('css', 'p {color: #000099}');
+
+        $this->assertInstanceOf(AssetInterface::class, $asset);
+    }
+
+    /**
+     * Tests Phalcon\Assets\Asset :: __construct() - css
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
