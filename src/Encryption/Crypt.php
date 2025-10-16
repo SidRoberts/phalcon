@@ -755,8 +755,6 @@ class Crypt implements CryptInterface
         string $decryptKey,
         string $iv
     ): string {
-        $cipher = $this->cipher;
-
         if (true === $this->checkIsMode(["ccm", "gcm"], $mode)) {
             $authData      = $this->authData;
             $authTagLength = $this->authTagLength;
@@ -765,7 +763,7 @@ class Crypt implements CryptInterface
 
             $decrypted = openssl_decrypt(
                 $encrypted,
-                $cipher,
+                $this->cipher,
                 $decryptKey,
                 OPENSSL_RAW_DATA,
                 $iv,
@@ -775,7 +773,7 @@ class Crypt implements CryptInterface
         } else {
             $decrypted = openssl_decrypt(
                 $cipherText,
-                $cipher,
+                $this->cipher,
                 $decryptKey,
                 OPENSSL_RAW_DATA,
                 $iv
