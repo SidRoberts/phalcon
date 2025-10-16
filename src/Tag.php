@@ -539,21 +539,16 @@ class Tag
      */
     public static function getValue(int | string $name, array $parameters = [])
     {
-        $value = $parameters["value"] ?? null;
-        if (null === $value) {
+        return $parameters["value"]
             /**
              * Check if there is a predefined value for it
              */
-            $value = self::$displayValues[$name] ?? null;
-            if (null === $value) {
-                /**
-                 * Check if there is a post value for the item
-                 */
-                $value = $_POST[$name] ?? null;
-            }
-        }
-
-        return $value;
+            ?? self::$displayValues[$name]
+            /**
+             * Check if there is a post value for the item
+             */
+            ?? $_POST[$name]
+            ?? null;
     }
 
     /**
