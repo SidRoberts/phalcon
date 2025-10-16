@@ -30,13 +30,15 @@ final class PathTest extends AbstractUnitTestCase
     {
         $config = $this->getConfig($adapter);
 
-        $expected = 1;
-        $actual   = $config->path('test');
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            1,
+            $config->path('test')
+        );
 
-        $expected = 'yeah';
-        $actual   = $config->path('test.parent.property2');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'yeah',
+            $config->path('test.parent.property2')
+        );
     }
 
     /**
@@ -48,8 +50,9 @@ final class PathTest extends AbstractUnitTestCase
     {
         $config = $this->getConfig($adapter);
 
-        $expected = 'Unknown';
-        $actual   = $config->path('test.parent.property3', 'Unknown');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'Unknown',
+            $config->path('test.parent.property3', 'Unknown')
+        );
     }
 }

@@ -30,10 +30,10 @@ final class OffsetGetTest extends AbstractUnitTestCase
     {
         $config = $this->getConfig($adapter);
 
-        $expected = 'memory';
-        $actual   = $config->offsetGet('models')
-                           ->offsetGet('metadata')
+        $actual = $config->offsetGet('models')
+                         ->offsetGet('metadata')
         ;
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals('memory', $actual);
     }
 }

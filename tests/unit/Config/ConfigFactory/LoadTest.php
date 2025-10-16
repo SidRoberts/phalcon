@@ -21,7 +21,6 @@ use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Support\Traits\FactoryTrait;
 
 use function hash;
-use function supportDir;
 
 use const INI_SCANNER_NORMAL;
 
@@ -44,11 +43,11 @@ final class LoadTest extends AbstractUnitTestCase
     public function testConfigFactoryLoadArray(): void
     {
         $options = $this->arrayConfig['config'];
-        $class   = Ini::class;
 
         /** @var Ini $ini */
         $ini = (new ConfigFactory())->load($options);
-        $this->assertInstanceOf($class, $ini);
+
+        $this->assertInstanceOf(Ini::class, $ini);
     }
 
     /**
@@ -57,24 +56,26 @@ final class LoadTest extends AbstractUnitTestCase
      */
     public function testConfigFactoryLoadConfig(): void
     {
-        $class   = Ini::class;
         $options = $this->config->get('config');
 
         /** @var Ini $ini */
         $ini = (new ConfigFactory())->load($options);
-        $this->assertInstanceOf($class, $ini);
+
+        $this->assertInstanceOf(Ini::class, $ini);
 
         //Issue 14756
         $configFile = supportDir('assets/config/config-with.in-file.name.ini');
         $ini        = new Ini($configFile, INI_SCANNER_NORMAL);
-        $this->assertInstanceOf($class, $ini);
+
+        $this->assertInstanceOf(Ini::class, $ini);
 
         /** @var Ini $ini */
         $ini = (new ConfigFactory())->load(
             $ini->get('config')
                 ->toArray()
         );
-        $this->assertInstanceOf($class, $ini);
+
+        $this->assertInstanceOf(Ini::class, $ini);
     }
 
     /**
@@ -91,6 +92,7 @@ final class LoadTest extends AbstractUnitTestCase
         $config = [
             'filePath' => supportDir('assets/config/config.ini'),
         ];
+
         (new ConfigFactory())->load($config);
     }
 
@@ -143,11 +145,11 @@ final class LoadTest extends AbstractUnitTestCase
     public function testConfigFactoryLoadString(): void
     {
         $filePath = $this->arrayConfig['config']['filePathExtension'];
-        $class    = Ini::class;
 
         /** @var Ini $ini */
         $ini = (new ConfigFactory())->load($filePath);
-        $this->assertInstanceOf($class, $ini);
+
+        $this->assertInstanceOf(Ini::class, $ini);
     }
 
     /**
@@ -162,16 +164,18 @@ final class LoadTest extends AbstractUnitTestCase
         $configFile1 = supportDir('assets/config/config.php');
         $config      = $factory->load($configFile1);
 
-        $expected = "/phalcon/";
-        $actual   = $config->get('phalcon')->baseUri;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "/phalcon/",
+            $config->get('phalcon')->baseUri
+        );
 
         $configFile2 = supportDir('assets/config/config-2.php');
         $config2     = $factory->load($configFile2);
 
-        $expected = "/phalcon4/";
-        $actual   = $config2->get('phalcon')->baseUri;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            "/phalcon4/",
+            $config2->get('phalcon')->baseUri
+        );
     }
 
     /**
@@ -180,22 +184,24 @@ final class LoadTest extends AbstractUnitTestCase
      */
     public function testConfigFactoryLoadYamlCallback(): void
     {
-        $class   = Yaml::class;
         $factory = new ConfigFactory();
+
         $config  = [
             'adapter'   => 'yaml',
             'filePath'  => supportDir('assets/config/callbacks.yml'),
             'callbacks' => [
-                '!decrypt' => function ($value) {
+                '!decrypt' => function ($value): string {
                     return hash('sha256', $value);
                 },
-                '!approot' => function ($value) {
+                '!approot' => function ($value): string {
                     return 'app/root/' . $value;
                 },
             ],
         ];
 
-        $config = $factory->load($config);
-        $this->assertInstanceOf($class, $config);
+        $this->assertInstanceOf(
+            Yaml::class,
+            $factory->load($config)
+        );
     }
 }

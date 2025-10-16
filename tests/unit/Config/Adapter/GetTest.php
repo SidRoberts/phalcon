@@ -30,10 +30,9 @@ final class GetTest extends AbstractUnitTestCase
     {
         $config = $this->getConfig($adapter);
 
-        $expected = 'memory';
-        $actual   = $config->get('models')
-                           ->get('metadata')
+        $actual = $config->get('models')
+                         ->get('metadata')
         ;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals('memory', $actual);
     }
 }

@@ -33,8 +33,9 @@ final class OffsetGetTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 'abc';
-        $actual   = $config->{0};
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'abc',
+            $config->{0}
+        );
     }
 }

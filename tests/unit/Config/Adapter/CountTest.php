@@ -30,8 +30,9 @@ final class CountTest extends AbstractUnitTestCase
     {
         $config = $this->getConfig($adapter);
 
-        $expected = 5;
-        $actual   = $config->count();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            5,
+            $config->count()
+        );
     }
 }

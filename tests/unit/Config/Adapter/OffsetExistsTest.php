@@ -30,7 +30,8 @@ final class OffsetExistsTest extends AbstractUnitTestCase
     {
         $config = $this->getConfig($adapter);
 
-        $actual = $config->offsetExists('models');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $config->offsetExists('models')
+        );
     }
 }

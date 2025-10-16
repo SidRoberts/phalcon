@@ -18,6 +18,7 @@ use Phalcon\Config\Adapter\Json;
 use Phalcon\Config\Adapter\Php;
 use Phalcon\Config\Adapter\Yaml;
 use Phalcon\Config\ConfigFactory;
+use Phalcon\Config\ConfigInterface;
 use Phalcon\Config\Exception;
 use Phalcon\Tests\AbstractUnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -27,7 +28,7 @@ use function supportDir;
 final class NewInstanceTest extends AbstractUnitTestCase
 {
     /**
-     * @return array<array-key, array<string, string>>
+     * @return array<array{0: string, 1: string, 2: class-string<ConfigInterface>}>
      */
     public static function getExamples(): array
     {
@@ -56,6 +57,10 @@ final class NewInstanceTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param string                        $service
+     * @param string                        $options
+     * @param class-string<ConfigInterface> $expected
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-10-18
      */
@@ -66,7 +71,8 @@ final class NewInstanceTest extends AbstractUnitTestCase
         string $expected
     ): void {
         $factory = new ConfigFactory();
-        $config  = $factory->newInstance($service, $options);
+
+        $config = $factory->newInstance($service, $options);
 
         $this->assertInstanceOf($expected, $config);
     }
@@ -81,6 +87,7 @@ final class NewInstanceTest extends AbstractUnitTestCase
         $this->expectExceptionMessage("Service unknown is not registered");
 
         $factory = new ConfigFactory();
+
         $factory->newInstance(
             "unknown",
             "config.php"

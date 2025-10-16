@@ -33,15 +33,17 @@ final class ConfigTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = Config::class;
-        $actual   = $config->childNode;
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(Config::class, $config->childNode);
 
-        $actual = $config->get('childNode');
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(
+            Config::class,
+            $config->get('childNode')
+        );
 
-        $actual = $config->offsetGet('childNode');
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(
+            Config::class,
+            $config->offsetGet('childNode')
+        );
     }
 
     /**
@@ -66,14 +68,15 @@ final class ConfigTest extends AbstractUnitTestCase
         /** @var Config $database */
         $database = $config->get('database');
 
-        $class = Config::class;
-        $this->assertInstanceOf($class, $database);
+        $this->assertInstanceOf(Config::class, $database);
 
-        $actual = $database->has('adapter');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $database->has('adapter')
+        );
 
-        $actual = $database->has('ADAPTER');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $database->has('ADAPTER')
+        );
     }
 
     /**

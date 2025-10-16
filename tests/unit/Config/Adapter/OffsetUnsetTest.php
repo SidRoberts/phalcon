@@ -30,12 +30,14 @@ final class OffsetUnsetTest extends AbstractUnitTestCase
     {
         $config = $this->getConfig($adapter);
 
-        $actual = $config->offsetExists('database');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $config->offsetExists('database')
+        );
 
         $config->offsetUnset('database');
 
-        $actual = $config->offsetExists('database');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $config->offsetExists('database')
+        );
     }
 }

@@ -29,10 +29,12 @@ final class OffsetSetTest extends AbstractUnitTestCase
     public function testConfigAdapterOffsetSet(string $adapter): void
     {
         $config = $this->getConfig($adapter);
+
         $config->offsetSet('models', 'something-else');
 
-        $expected = 'something-else';
-        $actual   = $config->offsetGet('models');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'something-else',
+            $config->offsetGet('models')
+        );
     }
 }

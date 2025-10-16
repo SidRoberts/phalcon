@@ -66,8 +66,9 @@ final class GetTest extends AbstractUnitTestCase
     {
         $config = $this->getConfig();
 
-        $expected = $config->database->adapter;
-        $actual   = $this->config['database']['adapter'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $config->database->adapter,
+            $this->config['database']['adapter']
+        );
     }
 }

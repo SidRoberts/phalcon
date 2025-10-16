@@ -22,7 +22,7 @@ final class ToArrayTest extends AbstractUnitTestCase
     use ConfigTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function providerAdapters(): array
     {
@@ -43,8 +43,9 @@ final class ToArrayTest extends AbstractUnitTestCase
     {
         $config = $this->getConfig($adapter);
 
-        $expected = $this->config;
-        $actual   = $config->toArray();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $this->config,
+            $config->toArray()
+        );
     }
 }

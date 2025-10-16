@@ -22,7 +22,7 @@ final class ConstructTest extends AbstractUnitTestCase
     use ConfigTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function providerAdapters(): array
     {

@@ -31,23 +31,27 @@ final class GetSetPathDelimiterTest extends AbstractUnitTestCase
         $config   = $this->getConfig($adapter);
         $existing = $config->getPathDelimiter();
 
-        $expected = '.';
-        $actual   = $config->getPathDelimiter();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '.',
+            $config->getPathDelimiter()
+        );
 
         $config->setPathDelimiter('/');
 
-        $expected = '/';
-        $actual   = $config->getPathDelimiter();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '/',
+            $config->getPathDelimiter()
+        );
 
-        $expected = 'Unknown';
-        $actual   = $config->path('test.parent.property2', 'Unknown');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'Unknown',
+            $config->path('test.parent.property2', 'Unknown')
+        );
 
-        $expected = 'yeah';
-        $actual   = $config->path('test/parent/property2', 'Unknown');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'yeah',
+            $config->path('test/parent/property2', 'Unknown')
+        );
 
         $config->setPathDelimiter($existing);
     }

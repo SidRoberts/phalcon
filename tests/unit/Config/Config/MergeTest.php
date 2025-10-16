@@ -166,14 +166,15 @@ final class MergeTest extends AbstractUnitTestCase
     {
         $config = $this->getConfig();
 
-        $expected = $this->getMergedByConfig();
-        $actual   = $config;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $this->getMergedByConfig(),
+            $config
+        );
     }
 
     /**
      * @author Phalcon Team <team@phalcon.io>
-     * @since  2021-10-21
+     * @since  2121-10-21
      */
     #[DataProvider('getExamples')]
     public function testConfigMergeConfigCases(
@@ -212,10 +213,13 @@ final class MergeTest extends AbstractUnitTestCase
 
     /**
      * @return Config
+     *
+     * @throws Exception
      */
     private function getMergedByConfig(): Config
     {
         $config = new Config();
+
         $config->merge($this->getConfig());
 
         return $config;

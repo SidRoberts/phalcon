@@ -48,22 +48,24 @@ final class ConstructTest extends AbstractUnitTestCase
         $config = new Yaml(
             supportDir('assets/config/callbacks.yml'),
             [
-                '!decrypt' => function ($value) {
+                '!decrypt' => function (string $value): string {
                     return hash('sha256', $value);
                 },
-                '!approot' => function ($value) use ($baseDir) {
+                '!approot' => function ($value) use ($baseDir): string {
                     return $baseDir . $value;
                 },
             ]
         );
 
-        $expected = $baseDir . '/app/controllers/';
-        $actual   = $config->application->controllersDir;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $baseDir . '/app/controllers/',
+            $config->application->controllersDir
+        );
 
-        $expected = '9f7030891b235f3e06c4bff74ae9dc1b9b59d4f2e4e6fd94eeb2b91caee5d223';
-        $actual   = $config->database->password;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '9f7030891b235f3e06c4bff74ae9dc1b9b59d4f2e4e6fd94eeb2b91caee5d223',
+            $config->database->password
+        );
     }
 
     /**
