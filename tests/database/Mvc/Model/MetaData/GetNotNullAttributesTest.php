@@ -25,7 +25,7 @@ final class GetNotNullAttributesTest extends AbstractDatabaseTestCase
     use DiTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -75,10 +75,15 @@ final class GetNotNullAttributesTest extends AbstractDatabaseTestCase
         $expected = [
             'inv_id',
         ];
-        $actual   = $metadata->getNotNullAttributes($model);
-        $this->assertEquals($expected, $actual);
 
-        $this->assertFalse($metadata->isEmpty());
+        $this->assertEquals(
+            $expected,
+            $metadata->getNotNullAttributes($model)
+        );
+
+        $this->assertFalse(
+            $metadata->isEmpty()
+        );
 
         /**
          * Double check it can get from cache systems and not memory
@@ -89,8 +94,13 @@ final class GetNotNullAttributesTest extends AbstractDatabaseTestCase
 
         $this->assertNotEquals($adapter, $metadata);
 
-        $this->assertTrue($adapter->isEmpty());
-        $actual = $adapter->getNotNullAttributes($model);
-        $this->assertEquals($expected, $actual);
+        $this->assertTrue(
+            $adapter->isEmpty()
+        );
+
+        $this->assertEquals(
+            $expected,
+            $adapter->getNotNullAttributes($model)
+        );
     }
 }

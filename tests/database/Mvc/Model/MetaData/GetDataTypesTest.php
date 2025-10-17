@@ -25,7 +25,7 @@ final class GetDataTypesTest extends AbstractDatabaseTestCase
     use DiTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -65,7 +65,10 @@ final class GetDataTypesTest extends AbstractDatabaseTestCase
         $connection = self::getConnection();
 
         $adapter->reset();
-        $this->assertTrue($adapter->isEmpty());
+
+        $this->assertTrue(
+            $adapter->isEmpty()
+        );
 
         $this->container->setShared('modelsMetadata', $adapter);
 
@@ -74,10 +77,15 @@ final class GetDataTypesTest extends AbstractDatabaseTestCase
 
         $model    = new Invoices();
         $expected = $this->getTypes();
-        $actual   = $metadata->getDataTypes($model);
-        $this->assertEquals($expected, $actual);
 
-        $this->assertFalse($adapter->isEmpty());
+        $this->assertEquals(
+            $expected,
+            $metadata->getDataTypes($model)
+        );
+
+        $this->assertFalse(
+            $adapter->isEmpty()
+        );
 
         /**
          * Double check it can get from cache systems and not memory
@@ -88,43 +96,45 @@ final class GetDataTypesTest extends AbstractDatabaseTestCase
 
         $this->assertNotEquals($adapter, $metadata);
 
-        $this->assertTrue($adapter->isEmpty());
+        $this->assertTrue(
+            $adapter->isEmpty()
+        );
 
-        $actual = $adapter->getDataTypes($model);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $adapter->getDataTypes($model)
+        );
     }
 
     private function getTypes(): array
     {
         $driver = self::getDriver();
-        switch ($driver) {
-            case 'mysql':
-                return [
-                    'inv_id'          => 0,
-                    'inv_cst_id'      => 0,
-                    'inv_status_flag' => 26,
-                    'inv_title'       => 2,
-                    'inv_total'       => 7,
-                    'inv_created_at'  => 4,
-                ];
-            case 'sqlite':
-                return [
-                    'inv_id'          => 0,
-                    'inv_cst_id'      => 0,
-                    'inv_status_flag' => 0,
-                    'inv_title'       => 2,
-                    'inv_total'       => 2,
-                    'inv_created_at'  => 2,
-                ];
-            default:
-                return [
-                    'inv_id'          => 0,
-                    'inv_cst_id'      => 0,
-                    'inv_status_flag' => 22,
-                    'inv_title'       => 2,
-                    'inv_total'       => 3,
-                    'inv_created_at'  => 17,
-                ];
-        }
+
+        return match ($driver) {
+            'mysql' => [
+                'inv_id'          => 0,
+                'inv_cst_id'      => 0,
+                'inv_status_flag' => 26,
+                'inv_title'       => 2,
+                'inv_total'       => 7,
+                'inv_created_at'  => 4,
+            ],
+            'sqlite' => [
+                'inv_id'          => 0,
+                'inv_cst_id'      => 0,
+                'inv_status_flag' => 0,
+                'inv_title'       => 2,
+                'inv_total'       => 2,
+                'inv_created_at'  => 2,
+            ],
+            default => [
+                'inv_id'          => 0,
+                'inv_cst_id'      => 0,
+                'inv_status_flag' => 22,
+                'inv_title'       => 2,
+                'inv_total'       => 3,
+                'inv_created_at'  => 17,
+            ],
+        };
     }
 }

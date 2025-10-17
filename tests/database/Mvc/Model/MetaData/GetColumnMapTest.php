@@ -26,7 +26,7 @@ final class GetColumnMapTest extends AbstractDatabaseTestCase
     use DiTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -80,7 +80,9 @@ final class GetColumnMapTest extends AbstractDatabaseTestCase
         $metadata = $this->container->get('modelsMetadata');
         $model    = new Invoices();
 
-        $this->assertNull($metadata->getColumnMap($model));
+        $this->assertNull(
+            $metadata->getColumnMap($model)
+        );
 
         $model    = new InvoicesMap();
         $expected = [
@@ -94,7 +96,9 @@ final class GetColumnMapTest extends AbstractDatabaseTestCase
 
         $this->assertEquals($expected, $metadata->getColumnMap($model));
 
-        $this->assertTrue($adapter->isEmpty());
+        $this->assertTrue(
+            $adapter->isEmpty()
+        );
 
         /**
          * Double check it can get from cache systems and not memory
@@ -105,8 +109,13 @@ final class GetColumnMapTest extends AbstractDatabaseTestCase
 
         $this->assertNotEquals($adapter, $metadata);
 
-        $this->assertTrue($adapter->isEmpty());
+        $this->assertTrue(
+            $adapter->isEmpty()
+        );
 
-        $this->assertEquals($expected, $adapter->getColumnMap($model));
+        $this->assertEquals(
+            $expected,
+            $adapter->getColumnMap($model)
+        );
     }
 }

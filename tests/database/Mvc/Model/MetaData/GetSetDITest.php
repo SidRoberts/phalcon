@@ -25,7 +25,7 @@ final class GetSetDITest extends AbstractDatabaseTestCase
     use DiTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -78,6 +78,9 @@ final class GetSetDITest extends AbstractDatabaseTestCase
         $metadata = $this->newService($service);
         $metadata->setDi($this->container);
 
-        $this->assertEquals($this->container, $metadata->getDI());
+        $this->assertEquals(
+            $this->container,
+            $metadata->getDI()
+        );
     }
 }

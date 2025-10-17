@@ -25,7 +25,7 @@ final class GetAttributesTest extends AbstractDatabaseTestCase
     use DiTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -82,8 +82,11 @@ final class GetAttributesTest extends AbstractDatabaseTestCase
             'inv_total',
             'inv_created_at',
         ];
-        $actual   = $metadata->getAttributes($model);
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $metadata->getAttributes($model)
+        );
 
         $adapter = $this->newService($service);
         $this->container->setShared('modelsMetadata', $adapter);
@@ -91,7 +94,9 @@ final class GetAttributesTest extends AbstractDatabaseTestCase
 
         $this->assertNotEquals($adapter, $metadata);
 
-        $actual = $adapter->getAttributes($model);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $adapter->getAttributes($model)
+        );
     }
 }

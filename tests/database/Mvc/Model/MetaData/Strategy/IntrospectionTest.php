@@ -45,8 +45,11 @@ final class IntrospectionTest extends AbstractDatabaseTestCase
             0 => null,
             1 => null,
         ];
-        $actual   = $strategy->getColumnMaps($invoice, $this->container);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $strategy->getColumnMaps($invoice, $this->container)
+        );
 
         $expected = [
             0 => [
@@ -104,8 +107,11 @@ final class IntrospectionTest extends AbstractDatabaseTestCase
             ],
             13 => [],
         ];
-        $actual   = $strategy->getMetaData($invoice, $this->container);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $strategy->getMetaData($invoice, $this->container)
+        );
     }
 
     /**
@@ -134,6 +140,7 @@ final class IntrospectionTest extends AbstractDatabaseTestCase
 
         $this->expectException(ModelException::class);
         $this->expectExceptionMessage('columnMap() not returned an array');
+
         $strategy->getColumnMaps($invoice, $this->container);
     }
 }

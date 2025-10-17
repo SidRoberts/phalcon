@@ -25,7 +25,7 @@ final class GetIdentityFieldTest extends AbstractDatabaseTestCase
     use DiTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -67,19 +67,26 @@ final class GetIdentityFieldTest extends AbstractDatabaseTestCase
         $connection = self::getConnection();
 
         $adapter->reset();
-        $this->assertTrue($adapter->isEmpty());
+
+        $this->assertTrue(
+            $adapter->isEmpty()
+        );
 
         $this->container->setShared('modelsMetadata', $adapter);
 
         /** @var MetaData $metadata */
         $metadata = $this->container->get('modelsMetadata');
 
-        $model    = new Invoices();
-        $expected = 'inv_id';
-        $actual   = $metadata->getIdentityField($model);
-        $this->assertEquals($expected, $actual);
+        $model = new Invoices();
 
-        $this->assertFalse($adapter->isEmpty());
+        $this->assertEquals(
+            'inv_id',
+            $metadata->getIdentityField($model)
+        );
+
+        $this->assertFalse(
+            $adapter->isEmpty()
+        );
 
         /**
          * Double check it can get from cache systems and not memory
@@ -90,11 +97,15 @@ final class GetIdentityFieldTest extends AbstractDatabaseTestCase
 
         $this->assertNotEquals($adapter, $metadata);
 
-        $this->assertTrue($adapter->isEmpty());
+        $this->assertTrue(
+            $adapter->isEmpty()
+        );
 
-        $model    = new Invoices();
-        $expected = 'inv_id';
-        $actual   = $adapter->getIdentityField($model);
-        $this->assertEquals($expected, $actual);
+        $model = new Invoices();
+
+        $this->assertEquals(
+            'inv_id',
+            $adapter->getIdentityField($model)
+        );
     }
 }

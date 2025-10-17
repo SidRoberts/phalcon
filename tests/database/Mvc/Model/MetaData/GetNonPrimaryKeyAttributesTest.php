@@ -25,7 +25,7 @@ final class GetNonPrimaryKeyAttributesTest extends AbstractDatabaseTestCase
     use DiTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -81,11 +81,15 @@ final class GetNonPrimaryKeyAttributesTest extends AbstractDatabaseTestCase
             'inv_total',
             'inv_created_at',
         ];
-        $actual   = $metadata->getNonPrimaryKeyAttributes($model);
 
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $metadata->getNonPrimaryKeyAttributes($model)
+        );
 
-        $this->assertFalse($adapter->isEmpty());
+        $this->assertFalse(
+            $adapter->isEmpty()
+        );
 
         /**
          * Double check it can get from cache systems and not memory
@@ -96,8 +100,13 @@ final class GetNonPrimaryKeyAttributesTest extends AbstractDatabaseTestCase
 
         $this->assertNotEquals($adapter, $metadata);
 
-        $this->assertTrue($adapter->isEmpty());
-        $actual = $adapter->getNonPrimaryKeyAttributes($model);
-        $this->assertEquals($expected, $actual);
+        $this->assertTrue(
+            $adapter->isEmpty()
+        );
+
+        $this->assertEquals(
+            $expected,
+            $adapter->getNonPrimaryKeyAttributes($model)
+        );
     }
 }

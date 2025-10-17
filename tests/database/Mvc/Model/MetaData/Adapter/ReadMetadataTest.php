@@ -26,14 +26,12 @@ use Phalcon\Tests\Support\Traits\DiTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 
-use function array_keys;
-
 final class ReadMetadataTest extends AbstractDatabaseTestCase
 {
     use DiTrait;
 
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -146,21 +144,19 @@ final class ReadMetadataTest extends AbstractDatabaseTestCase
             $service = $adapter->getAdapter();
 
             /**
-             * Check if keys exist
+             * Check if keys exist and check contents of the keys
              */
-            $keys    = self::getKeyData();
-            $keyKeys = array_keys($keys);
-            foreach ($keyKeys as $key) {
-                $actual = $service->has($key);
-                $this->assertTrue($actual);
-            }
+            $keys = self::getKeyData();
 
-            /**
-             * Check contents of the keys
-             */
             foreach ($keys as $key => $expected) {
-                $actual = $service->get($key);
-                $this->assertSame($expected, $actual);
+                $this->assertTrue(
+                    $service->has($key)
+                );
+
+                $this->assertSame(
+                    $expected,
+                    $service->get($key)
+                );
             }
         }
     }
