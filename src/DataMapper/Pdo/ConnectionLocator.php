@@ -128,7 +128,7 @@ class ConnectionLocator
     public static function new(mixed $argument, mixed ...$arguments): static
     {
         if ($argument instanceof Connection) {
-            $defaultFactory = function () use ($argument) {
+            $defaultFactory = function () use ($argument): Connection {
                 return $argument;
             };
 
