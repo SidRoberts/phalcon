@@ -274,6 +274,7 @@ class Gd extends AbstractAdapter
     protected function processBlur(int $radius): void
     {
         $counter = 0;
+
         while ($counter < $radius) {
             imagefilter($this->image, IMG_FILTER_GAUSSIAN_BLUR);
 
