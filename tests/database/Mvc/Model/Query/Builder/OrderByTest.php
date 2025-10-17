@@ -53,7 +53,8 @@ final class OrderByTest extends AbstractDatabaseTestCase
     public function testMvcModelQueryBuilderOrderBy(): void
     {
         $builder = new Builder();
-        $phql    = $builder
+
+        $phql = $builder
             ->columns('inv_id, inv_title')
             ->addFrom(Invoices::class)
             ->orderBy('inv_title')
@@ -63,8 +64,8 @@ final class OrderByTest extends AbstractDatabaseTestCase
         $expected = 'SELECT inv_id, inv_title '
             . 'FROM [Phalcon\Tests\Support\Models\Invoices] '
             . 'ORDER BY inv_title';
-        $actual   = $phql;
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals($expected, $phql);
 
         $phql = $builder
             ->orderBy('inv_title DESC')
@@ -74,7 +75,7 @@ final class OrderByTest extends AbstractDatabaseTestCase
         $expected = 'SELECT inv_id, inv_title '
             . 'FROM [Phalcon\Tests\Support\Models\Invoices] '
             . 'ORDER BY inv_title DESC';
-        $actual   = $phql;
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals($expected, $phql);
     }
 }

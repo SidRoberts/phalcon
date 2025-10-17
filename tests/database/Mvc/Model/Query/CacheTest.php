@@ -31,7 +31,7 @@ final class CacheTest extends AbstractDatabaseTestCase
     use DiTrait;
 
     /**
-     * @return string[][]
+     * @return array<array{0: string}>
      */
     public static function getValidSerializers(): array
     {
@@ -98,10 +98,12 @@ final class CacheTest extends AbstractDatabaseTestCase
         /**
          * Find all the invoices - should be 0
          */
-        $result   = Invoices::find($options);
-        $expected = 0;
-        $actual   = $result->count();
-        $this->assertEquals($expected, $actual);
+        $result = Invoices::find($options);
+
+        $this->assertEquals(
+            0,
+            $result->count()
+        );
 
         /**
          * Add a new invoice
@@ -117,28 +119,34 @@ final class CacheTest extends AbstractDatabaseTestCase
         /**
          * Find all the invoices (using cache). This should be 0 again
          */
-        $result   = Invoices::find($options);
-        $expected = 0;
-        $actual   = $result->count();
-        $this->assertEquals($expected, $actual);
+        $result = Invoices::find($options);
+
+        $this->assertEquals(
+            0,
+            $result->count()
+        );
 
         /**
          * Find all the invoices without cache - This should be 1
          */
-        $result   = Invoices::find();
-        $expected = 1;
-        $actual   = $result->count();
-        $this->assertEquals($expected, $actual);
+        $result = Invoices::find();
+
+        $this->assertEquals(
+            1,
+            $result->count()
+        );
 
         /**
          * Delete the cached entry and query again - This should be 1
          */
         $cache->delete($cacheKey);
 
-        $result   = Invoices::find($options);
-        $expected = 1;
-        $actual   = $result->count();
-        $this->assertEquals($expected, $actual);
+        $result = Invoices::find($options);
+
+        $this->assertEquals(
+            1,
+            $result->count()
+        );
 
         /**
          * Delete the temporary record
@@ -150,18 +158,22 @@ final class CacheTest extends AbstractDatabaseTestCase
         /**
          * Query again with cache - This should be 1
          */
-        $result   = Invoices::find($options);
-        $expected = 1;
-        $actual   = $result->count();
-        $this->assertEquals($expected, $actual);
+        $result = Invoices::find($options);
+
+        $this->assertEquals(
+            1,
+            $result->count()
+        );
 
         /**
          * Query again without cache - This should be 0
          */
-        $result   = Invoices::find();
-        $expected = 0;
-        $actual   = $result->count();
-        $this->assertEquals($expected, $actual);
+        $result = Invoices::find();
+
+        $this->assertEquals(
+            0,
+            $result->count()
+        );
 
         /**
          * Delete the cache key

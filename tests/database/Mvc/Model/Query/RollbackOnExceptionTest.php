@@ -120,7 +120,9 @@ final class RollbackOnExceptionTest extends AbstractDatabaseTestCase
         try {
             $query = 'UPDATE \\Phalcon\\Tests\\Support\\Models\\RbTestModel '
                 . 'SET name = :name: WHERE id = :id:';
+
             $modelsManager->executeQuery($query, ['id' => $id, 'name' => $name]);
+
             return "Update $name";
         } catch (PDOException $exc) {
             return $exc::class . ' ' . $exc->getMessage();

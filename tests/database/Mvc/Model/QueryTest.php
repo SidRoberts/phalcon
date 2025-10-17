@@ -84,7 +84,11 @@ final class QueryTest extends AbstractDatabaseTestCase
         $query->limit(20, 0);
         $resultsets = $query->execute();
 
-        $this->assertEquals(20, $resultsets->count());
+        $this->assertEquals(
+            20,
+            $resultsets->count()
+        );
+
         foreach ($resultsets as $resultset) {
             $this->assertInstanceOf(Customers::class, $resultset);
         }
@@ -110,6 +114,7 @@ final class QueryTest extends AbstractDatabaseTestCase
             ]
         );
         $query->limit(1, 0);
+
         $resultsets = $query->execute();
 
         $this->assertTrue(isset($resultsets[0]['Customer ID']));
@@ -147,7 +152,11 @@ final class QueryTest extends AbstractDatabaseTestCase
         /** @var Complex $resultsets */
         $resultsets = $query->execute();
 
-        $this->assertEquals(20, $resultsets->count());
+        $this->assertEquals(
+            20,
+            $resultsets->count()
+        );
+
         foreach ($resultsets as $resultset) {
             /** @var Row $resultset */
             $model = $this->transform($resultset);
