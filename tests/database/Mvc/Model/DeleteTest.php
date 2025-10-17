@@ -61,11 +61,13 @@ final class DeleteTest extends AbstractDatabaseTestCase
         $invoice->inv_total       = 100.12;
         $invoice->inv_created_at  = $date;
 
-        $result = $invoice->create();
-        $this->assertNotFalse($result);
+        $this->assertNotFalse(
+            $invoice->create()
+        );
 
-        $result = $invoice->delete();
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $invoice->delete()
+        );
     }
 
     /**
@@ -112,30 +114,36 @@ final class DeleteTest extends AbstractDatabaseTestCase
          */
         $customer = Customers::findFirst($custId);
 
-        $expected = 2;
-        $actual   = $customer->invoices->count();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            2,
+            $customer->invoices->count()
+        );
 
-        $expected = 1;
-        $actual   = $customer->paidInvoices->count();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            1,
+            $customer->paidInvoices->count()
+        );
 
-        $expected = 1;
-        $actual   = $customer->unpaidInvoices->count();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            1,
+            $customer->unpaidInvoices->count()
+        );
 
-        $actual = $customer->delete();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->delete()
+        );
 
         $invoices = Invoices::find();
 
-        $expected = 1;
-        $actual   = $invoices->count();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            1,
+            $invoices->count()
+        );
 
-        $expected = $unpaidInvoiceId;
-        $actual   = $invoices[0]->inv_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $unpaidInvoiceId,
+            $invoices[0]->inv_id
+        );
     }
 
     /**
@@ -211,9 +219,10 @@ final class DeleteTest extends AbstractDatabaseTestCase
         /**
          * Check for the number of invoices
          */
-        $expected = 5;
-        $actual   = $customer->invoices->count();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            5,
+            $customer->invoices->count()
+        );
 
         /**
          * Get paid invoices using the property
@@ -222,8 +231,9 @@ final class DeleteTest extends AbstractDatabaseTestCase
         /** @var Invoices $invoice */
         foreach ($invoices as $invoice) {
             if ($invoice->inv_id < 50) {
-                $actual = $invoice->delete();
-                $this->assertTrue($actual);
+                $this->assertTrue(
+                    $invoice->delete()
+                );
             }
         }
 
@@ -237,9 +247,10 @@ final class DeleteTest extends AbstractDatabaseTestCase
         /**
          * Check for the number of invoices
          */
-        $expected = 3;
-        $actual   = $customer->invoices->count();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            3,
+            $customer->invoices->count()
+        );
 
         /**
          * Get unpaid invoices using getRelated()
@@ -247,17 +258,20 @@ final class DeleteTest extends AbstractDatabaseTestCase
         $invoices = $customer->getRelated('invoices');
         /** @var Invoices $invoice */
         foreach ($invoices as $invoice) {
-            $actual = $invoice->delete();
-            $this->assertTrue($actual);
+            $this->assertTrue(
+                $invoice->delete()
+            );
         }
 
         /**
          * Check for the number of invoices
          */
-        $expected = 0;
         $customer->invoices->refresh();
-        $actual   = $customer->invoices->count();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            0,
+            $customer->invoices->count()
+        );
     }
 
     /**
@@ -295,20 +309,25 @@ final class DeleteTest extends AbstractDatabaseTestCase
          */
         $customer = Customers::findFirst($customerId);
 
-        $expected = 1;
-        $actual   = $customer->inactiveInvoices->count();
-        $this->assertEquals($expected, $actual);
 
-        $actual = $customer->delete();
-        $this->assertFalse($actual);
+        $this->assertEquals(
+            1,
+            $customer->inactiveInvoices->count()
+        );
 
-        $expected = 1;
-        $actual   = $customer->getMessages();
-        $this->assertCount($expected, $actual);
+        $this->assertFalse(
+            $customer->delete()
+        );
 
-        $expected = 'Record is referenced by model ' . Invoices::class;
-        $actual   = current($customer->getMessages())->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertCount(
+            1,
+            $customer->getMessages()
+        );
+
+        $this->assertSame(
+            'Record is referenced by model ' . Invoices::class,
+            current($customer->getMessages())->getMessage()
+        );
     }
 
     /**
@@ -369,30 +388,34 @@ final class DeleteTest extends AbstractDatabaseTestCase
         /**
          * Make sure foreign key restrict works
          */
-        $actual = $customer->delete();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $customer->delete()
+        );
 
         /**
          * Step 3:
          * Delete Model B first so that Model A passes FK constraint check successfully
          */
-        $actual = $invoice->delete();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $invoice->delete()
+        );
 
         /**
          * Step 4:
          * Then try to delete Model A
          */
-        $actual = $customer->delete();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->delete()
+        );
 
         $transaction->rollback();
 
         /**
          * Test again foreign key restrict
          */
-        $actual = $customer->delete();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $customer->delete()
+        );
     }
 
     /**

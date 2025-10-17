@@ -174,14 +174,16 @@ final class UpdateTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $result = $invoice->save();
-        $this->assertNotFalse($result);
+        $this->assertNotFalse(
+            $invoice->save()
+        );
 
         $invoice->inv_cst_id      = 456;
         $invoice->inv_status_flag = 2;
 
-        $result = $invoice->update();
-        $this->assertNotFalse($result);
+        $this->assertNotFalse(
+            $invoice->update()
+        );
 
         /**
          * Get the record again to ensure that the update is successful

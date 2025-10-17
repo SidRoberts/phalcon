@@ -68,8 +68,10 @@ final class CountTest extends AbstractDatabaseTestCase
         $invId = ('sqlite' === self::getDriver()) ? 'null' : 'default';
         $this->seed($invId);
 
-        $total = Invoices::count();
-        $this->assertEquals(33, $total);
+        $this->assertEquals(
+            33,
+            Invoices::count()
+        );
 
         $total = Invoices::count(
             [
@@ -135,9 +137,7 @@ final class CountTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $actual   = $total;
-        $expected = 12;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(12, $total);
 
         /**
          * Checking the countable
@@ -151,9 +151,7 @@ final class CountTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $actual   = count($total);
-        $expected = 12;
-        $this->assertEquals($expected, $actual);
+        $this->assertCount(12, $total);
     }
 
     /**
@@ -173,8 +171,10 @@ final class CountTest extends AbstractDatabaseTestCase
         $invId = ('sqlite' === self::getDriver()) ? 'null' : 'default';
         $this->seed($invId);
 
-        $total = InvoicesMap::count();
-        $this->assertEquals(33, $total);
+        $this->assertEquals(
+            33,
+            InvoicesMap::count()
+        );
 
         $total = InvoicesMap::count(
             [

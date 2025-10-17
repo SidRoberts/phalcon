@@ -148,7 +148,8 @@ final class UnderscoreSetTest extends AbstractDatabaseTestCase
             'cst_name_first' => 'cst_firstName',
         ];
 
-        $customer                            = new Models\Customers();
+        $customer = new Models\Customers();
+
         $customer->whatEverUndefinedProperty = $associativeArray;
 
         $this->assertEquals(
@@ -171,7 +172,8 @@ final class UnderscoreSetTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testMvcModelUnderscoreSetWithArrayOfBelongsToRelatedRecord(): void
     {
-        $invoice           = new Models\Invoices();
+        $invoice = new Models\Invoices();
+
         $invoice->customer = [
             'cst_id'          => 33,
             'cst_status_flag' => 1,
@@ -209,7 +211,8 @@ final class UnderscoreSetTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testMvcModelUnderscoreSetWithArrayOfHasOneRelatedRecord(): void
     {
-        $invoice           = new Models\Invoices();
+        $invoice = new Models\Invoices();
+
         $invoice->customer = [
             'cst_id'         => 99,
             'cst_name_first' => 'cst_firstName',
@@ -247,7 +250,8 @@ final class UnderscoreSetTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testMvcModelUnderscoreSetWithBelongsToRelatedRecord(): void
     {
-        $customerSnap           = new Models\CustomersKeepSnapshots();
+        $customerSnap = new Models\CustomersKeepSnapshots();
+
         $customerSnap->invoices = new Models\Invoices();
 
         $invoices = $customerSnap->invoices;
@@ -281,7 +285,8 @@ final class UnderscoreSetTest extends AbstractDatabaseTestCase
         $customersMigration = new CustomersMigration($connection);
         $customersMigration->clear();
 
-        $customer           = new Models\Customers();
+        $customer = new Models\Customers();
+
         $customer->invoices = [
             new Models\Invoices(),
             new Models\Invoices(),
@@ -378,7 +383,8 @@ final class UnderscoreSetTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testMvcModelUnderscoreSetWithHasManyToManyRelatedRecords(): void
     {
-        $order           = new Models\Orders();
+        $order = new Models\Orders();
+
         $order->products = [
             new Models\Products(),
             new Models\Products(),
@@ -423,11 +429,9 @@ final class UnderscoreSetTest extends AbstractDatabaseTestCase
         $invoice           = new Models\Invoices();
         $invoice->customer = new Models\Customers();
 
-        $customer = $invoice->customer;
-
         $this->assertInstanceOf(
             Models\Customers::class,
-            $customer
+            $invoice->customer
         );
 
         $this->assertEquals(

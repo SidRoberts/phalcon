@@ -85,35 +85,36 @@ final class GetRelatedTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $expected = 2;
-        $actual   = $invoices->count();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            2,
+            $invoices->count()
+        );
 
-        $expected = Invoices::class;
-        $actual   = $invoices[0];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(Invoices::class, $invoices[0]);
 
-        $expected = $unpaidInvoiceId;
-        $actual   = $invoices[0]->inv_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $unpaidInvoiceId,
+            $invoices[0]->inv_id
+        );
 
-        $expected = $paidInvoiceId;
-        $actual   = $invoices[1]->inv_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $paidInvoiceId,
+            $invoices[1]->inv_id
+        );
 
         $paidInvoices = $customer->getRelated('paidInvoices');
 
-        $expected = 1;
-        $actual   = $paidInvoices->count();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            1,
+            $paidInvoices->count()
+        );
 
-        $expected = Invoices::class;
-        $actual   = $paidInvoices[0];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(Invoices::class, $paidInvoices[0]);
 
-        $expected = $paidInvoiceId;
-        $actual   = $paidInvoices[0]->inv_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $paidInvoiceId,
+            $paidInvoices[0]->inv_id
+        );
     }
 
     /**
@@ -127,7 +128,6 @@ final class GetRelatedTest extends AbstractDatabaseTestCase
     {
         /** @var PDO $connection */
         $connection = self::getConnection();
-
 
         $custIdOne    = 10;
         $firstNameOne = uniqid('cust-1-', true);
@@ -170,9 +170,10 @@ final class GetRelatedTest extends AbstractDatabaseTestCase
         /**
          * Assert that the correct customer is stored
          */
-        $expected = $custIdOne;
-        $actual   = $invoice->inv_cst_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $custIdOne,
+            $invoice->inv_cst_id
+        );
 
         /**
          * Call get related - We should get CustomerOne
@@ -180,16 +181,15 @@ final class GetRelatedTest extends AbstractDatabaseTestCase
         /** @var Customers $customer */
         $customer = $invoice->getRelated('customer');
 
-        $class = Customers::class;
-        $this->assertInstanceOf($class, $customer);
+        $this->assertInstanceOf(Customers::class, $customer);
 
-        $expected = $custIdOne;
-        $actual   = $customer->cst_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($custIdOne, $customer->cst_id);
 
         $invoice->inv_cst_id = $custIdTwo;
-        $result              = $invoice->save();
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $invoice->save()
+        );
 
         /**
          * Now call getRelated. We should get CustomerTwo
@@ -197,12 +197,9 @@ final class GetRelatedTest extends AbstractDatabaseTestCase
         /** @var Customers $customer */
         $customer = $invoice->getRelated('customer');
 
-        $class = Customers::class;
-        $this->assertInstanceOf($class, $customer);
+        $this->assertInstanceOf(Customers::class, $customer);
 
-        $expected = $custIdTwo;
-        $actual   = $customer->cst_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($custIdTwo, $customer->cst_id);
     }
 
     /**

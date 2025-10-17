@@ -39,7 +39,7 @@ final class FindFirstTest extends AbstractDatabaseTestCase
     use DiTrait;
 
     /**
-     * @return array
+     * @return array<array{0: array|string, 1: bool}>
      */
     public static function findFirstProvider(): array
     {
@@ -87,30 +87,24 @@ final class FindFirstTest extends AbstractDatabaseTestCase
     public function testMvcModelFindFirst(): void
     {
         $title = uniqid('inv-');
+
         /** @var PDO $connection */
         $connection = self::getConnection();
         $migration  = new InvoicesMigration($connection);
+
         $migration->insert(4, null, 0, $title);
 
         $invoice = Invoices::findFirst();
 
-        $class  = Invoices::class;
-        $actual = $invoice;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Invoices::class, $invoice);
 
-        $expected = 4;
-        $actual   = $invoice->inv_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(4, $invoice->inv_id);
 
         $invoice = Invoices::findFirst(null);
 
-        $class  = Invoices::class;
-        $actual = $invoice;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Invoices::class, $invoice);
 
-        $expected = 4;
-        $actual   = $invoice->inv_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(4, $invoice->inv_id);
     }
 
     /**
@@ -122,8 +116,9 @@ final class FindFirstTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testMvcModelFindFirstByNotFound(): void
     {
-        $actual = Invoices::findFirstByInvTitle('unknown');
-        $this->assertNull($actual);
+        $this->assertNull(
+            Invoices::findFirstByInvTitle('unknown')
+        );
     }
 
     /**
@@ -139,6 +134,7 @@ final class FindFirstTest extends AbstractDatabaseTestCase
         /** @var PDO $connection */
         $connection = self::getConnection();
         $migration  = new InvoicesMigration($connection);
+
         $migration->insert(4);
 
         $invoice = Invoices::findFirst(
@@ -147,17 +143,16 @@ final class FindFirstTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $class  = Row::class;
-        $actual = $invoice;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Row::class, $invoice);
 
-        $expected = 4;
-        $actual   = $invoice->inv_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(4, $invoice->inv_id);
 
         $expected = ['inv_id' => 4];
-        $actual   = $invoice->toArray();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $invoice->toArray()
+        );
     }
 
     /**
@@ -170,38 +165,34 @@ final class FindFirstTest extends AbstractDatabaseTestCase
     public function testMvcModelFindFirstColumnMap(): void
     {
         $title = uniqid('inv-');
+
         /** @var PDO $connection */
         $connection = self::getConnection();
         $migration  = new InvoicesMigration($connection);
+
         $migration->insert(4, null, 0, $title);
 
         $invoice = InvoicesMap::findFirst();
 
-        $class  = InvoicesMap::class;
-        $actual = $invoice;
-        $this->assertInstanceOf($class, $invoice);
+        $this->assertInstanceOf(InvoicesMap::class, $invoice);
 
-        $expected = 4;
-        $actual   = $invoice->id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            4,
+            $invoice->id
+        );
 
-        $expected = $title;
-        $actual   = $invoice->title;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($title, $invoice->title);
 
         $invoice = InvoicesMap::findFirst(null);
 
-        $class  = InvoicesMap::class;
-        $actual = $invoice;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(InvoicesMap::class, $invoice);
 
-        $expected = 4;
-        $actual   = $invoice->id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            4,
+            $invoice->id
+        );
 
-        $expected = $title;
-        $actual   = $invoice->title;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($title, $invoice->title);
     }
 
     /**
@@ -232,23 +223,22 @@ final class FindFirstTest extends AbstractDatabaseTestCase
     public function testMvcModelFindFirstExtended(): void
     {
         $title = uniqid('inv-');
+
         /** @var PDO $connection */
         $connection = self::getConnection();
         $migration  = new InvoicesMigration($connection);
+
         $migration->insert(4, null, 0, $title);
 
         $invoice = InvoicesExtended::findFirst(4);
 
-        $class  = InvoicesExtended::class;
-        $actual = $invoice;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(InvoicesExtended::class, $invoice);
 
-        $expected = 4;
-        $actual   = $invoice->inv_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(4, $invoice->inv_id);
 
-        $invoice = InvoicesExtended::findFirst(0);
-        $this->assertNull($invoice);
+        $this->assertNull(
+            InvoicesExtended::findFirst(0)
+        );
     }
 
     /**
@@ -261,9 +251,11 @@ final class FindFirstTest extends AbstractDatabaseTestCase
     public function testMvcModelFindFirstExtendedColumn(): void
     {
         $title = uniqid('inv-');
+
         /** @var PDO $connection */
         $connection = self::getConnection();
         $migration  = new InvoicesMigration($connection);
+
         $migration->insert(4, null, 0, $title);
 
         $invoice = InvoicesExtended::findFirst(
@@ -272,13 +264,9 @@ final class FindFirstTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $class  = Row::class;
-        $actual = $invoice;
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(Row::class, $invoice);
 
-        $expected = $title;
-        $actual   = $invoice->inv_title;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($title, $invoice->inv_title);
     }
 
     /**
@@ -295,6 +283,7 @@ final class FindFirstTest extends AbstractDatabaseTestCase
 
         $customersMigration = new CustomersMigration($connection);
         $invoicesMigration  = new InvoicesMigration($connection);
+
         $customersMigration->insert(
             1,
             1,
@@ -366,9 +355,9 @@ final class FindFirstTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $customer = $invoice->getRelated('customer');
-
-        $this->assertNull($customer);
+        $this->assertNull(
+            $invoice->getRelated('customer')
+        );
     }
 
     /**
@@ -380,13 +369,13 @@ final class FindFirstTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testMvcModelFindFirstNotFound(): void
     {
-        $invoice = Invoices::findFirst(
-            [
-                'conditions' => 'inv_id < 0',
-            ]
+        $this->assertNull(
+            Invoices::findFirst(
+                [
+                    'conditions' => 'inv_id < 0',
+                ]
+            )
         );
-
-        $this->assertNull($invoice);
     }
 
     /**

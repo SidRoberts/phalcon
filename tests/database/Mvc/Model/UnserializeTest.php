@@ -58,14 +58,17 @@ final class UnserializeTest extends AbstractDatabaseTestCase
         ];
 
         $invoice = new Invoices();
+
         $invoice->assign($data);
 
-        $result = $invoice->save();
-        $this->assertNotFalse($result);
+        $this->assertNotFalse(
+            $invoice->save()
+        );
 
         $serialized = serialize($data);
 
         $newModel = new Invoices();
+
         $newModel->unserialize($serialized);
 
         $this->assertEquals(

@@ -39,9 +39,16 @@ final class GetSetWriteConnectionServiceTest extends AbstractDatabaseTestCase
     {
         $invoice = new Invoices();
 
-        $this->assertEquals('db', $invoice->getWriteConnectionService());
+        $this->assertEquals(
+            'db',
+            $invoice->getWriteConnectionService()
+        );
 
         $invoice->setWriteConnectionService('other');
-        $this->assertEquals('other', $invoice->getWriteConnectionService());
+
+        $this->assertEquals(
+            'other',
+            $invoice->getWriteConnectionService()
+        );
     }
 }

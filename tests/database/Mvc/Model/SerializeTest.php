@@ -211,13 +211,15 @@ final class SerializeTest extends AbstractDatabaseTestCase
         $invoice->assign($data);
         $invoice->setDirtyState(0);
 
-        $result = $invoice->save();
-        $this->assertNotFalse($result);
+        $this->assertNotFalse(
+            $invoice->save()
+        );
 
         $serialized = serialize($invoice);
 
         /** @var Invoices $newObject */
         $newObject = unserialize($serialized);
+
         $this->assertEquals(0, $newObject->getDirtyState());
     }
 

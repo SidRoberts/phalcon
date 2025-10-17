@@ -69,6 +69,7 @@ final class GetSetEventsManagerTest extends AbstractDatabaseTestCase
         );
 
         $manager = new Manager();
+
         $invoice->setEventsManager($manager);
 
         $this->assertEquals(

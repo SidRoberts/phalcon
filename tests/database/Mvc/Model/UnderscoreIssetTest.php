@@ -47,6 +47,7 @@ final class UnderscoreIssetTest extends AbstractDatabaseTestCase
         $connection = self::getConnection();
 
         $customersMigration = new CustomersMigration($connection);
+
         $customersMigration->insert(1, 1, 'test_firstName_1', 'test_lastName_1');
 
         /**

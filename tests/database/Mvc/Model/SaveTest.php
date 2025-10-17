@@ -84,6 +84,7 @@ final class SaveTest extends AbstractDatabaseTestCase
         $invoice            = Invoices::findFirst(77);
         $invoice->customer  = $customer;
         $customer->invoices = [$invoice];
+
         $customer->save();
     }
 
@@ -138,13 +139,15 @@ final class SaveTest extends AbstractDatabaseTestCase
         $customer                 = new Customers();
         $customer->cst_name_first = 'cst_test_firstName';
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
         $customer->cst_name_last = 'cst_test_lastName';
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
         /**
          * Saved model
@@ -157,34 +160,35 @@ final class SaveTest extends AbstractDatabaseTestCase
             'cst_name_last'   => 'cst_test_lastName',
             'cst_name_first'  => 'cst_test_firstName',
         ];
-        $actual   = $customer->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $customer->toArray()
+        );
 
         $customer->cst_status_flag = 1;
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
         /**
          * Modified saved model
          */
         $customer = Customers::findFirst();
 
-        $expected = 1;
-        $actual   = $customer->cst_status_flag;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(1, $customer->cst_status_flag);
 
         $customer->cst_name_last = null;
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
         /**
          * Verify model count
          */
-        $expected = 1;
-        $actual   = Customers::count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(1, Customers::count());
     }
 
     /**
@@ -218,16 +222,18 @@ final class SaveTest extends AbstractDatabaseTestCase
          */
         $customer = $invoice->customer;
 
-        $actual = $invoice->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $invoice->save()
+        );
 
         /**
          * @var Model\Resultset\Simple $invoices
          */
         $invoices = $customer->invoices;
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
     }
 
     /**
@@ -256,11 +262,13 @@ final class SaveTest extends AbstractDatabaseTestCase
 
         $customer->invoices = [];
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
-        $actual = $invoice->save();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $invoice->save()
+        );
     }
 
     /**
@@ -294,16 +302,18 @@ final class SaveTest extends AbstractDatabaseTestCase
          */
         $customer = $invoice->getCustomer();
 
-        $actual = $invoice->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $invoice->save()
+        );
 
         /**
          * @var Model\Resultset\Simple $invoices
          */
         $invoices = $customer->getInvoices();
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
     }
 
     /**
@@ -331,22 +341,19 @@ final class SaveTest extends AbstractDatabaseTestCase
 
         $customer->assign($customerData);
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
-        /**
-         * @var MetaData
-         */
         $metaData = $customer->getModelsMetaData();
 
-        /**
-         * @var array
-         */
         $defaultValues = $metaData->getDefaultValues($customer);
 
         foreach ($defaultValues as $attribute => $value) {
-            $actual = $customer->{$attribute};
-            $this->assertEquals($value, $actual);
+            $this->assertEquals(
+                $value,
+                $customer->{$attribute}
+            );
         }
     }
 
@@ -382,14 +389,13 @@ final class SaveTest extends AbstractDatabaseTestCase
         ];
 
         // Save should handle the circular relation without issue
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
         // Both should have an ID now
-        $actual = $invoice->inv_id;
-        $this->assertNotNull($actual);
-        $actual = $customer->cst_id;
-        $this->assertNotNull($actual);
+        $this->assertNotNull($invoice->inv_id);
+        $this->assertNotNull($customer->cst_id);
     }
 
     /**
@@ -550,7 +556,6 @@ final class SaveTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testMvcModelSaveWithPropertySource(): void
     {
-
         /** @var PDO $connection */
         $connection = self::getConnection();
 
@@ -564,23 +569,24 @@ final class SaveTest extends AbstractDatabaseTestCase
                                         ],
                                     ]);
 
-        $class = Sources::class;
-        $this->assertInstanceOf($class, $model);
+        $this->assertInstanceOf(Sources::class, $model);
 
-        $expected = 1;
-        $actual   = $model->id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(1, $model->id);
 
-        $expected = 'co_sources';
-        $actual   = $model->getSource();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'co_sources',
+            $model->getSource()
+        );
 
         $model->username = 'vader';
-        $result          = $model->save();
 
-        $expected = 0;
-        $actual   = $model->getMessages();
-        $this->assertCount($expected, $actual);
+        $result = $model->save();
+
+        $this->assertCount(
+            0,
+            $model->getMessages()
+        );
+
         $this->assertNotFalse($result);
 
         /**
@@ -590,8 +596,10 @@ final class SaveTest extends AbstractDatabaseTestCase
         $source->id       = 2;
         $source->username = 'llama';
         $source->source   = 'test_source';
-        $result           = $source->create();
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $source->create()
+        );
     }
 
     /**
@@ -618,28 +626,23 @@ final class SaveTest extends AbstractDatabaseTestCase
          */
         $invoice = InvoicesKeepSnapshots::findFirst(77);
 
-        $expected = 1;
-        $actual   = $invoice->customer->id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(1, $invoice->customer->id);
 
         $invoice->customer->cst_name_first  = 'new_firstName';
         $invoice->customer->cst_status_flag = 0;
 
-        $actual = $invoice->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $invoice->save()
+        );
 
         /**
          * @var Customers $customer
          */
         $customer = Customers::findFirst(1);
 
-        $expected = 'new_firstName';
-        $actual   = $customer->cst_name_first;
-        $this->assertSame($expected, $actual);
+        $this->assertSame('new_firstName', $customer->cst_name_first);
 
-        $expected = 0;
-        $actual   = $customer->cst_status_flag;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(0, $customer->cst_status_flag);
     }
 
     /**
@@ -660,29 +663,29 @@ final class SaveTest extends AbstractDatabaseTestCase
                                        'cst_name_first'  => 'cst_test_firstName',
                                    ]);
 
-        $actual = $invoice->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $invoice->save()
+        );
 
-        $expected = 0;
-        $actual   = $invoice->inv_cst_id;
-        $this->assertGreaterThan($expected, $actual);
+        $this->assertGreaterThan(0, $invoice->inv_cst_id);
 
-        $expected = $invoice->inv_cst_id;
-        $actual   = $invoice->customer->cst_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($invoice->inv_cst_id, $invoice->customer->cst_id);
 
         $connection = $this->getService('db');
 
-        $actual = $connection->isUnderTransaction();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $connection->isUnderTransaction()
+        );
 
-        $expected = Model::DIRTY_STATE_PERSISTENT;
-        $actual   = $invoice->getDirtyState();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Model::DIRTY_STATE_PERSISTENT,
+            $invoice->getDirtyState()
+        );
 
-        $expected = Model::DIRTY_STATE_PERSISTENT;
-        $actual   = $invoice->customer->getDirtyState();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Model::DIRTY_STATE_PERSISTENT,
+            $invoice->customer->getDirtyState()
+        );
     }
 
     /**
@@ -709,28 +712,29 @@ final class SaveTest extends AbstractDatabaseTestCase
          */
         $invoice = Invoices::findFirst(77);
 
-        $expected = 1;
-        $actual   = $invoice->customer->id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(1, $invoice->customer->id);
 
         $invoice->customer->cst_name_first  = 'new_firstName';
         $invoice->customer->cst_status_flag = 0;
 
-        $actual = $invoice->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $invoice->save()
+        );
 
         /**
          * @var Customers $customer
          */
         $customer = Customers::findFirst(1);
 
-        $expected = 'new_firstName';
-        $actual   = $customer->cst_name_first;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'new_firstName',
+            $customer->cst_name_first
+        );
 
-        $expected = 0;
-        $actual   = $customer->cst_status_flag;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            0,
+            $customer->cst_status_flag
+        );
     }
 
     /**
@@ -749,8 +753,9 @@ final class SaveTest extends AbstractDatabaseTestCase
         $model->inv_total       = 100;
         $model->inv_created_at  = date('Y-m-d H:i:s');
 
-        $result = $model->save();
-        $this->assertNotFalse($result);
+        $this->assertNotFalse(
+            $model->save()
+        );
 
         $model = new InvoicesSchema();
 
@@ -760,8 +765,9 @@ final class SaveTest extends AbstractDatabaseTestCase
         $model->inv_total       = 100;
         $model->inv_created_at  = date('Y-m-d H:i:s');
 
-        $result = $model->save();
-        $this->assertNotFalse($result);
+        $this->assertNotFalse(
+            $model->save()
+        );
     }
 
     /**
@@ -774,21 +780,21 @@ final class SaveTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testMvcModelSaveWithTinyInt(string $value): void
     {
+        $customer = new Customers();
 
-        $customer                  = new Customers();
         $customer->cst_status_flag = $value;
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
-        $actual = $customer->cst_id;
-        $this->assertNotNull($actual);
+        $this->assertNotNull(
+            $customer->cst_id
+        );
 
         $storedModel = Customers::findFirstByCstId($customer->cst_id);
 
-        $expected = $value;
-        $actual   = $storedModel->cst_status_flag;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($value, $storedModel->cst_status_flag);
     }
 
     /**
@@ -814,8 +820,9 @@ final class SaveTest extends AbstractDatabaseTestCase
 
         $manager->setReusableRecords('SomeModel', 'key-abc', ['record1', 'record2']);
 
-        $actual = $manager->getReusableRecords('SomeModel', 'key-abc');
-        $this->assertNotNull($actual);
+        $this->assertNotNull(
+            $manager->getReusableRecords('SomeModel', 'key-abc')
+        );
 
         $invoice              = new Invoices();
         $invoice->inv_cst_id  = 1;
@@ -824,11 +831,13 @@ final class SaveTest extends AbstractDatabaseTestCase
         $invoice->inv_total   = 100.0;
         $invoice->inv_created_at = date('Y-m-d H:i:s');
 
-        $actual = $invoice->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $invoice->save()
+        );
 
-        $actual = $manager->getReusableRecords('SomeModel', 'key-abc');
-        $this->assertNull($actual);
+        $this->assertNull(
+            $manager->getReusableRecords('SomeModel', 'key-abc')
+        );
     }
 
     /**
@@ -836,7 +845,6 @@ final class SaveTest extends AbstractDatabaseTestCase
      */
     public static function tinyintProvider(): array
     {
-
         return [
             ["1"],
             ["0"],

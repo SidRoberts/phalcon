@@ -66,7 +66,7 @@ final class FindTest extends AbstractDatabaseTestCase
 
         $data = Objects::find();
 
-        $this->assertEquals(1, count($data));
+        $this->assertCount(1, $data);
 
         $record = $data[0];
         $this->assertEquals(1, $record->obj_id);
@@ -96,7 +96,7 @@ final class FindTest extends AbstractDatabaseTestCase
 
         $this->container->set(
             'router',
-            function () {
+            function (): Router {
                 var_dump('inside callable');
                 $results = Objects::find();
                 var_dump($results->toArray());
@@ -110,12 +110,20 @@ final class FindTest extends AbstractDatabaseTestCase
         $actual = ob_get_contents();
         ob_end_clean();
 
-        $expected = 'inside callable';
-        $this->assertStringContainsString($expected, $actual);
-        $expected = 'Deprecated';
-        $this->assertStringNotContainsString($expected, $actual);
-        $expected = 'Use of "static" in callables in deprecated';
-        $this->assertStringNotContainsString($expected, $actual);
+        $this->assertStringContainsString(
+            'inside callable',
+            $actual
+        );
+
+        $this->assertStringNotContainsString(
+            'Deprecated',
+            $actual
+        );
+
+        $this->assertStringNotContainsString(
+            'Use of "static" in callables in deprecated',
+            $actual
+        );
     }
 
     /**
@@ -151,9 +159,10 @@ final class FindTest extends AbstractDatabaseTestCase
         $this->assertCount(1, $original);
 
         $record = $original[0];
-        $actual = $record->getIsActive();
 
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $record->getIsActive()
+        );
 
         // Models Cache setup
         $serializerFactory = new SerializerFactory();
@@ -182,14 +191,17 @@ final class FindTest extends AbstractDatabaseTestCase
         $this->assertCount(1, $cached);
 
         $record = $cached[0];
-        $actual = $record->getIsActive();
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $record->getIsActive()
+        );
 
         /**
          * Delete the record just in case to ensure we get it from the cache
          */
-        $result = $original->delete();
-        $this->assertNotFalse($result);
+        $this->assertNotFalse(
+            $original->delete()
+        );
 
         /**
          * Ensure we do not have anything in the db
@@ -226,14 +238,17 @@ final class FindTest extends AbstractDatabaseTestCase
         $this->assertCount(1, $cached);
 
         $record = $cached[0];
-        $actual = $record->getIsActive();
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $record->getIsActive()
+        );
 
         /**
          * delete the cached entry
          */
-        $result = $cache->delete($cacheKey);
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $cache->delete($cacheKey)
+        );
     }
 
     /**
@@ -347,7 +362,7 @@ final class FindTest extends AbstractDatabaseTestCase
          */
         $this->assertFileExists($file);
 
-        $this->assertEquals(1, count($data));
+        $this->assertCount(1, $data);
 
         $record = $data[0];
         $this->assertEquals(1, $record->obj_id);
@@ -358,15 +373,16 @@ final class FindTest extends AbstractDatabaseTestCase
          */
         $modelsCache = $this->container->get('modelsCache');
 
-        $exists = $modelsCache->has('my-cache');
-        $this->assertTrue($exists);
+        $this->assertTrue(
+            $modelsCache->has('my-cache')
+        );
 
         /**
          * Get the data now from the cache
          */
         $data = $modelsCache->get('my-cache');
 
-        $this->assertEquals(1, count($data));
+        $this->assertCount(1, $data);
 
         $record = $data[0];
         $this->assertEquals(1, $record->obj_id);
@@ -415,7 +431,7 @@ final class FindTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $this->assertEquals(1, count($data));
+        $this->assertCount(1, $data);
 
         $record = $data[0];
         $this->assertEquals(1, $record->obj_id);
@@ -426,8 +442,9 @@ final class FindTest extends AbstractDatabaseTestCase
          */
         $modelsCache = $this->container->get('modelsCache');
 
-        $exists = $modelsCache->has('my-cache');
-        $this->assertTrue($exists);
+        $this->assertTrue(
+            $modelsCache->has('my-cache')
+        );
 
         /**
          * Wait for 3 seconds for the cache to expire
@@ -437,8 +454,9 @@ final class FindTest extends AbstractDatabaseTestCase
         /**
          * Get the data now from the cache - expired
          */
-        $data = $modelsCache->get('my-cache');
-        $this->assertNull($data);
+        $this->assertNull(
+            $modelsCache->get('my-cache')
+        );
     }
 
     /**
@@ -505,7 +523,7 @@ final class FindTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $this->assertEquals(2, count($data));
+        $this->assertCount(2, $data);
         $this->assertEquals(1, $data[0]->obj_id);
         $this->assertEquals(2, $data[1]->obj_id);
     }

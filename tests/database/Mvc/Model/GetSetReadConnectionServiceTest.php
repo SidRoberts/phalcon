@@ -39,9 +39,16 @@ final class GetSetReadConnectionServiceTest extends AbstractDatabaseTestCase
     {
         $invoice = new Invoices();
 
-        $this->assertEquals('db', $invoice->getReadConnectionService());
+        $this->assertEquals(
+            'db',
+            $invoice->getReadConnectionService()
+        );
 
         $invoice->setReadConnectionService('other');
-        $this->assertEquals('other', $invoice->getReadConnectionService());
+
+        $this->assertEquals(
+            'other',
+            $invoice->getReadConnectionService()
+        );
     }
 }

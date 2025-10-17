@@ -41,14 +41,9 @@ final class ConstructTest extends AbstractDatabaseTestCase
 
         $invoice = new Invoices();
 
-        $this->assertInstanceOf(
-            Model::class,
-            $invoice
-        );
-        $this->assertInstanceOf(
-            ModelInterface::class,
-            $invoice
-        );
+        $this->assertInstanceOf(Model::class, $invoice);
+
+        $this->assertInstanceOf(ModelInterface::class, $invoice);
     }
 
     /**

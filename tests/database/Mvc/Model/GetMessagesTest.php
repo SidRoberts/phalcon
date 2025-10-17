@@ -46,21 +46,24 @@ final class GetMessagesTest extends AbstractDatabaseTestCase
     {
         $record         = new Objects();
         $record->obj_id = 1;
-        $result         = $record->save();
-        $this->assertFalse($result);
+
+        $this->assertFalse(
+            $record->save()
+        );
 
         $messages = $record->getMessages();
 
-        $expectedCount = 2;
-        $this->assertCount($expectedCount, $messages);
+        $this->assertCount(2, $messages);
 
-        $expected = 'obj_name is required';
-        $actual   = $messages[0]->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'obj_name is required',
+            $messages[0]->getMessage()
+        );
 
-        $expected = 'obj_type is required';
-        $actual   = $messages[1]->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'obj_type is required',
+            $messages[1]->getMessage()
+        );
     }
 
     /**
@@ -74,52 +77,54 @@ final class GetMessagesTest extends AbstractDatabaseTestCase
     {
         $record         = new Objects();
         $record->obj_id = 1;
-        $result         = $record->save();
-        $this->assertFalse($result);
+
+        $this->assertFalse(
+            $record->save()
+        );
 
         $messages = $record->getMessages();
 
-        $expectedCount = 2;
-        $this->assertCount($expectedCount, $messages);
+        $this->assertCount(2, $messages);
 
         /**
          * Filter by field obj_name
          */
         $messages = $record->getMessages('obj_name');
 
-        $expectedCount = 1;
-        $this->assertCount($expectedCount, $messages);
+        $this->assertCount(1, $messages);
 
-        $expected = 'obj_name is required';
-        $actual   = $messages[0]->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'obj_name is required',
+            $messages[0]->getMessage()
+        );
 
         /**
          * Filter by field obj_type
          */
         $messages = $record->getMessages('obj_type');
 
-        $expectedCount = 1;
-        $this->assertCount($expectedCount, $messages);
+        $this->assertCount(1, $messages);
 
-        $expected = 'obj_type is required';
-        $actual   = $messages[0]->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'obj_type is required',
+            $messages[0]->getMessage()
+        );
 
         /**
          * Filter by both fields
          */
         $messages = $record->getMessages(['obj_name', 'obj_type']);
 
-        $expectedCount = 2;
-        $this->assertCount($expectedCount, $messages);
+        $this->assertCount(2, $messages);
 
-        $expected = 'obj_name is required';
-        $actual   = $messages[0]->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'obj_name is required',
+            $messages[0]->getMessage()
+        );
 
-        $expected = 'obj_type is required';
-        $actual   = $messages[1]->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'obj_type is required',
+            $messages[1]->getMessage()
+        );
     }
 }

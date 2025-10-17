@@ -55,8 +55,9 @@ final class CreateTest extends AbstractDatabaseTestCase
         $invoice->inv_total       = 100.12;
         $invoice->inv_created_at  = $date;
 
-        $result = $invoice->create();
-        $this->assertNotFalse($result);
+        $this->assertNotFalse(
+            $invoice->create()
+        );
     }
 
     /**

@@ -58,9 +58,10 @@ final class DynamicUpdateTest extends AbstractDatabaseTestCase
         $connection    = $this->container->get('db');
         $manager       = new Manager();
         $modelsManager = $this->container->get('modelsManager');
+
         $manager->attach(
             'db:beforeQuery',
-            function (Event $event) use ($connection, $collection) {
+            function (Event $event) use ($connection, $collection): void {
                 $key = (string)$collection->count();
                 $collection->set($key, $connection->getSQLVariables());
             }
@@ -78,22 +79,27 @@ final class DynamicUpdateTest extends AbstractDatabaseTestCase
          */
         $customer                 = Customers::findFirst(['cst_id=:id:', 'bind' => ['id' => 90]]);
         $customer->cst_name_first = 'disableDynamicUpdate';
-        $actual                   = $customer->save();
 
-        $this->assertTrue($actual);
-        $actual = $modelsManager->isUsingDynamicUpdate($customer);
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
+
+        $this->assertFalse(
+            $modelsManager->isUsingDynamicUpdate($customer)
+        );
 
         $collection->clear();
 
         $customer->cst_name_last = 'cst_test_lastName';
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
-        $expected = 4;
-        $actual   = count($collection->get('0'));
-        $this->assertEquals($expected, $actual);
+        $this->assertCount(
+            4,
+            $collection->get('0')
+        );
     }
 
     /**
@@ -114,9 +120,10 @@ final class DynamicUpdateTest extends AbstractDatabaseTestCase
         $manager       = new Manager();
         $connection    = $this->container->get('db');
         $modelsManager = $this->container->get('modelsManager');
+
         $manager->attach(
             'db:beforeQuery',
-            function (Event $event) use ($connection, $collection) {
+            function (Event $event) use ($connection, $collection): void {
                 $key = (string)$collection->count();
                 $collection->set($key, $connection->getSQLVariables());
             }
@@ -136,18 +143,22 @@ final class DynamicUpdateTest extends AbstractDatabaseTestCase
          */
         $customer = CustomersDymanicUpdate::findFirst(['cst_id=:id:', 'bind' => ['id' => 90]]);
 
-        $actual = $modelsManager->isUsingDynamicUpdate($customer);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $modelsManager->isUsingDynamicUpdate($customer)
+        );
 
         $collection->clear();
 
         $customer->cst_name_first = 'disabledCherryPickDynamicUpdate';
-        $actual                   = $customer->save();
-        $this->assertTrue($actual);
 
-        $expected = 2;
-        $actual   = count($collection->get('0'));
-        $this->assertEquals($expected, $actual);
+        $this->assertTrue(
+            $customer->save()
+        );
+
+        $this->assertCount(
+            2,
+            $collection->get('0')
+        );
     }
 
     /**
@@ -174,9 +185,10 @@ final class DynamicUpdateTest extends AbstractDatabaseTestCase
         $connection    = $this->container->get('db');
         $manager       = new Manager();
         $modelsManager = $this->container->get('modelsManager');
+
         $manager->attach(
             'db:beforeQuery',
-            function (Event $event) use ($connection, $collection) {
+            function (Event $event) use ($connection, $collection): void {
                 $key = (string)$collection->count();
                 $collection->set($key, $connection->getSQLVariables());
             }
@@ -190,21 +202,25 @@ final class DynamicUpdateTest extends AbstractDatabaseTestCase
         $customer                 = Customers::findFirst(['cst_id=:id:', 'bind' => ['id' => 90]]);
         $customer->cst_name_first = 'enableDynamicUpdate';
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
-        $actual = $modelsManager->isUsingDynamicUpdate($customer);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $modelsManager->isUsingDynamicUpdate($customer)
+        );
 
         $collection->clear();
 
         $customer->cst_name_last = 'cst_test_lastName';
 
-        $actual = $customer->save();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $customer->save()
+        );
 
-        $expected = 2;
-        $actual   = count($collection->get('0'));
-        $this->assertEquals($expected, $actual);
+        $this->assertCount(
+            2,
+            $collection->get('0')
+        );
     }
 }

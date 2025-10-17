@@ -58,28 +58,34 @@ final class AssignTest extends AbstractDatabaseTestCase
         ];
 
         $invoice = new Invoices();
+
         $invoice->assign($data);
 
         $this->assertEquals(
             1,
             $invoice->readAttribute('inv_id')
         );
+
         $this->assertEquals(
             2,
             $invoice->readAttribute('inv_cst_id')
         );
+
         $this->assertEquals(
             3,
             $invoice->readAttribute('inv_status_flag')
         );
+
         $this->assertEquals(
             $title,
             $invoice->readAttribute('inv_title')
         );
+
         $this->assertEquals(
             100.12,
             $invoice->readAttribute('inv_total')
         );
+
         $this->assertEquals(
             $date,
             $invoice->readAttribute('inv_created_at')
@@ -109,10 +115,17 @@ final class AssignTest extends AbstractDatabaseTestCase
         ];
 
         $invoice = new Invoices();
+
         $invoice->assign($data, array_keys($data));
 
-        $this->assertArrayHasKey('inv_id', $invoice->toArray());
-        $this->assertEmpty($invoice->toArray()['inv_id']);
+        $this->assertArrayHasKey(
+            'inv_id',
+            $invoice->toArray()
+        );
+
+        $this->assertEmpty(
+            $invoice->toArray()['inv_id']
+        );
     }
 
     /**
@@ -126,6 +139,7 @@ final class AssignTest extends AbstractDatabaseTestCase
     {
         $title   = uniqid('inv-');
         $invoice = new Invoices();
+
         $invoice->assign(
             [
                 'inv_id'    => 1,
@@ -160,6 +174,7 @@ final class AssignTest extends AbstractDatabaseTestCase
         $manager     = new Manager();
         $transaction = $manager->get();
         $invoice     = new Invoices();
+
         $invoice->setTransaction($transaction);
         $invoice->assign(
             [
@@ -168,14 +183,17 @@ final class AssignTest extends AbstractDatabaseTestCase
             ]
         );
 
-        $result = $invoice->create();
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $invoice->create()
+        );
 
-        $result = $transaction->commit();
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $transaction->commit()
+        );
 
-        $result = $invoice->delete();
-        $this->assertTrue($result);
+        $this->assertTrue(
+            $invoice->delete()
+        );
     }
 
     /**

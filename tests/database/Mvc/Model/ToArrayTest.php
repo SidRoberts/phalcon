@@ -67,17 +67,20 @@ final class ToArrayTest extends AbstractDatabaseTestCase
         $invoice = new Invoices();
         $invoice->assign($data);
 
-        $expected = $data;
-        $actual   = $invoice->toArray();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $data,
+            $invoice->toArray()
+        );
 
-        $expected = [];
-        $actual   = $invoice->toArray(['unknown']);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            [],
+            $invoice->toArray(['unknown'])
+        );
 
         $expected = $data;
         unset($expected['inv_created_at']);
         unset($expected['inv_total']);
+
         $actual = $invoice->toArray(
             [
                 'inv_id',
@@ -111,19 +114,23 @@ final class ToArrayTest extends AbstractDatabaseTestCase
         ];
 
         $invoice = new InvoicesMap();
+
         $invoice->assign($data);
 
-        $expected = [];
-        $actual   = $invoice->toArray(['unknown']);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            [],
+            $invoice->toArray(['unknown'])
+        );
 
-        $expected = $data;
-        $actual   = $invoice->toArray();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $data,
+            $invoice->toArray()
+        );
 
         $expected = $data;
         unset($expected['created_at']);
         unset($expected['total']);
+
         $actual = $invoice->toArray(
             [
                 'id',
@@ -155,8 +162,8 @@ final class ToArrayTest extends AbstractDatabaseTestCase
         $migration->insert(5, 2, 1, $title, 222.19, $date);
 
         $manager = $this->getService('modelsManager');
-        $class   = Manager::class;
-        $this->assertInstanceOf($class, $manager);
+
+        $this->assertInstanceOf(Manager::class, $manager);
 
 
         $result = $manager
@@ -190,8 +197,11 @@ final class ToArrayTest extends AbstractDatabaseTestCase
                 'created_at'  => $date,
             ],
         ];
-        $actual   = $result->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $result->toArray()
+        );
     }
 
     /**
@@ -230,8 +240,11 @@ final class ToArrayTest extends AbstractDatabaseTestCase
             'inv_total'       => 111.26,
             'inv_created_at'  => $date,
         ];
-        $actual   = $invoices->toArray();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $invoices->toArray()
+        );
 
         $invoices = Invoices::find();
 
@@ -253,8 +266,11 @@ final class ToArrayTest extends AbstractDatabaseTestCase
                 'inv_created_at'  => $date,
             ],
         ];
-        $actual   = $invoices->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $invoices->toArray()
+        );
 
         $db->close();
 
@@ -289,9 +305,12 @@ final class ToArrayTest extends AbstractDatabaseTestCase
         ];
 
         $invoice = new Invoices();
+
         $invoice->assign($data);
-        $result = $invoice->save();
-        $this->assertNotFalse($result);
+
+        $this->assertNotFalse(
+            $invoice->save()
+        );
 
         $invoice = Invoices::findFirst(
             [
@@ -305,8 +324,11 @@ final class ToArrayTest extends AbstractDatabaseTestCase
             'inv_cst_id' => 5,
             'inv_title'  => $title,
         ];
-        $actual   = $invoice->toArray();
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $invoice->toArray()
+        );
     }
 
     /**
@@ -329,12 +351,9 @@ final class ToArrayTest extends AbstractDatabaseTestCase
 
         $model = InvoicesGetters::findFirst(4);
 
-        $class = InvoicesGetters::class;
-        $this->assertInstanceOf($class, $model);
+        $this->assertInstanceOf(InvoicesGetters::class, $model);
 
-        $expected = 4;
-        $actual   = $model->inv_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(4, $model->inv_id);
 
         $expected = [
             'inv_id'          => '4',
@@ -360,8 +379,11 @@ final class ToArrayTest extends AbstractDatabaseTestCase
             'inv_total'       => '111.26',
             'inv_created_at'  => $date,
         ];
-        $actual   = $model->toArray(null, false);
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals(
+            $expected,
+            $model->toArray(null, false)
+        );
     }
 
     /**
@@ -384,12 +406,9 @@ final class ToArrayTest extends AbstractDatabaseTestCase
 
         $model = InvoicesGetters::findFirst(4);
 
-        $class = InvoicesGetters::class;
-        $this->assertInstanceOf($class, $model);
+        $this->assertInstanceOf(InvoicesGetters::class, $model);
 
-        $expected = 4;
-        $actual   = $model->inv_id;
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(4, $model->inv_id);
 
         /**
          * assertEquals here because sqlite returns strings in different
@@ -399,6 +418,7 @@ final class ToArrayTest extends AbstractDatabaseTestCase
         $serialize   = $model->serialize();
         $unserialize = new InvoicesGetters();
         $unserialize->unserialize($serialize);
+
         $this->assertEquals($title, $unserialize->inv_title);
     }
 }

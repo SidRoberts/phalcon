@@ -279,7 +279,8 @@ final class UnderscoreGetTest extends AbstractDatabaseTestCase
             . Invoices::class . "'"
         );
 
-        $model              = new Invoices();
+        $model = new Invoices();
+
         $model->superSecret = 123;
     }
 }
