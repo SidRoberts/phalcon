@@ -29,6 +29,10 @@ final class UriFactory implements UriFactoryInterface
 {
     /**
      * Returns a Uri object
+     *
+     * @param string $uri
+     *
+     * @return UriInterface
      */
     public function createUri(string $uri = ""): UriInterface
     {

@@ -90,7 +90,7 @@ class UploadedFile implements UploadedFileInterface
      *
      * @see https://php.net/manual/en/features.file-upload.errors.php
      *
-     * @var int
+     * @var non-negative-int
      */
     private int $error = 0;
 
@@ -108,7 +108,7 @@ class UploadedFile implements UploadedFileInterface
      * the file in the $_FILES array if available, as PHP calculates this based
      * on the actual size transmitted.
      *
-     * @var int|null
+     * @var non-negative-int|null
      */
     private int | null $size;
 
@@ -123,8 +123,8 @@ class UploadedFile implements UploadedFileInterface
      * UploadedFile constructor.
      *
      * @param StreamInterface|string|null $stream
-     * @param int|null                    $size
-     * @param int                         $error
+     * @param non-negative-int|null       $size
+     * @param non-negative-int            $error
      * @param string|null                 $clientFilename
      * @param string|null                 $clientMediaType
      */
@@ -168,7 +168,7 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * @return int
+     * @return non-negative-int
      */
     public function getError(): int
     {
@@ -176,7 +176,7 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
-     * @return int|null
+     * @return non-negative-int|null
      */
     public function getSize(): int | null
     {
@@ -196,6 +196,7 @@ class UploadedFile implements UploadedFileInterface
      * raise an exception.
      *
      * @return StreamInterface Stream representation of the uploaded file.
+     *
      * @throws RuntimeException in cases when no stream is available or can be
      *                          created.
      */
@@ -250,6 +251,8 @@ class UploadedFile implements UploadedFileInterface
      *
      * @param string $targetPath Path to which to move the uploaded file.
      *
+     * @return void
+     *
      * @throws InvalidArgumentException if the $targetPath specified is invalid.
      * @throws RuntimeException on any error during the move operation, or on
      *     the second or subsequent call to the method.
@@ -300,9 +303,10 @@ class UploadedFile implements UploadedFileInterface
     /**
      * Checks the passed error code and if not in the range throws an exception
      *
-     * @param int $error
+     * @param non-negative-int $error
      *
      * @return void
+     *
      * @throws InvalidArgumentException
      */
     private function checkError(int $error): void
@@ -320,9 +324,10 @@ class UploadedFile implements UploadedFileInterface
      * Checks the passed error code and if not in the range throws an exception
      *
      * @param StreamInterface|resource|string $stream
-     * @param int                             $error
+     * @param non-negative-int                $error
      *
      * @return void
+     *
      * @throws InvalidArgumentException
      */
     private function checkStream($stream, int $error): void
@@ -347,7 +352,7 @@ class UploadedFile implements UploadedFileInterface
     /**
      * Returns a description string depending on the upload error code passed
      *
-     * @param int $error
+     * @param non-negative-int $error
      *
      * @return string
      */
@@ -367,6 +372,12 @@ class UploadedFile implements UploadedFileInterface
     }
 
     /**
+     * @param int $value
+     * @param int $from
+     * @param int $to
+     *
+     * @return bool
+     *
      * @todo Remove this when we get traits
      */
     private function isBetween(int $value, int $from, int $to): bool
@@ -378,6 +389,8 @@ class UploadedFile implements UploadedFileInterface
      * Store a file in the new location (stream)
      *
      * @param string $targetPath
+     *
+     * @return void
      */
     private function storeFile(string $targetPath): void
     {

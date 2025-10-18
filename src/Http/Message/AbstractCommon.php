@@ -29,6 +29,8 @@ abstract class AbstractCommon
      * Checks the element passed if it is a string
      *
      * @param mixed $element
+     *
+     * @return void
      */
     final protected function checkStringParameter($element): void
     {

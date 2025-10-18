@@ -201,8 +201,8 @@ abstract class AbstractMessage extends AbstractCommon implements
      * @param StreamInterface $body
      *
      * @return MessageInterface
-     * @throws InvalidArgumentException When the body is not valid.
      *
+     * @throws InvalidArgumentException When the body is not valid.
      */
     public function withBody(StreamInterface $body): MessageInterface
     {
@@ -227,6 +227,7 @@ abstract class AbstractMessage extends AbstractCommon implements
      * @param string|string[] $value
      *
      * @return MessageInterface
+     *
      * @throws InvalidArgumentException for invalid header names or values.
      */
     public function withHeader(string $name, $value): MessageInterface

@@ -123,6 +123,7 @@ abstract class AbstractRequest extends AbstractMessage implements
      * @param string $method
      *
      * @return RequestInterface
+     *
      * @throws InvalidArgumentException for invalid HTTP methods.
      */
     public function withMethod(string $method): RequestInterface
@@ -145,7 +146,7 @@ abstract class AbstractRequest extends AbstractMessage implements
      * changed request target.
      *
      * @see https://tools.ietf.org/html/rfc7230#section-5.3 (for the various
-     *     request-target forms allowed in request messages)
+     *      request-target forms allowed in request messages)
      *
      * @param string|null $requestTarget
      *
@@ -256,6 +257,7 @@ abstract class AbstractRequest extends AbstractMessage implements
      * @param UriInterface|string|null $uri
      *
      * @return UriInterface
+     *
      * @throws InvalidArgumentException
      */
     final protected function processUri(mixed $uri): UriInterface

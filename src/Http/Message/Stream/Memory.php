@@ -31,6 +31,8 @@ class Memory extends Stream
 {
     /**
      * Constructor
+     *
+     * @param string $mode
      */
     public function __construct(string $mode = "rb")
     {

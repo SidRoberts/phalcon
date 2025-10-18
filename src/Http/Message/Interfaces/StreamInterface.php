@@ -142,6 +142,8 @@ interface StreamInterface
      * If the stream is not seekable, this method will raise an exception;
      * otherwise, it will perform a seek(0).
      *
+     * @return void
+     *
      * @throws RuntimeException on failure.
      * @link https://www.php.net/manual/en/function.fseek.php
      * @see  seek()
@@ -162,6 +164,8 @@ interface StreamInterface
      *                    offset SEEK_END: Set position to end-of-stream plus
      *                    offset.
      *
+     * @return void
+     *
      * @throws RuntimeException on failure.
      */
     public function seek(int $offset, int $whence = SEEK_SET): void;
@@ -170,6 +174,7 @@ interface StreamInterface
      * Returns the current position of the file read/write pointer
      *
      * @return int Position of the file pointer
+     *
      * @throws RuntimeException on error.
      */
     public function tell(): int;
@@ -180,6 +185,7 @@ interface StreamInterface
      * @param string $data The string that is to be written.
      *
      * @return int Returns the number of bytes written to the stream.
+     *
      * @throws RuntimeException on failure.
      */
     public function write(string $data): int;

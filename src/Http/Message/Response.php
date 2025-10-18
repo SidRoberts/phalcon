@@ -148,6 +148,8 @@ class Response extends AbstractMessage implements ResponseInterface
      * Checks if a code is integer or string
      *
      * @param int $code
+     *
+     * @return void
      */
     private function checkCodeValue(int $code): void
     {
@@ -159,6 +161,12 @@ class Response extends AbstractMessage implements ResponseInterface
     }
 
     /**
+     * @param int $value
+     * @param int $from
+     * @param int $to
+     *
+     * @return bool
+     *
      * @todo Remove this when we get traits
      */
     private function isBetween(int $value, int $from, int $to): bool

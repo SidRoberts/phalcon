@@ -138,6 +138,8 @@ class Stream implements StreamInterface
 
     /**
      * Closes the stream and any underlying resources.
+     *
+     * @return void
      */
     public function close(): void
     {
@@ -230,7 +232,7 @@ class Stream implements StreamInterface
     public function getSize(): int | null
     {
         if (null !== $this->handle) {
-            /** @var TStat|false $stats */
+            /** @var TStat|false */
             $stats = fstat($this->handle);
 
             if (false !== $stats) {
@@ -317,6 +319,7 @@ class Stream implements StreamInterface
      * @param int $whence
      *
      * @return void
+     *
      * @throws RuntimeException
      */
     public function seek(int $offset, int $whence = 0): void
@@ -336,6 +339,8 @@ class Stream implements StreamInterface
      *
      * @param mixed  $stream
      * @param string $mode
+     *
+     * @return void
      */
     public function setStream($stream, string $mode = "rb"): void
     {
@@ -367,6 +372,7 @@ class Stream implements StreamInterface
      * Returns the current position of the file read/write pointer
      *
      * @return int
+     *
      * @throws RuntimeException
      */
     public function tell(): int
@@ -390,6 +396,7 @@ class Stream implements StreamInterface
      * @param string $data
      *
      * @return int
+     *
      * @throws RuntimeException
      */
     public function write(string $data): int
@@ -410,6 +417,7 @@ class Stream implements StreamInterface
      * Checks if a handle is available and throws an exception otherwise
      *
      * @return void
+     *
      * @throws RuntimeException
      */
     private function checkHandle(): void
@@ -423,6 +431,7 @@ class Stream implements StreamInterface
      * Checks if a handle is readable and throws an exception otherwise
      *
      * @return void
+     *
      * @throws RuntimeException
      */
     private function checkReadable(): void
@@ -436,6 +445,7 @@ class Stream implements StreamInterface
      * Checks if a handle is seekable and throws an exception otherwise
      *
      * @return void
+     *
      * @throws RuntimeException
      */
     private function checkSeekable(): void
@@ -449,6 +459,7 @@ class Stream implements StreamInterface
      * Checks if a handle is writeable and throws an exception otherwise
      *
      * @return void
+     *
      * @throws RuntimeException
      */
     private function checkWritable(): void

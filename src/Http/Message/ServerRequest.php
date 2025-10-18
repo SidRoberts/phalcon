@@ -396,6 +396,8 @@ class ServerRequest extends AbstractRequest implements
      * Checks the uploaded files
      *
      * @param array $files
+     *
+     * @return void
      */
     private function checkUploadedFiles(array $files): void
     {

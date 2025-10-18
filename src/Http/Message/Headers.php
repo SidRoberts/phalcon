@@ -241,6 +241,8 @@ class Headers extends Collection
      *
      * @param string $element Name of the element
      * @param mixed  $value   Value to store for the element
+     *
+     * @return void
      */
     protected function setData(string $element, $value): void
     {

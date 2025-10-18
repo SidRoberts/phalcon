@@ -148,9 +148,9 @@ class ServerRequestFactory implements
     /**
      * Returns the apache_request_headers if it exists
      *
-     * @return array|false
+     * @return array<string, string>|false
      */
-    protected function getHeaders()
+    protected function getHeaders(): array|false
     {
         if (true === function_exists("apache_request_headers")) {
             return apache_request_headers();
