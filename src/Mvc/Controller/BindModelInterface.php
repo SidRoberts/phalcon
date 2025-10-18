@@ -20,6 +20,8 @@ interface BindModelInterface
 {
     /**
      * Return the model name associated with this controller
+     *
+     * @return string
      */
     public static function getModelName(): string;
 }
