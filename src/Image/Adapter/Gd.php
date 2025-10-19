@@ -258,6 +258,7 @@ class Gd extends AbstractAdapter
             $this->width,
             $this->height
         );
+
         if (false !== $copy) {
             imagedestroy($image);
 
