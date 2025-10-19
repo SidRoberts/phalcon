@@ -35,6 +35,7 @@ class JsMin implements FilterInterface
     public function filter(string $content): string
     {
         $minifier = new JS();
+
         $minifier->add($content);
 
         return $minifier->minify();
