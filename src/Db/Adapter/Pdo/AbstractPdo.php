@@ -538,6 +538,7 @@ abstract class AbstractPdo extends AbstractAdapter
         array $dataTypes = []
     ): PDOStatement {
         $forceCasting = Settings::get('db.force_casting');
+
         foreach ($placeholders as $wildcard => $value) {
             if (is_int($wildcard)) {
                 $parameter = $wildcard + 1;
@@ -559,6 +560,7 @@ abstract class AbstractPdo extends AbstractAdapter
                     $type      = Column::BIND_SKIP;
                 } else {
                     $castValue = $value;
+
                     if (true === $forceCasting && !is_array($value)) {
                         $castValue = match ($type) {
                             Column::BIND_PARAM_INT  => intval($value),
