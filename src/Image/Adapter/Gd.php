@@ -753,6 +753,7 @@ class Gd extends AbstractAdapter
             $amount - 8,
             0
         );
+
         if (true === $result) {
             $this->width  = imagesx($this->image);
             $this->height = imagesy($this->image);
