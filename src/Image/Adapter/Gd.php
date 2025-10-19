@@ -828,6 +828,7 @@ class Gd extends AbstractAdapter
             );
 
             $angle = 0;
+
             imagettftext(
                 $this->image,
                 $size,
