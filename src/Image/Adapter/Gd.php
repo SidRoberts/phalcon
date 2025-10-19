@@ -576,6 +576,7 @@ class Gd extends AbstractAdapter
         $extension = strtolower($extension);
 
         ob_start();
+
         switch ($extension) {
             case "gif":
                 imagegif($this->image);
