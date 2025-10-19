@@ -506,6 +506,7 @@ class Gd extends AbstractAdapter
         );
 
         $offset = 0;
+
         while ($height >= $offset) {
             $sourceY      = $this->height - $offset - 1;
             $destinationY = $this->height + $offset;
