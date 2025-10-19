@@ -269,11 +269,7 @@ class Dump
      */
     protected function getStyle(string $type): string
     {
-        if (isset($this->styles[$type])) {
-            return $this->styles[$type];
-        }
-
-        return 'color:gray';
+        return $this->styles[$type] ?? 'color:gray';
     }
 
     /**
