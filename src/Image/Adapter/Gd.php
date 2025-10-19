@@ -690,6 +690,7 @@ class Gd extends AbstractAdapter
         }
 
         $extension = strtolower($extension);
+
         switch ($extension) {
             case "gif":
                 $this->type = IMAGETYPE_GIF;
