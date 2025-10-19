@@ -37,12 +37,9 @@ final class CacheTest extends AbstractDatabaseTestCase
     public static function getValidSerializers(): array
     {
         return [
-            /**
-             * @todo igbinary is throwing a seg fault in the docker environment
-             */
-            //            [
-            //                'Igbinary',
-            //            ],
+            [
+                'Igbinary',
+            ],
             [
                 'Msgpack',
             ],
