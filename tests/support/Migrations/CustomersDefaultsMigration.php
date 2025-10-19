@@ -30,10 +30,10 @@ class CustomersDefaultsMigration extends AbstractMigration
      * @return int
      */
     public function insert(
-        ?int $id,
+        int | null $id,
         int $status = 0,
-        ?string $first = null,
-        ?string $last = null
+        string | null $first = null,
+        string | null $last = null
     ): int {
         $sql    = <<<SQL
 insert into co_customers_defaults (

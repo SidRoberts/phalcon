@@ -23,11 +23,11 @@ class InvoicesMigration extends AbstractMigration
 
     public function insert(
         int|string|null $id,
-        ?int $custId = null,
+        int | null $custId = null,
         int $status = 0,
-        ?string $title = null,
+        string | null $title = null,
         float $total = 0,
-        ?string $createdAt = null
+        string | null $createdAt = null
     ): int {
         $useAutoId = (null === $id || 'default' === $id || 'null' === $id);
         if ($useAutoId) {

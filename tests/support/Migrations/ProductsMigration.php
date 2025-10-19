@@ -21,8 +21,8 @@ class ProductsMigration extends AbstractMigration
     protected $table = "co_products";
 
     public function insert(
-        ?int $id,
-        ?string $name = null,
+        int | null $id,
+        string | null $name = null,
         int $statusFlag = 0
     ): int {
         $sql    = <<<SQL

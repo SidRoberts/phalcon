@@ -25,12 +25,15 @@ class FractalDatesMigration extends AbstractMigration
      * @param string|null      $timeStamp
      */
     public function insert(
-        ?int $id,
-        ?string $time = null,
-        ?string $dateTime = null,
-        ?string $timeStamp = null
-    ): int {
-        $sql    = <<<SQL
+        int $id,
+        string | null $time = null,
+        string | null $dateTime = null,
+        string | null $timeStamp = null
+    ) {
+        if (0 === $id) {
+            $id = null;
+        }
+        $sql = <<<SQL
 insert into fractal_dates (id, ftime, fdatetime, ftimestamp)
 values (:id, :time, :dateTime, :timeStamp)
 SQL;

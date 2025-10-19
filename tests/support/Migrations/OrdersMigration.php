@@ -21,8 +21,8 @@ class OrdersMigration extends AbstractMigration
     protected $table = "co_orders";
 
     public function insert(
-        ?int $id,
-        ?string $name = null,
+        int | null $id,
+        string | null $name = null,
         int $statusFlag = 0
     ): int {
         $sql    = <<<SQL

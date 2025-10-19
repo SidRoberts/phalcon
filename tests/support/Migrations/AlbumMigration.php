@@ -29,8 +29,8 @@ class AlbumMigration extends AbstractMigration
     public function insert(
         ?int $id,
         string $name,
-        ?int $albumId = null,
-        ?int $photoId = null
+        int | null $albumId = null,
+        int | null $photoId = null
     ): int {
         $sql    = <<<SQL
 insert into album (

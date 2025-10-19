@@ -38,7 +38,7 @@ final class FakeMustache extends AbstractEngine implements EngineInterface
     /**
      * FakeMustache constructor.
      */
-    public function __construct(ViewBaseInterface $view, DiInterface $dependencyInjector = null)
+    public function __construct(ViewBaseInterface $view, DiInterface | null $dependencyInjector = null)
     {
         $this->mustache = new Mustache_Engine();
 

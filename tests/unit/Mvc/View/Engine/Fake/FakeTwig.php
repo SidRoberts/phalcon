@@ -27,7 +27,7 @@ final class FakeTwig extends AbstractEngine implements EngineInterface
     /**
      * FakeTwig constructor.
      */
-    public function __construct(ViewBaseInterface $view, DiInterface $dependencyInjector = null)
+    public function __construct(ViewBaseInterface $view, DiInterface | null $dependencyInjector = null)
     {
         $this->twig = new Twig_Environment(
             new Twig_Loader_Filesystem(
