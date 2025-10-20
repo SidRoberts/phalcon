@@ -915,6 +915,7 @@ class Gd extends AbstractAdapter
             $width,
             $height
         );
+
         if (true === $copy) {
             imagedestroy($overlay);
         }
