@@ -61,13 +61,11 @@ class Link extends Style
      */
     protected function getAttributes(string $href, array $attributes): array
     {
-        $required = [
+        $overrides = [
             'href' => $href,
         ];
 
-        unset($attributes['href']);
-
-        return array_merge($required, $attributes);
+        return array_merge($attributes, $overrides);
     }
 
     /**
