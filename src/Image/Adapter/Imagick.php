@@ -790,6 +790,7 @@ class Imagick extends AbstractAdapter
         }
 
         $gravity = null;
+
         if (is_bool($offsetX)) {
             if (is_bool($offsetY)) {
                 $offsetX = 0;
