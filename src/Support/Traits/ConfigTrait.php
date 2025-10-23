@@ -43,6 +43,7 @@ trait ConfigTrait
     {
         if (!isset($config[$element])) {
             $exception = $this->getExceptionClass();
+
             throw new $exception(
                 "You must provide the '" . $element . "' option in the factory config parameter."
             );
