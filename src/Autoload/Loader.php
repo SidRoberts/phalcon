@@ -694,6 +694,7 @@ class Loader
     private function autoloadCheckNamespaces(string $className): bool
     {
         $nsSeparator = "\\";
+
         foreach ($this->namespaces as $prefix => $directories) {
             if (true !== $this->toStartsWith($className, $prefix)) {
                 continue;
@@ -707,6 +708,7 @@ class Loader
 
             if (true === $this->autoloadCheckDirectories($directories, $fileName)) {
                 $this->addDebug("Namespace: " . $prefix . " - " . $this->checkedPath);
+
                 return true;
             }
         }
