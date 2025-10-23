@@ -740,6 +740,7 @@ class Loader
         }
 
         $results = [];
+
         foreach ($directories as $directory) {
             $directory = rtrim($directory, $dirSeparator) . $dirSeparator;
 
