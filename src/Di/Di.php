@@ -226,6 +226,7 @@ class Di extends stdClass implements DiInterface
                 $service,
                 $instance
             );
+
             $instance = $this->processObjectNullService(
                 $name,
                 $parameters,
