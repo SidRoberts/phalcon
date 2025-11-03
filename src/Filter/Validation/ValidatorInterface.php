@@ -57,6 +57,16 @@ interface ValidatorInterface
     public function hasOption(string $key): bool;
 
     /**
+     * Sets an option in the validator
+     *
+     * @param string $key
+     * @param mixed  $value
+     *
+     * @return void
+     */
+    public function setOption(string $key, mixed $value): void;
+
+    /**
      * Set a new template message
      *
      * @param string $template
