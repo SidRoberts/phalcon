@@ -338,6 +338,7 @@ class Random
     {
         $byteString = '';
         $bytes      = unpack('C*', $this->bytes($number));
+
         foreach ($bytes as $index) {
             $index = $index % 64;
 
