@@ -42,7 +42,8 @@ class Validator
         private Token $token,
         private readonly int $timeShift = 0
     ) {
-        $now          = time();
+        $now = time();
+
         $this->claims = [
             Enum::AUDIENCE        => null,
             Enum::EXPIRATION_TIME => $now,
