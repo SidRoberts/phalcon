@@ -37,5 +37,5 @@ interface ModuleDefinitionInterface
      *
      * @return void
      */
-    public function registerServices(DiInterface | Collection $container);
+    public function registerServices(DiInterface | Collection $container): void;
 }
