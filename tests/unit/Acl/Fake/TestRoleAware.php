@@ -35,6 +35,9 @@ class TestRoleAware implements RoleAwareInterface
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
     public function getRoleName(): string
     {
         return $this->roleName;
