@@ -26,9 +26,10 @@ final class GetDescriptionTest extends AbstractUnitTestCase
     {
         $role = new Role('Administrators', 'The admin unit');
 
-        $expected = 'The admin unit';
-        $actual   = $role->getDescription();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'The admin unit',
+            $role->getDescription()
+        );
     }
 
     /**
@@ -39,7 +40,8 @@ final class GetDescriptionTest extends AbstractUnitTestCase
     {
         $role = new Role('Administrators');
 
-        $actual = $role->getDescription();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $role->getDescription()
+        );
     }
 }

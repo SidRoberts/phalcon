@@ -32,6 +32,7 @@ final class AddRoleTest extends AbstractUnitTestCase
         );
 
         $acl = new Memory();
+
         $acl->addRole(true);
     }
 
@@ -43,11 +44,13 @@ final class AddRoleTest extends AbstractUnitTestCase
     {
         $acl = new Memory();
 
-        $actual = $acl->addRole('11');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addRole('11')
+        );
 
-        $actual = $acl->isRole('11');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isRole('11')
+        );
     }
 
     /**
@@ -59,8 +62,9 @@ final class AddRoleTest extends AbstractUnitTestCase
         $acl  = new Memory();
         $role = new Role('Administrators', 'Super User access');
 
-        $actual = $acl->addRole($role);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addRole($role)
+        );
     }
 
     /**
@@ -71,8 +75,9 @@ final class AddRoleTest extends AbstractUnitTestCase
     {
         $acl = new Memory();
 
-        $actual = $acl->addRole('Administrators');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addRole('Administrators')
+        );
     }
 
     /**
@@ -84,11 +89,13 @@ final class AddRoleTest extends AbstractUnitTestCase
         $acl  = new Memory();
         $role = new Role('Administrators', 'Super User access');
 
-        $actual = $acl->addRole($role);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addRole($role)
+        );
 
-        $actual = $acl->addRole($role);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->addRole($role)
+        );
     }
 
     /**
@@ -99,10 +106,12 @@ final class AddRoleTest extends AbstractUnitTestCase
     {
         $acl = new Memory();
 
-        $actual = $acl->addRole('Administrators');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addRole('Administrators')
+        );
 
-        $actual = $acl->addRole('Administrators');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->addRole('Administrators')
+        );
     }
 }

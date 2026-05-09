@@ -26,11 +26,13 @@ final class GetSetNoArgumentsDefaultActionTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryGetSetNoArgumentsDefaultAction(): void
     {
         $acl = new Memory();
+
         $acl->setNoArgumentsDefaultAction(Enum::ALLOW);
 
-        $expected = Enum::ALLOW;
-        $actual   = $acl->getNoArgumentsDefaultAction();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Enum::ALLOW,
+            $acl->getNoArgumentsDefaultAction()
+        );
     }
 
     /**
@@ -41,8 +43,9 @@ final class GetSetNoArgumentsDefaultActionTest extends AbstractUnitTestCase
     {
         $acl = new Memory();
 
-        $expected = Enum::DENY;
-        $actual   = $acl->getNoArgumentsDefaultAction();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Enum::DENY,
+            $acl->getNoArgumentsDefaultAction()
+        );
     }
 }

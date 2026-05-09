@@ -26,17 +26,21 @@ final class GetActiveAccessTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryGetActiveAccess(): void
     {
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Guests');
         $acl->addComponent('Login', ['help', 'index']);
         $acl->allow('Guests', 'Login', '*');
 
-        $actual = $acl->isAllowed('Guests', 'Login', 'index');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Guests', 'Login', 'index')
+        );
 
-        $expected = 'index';
-        $actual   = $acl->getActiveAccess();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'index',
+            $acl->getActiveAccess()
+        );
     }
 
     /**
@@ -47,6 +51,8 @@ final class GetActiveAccessTest extends AbstractUnitTestCase
     {
         $acl = new Memory();
 
-        $this->assertNull($acl->getActiveAccess());
+        $this->assertNull(
+            $acl->getActiveAccess()
+        );
     }
 }

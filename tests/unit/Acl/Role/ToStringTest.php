@@ -26,9 +26,10 @@ final class ToStringTest extends AbstractUnitTestCase
     {
         $role = new Role('Administrator');
 
-        $expected = 'Administrator';
-        $actual   = $role->__toString();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Administrator',
+            $role->__toString()
+        );
     }
 
     /**
@@ -39,8 +40,9 @@ final class ToStringTest extends AbstractUnitTestCase
     {
         $role = new Role('Administrator');
 
-        $expected = 'Administrator';
-        $actual   = (string) $role;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Administrator',
+            (string) $role
+        );
     }
 }

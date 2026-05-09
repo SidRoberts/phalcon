@@ -26,11 +26,13 @@ final class GetSetDefaultActionTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryGetSetDefaultAction(): void
     {
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::ALLOW);
 
-        $expected = Enum::ALLOW;
-        $actual   = $acl->getDefaultAction();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Enum::ALLOW,
+            $acl->getDefaultAction()
+        );
     }
 
     /**
@@ -41,8 +43,9 @@ final class GetSetDefaultActionTest extends AbstractUnitTestCase
     {
         $acl = new Memory();
 
-        $expected = Enum::DENY;
-        $actual   = $acl->getDefaultAction();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            Enum::DENY,
+            $acl->getDefaultAction()
+        );
     }
 }

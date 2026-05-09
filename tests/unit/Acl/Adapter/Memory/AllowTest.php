@@ -37,17 +37,21 @@ final class AllowTest extends AbstractUnitTestCase
         $acl = new Memory();
 
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Guests');
         $acl->addRole('Member');
 
         $acl->addComponent('Post', ['update']);
+
         $acl->allow('Member', 'Post', 'update');
 
-        $actual = $acl->isAllowed('Guest', 'Post', 'update');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->isAllowed('Guest', 'Post', 'update')
+        );
 
-        $actual = $acl->isAllowed('Member', 'Post', 'update');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Member', 'Post', 'update')
+        );
     }
 
     /**
@@ -62,9 +66,12 @@ final class AllowTest extends AbstractUnitTestCase
         );
 
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Member');
         $acl->addComponent('Post', ['update']);
+
         $acl->allow('Member', 'Post', 'Unknown');
     }
 
@@ -80,9 +87,12 @@ final class AllowTest extends AbstractUnitTestCase
         );
 
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Member');
         $acl->addComponent('Post', ['update']);
+
         $acl->allow('Member', 'Post', ['Unknown']);
     }
 
@@ -98,9 +108,12 @@ final class AllowTest extends AbstractUnitTestCase
         );
 
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Member');
         $acl->addComponent('Post', ['update']);
+
         $acl->allow('Member', 'Unknown', 'update');
     }
 
@@ -116,9 +129,12 @@ final class AllowTest extends AbstractUnitTestCase
         );
 
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Member');
         $acl->addComponent('Post', ['update']);
+
         $acl->allow('Unknown', 'Post', 'update');
     }
 
@@ -151,24 +167,28 @@ final class AllowTest extends AbstractUnitTestCase
             'Members',
             'Post',
             'update',
-            function (TestRoleAware $user, TestComponentAware $model) {
+            function (TestRoleAware $user, TestComponentAware $model): bool {
                 return $user->getId() == $model->getUser();
             }
         );
 
         $acl->allow('Admins', 'Post', 'update');
 
-        $actual = $acl->isAllowed($guest, $model, 'update');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->isAllowed($guest, $model, 'update')
+        );
 
-        $actual = $acl->isAllowed($member, $model, 'update');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed($member, $model, 'update')
+        );
 
-        $actual = $acl->isAllowed($anotherMember, $model, 'update');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->isAllowed($anotherMember, $model, 'update')
+        );
 
-        $actual = $acl->isAllowed($admin, $model, 'update');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed($admin, $model, 'update')
+        );
     }
 
     /**
@@ -190,12 +210,14 @@ final class AllowTest extends AbstractUnitTestCase
         $this->expectExceptionMessage($errorMessage);
 
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::ALLOW);
         $acl->setNoArgumentsDefaultAction(Enum::DENY);
 
         $acl->addRole('Guests');
         $acl->addRole('Members', 'Guests');
         $acl->addRole('Admins', 'Members');
+
         $acl->addComponent('Post', ['update']);
 
         $guest         = new TestRoleAware(1, 'Guests');
@@ -208,7 +230,7 @@ final class AllowTest extends AbstractUnitTestCase
             'Guests',
             'Post',
             'update',
-            function ($parameter) {
+            function ($parameter): bool {
                 return $parameter % 2 == 0;
             }
         );
@@ -217,24 +239,28 @@ final class AllowTest extends AbstractUnitTestCase
             'Members',
             'Post',
             'update',
-            function ($parameter) {
+            function ($parameter): bool {
                 return $parameter % 2 == 0;
             }
         );
 
         $acl->allow('Admins', 'Post', 'update');
 
-        $actual = $acl->isAllowed($guest, $model, 'update');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->isAllowed($guest, $model, 'update')
+        );
 
-        $actual = $acl->isAllowed($member, $model, 'update');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->isAllowed($member, $model, 'update')
+        );
 
-        $actual = $acl->isAllowed($anotherMember, $model, 'update');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->isAllowed($anotherMember, $model, 'update')
+        );
 
-        $actual = $acl->isAllowed($admin, $model, 'update');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed($admin, $model, 'update')
+        );
 
         restore_error_handler();
     }
@@ -246,14 +272,17 @@ final class AllowTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryAllowWildcardAction(): void
     {
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Member');
         $acl->addComponent('Post', ['update']);
 
         $acl->allow('Member', 'Post', '*');
 
-        $actual = $acl->isAllowed('Member', 'Post', 'update');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Member', 'Post', 'update')
+        );
     }
 
     /**
@@ -263,14 +292,17 @@ final class AllowTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryAllowWildcardComponent(): void
     {
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Member');
         $acl->addComponent('Post', ['update']);
 
         $acl->allow('Member', '*', '*');
 
-        $actual = $acl->isAllowed('Member', 'Post', 'update');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Member', 'Post', 'update')
+        );
     }
 
     /**
@@ -280,7 +312,9 @@ final class AllowTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryAllowWildcardComponentInherited(): void
     {
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Member');
         $acl->addRole('Guest');
         $acl->addInherit('Guest', 'Member');
@@ -288,8 +322,9 @@ final class AllowTest extends AbstractUnitTestCase
 
         $acl->allow('Member', '*', '*');
 
-        $actual = $acl->isAllowed('Guest', 'Post', 'update');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Guest', 'Post', 'update')
+        );
     }
 
     /**
@@ -299,6 +334,7 @@ final class AllowTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryAllowWildcardRole(): void
     {
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
 
         $aclRoles = [
@@ -312,7 +348,7 @@ final class AllowTest extends AbstractUnitTestCase
             'account' => ['index'],
         ];
 
-        foreach ($aclRoles as $Role => $object) {
+        foreach ($aclRoles as $object) {
             $acl->addRole($object);
         }
 
@@ -322,16 +358,18 @@ final class AllowTest extends AbstractUnitTestCase
 
         $acl->allow('*', 'welcome', 'index');
 
-        foreach ($aclRoles as $Role => $object) {
-            $actual = $acl->isAllowed($Role, 'welcome', 'index');
-            $this->assertTrue($actual);
+        foreach ($aclRoles as $role => $object) {
+            $this->assertTrue(
+                $acl->isAllowed($role, 'welcome', 'index')
+            );
         }
 
         $acl->deny('*', 'welcome', 'index');
 
-        foreach ($aclRoles as $Role => $object) {
-            $actual = $acl->isAllowed($Role, 'welcome', 'index');
-            $this->assertFalse($actual);
+        foreach ($aclRoles as $role => $object) {
+            $this->assertFalse(
+                $acl->isAllowed($role, 'welcome', 'index')
+            );
         }
     }
 }

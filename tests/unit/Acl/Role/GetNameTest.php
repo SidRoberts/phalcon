@@ -26,8 +26,9 @@ final class GetNameTest extends AbstractUnitTestCase
     {
         $role = new Role('Administrators');
 
-        $expected = 'Administrators';
-        $actual   = $role->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Administrators',
+            $role->getName()
+        );
     }
 }

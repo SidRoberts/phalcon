@@ -26,8 +26,9 @@ final class GetNameTest extends AbstractUnitTestCase
     {
         $component = new Component('Customers');
 
-        $expected = 'Customers';
-        $actual   = $component->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Customers',
+            $component->getName()
+        );
     }
 }

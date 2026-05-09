@@ -32,9 +32,9 @@ final class AddInheritTest extends AbstractUnitTestCase
         $acl->addRole(new Role('administrator'));
         $acl->addRole(new Role('apprentice'));
 
-        $actual = $acl->addInherit('administrator', 'apprentice');
-
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addInherit('administrator', 'apprentice')
+        );
     }
 
     /**
@@ -58,8 +58,9 @@ final class AddInheritTest extends AbstractUnitTestCase
 
         // D appears twice in the traversal queue (via B and via C)
         // The second occurrence hits the `continue` on L326
-        $actual = $acl->addInherit('A', 'X');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addInherit('A', 'X')
+        );
     }
 
     /**
@@ -100,27 +101,33 @@ final class AddInheritTest extends AbstractUnitTestCase
         $acl->addComponent(new Component('folder'), 'list');
         $acl->addComponent(new Component('folder'), 'add');
 
-        $actual = $acl->addInherit('administrator', 'apprentice');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addInherit('administrator', 'apprentice')
+        );
 
         // Add Inherit twice to ensure that we have no duplicates
-        $actual = $acl->addInherit('administrator', 'apprentice');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addInherit('administrator', 'apprentice')
+        );
 
         $acl->allow('apprentice', 'folder', 'list');
         $acl->allow('administrator', 'folder', 'add');
 
-        $actual = $acl->isAllowed('apprentice', 'folder', 'list');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('apprentice', 'folder', 'list')
+        );
 
-        $actual = $acl->isAllowed('administrator', 'folder', 'add');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('administrator', 'folder', 'add')
+        );
 
-        $actual = $acl->isAllowed('apprentice', 'folder', 'add');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->isAllowed('apprentice', 'folder', 'add')
+        );
 
-        $actual = $acl->isAllowed('administrator', 'folder', 'list');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('administrator', 'folder', 'list')
+        );
     }
 
     /**
@@ -137,8 +144,9 @@ final class AddInheritTest extends AbstractUnitTestCase
         $acl->addComponent(new Component('folder'), 'list');
         $acl->addComponent(new Component('folder'), 'add');
 
-        $actual = $acl->addInherit('administrator', 'administrator');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->addInherit('administrator', 'administrator')
+        );
     }
 
     /**
@@ -153,7 +161,11 @@ final class AddInheritTest extends AbstractUnitTestCase
         );
 
         $acl = new Memory();
-        $acl->addRole(new Role('administrator'));
+
+        $acl->addRole(
+            new Role('administrator')
+        );
+
         $acl->addInherit('administrator', 'unknown');
     }
 }

@@ -26,17 +26,22 @@ final class DenyTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryDeny(): void
     {
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::ALLOW);
+
         $acl->addRole('Guests');
         $acl->addRole('Member');
+
         $acl->addComponent('Post', ['update']);
 
         $acl->deny('Member', 'Post', 'update');
 
-        $actual = $acl->isAllowed('Guest', 'Post', 'update');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Guest', 'Post', 'update')
+        );
 
-        $actual = $acl->isAllowed('Member', 'Post', 'update');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->isAllowed('Member', 'Post', 'update')
+        );
     }
 }

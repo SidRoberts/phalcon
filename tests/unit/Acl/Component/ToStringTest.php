@@ -26,9 +26,10 @@ final class ToStringTest extends AbstractUnitTestCase
     {
         $component = new Component('Customers');
 
-        $expected = 'Customers';
-        $actual   = $component->__toString();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Customers',
+            $component->__toString()
+        );
     }
 
     /**
@@ -39,8 +40,9 @@ final class ToStringTest extends AbstractUnitTestCase
     {
         $component = new Component('Customers');
 
-        $expected = 'Customers';
-        $actual   = (string) $component;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Customers',
+            (string) $component
+        );
     }
 }

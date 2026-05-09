@@ -26,9 +26,10 @@ final class GetDescriptionTest extends AbstractUnitTestCase
     {
         $component = new Component('Customers', 'Customer management');
 
-        $expected = 'Customer management';
-        $actual   = $component->getDescription();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Customer management',
+            $component->getDescription()
+        );
     }
 
     /**
@@ -39,7 +40,8 @@ final class GetDescriptionTest extends AbstractUnitTestCase
     {
         $component = new Component('Customers');
 
-        $actual = $component->getDescription();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $component->getDescription()
+        );
     }
 }

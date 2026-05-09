@@ -36,7 +36,10 @@ final class GetComponentsTest extends AbstractUnitTestCase
             'Posts' => $component1,
             'Tags'  => $component2,
         ];
-        $actual   = $acl->getComponents();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $acl->getComponents()
+        );
     }
 }

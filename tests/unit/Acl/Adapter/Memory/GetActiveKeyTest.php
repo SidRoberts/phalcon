@@ -27,7 +27,9 @@ final class GetActiveKeyTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryGetActiveKey(): void
     {
         $acl = new Memory();
+
         $acl->addRole(new Role('Guests'));
+
         $acl->addComponent(
             new Component('Post'),
             ['index', 'update', 'create']
@@ -35,11 +37,13 @@ final class GetActiveKeyTest extends AbstractUnitTestCase
 
         $acl->allow('Guests', 'Post', 'create');
 
-        $actual = $acl->isAllowed('Guests', 'Post', 'create');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Guests', 'Post', 'create')
+        );
 
-        $expected = 'Guests!Post!create';
-        $actual   = $acl->getActiveKey();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Guests!Post!create',
+            $acl->getActiveKey()
+        );
     }
 }

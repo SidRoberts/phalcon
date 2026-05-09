@@ -26,17 +26,23 @@ final class GetActiveRoleTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryGetActiveRole(): void
     {
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Guests');
+
         $acl->addComponent('Login', ['help', 'index']);
+
         $acl->allow('Guests', 'Login', '*');
 
-        $actual = $acl->isAllowed('Guests', 'Login', 'index');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Guests', 'Login', 'index')
+        );
 
-        $expected = 'Guests';
-        $actual   = $acl->getActiveRole();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Guests',
+            $acl->getActiveRole()
+        );
     }
 
     /**
@@ -47,7 +53,8 @@ final class GetActiveRoleTest extends AbstractUnitTestCase
     {
         $acl = new Memory();
 
-        $actual = $acl->getActiveRole();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $acl->getActiveRole()
+        );
     }
 }

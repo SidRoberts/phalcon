@@ -32,7 +32,9 @@ final class GetActiveFunctionTest extends AbstractUnitTestCase
         };
 
         $acl = new Memory();
+
         $acl->addRole(new Role('Guests'));
+
         $acl->addComponent(
             new Component('Post'),
             ['index', 'update', 'create']
@@ -40,19 +42,24 @@ final class GetActiveFunctionTest extends AbstractUnitTestCase
 
         $acl->allow('Guests', 'Post', 'create', $function);
 
-        $actual = $acl->isAllowed(
-            'Guests',
-            'Post',
-            'create',
-            ['a' => 1]
+        $this->assertTrue(
+            $acl->isAllowed(
+                'Guests',
+                'Post',
+                'create',
+                [
+                    'a' => 1,
+                ]
+            )
         );
-        $this->assertTrue($actual);
 
-        $class  = Closure::class;
-        $actual = $acl->getActiveFunction();
-        $this->assertInstanceOf($class, $actual);
-        $expected = 1;
-        $actual   = $acl->getActiveFunctionCustomArgumentsCount();
-        $this->assertSame($expected, $actual);
+        $returnedFunction = $acl->getActiveFunction();
+
+        $this->assertInstanceOf(Closure::class, $returnedFunction);
+
+        $this->assertSame(
+            1,
+            $acl->getActiveFunctionCustomArgumentsCount()
+        );
     }
 }

@@ -30,8 +30,9 @@ final class IsComponentTest extends AbstractUnitTestCase
 
         $acl->addComponent($aclComponent, 'search');
 
-        $actual = $acl->isComponent('Customers');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isComponent('Customers')
+        );
     }
 
     /**
@@ -45,7 +46,8 @@ final class IsComponentTest extends AbstractUnitTestCase
 
         $acl->addComponent($aclComponent, 'search');
 
-        $actual = $acl->isComponent('unknown');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->isComponent('unknown')
+        );
     }
 }

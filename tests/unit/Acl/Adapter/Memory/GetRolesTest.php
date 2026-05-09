@@ -36,7 +36,10 @@ final class GetRolesTest extends AbstractUnitTestCase
             'Admin' => $role1,
             'Guest' => $role2,
         ];
-        $actual   = $acl->getRoles();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $acl->getRoles()
+        );
     }
 }

@@ -29,17 +29,15 @@ final class GetActiveFunctionCustomArgumentsCountTest extends AbstractUnitTestCa
         $acl = new Memory();
 
         $acl->addRole(new Role('member'));
+
         $acl->addComponent(new Component('group'), 'add');
+
         $acl->allow(
             'member',
             'group',
             'add',
-            function ($accountType, $active) {
-                if ('premium' === $accountType && true === $active) {
-                    return true;
-                }
-
-                return false;
+            function ($accountType, $active): bool {
+                return ('premium' === $accountType && true === $active);
             }
         );
 
@@ -55,8 +53,9 @@ final class GetActiveFunctionCustomArgumentsCountTest extends AbstractUnitTestCa
 
         $this->assertTrue($actual);
 
-        $expected = 2;
-        $actual   = $acl->getActiveFunctionCustomArgumentsCount();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            2,
+            $acl->getActiveFunctionCustomArgumentsCount()
+        );
     }
 }

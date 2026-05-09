@@ -28,11 +28,13 @@ final class AddComponentAccessTest extends AbstractUnitTestCase
     {
         $acl = new Memory();
 
-        $actual = $acl->addComponent('Customer', ['index']);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addComponent('Customer', ['index'])
+        );
 
-        $actual = $acl->addComponentAccess('Customer', ['new']);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addComponentAccess('Customer', ['new'])
+        );
     }
 
     /**
@@ -45,6 +47,7 @@ final class AddComponentAccessTest extends AbstractUnitTestCase
         $this->expectExceptionMessage("Component 'Post' does not exist in the ACL");
 
         $acl = new Memory();
+
         $acl->addComponentAccess('Post', ['update']);
     }
 

@@ -26,8 +26,11 @@ final class DropComponentAccessTest extends AbstractUnitTestCase
     public function testAclAdapterMemoryDropComponentAccess(): void
     {
         $acl = new Memory();
+
         $acl->setDefaultAction(Enum::DENY);
+
         $acl->addRole('Guests');
+
         $acl->addComponent(
             'Post',
             [
@@ -46,6 +49,7 @@ final class DropComponentAccessTest extends AbstractUnitTestCase
                 'update',
             ]
         );
+
         $acl->allow(
             'Guests',
             'Post',
@@ -67,15 +71,19 @@ final class DropComponentAccessTest extends AbstractUnitTestCase
             ]
         );
 
-        $actual = $acl->isAllowed('Guests', 'Post', 'update');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Guests', 'Post', 'update')
+        );
 
-        $actual = $acl->isAllowed('Guests', 'News', 'index');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Guests', 'News', 'index')
+        );
 
         $acl->dropComponentAccess('Post', 'index');
-        $actual = $acl->isAllowed('Guests', 'Post', 'index');
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $acl->isAllowed('Guests', 'Post', 'index')
+        );
 
         $acl->dropComponentAccess(
             'News',
@@ -84,10 +92,13 @@ final class DropComponentAccessTest extends AbstractUnitTestCase
                 'create',
             ]
         );
-        $actual = $acl->isAllowed('Guests', 'News', 'index');
-        $this->assertTrue($actual);
 
-        $actual = $acl->isAllowed('Guests', 'News', 'create');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isAllowed('Guests', 'News', 'index')
+        );
+
+        $this->assertTrue(
+            $acl->isAllowed('Guests', 'News', 'create')
+        );
     }
 }

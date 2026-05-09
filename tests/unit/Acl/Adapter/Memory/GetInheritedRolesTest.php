@@ -20,7 +20,8 @@ use Phalcon\Tests\AbstractUnitTestCase;
 final class GetInheritedRolesTest extends AbstractUnitTestCase
 {
     /**
-     * @issue  https://github.com/phalcon/cphalcon/issues/15154
+     * @issue https://github.com/phalcon/cphalcon/issues/15154
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-10-02
      */
@@ -34,25 +35,38 @@ final class GetInheritedRolesTest extends AbstractUnitTestCase
         $acl->addRole(new Role('guestOne'));
         $acl->addRole(new Role('guestTwo'));
 
-        $actual = $acl->addInherit('administrator', 'memberOne');
-        $this->assertTrue($actual);
-        $actual = $acl->addInherit('administrator', 'memberTwo');
-        $this->assertTrue($actual);
-        $actual = $acl->addInherit('memberTwo', 'guestOne');
-        $this->assertTrue($actual);
-        $actual = $acl->addInherit('memberTwo', 'guestTwo');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->addInherit('administrator', 'memberOne')
+        );
+
+        $this->assertTrue(
+            $acl->addInherit('administrator', 'memberTwo')
+        );
+
+        $this->assertTrue(
+            $acl->addInherit('memberTwo', 'guestOne')
+        );
+
+        $this->assertTrue(
+            $acl->addInherit('memberTwo', 'guestTwo')
+        );
 
         $expected = [];
-        $actual   = $acl->getInheritedRoles('unknown');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $acl->getInheritedRoles('unknown')
+        );
 
         $expected = [
             'memberOne',
             'memberTwo',
         ];
-        $actual   = $acl->getInheritedRoles('administrator');
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $acl->getInheritedRoles('administrator')
+        );
 
         $expected = [
             'administrator' => [
@@ -64,7 +78,10 @@ final class GetInheritedRolesTest extends AbstractUnitTestCase
                 'guestTwo',
             ],
         ];
-        $actual   = $acl->getInheritedRoles();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $acl->getInheritedRoles()
+        );
     }
 }

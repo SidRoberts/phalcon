@@ -30,8 +30,9 @@ final class IsRoleTest extends AbstractUnitTestCase
 
         $acl->addRole($aclRole);
 
-        $actual = $acl->isRole('Administrators');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $acl->isRole('Administrators')
+        );
     }
 
     /**
@@ -45,7 +46,8 @@ final class IsRoleTest extends AbstractUnitTestCase
 
         $acl->addRole($aclRole);
 
-        $actual = $acl->isRole('unknown');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $acl->isRole('unknown')
+        );
     }
 }
