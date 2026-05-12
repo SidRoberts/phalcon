@@ -41,8 +41,9 @@ final class GetDataTest extends AbstractUnitTestCase
 
         $validation->bind($user, $data);
 
-        $expected = $data;
-        $actual   = $validation->getData();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $validation->getData()
+        );
     }
 }

@@ -41,6 +41,9 @@ use function uniqid;
 
 final class GetSetHasOptionTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: class-string<ValidatorInterface>}>
+     */
     public static function getExamples(): array
     {
         return [
@@ -132,6 +135,8 @@ final class GetSetHasOptionTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<ValidatorInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2023-09-20
      */
@@ -143,21 +148,21 @@ final class GetSetHasOptionTest extends AbstractUnitTestCase
         $value     = uniqid('val-');
         $validator = new $class();
 
-        $this->assertInstanceOf(
-            ValidatorInterface::class,
-            $validator
-        );
+        $this->assertInstanceOf(ValidatorInterface::class, $validator);
 
-        $actual = $validator->hasOption($name);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $validator->hasOption($name)
+        );
 
         $validator->setOption($name, $value);
 
-        $actual = $validator->hasOption($name);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $validator->hasOption($name)
+        );
 
-        $expected = $value;
-        $actual   = $validator->getOption($name);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $validator->getOption($name)
+        );
     }
 }

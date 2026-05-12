@@ -72,7 +72,9 @@ final class AppendMessageTest extends AbstractUnitTestCase
             ]
         );
 
-        $actual = $validation->getMessages();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $validation->getMessages()
+        );
     }
 }

@@ -29,6 +29,7 @@ final class ConstructTest extends AbstractUnitTestCase
         $this->expectExceptionMessage('Filter unknown is not registered');
 
         $locator = new Filter();
+
         $locator->get('unknown');
     }
 }

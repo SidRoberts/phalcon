@@ -45,6 +45,8 @@ final class NewInstanceTest extends AbstractUnitTestCase
 {
     /**
      * Returns the example data
+     *
+     * @return array<array{0: string, 1: class-string}>
      */
     public static function getData(): array
     {
@@ -86,6 +88,9 @@ final class NewInstanceTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param string       $name
+     * @param class-string $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -97,10 +102,11 @@ final class NewInstanceTest extends AbstractUnitTestCase
         $factory  = new FilterFactory();
         $instance = $factory->newInstance();
 
-        $interface = FilterInterface::class;
-        $this->assertInstanceOf($interface, $instance);
+        $this->assertInstanceOf(FilterInterface::class, $instance);
 
-        $actual = $instance->get($name);
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            $class,
+            $instance->get($name)
+        );
     }
 }

@@ -28,7 +28,7 @@ final class GetValidatorsTest extends AbstractUnitTestCase
     {
         $validator = new StringLength();
 
-        $this->assertTrue(is_array($validator->getValidators()), 'Is array');
+        $this->assertIsArray($validator->getValidators(), 'Is array');
 
         $this->assertEmpty($validator->getValidators(), 'Empty validators');
         $this->assertCount(0, $validator->getValidators(), 'Empty validators');
@@ -38,7 +38,7 @@ final class GetValidatorsTest extends AbstractUnitTestCase
             'max' => 15,
         ]);
 
-        $this->assertTrue(is_array($validator->getValidators()), 'Is array');
+        $this->assertIsArray($validator->getValidators(), 'Is array');
 
         $this->assertNotEmpty($validator->getValidators(), 'Not empty validators');
         $this->assertCount(2, $validator->getValidators(), 'Has 2 validators');

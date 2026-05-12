@@ -30,12 +30,15 @@ final class ValidateTest extends AbstractUnitTestCase
         $validation = new Validation();
         $validator  = new Alnum(['allowEmpty' => true,]);
         $validation->add('name', $validator);
+
         $entity       = new stdClass();
         $entity->name = '';
 
         $validation->bind($entity, []);
-        $result = $validator->validate($validation, 'name');
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $validator->validate($validation, 'name')
+        );
     }
 
     /**
@@ -72,9 +75,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 0;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $messages->count()
+        );
 
         $messages = $validation->validate(
             [
@@ -83,13 +87,15 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $messages->count()
+        );
 
-        $expected = $validationMessages['name'];
-        $actual   = $messages->offsetGet(0)->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $validationMessages['name'],
+            $messages->offsetGet(0)->getMessage()
+        );
 
         $messages = $validation->validate(
             [
@@ -98,17 +104,20 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 2;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            2,
+            $messages->count()
+        );
 
-        $expected = $validationMessages['name'];
-        $actual   = $messages->offsetGet(0)->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $validationMessages['name'],
+            $messages->offsetGet(0)->getMessage()
+        );
 
-        $expected = $validationMessages['type'];
-        $actual   = $messages->offsetGet(1)->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $validationMessages['type'],
+            $messages->offsetGet(1)->getMessage()
+        );
     }
 
     /**
@@ -126,9 +135,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 0;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $messages->count()
+        );
 
         $messages = $validation->validate(
             [
@@ -136,8 +146,9 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $messages->count()
+        );
     }
 }

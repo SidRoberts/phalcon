@@ -69,7 +69,7 @@ final class ValidateTest extends AbstractUnitTestCase
             new Callback(
                 [
                     'message'  => 'There must be only an user or admin set',
-                    'callback' => function ($data) {
+                    'callback' => function ($data): bool {
                         if (!empty($data['user']) && !empty($data['admin'])) {
                             return false;
                         }
@@ -283,7 +283,7 @@ final class ValidateTest extends AbstractUnitTestCase
             'user',
             new Callback(
                 [
-                    'callback'   => function ($data) {
+                    'callback'   => function ($data): bool {
                         return empty($data['admin']);
                     },
                     'message'    => 'You cant provide both admin and user.',

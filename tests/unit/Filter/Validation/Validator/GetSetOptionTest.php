@@ -84,16 +84,22 @@ final class GetSetOptionTest extends AbstractUnitTestCase
     ): void {
         $validator = new $class();
 
-        $this->assertFalse($validator->hasOption('option'));
+        $this->assertFalse(
+            $validator->hasOption('option')
+        );
 
         $source = uniqid('val-');
+
         $validator->setOption('option', $source);
 
-        $this->assertTrue($validator->hasOption('option'));
+        $this->assertTrue(
+            $validator->hasOption('option')
+        );
 
-        $expected = $source;
-        $actual   = $validator->getOption('option');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $source,
+            $validator->getOption('option')
+        );
     }
 
     /**

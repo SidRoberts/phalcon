@@ -56,11 +56,13 @@ final class ValidateTest extends AbstractUnitTestCase
         ];
 
         $messages = $validation->validate(['file' => $fileData]);
+
         $this->assertCount(1, $messages);
 
-        $expected = 'File is empty';
-        $actual   = $messages->offsetGet(0)->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'File is empty',
+            $messages->offsetGet(0)->getMessage()
+        );
     }
 
     /**
@@ -84,24 +86,14 @@ final class ValidateTest extends AbstractUnitTestCase
 
         $this->assertCount(5, $validators);
 
-        $expected  = File\MimeType::class;
-        $actual    = $validators[0];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(File\MimeType::class, $validators[0]);
 
-        $expected  = File\Size\Max::class;
-        $actual    = $validators[1];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(File\Size\Max::class, $validators[1]);
 
-        $expected  = File\Size\Min::class;
-        $actual    = $validators[2];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(File\Size\Min::class, $validators[2]);
 
-        $expected  = File\Resolution\Max::class;
-        $actual    = $validators[3];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(File\Resolution\Max::class, $validators[3]);
 
-        $expected  = File\Resolution\Min::class;
-        $actual    = $validators[4];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(File\Resolution\Min::class, $validators[4]);
     }
 }

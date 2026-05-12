@@ -27,17 +27,23 @@ final class GetSetHasTest extends AbstractUnitTestCase
     public function testFilterFilterGetSetHasGetSame(): void
     {
         $locator = new Filter(['helloFilter' => HelloService::class]);
-        $actual  = $locator->has('helloFilter');
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $locator->has('helloFilter')
+        );
 
         /** @var object $service */
-        $expected = 'Hello Phalcon [count: 1]';
-        $actual   = $locator->get('helloFilter')('Phalcon');
-        $this->assertSame($expected, $actual);
+        $service = $locator->get('helloFilter');
 
-        $expected = 'Hello Phalcon [count: 2]';
-        $actual   = $locator->get('helloFilter')('Phalcon');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Hello Phalcon [count: 1]',
+            $service('Phalcon')
+        );
+
+        $this->assertSame(
+            'Hello Phalcon [count: 2]',
+            $service('Phalcon')
+        );
     }
 
     /**
@@ -47,15 +53,16 @@ final class GetSetHasTest extends AbstractUnitTestCase
     public function testFilterFilterGetSetHasHas(): void
     {
         $services = [
-            'helloFilter' => function () {
+            'helloFilter' => function (): HelloService {
                 return new HelloService();
             },
         ];
 
         $locator = new Filter($services);
 
-        $actual = $locator->has('helloFilter');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $locator->has('helloFilter')
+        );
     }
 
     /**
@@ -66,17 +73,20 @@ final class GetSetHasTest extends AbstractUnitTestCase
     {
         $locator = new Filter();
 
-        $actual = $locator->has('helloFilter');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $locator->has('helloFilter')
+        );
 
         $locator->set(
             'helloFilter',
-            function () {
+            function (): HelloService {
                 return new HelloService();
             }
         );
-        $actual = $locator->has('helloFilter');
-        $this->assertTrue($actual);
+
+        $this->assertTrue(
+            $locator->has('helloFilter')
+        );
     }
 
     /**
@@ -87,21 +97,24 @@ final class GetSetHasTest extends AbstractUnitTestCase
     {
         $locator = new Filter();
 
-        $actual = $locator->has('testappend');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $locator->has('testappend')
+        );
 
         $locator->set(
             'testappend',
-            function ($input) {
+            function (string $input): string {
                 return $input . 'test';
             }
         );
 
-        $value  = 'cheese';
-        $actual = $locator->sanitize($value, 'testappend');
-
+        $value    = 'cheese';
         $expected = $value . 'test';
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $locator->sanitize($value, 'testappend')
+        );
     }
 
     /**
@@ -111,18 +124,21 @@ final class GetSetHasTest extends AbstractUnitTestCase
     public function testFilterFilterLocatorGetSetHasGet(): void
     {
         $services = [
-            'helloFilter' => function () {
+            'helloFilter' => function (): HelloService {
                 return new HelloService();
             },
         ];
 
         $locator = new Filter($services);
-        $actual  = $locator->has('helloFilter');
-        $this->assertTrue($actual);
 
-        $class  = Closure::class;
-        $actual = $locator->get('helloFilter');
-        $this->assertInstanceOf($class, $actual);
+        $this->assertTrue(
+            $locator->has('helloFilter')
+        );
+
+        $this->assertInstanceOf(
+            Closure::class,
+            $locator->get('helloFilter')
+        );
     }
 
     /**
@@ -137,7 +153,9 @@ final class GetSetHasTest extends AbstractUnitTestCase
             ]
         );
 
-        $actual = $locator->trim('  hello world  ');
-        $this->assertSame('hello world', $actual);
+        $this->assertSame(
+            'hello world',
+            $locator->trim('  hello world  ')
+        );
     }
 }

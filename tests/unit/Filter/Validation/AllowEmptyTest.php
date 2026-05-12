@@ -53,10 +53,13 @@ final class AllowEmptyTest extends AbstractUnitTestCase
      */
     public function testFilterValidationAllowEmptyFalse(): void
     {
-        $data       = ['name' => ''];
+        $data = ['name' => ''];
+
         $validation = new Validation();
         $validator  = new Alpha(['allowEmpty' => false]);
+
         $validation->add('name', $validator);
+
         $messages = $validation->validate($data);
 
         $this->assertCount(1, $messages);
@@ -89,10 +92,13 @@ final class AllowEmptyTest extends AbstractUnitTestCase
      */
     public function testFilterValidationAllowEmptyTrue(): void
     {
-        $data       = ['name' => ''];
+        $data = ['name' => ''];
+
         $validation = new Validation();
         $validator  = new Alpha(['allowEmpty' => true]);
+
         $validation->add('name', $validator);
+
         $messages = $validation->validate($data);
 
         $this->assertCount(0, $messages);

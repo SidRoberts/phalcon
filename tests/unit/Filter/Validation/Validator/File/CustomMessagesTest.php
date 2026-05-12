@@ -37,17 +37,20 @@ final class CustomMessagesTest extends AbstractUnitTestCase
 
         /** @var File\AbstractFile $validator */
         foreach ($validators as $validator) {
-            $expected = $options['messageFileEmpty'];
-            $actual   = $validator->getMessageFileEmpty();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $options['messageFileEmpty'],
+                $validator->getMessageFileEmpty()
+            );
 
-            $expected = $options['messageIniSize'];
-            $actual   = $validator->getMessageIniSize();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $options['messageIniSize'],
+                $validator->getMessageIniSize()
+            );
 
-            $expected = $options['messageValid'];
-            $actual   = $validator->getMessageValid();
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $options['messageValid'],
+                $validator->getMessageValid()
+            );
         }
     }
 

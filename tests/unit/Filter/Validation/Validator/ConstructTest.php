@@ -101,23 +101,29 @@ final class ConstructTest extends AbstractUnitTestCase
         $custom  = new PresenceOf(['message' => $message]); // custom message
 
         // expected: null - empty message for default text (not set)
-        $actual = $default->getOption('message');
-        $this->assertNull($actual);
+        $this->assertNull(
+            $default->getOption('message')
+        );
 
         // expected: text message - has custom message (developer set this message)
-        $expected = $message;
-        $actual   = $custom->getOption('message');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $message,
+            $custom->getOption('message')
+        );
 
-        $custom   = new PresenceOf(['template' => $message]); // custom message
-        $expected = $message;
-        $actual   = $custom->getOption('message');
-        $this->assertSame($expected, $actual);
+        $custom = new PresenceOf(['template' => $message]); // custom message
 
-        $custom   = new PresenceOf([$message]); // custom message
-        $expected = $message;
-        $actual   = $custom->getOption('message');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $message,
+            $custom->getOption('message')
+        );
+
+        $custom = new PresenceOf([$message]); // custom message
+
+        $this->assertSame(
+            $message,
+            $custom->getOption('message')
+        );
     }
 
     /**

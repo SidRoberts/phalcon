@@ -24,6 +24,9 @@ use stdClass;
 
 final class ValidateTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: string, 1: int}>
+     */
     public static function getSingleFieldExamples(): array
     {
         return [
@@ -274,7 +277,9 @@ final class ValidateTest extends AbstractUnitTestCase
         $entity->price = '';
 
         $validation->bind($entity, []);
-        $result = $validator->validate($validation, 'price');
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $validator->validate($validation, 'price')
+        );
     }
 }

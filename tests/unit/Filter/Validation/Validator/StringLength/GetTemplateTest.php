@@ -38,7 +38,7 @@ final class GetTemplateTest extends AbstractUnitTestCase
 
         $actual = $validator->setTemplate($expected);
 
-        $this->assertInstanceOf(StringLength::class, $actual, 'Instance of StringLenght');
+        $this->assertInstanceOf(StringLength::class, $actual);
 
         $this->assertSame(
             $expected,

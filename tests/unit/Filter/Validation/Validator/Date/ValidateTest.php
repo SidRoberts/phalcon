@@ -24,6 +24,9 @@ use stdClass;
 
 final class ValidateTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: mixed, 1: string}>
+     */
     public static function getInvalidDates(): array
     {
         return [
@@ -38,6 +41,9 @@ final class ValidateTest extends AbstractUnitTestCase
         ];
     }
 
+    /**
+     * @return array<array{0: string, 1: string}>
+     */
     public static function getValidDates(): array
     {
         return [
@@ -246,8 +252,10 @@ final class ValidateTest extends AbstractUnitTestCase
         $entity->start_date = '';
 
         $validation->bind($entity, []);
-        $result = $validator->validate($validation, 'start_date');
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $validator->validate($validation, 'start_date')
+        );
     }
 
     /**
@@ -291,9 +299,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $messages->count()
+        );
 
         $expected = $validationMessages['start_date'];
         $actual   = $messages->offsetGet(0)->getMessage();
@@ -306,9 +315,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 2;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            2,
+            $messages->count()
+        );
 
         $expected = $validationMessages['start_date'];
         $actual   = $messages->offsetGet(0)->getMessage();
@@ -334,9 +344,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 0;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $messages->count()
+        );
 
         $messages = $validation->validate(
             [
@@ -344,8 +355,9 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $messages->count()
+        );
     }
 }

@@ -18,7 +18,6 @@ use Phalcon\Filter\Validation\Validator\File;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Filter\Validation\Validator\File\Fake\FakeMimeType;
 use PHPUnit\Framework\Attributes\BackupGlobals;
-use PHPUnit\Framework\Attributes\Test;
 
 #[BackupGlobals(true)]
 final class MimeTest extends AbstractUnitTestCase
@@ -173,6 +172,7 @@ final class MimeTest extends AbstractUnitTestCase
 
         $this->expectException(Validation\Exception::class);
         $this->expectExceptionMessage('Option \'allowedTypes\' must be an array');
+
         $validation->validate($_FILES);
     }
 
@@ -191,8 +191,6 @@ final class MimeTest extends AbstractUnitTestCase
 
         $this->assertCount(1, $validators);
 
-        $expected  = File\MimeType::class;
-        $actual    = $validators[0];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(File\MimeType::class, $validators[0]);
     }
 }

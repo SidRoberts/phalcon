@@ -28,8 +28,9 @@ final class GetOptionTest extends AbstractUnitTestCase
 
         $validator->setOption('option', 'value');
 
-        $expected = 'value';
-        $actual   = $validator->getOption('option');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'value',
+            $validator->getOption('option')
+        );
     }
 }

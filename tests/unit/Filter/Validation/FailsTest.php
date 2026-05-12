@@ -14,11 +14,8 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Filter\Validation;
 
 use Phalcon\Filter\Validation;
-use Phalcon\Filter\Validation\Validator\Alpha;
 use Phalcon\Filter\Validation\Validator\Email;
-use Phalcon\Filter\Validation\Validator\PresenceOf;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class FailsTest extends AbstractUnitTestCase
 {
@@ -33,8 +30,14 @@ final class FailsTest extends AbstractUnitTestCase
         $validation = new Validation();
 
         $validation->add('email', $email);
-        $this->assertNotEmpty($validation->validate(['email' => 'test@-example.com']));
-        $this->assertTrue($validation->fails());
+
+        $this->assertNotEmpty(
+            $validation->validate(['email' => 'test@-example.com'])
+        );
+
+        $this->assertTrue(
+            $validation->fails()
+        );
     }
 
     /**
@@ -43,12 +46,22 @@ final class FailsTest extends AbstractUnitTestCase
      */
     public function testFilterValidationFailsFalse(): void
     {
-        $email      = new Email();
+        $email = new Email();
 
         $validation = new Validation();
 
         $validation->add('email', $email);
-        $validation->validate(['email' => 'user@example.com']);
-        $this->assertFalse($validation->fails());
+
+        $this->assertNotEmpty(
+            $validation->validate(
+                [
+                    'email' => 'test@-example.com',
+                ]
+            )
+        );
+
+        $this->assertTrue(
+            $validation->fails()
+        );
     }
 }

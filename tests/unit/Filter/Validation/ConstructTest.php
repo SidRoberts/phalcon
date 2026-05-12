@@ -17,7 +17,6 @@ use Phalcon\Filter\Validation;
 use Phalcon\Filter\Validation\Validator\Date;
 use Phalcon\Filter\Validation\Validator\Email;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class ConstructTest extends AbstractUnitTestCase
 {
@@ -38,8 +37,9 @@ final class ConstructTest extends AbstractUnitTestCase
 
         $validation = new Validation($validators);
 
-        $expected = $validators;
-        $actual   = $validation->getValidators();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $validators,
+            $validation->getValidators()
+        );
     }
 }

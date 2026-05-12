@@ -21,7 +21,6 @@ use Phalcon\Filter\Validation\Validator\PresenceOf;
 use Phalcon\Messages\Message;
 use Phalcon\Messages\Messages;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 use stdClass;
 
 use function date;
@@ -50,7 +49,9 @@ final class ValidateTest extends AbstractUnitTestCase
         $validation = new Validation();
         $validator  = new Alpha();
         $entity     = new stdClass();
+
         $validation->add('name', $validator);
+
         $messages = $validation->validate($data, $entity);
 
         $this->assertCount(0, $messages);
@@ -88,7 +89,8 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $actual = $validation->getMessages();
-        $this->assertEquals($expected, $actual);
+        $messages = $validation->getMessages();
+
+        $this->assertEquals($expected, $messages);
     }
 }

@@ -23,7 +23,7 @@ use function is_array;
 final class SanitizeTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string, 1: string, 2: mixed, 3: mixed}>
      */
     public static function getExamples(): array
     {
@@ -925,9 +925,12 @@ final class SanitizeTest extends AbstractUnitTestCase
         mixed $expected
     ): void {
         $factory = new FilterFactory();
-        $filter  = $factory->newInstance();
+
+        $filter = $factory->newInstance();
+
         if (true === empty($method)) {
             $sanitizer = $filter->get($class);
+
             if (is_array($source)) {
                 $actual = call_user_func_array([$sanitizer, '__invoke'], $source);
             } else {

@@ -34,9 +34,10 @@ final class GetValueByEntityTest extends AbstractUnitTestCase
         $validation = new Validation();
         $value      = $validation->getValueByEntity($entity, 'name');
 
-        $expected = $entity->getName();
-        $actual   = $value;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $entity->getName(),
+            $value
+        );
     }
 
     /**
@@ -50,9 +51,7 @@ final class GetValueByEntityTest extends AbstractUnitTestCase
         $validation = new Validation();
         $value      = $validation->getValueByEntity($entity, 'name');
 
-        $expected = $entity->name;
-        $actual   = $value;
-        $this->assertSame($expected, $actual);
+        $this->assertSame($entity->name, $value);
     }
 
     /**
@@ -66,8 +65,9 @@ final class GetValueByEntityTest extends AbstractUnitTestCase
         $validation = new Validation();
         $value      = $validation->getValueByEntity($entity, 'name');
 
-        $expected = $entity->readAttribute('name');
-        $actual   = $value;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $entity->readAttribute('name'),
+            $value
+        );
     }
 }

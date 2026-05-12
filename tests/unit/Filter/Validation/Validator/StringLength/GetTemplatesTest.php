@@ -26,9 +26,11 @@ final class GetTemplatesTest extends AbstractUnitTestCase
     {
         $validator = new StringLength();
 
-        $expected = [];
-        $actual   = $validator->getTemplates();
-        $this->assertSame($expected, $actual, 'Default templates is empty array');
+        $this->assertSame(
+            [],
+            $validator->getTemplates(),
+            'Default templates is empty array'
+        );
 
         $templates = [
             'field1' => 'Template for field1',
@@ -36,8 +38,10 @@ final class GetTemplatesTest extends AbstractUnitTestCase
         ];
         $validator->setTemplates($templates);
 
-        $expected = $templates;
-        $actual   = $validator->getTemplates();
-        $this->assertSame($expected, $actual, 'Returns templates after setTemplates()');
+        $this->assertSame(
+            $templates,
+            $validator->getTemplates(),
+            'Returns templates after setTemplates()'
+        );
     }
 }

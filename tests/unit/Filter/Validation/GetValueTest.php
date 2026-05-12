@@ -54,9 +54,10 @@ final class GetValueTest extends AbstractUnitTestCase
             ->add('name', $alpha)
             ->add('email', $email);
 
-        $expected = 'Leonidas';
-        $value = $validation->getValue('name');
-        $this->assertSame($expected, $value);
+        $this->assertSame(
+            'Leonidas',
+            $validation->getValue('name')
+        );
     }
 
     /**
@@ -82,9 +83,10 @@ final class GetValueTest extends AbstractUnitTestCase
             ->add('name', $alpha)
             ->add('email', $email);
 
-        $expected = 'Leonidas';
-        $value = $validation->getValue('name');
-        $this->assertSame($expected, $value);
+        $this->assertSame(
+            'Leonidas',
+            $validation->getValue('name')
+        );
     }
 
     /**
@@ -110,8 +112,9 @@ final class GetValueTest extends AbstractUnitTestCase
             ->add('name', $alpha)
             ->add('email', $email);
 
-        $value = $validation->getValue('name');
-        $this->assertNull($value);
+        $this->assertNull(
+            $validation->getValue('name')
+        );
     }
 
     /**
@@ -139,9 +142,10 @@ final class GetValueTest extends AbstractUnitTestCase
             ->bind(new stdClass(), $data)
         ;
 
-        $expected = 'Leonidas';
-        $actual   = $validation->getValue('name');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Leonidas',
+            $validation->getValue('name')
+        );
     }
 
     /**
@@ -162,6 +166,7 @@ final class GetValueTest extends AbstractUnitTestCase
         $this->expectExceptionMessage(
             "Service 'filter' is not registered in the container"
         );
+
         $validation = new Validation();
         $validation->setDI($container);
 
@@ -172,7 +177,6 @@ final class GetValueTest extends AbstractUnitTestCase
             ->add('email', $email)
             ->bind(new stdClass(), $data)
         ;
-
 
         $validation->getValue('name');
     }
@@ -199,13 +203,15 @@ final class GetValueTest extends AbstractUnitTestCase
             ->bind($entity, [])
         ;
 
-        $expected = 'Leonidas';
-        $actual   = $validation->getValue('name');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Leonidas',
+            $validation->getValue('name')
+        );
 
-        $expected = 'Leonidas';
-        $actual   = $entity->readAttribute();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Leonidas',
+            $entity->readAttribute()
+        );
     }
 
     /**
@@ -230,13 +236,15 @@ final class GetValueTest extends AbstractUnitTestCase
             ->bind($entity, [])
         ;
 
-        $expected = 'Leonidas';
-        $actual   = $validation->getValue('name');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Leonidas',
+            $validation->getValue('name')
+        );
 
-        $expected = 'Leonidas';
-        $actual   = $entity->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Leonidas',
+            $entity->getName()
+        );
     }
 
     /**
@@ -261,13 +269,12 @@ final class GetValueTest extends AbstractUnitTestCase
             ->bind($entity, [])
         ;
 
-        $expected = 'Leonidas';
-        $actual   = $validation->getValue('name');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Leonidas',
+            $validation->getValue('name')
+        );
 
-        $expected = 'Leonidas';
-        $actual   = $entity->name;
-        $this->assertSame($expected, $actual);
+        $this->assertSame('Leonidas', $entity->name);
     }
 
     /**

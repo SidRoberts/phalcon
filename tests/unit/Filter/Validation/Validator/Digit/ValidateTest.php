@@ -25,7 +25,7 @@ use const PHP_INT_MAX;
 final class ValidateTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: mixed}>
      */
     public static function getExamplesIntOrStringOfDigits()
     {
@@ -188,12 +188,16 @@ final class ValidateTest extends AbstractUnitTestCase
     {
         $validation = new Validation();
         $validator  = new Digit(['allowEmpty' => true,]);
+
         $validation->add('price', $validator);
+
         $entity        = new stdClass();
         $entity->price = '';
 
         $validation->bind($entity, []);
-        $result = $validator->validate($validation, 'price');
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $validator->validate($validation, 'price')
+        );
     }
 }

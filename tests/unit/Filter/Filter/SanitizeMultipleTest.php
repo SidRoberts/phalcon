@@ -25,7 +25,7 @@ use const E_USER_NOTICE;
 final class SanitizeMultipleTest extends AbstractUnitTestCase
 {
     /**
-     * @return array<array-key, array<string, mixed>>
+     * @return array<array{0: array, 1: array|string, 2: bool, 3: array|int}>
      */
     public static function getFilterSanitizeCustomFiltersExamples(): array
     {
@@ -52,7 +52,7 @@ final class SanitizeMultipleTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array<array-key, array<string, mixed>>
+     * @return array<array{0: mixed, 1: array|string, 2: bool, 3: mixed}>
      */
     public static function getFilterSanitizeExamples(): array
     {
@@ -114,9 +114,10 @@ final class SanitizeMultipleTest extends AbstractUnitTestCase
         $locator = new FilterFactory();
         $filter  = $locator->newInstance();
 
-        $actual = $filter->sanitize($source, $filters, $noRecursive);
-
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $filter->sanitize($source, $filters, $noRecursive)
+        );
     }
 
     #[DataProvider('getFilterSanitizeCustomFiltersExamples')]

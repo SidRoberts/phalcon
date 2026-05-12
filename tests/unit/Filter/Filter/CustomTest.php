@@ -25,8 +25,15 @@ final class CustomTest extends AbstractUnitTestCase
      */
     public function testFilterFilterCustomHas(): void
     {
-        $actual = (new Filter(['ipv4' => IPv4::class]))->has('ipv4');
-        $this->assertTrue($actual);
+        $filter = new Filter(
+            [
+                'ipv4' => IPv4::class,
+            ]
+        );
+
+        $this->assertTrue(
+            $filter->has('ipv4')
+        );
     }
 
     /**
@@ -35,8 +42,14 @@ final class CustomTest extends AbstractUnitTestCase
      */
     public function testFilterFilterCustomSanitizer(): void
     {
+        $filter = new Filter(
+            [
+                'ipv4' => IPv4::class,
+            ]
+        );
+
         /** @var IPv4 $sanitizer */
-        $sanitizer = (new Filter(['ipv4' => IPv4::class]))->get('ipv4');
+        $sanitizer = $filter->get('ipv4');
 
         $this->assertInstanceOf(IPv4::class, $sanitizer);
         $expected = '127.0.0.1';

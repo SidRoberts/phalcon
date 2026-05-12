@@ -18,7 +18,6 @@ use Phalcon\Filter\Validation\Validator\Alpha;
 use Phalcon\Filter\Validation\Validator\Email;
 use Phalcon\Filter\Validation\Validator\PresenceOf;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class RuleTest extends AbstractUnitTestCase
 {
@@ -49,7 +48,10 @@ final class RuleTest extends AbstractUnitTestCase
                 $email,
             ],
         ];
-        $actual = $validation->getValidators();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $validation->getValidators()
+        );
     }
 }

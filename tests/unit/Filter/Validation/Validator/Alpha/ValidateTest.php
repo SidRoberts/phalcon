@@ -24,6 +24,9 @@ use stdClass;
 
 final class ValidateTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: ?string}>
+     */
     public static function alphaProvider(): array
     {
         return [
@@ -35,6 +38,9 @@ final class ValidateTest extends AbstractUnitTestCase
         ];
     }
 
+    /**
+     * @return array<array{0: mixed}>
+     */
     public static function nonAlphaProvider(): array
     {
         return [
@@ -47,6 +53,9 @@ final class ValidateTest extends AbstractUnitTestCase
         ];
     }
 
+    /**
+     * @return array<array{0: string}>
+     */
     public static function nonLatinCharactersProvider(): array
     {
         return [
@@ -106,8 +115,10 @@ final class ValidateTest extends AbstractUnitTestCase
         $entity->name = '';
 
         $validation->bind($entity, []);
-        $result = $validator->validate($validation, 'name');
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $validator->validate($validation, 'name')
+        );
     }
 
     /**

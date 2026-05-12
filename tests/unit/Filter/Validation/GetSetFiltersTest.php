@@ -16,7 +16,6 @@ namespace Phalcon\Tests\Unit\Filter\Validation;
 use Phalcon\Filter\Validation;
 use Phalcon\Filter\Validation\Validator\PresenceOf;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetFiltersTest extends AbstractUnitTestCase
 {
@@ -39,11 +38,15 @@ final class GetSetFiltersTest extends AbstractUnitTestCase
             'name'  => 'trim',
             'email' => 'lower',
         ];
-        $actual   = $validation->getFilters();
-        $this->assertSame($expected, $actual);
 
-        $expected = 'trim';
-        $actual   = $validation->getFilters('name');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $validation->getFilters()
+        );
+
+        $this->assertSame(
+            'trim',
+            $validation->getFilters('name')
+        );
     }
 }

@@ -27,11 +27,13 @@ final class MessageFactoryTest extends AbstractUnitTestCase
      */
     public function testFilterValidationValidatorStringLengthMaxMessageFactory(): void
     {
-        $validator = new Max([
-            'max' => [
-                'last_name' => 10,
-            ],
-        ]);
+        $validator = new Max(
+            [
+                'max' => [
+                    'last_name' => 10,
+                ],
+            ]
+        );
 
         $validation = new Validation();
         $validation->add(

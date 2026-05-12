@@ -26,7 +26,7 @@ final class GetTemplatesTest extends AbstractUnitTestCase
     {
         $validator = new Min();
 
-        $this->assertTrue(is_array($validator->getTemplates()), 'Templates have to be an array');
+        $this->assertIsArray($validator->getTemplates(), 'Templates have to be an array');
         $this->assertCount(0, $validator->getTemplates(), 'templates count 0');
 
         $messageLastName  = "We don't like really long last names";
@@ -49,7 +49,7 @@ final class GetTemplatesTest extends AbstractUnitTestCase
             ]
         );
 
-        $this->assertTrue(is_array($validator->getTemplates()), 'Multi templates have to be an array');
+        $this->assertIsArray($validator->getTemplates(), 'Multi templates have to be an array');
         $this->assertSame(
             $messageLastName,
             $validator->getTemplate('name_last'),

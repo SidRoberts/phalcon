@@ -36,8 +36,10 @@ final class ValidateTest extends AbstractUnitTestCase
         $entity->creditCard = '';
 
         $validation->bind($entity, []);
-        $result = $validator->validate($validation, 'creditCard');
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $validator->validate($validation, 'creditCard')
+        );
     }
 
     /**
@@ -174,21 +176,19 @@ final class ValidateTest extends AbstractUnitTestCase
 
         $validation->add('creditCard', new CreditCard());
 
-        $expected = 0;
-        $actual   = $validation->validate(
+        $actual = $validation->validate(
             [
                 'creditCard' => 4601587377626131,
             ]
         );
-        $this->assertCount($expected, $actual);
+        $this->assertCount(0, $actual);
 
-        $expected = 1;
-        $actual   = $validation->validate(
+        $actual = $validation->validate(
             [
                 'creditCard' => 46015873776261312,
             ]
         );
-        $this->assertCount($expected, $actual);
+        $this->assertCount(1, $actual);
     }
 
     /**

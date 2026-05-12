@@ -23,7 +23,7 @@ use stdClass;
 final class ValidateTest extends AbstractUnitTestCase
 {
     /**
-     * @return array
+     * @return array<array{amount: mixed, expected: int}>
      */
     public static function getExamples(): array
     {
@@ -60,7 +60,7 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: mixed, 1: bool}>
      */
     public static function getMixedExamples(): array
     {
@@ -128,9 +128,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 0;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $messages->count()
+        );
 
         $messages = $validation->validate(
             [
@@ -139,9 +140,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $messages->count()
+        );
 
         $expected = $validationMessages['amount'];
         $actual   = $messages->offsetGet(0)->getMessage();
@@ -154,9 +156,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 2;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            2,
+            $messages->count()
+        );
 
         $expected = $validationMessages['amount'];
         $actual   = $messages->offsetGet(0)->getMessage();
@@ -178,6 +181,7 @@ final class ValidateTest extends AbstractUnitTestCase
         int $expected
     ): void {
         $validation = new Validation();
+
         $validation->add('amount', new Numericality());
 
         $messages = $validation->validate(
@@ -186,8 +190,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $actual = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $messages->count()
+        );
     }
 
     /**
@@ -206,8 +212,10 @@ final class ValidateTest extends AbstractUnitTestCase
         $validation->setEntity($entity);
         $validator = new Numericality();
 
-        $actual = $validator->validate($validation, 'price');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $validator->validate($validation, 'price')
+        );
     }
 
     /**
@@ -223,7 +231,9 @@ final class ValidateTest extends AbstractUnitTestCase
         $entity->price = '';
 
         $validation->bind($entity, []);
-        $result = $validator->validate($validation, 'price');
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $validator->validate($validation, 'price')
+        );
     }
 }

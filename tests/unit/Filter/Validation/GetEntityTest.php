@@ -34,9 +34,10 @@ final class GetEntityTest extends AbstractUnitTestCase
 
         $validation->setEntity($user);
 
-        $expected = $user;
-        $actual   = $validation->getEntity();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $user,
+            $validation->getEntity()
+        );
     }
 
     /**
@@ -51,6 +52,7 @@ final class GetEntityTest extends AbstractUnitTestCase
         $user->name = '';
 
         $validation = new Validation();
+
         $validation->setFilters('name', ['trim', 'striptags']);
         $validation->validate(['name' => ' John <script>Chris</script>'], $user);
 
@@ -85,33 +87,40 @@ final class GetEntityTest extends AbstractUnitTestCase
         ];
 
         $validation = new Validation();
+
         $validation
             ->bind($user, $postData, ['name', 'password'])
             ->validate();
 
-        $expected = 'John Doe';
-        $actual   = $validation->getEntity()->name;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'John Doe',
+            $validation->getEntity()->name
+        );
 
-        $expected = 'John Doe';
-        $actual   = $validation->getValue('name');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'John Doe',
+            $validation->getValue('name')
+        );
 
-        $expected = '';
-        $actual   = $validation->getEntity()->email;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $validation->getEntity()->email
+        );
 
-        $expected = '';
-        $actual   = $validation->getValue('email');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $validation->getValue('email')
+        );
 
-        $expected = 'new_password';
-        $actual   = $validation->getEntity()->password;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'new_password',
+            $validation->getEntity()->password
+        );
 
-        $expected = 'new_password';
-        $actual   = $validation->getValue('password');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'new_password',
+            $validation->getValue('password')
+        );
     }
 
     /**
@@ -134,30 +143,37 @@ final class GetEntityTest extends AbstractUnitTestCase
         ];
 
         $validation = new Validation();
+
         $validation->validate($postData, $user, ['name', 'password']);
 
-        $expected = 'John Doe';
-        $actual   = $validation->getEntity()->name;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'John Doe',
+            $validation->getEntity()->name
+        );
 
-        $expected = 'John Doe';
-        $actual   = $validation->getValue('name');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'John Doe',
+            $validation->getValue('name')
+        );
 
-        $expected = '';
-        $actual   = $validation->getEntity()->email;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $validation->getEntity()->email
+        );
 
-        $expected = '';
-        $actual   = $validation->getValue('email');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $validation->getValue('email')
+        );
 
-        $expected = 'new_password';
-        $actual   = $validation->getEntity()->password;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'new_password',
+            $validation->getEntity()->password
+        );
 
-        $expected = 'new_password';
-        $actual   = $validation->getValue('password');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'new_password',
+            $validation->getValue('password')
+        );
     }
 }

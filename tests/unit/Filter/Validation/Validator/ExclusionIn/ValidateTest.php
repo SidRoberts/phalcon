@@ -158,32 +158,40 @@ final class ValidateTest extends AbstractUnitTestCase
             )
         );
         $messages = $validation->validate(['type' => 'hydraulic', 'anotherType' => 'cyborg']);
-        $expected = 0;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            0,
+            $messages->count()
+        );
 
         $messages = $validation->validate(['type' => 'cyborg', 'anotherType' => 'cyborg']);
-        $expected = 1;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            1,
+            $messages->count()
+        );
 
         $expected = $validationMessages['type'];
         $actual   = $messages->offsetGet(0)->getMessage();
         $this->assertSame($expected, $actual);
 
         $messages = $validation->validate(['type' => 'hydraulic', 'anotherType' => 'mechanic']);
-        $expected = 1;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            1,
+            $messages->count()
+        );
 
         $expected = $validationMessages['anotherType'];
         $actual   = $messages->offsetGet(0)->getMessage();
         $this->assertSame($expected, $actual);
 
         $messages = $validation->validate(['type' => 'cyborg', 'anotherType' => 'mechanic']);
-        $expected = 2;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            2,
+            $messages->count()
+        );
 
         $expected = $validationMessages['type'];
         $actual   = $messages->offsetGet(0)->getMessage();
@@ -220,23 +228,29 @@ final class ValidateTest extends AbstractUnitTestCase
             )
         );
         $messages = $validation->validate(['type' => 'hydraulic', 'anotherType' => 'hydraulic']);
-        $expected = 0;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            0,
+            $messages->count()
+        );
 
         $messages = $validation->validate(['type' => 'cyborg', 'anotherType' => 'hydraulic']);
-        $expected = 1;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            1,
+            $messages->count()
+        );
 
         $expected = $validationMessages['type'];
         $actual   = $messages->offsetGet(0)->getMessage();
         $this->assertSame($expected, $actual);
 
         $messages = $validation->validate(['type' => 'cyborg', 'anotherType' => 'mechanic']);
-        $expected = 2;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            2,
+            $messages->count()
+        );
 
         $expected = $validationMessages['type'];
         $actual   = $messages->offsetGet(0)->getMessage();
@@ -280,17 +294,19 @@ final class ValidateTest extends AbstractUnitTestCase
                 ),
             ]
         );
-        $actual   = $messages;
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals($expected, $messages);
 
         $messages = $validation->validate(['status' => 'A']);
-        $actual   = $messages;
-        $this->assertEquals($expected, $actual);
+
+        $this->assertEquals($expected, $messages);
 
         $messages = $validation->validate(['status' => 'X']);
-        $expected = 0;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            0,
+            $messages->count()
+        );
     }
 
     /**
@@ -302,11 +318,14 @@ final class ValidateTest extends AbstractUnitTestCase
         $validation = new Validation();
         $validator  = new ExclusionIn(['allowEmpty' => true,]);
         $validation->add('price', $validator);
+
         $entity        = new stdClass();
         $entity->price = '';
 
         $validation->bind($entity, []);
-        $result = $validator->validate($validation, 'price');
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $validator->validate($validation, 'price')
+        );
     }
 }

@@ -17,7 +17,6 @@ use Phalcon\Filter\Validation;
 use Phalcon\Filter\Validation\Validator\Date;
 use Phalcon\Filter\Validation\Validator\Email;
 use Phalcon\Tests\AbstractUnitTestCase;
-use PHPUnit\Framework\Attributes\Test;
 
 final class GetSetValidatorsTest extends AbstractUnitTestCase
 {
@@ -40,8 +39,9 @@ final class GetSetValidatorsTest extends AbstractUnitTestCase
 
         $validation->setValidators($validators);
 
-        $expected = $validators;
-        $actual   = $validation->getValidators();
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $validators,
+            $validation->getValidators()
+        );
     }
 }

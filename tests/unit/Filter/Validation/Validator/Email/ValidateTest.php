@@ -30,8 +30,12 @@ final class ValidateTest extends AbstractUnitTestCase
     public function testFilterValidationValidatorEmailValidEmail()
     {
         $validation = new Validation();
+
         $validation->add('email', new Validation\Validator\Email());
-        $this->assertEmpty($validation->validate(['email' => 'test@example.com']));
+
+        $this->assertEmpty(
+            $validation->validate(['email' => 'test@example.com'])
+        );
     }
 
     /**
@@ -41,8 +45,12 @@ final class ValidateTest extends AbstractUnitTestCase
     public function testFilterValidationValidatorEmailInvalidEmail()
     {
         $validation = new Validation();
+
         $validation->add('email', new Validation\Validator\Email());
-        $this->assertNotEmpty($validation->validate(['email' => 'test@-example.com']));
+
+        $this->assertNotEmpty(
+            $validation->validate(['email' => 'test@-example.com'])
+        );
     }
 
     /**
@@ -52,8 +60,12 @@ final class ValidateTest extends AbstractUnitTestCase
     public function testFilterValidationValidatorEmailWithoutUTF8Success()
     {
         $validation = new Validation();
+
         $validation->add('email', new Validation\Validator\Email());
-        $this->assertEmpty($validation->validate(['email' => 'test@example.com']));
+
+        $this->assertEmpty(
+            $validation->validate(['email' => 'test@example.com'])
+        );
     }
 
     /**
@@ -63,8 +75,12 @@ final class ValidateTest extends AbstractUnitTestCase
     public function testFilterValidationValidatorEmailAllowEmptyFails()
     {
         $validation = new Validation();
+
         $validation->add('email', new Validation\Validator\Email());
-        $this->assertNotEmpty($validation->validate(['email' => '']));
+
+        $this->assertNotEmpty(
+            $validation->validate(['email' => ''])
+        );
     }
 
     /**
@@ -74,8 +90,12 @@ final class ValidateTest extends AbstractUnitTestCase
     public function testFilterValidationValidatorEmailAllowEmptySuccess()
     {
         $validation = new Validation();
+
         $validation->add('email', new Validation\Validator\Email(['allowEmpty' => true]));
-        $this->assertEmpty($validation->validate(['email' => '']));
+
+        $this->assertEmpty(
+            $validation->validate(['email' => ''])
+        );
     }
 
     /**
@@ -85,8 +105,12 @@ final class ValidateTest extends AbstractUnitTestCase
     public function testFilterValidationValidatorEmailWithUTF8Fail()
     {
         $validation = new Validation();
+
         $validation->add('email', new Validation\Validator\Email());
-        $this->assertNotEmpty($validation->validate(['email' => 'täst@example.com']));
+
+        $this->assertNotEmpty(
+            $validation->validate(['email' => 'täst@example.com'])
+        );
     }
 
     /**
@@ -96,8 +120,12 @@ final class ValidateTest extends AbstractUnitTestCase
     public function testFilterValidationValidatorEmailWithUTF8Success()
     {
         $validation = new Validation();
+
         $validation->add('email', new Validation\Validator\Email(['allowUTF8' => true]));
-        $this->assertEmpty($validation->validate(['email' => 'täst@example.com']));
+
+        $this->assertEmpty(
+            $validation->validate(['email' => 'täst@example.com'])
+        );
     }
 
     public function testFilterValidationValidatorEmailCustomMessage(): void
@@ -113,7 +141,6 @@ final class ValidateTest extends AbstractUnitTestCase
             )
         );
 
-        $actual   = $validation->validate([]);
         $expected = new Messages(
             [
                 new Message(
@@ -124,15 +151,22 @@ final class ValidateTest extends AbstractUnitTestCase
                 ),
             ]
         );
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $validation->validate([])
+        );
 
-        $actual = $validation->validate(['email' => 'x=1']);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $validation->validate(['email' => 'x=1'])
+        );
 
         $messages = $validation->validate(['email' => 'x.x@hotmail.com']);
-        $expected = 0;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            0,
+            $messages->count()
+        );
     }
 
     /**
@@ -275,12 +309,15 @@ final class ValidateTest extends AbstractUnitTestCase
         $validation = new Validation();
         $validator  = new Email(['allowEmpty' => true,]);
         $validation->add('email_one', $validator);
+
         $entity            = new stdClass();
         $entity->email_one = '';
 
         $validation->bind($entity, []);
-        $result = $validator->validate($validation, 'email_one');
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $validator->validate($validation, 'email_one')
+        );
     }
 
     /**
@@ -312,9 +349,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 0;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $messages->count()
+        );
 
 
         $messages = $validation->validate(
@@ -324,13 +362,15 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $messages->count()
+        );
 
-        $expected = $validationMessages['email_one'];
-        $actual   = $messages->offsetGet(0)->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $validationMessages['email_one'],
+            $messages->offsetGet(0)->getMessage()
+        );
 
         $messages = $validation->validate(
             [
@@ -339,17 +379,20 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 2;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            2,
+            $messages->count()
+        );
 
-        $expected = $validationMessages['email_one'];
-        $actual   = $messages->offsetGet(0)->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $validationMessages['email_one'],
+            $messages->offsetGet(0)->getMessage()
+        );
 
-        $expected = $validationMessages['email_two'];
-        $actual   = $messages->offsetGet(1)->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $validationMessages['email_two'],
+            $messages->offsetGet(1)->getMessage()
+        );
     }
 
     /**
@@ -359,6 +402,7 @@ final class ValidateTest extends AbstractUnitTestCase
     public function testFilterValidationValidatorEmailValidateSingleField(): void
     {
         $validation = new Validation();
+
         $validation->add('email_one', new Email());
 
         $messages = $validation->validate(
@@ -367,9 +411,10 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 0;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $messages->count()
+        );
 
         $messages = $validation->validate(
             [
@@ -377,8 +422,9 @@ final class ValidateTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 1;
-        $actual   = $messages->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $messages->count()
+        );
     }
 }

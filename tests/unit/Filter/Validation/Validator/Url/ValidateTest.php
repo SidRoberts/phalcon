@@ -305,7 +305,9 @@ final class ValidateTest extends AbstractUnitTestCase
         $entity->url = '';
 
         $validation->bind($entity, []);
-        $result = $validator->validate($validation, 'url');
-        $this->assertTrue($result);
+
+        $this->assertTrue(
+            $validator->validate($validation, 'url')
+        );
     }
 }

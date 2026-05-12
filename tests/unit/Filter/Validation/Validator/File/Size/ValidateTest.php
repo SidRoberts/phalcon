@@ -14,22 +14,19 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Filter\Validation\Validator\File\Size;
 
 use Phalcon\Filter\Validation;
-use Phalcon\Filter\Validation\Validator\File\Size\Equal;
-use Phalcon\Filter\Validation\Validator\File\Size\Max;
-use Phalcon\Filter\Validation\Validator\File\Size\Min;
 use Phalcon\Tests\Unit\Filter\Validation\Validator\File\Size\Fake\FakeEqual;
 use Phalcon\Tests\Unit\Filter\Validation\Validator\File\Size\Fake\FakeMax;
 use Phalcon\Tests\Unit\Filter\Validation\Validator\File\Size\Fake\FakeMin;
+use Phalcon\Filter\Validation\Validator\File\AbstractFile;
 use Phalcon\Tests\AbstractUnitTestCase;
 use PHPUnit\Framework\Attributes\BackupGlobals;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Test;
 
 #[BackupGlobals(true)]
 final class ValidateTest extends AbstractUnitTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AbstractFile>, 1: array}>
      */
     public static function getExamples(): array
     {
@@ -59,7 +56,7 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<AbstractFile>, 1: string, 2: array}>
      */
     public static function getExamplesErrors(): array
     {
@@ -110,6 +107,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AbstractFile> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2023-09-28
      */
@@ -145,6 +144,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<AbstractFile> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2023-09-28
      */
@@ -178,8 +179,9 @@ final class ValidateTest extends AbstractUnitTestCase
 
         $this->assertCount(1, $messages);
 
-        $expected = $message;
-        $actual   = $messages[0]->getMessage();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $message,
+            $messages[0]->getMessage()
+        );
     }
 }

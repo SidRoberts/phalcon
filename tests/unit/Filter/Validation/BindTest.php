@@ -41,12 +41,14 @@ final class BindTest extends AbstractUnitTestCase
 
         $validation->bind($user, $data);
 
-        $expected = $user;
-        $actual   = $validation->getEntity();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $user,
+            $validation->getEntity()
+        );
 
-        $expected = $data;
-        $actual   = $validation->getData();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $validation->getData()
+        );
     }
 }

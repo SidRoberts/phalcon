@@ -27,11 +27,13 @@ final class MessageFactoryTest extends AbstractUnitTestCase
      */
     public function testFilterValidationValidatorStringLengthMinMessageFactory(): void
     {
-        $validator = new Min([
-            'min' => [
-                'last_name' => 20,
-            ],
-        ]);
+        $validator = new Min(
+            [
+                'min' => [
+                    'last_name' => 20,
+                ],
+            ]
+        );
 
         $validation = new Validation();
         $validation->add(
