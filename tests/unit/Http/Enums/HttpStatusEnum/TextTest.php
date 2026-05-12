@@ -102,6 +102,9 @@ final class TextTest extends AbstractUnitTestCase
         HttpStatusEnum $case,
         string $expected
     ): void {
-        $this->assertSame($expected, $case->text());
+        $this->assertSame(
+            $expected,
+            $case->text()
+        );
     }
 }
