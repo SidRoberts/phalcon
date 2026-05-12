@@ -150,6 +150,7 @@ final class OperationsTest extends AbstractUnitTestCase
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Headers needs to be either an array or an instance');
+
         $headers->processHeaders('invalid-string');
     }
 }

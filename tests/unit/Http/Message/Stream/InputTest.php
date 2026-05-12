@@ -105,7 +105,8 @@ final class InputTest extends AbstractUnitTestCase
     {
         $input = new Input();
 
-        $data = $input->read(8192);
-        $this->assertIsString($data);
+        $this->assertIsString(
+            $input->read(8192)
+        );
     }
 }

@@ -167,7 +167,9 @@ final class ConstructTest extends AbstractUnitTestCase
             ->withHeader('X-Remove', 'value')
             ->withoutHeader('X-Remove');
 
-        $this->assertFalse($request->hasHeader('X-Remove'));
+        $this->assertFalse(
+            $request->hasHeader('X-Remove')
+        );
     }
 
     /**
@@ -182,7 +184,10 @@ final class ConstructTest extends AbstractUnitTestCase
         $body    = $request->getBody();
 
         $this->assertNotNull($body);
-        $this->assertTrue($body->isWritable());
+
+        $this->assertTrue(
+            $body->isWritable()
+        );
     }
 
     /**
@@ -301,6 +306,7 @@ final class ConstructTest extends AbstractUnitTestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid uri passed as a parameter');
+
         new Request('GET', 12345);
     }
 }
