@@ -46,7 +46,6 @@ use function unserialize;
 
 use const SORT_ASC;
 use const SORT_DESC;
-
 use const JSON_HEX_QUOT;
 use const JSON_UNESCAPED_SLASHES;
 
