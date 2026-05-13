@@ -86,9 +86,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    needs:
-      - phpcs
-
     services:
       redis:
         image: redis:8-alpine
@@ -184,9 +181,6 @@ jobs:
       contents: read # to fetch code (actions/checkout)
 
     runs-on: ubuntu-24.04
-
-    needs:
-      - phpcs
 
     strategy:
       fail-fast: true
