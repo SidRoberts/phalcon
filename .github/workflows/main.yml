@@ -431,65 +431,6 @@ jobs:
 #          name: "db-sqlite-${{ matrix.php }}.coverage"
 #          path: "tests/_output/coverage.xml"
 
-  upload-coverage:
-    name: Upload coverage
-
-    permissions:
-      contents: read
-
-    runs-on: ubuntu-latest
-
-    needs:
-      - phpcs
-      - unit-tests
-      - db-mysql-tests
-#      - "db-postgres-tests"
-#      - "db-sqlite-tests"
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-
-      - name: Create directory for coverage files
-        run: mkdir -p cv
-
-      - name: Download coverage files
-        uses: actions/download-artifact@v8
-        with:
-          path: cv
-
-      - name: Display structure of downloaded files
-        run: |
-          mv cv/db-mysql-8.1.coverage/coverage.xml  cv/01.xml
-          mv cv/unit-8.1.coverage/coverage.xml      cv/02.xml
-          mv cv/unit-8.2.coverage/coverage.xml      cv/03.xml
-          mv cv/unit-8.3.coverage/coverage.xml      cv/04.xml
-          mv cv/unit-8.4.coverage/coverage.xml      cv/05.xml
-          mv cv/unit-8.5.coverage/coverage.xml      cv/06.xml
-          ls -la cv/
-
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        with:
-          files: cv/01.xml,cv/02.xml,cv/03.xml,cv/04.xml,cv/05.xml,cv/06.xml
-          fail_ci_if_error: false
-
-      - name: Official SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v7.1.0
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          projectBaseDir: .
-          args: >
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-            -Dsonar.php.coverage.reportPaths=cv/01.xml,cv/02.xml,cv/03.xml,cv/04.xml,cv/05.xml,cv/06.xml
-            -Dsonar.verbose=true
 
 
 #      - name: "Display structure of downloaded files"
