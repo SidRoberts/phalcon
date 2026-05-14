@@ -121,6 +121,9 @@ final class HasDefaultTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testDbColumnHasDefault(Column $column, bool $expected): void
     {
-        $this->assertSame($expected, $column->hasDefault());
+        $this->assertSame(
+            $expected,
+            $column->hasDefault()
+        );
     }
 }
