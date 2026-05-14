@@ -163,11 +163,10 @@ class HttpBase
         $unMethod = "un{$method}";
 
         $this->$method('test', 'lol<');
-        $expected = 'lol&lt;';
-        $actual   = $request->$function('test', $filter);
+        $actual = $request->$function('test', $filter);
         $this->$unMethod('test');
 
-        $I->assertSame($expected, $actual);
+        $I->assertSame('lol&lt;', $actual);
     }
 
     /**
