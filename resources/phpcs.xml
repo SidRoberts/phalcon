@@ -12,6 +12,7 @@
 
     <!-- Exclude specific PSR2 rule regarding underscore prefixes -->
     <rule ref="PSR12">
+        <exclude name="Generic.Files.LineLength.TooLong"/>
         <exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
     </rule>
 
