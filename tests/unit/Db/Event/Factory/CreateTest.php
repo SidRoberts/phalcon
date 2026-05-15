@@ -35,9 +35,9 @@ final class CreateTest extends AbstractUnitTestCase
         $factory = new Factory();
         $model   = $this->createMock(Model::class);
 
-        $result = $factory->create('unknownEvent', $model);
-
-        $this->assertNull($result);
+        $this->assertNull(
+            $factory->create('unknownEvent', $model)
+        );
     }
 
     /**
@@ -93,6 +93,7 @@ final class CreateTest extends AbstractUnitTestCase
     public function testDbEventFactoryHasNoConstructorDependencies(): void
     {
         $factory = new Factory();
+
         $this->assertInstanceOf(Factory::class, $factory);
     }
 }
