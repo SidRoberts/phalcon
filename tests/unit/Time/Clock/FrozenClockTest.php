@@ -46,6 +46,7 @@ final class FrozenClockTest extends AbstractUnitTestCase
         $this->expectExceptionMessage('Invalid modifier: "invalid"');
 
         $clock = FrozenClock::fromUTC();
+
         $clock->adjust('invalid');
     }
 
@@ -80,6 +81,7 @@ final class FrozenClockTest extends AbstractUnitTestCase
         $clock  = new FrozenClock($oldNow);
 
         $newNow = new DateTimeImmutable();
+
         $clock->set($newNow);
 
         $this->assertNotSame($oldNow, $clock->now());
