@@ -97,9 +97,7 @@ class Asset implements AssetInterface
         /**
          * A base path for assets can be set in the assets manager
          */
-        $completePath = empty($this->sourcePath)
-            ? $this->path
-            : $this->sourcePath;
+        $completePath = $this->sourcePath ?: $this->path;
         $completePath = $basePath . $completePath;
 
         /**
