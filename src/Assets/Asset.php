@@ -175,9 +175,7 @@ class Asset implements AssetInterface
      */
     public function getRealTargetPath(string | null $basePath = null): string
     {
-        $target = empty($this->targetPath)
-            ? $this->path
-            : $this->targetPath;
+        $target = $this->targetPath ?: $this->path;
 
         if (true === $this->isLocal) {
             /**
