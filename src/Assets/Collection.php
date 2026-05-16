@@ -697,6 +697,6 @@ class Collection implements Countable, IteratorAggregate
      */
     private function processAttributes(array $attributes): array
     {
-        return (!empty($attributes)) ? $attributes : $this->attributes;
+        return $attributes ?: $this->attributes;
     }
 }
