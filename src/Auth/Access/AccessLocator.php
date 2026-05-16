@@ -19,6 +19,7 @@ namespace Phalcon\Auth\Access;
 use Phalcon\Auth\Exception;
 use Phalcon\Contracts\Auth\Access\Access;
 use Phalcon\Support\AbstractLocator;
+use Throwable;
 
 /**
  * Service locator for Phalcon\Auth access gates. Utilizes the container to
@@ -31,11 +32,17 @@ use Phalcon\Support\AbstractLocator;
  */
 class AccessLocator extends AbstractLocator
 {
+    /**
+     * @return class-string<Throwable>
+     */
     protected function getExceptionClass(): string
     {
         return Exception::class;
     }
 
+    /**
+     * @return class-string
+     */
     protected function getInterfaceClass(): string
     {
         return Access::class;

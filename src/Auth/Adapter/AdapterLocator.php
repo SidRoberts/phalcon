@@ -19,6 +19,7 @@ namespace Phalcon\Auth\Adapter;
 use Phalcon\Auth\Exception;
 use Phalcon\Contracts\Auth\Adapter\Adapter;
 use Phalcon\Support\AbstractLocator;
+use Throwable;
 
 /**
  * Service locator for Phalcon\Auth adapters. Utilizes the container to
@@ -31,11 +32,17 @@ use Phalcon\Support\AbstractLocator;
  */
 class AdapterLocator extends AbstractLocator
 {
+    /**
+     * @return class-string<Throwable>
+     */
     protected function getExceptionClass(): string
     {
         return Exception::class;
     }
 
+    /**
+     * @return class-string
+     */
     protected function getInterfaceClass(): string
     {
         return Adapter::class;

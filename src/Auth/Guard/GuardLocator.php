@@ -19,6 +19,7 @@ namespace Phalcon\Auth\Guard;
 use Phalcon\Auth\Exception;
 use Phalcon\Contracts\Auth\Guard\Guard;
 use Phalcon\Support\AbstractLocator;
+use Throwable;
 
 /**
  * Service locator for Phalcon\Auth guards. Utilizes the container to obtain
@@ -29,11 +30,17 @@ use Phalcon\Support\AbstractLocator;
  */
 class GuardLocator extends AbstractLocator
 {
+    /**
+     * @return class-string<Throwable>
+     */
     protected function getExceptionClass(): string
     {
         return Exception::class;
     }
 
+    /**
+     * @return class-string
+     */
     protected function getInterfaceClass(): string
     {
         return Guard::class;
