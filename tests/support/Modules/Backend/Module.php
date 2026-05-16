@@ -15,9 +15,9 @@ use function supportDir;
  * Backend Module
  *
  * @copyright (c) 2011-2017 Phalcon Team
- * @link          https://www.phalcon.io
- * @author        Andres Gutierrez <andres@phalcon.io>
- * @author        Nikolaos Dimopoulos <nikos@phalcon.io>
+ * @link      https://www.phalcon.io
+ * @author    Andres Gutierrez <andres@phalcon.io>
+ * @author    Nikolaos Dimopoulos <nikos@phalcon.io>
  *
  * The contents of this file are subject to the New BSD License that is
  * bundled with this package in the file LICENSE.txt
@@ -47,16 +47,15 @@ class Module implements ModuleDefinitionInterface
             }
         );
 
-        /**
-         * @var Loader $loader
-         */
         $loader = new Loader();
+
         $loader->setNamespaces(
             [
                 'Phalcon\Tests\Support\Modules\Backend\Tasks' =>
                     supportDir('assets/modules/backend/tasks/')
             ]
         );
+
         $loader->register();
 
         $container->set('loader', $loader);
