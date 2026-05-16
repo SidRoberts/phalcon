@@ -61,9 +61,9 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
-     * @issue   https://github.com/phalcon/cphalcon/issues/65
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2014-10-04
+     * @issue  https://github.com/phalcon/cphalcon/issues/65
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2014-10-04
      */
     public function testAclAdapterMemoryNegationOfInheritedRoles(): void
     {
@@ -90,8 +90,8 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  cq-z <64899484@qq.com>
-     * @since   2018-10-10
+     * @author cq-z <64899484@qq.com>
+     * @since  2018-10-10
      */
     public function testAclAdapterMemoryNegationOfMultilayerInheritedRoles(): void
     {
@@ -127,8 +127,8 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  cq-z <64899484@qq.com>
-     * @since   2018-10-10
+     * @author cq-z <64899484@qq.com>
+     * @since  2018-10-10
      */
     public function testAclAdapterMemoryNegationOfMultipleInheritedRoles(): void
     {
@@ -207,9 +207,9 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
-     * @issue   https://github.com/phalcon/cphalcon/issues/12004
-     * @author  Wojciech Slawski <jurigag@gmail.com>
-     * @since   2016-07-22
+     * @issue  https://github.com/phalcon/cphalcon/issues/12004
+     * @author Wojciech Slawski <jurigag@gmail.com>
+     * @since  2016-07-22
      */
     public function testAclAdapterMemoryAllowFunctionWithInheritedRoles(): void
     {
@@ -246,9 +246,9 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
-     * @issue   https://github.com/phalcon/cphalcon/issues/2648
-     * @author  Wojciech Slawski <jurigag@gmail.com>
-     * @since   2016-10-01
+     * @issue  https://github.com/phalcon/cphalcon/issues/2648
+     * @author Wojciech Slawski <jurigag@gmail.com>
+     * @since  2016-10-01
      */
     public function testAclAdapterMemoryWildcardLastRole(): void
     {
@@ -279,9 +279,9 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
-     * @issue   https://github.com/phalcon/cphalcon/issues/2648
-     * @author  Wojciech Slawski <jurigag@gmail.com>
-     * @since   2016-10-01
+     * @issue  https://github.com/phalcon/cphalcon/issues/2648
+     * @author Wojciech Slawski <jurigag@gmail.com>
+     * @since  2016-10-01
      */
     public function testAclAdapterMemoryWildcardSecondTime(): void
     {

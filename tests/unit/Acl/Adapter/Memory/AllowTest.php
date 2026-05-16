@@ -123,9 +123,9 @@ final class AllowTest extends AbstractUnitTestCase
     }
 
     /**
-     * @issue   https://github.com/phalcon/cphalcon/issues/11235
-     * @author  Wojciech Slawski <jurigag@gmail.com>
-     * @since   2015-12-16
+     * @issue  https://github.com/phalcon/cphalcon/issues/11235
+     * @author Wojciech Slawski <jurigag@gmail.com>
+     * @since  2015-12-16
      */
     public function testAclAdapterMemoryAllowFunction(): void
     {
@@ -172,9 +172,9 @@ final class AllowTest extends AbstractUnitTestCase
     }
 
     /**
-     * @issue   https://github.com/phalcon/cphalcon/issues/11235
-     * @author  Wojciech Slawski <jurigag@gmail.com>
-     * @since   2016-06-05
+     * @issue  https://github.com/phalcon/cphalcon/issues/11235
+     * @author Wojciech Slawski <jurigag@gmail.com>
+     * @since  2016-06-05
      */
     public function testAclAdapterMemoryAllowFunctionException(): void
     {

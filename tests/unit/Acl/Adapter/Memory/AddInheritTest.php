@@ -63,8 +63,8 @@ final class AddInheritTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2021-09-27
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-09-27
      */
     public function testAclAdapterMemoryAddInheritInfiniteLoopException(): void
     {
@@ -124,8 +124,8 @@ final class AddInheritTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2021-09-27
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-09-27
      */
     public function testAclAdapterMemoryAddInheritSameName(): void
     {
@@ -142,8 +142,8 @@ final class AddInheritTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2021-09-27
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-09-27
      */
     public function testAclAdapterMemoryAddInheritUnknownRole(): void
     {

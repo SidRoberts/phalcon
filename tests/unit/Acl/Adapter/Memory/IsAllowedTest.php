@@ -33,8 +33,8 @@ use function set_error_handler;
 final class IsAllowedTest extends AbstractUnitTestCase
 {
     /**
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2021-09-27
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-09-27
      */
     public function tearDown(): void
     {
@@ -42,9 +42,9 @@ final class IsAllowedTest extends AbstractUnitTestCase
     }
 
     /**
-     * @issue   https://github.com/phalcon/cphalcon/issues/12573
-     * @author  Wojciech Slawski <jurigag@gmail.com>
-     * @since   2017-01-25
+     * @issue  https://github.com/phalcon/cphalcon/issues/12573
+     * @author Wojciech Slawski <jurigag@gmail.com>
+     * @since  2017-01-25
      */
     public function testAclAdapterMemoryIsAllowedDefault(): void
     {
@@ -99,8 +99,8 @@ final class IsAllowedTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2022-12-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2022-12-09
      */
     public function testAclAdapterMemoryIsAllowedDocumentationExample(): void
     {
@@ -150,8 +150,8 @@ final class IsAllowedTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2019-06-16
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2019-06-16
      */
     public function testAclAdapterMemoryIsAllowedExceptionComponent(): void
     {
@@ -170,8 +170,8 @@ final class IsAllowedTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2019-06-16
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2019-06-16
      */
     public function testAclAdapterMemoryIsAllowedExceptionRole(): void
     {
@@ -190,8 +190,8 @@ final class IsAllowedTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2021-09-27
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-09-27
      */
     public function testAclAdapterMemoryIsAllowedFireEventFalse(): void
     {
@@ -254,8 +254,8 @@ final class IsAllowedTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2019-06-16
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2019-06-16
      */
     public function testAclAdapterMemoryIsAllowedFunctionNoParameters(): void
     {
@@ -305,8 +305,8 @@ final class IsAllowedTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Phalcon Team <team@phalcon.io>
-     * @since   2019-06-16
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2019-06-16
      */
     public function testAclAdapterMemoryIsAllowedFunctionNotEnoughParameters(): void
     {
@@ -403,8 +403,8 @@ final class IsAllowedTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Wojciech Slawski <jurigag@gmail.com>
-     * @since   2017-02-15
+     * @author Wojciech Slawski <jurigag@gmail.com>
+     * @since  2017-02-15
      */
     public function testAclAdapterMemoryIsAllowedObjects(): void
     {
@@ -433,8 +433,8 @@ final class IsAllowedTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author  Wojciech Slawski <jurigag@gmail.com>
-     * @since   2017-02-15
+     * @author Wojciech Slawski <jurigag@gmail.com>
+     * @since  2017-02-15
      */
     public function testAclAdapterMemoryIsAllowedSameClass(): void
     {

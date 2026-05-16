@@ -21,8 +21,8 @@ use Phalcon\Tests\AbstractUnitTestCase;
 final class GetActiveKeyTest extends AbstractUnitTestCase
 {
     /**
-     * @author  Wojciech Slawski <jurigag@gmail.com>
-     * @since   2017-01-13
+     * @author Wojciech Slawski <jurigag@gmail.com>
+     * @since  2017-01-13
      */
     public function testAclAdapterMemoryGetActiveKey(): void
     {
