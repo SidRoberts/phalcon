@@ -153,9 +153,7 @@ class Asset implements AssetInterface
      */
     public function getRealSourcePath(string | null $basePath = null): string
     {
-        $source = empty($this->sourcePath)
-            ? $this->path
-            : $this->sourcePath;
+        $source = $this->sourcePath ?: $this->path;
 
         if (true === $this->isLocal) {
             /**
