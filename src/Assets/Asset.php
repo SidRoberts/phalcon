@@ -208,9 +208,7 @@ class Asset implements AssetInterface
      */
     public function getRealTargetUri(): string
     {
-        $target = empty($this->targetUri)
-            ? $this->path
-            : $this->targetUri;
+        $target = $this->targetUri ?: $this->path;
 
         $ver = $this->version;
         if (true === $this->isAutoVersion && true === $this->isLocal) {
