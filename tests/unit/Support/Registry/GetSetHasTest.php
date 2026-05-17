@@ -205,8 +205,6 @@ final class GetSetHasTest extends AbstractRegistryTestCase
     }
 
     /**
-     * @dataProvider getExamples
-     *
      * @since        2019-10-12
      */
     #[DataProvider('getExamples')]
