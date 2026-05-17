@@ -88,8 +88,6 @@ final class BasenameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider getNonAsciiExamples
-     *
      * @author       Ian Hu <hu2008yinxiang@163.com>
      * @since        2020-09-09
      */
@@ -108,8 +106,6 @@ final class BasenameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider getAsciiExamples
-     *
      * @author       Ian Hu <hu2008yinxiang@163.com>
      * @since        2020-09-09
      */

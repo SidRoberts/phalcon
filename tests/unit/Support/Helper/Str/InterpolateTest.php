@@ -66,8 +66,6 @@ final class InterpolateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider getExamples
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2021-04-28
      */

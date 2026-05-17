@@ -35,8 +35,6 @@ final class IncrementTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider strProvider
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-09-09
      */

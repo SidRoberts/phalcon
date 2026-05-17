@@ -81,8 +81,6 @@ final class UpperTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider basicProvider
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-09-09
      */
@@ -97,8 +95,6 @@ final class UpperTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider multiBytesEncodingProvider
-     *
      * @author       Stanislav Kiryukhin <korsar.zn@gmail.com>
      * @since        2015-05-06
      */

@@ -60,8 +60,6 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider oneToTenProvider
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-09-09
      */
@@ -82,8 +80,6 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider oneToTenProvider
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-09-09
      */
@@ -118,8 +114,6 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider randomDistinctProvider
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-09-09
      */
@@ -139,8 +133,6 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider oneToTenProvider
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-09-09
      */
@@ -161,8 +153,6 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider oneToTenProvider
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-09-09
      */
@@ -183,8 +173,6 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider oneToTenProvider
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-09-09
      */
