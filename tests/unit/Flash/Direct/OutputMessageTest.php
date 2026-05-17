@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Unit\Flash\Direct;
 use Phalcon\Flash\Direct;
 use Phalcon\Html\Escaper;
 use Phalcon\Tests\AbstractUnitTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 use const PHP_EOL;
 
@@ -43,11 +44,10 @@ final class OutputMessageTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider getExamples
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-09-09
      */
+    #[DataProvider('getExamples')]
     public function testFlashDirectOutputMessage(string $type): void
     {
         $flash = new Direct(new Escaper());
