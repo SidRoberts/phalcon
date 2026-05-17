@@ -21,8 +21,6 @@ use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Traits\DiTrait;
 use PHPUnit\Framework\Attributes\Group;
 
-use function is_array;
-
 final class DbTest extends AbstractDatabaseTestCase
 {
     use DiTrait;
@@ -304,7 +302,7 @@ final class DbTest extends AbstractDatabaseTestCase
         $this->assertTrue($db->viewExists('phalcon_test_view'));
 
         $views = $db->listViews();
-        $this->assertTrue(is_array($views));
+        $this->assertIsArray($views);
         $this->assertContains('phalcon_test_view', $views);
 
         $row = $db->fetchOne('SELECT * FROM phalcon_test_view');
