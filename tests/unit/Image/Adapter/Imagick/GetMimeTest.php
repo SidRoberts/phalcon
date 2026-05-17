@@ -46,8 +46,6 @@ final class GetMimeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @dataProvider getExamples
-     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2016-02-19
      */
