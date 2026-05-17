@@ -18,7 +18,6 @@ use Phalcon\Tests\AbstractDatabaseTestCase;
 final class GetAutoIncSequenceTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return void
      * @throws Exception
      * @since  2025-01-14
      *

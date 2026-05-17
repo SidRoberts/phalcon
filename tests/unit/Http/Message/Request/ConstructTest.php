@@ -23,8 +23,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Request :: __construct() - basic
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -38,8 +36,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Request :: __construct() - with Uri object
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -56,8 +52,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Request :: __construct() - null URI
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -71,8 +65,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Request :: withMethod()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -89,8 +81,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Request :: withUri()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -109,8 +99,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Request :: getRequestTarget()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -123,8 +111,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Request :: withRequestTarget()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -139,8 +125,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Request :: withHeader() / getHeader()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -159,8 +143,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Request :: withAddedHeader()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -175,8 +157,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Request :: withoutHeader()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -193,8 +173,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Request :: getBody() / withBody()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -209,8 +187,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Request :: withProtocolVersion()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -227,8 +203,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Request :: invalid method throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -242,8 +216,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Request :: php://input body
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -256,8 +228,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Request :: getHeaders() returns all headers
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -280,8 +250,6 @@ final class ConstructTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\Request :: getRequestTarget() - empty path
      * returns "/"
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -295,8 +263,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Request :: withRequestTarget() - null returns
      * same instance
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -313,8 +279,6 @@ final class ConstructTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\Request :: withRequestTarget() - whitespace
      * throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -329,8 +293,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Request :: __construct() - invalid URI throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01

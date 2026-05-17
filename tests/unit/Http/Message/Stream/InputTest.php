@@ -21,8 +21,6 @@ final class InputTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream\Input :: isWritable()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -35,8 +33,6 @@ final class InputTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream\Input :: getContents()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -51,8 +47,6 @@ final class InputTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream\Input :: getContents() - after eof
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -72,8 +66,6 @@ final class InputTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream\Input :: __toString()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -87,8 +79,6 @@ final class InputTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream\Input :: __toString() - after eof
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -107,8 +97,6 @@ final class InputTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream\Input :: read()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01

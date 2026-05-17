@@ -22,8 +22,6 @@ final class RequestFactoryTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Factories\RequestFactory :: createRequest()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */

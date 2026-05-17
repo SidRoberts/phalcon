@@ -63,6 +63,8 @@ final class ReadMetadataTest extends AbstractDatabaseTestCase
     /**
      * @dataProvider getExamples
      *
+     * @throws Exception
+     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2023-07-01
      *

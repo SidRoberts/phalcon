@@ -24,8 +24,6 @@ final class UploadedFileFactoryTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\Factories\UploadedFileFactory ::
      * createUploadedFile()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */

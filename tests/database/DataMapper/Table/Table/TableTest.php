@@ -64,8 +64,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testDeleteRow(): void
@@ -119,8 +117,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testDeleteRowNoPrimaryKey(): void
@@ -142,8 +138,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchRowCompositeKey(): void
@@ -172,8 +166,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchRowCompositeKeyMissingThrowsException(): void
@@ -200,8 +192,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchRowCompositeKeyPrimaryValueNotScalarThrowsException(): void
@@ -229,8 +219,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchRow(): void
@@ -285,8 +273,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchRows(): void
@@ -364,8 +350,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchRowsCompositeKey(): void
@@ -418,8 +402,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testInsertRow(): void
@@ -473,8 +455,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testInsertRowWithoutAutoinc(): void
@@ -514,8 +494,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testUpdateRow(): void
@@ -593,8 +571,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testUpdateRowNoPrimaryKey(): void
@@ -617,8 +593,6 @@ final class TableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testUpdateRowUpdatedPrimaryKeyThrowsException(): void

@@ -23,8 +23,6 @@ final class NewInstanceTest extends AbstractUnitTestCase
     /**
      * Unit Tests Phalcon\Domain\PayloadFactory :: newInstance()
      *
-     * @return void
-     *
      * @since  2019-09-09
      *
      * @author Phalcon Team <team@phalcon.io>

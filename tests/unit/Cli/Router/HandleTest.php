@@ -50,9 +50,6 @@ final class HandleTest extends AbstractUnitTestCase
         );
     }
 
-    /**
-     * @return void
-     */
     public function testCliRouterHandleRouterInvalidPathsException(): void
     {
         $this->expectException(Exception::class);

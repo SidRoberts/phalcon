@@ -24,8 +24,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\ServerRequest :: __construct() - basic
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -46,8 +44,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\ServerRequest :: withCookieParams()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -63,8 +59,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\ServerRequest :: withQueryParams()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -78,8 +72,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\ServerRequest :: withParsedBody()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -95,8 +87,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\ServerRequest :: withAttribute() /
      * getAttribute() / withoutAttribute()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -117,8 +107,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\ServerRequest :: withUploadedFiles()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -138,8 +126,6 @@ final class ConstructTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\ServerRequest :: withUploadedFiles() -
      * invalid files throw
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -153,8 +139,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\ServerRequest :: withServerParams()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -171,8 +155,6 @@ final class ConstructTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\ServerRequest :: withParsedBody() - invalid
      * value throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -188,8 +170,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\ServerRequest :: withUploadedFiles() - nested
      * array of uploaded files
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01

@@ -24,8 +24,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\UploadedFile :: __construct() - with stream
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -44,8 +42,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\UploadedFile :: __construct() - with resource
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -61,8 +57,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\UploadedFile :: __construct() - with filename
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -77,8 +71,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\UploadedFile :: __construct() - invalid stream
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -91,8 +83,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\UploadedFile :: __construct() - invalid error
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -109,8 +99,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\UploadedFile :: getStream() - error throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -125,8 +113,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\UploadedFile :: moveTo() - invalid target throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -144,8 +130,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\UploadedFile :: moveTo() - error throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -160,8 +144,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\UploadedFile :: moveTo() - already moved throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -202,8 +184,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\UploadedFile :: getStream() - already moved
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01

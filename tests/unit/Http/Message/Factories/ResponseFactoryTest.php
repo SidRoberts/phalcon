@@ -22,8 +22,6 @@ final class ResponseFactoryTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Factories\ResponseFactory :: createResponse()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */

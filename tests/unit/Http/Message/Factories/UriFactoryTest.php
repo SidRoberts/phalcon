@@ -22,8 +22,6 @@ final class UriFactoryTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Factories\UriFactory :: createUri()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */

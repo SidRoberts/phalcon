@@ -37,8 +37,6 @@ final class PrepareVirtualPathTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Support\Traits\FilePathTrait :: prepareVirtualPath()
      *
-     * @return void
-     *
      * @dataProvider getExamples
      *
      * @author Phalcon Team <team@phalcon.io>
@@ -60,8 +58,6 @@ final class PrepareVirtualPathTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Support\Traits\FilePathTrait :: prepareVirtualPath() - default separator
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-11

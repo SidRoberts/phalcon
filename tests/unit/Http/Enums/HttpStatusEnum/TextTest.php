@@ -95,8 +95,6 @@ final class TextTest extends AbstractUnitTestCase
      *
      * @dataProvider getExamples
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */

@@ -23,8 +23,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Response :: __construct() - defaults
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -40,8 +38,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Response :: __construct() - custom code
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -55,8 +51,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Response :: withStatus()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -75,8 +69,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Response :: withStatus() - invalid code throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -92,8 +84,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Response :: withStatus() - custom phrase
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -107,8 +97,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Response :: withHeader() / getHeaders()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -126,8 +114,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Response :: withBody()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -141,8 +127,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Response :: withBody() - replaces body
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -160,8 +144,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Response :: __construct() - invalid body throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -174,8 +156,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Response :: withProtocolVersion()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -191,8 +171,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Response :: withProtocolVersion() - invalid
      * version throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -210,8 +188,6 @@ final class ConstructTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\Response :: withProtocolVersion() - empty
      * version throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -227,8 +203,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Response :: withHeader() - invalid name throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -243,8 +217,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Response :: withHeader() - invalid value throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -262,8 +234,6 @@ final class ConstructTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\Response :: withHeader() - non-string value
      * throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -279,8 +249,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Response :: withHeader() - value with
      * invalid characters throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01

@@ -85,8 +85,6 @@ final class TableSelectTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchCount(): void
@@ -108,8 +106,6 @@ final class TableSelectTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchRow(): void
@@ -132,8 +128,6 @@ final class TableSelectTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchRows(): void

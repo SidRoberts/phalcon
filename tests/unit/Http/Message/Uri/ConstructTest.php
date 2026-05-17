@@ -22,8 +22,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Uri :: __construct() - full URI parsing
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -43,8 +41,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Uri :: __construct() - empty URI
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -66,8 +62,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Uri :: __toString()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -83,8 +77,6 @@ final class ConstructTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\Uri :: __toString() - path with double slash, no
      * authority — must reduce to single slash per RFC 3986
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -98,8 +90,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Uri :: withScheme()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -116,8 +106,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Uri :: withHost()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -131,8 +119,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Uri :: withPort()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -148,8 +134,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Uri :: withPort() - null removes port
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -164,8 +148,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Uri :: withPath()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -179,8 +161,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Uri :: withPath() - invalid path throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -197,8 +177,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Uri :: withQuery()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -213,8 +191,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Uri :: withFragment()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -228,8 +204,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Uri :: withUserInfo()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -248,8 +222,6 @@ final class ConstructTest extends AbstractUnitTestCase
      * Per RFC 3986, standard ports (80 for http, 443 for https) should
      * return null from getPort().
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -262,8 +234,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Uri :: cloneInstance same value returns same
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -280,8 +250,6 @@ final class ConstructTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\Uri :: __toString() - rootless path with
      * authority gets prefixed with "/"
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -295,8 +263,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Uri :: withQuery() - fragment throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -314,8 +280,6 @@ final class ConstructTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\Uri :: withFragment() - hash prefix gets
      * encoded
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -329,8 +293,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Uri :: withPort() - out of range throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -347,8 +309,6 @@ final class ConstructTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Uri :: withScheme() - unsupported throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -363,8 +323,6 @@ final class ConstructTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Uri :: withQuery() - no equals sign
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01

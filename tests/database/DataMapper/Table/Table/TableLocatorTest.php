@@ -32,8 +32,6 @@ final class TableLocatorTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testGet(): void
@@ -46,8 +44,6 @@ final class TableLocatorTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testGetConnectionLocator(): void
@@ -58,8 +54,6 @@ final class TableLocatorTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testGetUnknownThrowsException(): void
@@ -74,8 +68,6 @@ final class TableLocatorTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testHas(): void

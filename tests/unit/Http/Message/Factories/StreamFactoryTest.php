@@ -23,8 +23,6 @@ final class StreamFactoryTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Factories\StreamFactory :: createStream()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -40,8 +38,6 @@ final class StreamFactoryTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Factories\StreamFactory :: createStreamFromFile()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -55,8 +51,6 @@ final class StreamFactoryTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Factories\StreamFactory :: createStreamFromResource()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -73,8 +67,6 @@ final class StreamFactoryTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Factories\StreamFactory ::
      * createStreamFromResource() - invalid resource throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01

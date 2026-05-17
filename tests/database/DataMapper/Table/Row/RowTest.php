@@ -25,8 +25,6 @@ use function uniqid;
 final class RowTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testConstructor(): void
@@ -37,8 +35,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testConstructorWithData(): void
@@ -61,8 +57,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testConstructorWithUnknownColumnsThrowsException(): void
@@ -87,8 +81,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testGetCopy(): void
@@ -111,8 +103,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testGetDiff(): void
@@ -155,8 +145,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testGetInit(): void
@@ -179,8 +167,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testGetIterator(): void
@@ -203,8 +189,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testHas(): void
@@ -219,8 +203,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testJsonSerialize(): void
@@ -243,8 +225,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testRemove(): void
@@ -267,8 +247,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testRemoveDeletedThrowsException(): void
@@ -287,8 +265,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testSet(): void
@@ -318,8 +294,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testSetOnDeletedRowThrowsException(): void
@@ -337,8 +311,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testSetUnknownColumnThrowsException(): void
@@ -355,8 +327,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testLastAction(): void
@@ -433,8 +403,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testLastActionInvalidThrowsException(): void
@@ -449,8 +417,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testSetNumericToBool(): void
@@ -483,8 +449,6 @@ final class RowTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testSetBoolToNumeric(): void

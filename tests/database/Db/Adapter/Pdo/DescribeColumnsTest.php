@@ -41,8 +41,6 @@ final class DescribeColumnsTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Adapter\Pdo :: describeColumns()
      *
-     * @return void
-     *
      * @author Jeremy PASTOURET <https://github.com/jenovateurs>
      * @since  2020-03-09
      *
@@ -64,8 +62,6 @@ final class DescribeColumnsTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Adapter\Pdo :: describeColumns()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-03-02
      *
@@ -86,8 +82,6 @@ final class DescribeColumnsTest extends AbstractDatabaseTestCase
 
     /**
      * Tests Phalcon\Db\Adapter\Pdo :: describeColumns() - supported
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-04-20

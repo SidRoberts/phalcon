@@ -18,7 +18,6 @@ use Phalcon\Tests\AbstractDatabaseTestCase;
 final class ListColumnsTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return void
      * @throws Exception
      * @since  2025-01-14
      *

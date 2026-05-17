@@ -22,8 +22,6 @@ final class GetStatusTest extends AbstractUnitTestCase
     /**
      * Unit Tests Phalcon\Domain\Payload :: getStatus()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */

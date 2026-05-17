@@ -26,6 +26,8 @@ final class IntrospectionTest extends AbstractDatabaseTestCase
     use DiTrait;
 
     /**
+     * @throws Exception
+     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2023-07-01
      *
@@ -107,6 +109,8 @@ final class IntrospectionTest extends AbstractDatabaseTestCase
     }
 
     /**
+     * @throws Exception
+     *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2023-07-01
      *

@@ -67,8 +67,6 @@ final class TableEventsTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testDeleteRow(): void
@@ -106,8 +104,6 @@ final class TableEventsTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchRow(): void
@@ -195,8 +191,6 @@ final class TableEventsTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testFetchRows(): void
@@ -257,8 +251,6 @@ final class TableEventsTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testInsertRow(): void
@@ -290,8 +282,6 @@ final class TableEventsTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return void
-     *
      * @group mysql
      */
     public function testUpdateRow(): void

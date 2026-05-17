@@ -25,8 +25,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream :: __construct() and basic operations
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -42,8 +40,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream :: write() and read()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -64,8 +60,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream :: __toString()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -79,8 +73,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream :: getSize()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -96,8 +88,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream :: tell()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -111,8 +101,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream :: seek()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -129,8 +117,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream :: getMetadata()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -152,8 +138,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream :: detach() and operations after detach
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -173,8 +157,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream :: eof() after reading all content
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -191,8 +173,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream :: tell() throws after detach
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -207,8 +187,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream :: seek() throws after detach
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -225,8 +203,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream :: read() throws after detach
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -241,8 +217,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream :: write() throws after detach
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -259,8 +233,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream :: getContents() throws after detach
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -276,8 +248,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream :: eof() - after detach returns true
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -292,8 +262,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream :: setStream() - invalid stream throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -306,8 +274,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream :: write() - not writable throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -324,8 +290,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Stream\Memory :: __construct()
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -340,8 +304,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Stream\Temp :: __construct()
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01

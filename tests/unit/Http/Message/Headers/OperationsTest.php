@@ -23,8 +23,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Headers :: checkHeaderHost() - with port
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -42,8 +40,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Headers :: checkHeaderHost() - without port
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -63,8 +59,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Headers :: checkHeaderName() - invalid throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -80,8 +74,6 @@ final class OperationsTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Message\Headers :: checkHeaderValue() - invalid
      * non-string throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -99,8 +91,6 @@ final class OperationsTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\Headers :: checkHeaderValue() - invalid chars
      * throws
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -115,8 +105,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Headers :: getHeaderValue() - empty array throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
@@ -136,8 +124,6 @@ final class OperationsTest extends AbstractUnitTestCase
      * Tests Phalcon\Http\Message\Headers :: processHeaders() - with Headers
      * instance
      *
-     * @return void
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
@@ -154,8 +140,6 @@ final class OperationsTest extends AbstractUnitTestCase
 
     /**
      * Tests Phalcon\Http\Message\Headers :: processHeaders() - invalid throws
-     *
-     * @return void
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
