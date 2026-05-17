@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Unit\Http\Enums\HttpStatusEnum;
 
 use Phalcon\Http\Enums\HttpStatusEnum;
 use Phalcon\Tests\AbstractUnitTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class TextTest extends AbstractUnitTestCase
 {
@@ -93,11 +94,10 @@ final class TextTest extends AbstractUnitTestCase
     /**
      * Tests Phalcon\Http\Enums\HttpStatusEnum :: text()
      *
-     * @dataProvider getExamples
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2024-01-01
      */
+    #[DataProvider('getExamples')]
     public function testHttpEnumsHttpStatusEnumText(
         HttpStatusEnum $case,
         string $expected
