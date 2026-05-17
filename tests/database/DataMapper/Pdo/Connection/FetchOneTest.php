@@ -15,6 +15,7 @@ use PDO;
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class FetchOneTest extends AbstractDatabaseTestCase
 {
@@ -104,13 +105,13 @@ final class FetchOneTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\DataMapper\Pdo\Connection :: fetchOne() - bind types
      *
-     * @dataProvider getBindTypes
      * @since        2020-01-25
      *
      * @group pgsql
      * @group mysql
      * @group sqlite
      */
+    #[DataProvider('getBindTypes')]
     public function testDmPdoConnectionFetchOneBindTypes(
         string $where,
         array $params

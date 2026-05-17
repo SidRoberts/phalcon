@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Select;
 use PDO;
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 use function env;
 
@@ -39,9 +40,9 @@ final class JoinTest extends AbstractStatementTestCase
      *
      * @since        2020-01-20
      *
-     * @dataProvider getJoinNames
      * @group mysql
      */
+    #[DataProvider('getJoinNames')]
     public function testDmStatementSelectJoin(string $join): void
     {
         $driver = env('driver');
