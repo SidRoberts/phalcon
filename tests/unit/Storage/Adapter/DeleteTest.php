@@ -76,8 +76,8 @@ final class DeleteTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterDelete(
@@ -118,8 +118,8 @@ final class DeleteTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2023-07-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2023-07-17
      */
     public function testStorageAdapterWeakDelete(): void
     {

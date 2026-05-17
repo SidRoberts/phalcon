@@ -296,8 +296,8 @@ final class SerializeUnserializeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2022-02-24
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2022-02-24
      */
     #[DataProvider('getExamples')]
     public function testStorageSerializerSerializeUnserialize(

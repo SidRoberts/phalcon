@@ -162,8 +162,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsAfterDecrement(
@@ -199,8 +199,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsAfterDelete(
@@ -236,8 +236,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsAfterGet(
@@ -274,8 +274,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsAfterHas(
@@ -311,8 +311,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsAfterIncrement(
@@ -348,8 +348,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsAfterSet(
@@ -385,8 +385,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsBeforeDecrement(
@@ -422,8 +422,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsBeforeDelete(
@@ -459,8 +459,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsBeforeGet(
@@ -497,8 +497,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsBeforeHas(
@@ -534,8 +534,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsBeforeIncrement(
@@ -571,8 +571,8 @@ final class EventsTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       n[oO]ne <lominum@protonmail.com>
-     * @since        2024-06-07
+     * @author n[oO]ne <lominum@protonmail.com>
+     * @since  2024-06-07
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterEventsBeforeSet(

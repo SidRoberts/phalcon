@@ -74,8 +74,8 @@ final class GetSerializerTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2026-04-14
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-04-14
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterGetSerializer(

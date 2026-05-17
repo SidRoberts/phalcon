@@ -131,8 +131,8 @@ final class ClearTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterClear(
@@ -204,8 +204,8 @@ final class ClearTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2023-07-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2023-07-17
      */
     public function testStorageAdapterWealClear(): void
     {
@@ -273,8 +273,8 @@ final class ClearTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2024-10-31
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2024-10-31
      */
     #[DataProvider('getExamplesClearWithPrefix')]
     public function testStorageAdapterClearWithPrefix(

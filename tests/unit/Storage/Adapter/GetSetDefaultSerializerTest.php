@@ -73,8 +73,8 @@ final class GetSetDefaultSerializerTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterGetSetDefaultSerializer(
@@ -100,8 +100,8 @@ final class GetSetDefaultSerializerTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2023-07-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2023-07-17
      */
     public function testStorageAdapterWeakGetSetDefaultSerializerNone(): void
     {

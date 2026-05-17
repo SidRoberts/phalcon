@@ -75,8 +75,8 @@ final class DeleteMultipleTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2025-01-01
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-01-01
      */
     #[DataProvider('getExamples')]
     public function testStorageAdapterDeleteMultiple(
@@ -142,8 +142,8 @@ final class DeleteMultipleTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2025-01-01
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-01-01
      */
     public function testStorageAdapterWeakDeleteMultiple(): void
     {
