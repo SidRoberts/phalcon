@@ -18,8 +18,6 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class KeysTest extends AbstractCollectionTestCase
 {
     /**
-     * @dataProvider getClasses
-     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-05-12
      */
