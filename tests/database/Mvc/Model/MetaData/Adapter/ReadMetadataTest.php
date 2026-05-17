@@ -23,6 +23,7 @@ use Phalcon\Tests\Support\Models\Album;
 use Phalcon\Tests\Support\Models\AlbumPhoto;
 use Phalcon\Tests\Support\Models\Photo;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 use function array_keys;
 
@@ -61,8 +62,6 @@ final class ReadMetadataTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @dataProvider getExamples
-     *
      * @throws Exception
      *
      * @author       Phalcon Team <team@phalcon.io>
@@ -72,6 +71,7 @@ final class ReadMetadataTest extends AbstractDatabaseTestCase
      * @group pgsql
      * @group sqlite
      */
+    #[DataProvider('getExamples')]
     public function testMvcModelMetadataGetAttributes(
         string $service
     ): void {
