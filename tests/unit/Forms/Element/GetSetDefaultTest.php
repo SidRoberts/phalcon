@@ -24,8 +24,8 @@ final class GetSetDefaultTest extends AbstractUnitTestCase
     use FormsTrait;
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2021-12-05
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-12-05
      */
     #[DataProvider('getExamples')]
     public function testFormsElementGetSetDefault(

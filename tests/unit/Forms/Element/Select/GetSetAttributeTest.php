@@ -21,8 +21,8 @@ use function uniqid;
 final class GetSetAttributeTest extends AbstractUnitTestCase
 {
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2021-12-05
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-12-05
      */
     public function testFormsElementSelectGetSetAttribute(): void
     {

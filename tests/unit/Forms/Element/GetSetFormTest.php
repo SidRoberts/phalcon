@@ -25,8 +25,8 @@ final class GetSetFormTest extends AbstractUnitTestCase
     use FormsTrait;
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2021-12-05
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-12-05
      */
     #[DataProvider('getExamples')]
     public function testFormsElementGetFormAdd(
@@ -44,8 +44,8 @@ final class GetSetFormTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2021-12-05
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-12-05
      */
     #[DataProvider('getExamples')]
     public function testFormsElementGetSetForm(
