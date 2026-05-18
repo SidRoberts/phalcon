@@ -390,8 +390,8 @@ final class FindFirstTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-27
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-27
      */
     #[DataProvider('findFirstProvider')]
     #[Group('mysql')]

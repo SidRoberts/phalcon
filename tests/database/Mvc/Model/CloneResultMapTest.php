@@ -64,8 +64,8 @@ final class CloneResultMapTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-10-05
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-10-05
      */
     #[DataProvider('modelDataProvider')]
     #[Group('mysql')]
@@ -186,8 +186,8 @@ final class CloneResultMapTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-10-05
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-10-05
      */
     #[DataProvider('modelDataProvider')]
     #[Group('mysql')]

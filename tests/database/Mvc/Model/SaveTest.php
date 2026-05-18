@@ -765,10 +765,8 @@ final class SaveTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @dataProvider tinyintProvider
-     *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2019-08-02
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2019-08-02
      */
     #[DataProvider('tinyintProvider')]
     #[Group('mysql')]

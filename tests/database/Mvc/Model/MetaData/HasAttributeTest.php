@@ -52,8 +52,8 @@ final class HasAttributeTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2018-11-13
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2018-11-13
      */
     #[DataProvider('getExamples')]
     #[Group('mysql')]

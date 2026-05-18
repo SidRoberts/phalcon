@@ -65,8 +65,8 @@ final class ReadMetadataTest extends AbstractDatabaseTestCase
     /**
      * @throws Exception
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2023-07-01
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2023-07-01
      */
     #[DataProvider('getExamples')]
     #[Group('mysql')]

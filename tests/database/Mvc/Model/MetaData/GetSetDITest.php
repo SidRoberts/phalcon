@@ -63,8 +63,8 @@ final class GetSetDITest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-02-01
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-02-01
      */
     #[DataProvider('getExamples')]
     #[Group('mysql')]

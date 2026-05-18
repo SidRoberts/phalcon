@@ -55,8 +55,8 @@ final class CacheTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2021-05-06\
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-05-06
      */
     #[DataProvider('getValidSerializers')]
     #[Group('mysql')]

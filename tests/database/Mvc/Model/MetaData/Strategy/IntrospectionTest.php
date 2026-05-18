@@ -29,8 +29,8 @@ final class IntrospectionTest extends AbstractDatabaseTestCase
     /**
      * @throws Exception
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2023-07-01
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2023-07-01
      */
     #[Group('mysql')]
     public function testMvcModelMetadataIntrospection(): void
@@ -111,8 +111,8 @@ final class IntrospectionTest extends AbstractDatabaseTestCase
     /**
      * @throws Exception
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2023-07-01
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2023-07-01
      */
     #[Group('mysql')]
     #[Group('pgsql')]
