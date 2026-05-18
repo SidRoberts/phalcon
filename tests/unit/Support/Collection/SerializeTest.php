@@ -19,8 +19,8 @@ use PHPUnit\Framework\Attributes\DataProvider;
 final class SerializeTest extends AbstractCollectionTestCase
 {
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getClasses')]
     public function testSupportCollectionSerialize(
