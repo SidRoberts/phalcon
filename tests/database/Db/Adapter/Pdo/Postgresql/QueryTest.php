@@ -20,9 +20,6 @@ use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Traits\DiTrait;
 use PHPUnit\Framework\Attributes\Group;
 
-use function is_array;
-use function is_object;
-
 final class QueryTest extends AbstractDatabaseTestCase
 {
     use DiTrait;
@@ -59,7 +56,7 @@ final class QueryTest extends AbstractDatabaseTestCase
 
         // Simple Select
         $result = $db->query('SELECT * FROM co_invoices LIMIT 3');
-        $this->assertTrue(is_object($result));
+        $this->assertIsObject($result);
         $this->assertInstanceOf(PdoResult::class, $result);
 
         $row = $result->fetch();
@@ -76,7 +73,7 @@ final class QueryTest extends AbstractDatabaseTestCase
         // Number count
         $number = 0;
         $result = $db->query('SELECT * FROM co_invoices LIMIT 5');
-        $this->assertTrue(is_object($result));
+        $this->assertIsObject($result);
 
         while ($result->fetch()) {
             $number++;
@@ -87,7 +84,7 @@ final class QueryTest extends AbstractDatabaseTestCase
         $result = $db->query('SELECT * FROM co_invoices LIMIT 5');
         $result->setFetchMode(Enum::FETCH_NUM);
         $row = $result->fetch();
-        $this->assertTrue(is_array($row));
+        $this->assertIsArray($row);
         $this->assertCount(6, $row);
         $this->assertTrue(isset($row[0]));
         $this->assertFalse(isset($row['inv_id']));
@@ -96,7 +93,7 @@ final class QueryTest extends AbstractDatabaseTestCase
         $result = $db->query('SELECT * FROM co_invoices LIMIT 5');
         $result->setFetchMode(Enum::FETCH_ASSOC);
         $row = $result->fetch();
-        $this->assertTrue(is_array($row));
+        $this->assertIsArray($row);
         $this->assertCount(6, $row);
         $this->assertFalse(isset($row[0]));
         $this->assertTrue(isset($row['inv_id']));
@@ -105,7 +102,7 @@ final class QueryTest extends AbstractDatabaseTestCase
         $result = $db->query('SELECT * FROM co_invoices LIMIT 5');
         $result->setFetchMode(Enum::FETCH_OBJ);
         $row = $result->fetch();
-        $this->assertTrue(is_object($row));
+        $this->assertIsObject($row);
         $this->assertTrue(isset($row->inv_id));
 
         // FETCH_BOTH with dataSeek

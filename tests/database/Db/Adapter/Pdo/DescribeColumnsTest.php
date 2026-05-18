@@ -93,18 +93,15 @@ final class DescribeColumnsTest extends AbstractDatabaseTestCase
         $migration = new DialectMigration(self::getConnection());
         $columns   = $db->describeColumns($migration->getTable());
 
-        $expected = 40;
-        $this->assertCount($expected, $columns);
+        $this->assertCount(40, $columns);
 
-        $expected = Column::class;
-        $actual   = $columns[1];
-        $this->assertInstanceOf($expected, $actual);
+        $this->assertInstanceOf(Column::class, $columns[1]);
 
         foreach ($columns as $index => $column) {
-            $expected = $this->getExpected($index);
-            $actual   = $this->getActual($column);
-
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $this->getExpected($index),
+                $this->getActual($column)
+            );
         }
     }
 

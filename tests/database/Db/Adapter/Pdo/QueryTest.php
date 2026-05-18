@@ -20,9 +20,6 @@ use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Traits\DiTrait;
 use PHPUnit\Framework\Attributes\Group;
 
-use function is_array;
-use function is_object;
-
 final class QueryTest extends AbstractDatabaseTestCase
 {
     use DiTrait;
@@ -62,7 +59,7 @@ final class QueryTest extends AbstractDatabaseTestCase
         // Simple Select
         $result = $db->query('SELECT * FROM co_invoices LIMIT 3');
 
-        $this->assertTrue(is_object($result));
+        $this->assertIsObject($result);
         $this->assertInstanceOf(PdoResult::class, $result);
 
         $row = $result->fetch();
@@ -80,7 +77,7 @@ final class QueryTest extends AbstractDatabaseTestCase
         $number = 0;
         $result = $db->query('SELECT * FROM co_invoices LIMIT 5');
 
-        $this->assertTrue(is_object($result));
+        $this->assertIsObject($result);
         $this->assertInstanceOf(PdoResult::class, $result);
 
         while ($result->fetch()) {
@@ -93,7 +90,7 @@ final class QueryTest extends AbstractDatabaseTestCase
         $result->setFetchMode(Enum::FETCH_NUM);
         $row = $result->fetch();
 
-        $this->assertTrue(is_array($row));
+        $this->assertIsArray($row);
         $this->assertEquals(1, $row[0]);
 
         // FETCH_ASSOC
@@ -101,7 +98,7 @@ final class QueryTest extends AbstractDatabaseTestCase
         $result->setFetchMode(Enum::FETCH_ASSOC);
         $row = $result->fetch();
 
-        $this->assertTrue(is_array($row));
+        $this->assertIsArray($row);
         $this->assertEquals(1, $row['inv_id']);
 
         // FETCH_OBJ
@@ -109,7 +106,7 @@ final class QueryTest extends AbstractDatabaseTestCase
         $result->setFetchMode(Enum::FETCH_OBJ);
         $row = $result->fetch();
 
-        $this->assertTrue(is_object($row));
+        $this->assertIsObject($row);
         $this->assertEquals(1, $row->inv_id);
 
         // FETCH_BOTH
@@ -117,7 +114,7 @@ final class QueryTest extends AbstractDatabaseTestCase
         $result->setFetchMode(Enum::FETCH_BOTH);
         $row = $result->fetch();
 
-        $this->assertTrue(is_array($row));
+        $this->assertIsArray($row);
         $this->assertEquals(1, $row[0]);
         $this->assertEquals(1, $row['inv_id']);
 
@@ -127,7 +124,7 @@ final class QueryTest extends AbstractDatabaseTestCase
             Enum::FETCH_COLUMN
         );
 
-        $this->assertTrue(is_array($result));
+        $this->assertIsArray($result);
 
         $expected = ['1', '2', '3', '4', '5'];
         $this->assertEquals($expected, $result);

@@ -9,9 +9,13 @@ use Phalcon\Db\Adapter\Pdo\Sqlite;
 use Phalcon\Events\Manager;
 use Phalcon\Tests\AbstractUnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use ReflectionObject;
 
 final class EventsTest extends AbstractUnitTestCase
 {
+    /**
+     * @return array<array{0: string, 1: string, 2: list<string>}>
+     */
     public static function eventsProvider(): array
     {
         return [
@@ -22,50 +26,61 @@ final class EventsTest extends AbstractUnitTestCase
         ];
     }
 
+    /**
+     * @param string       $sql
+     * @param string       $event
+     * @param list<string> $expectedEvents
+     */
     #[DataProvider('eventsProvider')]
-    public function testEvents($sql, $event, array $expectedEvents = []): void
+    public function testEvents(string $sql, string $event, array $expectedEvents = []): void
     {
-        $connection = new Sqlite([
-            'dbname' => ':memory:',
-        ]);
+        $connection = new Sqlite(
+            [
+                'dbname' => ':memory:',
+            ]
+        );
 
         $manager = new Manager();
+
         $connection->setEventsManager($manager);
 
         $listener = new class {
+            /**
+             * @var list<string>
+             */
             public array $events = [];
 
-            public function beforeQuery($event, $adapter, mixed $data = null)
+            public function beforeQuery($event, $adapter, mixed $data = null): void
             {
                 $this->events[] = __FUNCTION__;
             }
 
-            public function afterQuery($event, $adapter, mixed $data = null)
+            public function afterQuery($event, $adapter, mixed $data = null): void
             {
                 $this->events[] = __FUNCTION__;
             }
 
-            public function commitTransaction($event, $adapter, mixed $data = null)
+            public function commitTransaction($event, $adapter, mixed $data = null): void
             {
                 $this->events[] = __FUNCTION__;
             }
 
-            public function beginTransaction($event, $adapter, mixed $data = null)
+            public function beginTransaction($event, $adapter, mixed $data = null): void
             {
                 $this->events[] = __FUNCTION__;
             }
 
-            public function transactionCommitted($event, $adapter, mixed $data = null)
+            public function transactionCommitted($event, $adapter, mixed $data = null): void
             {
                 $this->events[] = __FUNCTION__;
             }
 
-            public function rollbackTransaction($event, $adapter, mixed $data = null)
+            public function rollbackTransaction($event, $adapter, mixed $data = null): void
             {
                 $this->events[] = __FUNCTION__;
             }
 
-            public function transactionRolledBack($event, $adapter, mixed $data = null)
+            public function transactionRolledBack($event, $adapter, mixed $data = null): void
             {
                 $this->events[] = __FUNCTION__;
             }
@@ -117,7 +132,7 @@ final class EventsTest extends AbstractUnitTestCase
         $connection = new Sqlite([
             'dbname' => ':memory:',
         ]);
-        $ref = new \ReflectionObject($connection);
+        $ref = new ReflectionObject($connection);
 
         $property = $ref->getProperty('pdo');
         $property->setAccessible(true);
@@ -131,13 +146,17 @@ final class EventsTest extends AbstractUnitTestCase
         $connection->setEventsManager($manager);
 
         $listener = new class {
+            /**
+             * @var list<string>
+             */
             public array $events = [];
 
-            public function commitTransaction($event, $adapter, mixed $data = null)
+            public function commitTransaction($event, $adapter, mixed $data = null): void
             {
                 $this->events[] = __FUNCTION__;
             }
-            public function transactionCommitted($event, $adapter, mixed $data = null)
+
+            public function transactionCommitted($event, $adapter, mixed $data = null): void
             {
                 $this->events[] = __FUNCTION__;
             }

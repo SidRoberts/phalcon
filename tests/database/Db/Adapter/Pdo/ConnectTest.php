@@ -51,10 +51,10 @@ final class ConnectTest extends AbstractDatabaseTestCase
 
         $connection = (new PdoFactory())->newInstance('mysql', $options);
 
-        $expected = $options;
-        $actual   = $connection->getDescriptor();
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $options,
+            $connection->getDescriptor()
+        );
 
         $connection->close();
     }
