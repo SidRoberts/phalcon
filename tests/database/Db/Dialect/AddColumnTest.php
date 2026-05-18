@@ -19,6 +19,7 @@ use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 final class AddColumnTest extends AbstractDatabaseTestCase
 {
@@ -169,11 +170,10 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-01-20
-     *
-     * @group        mysql
-     * @group sqlite
      */
     #[DataProvider('getDialectsFloat')]
+    #[Group('mysql')]
+    #[Group('sqlite')]
     public function testDbDialectAddColumnDefaultFloat(string $dialectClass, string $expected): void
     {
 
@@ -203,11 +203,10 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-01-20
-     *
-     * @group        mysql
-     * @group sqlite
      */
     #[DataProvider('getDialectsInt')]
+    #[Group('mysql')]
+    #[Group('sqlite')]
     public function testDbDialectAddColumnDefaultInt(string $dialectClass, string $expected): void
     {
 
@@ -237,11 +236,10 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-01-20
-     *
-     * @group        mysql
-     * @group sqlite
      */
     #[DataProvider('getDialects')]
+    #[Group('mysql')]
+    #[Group('sqlite')]
     public function testDbDialectAddColumn(string $dialectClass, string $expected): void
     {
 
@@ -271,11 +269,10 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-01-20
-     *
-     * @group        mysql
-     * @group sqlite
      */
     #[DataProvider('getDialectsNull')]
+    #[Group('mysql')]
+    #[Group('sqlite')]
     public function testDbDialectAddColumnDefaultNull(string $dialectClass, string $expected): void
     {
 
@@ -304,11 +301,10 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-01-20
-     *
-     * @group        mysql
-     * @group sqlite
      */
     #[DataProvider('getDialectsString')]
+    #[Group('mysql')]
+    #[Group('sqlite')]
     public function testDbDialectAddColumnDefaultString(string $dialectClass, string $expected): void
     {
 
@@ -337,11 +333,10 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-01-20
-     *
-     * @group        mysql
-     * @group sqlite
      */
     #[DataProvider('getDialectsTimestamp')]
+    #[Group('mysql')]
+    #[Group('sqlite')]
     public function testDbDialectAddColumnDefaultTimestamp(string $dialectClass, string $expected): void
     {
 

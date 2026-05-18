@@ -20,6 +20,7 @@ use Phalcon\Db\Exception;
 use Phalcon\Db\Reference;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 final class AddForeignKeyTest extends AbstractDatabaseTestCase
 {
@@ -101,9 +102,8 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
-     *
-     * @group sqlite
      */
+    #[Group('sqlite')]
     public function testDbDialectAddForeignKeySqlite(): void
     {
         $this->expectException(Exception::class);
@@ -126,12 +126,11 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-01-20
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
      */
     #[DataProvider('getDialects')]
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testDbDialectAddForeignKey(
         string $dialectClass,
         string $expected
@@ -152,12 +151,11 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-01-20
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
      */
     #[DataProvider('getDialectsOnDelete')]
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testDbDialectAddForeignKeyOnDelete(
         string $dialectClass,
         string $expected
@@ -179,12 +177,11 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-01-20
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
      */
     #[DataProvider('getDialectsOnUpdate')]
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testDbDialectAddForeignKeyOnUpdate(
         string $dialectClass,
         string $expected
