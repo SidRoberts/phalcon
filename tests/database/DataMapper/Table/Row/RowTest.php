@@ -29,6 +29,7 @@ final class RowTest extends AbstractDatabaseTestCase
     public function testConstructor(): void
     {
         $row = new InvoicesRow();
+
         $this->assertInstanceOf(InvoicesRow::class, $row);
         $this->assertInstanceOf(AbstractRow::class, $row);
     }
@@ -48,9 +49,10 @@ final class RowTest extends AbstractDatabaseTestCase
 
         $row = new InvoicesRow($data);
 
-        $expected = $data;
-        $actual   = $row->getCopy();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $row->getCopy()
+        );
     }
 
     #[Group('mysql')]
@@ -90,9 +92,10 @@ final class RowTest extends AbstractDatabaseTestCase
 
         $row = new InvoicesRow($data);
 
-        $expected = $data;
-        $actual   = $row->getCopy();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $row->getCopy()
+        );
     }
 
     #[Group('mysql')]
@@ -121,8 +124,11 @@ final class RowTest extends AbstractDatabaseTestCase
             'inv_cst_id'      => 2,
             'inv_status_flag' => 0,
         ];
-        $actual   = $row->getDiff();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $row->getDiff()
+        );
 
         $row->set('inv_status_flag', false);
 
@@ -131,8 +137,11 @@ final class RowTest extends AbstractDatabaseTestCase
             'inv_cst_id'      => 2,
             'inv_status_flag' => false,
         ];
-        $actual   = $row->getDiff();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $row->getDiff()
+        );
     }
 
     #[Group('mysql')]
@@ -150,9 +159,10 @@ final class RowTest extends AbstractDatabaseTestCase
 
         $row = new InvoicesRow($data);
 
-        $expected = $data;
-        $actual   = $row->getInit();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $row->getInit()
+        );
     }
 
     #[Group('mysql')]
@@ -180,11 +190,13 @@ final class RowTest extends AbstractDatabaseTestCase
     {
         $row = new InvoicesRow();
 
-        $actual = $row->has('inv_id');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $row->has('inv_id')
+        );
 
-        $actual = $row->has('unknown_column');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $row->has('unknown_column')
+        );
     }
 
     #[Group('mysql')]
@@ -202,9 +214,10 @@ final class RowTest extends AbstractDatabaseTestCase
 
         $row = new InvoicesRow($data);
 
-        $expected = $data;
-        $actual   = $row->jsonSerialize();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $row->jsonSerialize()
+        );
     }
 
     #[Group('mysql')]
@@ -212,19 +225,22 @@ final class RowTest extends AbstractDatabaseTestCase
     {
         $row = new InvoicesRow();
 
-        $actual = $row->get('inv_id');
-        $this->assertNull($actual);
+        $this->assertNull(
+            $row->get('inv_id')
+        );
 
         $row->set('inv_id', 1);
 
-        $expected = 1;
-        $actual   = $row->get('inv_id');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            $row->get('inv_id')
+        );
 
         $row->remove('inv_id');
 
-        $actual = $row->get('inv_id');
-        $this->assertNull($actual);
+        $this->assertNull(
+            $row->get('inv_id')
+        );
     }
 
     #[Group('mysql')]
@@ -266,8 +282,11 @@ final class RowTest extends AbstractDatabaseTestCase
             'inv_total'       => 100.0,
             'inv_created_at'  => '2024-02-01 10:11:12',
         ];
-        $actual   = $row->getCopy();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $row->getCopy()
+        );
     }
 
     #[Group('mysql')]
@@ -279,6 +298,7 @@ final class RowTest extends AbstractDatabaseTestCase
         );
 
         $row = new InvoicesRow();
+
         $row
             ->setLastAction($row::DELETE)
             ->set('inv_id', 1)
@@ -294,9 +314,8 @@ final class RowTest extends AbstractDatabaseTestCase
         );
 
         $row = new InvoicesRow();
-        $row
-            ->set('other_column', 'random stuff')
-        ;
+
+        $row->set('other_column', 'random stuff');
     }
 
     #[Group('mysql')]
@@ -304,30 +323,35 @@ final class RowTest extends AbstractDatabaseTestCase
     {
         $row = new InvoicesRow();
 
-        $actual = $row->getLastAction();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $row->getLastAction()
+        );
 
         /**
          * New row - INSERT
          */
-        $expected = $row::INSERT;
-        $actual   = $row->getNextAction();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $row::INSERT,
+            $row->getNextAction()
+        );
 
         /**
          * set Delete - Next action is null
          */
         $row->setDelete(true);
-        $actual   = $row->getNextAction();
-        $this->assertNull($actual);
+
+        $this->assertNull(
+            $row->getNextAction()
+        );
 
         /**
          * unset Delete - Next action is INSERT
          */
         $row->setDelete(false);
-        $expected = $row::INSERT;
-        $actual   = $row->getNextAction();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $row::INSERT,
+            $row->getNextAction()
+        );
 
         /**
          * unset Delete - Next action is INSERT
@@ -336,9 +360,10 @@ final class RowTest extends AbstractDatabaseTestCase
             ->setLastAction($row::INSERT)
             ->setDelete(true)
         ;
-        $expected = $row::DELETE;
-        $actual   = $row->getNextAction();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $row::DELETE,
+            $row->getNextAction()
+        );
 
         /**
          * Revert back to default
@@ -352,25 +377,29 @@ final class RowTest extends AbstractDatabaseTestCase
             ->setLastAction($row::SELECT)
             ->set('inv_id', 1)
         ;
-        $expected = $row::UPDATE;
-        $actual   = $row->getNextAction();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $row::UPDATE,
+            $row->getNextAction()
+        );
 
         /**
          * Revert the field
          */
         $row->set('inv_id', null);
 
-        $actual   = $row->getNextAction();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $row->getNextAction()
+        );
 
         /**
          * Set action to SELECT - null getNextAction
          */
         $row->setLastAction($row::SELECT);
 
-        $actual   = $row->getNextAction();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $row->getNextAction()
+        );
     }
 
     #[Group('mysql')]
@@ -382,6 +411,7 @@ final class RowTest extends AbstractDatabaseTestCase
         );
 
         $row = new InvoicesRow();
+
         $row->setLastAction('other_option');
     }
 
@@ -402,17 +432,21 @@ final class RowTest extends AbstractDatabaseTestCase
 
         $row->set('inv_status_flag', true);
 
-        $expected = [];
-        $actual   = $row->getDiff();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $row->getDiff()
+        );
 
         $row->set('inv_status_flag', false);
 
         $expected = [
             'inv_status_flag' => false,
         ];
-        $actual   = $row->getDiff();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $row->getDiff()
+        );
     }
 
     #[Group('mysql')]
@@ -432,16 +466,20 @@ final class RowTest extends AbstractDatabaseTestCase
 
         $row->set('inv_status_flag', 1);
 
-        $expected = [];
-        $actual   = $row->getDiff();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $row->getDiff()
+        );
 
         $row->set('inv_status_flag', 0);
 
         $expected = [
             'inv_status_flag' => 0,
         ];
-        $actual   = $row->getDiff();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $row->getDiff()
+        );
     }
 }

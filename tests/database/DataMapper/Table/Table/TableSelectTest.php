@@ -133,25 +133,27 @@ final class TableSelectTest extends AbstractDatabaseTestCase
             ->fetchRows()
         ;
 
-        $actual = $rows;
-        $this->assertIsArray($actual);
-        $this->assertCount(3, $actual);
+        $this->assertIsArray($rows);
+        $this->assertCount(3, $rows);
 
         $this->assertInstanceOf(InvoicesRow::class, $rows[0]);
         $this->assertInstanceOf(InvoicesRow::class, $rows[1]);
         $this->assertInstanceOf(InvoicesRow::class, $rows[2]);
 
-        $expected = $this->data[0];
-        $actual   = $rows[0]->getCopy();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $this->data[0],
+            $rows[0]->getCopy()
+        );
 
-        $expected = $this->data[1];
-        $actual   = $rows[1]->getCopy();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $this->data[1],
+            $rows[1]->getCopy()
+        );
 
-        $expected = $this->data[2];
-        $actual   = $rows[2]->getCopy();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $this->data[2],
+            $rows[2]->getCopy()
+        );
 
         $actual = $this
             ->select

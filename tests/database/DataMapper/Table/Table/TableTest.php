@@ -90,19 +90,21 @@ final class TableTest extends AbstractDatabaseTestCase
          * Delete it
          */
         $actual = $this->table->deleteRow($row);
-        $this->assertInstanceOf(PDOStatement::CLASS, $actual);
+        $this->assertInstanceOf(PDOStatement::class, $actual);
 
         /**
          * Check if it was deleted
          */
-        $actual = $this->table->fetchRow(1);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $this->table->fetchRow(1)
+        );
 
         /**
          * Delete it again
          */
-        $actual = $this->table->deleteRow($row);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $this->table->deleteRow($row)
+        );
 
         /**
          * Try to change the action of the record and delete again
@@ -131,6 +133,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->expectExceptionMessage(
             'Cannot delete row on table [no_primary_key] without a primary key.'
         );
+
         $table->deleteRow($newRow);
     }
 
@@ -156,8 +159,11 @@ final class TableTest extends AbstractDatabaseTestCase
             'oxp_prd_id'   => 1,
             'oxp_quantity' => 10,
         ];
-        $actual   = $row->getCopy();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $row->getCopy()
+        );
     }
 
     #[Group('mysql')]
@@ -252,13 +258,16 @@ final class TableTest extends AbstractDatabaseTestCase
             );
         }
 
-        $row = $this->table->fetchRow(4);
-        $this->assertNull($row);
+        $this->assertNull(
+            $this->table->fetchRow(4)
+        );
 
         $row = $this->table->fetchRow(1);
-        $expected = $data[0];
-        $actual   = $row->getCopy();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $data[0],
+            $row->getCopy()
+        );
     }
 
     #[Group('mysql')]
@@ -308,25 +317,27 @@ final class TableTest extends AbstractDatabaseTestCase
 
         $rows = $this->table->fetchRows([1, 2, 3]);
 
-        $actual = $rows;
-        $this->assertIsArray($actual);
-        $this->assertCount(3, $actual);
+        $this->assertIsArray($rows);
+        $this->assertCount(3, $rows);
 
         $this->assertInstanceOf(InvoicesRow::class, $rows[0]);
         $this->assertInstanceOf(InvoicesRow::class, $rows[1]);
         $this->assertInstanceOf(InvoicesRow::class, $rows[2]);
 
-        $expected = $data[0];
-        $actual   = $rows[0]->getCopy();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data[0],
+            $rows[0]->getCopy()
+        );
 
-        $expected = $data[1];
-        $actual   = $rows[1]->getCopy();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data[1],
+            $rows[1]->getCopy()
+        );
 
-        $expected = $data[2];
-        $actual   = $rows[2]->getCopy();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data[2],
+            $rows[2]->getCopy()
+        );
 
         $actual = $select
             ->where('inv_id = ', -1)
@@ -403,9 +414,8 @@ final class TableTest extends AbstractDatabaseTestCase
         $actual = $this->table->insertRow($newRow);
         $this->assertInstanceOf(PDOStatement::class, $actual);
 
-        $expected  = '10';
         $invoiceId = $newRow->get('inv_id');
-        $this->assertSame($expected, $invoiceId);
+        $this->assertSame('10', $invoiceId);
 
         $dbConnection = $this->table->getReadConnection();
         $dbRow        = $dbConnection->fetchOne(
@@ -417,9 +427,11 @@ final class TableTest extends AbstractDatabaseTestCase
          * The ID will be returned as string
          */
         $dbRow['inv_id'] = (string)$dbRow['inv_id'];
-        $expected        = $dbRow;
-        $actual          = $newRow->getCopy();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $dbRow,
+            $newRow->getCopy()
+        );
 
         /**
          * Silence PDO exception for this test
@@ -454,9 +466,8 @@ final class TableTest extends AbstractDatabaseTestCase
         $actual = $this->table->insertRow($newRow);
         $this->assertInstanceOf(PDOStatement::class, $actual);
 
-        $expected  = '10';
         $invoiceId = $newRow->get('inv_id');
-        $this->assertSame($expected, $invoiceId);
+        $this->assertSame('10', $invoiceId);
 
         $data = [
             'inv_cst_id'      => 20,
@@ -491,9 +502,8 @@ final class TableTest extends AbstractDatabaseTestCase
         $actual = $this->table->insertRow($newRow);
         $this->assertInstanceOf(PDOStatement::class, $actual);
 
-        $expected  = '10';
         $invoiceId = $newRow->get('inv_id');
-        $this->assertSame($expected, $invoiceId);
+        $this->assertSame('10', $invoiceId);
 
         $newRow
             ->set('inv_cst_id', 20)
@@ -515,8 +525,9 @@ final class TableTest extends AbstractDatabaseTestCase
         /**
          * Double update returns null
          */
-        $actual = $this->table->updateRow($newRow);
-        $this->assertNull($actual);
+        $this->assertNull(
+            $this->table->updateRow($newRow)
+        );
 
         /**
          * The ID will be returned as string
@@ -528,9 +539,10 @@ final class TableTest extends AbstractDatabaseTestCase
         $dbRow['inv_total']       = 200.24;
         $dbRow['inv_created_at']  = '2018-01-01 01:02:23';
 
-        $expected = $dbRow;
-        $actual   = $newRow->getCopy();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $dbRow,
+            $newRow->getCopy()
+        );
 
         /**
          * Delete the record using the connection
@@ -565,6 +577,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->expectExceptionMessage(
             'Cannot update row on table [no_primary_key] without a primary key.'
         );
+
         $newRow->set('nokey_name', uniqid('nam-'));
         $table->updateRow($newRow);
     }
@@ -590,9 +603,8 @@ final class TableTest extends AbstractDatabaseTestCase
         $actual = $this->table->insertRow($newRow);
         $this->assertInstanceOf(PDOStatement::class, $actual);
 
-        $expected  = '10';
         $invoiceId = $newRow->get('inv_id');
-        $this->assertSame($expected, $invoiceId);
+        $this->assertSame('10', $invoiceId);
 
         $newRow->set('inv_id', 20);
 

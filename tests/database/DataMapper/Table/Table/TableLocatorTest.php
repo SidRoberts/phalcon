@@ -45,9 +45,9 @@ final class TableLocatorTest extends AbstractDatabaseTestCase
     #[Group('mysql')]
     public function testGetConnectionLocator(): void
     {
-        $class  = ConnectionLocator::class;
         $actual = $this->locator->getConnectionLocator();
-        $this->assertInstanceOf($class, $actual);
+
+        $this->assertInstanceOf(ConnectionLocator::class, $actual);
     }
 
     #[Group('mysql')]
@@ -65,10 +65,12 @@ final class TableLocatorTest extends AbstractDatabaseTestCase
     #[Group('mysql')]
     public function testHas(): void
     {
-        $actual = $this->locator->has(InvoicesTable::class);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $this->locator->has(InvoicesTable::class)
+        );
 
-        $actual = $this->locator->has('other_class');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $this->locator->has('other_class')
+        );
     }
 }
