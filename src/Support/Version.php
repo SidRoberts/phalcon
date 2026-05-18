@@ -167,13 +167,12 @@ class Version
      */
     final protected function getSpecial(int $special): string
     {
-        $map = [
-            1 => "alpha",
-            2 => "beta",
-            3 => "RC",
-        ];
-
-        return $map[$special] ?? "";
+        return match ($special) {
+            1       => "alpha",
+            2       => "beta",
+            3       => "RC",
+            default => "",
+        };
     }
 
     /**
