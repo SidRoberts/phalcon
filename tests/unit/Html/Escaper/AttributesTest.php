@@ -97,8 +97,8 @@ final class AttributesTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('escaperEscapeHtmlAttrProvider')]
     public function testEscaperAttributes(
@@ -114,8 +114,8 @@ final class AttributesTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     public function testEscaperAttributesWithArrayValue(): void
     {

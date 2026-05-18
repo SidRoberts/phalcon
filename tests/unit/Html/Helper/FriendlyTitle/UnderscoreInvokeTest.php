@@ -78,8 +78,8 @@ final class UnderscoreInvokeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2026-04-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2026-04-17
      */
     #[DataProvider('getExamples')]
     public function testHtmlHelperFriendlyTitleUnderscoreInvoke(

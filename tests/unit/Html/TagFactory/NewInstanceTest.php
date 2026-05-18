@@ -125,8 +125,8 @@ final class NewInstanceTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getData')]
     public function testFilterTagFactoryNewInstanceServices(
