@@ -232,8 +232,8 @@ final class SetBaseUriTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Nikolaos Dimopoulos <nikos@phalcon.io>
-     * @since        2014-09-04
+     * @author Nikolaos Dimopoulos <nikos@phalcon.io>
+     * @since  2014-09-04
      */
     #[BackupGlobals(true)]
     #[DataProvider('getUrlToSetServer')]
@@ -251,9 +251,10 @@ final class SetBaseUriTest extends AbstractUnitTestCase
     }
 
     /**
-     * @issue  https://github.com/phalcon/cphalcon/issues/3315
-     * @author       Olivier Monaco <olivier.monaco@nospam.free.fr>
-     * @since        2015-02-03
+     * @issue https://github.com/phalcon/cphalcon/issues/3315
+     *
+     * @author Olivier Monaco <olivier.monaco@nospam.free.fr>
+     * @since  2015-02-03
      */
     #[DataProvider('getUrlToSetWithoutDi')]
     public function testMvcUrlGetCorrectUrl(
@@ -270,9 +271,9 @@ final class SetBaseUriTest extends AbstractUnitTestCase
     }
 
     /**
-     * @issue        https://github.com/phalcon/cphalcon/issues/3315
-     * @author       Olivier Monaco <olivier.monaco@nospam.free.fr>
-     * @since        2015-02-03
+     * @issue  https://github.com/phalcon/cphalcon/issues/3315
+     * @author Olivier Monaco <olivier.monaco@nospam.free.fr>
+     * @since  2015-02-03
      */
     #[DataProvider('getUrlToSetWithoutDiTwoParam')]
     public function testMvcUrlGetCorrectUrlWithGetParam(
@@ -291,8 +292,8 @@ final class SetBaseUriTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Nikolaos Dimopoulos <nikos@phalcon.io>
-     * @since        2014-09-04
+     * @author Nikolaos Dimopoulos <nikos@phalcon.io>
+     * @since  2014-09-04
      */
     #[DataProvider('getUrlToSetBaseUri')]
     public function testMvcUrlSetBaseUri(
