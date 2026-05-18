@@ -33,8 +33,8 @@ class IsLazyTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Sid Roberts <https://github.com/SidRoberts>
-     * @since        2019-06-08
+     * @author Sid Roberts <https://github.com/SidRoberts>
+     * @since  2019-06-08
      */
     #[DataProvider('booleanProvider')]
     public function testMvcMicroCollectionIsLazy(
