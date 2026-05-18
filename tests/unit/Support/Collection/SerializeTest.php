@@ -14,11 +14,14 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Support\Collection;
 
 use Phalcon\Support\Collection;
+use Phalcon\Support\Collection\CollectionInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class SerializeTest extends AbstractCollectionTestCase
 {
     /**
+     * @param class-string<CollectionInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -27,16 +30,22 @@ final class SerializeTest extends AbstractCollectionTestCase
         string $class,
     ): void {
         $data = $this->getData();
+
         $collection = new $class($data);
 
-        $expected = serialize([
-            'data'        => $data,
-            'insensitive' => true,
-            'strictNull'  => false,
-            'type'        => null,
-        ]);
-        $actual = $collection->serialize();
-        $this->assertSame($expected, $actual);
+        $expected = serialize(
+            [
+                'data'        => $data,
+                'insensitive' => true,
+                'strictNull'  => false,
+                'type'        => null,
+            ]
+        );
+
+        $this->assertSame(
+            $expected,
+            $collection->serialize()
+        );
     }
 
     /**
@@ -46,6 +55,7 @@ final class SerializeTest extends AbstractCollectionTestCase
     public function testSupportCollectionSerializeUnderscore(): void
     {
         $data = $this->getData();
+
         $collection = new Collection($data);
 
         // __serialize() now emits a structured array with data + flags.
@@ -54,7 +64,10 @@ final class SerializeTest extends AbstractCollectionTestCase
         $expected = 'O:26:"Phalcon\Support\Collection":'
                     . '4:{s:4:"data";a:3:{s:3:"one";s:3:"two";s:5:"three";s:4:"four";s:4:"five";'
                     . 's:3:"six";}s:11:"insensitive";b:1;s:10:"strictNull";b:0;s:4:"type";N;}';
-        $actual = serialize($collection);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            serialize($collection)
+        );
     }
 }

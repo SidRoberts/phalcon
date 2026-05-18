@@ -27,7 +27,9 @@ final class SetTest extends AbstractCollectionTestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The object is read only');
+
         $collection = new ReadOnlyCollection();
+
         $collection->offsetSet('three', 123);
     }
 
@@ -41,26 +43,30 @@ final class SetTest extends AbstractCollectionTestCase
 
         $collection->set('three', 'two');
 
-        $expected = 'two';
-        $actual = $collection->get('three');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $collection->get('three')
+        );
 
         $collection->three = 'Phalcon';
 
-        $expected = 'Phalcon';
-        $actual = $collection->get('three');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'Phalcon',
+            $collection->get('three')
+        );
 
         $collection->offsetSet('three', 123);
 
-        $expected = 123;
-        $actual = $collection->get('three');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            123,
+            $collection->get('three')
+        );
 
         $collection['three'] = true;
 
-        $actual = $collection->get('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->get('three')
+        );
     }
 
     /**
@@ -71,7 +77,9 @@ final class SetTest extends AbstractCollectionTestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The object is read only');
+
         $collection = new ReadOnlyCollection();
+
         $collection['three'] = true;
     }
 
@@ -83,7 +91,9 @@ final class SetTest extends AbstractCollectionTestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The object is read only');
+
         $collection = new ReadOnlyCollection();
+
         $collection->set('three', 123);
     }
 
@@ -95,7 +105,9 @@ final class SetTest extends AbstractCollectionTestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The object is read only');
+
         $collection = new ReadOnlyCollection();
+
         $collection->three = 'Phalcon';
     }
 }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Support\Collection;
 
 use Phalcon\Support\Collection;
+use Phalcon\Support\Collection\CollectionInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 use function uniqid;
@@ -21,6 +22,8 @@ use function uniqid;
 final class GetTest extends AbstractCollectionTestCase
 {
     /**
+     * @param class-string<CollectionInterface> $class
+     *
      * @issue https://github.com/phalcon/cphalcon/issues/15370
      *
      * @author Phalcon Team <team@phalcon.io>
@@ -34,35 +37,47 @@ final class GetTest extends AbstractCollectionTestCase
         $collection = new $class($data);
         $expected = 'four';
 
-        $actual = $collection->get('three');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $collection->get('three')
+        );
 
-        $actual = $collection->get('THREE');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $collection->get('THREE')
+        );
 
-        $actual = $collection->get(uniqid(), 'four');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $collection->get(uniqid(), 'four')
+        );
 
-        $actual = $collection['three'];
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $collection['three']
+        );
 
-        $actual = $collection->three;
-        $this->assertSame($expected, $actual);
+        $this->assertSame($expected, $collection->three);
 
-        $actual = $collection->offsetGet('three');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $collection->offsetGet('three')
+        );
 
-        $expected = 'two';
-        $actual = $collection->get('one', 'fallback');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'two',
+            $collection->get('one', 'fallback')
+        );
 
-        $expected = '';
-        $actual = $collection->get('seven', 'fallback');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '',
+            $collection->get('seven', 'fallback')
+        );
 
-        $expected = 'fallback';
-        $actual = $collection->get('eight', 'fallback');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'fallback',
+            $collection->get('eight', 'fallback')
+        );
     }
 
     /**
@@ -82,8 +97,10 @@ final class GetTest extends AbstractCollectionTestCase
             ],
         );
 
-        $actual = $collection->get('value', null, $cast);
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $expected,
+            $collection->get('value', null, $cast)
+        );
     }
 
     /**

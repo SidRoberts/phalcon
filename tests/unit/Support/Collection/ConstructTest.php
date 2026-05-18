@@ -28,7 +28,6 @@ final class ConstructTest extends AbstractCollectionTestCase
     ): void {
         $collection = new $class();
 
-        $className = Collection::class;
-        $this->assertInstanceOf($className, $collection);
+        $this->assertInstanceOf(Collection::class, $collection);
     }
 }

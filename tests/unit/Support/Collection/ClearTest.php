@@ -28,15 +28,17 @@ final class ClearTest extends AbstractCollectionTestCase
         $data = $this->getData();
         $collection = new Collection($data);
 
-        $expected = $data;
-        $actual = $collection->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $collection->toArray()
+        );
 
         $collection->clear();
 
-        $expected = 0;
-        $actual = $collection->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $collection->count()
+        );
     }
 
     /**

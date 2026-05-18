@@ -13,11 +13,14 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Support\Collection;
 
+use Phalcon\Support\Collection\CollectionInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class GetIteratorTest extends AbstractCollectionTestCase
 {
     /**
+     * @param class-string<CollectionInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -29,9 +32,10 @@ final class GetIteratorTest extends AbstractCollectionTestCase
         $collection = new $class($data);
 
         foreach ($collection as $key => $value) {
-            $expected = $data[$key];
-            $actual = $collection[$key];
-            $this->assertSame($expected, $actual);
+            $this->assertSame(
+                $data[$key],
+                $collection[$key]
+            );
         }
     }
 }

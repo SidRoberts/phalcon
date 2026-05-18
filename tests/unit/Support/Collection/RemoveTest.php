@@ -26,54 +26,76 @@ final class RemoveTest extends AbstractCollectionTestCase
     public function testSupportCollectionRemove(): void
     {
         $data = $this->getData();
+
         $collection = new Collection($data);
 
-        $expected = $data;
-        $actual = $collection->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $collection->toArray()
+        );
 
         $collection->remove('five');
+
         $expected = [
             'one'   => 'two',
             'three' => 'four',
         ];
-        $actual = $collection->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $collection->toArray()
+        );
 
         $collection->remove('FIVE');
+
         $expected = [
             'one'   => 'two',
             'three' => 'four',
         ];
-        $actual = $collection->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $collection->toArray()
+        );
 
         $collection->init($data);
         unset($collection['five']);
+
         $expected = [
             'one'   => 'two',
             'three' => 'four',
         ];
-        $actual = $collection->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $collection->toArray()
+        );
 
         $collection->init($data);
         $collection->__unset('five');
+
         $expected = [
             'one'   => 'two',
             'three' => 'four',
         ];
-        $actual = $collection->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $collection->toArray()
+        );
 
         $collection->init($data);
         $collection->offsetUnset('five');
+
         $expected = [
             'one'   => 'two',
             'three' => 'four',
         ];
-        $actual = $collection->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $collection->toArray()
+        );
     }
 
     /**
@@ -83,10 +105,12 @@ final class RemoveTest extends AbstractCollectionTestCase
     public function testSupportCollectionRemoveException(): void
     {
         $data = $this->getData();
+
         $collection = new ReadOnlyCollection($data);
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The object is read only');
+
         $collection->remove('five');
     }
 
@@ -97,10 +121,12 @@ final class RemoveTest extends AbstractCollectionTestCase
     public function testSupportCollectionRemoveInsensitiveException(): void
     {
         $data = $this->getData();
+
         $collection = new ReadOnlyCollection($data);
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The object is read only');
+
         $collection->remove('FIVE');
     }
 
@@ -111,10 +137,12 @@ final class RemoveTest extends AbstractCollectionTestCase
     public function testSupportCollectionRemoveOffsetUnsetException(): void
     {
         $data = $this->getData();
+
         $collection = new ReadOnlyCollection($data);
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The object is read only');
+
         $collection->offsetUnset('five');
     }
 
@@ -125,10 +153,12 @@ final class RemoveTest extends AbstractCollectionTestCase
     public function testSupportCollectionRemoveUnderscoreUnsetException(): void
     {
         $data = $this->getData();
+
         $collection = new ReadOnlyCollection($data);
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The object is read only');
+
         $collection->__unset('five');
     }
 
@@ -139,10 +169,12 @@ final class RemoveTest extends AbstractCollectionTestCase
     public function testSupportCollectionRemoveUnsetException(): void
     {
         $data = $this->getData();
+
         $collection = new ReadOnlyCollection($data);
 
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('The object is read only');
+
         unset($collection['five']);
     }
 }

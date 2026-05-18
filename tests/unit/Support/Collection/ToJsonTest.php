@@ -15,11 +15,15 @@ namespace Phalcon\Tests\Unit\Support\Collection;
 
 use InvalidArgumentException;
 use Phalcon\Support\Collection;
+use Phalcon\Support\Collection\CollectionInterface;
+use Phalcon\Tests\Unit\Support\Fake\FakeCollectionPhpJsonEncode;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class ToJsonTest extends AbstractCollectionTestCase
 {
     /**
+     * @param class-string<CollectionInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -28,15 +32,18 @@ final class ToJsonTest extends AbstractCollectionTestCase
         string $class,
     ): void {
         $data = $this->getData();
+
         $collection = new $class($data);
 
-        $expected = json_encode($data);
-        $actual = $collection->toJson();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            json_encode($data),
+            $collection->toJson()
+        );
 
-        $expected = json_encode($data, JSON_PRETTY_PRINT);
-        $actual = $collection->toJson(JSON_PRETTY_PRINT);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            json_encode($data, JSON_PRETTY_PRINT),
+            $collection->toJson(JSON_PRETTY_PRINT)
+        );
     }
 
     /**
@@ -46,6 +53,7 @@ final class ToJsonTest extends AbstractCollectionTestCase
     public function testSupportCollectionToJsonEncodeFail(): void
     {
         $collection = new Collection();
+
         $collection->set('handle', fopen('php://memory', 'r'));
 
         $this->expectException(InvalidArgumentException::class);

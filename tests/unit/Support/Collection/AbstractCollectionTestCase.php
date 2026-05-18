@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Support\Collection;
 
 use Phalcon\Support\Collection;
+use Phalcon\Support\Collection\CollectionInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 use stdClass;
 
@@ -22,7 +23,10 @@ use function array_values;
 
 abstract class AbstractCollectionTestCase extends AbstractUnitTestCase
 {
-    public static function getClasses()
+    /**
+     * @return array<array{0: class-string<CollectionInterface>}>
+     */
+    public static function getClasses(): array
     {
         return [
             [Collection::class],
@@ -31,7 +35,7 @@ abstract class AbstractCollectionTestCase extends AbstractUnitTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<CollectionInterface>, 1: string, 2: mixed, 3: mixed}>
      */
     public static function getExamples(): array
     {
@@ -163,7 +167,7 @@ abstract class AbstractCollectionTestCase extends AbstractUnitTestCase
     }
 
     /**
-     * @return string[]
+     * @return array<string, mixed>
      */
     protected function getDataForGet(): array
     {
@@ -177,7 +181,7 @@ abstract class AbstractCollectionTestCase extends AbstractUnitTestCase
     }
 
     /**
-     * @return array
+     * @return list<string>
      */
     protected function getDataKeys(): array
     {
@@ -185,7 +189,7 @@ abstract class AbstractCollectionTestCase extends AbstractUnitTestCase
     }
 
     /**
-     * @return string[]
+     * @return array<string, string>
      */
     protected function getData(): array
     {
@@ -209,7 +213,7 @@ abstract class AbstractCollectionTestCase extends AbstractUnitTestCase
     }
 
     /**
-     * @return array
+     * @return list<string>
      */
     protected function getDataValues(): array
     {

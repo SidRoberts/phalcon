@@ -28,15 +28,17 @@ final class InitTest extends AbstractCollectionTestCase
         $data = $this->getData();
         $collection = new Collection();
 
-        $expected = 0;
-        $actual = $collection->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            0,
+            $collection->count()
+        );
 
         $collection->init($data);
 
-        $expected = $data;
-        $actual = $collection->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $collection->toArray()
+        );
     }
 
     /**

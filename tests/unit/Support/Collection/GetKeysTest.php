@@ -25,20 +25,26 @@ final class GetKeysTest extends AbstractCollectionTestCase
     public function testSupportCollectionGetKeys(string $class): void
     {
         $data = $this->getData();
+
         $collection = new $class($data);
 
-        $expected = $this->getDataKeys();
-        $actual = $collection->getKeys();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $this->getDataKeys(),
+            $collection->getKeys()
+        );
 
         $data = $this->getDataNoCase();
-        $collection = new $class($data);
-        $expected = $this->getDataKeys();
-        $actual = $collection->getKeys();
-        $this->assertSame($expected, $actual);
 
-        $expected = array_keys($data);
-        $actual = $collection->getKeys(false);
-        $this->assertSame($expected, $actual);
+        $collection = new $class($data);
+
+        $this->assertSame(
+            $this->getDataKeys(),
+            $collection->getKeys()
+        );
+
+        $this->assertSame(
+            array_keys($data),
+            $collection->getKeys(false)
+        );
     }
 }

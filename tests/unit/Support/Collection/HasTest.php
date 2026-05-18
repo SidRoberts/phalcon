@@ -15,11 +15,14 @@ namespace Phalcon\Tests\Unit\Support\Collection;
 
 use Phalcon\Support\Collection;
 use Phalcon\Support\Collection\ReadOnlyCollection;
+use Phalcon\Support\Collection\CollectionInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class HasTest extends AbstractCollectionTestCase
 {
     /**
+     * @param class-string<CollectionInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -30,29 +33,37 @@ final class HasTest extends AbstractCollectionTestCase
         $data = $this->getData();
         $collection = new $class($data);
 
-        $actual = $collection->has('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->has('three')
+        );
 
-        $actual = $collection->has('THREE');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->has('THREE')
+        );
 
-        $actual = $collection->has(uniqid());
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->has(uniqid())
+        );
 
-        $actual = $collection->__isset('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->__isset('three')
+        );
 
-        $actual = isset($collection['three']);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($collection['three'])
+        );
 
-        $actual = isset($collection[uniqid()]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($collection[uniqid()])
+        );
 
-        $actual = $collection->offsetExists('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->offsetExists('three')
+        );
 
-        $actual = $collection->offsetExists(uniqid());
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->offsetExists(uniqid())
+        );
     }
 
     /**
@@ -64,29 +75,37 @@ final class HasTest extends AbstractCollectionTestCase
         $data = $this->getData();
         $collection = new Collection($data, false);
 
-        $actual = $collection->has('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->has('three')
+        );
 
-        $actual = $collection->has('THREE');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->has('THREE')
+        );
 
-        $actual = $collection->has(uniqid());
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->has(uniqid())
+        );
 
-        $actual = $collection->__isset('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->__isset('three')
+        );
 
-        $actual = isset($collection['three']);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($collection['three'])
+        );
 
-        $actual = isset($collection[uniqid()]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($collection[uniqid()])
+        );
 
-        $actual = $collection->offsetExists('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->offsetExists('three')
+        );
 
-        $actual = $collection->offsetExists(uniqid());
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->offsetExists(uniqid())
+        );
     }
 
     /**
@@ -96,30 +115,39 @@ final class HasTest extends AbstractCollectionTestCase
     public function testSupportCollectionReadOnlyHasSensitive(): void
     {
         $data = $this->getData();
+
         $collection = new ReadOnlyCollection($data, false);
 
-        $actual = $collection->has('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->has('three')
+        );
 
-        $actual = $collection->has('THREE');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->has('THREE')
+        );
 
-        $actual = $collection->has(uniqid());
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->has(uniqid())
+        );
 
-        $actual = $collection->__isset('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->__isset('three')
+        );
 
-        $actual = isset($collection['three']);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            isset($collection['three'])
+        );
 
-        $actual = isset($collection[uniqid()]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            isset($collection[uniqid()])
+        );
 
-        $actual = $collection->offsetExists('three');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $collection->offsetExists('three')
+        );
 
-        $actual = $collection->offsetExists(uniqid());
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $collection->offsetExists(uniqid())
+        );
     }
 }

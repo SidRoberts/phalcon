@@ -13,11 +13,14 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Support\Collection;
 
+use Phalcon\Support\Collection\CollectionInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class CountTest extends AbstractCollectionTestCase
 {
     /**
+     * @param class-string<CollectionInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -28,12 +31,14 @@ final class CountTest extends AbstractCollectionTestCase
         $data = $this->getData();
         $collection = new $class($data);
 
-        $expected = 3;
-        $actual = $collection->toArray();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            3,
+            $collection->toArray()
+        );
 
-        $expected = 3;
-        $actual = $collection->count();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            3,
+            $collection->count()
+        );
     }
 }

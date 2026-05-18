@@ -13,11 +13,14 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Support\Collection;
 
+use Phalcon\Support\Collection\CollectionInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class GetValuesTest extends AbstractCollectionTestCase
 {
     /**
+     * @param class-string<CollectionInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-09-09
      */
@@ -28,8 +31,9 @@ final class GetValuesTest extends AbstractCollectionTestCase
         $data = $this->getData();
         $collection = new $class($data);
 
-        $expected = $this->getDataValues();
-        $actual = $collection->getValues();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $this->getDataValues(),
+            $collection->getValues()
+        );
     }
 }

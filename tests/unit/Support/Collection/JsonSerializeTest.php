@@ -28,9 +28,10 @@ final class JsonSerializeTest extends AbstractCollectionTestCase
         $data = $this->getData();
         $collection = new $class($data);
 
-        $expected = $data;
-        $actual = $collection->jsonSerialize();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $collection->jsonSerialize()
+        );
 
         $data = [
             'one'    => 'two',
@@ -50,7 +51,9 @@ final class JsonSerializeTest extends AbstractCollectionTestCase
 
         $collection = new $class($data);
 
-        $actual = $collection->jsonSerialize();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $collection->jsonSerialize()
+        );
     }
 }
