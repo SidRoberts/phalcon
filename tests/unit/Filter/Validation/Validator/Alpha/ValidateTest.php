@@ -63,8 +63,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2016-06-10
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2016-06-10
      */
     #[DataProvider('alphaProvider')]
     public function testFilterValidationValidatorAlphaValidateAlphabeticCharacters(
@@ -188,8 +188,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2016-06-10
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2016-06-10
      */
     #[DataProvider('nonAlphaProvider')]
     public function testFilterValidationValidatorAlphaValidateNonAlphabeticCharacters(
@@ -227,8 +227,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2016-06-10
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2016-06-10
      */
     #[DataProvider('nonLatinCharactersProvider')]
     public function testFilterValidationValidatorAlphaValidateNonLatinCharacters(

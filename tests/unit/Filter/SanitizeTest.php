@@ -914,8 +914,8 @@ final class SanitizeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2021-11-07
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-11-07
      */
     #[DataProvider('getExamples')]
     public function testFilterFilterSanitize(

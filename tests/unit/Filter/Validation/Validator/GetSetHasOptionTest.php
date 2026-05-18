@@ -132,8 +132,8 @@ final class GetSetHasOptionTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2023-09-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2023-09-20
      */
     #[DataProvider('getExamples')]
     public function testFilterValidationValidatorGetSetHasOption(

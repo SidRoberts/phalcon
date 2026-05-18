@@ -123,8 +123,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2019-05-10
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2019-05-10
      */
     #[DataProvider('getExamples')]
     public function testFilterValidationValidatorUrlFlags(

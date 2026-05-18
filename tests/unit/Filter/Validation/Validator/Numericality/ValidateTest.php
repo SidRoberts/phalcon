@@ -168,9 +168,9 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Wojciech Ślawski <jurigag@gmail.com>
-     * @author       Andrey Izman <izmanw@gmail.com>
-     * @since        2016-06-05
+     * @author Wojciech Ślawski <jurigag@gmail.com>
+     * @author Andrey Izman <izmanw@gmail.com>
+     * @since  2016-06-05
      */
     #[DataProvider('getExamples')]
     public function testFilterValidationValidatorNumericalitySingleField(
@@ -191,8 +191,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2018-11-13
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2018-11-13
      */
     #[DataProvider('getMixedExamples')]
     public function testFilterValidationValidatorNumericalityValidate(

@@ -241,8 +241,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Wojciech Ślawski <jurigag@gmail.com>
-     * @since        2016-06-05
+     * @author Wojciech Ślawski <jurigag@gmail.com>
+     * @since  2016-06-05
      */
     #[DataProvider('getSingleFieldExamples')]
     public function testFilterValidationValidatorPresenceOfSingleField(

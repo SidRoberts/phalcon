@@ -110,8 +110,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2023-09-28
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2023-09-28
      */
     #[BackupGlobals(true)]
     #[DataProvider('getExamples')]
@@ -145,8 +145,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2023-09-28
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2023-09-28
      */
     #[BackupGlobals(true)]
     #[DataProvider('getExamplesErrors')]

@@ -49,8 +49,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Gustavo Verzola <verzola@gmail.com>
-     * @since        2015-03-09
+     * @author Gustavo Verzola <verzola@gmail.com>
+     * @since  2015-03-09
      */
     #[DataProvider('getInvalidDates')]
     public function testFilterValidationValidatorDateDetectInvalidDates(
@@ -89,8 +89,8 @@ final class ValidateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Gustavo Verzola <verzola@gmail.com>
-     * @since        2015-03-09
+     * @author Gustavo Verzola <verzola@gmail.com>
+     * @since  2015-03-09
      */
     #[DataProvider('getValidDates')]
     public function testFilterValidationValidatorDateDetectValidDates(

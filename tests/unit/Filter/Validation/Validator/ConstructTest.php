@@ -75,8 +75,8 @@ final class ConstructTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2018-11-13
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2018-11-13
      */
     #[DataProvider('getExamples')]
     public function testFilterValidationValidatorAlnumConstruct(
