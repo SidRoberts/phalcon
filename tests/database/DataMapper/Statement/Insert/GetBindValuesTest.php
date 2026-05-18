@@ -25,7 +25,7 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Insert :: getBindValues()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementInsertGetBindValues(): void
@@ -33,9 +33,10 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
         $driver = env('driver');
         $insert = Insert::new($driver);
 
-        $expected = [];
-        $actual   = $insert->getBindValues();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $insert->getBindValues()
+        );
 
         $insert
             ->bindValues(
@@ -54,8 +55,11 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
             'three' => [true, PDO::PARAM_BOOL],
             'four'  => [[1, 2, 3], PDO::PARAM_STR],
         ];
-        $actual   = $insert->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $insert->getBindValues()
+        );
 
         $insert
             ->bindValues(
@@ -72,7 +76,10 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
             'four'  => [[1, 2, 3], PDO::PARAM_STR],
             'five'  => ['active', PDO::PARAM_STR],
         ];
-        $actual   = $insert->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $insert->getBindValues()
+        );
     }
 }

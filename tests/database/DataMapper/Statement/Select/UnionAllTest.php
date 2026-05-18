@@ -24,7 +24,7 @@ final class UnionAllTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: unionAll()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectUnionAll(): void
@@ -46,7 +46,10 @@ final class UnionAllTest extends AbstractStatementTestCase
         $expected = 'SELECT * FROM co_invoices WHERE inv_id = 1 UNION ALL '
             . 'SELECT * FROM co_invoices WHERE inv_id = 2 UNION ALL '
             . 'SELECT * FROM co_invoices WHERE inv_id = 3';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 }

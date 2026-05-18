@@ -24,7 +24,7 @@ final class GetStatementTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Delete :: getStatement()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementDeleteGetStatement(): void
@@ -52,8 +52,11 @@ final class GetStatementTest extends AbstractDatabaseTestCase
             . 'AND inv_cst_id = :cstId '
             . 'OR inv_status_flag = :flag '
             . 'RETURNING inv_total, inv_cst_id, inv_status_flag';
-        $actual   = $delete->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $delete->getStatement()
+        );
 
         $delete->resetReturning();
 
@@ -61,7 +64,10 @@ final class GetStatementTest extends AbstractDatabaseTestCase
             . 'WHERE inv_total > :total '
             . 'AND inv_cst_id = :cstId '
             . 'OR inv_status_flag = :flag';
-        $actual   = $delete->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $delete->getStatement()
+        );
     }
 }

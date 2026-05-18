@@ -25,7 +25,7 @@ final class GetStatementTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Insert :: getStatement()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementInsertGetStatement(): void
@@ -57,15 +57,21 @@ final class GetStatementTest extends AbstractDatabaseTestCase
             . '1, '
             . 'NOW()) '
             . 'RETURNING inv_id, inv_cst_id, inv_total';
-        $actual   = $insert->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $insert->getStatement()
+        );
 
         $expected = [
             'inv_total'  => ['total', PDO::PARAM_STR],
             'inv_cst_id' => [1, PDO::PARAM_INT],
         ];
-        $actual   = $insert->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $insert->getBindValues()
+        );
 
         $insert->resetReturning();
 
@@ -81,11 +87,17 @@ final class GetStatementTest extends AbstractDatabaseTestCase
             . 'NULL, '
             . '1, '
             . 'NOW())';
-        $actual   = $insert->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $insert->getStatement()
+        );
 
         $expected = 'co_invoices';
-        $actual   = $insert->getTable();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $insert->getTable()
+        );
     }
 }

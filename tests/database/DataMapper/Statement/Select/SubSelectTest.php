@@ -24,7 +24,7 @@ final class SubSelectTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: subSelect()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectSubSelect(): void
@@ -44,14 +44,17 @@ final class SubSelectTest extends AbstractStatementTestCase
         ;
 
         $expected = 'SELECT * FROM (SELECT inv_id FROM co_invoices) AS inv';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: subSelect() object
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectSubSelectObject(): void
@@ -73,7 +76,10 @@ final class SubSelectTest extends AbstractStatementTestCase
         $expected = 'SELECT * '
             . 'FROM (SELECT inv_id FROM co_invoices) AS inv '
             . 'WHERE inv_total > :_1_1_';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 }

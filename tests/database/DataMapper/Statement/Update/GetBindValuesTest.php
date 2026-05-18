@@ -25,7 +25,7 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Query\Update :: getBindValues()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementUpdateGetBindValues(): void
@@ -33,20 +33,19 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
         $driver = env('driver');
         $update = Update::new($driver);
 
-        $expected = [];
-        $actual   = $update->getBindValues();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $update->getBindValues()
+        );
 
-        $update
-            ->bindValues(
-                [
-                    'one'   => 100,
-                    'two'   => null,
-                    'three' => true,
-                    'four'  => [1, 2, 3],
-                ]
-            )
-        ;
+        $update->bindValues(
+            [
+                'one'   => 100,
+                'two'   => null,
+                'three' => true,
+                'four'  => [1, 2, 3],
+            ]
+        );
 
         $expected = [
             'one'   => [100, PDO::PARAM_INT],
@@ -54,16 +53,17 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
             'three' => [true, PDO::PARAM_BOOL],
             'four'  => [[1, 2, 3], PDO::PARAM_STR],
         ];
-        $actual   = $update->getBindValues();
-        $this->assertSame($expected, $actual);
 
-        $update
-            ->bindValues(
-                [
-                    'five' => 'active',
-                ]
-            )
-        ;
+        $this->assertSame(
+            $expected,
+            $update->getBindValues()
+        );
+
+        $update->bindValues(
+            [
+                'five' => 'active',
+            ]
+        );
 
         $expected = [
             'one'   => [100, PDO::PARAM_INT],
@@ -72,7 +72,10 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
             'four'  => [[1, 2, 3], PDO::PARAM_STR],
             'five'  => ['active', PDO::PARAM_STR],
         ];
-        $actual   = $update->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $update->getBindValues()
+        );
     }
 }

@@ -25,7 +25,7 @@ final class GetStatementTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Query\Update :: getStatement()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementUpdateGetStatement(): void
@@ -61,8 +61,11 @@ final class GetStatementTest extends AbstractDatabaseTestCase
             . 'AND inv_cst_id = :cstId '
             . 'OR inv_status_flag = :flag';
 
-        $actual = $update->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $update->getStatement()
+        );
 
         $expected = [
             'inv_total' => ['total', PDO::PARAM_STR],
@@ -70,8 +73,11 @@ final class GetStatementTest extends AbstractDatabaseTestCase
             'cstId'     => [4, PDO::PARAM_INT],
             'flag'      => ['active', PDO::PARAM_STR],
         ];
-        $actual   = $update->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $update->getBindValues()
+        );
 
         $update
             ->returning(['inv_id', 'inv_cst_id'])
@@ -89,7 +95,10 @@ final class GetStatementTest extends AbstractDatabaseTestCase
             . 'AND inv_cst_id = :cstId '
             . 'OR inv_status_flag = :flag '
             . 'RETURNING inv_id, inv_cst_id, inv_total';
-        $actual   = $update->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $update->getStatement()
+        );
     }
 }

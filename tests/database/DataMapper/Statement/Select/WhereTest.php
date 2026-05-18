@@ -24,7 +24,7 @@ final class WhereTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: orWhere() - bind values
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectOrWhereBind(): void
@@ -42,21 +42,27 @@ final class WhereTest extends AbstractStatementTestCase
         $expected = 'SELECT * FROM co_invoices '
             . 'WHERE inv_total > :_1_1_ '
             . 'OR inv_status_flag = :status';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         $expected = [
             '_1_1_'  => [100, 1],
             'status' => [1, 1],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: where()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectWhere(): void
@@ -70,20 +76,26 @@ final class WhereTest extends AbstractStatementTestCase
         ;
 
         $expected = 'SELECT * FROM co_invoices WHERE inv_id > :_1_1_';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         $expected = [
             '_1_1_' => [1, 1],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: where() - bind values
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectWhereBind(): void
@@ -104,8 +116,11 @@ final class WhereTest extends AbstractStatementTestCase
             . 'WHERE inv_id > 1 AND inv_total > :total '
             . 'AND inv_cst_id IN (:_1_1_, :_1_2_, :_1_3_) '
             . 'AND inv_status_flag = :_1_4_';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         $expected = [
             '_1_1_' => [1, 1],
@@ -114,14 +129,17 @@ final class WhereTest extends AbstractStatementTestCase
             '_1_4_' => [1, 1],
             'total' => [100, 1],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: where() subselect
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectWhereSubSelect(): void
@@ -148,7 +166,10 @@ final class WhereTest extends AbstractStatementTestCase
             . 'FROM co_customers '
             . 'WHERE cst_status_flag = :_2_1_'
             . ')';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 }

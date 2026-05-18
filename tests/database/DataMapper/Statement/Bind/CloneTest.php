@@ -23,16 +23,17 @@ final class CloneTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Bind :: clone()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementBindClone(): void
     {
         $bind = new Bind();
 
-        $expected = [];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $bind->toArray()
+        );
 
         $bind->inline('one');
         $bind->inline(true, PDO::PARAM_BOOL);
@@ -41,8 +42,11 @@ final class CloneTest extends AbstractStatementTestCase
             '_1_1_' => ['one', 2],
             '_1_2_' => [true, 5],
         ];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $bind->toArray()
+        );
 
         $clone = clone $bind;
 
@@ -53,7 +57,10 @@ final class CloneTest extends AbstractStatementTestCase
             '_1_2_' => [true, 5],
             '_2_3_' => ['two', 2],
         ];
-        $actual   = $clone->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $clone->toArray()
+        );
     }
 }

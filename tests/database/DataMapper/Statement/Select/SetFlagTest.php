@@ -24,7 +24,7 @@ final class SetFlagTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: setFlag()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectSetFlag(): void
@@ -37,8 +37,9 @@ final class SetFlagTest extends AbstractStatementTestCase
             ->setFlag('LOW_PRIORITY')
         ;
 
-        $expected = 'SELECT LOW_PRIORITY * FROM co_invoices';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT LOW_PRIORITY * FROM co_invoices',
+            $select->getStatement()
+        );
     }
 }

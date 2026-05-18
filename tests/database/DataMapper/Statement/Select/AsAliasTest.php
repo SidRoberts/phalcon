@@ -24,7 +24,7 @@ final class AsAliasTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: asAlias()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectAsAlias(): void
@@ -37,14 +37,16 @@ final class AsAliasTest extends AbstractStatementTestCase
             ->asAlias('inv')
         ;
 
-        $expected = '(SELECT * FROM co_invoices) AS inv';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '(SELECT * FROM co_invoices) AS inv',
+            $select->getStatement()
+        );
 
         $select->resetAs();
 
-        $expected = 'SELECT * FROM co_invoices';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT * FROM co_invoices',
+            $select->getStatement()
+        );
     }
 }

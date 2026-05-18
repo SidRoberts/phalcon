@@ -24,7 +24,7 @@ final class WithTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: with() - bind values
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectOrWhereBind(): void
@@ -51,14 +51,17 @@ final class WithTest extends AbstractStatementTestCase
             . 'SELECT * FROM cte1 '
             . 'UNION '
             . 'SELECT * FROM cte2';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: with() object
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectWithObject(): void
@@ -99,21 +102,27 @@ final class WithTest extends AbstractStatementTestCase
             . 'FROM cte1 '
             . 'UNION SELECT * '
             . 'FROM cte2';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         $expected = [
             '_2_1_' => [1, 1],
             '_3_1_' => [-1, 1],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: with() recursive
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectWithRecursive(): void
@@ -141,7 +150,10 @@ final class WithTest extends AbstractStatementTestCase
             . 'SELECT * FROM cte1 '
             . 'UNION '
             . 'SELECT * FROM cte2';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 }

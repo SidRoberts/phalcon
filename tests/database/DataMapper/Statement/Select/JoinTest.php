@@ -24,7 +24,7 @@ use function env;
 final class JoinTest extends AbstractStatementTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: string}>
      */
     public static function getJoinNames(): array
     {
@@ -39,7 +39,7 @@ final class JoinTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: join() - inner
      *
-     * @since        2020-01-20
+     * @since 2020-01-20
      */
     #[DataProvider('getJoinNames')]
     #[Group('mysql')]
@@ -53,17 +53,19 @@ final class JoinTest extends AbstractStatementTestCase
             ->join($join, 'co_customers', 'inv_cst_id = cst_id')
         ;
 
-
         $expected = 'SELECT * FROM co_invoices '
             . $join . ' JOIN co_customers ON inv_cst_id = cst_id';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: join() - subselect
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectJoinSubSelect(): void
@@ -92,21 +94,27 @@ final class JoinTest extends AbstractStatementTestCase
             . 'LEFT JOIN (SELECT * FROM co_customers '
             . 'WHERE cst_status_flag = :_2_1_) AS cst '
             . 'ON inv_cst_id = cst_id AND cst_name LIKE :_1_1_';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         $expected = [
             '_2_1_' => [1, PDO::PARAM_INT],
             '_1_1_' => ['%john%', PDO::PARAM_STR],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: join() - with bind
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectJoinWithBind(): void
@@ -128,21 +136,27 @@ final class JoinTest extends AbstractStatementTestCase
         $expected = 'SELECT * FROM co_invoices '
             . 'LEFT JOIN co_customers ON inv_cst_id = cst_id '
             . 'AND cst_status_flag = :_1_1_ AND cst_name LIKE :_1_2_';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         $expected = [
             '_1_1_' => [1, PDO::PARAM_INT],
             '_1_2_' => ['%john%', PDO::PARAM_STR],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: join() - with using
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectJoinWithUsing(): void
@@ -161,7 +175,10 @@ final class JoinTest extends AbstractStatementTestCase
 
         $expected = 'SELECT * FROM co_invoices '
             . 'LEFT JOIN co_customers USING (inv_id)';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 }

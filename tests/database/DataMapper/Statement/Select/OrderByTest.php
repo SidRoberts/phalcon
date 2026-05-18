@@ -24,7 +24,7 @@ final class OrderByTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: orderBy()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectOrderBy(): void
@@ -42,10 +42,12 @@ final class OrderByTest extends AbstractStatementTestCase
             )
         ;
 
-
         $expected = 'SELECT * FROM co_invoices '
             . 'ORDER BY inv_cst_id, UPPER(inv_title)';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 }

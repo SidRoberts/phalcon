@@ -23,16 +23,17 @@ final class MergeRemoveResetTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Bind :: merge()/remove()/reset()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementBindMergeRemoveReset(): void
     {
         $bind = new Bind();
 
-        $expected = [];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $bind->toArray()
+        );
 
         $bind->inline('one');
         $bind->inline(true, PDO::PARAM_BOOL);
@@ -41,8 +42,11 @@ final class MergeRemoveResetTest extends AbstractStatementTestCase
             '_1_1_' => ['one', 2],
             '_1_2_' => [true, 5],
         ];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $bind->toArray()
+        );
 
         $values = [
             'three' => 'four',
@@ -56,8 +60,11 @@ final class MergeRemoveResetTest extends AbstractStatementTestCase
             'three' => 'four',
             'five'  => ['six', 'seven', 8, 9],
         ];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $bind->toArray()
+        );
 
         $bind->remove('_1_1_');
 
@@ -66,13 +73,17 @@ final class MergeRemoveResetTest extends AbstractStatementTestCase
             'three' => 'four',
             'five'  => ['six', 'seven', 8, 9],
         ];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $bind->toArray()
+        );
 
         $bind->reset();
 
-        $expected = [];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $bind->toArray()
+        );
     }
 }

@@ -25,7 +25,7 @@ final class HavingTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: having()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectHaving(): void
@@ -41,20 +41,26 @@ final class HavingTest extends AbstractStatementTestCase
 
 
         $expected = 'SELECT * FROM co_invoices HAVING inv_total = :total';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         $expected = [
             'total' => [100, PDO::PARAM_INT],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: having() - complex
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectHavingComplex(): void
@@ -76,13 +82,19 @@ final class HavingTest extends AbstractStatementTestCase
             . 'HAVING inv_total = :total AND '
             . 'inv_cst_id = 1 OR '
             . '(inv_status_flag = 0 OR inv_status_flag = 1)';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         $expected = [
             'total' => [100, PDO::PARAM_INT],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
     }
 }

@@ -22,50 +22,56 @@ final class QuoteIdentifierTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: quoteIdentifier()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectQuoteIdentifier(): void
     {
         $select = Select::new('mysql');
 
-        $source   = 'some field';
-        $expected = $select->quote('mysql', $source);
-        $actual   = $select->quoteIdentifier($source);
-        $this->assertSame($expected, $actual);
+        $source = 'some field';
+
+        $this->assertSame(
+            $select->quote('mysql', $source),
+            $select->quoteIdentifier($source)
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: quoteIdentifier()
      * Sqlite
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectQuoteIdentifierSqlite(): void
     {
         $select = Select::new('sqlite');
 
-        $source   = 'some field';
-        $expected = $select->quote('sqlite', $source);
-        $actual   = $select->quoteIdentifier($source);
-        $this->assertSame($expected, $actual);
+        $source = 'some field';
+
+        $this->assertSame(
+            $select->quote('sqlite', $source),
+            $select->quoteIdentifier($source)
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: quoteIdentifier()
      * MSSQL
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectQuoteIdentifierSqlsrv(): void
     {
         $select = Select::new('sqlsrv');
 
-        $source   = 'some field';
-        $expected = $select->quote('sqlsrv', $source);
-        $actual   = $select->quoteIdentifier($source);
-        $this->assertSame($expected, $actual);
+        $source = 'some field';
+
+        $this->assertSame(
+            $select->quote('sqlsrv', $source),
+            $select->quoteIdentifier($source)
+        );
     }
 }

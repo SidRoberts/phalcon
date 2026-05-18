@@ -25,7 +25,7 @@ final class GetBindValuesTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: getBindValues()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectGetBindValues(): void
@@ -36,9 +36,10 @@ final class GetBindValuesTest extends AbstractStatementTestCase
         /**
          * BindValues - empty
          */
-        $expected = [];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $select->getBindValues()
+        );
 
         /**
          * BindValues
@@ -53,8 +54,11 @@ final class GetBindValuesTest extends AbstractStatementTestCase
             'one'   => ['two', PDO::PARAM_STR],
             'three' => ['four', PDO::PARAM_STR],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
 
         /**
          * BindValues - append
@@ -69,8 +73,11 @@ final class GetBindValuesTest extends AbstractStatementTestCase
             'three' => ['four', PDO::PARAM_STR],
             'five'  => ['six', PDO::PARAM_STR],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
 
         /**
          * BindValue
@@ -82,8 +89,11 @@ final class GetBindValuesTest extends AbstractStatementTestCase
             'five'  => ['six', PDO::PARAM_STR],
             'seven' => [8, PDO::PARAM_INT],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
 
         /**
          * BindInline
@@ -96,7 +106,10 @@ final class GetBindValuesTest extends AbstractStatementTestCase
             'seven' => [8, PDO::PARAM_INT],
             '_1_1_' => [false, PDO::PARAM_BOOL],
         ];
-        $actual   = $select->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getBindValues()
+        );
     }
 }

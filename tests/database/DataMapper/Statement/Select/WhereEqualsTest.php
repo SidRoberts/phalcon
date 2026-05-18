@@ -24,7 +24,7 @@ final class WhereEqualsTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: whereEquals()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectWhereEquals(): void
@@ -50,7 +50,10 @@ final class WhereEqualsTest extends AbstractStatementTestCase
             . 'AND inv_cst_id IS NULL '
             . 'AND inv_title = :_1_4_ '
             . 'AND inv_created_at = NOW()';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 }

@@ -24,7 +24,7 @@ final class HasColumnsTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Query\Update :: hasColumns()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementUpdateHasColumns(): void
@@ -32,12 +32,14 @@ final class HasColumnsTest extends AbstractDatabaseTestCase
         $driver = env('driver');
         $update = Update::new($driver);
 
-        $actual = $update->hasColumns();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $update->hasColumns()
+        );
 
         $update->columns(['inv_id', 'inv_total']);
 
-        $actual = $update->hasColumns();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $update->hasColumns()
+        );
     }
 }

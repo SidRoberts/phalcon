@@ -24,7 +24,7 @@ final class ResetTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: reset()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementReset(): void
@@ -60,8 +60,11 @@ final class ResetTest extends AbstractStatementTestCase
             . 'ORDER BY inv_cst_id '
             . 'LIMIT 10 '
             . 'OFFSET 50';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         /**
          * resetWith
@@ -78,20 +81,25 @@ final class ResetTest extends AbstractStatementTestCase
             . 'ORDER BY inv_cst_id '
             . 'LIMIT 10 '
             . 'OFFSET 50';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
 
         /**
          * resetColumns()
          */
-        $actual = $select->hasColumns();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $select->hasColumns()
+        );
 
         $select->resetColumns();
 
-        $actual = $select->hasColumns();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $select->hasColumns()
+        );
 
         $expected = 'SELECT '
             . 'LOW_PRIORITY '
@@ -103,8 +111,11 @@ final class ResetTest extends AbstractStatementTestCase
             . 'ORDER BY inv_cst_id '
             . 'LIMIT 10 '
             . 'OFFSET 50';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         /**
          * resetFlags()
@@ -120,8 +131,11 @@ final class ResetTest extends AbstractStatementTestCase
             . 'ORDER BY inv_cst_id '
             . 'LIMIT 10 '
             . 'OFFSET 50';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         /**
          * resetFrom()
@@ -136,8 +150,11 @@ final class ResetTest extends AbstractStatementTestCase
             . 'ORDER BY inv_cst_id '
             . 'LIMIT 10 '
             . 'OFFSET 50';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         /**
          * resetGroupBy()
@@ -151,8 +168,11 @@ final class ResetTest extends AbstractStatementTestCase
             . 'ORDER BY inv_cst_id '
             . 'LIMIT 10 '
             . 'OFFSET 50';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         /**
          * resetHaving()
@@ -165,8 +185,11 @@ final class ResetTest extends AbstractStatementTestCase
             . 'ORDER BY inv_cst_id '
             . 'LIMIT 10 '
             . 'OFFSET 50';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         /**
          * resetLimit()
@@ -177,8 +200,11 @@ final class ResetTest extends AbstractStatementTestCase
             . '* '
             . 'WHERE inv_total > :_1_1_ '
             . 'ORDER BY inv_cst_id';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         /**
          * resetOrderBy()
@@ -188,18 +214,21 @@ final class ResetTest extends AbstractStatementTestCase
         $expected = 'SELECT '
             . '* '
             . 'WHERE inv_total > :_1_1_';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         /**
          * resetWhere()
          */
         $select->resetWhere();
 
-        $expected = 'SELECT '
-            . '*';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT *',
+            $select->getStatement()
+        );
 
         /**
          * reset()
@@ -219,8 +248,9 @@ final class ResetTest extends AbstractStatementTestCase
 
         $select->reset();
 
-        $expected = 'SELECT *';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT *',
+            $select->getStatement()
+        );
     }
 }

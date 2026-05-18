@@ -24,7 +24,7 @@ final class DistinctTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: distinct()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectDistinct(): void
@@ -38,9 +38,10 @@ final class DistinctTest extends AbstractStatementTestCase
             ->columns(['inv_id', 'inc_cst_id'])
         ;
 
-        $expected = 'SELECT DISTINCT inv_id, inc_cst_id FROM co_invoices';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT DISTINCT inv_id, inc_cst_id FROM co_invoices',
+            $select->getStatement()
+        );
     }
 
     /**
@@ -61,9 +62,10 @@ final class DistinctTest extends AbstractStatementTestCase
             ->columns(['inv_id', 'inc_cst_id'])
         ;
 
-        $expected = 'SELECT DISTINCT inv_id, inc_cst_id FROM co_invoices';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT DISTINCT inv_id, inc_cst_id FROM co_invoices',
+            $select->getStatement()
+        );
     }
 
     /**
@@ -84,8 +86,9 @@ final class DistinctTest extends AbstractStatementTestCase
             ->columns(['inv_id', 'inc_cst_id'])
         ;
 
-        $expected = 'SELECT inv_id, inc_cst_id FROM co_invoices';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT inv_id, inc_cst_id FROM co_invoices',
+            $select->getStatement()
+        );
     }
 }

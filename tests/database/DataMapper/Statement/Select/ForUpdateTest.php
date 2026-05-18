@@ -24,7 +24,7 @@ final class ForUpdateTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: forUpdate()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectForUpdate(): void
@@ -37,15 +37,16 @@ final class ForUpdateTest extends AbstractStatementTestCase
             ->forUpdate()
         ;
 
-        $expected = 'SELECT * FROM co_invoices FOR UPDATE';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT * FROM co_invoices FOR UPDATE',
+            $select->getStatement()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: forUpdate() - unset
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectForUpdateUnset(): void
@@ -59,8 +60,9 @@ final class ForUpdateTest extends AbstractStatementTestCase
             ->forUpdate(false)
         ;
 
-        $expected = 'SELECT * FROM co_invoices';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT * FROM co_invoices',
+            $select->getStatement()
+        );
     }
 }

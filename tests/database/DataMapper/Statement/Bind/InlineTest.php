@@ -26,24 +26,28 @@ final class InlineTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Bind :: bindInline()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementBindBindInline(): void
     {
         $bind = new Bind();
 
-        $expected = [];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $bind->toArray()
+        );
 
         $bind->inline('one');
 
         $expected = [
             '_1_1_' => ['one', 2],
         ];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $bind->toArray()
+        );
 
         $bind->inline(true, PDO::PARAM_BOOL);
 
@@ -51,8 +55,11 @@ final class InlineTest extends AbstractStatementTestCase
             '_1_1_' => ['one', 2],
             '_1_2_' => [true, 5],
         ];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $bind->toArray()
+        );
 
         $bind->inline(['six', 'seven', 8, 9]);
 
@@ -64,8 +71,11 @@ final class InlineTest extends AbstractStatementTestCase
             '_1_5_' => [8, 1],
             '_1_6_' => [9, 1],
         ];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $bind->toArray()
+        );
 
         $driver = env('driver');
         $select = Select::new($driver);
@@ -76,7 +86,10 @@ final class InlineTest extends AbstractStatementTestCase
         ;
 
         $expected = '(SELECT * FROM co_customers WHERE inv_cst_id = :_2_1_)';
-        $actual   = $bind->inline($select);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $bind->inline($select)
+        );
     }
 }

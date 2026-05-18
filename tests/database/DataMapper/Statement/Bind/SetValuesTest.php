@@ -22,16 +22,17 @@ final class SetValuesTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Bind :: setValues()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementBindSetValues(): void
     {
         $bind = new Bind();
 
-        $expected = [];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $bind->toArray()
+        );
 
         $bind->setValues(
             [
@@ -53,7 +54,10 @@ final class SetValuesTest extends AbstractStatementTestCase
             'ten'    => [false, 5],
             'eleven' => [11, 1],
         ];
-        $actual   = $bind->toArray();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $bind->toArray()
+        );
     }
 }

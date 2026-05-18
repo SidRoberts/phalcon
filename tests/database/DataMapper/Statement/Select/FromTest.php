@@ -24,7 +24,7 @@ final class FromTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: from()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectFrom(): void
@@ -37,15 +37,16 @@ final class FromTest extends AbstractStatementTestCase
             ->from('co_customers')
         ;
 
-        $expected = 'SELECT * FROM co_invoices, co_customers';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT * FROM co_invoices, co_customers',
+            $select->getStatement()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: from() - empty
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectFromEmpty(): void
@@ -53,8 +54,9 @@ final class FromTest extends AbstractStatementTestCase
         $driver = env('driver');
         $select = Select::new($driver);
 
-        $expected = 'SELECT *';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT *',
+            $select->getStatement()
+        );
     }
 }

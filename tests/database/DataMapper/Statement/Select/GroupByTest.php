@@ -24,7 +24,7 @@ final class GroupByTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: groupBy()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectGroupBy(): void
@@ -40,7 +40,10 @@ final class GroupByTest extends AbstractStatementTestCase
 
         $expected = 'SELECT * FROM co_invoices '
             . 'GROUP BY inv_cst_id, inv_status_flag';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 }

@@ -24,7 +24,7 @@ final class ColumnsTest extends AbstractStatementTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Select :: columns()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementSelectColumns(): void
@@ -32,8 +32,9 @@ final class ColumnsTest extends AbstractStatementTestCase
         $driver = env('driver');
         $select = Select::new($driver);
 
-        $actual = $select->hasColumns();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $select->hasColumns()
+        );
 
         $select
             ->columns(['inv_id', 'inv_cst_id', 'COUNT(inv_total)'])
@@ -42,8 +43,11 @@ final class ColumnsTest extends AbstractStatementTestCase
 
         $expected = 'SELECT inv_id, inv_cst_id, COUNT(inv_total) '
             . 'FROM co_invoices';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
 
         $select->reset();
 
@@ -63,7 +67,10 @@ final class ColumnsTest extends AbstractStatementTestCase
             . 'inv_cst_id AS customerId, '
             . 'COUNT(inv_total) AS total '
             . 'FROM co_invoices';
-        $actual   = $select->getStatement();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->getStatement()
+        );
     }
 }

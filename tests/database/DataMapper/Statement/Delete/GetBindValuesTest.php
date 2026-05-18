@@ -25,7 +25,7 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Statement\Delete :: getBindValues()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmStatementDeleteGetBindValues(): void
@@ -33,9 +33,10 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
         $driver = env('driver');
         $delete = Delete::new($driver);
 
-        $expected = [];
-        $actual   = $delete->getBindValues();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $delete->getBindValues()
+        );
 
         $delete
             ->bindValues(
@@ -54,8 +55,11 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
             'three' => [true, PDO::PARAM_BOOL],
             'four'  => [[1, 2, 3], PDO::PARAM_STR],
         ];
-        $actual   = $delete->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $delete->getBindValues()
+        );
 
         $delete
             ->bindValues(
@@ -72,7 +76,10 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
             'four'  => [[1, 2, 3], PDO::PARAM_STR],
             'five'  => ['active', PDO::PARAM_STR],
         ];
-        $actual   = $delete->getBindValues();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $delete->getBindValues()
+        );
     }
 }
