@@ -40,8 +40,8 @@ final class GetColumnListTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect\Mysql :: getColumnList
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-02-26
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-02-26
      */
     #[DataProvider('getMysqlData')]
     #[Group('mysql')]

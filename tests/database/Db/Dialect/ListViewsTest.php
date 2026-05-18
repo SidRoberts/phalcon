@@ -81,8 +81,8 @@ final class ListViewsTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: listViews
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]
@@ -102,8 +102,8 @@ final class ListViewsTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: listViews - no schema
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsNoSchema')]
     #[Group('mysql')]

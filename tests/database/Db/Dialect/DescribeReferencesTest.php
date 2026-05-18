@@ -129,8 +129,8 @@ final class DescribeReferencesTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: describeReferences
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]
@@ -150,8 +150,8 @@ final class DescribeReferencesTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: describeReferences - no schema
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsNoSchema')]
     #[Group('mysql')]

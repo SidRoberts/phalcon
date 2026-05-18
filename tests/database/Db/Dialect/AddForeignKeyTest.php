@@ -124,8 +124,8 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]
@@ -149,8 +149,8 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsOnDelete')]
     #[Group('mysql')]
@@ -175,8 +175,8 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsOnUpdate')]
     #[Group('mysql')]

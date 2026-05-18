@@ -85,8 +85,8 @@ final class TableExistsTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: tableExists
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]
@@ -106,8 +106,8 @@ final class TableExistsTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: tableExists - no schema
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsNoSchema')]
     #[Group('mysql')]

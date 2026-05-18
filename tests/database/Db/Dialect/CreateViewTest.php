@@ -64,8 +64,8 @@ final class CreateViewTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: createView
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]
@@ -86,8 +86,8 @@ final class CreateViewTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: createView - exception on missing sql definition
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsException')]
     #[Group('mysql')]

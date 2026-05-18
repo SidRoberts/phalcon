@@ -69,8 +69,8 @@ final class DropTableTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: dropTable
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]
@@ -90,8 +90,8 @@ final class DropTableTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: dropTable - ifExists false
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsNotExists')]
     #[Group('mysql')]

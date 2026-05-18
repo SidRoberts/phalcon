@@ -64,8 +64,8 @@ final class DropForeignKeyTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: dropForeignKey
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]

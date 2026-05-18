@@ -69,8 +69,8 @@ final class DropViewTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: dropView
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]
@@ -90,8 +90,8 @@ final class DropViewTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: dropView - ifExists false
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsNotExists')]
     #[Group('mysql')]

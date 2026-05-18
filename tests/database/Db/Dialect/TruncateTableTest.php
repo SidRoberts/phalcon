@@ -67,8 +67,8 @@ final class TruncateTableTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: truncateTable
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]
@@ -88,8 +88,8 @@ final class TruncateTableTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: truncateTable - no schema
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsNoSchema')]
     #[Group('mysql')]

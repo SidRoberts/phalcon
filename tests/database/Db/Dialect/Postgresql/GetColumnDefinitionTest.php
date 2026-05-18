@@ -42,8 +42,8 @@ final class GetColumnDefinitionTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect\Postgresql :: getColumnDefinition - uuid
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2025-04-29
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-04-29
      */
     #[DataProvider('getPostgresqlData')]
     #[Group('pgsql')]

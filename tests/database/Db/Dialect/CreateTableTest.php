@@ -126,8 +126,8 @@ final class CreateTableTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: createTable
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]
@@ -153,8 +153,8 @@ final class CreateTableTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: createTable - exception
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsException')]
     #[Group('mysql')]
@@ -177,8 +177,8 @@ final class CreateTableTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: createTable
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialectsTemporary')]
     #[Group('mysql')]

@@ -48,8 +48,8 @@ final class DropIndexTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: dropIndex
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getDialects')]
     #[Group('mysql')]

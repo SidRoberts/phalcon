@@ -355,8 +355,8 @@ final class GetColumnDefinitionTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: getColumnDefinition
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-20
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-20
      */
     #[DataProvider('getMysqlData')]
     #[Group('mysql')]

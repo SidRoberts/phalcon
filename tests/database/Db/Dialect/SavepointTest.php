@@ -37,8 +37,8 @@ final class SavepointTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: createSavepoint
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-02-26
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-02-26
      */
     #[DataProvider('getDialectClasses')]
     #[Group('mysql')]
@@ -56,8 +56,8 @@ final class SavepointTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: releaseSavepoint
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-02-26
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-02-26
      */
     #[DataProvider('getDialectClasses')]
     #[Group('mysql')]
@@ -75,8 +75,8 @@ final class SavepointTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: rollbackSavepoint
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-02-26
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-02-26
      */
     #[DataProvider('getDialectClasses')]
     #[Group('mysql')]
@@ -94,8 +94,8 @@ final class SavepointTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: supportsSavepoints
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-02-26
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-02-26
      */
     #[DataProvider('getDialectClasses')]
     #[Group('mysql')]
@@ -111,8 +111,8 @@ final class SavepointTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: supportsReleaseSavepoints
      *
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-02-26
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-02-26
      */
     #[DataProvider('getDialectClasses')]
     #[Group('mysql')]
