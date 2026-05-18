@@ -713,8 +713,10 @@ final class ListColumnsTest extends AbstractDatabaseTestCase
                 'type'            => 'character varying',
             ],
         ];
-        $actual = $pgsql->listColumns($schema, 'co_dialect');
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $pgsql->listColumns($schema, 'co_dialect')
+        );
     }
 }

@@ -715,8 +715,10 @@ final class ListColumnsTest extends AbstractDatabaseTestCase
                 'type'            => 'varchar',
             ],
         ];
-        $actual   = $info->listColumns('co_dialect');
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $info->listColumns('co_dialect')
+        );
     }
 }

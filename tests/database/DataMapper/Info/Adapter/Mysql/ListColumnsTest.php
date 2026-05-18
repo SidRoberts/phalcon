@@ -18,7 +18,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class ListColumnsTest extends AbstractDatabaseTestCase
 {
     /**
-     * @since  2025-01-14
+     * @since 2025-01-14
      */
     #[Group('mysql')]
     public function testDmInfoAdapterMysqlListTables(): void
@@ -717,8 +717,10 @@ final class ListColumnsTest extends AbstractDatabaseTestCase
                 'type'            => 'varchar',
             ],
         ];
-        $actual   = $mysql->listColumns($schema, 'co_dialect');
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $mysql->listColumns($schema, 'co_dialect')
+        );
     }
 }

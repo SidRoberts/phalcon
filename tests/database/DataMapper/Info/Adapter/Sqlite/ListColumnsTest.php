@@ -710,8 +710,10 @@ final class ListColumnsTest extends AbstractDatabaseTestCase
                 'type'            => 'text',
             ],
         ];
-        $actual = $sqlite->listColumns($schema, 'co_dialect');
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $sqlite->listColumns($schema, 'co_dialect')
+        );
     }
 }

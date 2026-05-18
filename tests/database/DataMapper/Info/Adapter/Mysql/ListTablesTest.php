@@ -24,7 +24,6 @@ final class ListTablesTest extends AbstractDatabaseTestCase
     #[Group('mysql')]
     public function testDmInfoAdapterMysqlListTables(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
         $mysql  = new Mysql($connection);

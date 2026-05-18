@@ -24,17 +24,18 @@ final class ListSchemaTableTest extends AbstractDatabaseTestCase
     #[Group('mysql')]
     public function testDmInfoAdapterMysqlListSchemaName(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
         $mysql = new Mysql($connection);
 
-        $expected = ['phalcon', 'co_dialect'];
-        $actual   = $mysql->listSchemaTable('co_dialect');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            ['phalcon', 'co_dialect'],
+            $mysql->listSchemaTable('co_dialect')
+        );
 
-        $expected = ['phalcon', 'co_dialect'];
-        $actual   = $mysql->listSchemaTable('phalcon.co_dialect');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            ['phalcon', 'co_dialect'],
+            $mysql->listSchemaTable('phalcon.co_dialect')
+        );
     }
 }
