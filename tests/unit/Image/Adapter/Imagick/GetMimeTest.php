@@ -46,8 +46,8 @@ final class GetMimeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2016-02-19
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2016-02-19
      */
     #[DataProvider('getExamples')]
     public function testImageAdapterImagickGetMime(

@@ -63,8 +63,8 @@ final class GetTypeTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2022-07-19
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2022-07-19
      */
     #[DataProvider('getExamples')]
     public function testImageAdapterGdGetType(
