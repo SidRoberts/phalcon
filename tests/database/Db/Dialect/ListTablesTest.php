@@ -19,9 +19,8 @@ use Phalcon\Db\Dialect\Sqlite;
 use Phalcon\Db\DialectInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 
-final class DropTableTest extends AbstractDatabaseTestCase
+final class ListTablesTest extends AbstractDatabaseTestCase
 {
     /**
      * @return array<array{0: class-string<DialectInterface>, 1: string}>
@@ -31,16 +30,21 @@ final class DropTableTest extends AbstractDatabaseTestCase
         return [
             [
                 Mysql::class,
-                'DROP TABLE IF EXISTS `schema`.`table`',
-
+                'SHOW TABLES FROM `schema`',
             ],
             [
                 Postgresql::class,
-                'DROP TABLE IF EXISTS "schema"."table"',
+                "SELECT table_name "
+                . "FROM information_schema.tables "
+                . "WHERE table_schema = 'schema' "
+                . "ORDER BY table_name",
             ],
             [
                 Sqlite::class,
-                'DROP TABLE IF EXISTS "schema"."table"',
+                "SELECT tbl_name "
+                . "FROM sqlite_master "
+                . "WHERE type = 'table' "
+                . "ORDER BY tbl_name",
             ],
         ];
     }
@@ -48,66 +52,71 @@ final class DropTableTest extends AbstractDatabaseTestCase
     /**
      * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
-    public static function getDialectsNotExists(): array
+    public static function getDialectsNoSchema(): array
     {
         return [
             [
                 Mysql::class,
-                'DROP TABLE `schema`.`table`',
-
+                'SHOW TABLES',
             ],
             [
                 Postgresql::class,
-                'DROP TABLE "schema"."table"',
+                "SELECT table_name "
+                . "FROM information_schema.tables "
+                . "WHERE table_schema = 'public' "
+                . "ORDER BY table_name",
             ],
             [
                 Sqlite::class,
-                'DROP TABLE "schema"."table"',
+                "SELECT tbl_name "
+                . "FROM sqlite_master "
+                . "WHERE type = 'table' "
+                . "ORDER BY tbl_name",
             ],
         ];
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropTable()
+     * Tests Phalcon\Db\Dialect :: listTables
      *
      * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
+     *
+     * @group mysql
      */
     #[DataProvider('getDialects')]
-    #[Group('mysql')]
-    #[Group('pgsql')]
-    #[Group('sqlite')]
-    public function testDbDialectDropTable(
+    public function testDbDialectListTables(
         string $dialectClass,
         string $expected
     ): void {
         $dialect = new $dialectClass();
 
-        $actual = $dialect->dropTable('table', 'schema');
+        $actual = $dialect->listTables('schema');
+
         $this->assertSame($expected, $actual);
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropTable() - ifExists false
+     * Tests Phalcon\Db\Dialect :: listTables
      *
      * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
+     *
+     * @group mysql
      */
-    #[DataProvider('getDialectsNotExists')]
-    #[Group('mysql')]
-    #[Group('pgsql')]
-    #[Group('sqlite')]
-    public function testDbDialectDropTableNotExists(
+    #[DataProvider('getDialectsNoSchema')]
+    public function testDbDialectListTablesNoSchema(
         string $dialectClass,
         string $expected
     ): void {
         $dialect = new $dialectClass();
 
-        $actual = $dialect->dropTable('table', 'schema', false);
+        $actual = $dialect->listTables();
+
         $this->assertSame($expected, $actual);
     }
 }

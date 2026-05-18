@@ -16,58 +16,61 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
-use Phalcon\Db\DialectInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 
-final class DropIndexTest extends AbstractDatabaseTestCase
+final class DescribeIndexesTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array<array{0: class-string<DialectInterface>, 1: string}>
+     * @return array[]
      */
     public static function getDialects(): array
     {
         return [
             [
                 Mysql::class,
-                'ALTER TABLE `schema`.`table` '
-                . 'DROP INDEX `index`',
+                'SHOW INDEXES FROM `schema`.`table`',
 
             ],
             [
                 Postgresql::class,
-                'DROP INDEX "index"',
+                "SELECT 0 as c0, t.relname as table_name, "
+                . "i.relname as key_name, 3 as c3, "
+                . "a.attname as column_name "
+                . "FROM pg_class t, pg_class i, pg_index ix, pg_attribute a "
+                . "WHERE t.oid = ix.indrelid "
+                . "AND i.oid = ix.indexrelid "
+                . "AND a.attrelid = t.oid "
+                . "AND a.attnum = "
+                . "ANY(ix.indkey) "
+                . "AND t.relkind = 'r' "
+                . "AND t.relname = 'table' "
+                . "ORDER BY t.relname, i.relname;",
             ],
             [
                 Sqlite::class,
-                'DROP INDEX "schema"."index"',
+                "PRAGMA index_list('table')",
             ],
         ];
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropIndex()
-     *
-     * @param class-string<DialectInterface> $dialectClass
+     * Tests Phalcon\Db\Dialect :: describeIndexes
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
+     *
+     * @group mysql
      */
     #[DataProvider('getDialects')]
-    #[Group('mysql')]
-    #[Group('pgsql')]
-    #[Group('sqlite')]
-    public function testDbDialectDropIndex(
+    public function testDbDialectDescribeIndexes(
         string $dialectClass,
         string $expected
     ): void {
         /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
-        $this->assertSame(
-            $expected,
-            $dialect->dropIndex('table', 'schema', 'index')
-        );
+        $actual = $dialect->describeIndexes('table', 'schema');
+        $this->assertSame($expected, $actual);
     }
 }

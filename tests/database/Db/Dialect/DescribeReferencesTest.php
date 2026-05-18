@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -23,7 +24,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class DescribeReferencesTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
@@ -76,7 +77,7 @@ final class DescribeReferencesTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsNoSchema(): array
     {
@@ -127,7 +128,9 @@ final class DescribeReferencesTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: describeReferences
+     * Tests Phalcon\Db\Dialect :: describeReferences()
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
 
@@ -140,7 +143,6 @@ final class DescribeReferencesTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $actual = $dialect->describeReferences('table', 'schema');
@@ -149,6 +151,8 @@ final class DescribeReferencesTest extends AbstractDatabaseTestCase
 
     /**
      * Tests Phalcon\Db\Dialect :: describeReferences - no schema
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -161,7 +165,6 @@ final class DescribeReferencesTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $actual = $dialect->describeReferences('table');

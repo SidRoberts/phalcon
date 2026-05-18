@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Db\Exception;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -24,15 +25,14 @@ use PHPUnit\Framework\Attributes\Group;
 final class DropPrimaryKeyTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
         return [
             [
                 Mysql::class,
-                'ALTER TABLE `schema`.`table` '
-                . 'DROP PRIMARY KEY',
+                'ALTER TABLE `schema`.`table` DROP PRIMARY KEY',
 
             ],
             [
@@ -43,7 +43,7 @@ final class DropPrimaryKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropPrimaryKey - sqlite throws exception
+     * Tests Phalcon\Db\Dialect :: dropPrimaryKey() - sqlite throws exception
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -63,7 +63,9 @@ final class DropPrimaryKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropPrimaryKey
+     * Tests Phalcon\Db\Dialect :: dropPrimaryKey()
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -76,7 +78,6 @@ final class DropPrimaryKeyTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $actual = $dialect->dropPrimaryKey('table', 'schema');

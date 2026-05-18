@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -23,7 +24,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class DescribeColumnsTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getMysqlData(): array
     {
@@ -142,7 +143,9 @@ final class DescribeColumnsTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect\Mysql :: describeColumns
+     * Tests Phalcon\Db\Dialect\Mysql :: describeColumns()
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-01-20
@@ -154,8 +157,11 @@ final class DescribeColumnsTest extends AbstractDatabaseTestCase
         string $expected
     ): void {
         $dialect = new Mysql();
-        $actual  = $dialect->describeColumns('table', $schema);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dialect->describeColumns('table', $schema)
+        );
     }
 
     /**
@@ -171,8 +177,11 @@ final class DescribeColumnsTest extends AbstractDatabaseTestCase
         string $expected
     ): void {
         $dialect = new Postgresql();
-        $actual  = $dialect->describeColumns('table', $schema);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dialect->describeColumns('table', $schema)
+        );
     }
 
     /**
@@ -188,7 +197,10 @@ final class DescribeColumnsTest extends AbstractDatabaseTestCase
         string $expected
     ): void {
         $dialect = new Sqlite();
-        $actual  = $dialect->describeColumns('table', $schema);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dialect->describeColumns('table', $schema)
+        );
     }
 }

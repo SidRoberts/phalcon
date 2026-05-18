@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -23,7 +24,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class TableExistsTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
@@ -53,7 +54,7 @@ final class TableExistsTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsNoSchema(): array
     {
@@ -83,7 +84,9 @@ final class TableExistsTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: tableExists
+     * Tests Phalcon\Db\Dialect :: tableExists()
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -96,7 +99,6 @@ final class TableExistsTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $actual = $dialect->tableExists('table', 'schema');
@@ -104,7 +106,9 @@ final class TableExistsTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: tableExists - no schema
+     * Tests Phalcon\Db\Dialect :: tableExists() - no schema
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -117,7 +121,6 @@ final class TableExistsTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $actual = $dialect->tableExists('table');

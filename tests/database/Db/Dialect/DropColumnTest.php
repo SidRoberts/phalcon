@@ -23,7 +23,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class DropColumnTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
@@ -45,7 +45,9 @@ final class DropColumnTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropColumn
+     * Tests Phalcon\Db\Dialect :: dropColumn()
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -58,10 +60,11 @@ final class DropColumnTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
-        $actual = $dialect->dropColumn('table', 'schema', 'column');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->dropColumn('table', 'schema', 'column')
+        );
     }
 }

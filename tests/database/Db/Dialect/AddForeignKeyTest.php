@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Db\Exception;
 use Phalcon\Db\Reference;
 use Phalcon\Tests\AbstractDatabaseTestCase;
@@ -25,7 +26,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class AddForeignKeyTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
@@ -48,7 +49,7 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsOnDelete(): array
     {
@@ -73,7 +74,7 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsOnUpdate(): array
     {
@@ -98,7 +99,7 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: addForeignKey - sqlite throws exception
+     * Tests Phalcon\Db\Dialect :: addForeignKey() - sqlite throws exception
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -124,6 +125,8 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
+     * @param class-string<DialectInterface> $dialectClass
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
      */
@@ -135,7 +138,6 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $reference = new Reference('fk1', [
@@ -144,11 +146,16 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
             'columns'           => ['field_primary'],
             'referencedColumns' => ['field_referenced'],
         ]);
-        $actual    = $dialect->addForeignKey('table', 'schema', $reference);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dialect->addForeignKey('table', 'schema', $reference)
+        );
     }
 
     /**
+     * @param class-string<DialectInterface> $dialectClass
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
      */
@@ -160,7 +167,6 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $reference = new Reference('fk1', [
@@ -170,11 +176,16 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
             'referencedColumns' => ['field_referenced'],
             'onDelete'          => 'delete command',
         ]);
-        $actual    = $dialect->addForeignKey('table', 'schema', $reference);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $dialect->addForeignKey('table', 'schema', $reference)
+        );
     }
 
     /**
+     * @param class-string<DialectInterface> $dialectClass
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
      */
@@ -186,17 +197,22 @@ final class AddForeignKeyTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
-        $reference = new Reference('fk1', [
-            'referencedSchema'  => 'ref_schema',
-            'referencedTable'   => 'ref_table',
-            'columns'           => ['field_primary'],
-            'referencedColumns' => ['field_referenced'],
-            'onUpdate'          => 'update command',
-        ]);
-        $actual    = $dialect->addForeignKey('table', 'schema', $reference);
-        $this->assertSame($expected, $actual);
+        $reference = new Reference(
+            'fk1',
+            [
+                'referencedSchema'  => 'ref_schema',
+                'referencedTable'   => 'ref_table',
+                'columns'           => ['field_primary'],
+                'referencedColumns' => ['field_referenced'],
+                'onUpdate'          => 'update command',
+            ]
+        );
+
+        $this->assertSame(
+            $expected,
+            $dialect->addForeignKey('table', 'schema', $reference)
+        );
     }
 }

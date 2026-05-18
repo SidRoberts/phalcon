@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -23,7 +24,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class DropViewTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
@@ -31,7 +32,6 @@ final class DropViewTest extends AbstractDatabaseTestCase
             [
                 Mysql::class,
                 'DROP VIEW IF EXISTS `schema`.`table`',
-
             ],
             [
                 Postgresql::class,
@@ -45,7 +45,7 @@ final class DropViewTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsNotExists(): array
     {
@@ -53,7 +53,6 @@ final class DropViewTest extends AbstractDatabaseTestCase
             [
                 Mysql::class,
                 'DROP VIEW `schema`.`table`',
-
             ],
             [
                 Postgresql::class,
@@ -67,7 +66,9 @@ final class DropViewTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropView
+     * Tests Phalcon\Db\Dialect :: dropView()
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -80,15 +81,18 @@ final class DropViewTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
-        $actual = $dialect->dropView('table', 'schema');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->dropView('table', 'schema')
+        );
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropView - ifExists false
+     * Tests Phalcon\Db\Dialect :: dropView() - ifExists false
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -101,10 +105,11 @@ final class DropViewTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
-        $actual = $dialect->dropView('table', 'schema', false);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->dropView('table', 'schema', false)
+        );
     }
 }

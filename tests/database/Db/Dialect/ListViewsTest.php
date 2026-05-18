@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -23,7 +24,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class ListViewsTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
@@ -53,7 +54,7 @@ final class ListViewsTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsNoSchema(): array
     {
@@ -81,6 +82,8 @@ final class ListViewsTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\Dialect :: listViews
      *
+     * @param class-string<DialectInterface> $dialectClass
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
      */
@@ -92,15 +95,17 @@ final class ListViewsTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $actual = $dialect->listViews('schema');
+
         $this->assertSame($expected, $actual);
     }
 
     /**
      * Tests Phalcon\Db\Dialect :: listViews - no schema
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -113,10 +118,10 @@ final class ListViewsTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $actual = $dialect->listViews();
+
         $this->assertSame($expected, $actual);
     }
 }

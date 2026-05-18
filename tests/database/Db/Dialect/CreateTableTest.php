@@ -17,6 +17,7 @@ use Phalcon\Db\Column;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Db\Exception;
 use Phalcon\Db\Index;
 use Phalcon\Db\Reference;
@@ -27,7 +28,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class CreateTableTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
@@ -74,28 +75,25 @@ final class CreateTableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>}>
      */
     public static function getDialectsException(): array
     {
         return [
             [
                 Mysql::class,
-
             ],
             [
                 Postgresql::class,
-                '3',
             ],
             [
                 Sqlite::class,
-                '4',
             ],
         ];
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsTemporary(): array
     {
@@ -124,7 +122,9 @@ final class CreateTableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: createTable
+     * Tests Phalcon\Db\Dialect :: createTable()
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -137,7 +137,6 @@ final class CreateTableTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $definition = $this->getDefinition();
@@ -151,7 +150,9 @@ final class CreateTableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: createTable - exception
+     * Tests Phalcon\Db\Dialect :: createTable() - exception
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -163,7 +164,6 @@ final class CreateTableTest extends AbstractDatabaseTestCase
     public function testDbDialectCreateTableException(
         string $dialectClass
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $this->expectException(Exception::class);
@@ -175,7 +175,9 @@ final class CreateTableTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: createTable
+     * Tests Phalcon\Db\Dialect :: createTable()
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -188,7 +190,6 @@ final class CreateTableTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $definition            = $this->getDefinition();
@@ -209,6 +210,7 @@ final class CreateTableTest extends AbstractDatabaseTestCase
 
     /**
      * @return array<string, array>
+     *
      * @throws Exception
      */
     private function getDefinition(): array

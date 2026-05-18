@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Db\Exception;
 use Phalcon\Db\Index;
 use Phalcon\Tests\AbstractDatabaseTestCase;
@@ -25,7 +26,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class AddPrimaryKeyTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
@@ -46,7 +47,7 @@ final class AddPrimaryKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: addPrimaryKey - sqlite throws exception
+     * Tests Phalcon\Db\Dialect :: addPrimaryKey() - sqlite throws exception
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -63,11 +64,14 @@ final class AddPrimaryKeyTest extends AbstractDatabaseTestCase
         $dialect = new Sqlite();
 
         $index = new Index('index1', ['field1', 'field2']);
+
         $dialect->addPrimaryKey('table', 'schema', $index);
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: addPrimaryKey
+     * Tests Phalcon\Db\Dialect :: addPrimaryKey()
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -80,11 +84,13 @@ final class AddPrimaryKeyTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
-        $index  = new Index('index1', ['field1', 'field2']);
-        $actual = $dialect->addPrimaryKey('table', 'schema', $index);
-        $this->assertSame($expected, $actual);
+        $index = new Index('index1', ['field1', 'field2']);
+
+        $this->assertSame(
+            $expected,
+            $dialect->addPrimaryKey('table', 'schema', $index)
+        );
     }
 }

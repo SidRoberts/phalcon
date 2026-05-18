@@ -22,7 +22,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class GetColumnDefinitionTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: array, 1: string}>
      */
     public static function getMysqlData(): array
     {
@@ -353,7 +353,7 @@ final class GetColumnDefinitionTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: getColumnDefinition
+     * Tests Phalcon\Db\Dialect :: getColumnDefinition()
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -366,11 +366,12 @@ final class GetColumnDefinitionTest extends AbstractDatabaseTestCase
         array $definition,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new Mysql();
         $column  = new Column('column_name', $definition);
 
-        $actual = $dialect->getColumnDefinition($column);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->getColumnDefinition($column)
+        );
     }
 }

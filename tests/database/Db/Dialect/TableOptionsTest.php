@@ -16,98 +16,102 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
-use Phalcon\Db\DialectInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 
-final class DropTableTest extends AbstractDatabaseTestCase
+final class TableOptionsTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array<array{0: class-string<DialectInterface>, 1: string}>
+     * @return array[]
      */
     public static function getDialects(): array
     {
         return [
             [
                 Mysql::class,
-                'DROP TABLE IF EXISTS `schema`.`table`',
-
+                "SELECT TABLES.TABLE_TYPE AS table_type,"
+                . "TABLES.AUTO_INCREMENT AS auto_increment,"
+                . "TABLES.ENGINE AS engine,"
+                . "TABLES.TABLE_COLLATION AS table_collation "
+                . "FROM INFORMATION_SCHEMA.TABLES WHERE "
+                . "TABLES.TABLE_SCHEMA = 'schema' "
+                . "AND TABLES.TABLE_NAME = 'table'",
             ],
             [
                 Postgresql::class,
-                'DROP TABLE IF EXISTS "schema"."table"',
+                '',
             ],
             [
                 Sqlite::class,
-                'DROP TABLE IF EXISTS "schema"."table"',
+                '',
             ],
         ];
     }
 
     /**
-     * @return array<array{0: class-string<DialectInterface>, 1: string}>
+     * @return array[]
      */
-    public static function getDialectsNotExists(): array
+    public static function getDialectsNoSchema(): array
     {
         return [
             [
                 Mysql::class,
-                'DROP TABLE `schema`.`table`',
-
+                "SELECT TABLES.TABLE_TYPE AS table_type,"
+                . "TABLES.AUTO_INCREMENT AS auto_increment,"
+                . "TABLES.ENGINE AS engine,"
+                . "TABLES.TABLE_COLLATION AS table_collation "
+                . "FROM INFORMATION_SCHEMA.TABLES WHERE "
+                . "TABLES.TABLE_SCHEMA = DATABASE() "
+                . "AND TABLES.TABLE_NAME = 'table'",
             ],
             [
                 Postgresql::class,
-                'DROP TABLE "schema"."table"',
+                '',
             ],
             [
                 Sqlite::class,
-                'DROP TABLE "schema"."table"',
+                '',
             ],
         ];
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropTable()
-     *
-     * @param class-string<DialectInterface> $dialectClass
+     * Tests Phalcon\Db\Dialect :: tableExists
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
+     *
+     * @group mysql
      */
     #[DataProvider('getDialects')]
-    #[Group('mysql')]
-    #[Group('pgsql')]
-    #[Group('sqlite')]
-    public function testDbDialectDropTable(
+    public function testDbDialectTableOptions(
         string $dialectClass,
         string $expected
     ): void {
+        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
-        $actual = $dialect->dropTable('table', 'schema');
+        $actual = $dialect->tableOptions('table', 'schema');
         $this->assertSame($expected, $actual);
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropTable() - ifExists false
-     *
-     * @param class-string<DialectInterface> $dialectClass
+     * Tests Phalcon\Db\Dialect :: tableExists
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
+     *
+     * @group mysql
      */
-    #[DataProvider('getDialectsNotExists')]
-    #[Group('mysql')]
-    #[Group('pgsql')]
-    #[Group('sqlite')]
-    public function testDbDialectDropTableNotExists(
+    #[DataProvider('getDialectsNoSchema')]
+    public function testDbDialectTableOptionsNoSchema(
         string $dialectClass,
         string $expected
     ): void {
+        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
-        $actual = $dialect->dropTable('table', 'schema', false);
+        $actual = $dialect->tableOptions('table');
         $this->assertSame($expected, $actual);
     }
 }

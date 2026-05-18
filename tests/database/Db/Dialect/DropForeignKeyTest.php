@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Db\Dialect;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Db\Exception;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -24,7 +25,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class DropForeignKeyTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
@@ -43,7 +44,7 @@ final class DropForeignKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropForeignKey - sqlite throws exception
+     * Tests Phalcon\Db\Dialect :: dropForeignKey() - sqlite throws exception
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -62,7 +63,9 @@ final class DropForeignKeyTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * Tests Phalcon\Db\Dialect :: dropForeignKey
+     * Tests Phalcon\Db\Dialect :: dropForeignKey()
+     *
+     * @param class-string<DialectInterface> $dialectClass
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -75,7 +78,6 @@ final class DropForeignKeyTest extends AbstractDatabaseTestCase
         string $dialectClass,
         string $expected
     ): void {
-        /** @var Mysql $dialect */
         $dialect = new $dialectClass();
 
         $actual = $dialect->dropForeignKey('table', 'schema', 'fk_1');

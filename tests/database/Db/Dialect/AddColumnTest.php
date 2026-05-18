@@ -17,6 +17,7 @@ use Phalcon\Db\Column;
 use Phalcon\Db\Dialect\Mysql;
 use Phalcon\Db\Dialect\Postgresql;
 use Phalcon\Db\Dialect\Sqlite;
+use Phalcon\Db\DialectInterface;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -24,11 +25,10 @@ use PHPUnit\Framework\Attributes\Group;
 final class AddColumnTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialects(): array
     {
-
         return [
             [
                 Mysql::class,
@@ -47,7 +47,7 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsFloat(): array
     {
@@ -70,7 +70,7 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsInt(): array
     {
@@ -93,7 +93,7 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsNull(): array
     {
@@ -117,11 +117,10 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     }
 
     /**
-     * @return array[]
+     * @return array<array{0: class-string<DialectInterface>, 1: string}>
      */
     public static function getDialectsTimestamp(): array
     {
-
         return [
             [
                 Mysql::class,
@@ -147,7 +146,6 @@ final class AddColumnTest extends AbstractDatabaseTestCase
      */
     public static function getDialectsString(): array
     {
-
         return [
             [
                 Mysql::class,
@@ -176,7 +174,6 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testDbDialectAddColumnDefaultFloat(string $dialectClass, string $expected): void
     {
-
         $dialect = new $dialectClass();
 
         $options = [
@@ -196,11 +193,15 @@ final class AddColumnTest extends AbstractDatabaseTestCase
 
         $column = new Column('field_primary', $options);
 
-        $actual = $dialect->addColumn('table', 'schema', $column);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->addColumn('table', 'schema', $column)
+        );
     }
 
     /**
+     * @param class-string<DialectInterface> $dialectClass
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
      */
@@ -209,7 +210,6 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testDbDialectAddColumnDefaultInt(string $dialectClass, string $expected): void
     {
-
         $dialect = new $dialectClass();
 
         $options = [
@@ -229,11 +229,15 @@ final class AddColumnTest extends AbstractDatabaseTestCase
 
         $column = new Column('field_primary', $options);
 
-        $actual = $dialect->addColumn('table', 'schema', $column);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->addColumn('table', 'schema', $column)
+        );
     }
 
     /**
+     * @param class-string<DialectInterface> $dialectClass
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
      */
@@ -242,7 +246,6 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testDbDialectAddColumn(string $dialectClass, string $expected): void
     {
-
         $dialect = new $dialectClass();
 
         $options = [
@@ -262,8 +265,10 @@ final class AddColumnTest extends AbstractDatabaseTestCase
 
         $column = new Column('field_primary', $options);
 
-        $actual = $dialect->addColumn('table', 'schema', $column);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->addColumn('table', 'schema', $column)
+        );
     }
 
     /**
@@ -275,7 +280,6 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testDbDialectAddColumnDefaultNull(string $dialectClass, string $expected): void
     {
-
         $dialect = new $dialectClass();
 
         $options = [
@@ -294,11 +298,15 @@ final class AddColumnTest extends AbstractDatabaseTestCase
 
         $column = new Column('field_primary', $options);
 
-        $actual = $dialect->addColumn('table', 'schema', $column);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->addColumn('table', 'schema', $column)
+        );
     }
 
     /**
+     * @param class-string<DialectInterface> $dialectClass
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
      */
@@ -307,7 +315,6 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testDbDialectAddColumnDefaultString(string $dialectClass, string $expected): void
     {
-
         $dialect = new $dialectClass();
 
         $options = [
@@ -326,11 +333,15 @@ final class AddColumnTest extends AbstractDatabaseTestCase
 
         $column = new Column('field_primary', $options);
 
-        $actual = $dialect->addColumn('table', 'schema', $column);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->addColumn('table', 'schema', $column)
+        );
     }
 
     /**
+     * @param class-string<DialectInterface> $dialectClass
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
      */
@@ -339,7 +350,6 @@ final class AddColumnTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testDbDialectAddColumnDefaultTimestamp(string $dialectClass, string $expected): void
     {
-
         $dialect = new $dialectClass();
 
         $options = [
@@ -358,7 +368,9 @@ final class AddColumnTest extends AbstractDatabaseTestCase
 
         $column = new Column('field_primary', $options);
 
-        $actual = $dialect->addColumn('table', 'schema', $column);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->addColumn('table', 'schema', $column)
+        );
     }
 }

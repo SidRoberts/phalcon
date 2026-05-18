@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class GetForeignKeyChecksTest extends AbstractDatabaseTestCase
 {
     /**
-     * Tests Phalcon\Db\Dialect\Mysql :: getForeignKeyChecks
+     * Tests Phalcon\Db\Dialect\Mysql :: getForeignKeyChecks()
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-20
@@ -30,11 +30,11 @@ final class GetForeignKeyChecksTest extends AbstractDatabaseTestCase
     #[Group('sqlite')]
     public function testDbDialectMysqlGetForeignKeyChecks(): void
     {
-        /** @var Mysql $dialect */
         $dialect = new Mysql();
 
-        $expected = 'SELECT @@foreign_key_checks';
-        $actual   = $dialect->getForeignKeyChecks();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SELECT @@foreign_key_checks',
+            $dialect->getForeignKeyChecks()
+        );
     }
 }

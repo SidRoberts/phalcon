@@ -54,7 +54,9 @@ final class GetColumnDefinitionTest extends AbstractDatabaseTestCase
         $dialect = new Postgresql();
         $column  = new Column('column_name', $definition);
 
-        $actual = $dialect->getColumnDefinition($column);
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $dialect->getColumnDefinition($column)
+        );
     }
 }

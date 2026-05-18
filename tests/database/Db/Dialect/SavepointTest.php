@@ -48,9 +48,10 @@ final class SavepointTest extends AbstractDatabaseTestCase
     {
         $dialect = new $dialectClass();
 
-        $expected = 'SAVEPOINT PH_SAVEPOINT_1';
-        $actual   = $dialect->createSavepoint('PH_SAVEPOINT_1');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'SAVEPOINT PH_SAVEPOINT_1',
+            $dialect->createSavepoint('PH_SAVEPOINT_1')
+        );
     }
 
     /**
@@ -67,9 +68,10 @@ final class SavepointTest extends AbstractDatabaseTestCase
     {
         $dialect = new $dialectClass();
 
-        $expected = 'RELEASE SAVEPOINT PH_SAVEPOINT_1';
-        $actual   = $dialect->releaseSavepoint('PH_SAVEPOINT_1');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'RELEASE SAVEPOINT PH_SAVEPOINT_1',
+            $dialect->releaseSavepoint('PH_SAVEPOINT_1')
+        );
     }
 
     /**
