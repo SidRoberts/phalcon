@@ -110,9 +110,10 @@ final class HeadersTest extends AbstractHttpBase
     }
 
     /**
-     * @issue  https://github.com/phalcon/cphalcon/issues/12895
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-06-17
+     * @issue https://github.com/phalcon/cphalcon/issues/12895
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-06-17
      */
     #[DataProvider('statusHeaderProvider')]
     public function testHttpResponseHeadersGetResponseStatusHeader(
@@ -240,9 +241,10 @@ final class HeadersTest extends AbstractHttpBase
     }
 
     /**
-     * @issue  https://github.com/phalcon/cphalcon/issues/12895
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-06-17
+     * @issue https://github.com/phalcon/cphalcon/issues/12895
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-06-17
      */
     #[DataProvider('statusHeaderProvider')]
     public function testHttpResponseHeadersSetResponseStatusHeader(
