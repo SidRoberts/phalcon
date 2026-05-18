@@ -38,8 +38,8 @@ class SetOptionTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-01-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-01-17
      */
     #[DataProvider('getVoltSetOptionAutoescape')]
     public function testMvcViewEngineVoltCompilerSetOptionAutoescape(

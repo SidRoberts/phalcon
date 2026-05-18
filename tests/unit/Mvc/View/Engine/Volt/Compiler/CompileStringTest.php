@@ -538,8 +538,8 @@ class CompileStringTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-01-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-01-17
      */
     #[DataProvider('getVoltCompileString')]
     public function testMvcViewEngineVoltCompilerCompileString(
@@ -555,8 +555,8 @@ class CompileStringTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2022-07-02
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2022-07-02
      */
     public function testMvcViewEngineVoltCompilerCompileStringExecuted(): void
     {
@@ -697,8 +697,8 @@ class CompileStringTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-01-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-01-17
      */
     #[DataProvider('getVoltCompileStringErrors')]
     public function testMvcViewEngineVoltCompilerCompileStringSyntaxError(

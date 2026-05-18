@@ -265,8 +265,8 @@ class ParseTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-01-15
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-01-15
      */
     #[DataProvider('getVoltParse')]
     public function testMvcViewEngineVoltCompilerParse(
@@ -281,8 +281,8 @@ class ParseTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-01-15
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-01-15
      */
     #[DataProvider('getVoltExtendsError')]
     public function testMvcViewEngineVoltCompilerParseExtendsWithError(
@@ -298,8 +298,8 @@ class ParseTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-01-15
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-01-15
      */
     #[DataProvider('getVoltSyntaxErrors')]
     public function testMvcViewEngineVoltCompilerParseSyntaxError(

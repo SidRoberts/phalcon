@@ -57,8 +57,9 @@ Clearly, the song is: <?= $this->getContent() ?>.
 
     /**
      * @issue https://github.com/phalcon/cphalcon/issues/13242
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2018-11-13
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2018-11-13
      */
     #[DataProvider('defaultFilterProvider')]
     public function testMvcViewEngineVoltCompilerCompileFileDefaultFilter(

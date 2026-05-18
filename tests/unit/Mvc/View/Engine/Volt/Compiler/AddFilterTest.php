@@ -44,8 +44,8 @@ class AddFilterTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2018-11-13
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2018-11-13
      */
     #[DataProvider('getVoltAddFilter')]
     public function testMvcViewEngineVoltCompilerAddFilter(
@@ -64,8 +64,8 @@ class AddFilterTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2018-11-13
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2018-11-13
      */
     #[DataProvider('getVoltAddFilterClosure')]
     public function testMvcViewEngineVoltCompilerAddFilterClosure(

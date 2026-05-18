@@ -442,8 +442,8 @@ class FunctionCallTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-01-11
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-01-11
      */
     #[DataProvider('getExamples')]
     public function testMvcViewEngineVoltCompilerFunctionCall(

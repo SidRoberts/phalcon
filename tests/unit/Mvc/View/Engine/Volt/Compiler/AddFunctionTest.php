@@ -51,8 +51,8 @@ class AddFunctionTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-01-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-01-17
      */
     #[DataProvider('getVoltAddFunction')]
     public function testMvcViewEngineVoltCompilerAddFunction(
@@ -72,8 +72,8 @@ class AddFunctionTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2017-01-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2017-01-17
      */
     #[DataProvider('getVoltAddFunctionClosure')]
     public function testMvcViewEngineVoltCompilerAddFunctionClosure(
