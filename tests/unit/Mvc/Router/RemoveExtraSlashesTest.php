@@ -54,8 +54,8 @@ final class RemoveExtraSlashesTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Andy Gutierrez <andres.gutierrez@phalcon.io>
-     * @since        2012-12-16
+     * @author Andy Gutierrez <andres.gutierrez@phalcon.io>
+     * @since  2012-12-16
      */
     #[DataProvider('getMatchingWithExtraSlashes')]
     public function testRemovingExtraSlashes(

@@ -276,9 +276,10 @@ final class HandleTest extends AbstractUnitTestCase
     }
 
     /**
-     * @issue        16741
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2025-04-04
+     * @issue 16741
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2025-04-04
      */
     #[DataProvider('getUrlsWithColons')]
     public function testMvcRouterHandleWithColons(string $url): void
