@@ -71,8 +71,8 @@ trait TranslateNativeArrayHelperTrait
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getQueryProvider')]
     public function testTranslateAdapterNativearrayQuery(string $code, array $tests): void

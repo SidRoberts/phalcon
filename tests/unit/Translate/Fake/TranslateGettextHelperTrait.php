@@ -84,8 +84,8 @@ trait TranslateGettextHelperTrait
     abstract protected function func(): string;
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getQueryProvider')]
     public function testTranslateAdapterGettextQuery(array $tests): void
@@ -101,8 +101,8 @@ trait TranslateGettextHelperTrait
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getQueryProvider')]
     public function testTranslateAdapterGettextVariableSubstitutionNoVariables(array $tests): void
@@ -118,8 +118,8 @@ trait TranslateGettextHelperTrait
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getQueryOneVariable')]
     public function testTranslateAdapterGettextVariableSubstitutionOneVariable(array $tests): void

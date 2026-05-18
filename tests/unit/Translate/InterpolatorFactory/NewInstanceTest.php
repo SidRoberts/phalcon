@@ -33,8 +33,8 @@ final class NewInstanceTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getExamples')]
     public function testTranslateInterpolatorFactoryNewInstance(string $name, string $class): void
@@ -47,8 +47,8 @@ final class NewInstanceTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     public function testTranslateInterpolatorFactoryNewInstanceException(): void
     {

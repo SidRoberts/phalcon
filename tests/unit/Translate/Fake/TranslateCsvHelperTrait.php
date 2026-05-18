@@ -81,8 +81,8 @@ trait TranslateCsvHelperTrait
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getQueryProvider')]
     public function testTranslateAdapterCsvQuery(string $code, array $tests): void
@@ -104,8 +104,8 @@ trait TranslateCsvHelperTrait
     abstract protected function getCsvConfig(): array;
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getQueryProvider')]
     public function testTranslateAdapterCsvVariableSubstitutionNoVariables(string $code, array $tests): void
@@ -122,8 +122,8 @@ trait TranslateCsvHelperTrait
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('getQueryOneVariable')]
     public function testTranslateAdapterCsvVariableSubstitutionOneVariable(string $code, array $tests): void
