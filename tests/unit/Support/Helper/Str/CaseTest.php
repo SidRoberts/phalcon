@@ -100,8 +100,8 @@ final class CaseTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2022-01-02
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2022-01-02
      */
     #[DataProvider('getSources')]
     public function testSupportHelperStrCase(

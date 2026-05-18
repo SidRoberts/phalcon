@@ -88,8 +88,8 @@ final class BasenameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Ian Hu <hu2008yinxiang@163.com>
-     * @since        2020-09-09
+     * @author Ian Hu <hu2008yinxiang@163.com>
+     * @since  2020-09-09
      */
     #[DataProvider('getNonAsciiExamples')]
     public function testSupportHelperFileBasenameNonASCII(
@@ -106,8 +106,8 @@ final class BasenameTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Ian Hu <hu2008yinxiang@163.com>
-     * @since        2020-09-09
+     * @author Ian Hu <hu2008yinxiang@163.com>
+     * @since  2020-09-09
      */
     #[DataProvider('getAsciiExamples')]
     public function testSupportHelperFileBasenamePureASCII(

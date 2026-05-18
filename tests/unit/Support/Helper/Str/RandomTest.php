@@ -60,8 +60,8 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('oneToTenProvider')]
     public function testSupportHelperStrRandomAlnum(
@@ -80,8 +80,8 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('oneToTenProvider')]
     public function testSupportHelperStrRandomAlpha(
@@ -114,8 +114,8 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('randomDistinctProvider')]
     public function testSupportHelperStrRandomDistinct(
@@ -133,8 +133,8 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('oneToTenProvider')]
     public function testSupportHelperStrRandomHexDec(
@@ -153,8 +153,8 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('oneToTenProvider')]
     public function testSupportHelperStrRandomNonZero(
@@ -173,8 +173,8 @@ final class RandomTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[DataProvider('oneToTenProvider')]
     public function testSupportHelperStrRandomNumeric(

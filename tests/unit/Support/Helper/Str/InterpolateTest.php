@@ -66,8 +66,8 @@ final class InterpolateTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2021-04-28
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2021-04-28
      */
     #[DataProvider('getExamples')]
     public function testSupportHelperHelperStrInterpolateInvoke(
