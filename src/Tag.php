@@ -605,28 +605,28 @@ class Tag
         array | string $parameters = [],
         bool $local = true
     ): string {
-        $params = $parameters;
-        if (is_string($params)) {
-            $params = [$params];
-            if (isset($params[1])) {
-                $local = (bool)$params[1];
+        if (!is_array($parameters)) {
+            $parameters = [$parameters];
+
+            if (isset($parameters[1])) {
+                $local = (bool)$parameters[1];
             }
         }
 
-        if (!isset($params["src"])) {
-            $params["src"] = $params[0] ?? "";
+        if (!isset($parameters["src"])) {
+            $parameters["src"] = $parameters[0] ?? "";
         }
 
         /**
          * Use the "url" service if the URI is local
          */
         if (true === $local) {
-            $params["src"] = self::getUrlService()
-                                 ->getStatic($params["src"])
+            $parameters["src"] = self::getUrlService()
+                                 ->getStatic($parameters["src"])
             ;
         }
 
-        $code = self::renderAttributes("<img", $params);
+        $code = self::renderAttributes("<img", $parameters);
 
         /**
          * Check if Doctype is XHTML
