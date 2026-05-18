@@ -23,8 +23,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\Db\RawValue :: __construct()
      *
-     * @author       Sid Roberts <https://github.com/SidRoberts>
-     * @since        2019-04-17
+     * @author Sid Roberts <https://github.com/SidRoberts>
+     * @since  2019-04-17
      */
     #[DataProvider('valueProvider')]
     #[Group('mysql')]
