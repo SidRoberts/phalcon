@@ -229,9 +229,10 @@ final class AuthHeaderTest extends AbstractHttpBase
     }
 
     /**
-     * @issue  https://github.com/phalcon/cphalcon/issues/12480
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2016-12-18
+     * @issue https://github.com/phalcon/cphalcon/issues/12480
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2016-12-18
      */
     #[DataProvider('basicAuthProvider')]
     public function testHttpRequestCorrectHandleAuth(

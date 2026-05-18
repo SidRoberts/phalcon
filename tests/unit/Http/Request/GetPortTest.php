@@ -54,8 +54,8 @@ final class GetPortTest extends AbstractHttpBase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2016-06-26
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2016-06-26
      */
     #[DataProvider('getExamples')]
     public function testHttpRequestPort(

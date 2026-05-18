@@ -20,8 +20,8 @@ use PHPUnit\Framework\Attributes\BackupGlobals;
 final class HasFilesTest extends AbstractHttpBase
 {
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2016-01-31
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2016-01-31
      */
     #[BackupGlobals(true)]
     public function testRequestHasFiles(): void

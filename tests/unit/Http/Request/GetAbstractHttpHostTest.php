@@ -142,8 +142,8 @@ final class GetAbstractHttpHostTest extends AbstractHttpBase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2014-10-04
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2014-10-04
      */
     #[DataProvider('getExamples')]
     public function testHttpRequestHttpHost(
@@ -161,8 +161,8 @@ final class GetAbstractHttpHostTest extends AbstractHttpBase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2016-06-26
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2016-06-26
      */
     #[DataProvider('getExamplesInvalid')]
     public function testInvalidHttpRequestHttpHost(

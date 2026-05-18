@@ -191,8 +191,8 @@ final class IsTest extends AbstractHttpBase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-03-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-03-17
      */
     #[DataProvider('getExamples')]
     public function testHttpRequestIs(

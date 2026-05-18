@@ -116,8 +116,8 @@ final class IsValidHttpMethodTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-03-17
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-03-17
      */
     #[DataProvider('getExamples')]
     public function testHttpRequestIsValidHttpMethod(
