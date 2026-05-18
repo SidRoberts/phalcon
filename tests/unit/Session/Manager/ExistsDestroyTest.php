@@ -27,10 +27,11 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
     use SessionTrait;
 
     /**
-     * @issue  https://github.com/phalcon/cphalcon/issues/12326
-     * @issue  https://github.com/phalcon/cphalcon/issues/12835
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2018-11-13
+     * @issue https://github.com/phalcon/cphalcon/issues/12326
+     * @issue https://github.com/phalcon/cphalcon/issues/12835
+     *
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2018-11-13
      */
     #[BackupGlobals(true)]
     #[DataProvider('getClassNames')]
@@ -61,8 +62,8 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2020-09-09
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2020-09-09
      */
     #[BackupGlobals(true)]
     #[DataProvider('getClassNames')]
@@ -99,8 +100,8 @@ final class ExistsDestroyTest extends AbstractUnitTestCase
     }
 
     /**
-     * @author       Phalcon Team <team@phalcon.io>
-     * @since        2018-11-13
+     * @author Phalcon Team <team@phalcon.io>
+     * @since  2018-11-13
      */
     #[BackupGlobals(true)]
     #[DataProvider('getClassNames')]
