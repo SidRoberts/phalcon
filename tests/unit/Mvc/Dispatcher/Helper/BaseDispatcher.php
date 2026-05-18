@@ -10,8 +10,8 @@ use Phalcon\Mvc\Dispatcher;
 use Phalcon\Tests\AbstractUnitTestCase;
 
 /**
- * @author        Andres Gutierrez <andres@phalcon.io>
- * @author        Nikolaos Dimopoulos <nikos@phalcon.io>
+ * @author Andres Gutierrez <andres@phalcon.io>
+ * @author Nikolaos Dimopoulos <nikos@phalcon.io>
  */
 abstract class BaseDispatcher extends AbstractUnitTestCase
 {

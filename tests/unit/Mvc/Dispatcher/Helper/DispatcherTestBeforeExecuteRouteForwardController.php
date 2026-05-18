@@ -5,8 +5,8 @@ namespace Phalcon\Tests\Unit\Mvc\Dispatcher\Helper;
 use Phalcon\Mvc\Controller;
 
 /**
- * @author        Andres Gutierrez <andres@phalcon.io>
- * @author        Nikolaos Dimopoulos <nikos@phalcon.io>
+ * @author Andres Gutierrez <andres@phalcon.io>
+ * @author Nikolaos Dimopoulos <nikos@phalcon.io>
  */
 class DispatcherTestBeforeExecuteRouteForwardController extends Controller
 {

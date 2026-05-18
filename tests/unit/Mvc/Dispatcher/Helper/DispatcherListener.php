@@ -7,8 +7,8 @@ use Phalcon\Dispatcher\DispatcherInterface;
 use Phalcon\Events\Event;
 
 /**
- * @author        Andres Gutierrez <andres@phalcon.io>
- * @author        Nikolaos Dimopoulos <nikos@phalcon.io>
+ * @author Andres Gutierrez <andres@phalcon.io>
+ * @author Nikolaos Dimopoulos <nikos@phalcon.io>
  */
 class DispatcherListener
 {

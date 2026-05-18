@@ -3,8 +3,8 @@
 use Phalcon\Mvc\Controller;
 
 /**
- * @author        Andres Gutierrez <andres@phalcon.io>
- * @author        Nikolaos Dimopoulos <nikos@phalcon.io>
+ * @author Andres Gutierrez <andres@phalcon.io>
+ * @author Nikolaos Dimopoulos <nikos@phalcon.io>
  */
 class DispatcherTestDefaultNoNamespaceController extends Controller
 {
