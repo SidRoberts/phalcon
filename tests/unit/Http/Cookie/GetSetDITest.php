@@ -32,12 +32,10 @@ final class GetSetDITest extends AbstractUnitTestCase
         $cookie    = new Cookie($name);
         $cookie->setDI($container);
 
-        $expected = $container;
-        $actual   = $cookie->getDI();
-        $this->assertSame($expected, $actual);
-
-        $class  = Di::class;
         $actual = $cookie->getDI();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertSame($container, $actual);
+
+        $actual = $cookie->getDI();
+        $this->assertInstanceOf(Di::class, $actual);
     }
 }

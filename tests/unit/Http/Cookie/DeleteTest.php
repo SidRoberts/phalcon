@@ -31,18 +31,21 @@ final class DeleteTest extends AbstractUnitTestCase
 
         $cookie = new Cookie($name);
 
-        $actual = $cookie->getValue();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $cookie->getValue()
+        );
 
         $cookie->setValue($value);
 
-        $expected = $value;
-        $actual   = $cookie->getValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $cookie->getValue()
+        );
 
         $cookie->delete();
 
-        $actual = $cookie->getValue();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $cookie->getValue()
+        );
     }
 }

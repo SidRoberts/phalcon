@@ -25,6 +25,7 @@ final class SetSignKeyTest extends AbstractHttpBase
     public function testHttpCookieSetSignKeyException(): void
     {
         $this->setDiService('sessionStream');
+
         $this->expectException(Exception::class);
         $this->expectExceptionMessage(
             "The cookie's key should be at least 32 characters long. " .

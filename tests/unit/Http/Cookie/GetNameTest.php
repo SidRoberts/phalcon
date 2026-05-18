@@ -23,11 +23,11 @@ final class GetNameTest extends AbstractHttpBase
      */
     public function testHttpCookieGetName(): void
     {
-        $name   = 'test';
         $cookie = $this->getCookieObject();
 
-        $expected = $name;
-        $actual   = $cookie->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'test',
+            $cookie->getName()
+        );
     }
 }

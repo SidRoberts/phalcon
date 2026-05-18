@@ -62,9 +62,10 @@ final class CookieTest extends AbstractHttpBase
 
         $_COOKIE[$name] = $rawValue;
 
-        $expected = $value;
-        $actual   = $cookie->getValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $cookie->getValue()
+        );
     }
 
     /**

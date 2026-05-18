@@ -28,15 +28,17 @@ final class GetSetPathTest extends AbstractHttpBase
         $path   = "/";
         $cookie = $this->getCookieObject();
 
-        $expected = $path;
-        $actual   = $cookie->getPath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $path,
+            $cookie->getPath()
+        );
 
         $path = '/accounting';
         $cookie->setPath($path);
 
-        $expected = $path;
-        $actual   = $cookie->getPath();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $path,
+            $cookie->getPath()
+        );
     }
 }

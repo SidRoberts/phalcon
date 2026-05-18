@@ -27,11 +27,14 @@ final class UseEncryptionIsTest extends AbstractHttpBase
 
         $cookie = $this->getCookieObject();
 
-        $this->assertFalse($cookie->isUsingEncryption());
+        $this->assertFalse(
+            $cookie->isUsingEncryption()
+        );
 
         $cookie->useEncryption(true);
 
-        $actual = $cookie->isUsingEncryption();
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $cookie->isUsingEncryption()
+        );
     }
 }

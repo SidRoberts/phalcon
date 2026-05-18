@@ -28,23 +28,26 @@ final class GetSetValueTest extends AbstractHttpBase
         $value  = 'phalcon';
         $cookie = $this->getCookieObject();
 
-        $expected = $value;
-        $actual   = $cookie->getValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $cookie->getValue()
+        );
 
         $value = 'framework';
         $cookie->setValue($value);
 
-        $expected = $value;
-        $actual   = $cookie->getValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $cookie->getValue()
+        );
 
         $value = 'encrypted';
         $cookie->useEncryption(true);
         $cookie->setValue($value);
 
-        $expected = $value;
-        $actual   = $cookie->getValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $value,
+            $cookie->getValue()
+        );
     }
 }

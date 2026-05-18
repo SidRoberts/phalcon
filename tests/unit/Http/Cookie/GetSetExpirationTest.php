@@ -28,15 +28,17 @@ final class GetSetExpirationTest extends AbstractHttpBase
         $expire = time() - 100;
         $cookie = $this->getCookieObject();
 
-        $expected = $expire;
-        $actual   = $cookie->getExpiration();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expire,
+            $cookie->getExpiration()
+        );
 
         $expire = time() - 200;
         $cookie->setExpiration($expire);
 
-        $expected = $expire;
-        $actual   = $cookie->getExpiration();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expire,
+            $cookie->getExpiration()
+        );
     }
 }

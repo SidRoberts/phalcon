@@ -28,15 +28,17 @@ final class GetSetAbstractHttpOnlyTest extends AbstractHttpBase
         $httpOnly = true;
         $cookie   = $this->getCookieObject();
 
-        $expected = $httpOnly;
-        $actual   = $cookie->getHttpOnly();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $httpOnly,
+            $cookie->getHttpOnly()
+        );
 
         $httpOnly = false;
         $cookie->setHttpOnly($httpOnly);
 
-        $expected = $httpOnly;
-        $actual   = $cookie->getHttpOnly();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $httpOnly,
+            $cookie->getHttpOnly()
+        );
     }
 }

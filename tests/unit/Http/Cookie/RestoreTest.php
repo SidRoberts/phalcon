@@ -35,50 +35,76 @@ final class RestoreTest extends AbstractHttpBase
 
         $cookie = $this->getCookieObject();
 
-        $expected = $name;
-        $actual   = $cookie->getName();
-        $this->assertSame($expected, $actual);
-        $expected = $value;
-        $actual   = $cookie->getValue();
-        $this->assertSame($expected, $actual);
-        $expected = $expire;
-        $actual   = $cookie->getExpiration();
-        $this->assertSame($expected, $actual);
-        $expected = $path;
-        $actual   = $cookie->getPath();
-        $this->assertSame($expected, $actual);
-        $expected = $secure;
-        $actual   = $cookie->getSecure();
-        $this->assertSame($expected, $actual);
-        $expected = $domain;
-        $actual   = $cookie->getDomain();
-        $this->assertSame($expected, $actual);
-        $expected = $httpOnly;
-        $actual   = $cookie->getHttpOnly();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $name,
+            $cookie->getName()
+        );
+
+        $this->assertSame(
+            $value,
+            $cookie->getValue()
+        );
+
+        $this->assertSame(
+            $expire,
+            $cookie->getExpiration()
+        );
+
+        $this->assertSame(
+            $path,
+            $cookie->getPath()
+        );
+
+        $this->assertSame(
+            $secure,
+            $cookie->getSecure()
+        );
+
+        $this->assertSame(
+            $domain,
+            $cookie->getDomain()
+        );
+
+        $this->assertSame(
+            $httpOnly,
+            $cookie->getHttpOnly()
+        );
 
         $cookie->restore();
 
-        $expected = $name;
-        $actual   = $cookie->getName();
-        $this->assertSame($expected, $actual);
-        $expected = $value;
-        $actual   = $cookie->getValue();
-        $this->assertSame($expected, $actual);
-        $expected = $expire;
-        $actual   = $cookie->getExpiration();
-        $this->assertSame($expected, $actual);
-        $expected = $path;
-        $actual   = $cookie->getPath();
-        $this->assertSame($expected, $actual);
-        $expected = $secure;
-        $actual   = $cookie->getSecure();
-        $this->assertSame($expected, $actual);
-        $expected = $domain;
-        $actual   = $cookie->getDomain();
-        $this->assertSame($expected, $actual);
-        $expected = $httpOnly;
-        $actual   = $cookie->getHttpOnly();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $name,
+            $cookie->getName()
+        );
+
+        $this->assertSame(
+            $value,
+            $cookie->getValue()
+        );
+
+        $this->assertSame(
+            $expire,
+            $cookie->getExpiration()
+        );
+
+        $this->assertSame(
+            $path,
+            $cookie->getPath()
+        );
+
+        $this->assertSame(
+            $secure,
+            $cookie->getSecure()
+        );
+
+        $this->assertSame(
+            $domain,
+            $cookie->getDomain()
+        );
+
+        $this->assertSame(
+            $httpOnly,
+            $cookie->getHttpOnly()
+        );
     }
 }

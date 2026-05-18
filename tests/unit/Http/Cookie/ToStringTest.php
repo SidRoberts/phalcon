@@ -27,8 +27,9 @@ final class ToStringTest extends AbstractHttpBase
 
         $cookie = $this->getCookieObject();
 
-        $expected = 'phalcon';
-        $actual   = (string)$cookie;
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            'phalcon',
+            (string)$cookie
+        );
     }
 }

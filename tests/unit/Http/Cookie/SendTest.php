@@ -29,6 +29,7 @@ final class SendTest extends AbstractHttpBase
         $cookie = $this->getCookieObject();
 
         $result = $cookie->send();
+
         $this->assertInstanceOf(CookieInterface::class, $result);
     }
 }

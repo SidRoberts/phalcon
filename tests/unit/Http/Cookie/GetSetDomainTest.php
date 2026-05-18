@@ -28,15 +28,17 @@ final class GetSetDomainTest extends AbstractHttpBase
         $domain = "phalcon.ld";
         $cookie = $this->getCookieObject();
 
-        $expected = $domain;
-        $actual   = $cookie->getDomain();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $domain,
+            $cookie->getDomain()
+        );
 
         $domain = 'phalcon.io';
         $cookie->setDomain($domain);
 
-        $expected = $domain;
-        $actual   = $cookie->getDomain();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $domain,
+            $cookie->getDomain()
+        );
     }
 }

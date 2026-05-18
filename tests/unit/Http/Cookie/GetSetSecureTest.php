@@ -25,18 +25,16 @@ final class GetSetSecureTest extends AbstractHttpBase
     {
         $this->setDiService('sessionStream');
 
-
         $cookie = $this->getCookieObject();
 
-        $expected = true;
-        $actual   = $cookie->getSecure();
-        $this->assertSame($expected, $actual);
+        $this->assertTrue(
+            $cookie->getSecure()
+        );
 
-        $secure = false;
-        $cookie->setSecure($secure);
+        $cookie->setSecure(false);
 
-        $expected = false;
-        $actual   = $cookie->getSecure();
-        $this->assertSame($expected, $actual);
+        $this->assertFalse(
+            $cookie->getSecure()
+        );
     }
 }
