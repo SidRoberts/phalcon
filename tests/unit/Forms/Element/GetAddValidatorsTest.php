@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Unit\Forms\Element;
 use Phalcon\Filter\Validation\Validator\Alnum;
 use Phalcon\Filter\Validation\Validator\Digit;
 use Phalcon\Filter\Validation\Validator\StringLength;
+use Phalcon\Forms\Element\ElementInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Forms\Fake\FormsTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -27,6 +28,8 @@ final class GetAddValidatorsTest extends AbstractUnitTestCase
     use FormsTrait;
 
     /**
+     * @param class-string<ElementInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */

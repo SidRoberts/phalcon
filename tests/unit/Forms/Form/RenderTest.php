@@ -48,9 +48,10 @@ final class RenderTest extends AbstractUnitTestCase
 
         $form->add($element);
 
-        $expected = '<input type="text" id="title" name="title" value="Hello &quot;world!&quot;" />';
-        $actual   = $form->render('title');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '<input type="text" id="title" name="title" value="Hello &quot;world!&quot;" />',
+            $form->render('title')
+        );
     }
 
     /**
@@ -74,19 +75,22 @@ final class RenderTest extends AbstractUnitTestCase
 
         $form->add($element);
 
-        $expected = '<input type="text" id="name" name="name" />';
-        $actual   = $form->render('name');
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '<input type="text" id="name" name="name" />',
+            $form->render('name')
+        );
 
 
-        $expected = '<input type="text" id="name" name="name" class="big-input" />';
-        $actual   = $form->render(
+        $actual = $form->render(
             'name',
             [
                 'class' => 'big-input',
             ]
         );
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            '<input type="text" id="name" name="name" class="big-input" />',
+            $actual
+        );
     }
 
     /**
@@ -96,7 +100,6 @@ final class RenderTest extends AbstractUnitTestCase
      */
     public function testFormsFormRenderMethods(): void
     {
-
         /**
          * Make them all XHTML
          */
@@ -121,12 +124,15 @@ final class RenderTest extends AbstractUnitTestCase
 
         foreach ($names as $name) {
             $form = new Form();
+
             $form->setTagFactory($factory);
+
             $element = new Text($name);
 
-            $expected = $name;
-            $actual   = $element->getName();
-            $this->assertEquals($expected, $actual);
+            $this->assertEquals(
+                $name,
+                $element->getName()
+            );
 
             $form->add($element);
 
@@ -135,11 +141,11 @@ final class RenderTest extends AbstractUnitTestCase
                 $name,
                 $name
             );
-            $actual   = $form->render($name);
-            $this->assertSame($expected, $actual);
+            $this->assertSame($expected, $form->render($name));
 
-            $actual = $form->getValue($name);
-            $this->assertNull($actual);
+            $this->assertNull(
+                $form->getValue($name)
+            );
         }
     }
 }

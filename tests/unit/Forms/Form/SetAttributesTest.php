@@ -29,8 +29,12 @@ final class SetAttributesTest extends AbstractUnitTestCase
         $attributes = new Attributes(['action' => '/submit', 'method' => 'post']);
 
         $actual = $form->setAttributes($attributes);
+
         $this->assertInstanceOf(Form::class, $actual);
 
-        $this->assertSame($attributes, $form->getAttributes());
+        $this->assertSame(
+            $attributes,
+            $form->getAttributes()
+        );
     }
 }

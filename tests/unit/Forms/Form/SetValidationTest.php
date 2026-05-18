@@ -52,26 +52,22 @@ final class SetValidationTest extends AbstractUnitTestCase
 
         $form->setValidation($customValidation);
 
-
-        $actual = $form->isValid(
-            [
-                'telephone' => '12345',
-                'address'   => 'hello',
-            ]
+        $this->assertFalse(
+            $form->isValid(
+                [
+                    'telephone' => '12345',
+                    'address'   => 'hello',
+                ]
+            )
         );
 
-        $this->assertFalse($actual);
+        $this->assertTrue(
+            $form->get('telephone')->hasMessages()
+        );
 
-
-        $actual = $form->get('telephone')->hasMessages();
-
-        $this->assertTrue($actual);
-
-
-        $actual = $form->get('address')->hasMessages();
-
-        $this->assertFalse($actual);
-
+        $this->assertFalse(
+            $form->get('address')->hasMessages()
+        );
 
         $expected = new Messages(
             [
@@ -84,20 +80,19 @@ final class SetValidationTest extends AbstractUnitTestCase
             ]
         );
 
-        $actual = $form->get('telephone')->getMessages();
+        $this->assertEquals(
+            $expected,
+            $form->get('telephone')->getMessages()
+        );
 
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            $form->getMessages(),
+            $form->get('telephone')->getMessages()
+        );
 
-
-        $expected = $form->getMessages();
-        $actual   = $form->get('telephone')->getMessages();
-
-        $this->assertEquals($expected, $actual);
-
-
-        $expected = new Messages();
-        $actual   = $form->get('address')->getMessages();
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            new Messages(),
+            $form->get('address')->getMessages()
+        );
     }
 }

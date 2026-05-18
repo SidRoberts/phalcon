@@ -55,9 +55,10 @@ final class ClearTest extends AbstractUnitTestCase
         $address      = new Text('address');
         $address->setDefault($addressValue);
 
-        $expected = $addressValue;
-        $actual   = $address->getValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $addressValue,
+            $address->getValue()
+        );
 
         $addressValueNew = uniqid('addn-');
 
@@ -68,18 +69,21 @@ final class ClearTest extends AbstractUnitTestCase
             'address' => $addressValueNew,
         ];
 
-        $actual = $form->isValid($_POST);
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $form->isValid($_POST)
+        );
 
-        $expected = $addressValueNew;
-        $actual   = $address->getValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $addressValueNew,
+            $address->getValue()
+        );
 
         $form->clear();
 
-        $expected = $addressValue;
-        $actual   = $address->getValue();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $addressValue,
+            $address->getValue()
+        );
     }
 
     /**

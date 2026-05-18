@@ -36,19 +36,22 @@ final class GetSetAttributesTest extends AbstractUnitTestCase
 
         $object = new Select($name);
 
-        $actual = $object->getAttributes();
-        $this->assertEmpty($actual);
+        $this->assertEmpty(
+            $object->getAttributes()
+        );
 
         $object = new Select($name, null, $data);
 
-        $expected = $data;
-        $actual   = $object->getAttributes();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $data,
+            $object->getAttributes()
+        );
 
         $object->setAttributes($flipped);
 
-        $expected = $flipped;
-        $actual   = $object->getAttributes();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $flipped,
+            $object->getAttributes()
+        );
     }
 }

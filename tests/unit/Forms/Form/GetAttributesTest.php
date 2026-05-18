@@ -29,36 +29,41 @@ final class GetAttributesTest extends AbstractUnitTestCase
     {
         $form = new Form();
 
-        $actual = method_exists($form, 'getAttributes');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            method_exists($form, 'getAttributes')
+        );
 
         // Form implements AttributeInterface
-        $class = AttributesInterface::class;
-        $this->assertInstanceOf($class, $form);
+        $this->assertInstanceOf(AttributesInterface::class, $form);
 
 
         // Empty attributes
-        $expected = 0;
-        $actual   = $form->getAttributes();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            0,
+            $form->getAttributes()
+        );
 
         // Set an attribute
         $form->getAttributes()->set('attr', 'value');
 
-        $expected = 1;
-        $actual   = $form->getAttributes();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            1,
+            $form->getAttributes()
+        );
 
 
         // Check has
-        $actual = $form->getAttributes()->has('attr');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $form->getAttributes()->has('attr')
+        );
 
-        $actual = $form->getAttributes()->has('fake-attr');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->getAttributes()->has('fake-attr')
+        );
 
-        $actual = $form->getAttributes()->has('non exists attr');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->getAttributes()->has('non exists attr')
+        );
 
         // Render an attribute
         $expected = 'attr="value" ';
@@ -68,9 +73,10 @@ final class GetAttributesTest extends AbstractUnitTestCase
         // Reset attributes
         $form->getAttributes()->clear();
 
-        $expected = 0;
-        $actual   = $form->getAttributes();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            0,
+            $form->getAttributes()
+        );
 
         // Set multi attributes
         $form->getAttributes()->init(
@@ -81,9 +87,10 @@ final class GetAttributesTest extends AbstractUnitTestCase
             ]
         );
 
-        $expected = 3;
-        $actual   = $form->getAttributes();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            3,
+            $form->getAttributes()
+        );
 
         // Render multi attributes
         $expected = 'attr1="value1" attr2="value2" attr3="value3" ';
@@ -91,21 +98,20 @@ final class GetAttributesTest extends AbstractUnitTestCase
         $this->assertEquals($expected, $actual);
 
         // Get an attribute
-        $expected = 'value2';
-        $actual   = $form->getAttributes()->get('attr2');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'value2',
+            $form->getAttributes()->get('attr2')
+        );
 
         // Test action attribute
         $url = '/some-url';
         $form->setAction($url);
 
-        $expected = $url;
-        $actual   = $form->getAction();
-        $this->assertEquals($expected, $actual);
+        $actual = $form->getAction();
+        $this->assertEquals($url, $actual);
 
-        $expected = $url;
-        $actual   = $form->getAttributes()->get('action');
-        $this->assertEquals($expected, $actual);
+        $actual = $form->getAttributes()->get('action');
+        $this->assertEquals($url, $actual);
 
         $expected = 'action="/some-url" attr1="value1" attr2="value2" attr3="value3" ';
         $actual   = $form->getAttributes()->render();
@@ -114,18 +120,21 @@ final class GetAttributesTest extends AbstractUnitTestCase
         // Remove an attribute
         $form->getAttributes()->remove('attr2');
 
-        $actual = $form->getAttributes()->has('attr2');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->getAttributes()->has('attr2')
+        );
 
-        $expected = 3;
-        $actual   = $form->getAttributes();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            3,
+            $form->getAttributes()
+        );
 
         // Delete a nonexistent attribute
         $form->getAttributes()->remove('attr2');
 
-        $actual = $form->getAttributes()->has('attr2');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->getAttributes()->has('attr2')
+        );
 
         // Render multi attributes again
         $expected = 'action="/some-url" attr1="value1" attr3="value3" ';
@@ -135,12 +144,14 @@ final class GetAttributesTest extends AbstractUnitTestCase
         // Reset attributes
         $form->getAttributes()->clear();
 
-        $expected = 0;
-        $actual   = $form->getAttributes();
-        $this->assertCount($expected, $actual);
+        $this->assertCount(
+            0,
+            $form->getAttributes()
+        );
 
         // Exception on non exists attribute
-        $actual = $form->getAttributes()->get('non exists');
-        $this->assertNull($actual);
+        $this->assertNull(
+            $form->getAttributes()->get('non exists')
+        );
     }
 }

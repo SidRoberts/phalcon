@@ -34,13 +34,15 @@ final class GetTest extends AbstractUnitTestCase
         $form->add($address);
         $form->add($telephone);
 
-        $expected = $address;
-        $actual   = $form->get("address");
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $address,
+            $form->get("address")
+        );
 
-        $expected = $telephone;
-        $actual   = $form->get("telephone");
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $telephone,
+            $form->get("telephone")
+        );
     }
 
     /**

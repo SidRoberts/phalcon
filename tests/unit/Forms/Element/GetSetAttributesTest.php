@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Unit\Forms\Element;
 
 use Phalcon\Forms\Element\Check;
 use Phalcon\Forms\Element\Date;
+use Phalcon\Forms\Element\ElementInterface;
 use Phalcon\Forms\Element\Email;
 use Phalcon\Forms\Element\File;
 use Phalcon\Forms\Element\Hidden;
@@ -33,7 +34,7 @@ use function uniqid;
 final class GetSetAttributesTest extends AbstractUnitTestCase
 {
     /**
-     * @return string[][]
+     * @return array<array{0: class-string<ElementInterface>}>
      */
     public static function getExamples(): array
     {
@@ -53,6 +54,8 @@ final class GetSetAttributesTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<ElementInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */

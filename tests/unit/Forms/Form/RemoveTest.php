@@ -26,14 +26,17 @@ final class RemoveTest extends AbstractUnitTestCase
     public function testFormsFormRemoveFound(): void
     {
         $form = new Form();
+
         $form->add(new Text('name'));
         $form->add(new Text('email'));
 
-        $actual = $form->remove('name');
-        $this->assertTrue($actual);
+        $this->assertTrue(
+            $form->remove('name')
+        );
 
-        $actual = $form->has('name');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->has('name')
+        );
     }
 
     /**
@@ -43,9 +46,11 @@ final class RemoveTest extends AbstractUnitTestCase
     public function testFormsFormRemoveNotFound(): void
     {
         $form = new Form();
+
         $form->add(new Text('name'));
 
-        $actual = $form->remove('nonexistent');
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->remove('nonexistent')
+        );
     }
 }

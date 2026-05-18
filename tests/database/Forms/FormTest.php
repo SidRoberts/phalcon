@@ -54,21 +54,25 @@ final class FormTest extends AbstractDatabaseTestCase
 
         $form->add($telephone);
 
-        $expected = 'name';
-        $actual   = $form->getLabel('name');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'name',
+            $form->getLabel('name')
+        );
 
-        $expected = 'The Telephone';
-        $actual   = $form->getLabel('telephone');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            'The Telephone',
+            $form->getLabel('telephone')
+        );
 
-        $expected = '<label for="name">name</label>';
-        $actual   = $form->label('name');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '<label for="name">name</label>',
+            $form->label('name')
+        );
 
-        $expected = '<label for="telephone">The Telephone</label>';
-        $actual   = $form->label('telephone');
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals(
+            '<label for="telephone">The Telephone</label>',
+            $form->label('telephone')
+        );
 
         // https://github.com/phalcon/cphalcon/issues/1029
         $expected = '<label for="name" class="form-control">name</label>';
@@ -153,8 +157,9 @@ final class FormTest extends AbstractDatabaseTestCase
         $form->add($telephone);
         $form->add($address);
 
-        $actual = $form->isValid([]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->isValid([])
+        );
 
         $expected = new Messages(
             [

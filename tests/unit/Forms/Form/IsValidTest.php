@@ -46,8 +46,9 @@ final class IsValidTest extends AbstractUnitTestCase
             'message'  => '',
         ];
 
-        $actual = $form->isValid($data);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->isValid($data)
+        );
 
         /**
          * 6 validators in total
@@ -62,10 +63,12 @@ final class IsValidTest extends AbstractUnitTestCase
             'message'  => 'Some message',
         ];
 
-        $actual = $form->isValid($data);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->isValid($data)
+        );
 
         $messages = $form->getMessages();
+
         $this->assertCount(1, $messages);
 
         $expected = new Messages(
@@ -201,9 +204,10 @@ final class IsValidTest extends AbstractUnitTestCase
             'test2' => '   ',
         ];
 
-        $result = $form->isValid($data, $entity);
+        $this->assertTrue(
+            $form->isValid($data, $entity)
+        );
 
-        $this->assertTrue($result);
         $this->assertEquals('', $entity->test1);
         $this->assertEquals('', $entity->test2);
     }
@@ -214,9 +218,11 @@ final class IsValidTest extends AbstractUnitTestCase
      */
     public function testFormsFormIsValidNoElementsReturnsTrue(): void
     {
-        $form   = new Form();
-        $actual = $form->isValid([]);
-        $this->assertTrue($actual);
+        $form = new Form();
+
+        $this->assertTrue(
+            $form->isValid([])
+        );
     }
 
     /**
@@ -226,10 +232,12 @@ final class IsValidTest extends AbstractUnitTestCase
     public function testFormsFormIsValidBeforeValidationReturnsFalse(): void
     {
         $form = new FakeFormBeforeValidation();
+
         $form->add(new Text('name'));
 
-        $actual = $form->isValid(['name' => 'test']);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->isValid(['name' => 'test'])
+        );
     }
 
     /**
@@ -239,6 +247,7 @@ final class IsValidTest extends AbstractUnitTestCase
     public function testFormsFormIsValidAfterValidationCalled(): void
     {
         $form = new FakeFormAfterValidation();
+
         $form->add(new Text('name'));
 
         $form->isValid(['name' => 'test']);

@@ -96,10 +96,21 @@ final class FormEntityTest extends AbstractUnitTestCase
         $name = new Text('prd_name');
         $form->add($name);
 
-        $actual = $form->isValid(['prd_name' => "Nikodem Tomlinson"]);
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->isValid(
+                [
+                    'prd_name' => "Nikodem Tomlinson",
+                ]
+            )
+        );
 
-        $this->assertNotNull($validator->getEntity());
-        $this->assertSame($product->prd_name, $validator->getEntity()->prd_name);
+        $this->assertNotNull(
+            $validator->getEntity()
+        );
+
+        $this->assertSame(
+            $product->prd_name,
+            $validator->getEntity()->prd_name
+        );
     }
 }

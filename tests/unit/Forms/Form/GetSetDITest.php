@@ -29,14 +29,16 @@ final class GetSetDITest extends AbstractUnitTestCase
         $container = new Di();
         $form      = new Form();
 
-        $class  = FactoryDefault::class;
-        $actual = $form->getDI();
-        $this->assertInstanceOf($class, $actual);
+        $this->assertInstanceOf(
+            FactoryDefault::class,
+            $form->getDI()
+        );
 
         $form->setDI($container);
 
-        $expected = $container;
-        $actual   = $form->getDI();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $container,
+            $form->getDI()
+        );
     }
 }

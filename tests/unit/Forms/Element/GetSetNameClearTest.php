@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Forms\Element;
 
+use Phalcon\Forms\Element\ElementInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Forms\Fake\FormsTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -24,6 +25,8 @@ final class GetSetNameClearTest extends AbstractUnitTestCase
     use FormsTrait;
 
     /**
+     * @param class-string<ElementInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */
@@ -34,20 +37,23 @@ final class GetSetNameClearTest extends AbstractUnitTestCase
         $name   = uniqid();
         $object = new $class($name);
 
-        $expected = $name;
-        $actual   = $object->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $name,
+            $object->getName()
+        );
 
         $different = uniqid();
         $object->setName($different);
 
-        $expected = $different;
-        $actual   = $object->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $different,
+            $object->getName()
+        );
 
         $object->clear();
 
-        $actual = $object->getForm();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $object->getForm()
+        );
     }
 }

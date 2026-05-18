@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Unit\Forms\Element;
 
 use Phalcon\Forms\Element\Check;
 use Phalcon\Forms\Element\Date;
+use Phalcon\Forms\Element\ElementInterface;
 use Phalcon\Forms\Element\Email;
 use Phalcon\Forms\Element\File;
 use Phalcon\Forms\Element\Hidden;
@@ -44,12 +45,13 @@ final class RenderTest extends AbstractUnitTestCase
     }
 
     /**
-     * @return string[][]
+     * @return array<array{class-string<ElementInterface>, string, array, string}>
      */
     public static function getExamples(): array
     {
         $htmlLine   = 'id=":name:" name=":name:" class="alert alert-warning"';
         $attributes = ['class' => 'alert alert-warning'];
+
         return [
             [
                 Check::class,
@@ -127,6 +129,11 @@ final class RenderTest extends AbstractUnitTestCase
     }
 
     /**
+     * @param class-string<ElementInterface> $class
+     * @param string                         $subject1
+     * @param array                          $attributes
+     * @param string                         $subject2
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */

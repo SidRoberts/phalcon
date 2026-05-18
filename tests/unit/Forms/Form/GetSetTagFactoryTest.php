@@ -34,13 +34,15 @@ final class GetSetTagFactoryTest extends AbstractUnitTestCase
         /**
          * Initial
          */
-        $actual = $form->getTagFactory();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $form->getTagFactory()
+        );
 
         $form->setTagFactory($tagFactoryOne);
 
-        $expected = $tagFactoryOne;
-        $actual   = $form->getTagFactory();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $tagFactoryOne,
+            $form->getTagFactory()
+        );
     }
 }

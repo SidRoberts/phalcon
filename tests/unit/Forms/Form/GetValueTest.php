@@ -30,10 +30,12 @@ final class GetValueTest extends AbstractUnitTestCase
     public function testFormsFormGetValueForbiddenNameReturnsNull(): void
     {
         $form = new Form();
+
         $form->add(new Text('action'));
 
-        $actual = $form->getValue('action');
-        $this->assertNull($actual);
+        $this->assertNull(
+            $form->getValue('action')
+        );
     }
 
     /**
@@ -43,9 +45,12 @@ final class GetValueTest extends AbstractUnitTestCase
     public function testFormsFormGetValueCustomValueMethod(): void
     {
         $form = new FakeFormCustomValue();
+
         $form->add(new Text('username'));
 
-        $actual = $form->getValue('username');
-        $this->assertSame('custom-username', $actual);
+        $this->assertSame(
+            'custom-username',
+            $form->getValue('username')
+        );
     }
 }

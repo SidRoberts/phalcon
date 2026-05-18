@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Forms\Element;
 
+use Phalcon\Forms\Element\ElementInterface;
 use Phalcon\Forms\Form;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Forms\Fake\FormsTrait;
@@ -25,6 +26,8 @@ final class GetSetFormTest extends AbstractUnitTestCase
     use FormsTrait;
 
     /**
+     * @param class-string<ElementInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */
@@ -38,12 +41,15 @@ final class GetSetFormTest extends AbstractUnitTestCase
 
         $object->setForm($form);
 
-        $expected = $form;
-        $actual   = $object->getForm();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $form,
+            $object->getForm()
+        );
     }
 
     /**
+     * @param class-string<ElementInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */
@@ -57,8 +63,9 @@ final class GetSetFormTest extends AbstractUnitTestCase
 
         $object->setForm($form);
 
-        $expected = $form;
-        $actual   = $object->getForm();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $form,
+            $object->getForm()
+        );
     }
 }

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Forms\Element;
 
+use Phalcon\Forms\Element\ElementInterface;
 use Phalcon\Messages\Message;
 use Phalcon\Messages\Messages;
 use Phalcon\Tests\AbstractUnitTestCase;
@@ -26,6 +27,10 @@ final class GetSetHasAppendMessagesTest extends AbstractUnitTestCase
     use FormsTrait;
 
     /**
+     * Tests Phalcon\Forms\Element\* :: getMessages()/setMessages()/hasMessages()/appendMessage()
+     *
+     * @param class-string<ElementInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */
@@ -46,27 +51,33 @@ final class GetSetHasAppendMessagesTest extends AbstractUnitTestCase
 
         $object = new $class($name);
 
-        $className = Messages::class;
-        $actual    = $object->getMessages();
-        $this->assertInstanceOf($className, $actual);
+        $this->assertInstanceOf(
+            Messages::class,
+            $object->getMessages()
+        );
 
-        $actual = $object->hasMessages();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $object->hasMessages()
+        );
 
         $object->setMessages($messages);
 
-        $expected = $messages;
-        $actual   = $object->getMessages();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $messages,
+            $object->getMessages()
+        );
 
         $object->appendMessage($three);
 
         $messages[] = $three;
-        $expected   = $messages;
-        $actual     = $object->getMessages();
-        $this->assertSame($expected, $actual);
 
-        $actual = $object->hasMessages();
-        $this->assertTrue($actual);
+        $this->assertSame(
+            $messages,
+            $object->getMessages()
+        );
+
+        $this->assertTrue(
+            $object->hasMessages()
+        );
     }
 }

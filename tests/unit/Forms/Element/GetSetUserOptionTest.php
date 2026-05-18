@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Forms\Element;
 
+use Phalcon\Forms\Element\ElementInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Forms\Fake\FormsTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -24,6 +25,8 @@ final class GetSetUserOptionTest extends AbstractUnitTestCase
     use FormsTrait;
 
     /**
+     * @param class-string<ElementInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */

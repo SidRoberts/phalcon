@@ -44,14 +44,16 @@ final class GetSetTagFactoryTest extends AbstractUnitTestCase
         /**
          * Initial
          */
-        $actual = $element->getTagFactory();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $element->getTagFactory()
+        );
 
         $element->setTagFactory($tagFactoryOne);
 
-        $expected = $tagFactoryOne;
-        $actual   = $element->getTagFactory();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $tagFactoryOne,
+            $element->getTagFactory()
+        );
     }
 
     /**
@@ -70,19 +72,24 @@ final class GetSetTagFactoryTest extends AbstractUnitTestCase
         /**
          * Initial
          */
-        $actual = $element->getTagFactory();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $element->getTagFactory()
+        );
 
         /**
          * From DI
          */
         $expected = sprintf('<input type="text" id="%s" name="%s">', $name, $name);
-        $actual   = $element->render();
-        $this->assertSame($expected, $actual);
 
-        $expected = $tagFactoryOne;
-        $actual   = $element->getTagFactory();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $expected,
+            $element->render()
+        );
+
+        $this->assertSame(
+            $tagFactoryOne,
+            $element->getTagFactory()
+        );
     }
 
     /**
@@ -103,21 +110,26 @@ final class GetSetTagFactoryTest extends AbstractUnitTestCase
         /**
          * Initial
          */
-        $actual = $element->getTagFactory();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $element->getTagFactory()
+        );
 
         $element->setForm($form);
 
         $expected = sprintf('<input type="text" id="%s" name="%s">', $name, $name);
-        $actual   = $element->render();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $element->render()
+        );
 
         /**
          * From form
          */
-        $expected = $tagFactoryOne;
-        $actual   = $element->getTagFactory();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $tagFactoryOne,
+            $element->getTagFactory()
+        );
     }
 
     /**

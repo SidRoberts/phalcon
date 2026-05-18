@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Unit\Forms\Element;
 
 use InvalidArgumentException;
+use Phalcon\Forms\Element\ElementInterface;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Forms\Fake\FormsTrait;
@@ -26,6 +27,8 @@ final class ConstructTest extends AbstractUnitTestCase
     use FormsTrait;
 
     /**
+     * @param class-string<ElementInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */
@@ -36,21 +39,24 @@ final class ConstructTest extends AbstractUnitTestCase
         $name   = uniqid();
         $object = new $class($name);
 
-        $expected = $name;
-        $actual   = $object->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $name,
+            $object->getName()
+        );
 
         $name       = uniqid();
         $attributes = ["one" => "two"];
         $object     = new $class($name, $attributes);
 
-        $expected = $name;
-        $actual   = $object->getName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $name,
+            $object->getName()
+        );
 
-        $expected = $attributes;
-        $actual   = $object->getAttributes();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $attributes,
+            $object->getAttributes()
+        );
     }
 
     /**

@@ -48,10 +48,26 @@ final class YamlLoaderTest extends AbstractUnitTestCase
         $result = $schema->load();
 
         $this->assertCount(2, $result);
-        $this->assertSame('text', $result[0]['type']);
-        $this->assertSame('first_name', $result[0]['name']);
-        $this->assertSame('email', $result[1]['type']);
-        $this->assertSame('email', $result[1]['name']);
+
+        $this->assertSame(
+            'text',
+            $result[0]['type']
+        );
+
+        $this->assertSame(
+            'first_name',
+            $result[0]['name']
+        );
+
+        $this->assertSame(
+            'email',
+            $result[1]['type']
+        );
+
+        $this->assertSame(
+            'email',
+            $result[1]['name']
+        );
     }
 
     public function testLoadPassesThroughExtraKeysFromString(): void
@@ -66,8 +82,15 @@ final class YamlLoaderTest extends AbstractUnitTestCase
         $schema = new YamlLoader($yaml);
         $result = $schema->load();
 
-        $this->assertSame('City', $result[0]['label']);
-        $this->assertSame('London', $result[0]['default']);
+        $this->assertSame(
+            'City',
+            $result[0]['label']
+        );
+
+        $this->assertSame(
+            'London',
+            $result[0]['default']
+        );
     }
 
     // -----------------------------------------------------------------------
@@ -89,8 +112,16 @@ final class YamlLoaderTest extends AbstractUnitTestCase
         $result = $schema->load();
 
         $this->assertCount(2, $result);
-        $this->assertSame('title', $result[0]['name']);
-        $this->assertSame('body', $result[1]['name']);
+
+        $this->assertSame(
+            'title',
+            $result[0]['name']
+        );
+
+        $this->assertSame(
+            'body',
+            $result[1]['name']
+        );
 
         unlink($path);
     }

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Forms\Element;
 
+use Phalcon\Forms\Element\ElementInterface;
 use Phalcon\Html\Escaper;
 use Phalcon\Html\TagFactory;
 use Phalcon\Tests\AbstractUnitTestCase;
@@ -26,6 +27,10 @@ final class GetSetLabelTest extends AbstractUnitTestCase
     use FormsTrait;
 
     /**
+     * Tests Phalcon\Forms\Element\* :: getLabel()/setLabel()/label()
+     *
+     * @param class-string<ElementInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */
@@ -38,19 +43,24 @@ final class GetSetLabelTest extends AbstractUnitTestCase
         $object  = new $class($name);
         $object->setTagFactory($factory);
 
-        $actual = $object->getLabel();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $object->getLabel()
+        );
 
         $object->setLabel($name);
 
-        $expected = $name;
-        $actual   = $object->getLabel();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $name,
+            $object->getLabel()
+        );
 
         $attributes = ['class' => 'label label-warning'];
         $expected   = '<label for="' . $name
             . '" class="label label-warning">' . $name . '</label>';
-        $actual     = $object->label($attributes);
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $object->label($attributes)
+        );
     }
 }

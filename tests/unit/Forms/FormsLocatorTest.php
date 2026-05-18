@@ -234,14 +234,18 @@ final class FormsLocatorTest extends AbstractUnitTestCase
     {
         $locator = new FormsLocator();
 
-        $this->assertTrue($locator->hasElement($type));
+        $this->assertTrue(
+            $locator->hasElement($type)
+        );
     }
 
     public function testHasElementReturnsFalseForUnknownType(): void
     {
         $locator = new FormsLocator();
 
-        $this->assertFalse($locator->hasElement('mytype'));
+        $this->assertFalse(
+            $locator->hasElement('mytype')
+        );
     }
 
     public function testGetElementReturnsCallableForBuiltInType(): void
@@ -294,7 +298,13 @@ final class FormsLocatorTest extends AbstractUnitTestCase
             ['type' => 'mytype', 'name' => 'myfield'],
         ]), $locator);
 
-        $this->assertTrue($form->has('myfield'));
-        $this->assertSame($sentinel, $form->get('myfield'));
+        $this->assertTrue(
+            $form->has('myfield')
+        );
+
+        $this->assertSame(
+            $sentinel,
+            $form->get('myfield')
+        );
     }
 }

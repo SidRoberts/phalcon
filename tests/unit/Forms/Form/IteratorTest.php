@@ -69,13 +69,16 @@ final class IteratorTest extends AbstractUnitTestCase
     public function testFormsFormCurrentReturnsFalseWhenOutOfBounds(): void
     {
         $form = new Form();
+
         $form->add(new Text('name'));
+
         $form->rewind();
 
         // Advance beyond end
         $form->next();
 
-        $actual = $form->current();
-        $this->assertFalse($actual);
+        $this->assertFalse(
+            $form->current()
+        );
     }
 }

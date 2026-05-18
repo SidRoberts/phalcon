@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Unit\Forms\Element;
 
+use Phalcon\Forms\Element\ElementInterface;
 use Phalcon\Tests\AbstractUnitTestCase;
 use Phalcon\Tests\Unit\Forms\Fake\FormsTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -24,6 +25,8 @@ final class GetSetDefaultTest extends AbstractUnitTestCase
     use FormsTrait;
 
     /**
+     * @param class-string<ElementInterface> $class
+     *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-12-05
      */
@@ -34,13 +37,15 @@ final class GetSetDefaultTest extends AbstractUnitTestCase
         $name   = uniqid();
         $object = new $class($name);
 
-        $actual = $object->getDefault();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $object->getDefault()
+        );
 
         $object->setDefault($name);
 
-        $expected = $name;
-        $actual   = $object->getDefault();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $name,
+            $object->getDefault()
+        );
     }
 }
