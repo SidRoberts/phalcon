@@ -27,7 +27,7 @@ final class DeleteTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Query\Delete :: delete()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmQueryDelete(): void
@@ -62,8 +62,11 @@ final class DeleteTest extends AbstractDatabaseTestCase
             'inv_total'       => 100.0,
             'inv_created_at'  => '2024-02-01 10:11:12',
         ];
-        $actual   = $select->fetchOne();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->fetchOne()
+        );
 
         /**
          * Delete it
@@ -85,8 +88,9 @@ final class DeleteTest extends AbstractDatabaseTestCase
         /**
          * Find it again - should not exist
          */
-        $expected = [];
-        $actual   = $select->fetchOne();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $select->fetchOne()
+        );
     }
 }

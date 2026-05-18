@@ -27,7 +27,7 @@ final class SelectTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Query\Select :: select()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmQuerySelect(): void
@@ -65,8 +65,11 @@ final class SelectTest extends AbstractDatabaseTestCase
             'inv_total'       => 100.0,
             'inv_created_at'  => '2024-02-01 10:11:12',
         ];
-        $actual   = $select->fetchOne();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->fetchOne()
+        );
     }
 
     /**
@@ -79,6 +82,7 @@ final class SelectTest extends AbstractDatabaseTestCase
     {
         $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('Unknown method: [unknown]');
+
         $select = Select::new(
             self::getDatabaseDsn(),
             self::getDatabaseUsername(),

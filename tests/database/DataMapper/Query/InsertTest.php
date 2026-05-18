@@ -26,7 +26,7 @@ final class InsertTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Query\Insert :: insert()
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmQueryInsert(): void
@@ -49,9 +49,10 @@ final class InsertTest extends AbstractDatabaseTestCase
         /**
          * Find it - should not exist
          */
-        $expected = [];
-        $actual   = $select->fetchOne();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            [],
+            $select->fetchOne()
+        );
 
         $insert = Insert::new(
             self::getDatabaseDsn(),
@@ -72,9 +73,10 @@ final class InsertTest extends AbstractDatabaseTestCase
 
         $this->assertInstanceOf(PDOStatement::class, $statement);
 
-        $expected = 1;
-        $actual   = (int)$insert->getLastInsertId();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            1,
+            (int)$insert->getLastInsertId()
+        );
 
         /**
          * Find it
@@ -97,7 +99,10 @@ final class InsertTest extends AbstractDatabaseTestCase
             'inv_total'       => 100.0,
             'inv_created_at'  => '2024-02-01 10:11:12',
         ];
-        $actual   = $select->fetchOne();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->fetchOne()
+        );
     }
 }

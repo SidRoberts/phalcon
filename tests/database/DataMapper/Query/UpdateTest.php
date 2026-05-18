@@ -27,7 +27,7 @@ final class UpdateTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Query\Update :: update
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmQueryUpdate(): void
@@ -62,8 +62,11 @@ final class UpdateTest extends AbstractDatabaseTestCase
             'inv_total'       => 100.0,
             'inv_created_at'  => '2024-02-01 10:11:12',
         ];
-        $actual   = $select->fetchOne();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->fetchOne()
+        );
 
         /**
          * Update it
@@ -107,7 +110,10 @@ final class UpdateTest extends AbstractDatabaseTestCase
             'inv_total'       => 200.0,
             'inv_created_at'  => '2024-12-11 20:21:22',
         ];
-        $actual   = $select->fetchOne();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame(
+            $expected,
+            $select->fetchOne()
+        );
     }
 }
