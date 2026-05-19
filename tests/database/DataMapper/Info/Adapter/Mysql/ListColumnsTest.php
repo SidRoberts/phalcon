@@ -13,14 +13,14 @@ namespace Phalcon\Tests\Database\DataMapper\Info\Adapter\Mysql;
 
 use Phalcon\DataMapper\Info\Adapter\Mysql;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class ListColumnsTest extends AbstractDatabaseTestCase
 {
     /**
      * @since  2025-01-14
-     *
-     * @group  mysql
      */
+    #[Group('mysql')]
     public function testDmInfoAdapterMysqlListTables(): void
     {
         $connection = self::getDataMapperConnection();

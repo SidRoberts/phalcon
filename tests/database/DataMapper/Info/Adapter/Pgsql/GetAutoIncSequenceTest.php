@@ -14,16 +14,15 @@ namespace Phalcon\Tests\Database\DataMapper\Info\Adapter\Pgsql;
 use Phalcon\DataMapper\Info\Adapter\Pgsql;
 use Phalcon\DataMapper\Pdo\Exception\Exception;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class GetAutoIncSequenceTest extends AbstractDatabaseTestCase
 {
     /**
      * @throws Exception
      * @since  2025-01-14
-     *
-     * @group  pgsql
-     *
      */
+    #[Group('pqsql')]
     public function testDmInfoAdapterPgsqlGetAutoIncSequence(): void
     {
         $connection = self::getDataMapperConnection();

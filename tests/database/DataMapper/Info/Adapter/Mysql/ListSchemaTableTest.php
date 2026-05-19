@@ -14,14 +14,14 @@ namespace Phalcon\Tests\Database\DataMapper\Info\Adapter\Mysql;
 use Phalcon\DataMapper\Info\Adapter\Mysql;
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class ListSchemaTableTest extends AbstractDatabaseTestCase
 {
     /**
      * @since 2025-01-14
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmInfoAdapterMysqlListSchemaName(): void
     {
         /** @var Connection $connection */

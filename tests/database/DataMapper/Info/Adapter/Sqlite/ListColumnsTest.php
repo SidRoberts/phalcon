@@ -13,14 +13,14 @@ namespace Phalcon\Tests\Database\DataMapper\Info\Adapter\Sqlite;
 
 use Phalcon\DataMapper\Info\Adapter\Sqlite;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class ListColumnsTest extends AbstractDatabaseTestCase
 {
     /**
      * @since  2025-01-14
-     *
-     * @group  sqlite
      */
+    #[Group('sqlite')]
     public function testDmInfoAdapterMysqlListTables(): void
     {
         $connection = self::getDataMapperConnection();
