@@ -17,6 +17,7 @@ use PDO;
 use Phalcon\Db\Adapter\PdoFactory;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\Group;
 
 use function getOptionsMysql;
 
@@ -37,9 +38,8 @@ final class ConnectTest extends AbstractDatabaseTestCase
     /**
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-04-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDbAdapterPdoConnectPersistentMysql(): void
     {
         $options               = getOptionsMysql();

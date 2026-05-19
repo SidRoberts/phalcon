@@ -20,6 +20,7 @@ use Phalcon\Storage\Exception;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\DialectMigration;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\Group;
 
 final class ExecInsertTest extends AbstractDatabaseTestCase
 {
@@ -46,9 +47,8 @@ final class ExecInsertTest extends AbstractDatabaseTestCase
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-04-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDbAdapterPdoInsert(): void
     {
         $connection = self::getConnection();
