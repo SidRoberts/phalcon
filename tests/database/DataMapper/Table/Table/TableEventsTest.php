@@ -32,6 +32,7 @@ use Phalcon\Tests\Support\DataMapper\Table\OrdersXProducts\OrdersXProductsTable;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Migrations\OrdersProductsMigration;
 use Phalcon\Tests\Support\Storage;
+use PHPUnit\Framework\Attributes\Group;
 
 use function array_keys;
 use function uniqid;
@@ -66,9 +67,7 @@ final class TableEventsTest extends AbstractDatabaseTestCase
         $this->connection = $connection;
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testDeleteRow(): void
     {
         Storage::reset();
@@ -103,9 +102,7 @@ final class TableEventsTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchRow(): void
     {
         Storage::reset();
@@ -190,9 +187,7 @@ final class TableEventsTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchRows(): void
     {
         Storage::reset();
@@ -250,9 +245,7 @@ final class TableEventsTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testInsertRow(): void
     {
         Storage::reset();
@@ -281,9 +274,7 @@ final class TableEventsTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testUpdateRow(): void
     {
         Storage::reset();

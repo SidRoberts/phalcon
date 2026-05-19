@@ -19,14 +19,13 @@ use Phalcon\DataMapper\Table\Exception\InvalidOptionException;
 use Phalcon\DataMapper\Table\Exception\PropertyDoesNotExistException;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\DataMapper\Table\Invoices\InvoicesRow;
+use PHPUnit\Framework\Attributes\Group;
 
 use function uniqid;
 
 final class RowTest extends AbstractDatabaseTestCase
 {
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testConstructor(): void
     {
         $row = new InvoicesRow();
@@ -34,9 +33,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertInstanceOf(AbstractRow::class, $row);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testConstructorWithData(): void
     {
         $title = uniqid('tit-');
@@ -56,9 +53,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testConstructorWithUnknownColumnsThrowsException(): void
     {
         $title = uniqid('tit-');
@@ -80,9 +75,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $row = new InvoicesRow($data);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testGetCopy(): void
     {
         $title = uniqid('tit-');
@@ -102,9 +95,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testGetDiff(): void
     {
         $title = uniqid('tit-');
@@ -144,9 +135,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testGetInit(): void
     {
         $title = uniqid('tit-');
@@ -166,9 +155,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testGetIterator(): void
     {
         $title = uniqid('tit-');
@@ -188,9 +175,7 @@ final class RowTest extends AbstractDatabaseTestCase
         }
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testHas(): void
     {
         $row = new InvoicesRow();
@@ -202,9 +187,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertFalse($actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testJsonSerialize(): void
     {
         $title = uniqid('tit-');
@@ -224,9 +207,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testRemove(): void
     {
         $row = new InvoicesRow();
@@ -246,9 +227,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertNull($actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testRemoveDeletedThrowsException(): void
     {
         $this->expectException(ImmutableAfterDeletedException::class);
@@ -264,9 +243,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $row->remove('inv_id');
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testSet(): void
     {
         $title = uniqid('tit-');
@@ -293,9 +270,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testSetOnDeletedRowThrowsException(): void
     {
         $this->expectException(ImmutableAfterDeletedException::class);
@@ -310,9 +285,7 @@ final class RowTest extends AbstractDatabaseTestCase
         ;
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testSetUnknownColumnThrowsException(): void
     {
         $this->expectException(PropertyDoesNotExistException::class);
@@ -326,9 +299,7 @@ final class RowTest extends AbstractDatabaseTestCase
         ;
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testLastAction(): void
     {
         $row = new InvoicesRow();
@@ -402,9 +373,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertNull($actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testLastActionInvalidThrowsException(): void
     {
         $this->expectException(InvalidOptionException::class);
@@ -416,9 +385,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $row->setLastAction('other_option');
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testSetNumericToBool(): void
     {
         $title = uniqid('tit-');
@@ -448,9 +415,7 @@ final class RowTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testSetBoolToNumeric(): void
     {
         $title = uniqid('tit-');

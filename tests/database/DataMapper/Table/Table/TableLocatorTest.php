@@ -18,6 +18,7 @@ use Phalcon\DataMapper\Table\Exception\TableClassMissingException;
 use Phalcon\DataMapper\Table\TableLocator;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\DataMapper\Table\Invoices\InvoicesTable;
+use PHPUnit\Framework\Attributes\Group;
 
 final class TableLocatorTest extends AbstractDatabaseTestCase
 {
@@ -31,9 +32,7 @@ final class TableLocatorTest extends AbstractDatabaseTestCase
         $this->locator = TableLocator::new($connection);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testGet(): void
     {
         $actual = $this->locator->get(InvoicesTable::class);
@@ -43,9 +42,7 @@ final class TableLocatorTest extends AbstractDatabaseTestCase
         $this->assertInstanceOf(InvoicesTable::class, $twice);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testGetConnectionLocator(): void
     {
         $class  = ConnectionLocator::class;
@@ -53,9 +50,7 @@ final class TableLocatorTest extends AbstractDatabaseTestCase
         $this->assertInstanceOf($class, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testGetUnknownThrowsException(): void
     {
         $this->expectException(TableClassMissingException::class);
@@ -67,9 +62,7 @@ final class TableLocatorTest extends AbstractDatabaseTestCase
         $actual = $this->locator->get('other_table');
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testHas(): void
     {
         $actual = $this->locator->has(InvoicesTable::class);

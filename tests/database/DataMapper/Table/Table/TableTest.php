@@ -30,6 +30,7 @@ use Phalcon\Tests\Support\DataMapper\Table\OrdersXProducts\OrdersXProductsRow;
 use Phalcon\Tests\Support\DataMapper\Table\OrdersXProducts\OrdersXProductsTable;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Migrations\OrdersProductsMigration;
+use PHPUnit\Framework\Attributes\Group;
 
 use function uniqid;
 
@@ -63,9 +64,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->connection = $connection;
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testDeleteRow(): void
     {
         $title = uniqid('tit-');
@@ -116,9 +115,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->table->deleteRow($row);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testDeleteRowNoPrimaryKey(): void
     {
         $table = $this->locator->get(NoPrimaryKeyTable::class);
@@ -137,9 +134,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $table->deleteRow($newRow);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchRowCompositeKey(): void
     {
         $table = $this->locator->get(OrdersXProductsTable::class);
@@ -165,9 +160,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchRowCompositeKeyMissingThrowsException(): void
     {
         $table = $this->locator->get(OrdersXProductsTable::class);
@@ -191,9 +184,7 @@ final class TableTest extends AbstractDatabaseTestCase
         );
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchRowCompositeKeyPrimaryValueNotScalarThrowsException(): void
     {
         $table = $this->locator->get(OrdersXProductsTable::class);
@@ -218,9 +209,7 @@ final class TableTest extends AbstractDatabaseTestCase
         );
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchRow(): void
     {
         $title = uniqid('tit-');
@@ -272,9 +261,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchRows(): void
     {
         $title = uniqid('tit-');
@@ -349,9 +336,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->assertEmpty($actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchRowsCompositeKey(): void
     {
         $table = $this->locator->get(OrdersXProductsTable::class);
@@ -401,9 +386,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->assertIsArray($rows);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testInsertRow(): void
     {
         $title = uniqid('tit-');
@@ -454,9 +437,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->assertInstanceOf(PDOStatement::class, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testInsertRowWithoutAutoinc(): void
     {
         $title = uniqid('tit-');
@@ -493,9 +474,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->assertGreaterThan(10, $invoiceId);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testUpdateRow(): void
     {
         $title = uniqid('tit-');
@@ -570,9 +549,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $this->table->updateRow($newRow);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testUpdateRowNoPrimaryKey(): void
     {
         $table = $this->locator->get(NoPrimaryKeyTable::class);
@@ -592,9 +569,7 @@ final class TableTest extends AbstractDatabaseTestCase
         $table->updateRow($newRow);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testUpdateRowUpdatedPrimaryKeyThrowsException(): void
     {
         $this->expectException(PrimaryValueChangedException::class);

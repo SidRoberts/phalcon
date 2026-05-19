@@ -19,6 +19,7 @@ use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\DataMapper\Table\Invoices\InvoicesRow;
 use Phalcon\Tests\Support\DataMapper\Table\Invoices\InvoicesTable;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
+use PHPUnit\Framework\Attributes\Group;
 
 use function uniqid;
 
@@ -84,9 +85,7 @@ final class TableSelectTest extends AbstractDatabaseTestCase
         $this->select = $table->select();
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchCount(): void
     {
         $actual = $this
@@ -105,9 +104,7 @@ final class TableSelectTest extends AbstractDatabaseTestCase
         $this->assertSame(2, $actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchRow(): void
     {
         $expected = $this->data[0];
@@ -127,9 +124,7 @@ final class TableSelectTest extends AbstractDatabaseTestCase
         $this->assertNull($actual);
     }
 
-    /**
-     * @group mysql
-     */
+    #[Group('mysql')]
     public function testFetchRows(): void
     {
         $rows = $this
