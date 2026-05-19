@@ -19,6 +19,7 @@ use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Database\Mvc\RecordsTrait;
 use Phalcon\Tests\Support\Models\Invoices;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\Group;
 
 final class OrderByTest extends AbstractDatabaseTestCase
 {
@@ -45,11 +46,10 @@ final class OrderByTest extends AbstractDatabaseTestCase
      * @issue  https://github.com/phalcon/cphalcon/issues/15411
      * @author Phalcon Team <team@phalcon.io>
      * @since  2021-04-20
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
      */
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testMvcModelQueryBuilderOrderBy(): void
     {
         $builder = new Builder();
