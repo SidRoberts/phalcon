@@ -22,13 +22,11 @@ use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Models\Invoices;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\Group;
 
 use function apcu_clear_cache;
 
-/**
- *
- * @group phql
- */
+#[Group('phql')]
 final class ConstructTest extends AbstractDatabaseTestCase
 {
     use DiTrait;
@@ -74,11 +72,10 @@ final class ConstructTest extends AbstractDatabaseTestCase
     /**
      * @author Phalcon Team <team@phalcon.io>
      * @since  2018-11-13
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
      */
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testMvcModelMetadataApcuConstruct(): void
     {
         /** @var \Phalcon\Mvc\Model\MetaDataInterface $md */
