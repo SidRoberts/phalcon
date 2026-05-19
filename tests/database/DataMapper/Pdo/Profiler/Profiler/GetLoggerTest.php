@@ -21,15 +21,16 @@ final class GetLoggerTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler :: getLogger()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoProfilerProfilerGetLogger(): void
     {
         $profile = new Profiler();
-        $logger  = $profile->getLogger();
 
-        $this->assertNull($logger);
+        $this->assertNull(
+            $profile->getLogger()
+        );
 
         $newLogger = new MemoryLogger();
         $profile   = new Profiler($newLogger);

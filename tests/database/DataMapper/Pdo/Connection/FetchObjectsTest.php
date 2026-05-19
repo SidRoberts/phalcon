@@ -23,24 +23,34 @@ final class FetchObjectsTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: fetchObjects()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionFetchObjects(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
 
-        $result = $migration->insert(1);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(2);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(3);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(4);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(2)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(3)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(4)
+        );
 
         $all = $connection->fetchObjects(
             'SELECT * from co_invoices'
@@ -82,24 +92,34 @@ final class FetchObjectsTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\DataMapper\Pdo\Connection :: fetchObjects() - ctor
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionFetchObjectsCtor(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
 
-        $result = $migration->insert(1);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(2);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(3);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(4);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(2)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(3)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(4)
+        );
 
         $all = $connection->fetchObjects(
             'SELECT * from co_invoices',

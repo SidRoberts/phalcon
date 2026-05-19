@@ -25,12 +25,11 @@ final class LastInsertIdTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: lastInsertId()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLastInsertId(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
@@ -55,8 +54,14 @@ final class LastInsertIdTest extends AbstractDatabaseTestCase
             $template
         );
 
-        $result = $connection->exec($sql);
-        $this->assertSame(1, $result);
-        $this->assertSame(2, (int)$connection->lastInsertId());
+        $this->assertSame(
+            1,
+            $connection->exec($sql)
+        );
+
+        $this->assertSame(
+            2,
+            (int)$connection->lastInsertId()
+        );
     }
 }

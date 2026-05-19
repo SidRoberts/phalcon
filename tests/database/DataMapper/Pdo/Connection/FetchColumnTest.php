@@ -21,22 +21,29 @@ final class FetchColumnTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: fetchColumn()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionFetchCol(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
 
-        $result = $migration->insert(1, 1, 1, null, 101);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(2, 1, 1, null, 102);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(3, 1, 1, null, 103);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1, 1, 1, null, 101)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(2, 1, 1, null, 102)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(3, 1, 1, null, 103)
+        );
 
         $all = $connection->fetchColumn(
             'select * from co_invoices'

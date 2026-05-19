@@ -20,17 +20,16 @@ final class ErrorInfoTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: errorInfo()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionErrorInfo(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
-        $actual = $connection->errorInfo();
-        $expect = ['', null, null];
-
-        $this->assertSame($expect, $actual);
+        $this->assertSame(
+            ['', null, null],
+            $connection->errorInfo()
+        );
     }
 }

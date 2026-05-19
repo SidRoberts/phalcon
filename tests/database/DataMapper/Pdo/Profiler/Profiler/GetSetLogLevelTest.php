@@ -23,7 +23,7 @@ final class GetSetLogLevelTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler ::
      * getLogLevel()/setLogLevel()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoProfilerProfilerGetSetLogLevel(): void
@@ -36,6 +36,7 @@ final class GetSetLogLevelTest extends AbstractDatabaseTestCase
         );
 
         $profiler->setLogLevel(Enum::INFO);
+
         $this->assertSame(
             Enum::INFO,
             $profiler->getLogLevel()

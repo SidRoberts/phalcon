@@ -26,7 +26,7 @@ final class StartFinishTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler ::
      * start()/finish()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoProfilerProfilerStartFinish(): void
@@ -44,21 +44,18 @@ final class StartFinishTest extends AbstractDatabaseTestCase
         $logger = $profiler->getLogger();
         $actual = $logger->getMessages()[0];
 
-        $expected = 'M: my-method (';
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString('M: my-method (', $actual);
 
-        $expected = 'S: select from something';
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString('S: select from something', $actual);
 
-        $expected = 'V: {"1":2}';
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString('V: {"1":2}', $actual);
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler ::
      * start()/finish()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoProfilerProfilerStartFinishEmptyValues(): void
@@ -76,18 +73,16 @@ final class StartFinishTest extends AbstractDatabaseTestCase
         $logger = $profiler->getLogger();
         $actual = $logger->getMessages()[0];
 
-        $expected = 'M: my-method (';
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString('M: my-method (', $actual);
 
-        $expected = 'S: select from something';
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString('S: select from something', $actual);
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler ::
      * start()/finish()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoProfilerProfilerStartFinishEncodeException(): void
@@ -98,6 +93,7 @@ final class StartFinishTest extends AbstractDatabaseTestCase
          */
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('json_encode error: No error');
+
         $profiler = new ProfilerJsonEncodeFixture();
 
         $profiler

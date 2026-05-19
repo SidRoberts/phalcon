@@ -23,7 +23,7 @@ final class GetSetMasterTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator ::
      * getMaster()/setMaster()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorGetSetMaster(): void

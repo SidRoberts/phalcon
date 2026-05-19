@@ -23,24 +23,34 @@ final class ExecTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: exec()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionExec(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
 
-        $result = $migration->insert(1);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(2);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(3);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(4);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(2)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(3)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(4)
+        );
 
         $all = $connection->exec(
             'update co_invoices set inv_total = inv_total + 100'
@@ -52,14 +62,16 @@ final class ExecTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: exec() with profiler
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionExecWithProfiler(): void
     {
         $logger   = new MemoryLogger();
         $profiler = new Profiler($logger);
+
         $profiler->setActive(true);
+
         $connection = new Connection(
             self::getDatabaseDsn(),
             self::getDatabaseUsername(),
@@ -70,16 +82,28 @@ final class ExecTest extends AbstractDatabaseTestCase
         );
 
         $migration = new InvoicesMigration($connection);
+
         $migration->clear();
 
-        $result = $migration->insert(1);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(2);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(3);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(4);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(2)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(3)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(4)
+        );
 
         $all = $connection->exec(
             'update co_invoices set inv_total = inv_total + 100'
@@ -89,21 +113,22 @@ final class ExecTest extends AbstractDatabaseTestCase
 
         $messages = $logger->getMessages();
 
-        $expected = 18;
-        $actual   = $messages;
-        $this->assertCount($expected, $actual);
+        $this->assertCount(18, $messages);
 
-        $expected = 'M: Phalcon\DataMapper\Pdo\Connection::connect';
-        $actual   = $messages[0];
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString(
+            'M: Phalcon\DataMapper\Pdo\Connection::connect',
+            $messages[0]
+        );
 
-        $expected = 'M: getAttribute';
-        $actual   = $messages[1];
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString(
+            'M: getAttribute',
+            $messages[1]
+        );
 
-        $expected = 'M: Phalcon\DataMapper\Pdo\Connection\AbstractConnection::exec';
-        $actual   = $messages[2];
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString(
+            'M: Phalcon\DataMapper\Pdo\Connection\AbstractConnection::exec',
+            $messages[2]
+        );
 
         $expected = 'S: SET FOREIGN_KEY_CHECKS=0;';
         $actual   = $messages[2];
@@ -117,9 +142,10 @@ final class ExecTest extends AbstractDatabaseTestCase
         $actual   = $messages[3];
         $this->assertStringContainsString($expected, $actual);
 
-        $expected = 'M: Phalcon\DataMapper\Pdo\Connection\AbstractConnection::exec';
-        $actual   = $messages[4];
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString(
+            'M: Phalcon\DataMapper\Pdo\Connection\AbstractConnection::exec',
+            $messages[4]
+        );
 
         $expected = 'S: SET FOREIGN_KEY_CHECKS=1;';
         $actual   = $messages[4];
@@ -129,25 +155,43 @@ final class ExecTest extends AbstractDatabaseTestCase
         $actual   = $messages[5];
         $this->assertStringContainsString($expected, $actual);
 
-        $expected = 'M: Phalcon\DataMapper\Pdo\Connection\AbstractConnection::exec';
-        $actual   = $messages[6];
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString(
+            $expected,
+            $messages[5]
+        );
+
+        $this->assertStringContainsString(
+            'M: Phalcon\DataMapper\Pdo\Connection\AbstractConnection::exec',
+            $messages[6]
+        );
 
         $expected = 'S: SET FOREIGN_KEY_CHECKS=0;';
         $actual   = $messages[6];
         $this->assertStringContainsString($expected, $actual);
 
-        $expected = 'M: Phalcon\DataMapper\Pdo\Connection\AbstractConnection::exec';
-        $actual   = $messages[7];
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString(
+            $expected,
+            $messages[6]
+        );
+
+        $this->assertStringContainsString(
+            'M: Phalcon\DataMapper\Pdo\Connection\AbstractConnection::exec',
+            $messages[7]
+        );
 
         $expected = 'S: TRUNCATE TABLE co_invoices;';
         $actual   = $messages[7];
         $this->assertStringContainsString($expected, $actual);
 
-        $expected = 'M: Phalcon\DataMapper\Pdo\Connection\AbstractConnection::exec';
-        $actual   = $messages[8];
-        $this->assertStringContainsString($expected, $actual);
+        $this->assertStringContainsString(
+            $expected,
+            $messages[7]
+        );
+
+        $this->assertStringContainsString(
+            'M: Phalcon\DataMapper\Pdo\Connection\AbstractConnection::exec',
+            $messages[8]
+        );
 
         $expected = 'S: SET FOREIGN_KEY_CHECKS=1;';
         $actual   = $messages[8];

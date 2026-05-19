@@ -21,33 +21,45 @@ final class ConnectDisconnectIsConnectedTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection ::
      * connect()/disconnect()/isConnected()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionConnectDisconnectIsConnected(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
-        $this->assertFalse($connection->isConnected());
+        $this->assertFalse(
+            $connection->isConnected()
+        );
+
         $connection->connect();
-        $this->assertTrue($connection->isConnected());
+
+        $this->assertTrue(
+            $connection->isConnected()
+        );
+
         $connection->disconnect();
-        $this->assertFalse($connection->isConnected());
+
+        $this->assertFalse(
+            $connection->isConnected()
+        );
+
         $connection->connect();
-        $this->assertTrue($connection->isConnected());
+
+        $this->assertTrue(
+            $connection->isConnected()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: connect() - queries
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionConnectQueries(): void
     {
         if ('mysql' === self::getDriver()) {
-            /** @var Connection $connection */
             $connection = new Connection(
                 $this->getDatabaseDsn(),
                 $this->getDatabaseUsername(),
@@ -58,7 +70,9 @@ final class ConnectDisconnectIsConnectedTest extends AbstractDatabaseTestCase
                 ]
             );
 
-            $this->assertFalse($connection->isConnected());
+            $this->assertFalse(
+                $connection->isConnected()
+            );
 
             $expected = [
                 'Variable_name' => 'character_set_client',

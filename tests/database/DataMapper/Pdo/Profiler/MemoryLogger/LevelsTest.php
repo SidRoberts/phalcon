@@ -19,7 +19,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class LevelsTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array
+     * @return array<array{0: string}>
      */
     public static function getExamples(): array
     {
@@ -54,7 +54,7 @@ final class LevelsTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\MemoryLogger ::
      *
-     * @since        2020-01-25
+     * @since 2020-01-25
      */
     #[DataProvider('getExamples')]
     #[Group('mysql')]
@@ -66,9 +66,12 @@ final class LevelsTest extends AbstractDatabaseTestCase
         $logger = new MemoryLogger();
 
         $logger->$level($level . ' message');
-        $expected = [$level . ' message'];
-        $message  = $logger->getMessages();
 
-        $this->assertSame($expected, $message);
+        $expected = [$level . ' message'];
+
+        $this->assertSame(
+            $expected,
+            $logger->getMessages()
+        );
     }
 }

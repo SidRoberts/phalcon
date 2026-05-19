@@ -21,16 +21,21 @@ final class IsSetActiveTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler ::
      * isActive()/setActive()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoProfilerProfilerIsSetActive(): void
     {
         $profiler = new Profiler();
 
-        $this->assertFalse($profiler->isActive());
+        $this->assertFalse(
+            $profiler->isActive()
+        );
 
         $profiler->setActive(true);
-        $this->assertTrue($profiler->isActive());
+
+        $this->assertTrue(
+            $profiler->isActive()
+        );
     }
 }

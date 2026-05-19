@@ -20,7 +20,7 @@ final class ConstructTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler :: __construct()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoProfilerProfilerConstruct(): void

@@ -22,7 +22,7 @@ final class LogTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\MemoryLogger :: log()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoProfilerMemoryLoggerLog(): void
@@ -41,9 +41,8 @@ final class LogTest extends AbstractDatabaseTestCase
         $logger->log(Enum::INFO, $message, $context);
 
         $expected = ["f1 (123 seconds): select backtrace"];
-        $message  = $logger->getMessages();
 
-        $this->assertSame($expected, $message);
+        $this->assertSame($expected, $logger->getMessages());
         $this->assertSame(Enum::CUSTOM, $logger->getLogLevel());
         $this->assertSame('memory logger', $logger->getName());
         $this->assertEmpty($logger->getAdapters());

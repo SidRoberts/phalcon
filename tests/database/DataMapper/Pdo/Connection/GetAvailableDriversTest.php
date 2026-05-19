@@ -23,36 +23,35 @@ final class GetAvailableDriversTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: getAvailableDrivers()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionGetAvailableDrivers(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
-        $expected = PDO::getAvailableDrivers();
-        $actual   = $connection::getAvailableDrivers();
-
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            PDO::getAvailableDrivers(),
+            $connection::getAvailableDrivers()
+        );
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: getDriverName()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionGetDriverName(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
         $dsn = self::getDatabaseDsn();
         $dsn = explode(':', $dsn);
 
-        $expected = $dsn[0];
-        $actual   = $connection->getDriverName();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $dsn[0],
+            $connection->getDriverName()
+        );
     }
 }

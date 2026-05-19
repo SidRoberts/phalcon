@@ -20,15 +20,19 @@ final class GetAdapterTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: getAdapter()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionGetAdapter(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
-        $this->assertFalse($connection->isConnected());
-        $this->assertNotNull($connection->getAdapter());
+        $this->assertFalse(
+            $connection->isConnected()
+        );
+
+        $this->assertNotNull(
+            $connection->getAdapter()
+        );
     }
 }

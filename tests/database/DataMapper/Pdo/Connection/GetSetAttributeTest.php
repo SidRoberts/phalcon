@@ -22,12 +22,11 @@ final class GetSetAttributeTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection ::
      * getAttribute()/setAttribute()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionGetSetAttribute(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
         $this->assertSame(

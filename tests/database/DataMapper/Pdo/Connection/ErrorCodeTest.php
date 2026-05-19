@@ -20,15 +20,15 @@ final class ErrorCodeTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: errorCode()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionErrorCode(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
-        $actual = $connection->errorCode();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $connection->errorCode()
+        );
     }
 }

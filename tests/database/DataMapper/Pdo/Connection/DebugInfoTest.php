@@ -21,12 +21,11 @@ final class DebugInfoTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __debugInfo()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionDebugInfo(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
         $expected = [
@@ -40,6 +39,10 @@ final class DebugInfoTest extends AbstractDatabaseTestCase
                 [],
             ],
         ];
-        $this->assertSame($expected, $connection->__debugInfo());
+
+        $this->assertSame(
+            $expected,
+            $connection->__debugInfo()
+        );
     }
 }

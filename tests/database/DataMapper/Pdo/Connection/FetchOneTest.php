@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace Phalcon\Tests\Database\DataMapper\Pdo\Connection;
 
 use PDO;
-use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -21,7 +20,7 @@ use PHPUnit\Framework\Attributes\Group;
 final class FetchOneTest extends AbstractDatabaseTestCase
 {
     /**
-     * @return array
+     * @return array<0: string, 1: array>
      */
     public static function getBindTypes(): array
     {
@@ -77,13 +76,14 @@ final class FetchOneTest extends AbstractDatabaseTestCase
     #[Group('mysql')]
     public function testDmPdoConnectionFetchOne(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
 
-        $result = $migration->insert(1);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1)
+        );
 
         $all = $connection->fetchOne(
             'select * from co_invoices WHERE inv_id = ?',
@@ -115,13 +115,14 @@ final class FetchOneTest extends AbstractDatabaseTestCase
         string $where,
         array $params
     ): void {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
 
-        $result = $migration->insert(1, 1, 1, 'test-1');
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1, 1, 1, 'test-1')
+        );
 
         $all = $connection->fetchOne(
             'select * from co_invoices WHERE ' . $where,
@@ -140,13 +141,14 @@ final class FetchOneTest extends AbstractDatabaseTestCase
     #[Group('mysql')]
     public function testDmPdoConnectionFetchOneNoResult(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
 
-        $result = $migration->insert(1);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1)
+        );
 
         $all = $connection->fetchOne(
             'select * from co_invoices WHERE inv_id = ?',

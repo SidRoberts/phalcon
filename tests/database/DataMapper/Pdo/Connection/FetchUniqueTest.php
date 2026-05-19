@@ -21,24 +21,34 @@ final class FetchUniqueTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: fetchUnique()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionFetchUnique(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
 
-        $result = $migration->insert(1, 1);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(2, 2);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(3, 3);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(4, 4);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1, 1)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(2, 2)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(3, 3)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(4, 4)
+        );
 
         $all = $connection->fetchUnique(
             'SELECT * from co_invoices ORDER BY inv_id'

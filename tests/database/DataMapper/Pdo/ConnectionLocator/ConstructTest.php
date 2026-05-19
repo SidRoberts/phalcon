@@ -21,7 +21,7 @@ final class ConstructTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator :: __construct()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorConstruct(): void
@@ -57,7 +57,7 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __construct() -
      * exception
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorConstructReadException(): void
@@ -75,7 +75,7 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __construct() -
      * exception
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorConstructWriteException(): void

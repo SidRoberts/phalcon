@@ -21,24 +21,34 @@ final class FetchPairsTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: fetchPairs()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionFetchPairs(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
 
-        $result = $migration->insert(1, 1, 1, null, 101);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(2, 1, 1, null, 102);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(3, 1, 1, null, 103);
-        $this->assertSame(1, $result);
-        $result = $migration->insert(4, 1, 1, null, 104);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1, 1, 1, null, 101)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(2, 1, 1, null, 102)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(3, 1, 1, null, 103)
+        );
+
+        $this->assertSame(
+            1,
+            $migration->insert(4, 1, 1, null, 104)
+        );
 
         $all = $connection->fetchPairs(
             'SELECT inv_id, inv_total from co_invoices'

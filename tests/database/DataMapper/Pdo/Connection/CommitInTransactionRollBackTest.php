@@ -25,12 +25,11 @@ final class CommitInTransactionRollBackTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection ::
      * commit()/inTransaction()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionCommitInTransaction(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         (new InvoicesMigration(self::getConnection()));
         $connection->beginTransaction();
@@ -44,8 +43,10 @@ final class CommitInTransactionRollBackTest extends AbstractDatabaseTestCase
             . "inv_title, inv_total, inv_created_at) values ("
             . "{$invId}, 1, 1, '{$title}', 102, '{$date}')";
 
-        $result = $connection->exec($sql);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $connection->exec($sql)
+        );
 
         $connection->commit();
 
@@ -68,17 +69,18 @@ final class CommitInTransactionRollBackTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: rollBack()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionRollBack(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         (new InvoicesMigration(self::getConnection()));
         $connection->beginTransaction();
 
-        $this->assertTrue($connection->inTransaction());
+        $this->assertTrue(
+            $connection->inTransaction()
+        );
 
         $invId = 2;
         $title = uniqid('inv-');
@@ -87,31 +89,29 @@ final class CommitInTransactionRollBackTest extends AbstractDatabaseTestCase
             . "inv_title, inv_total, inv_created_at) values ("
             . "{$invId}, 1, 1, '{$title}', 102, '{$date}')";
 
-        $result = $connection->exec($sql);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $connection->exec($sql)
+        );
 
         /**
          * Committed record
          */
-        $all = $connection
-            ->fetchOne(
-                'select * from co_invoices WHERE inv_id = ?',
-                [
-                    0 => $invId,
-                ]
-            )
-        ;
+        $all = $connection->fetchOne(
+            'select * from co_invoices WHERE inv_id = ?',
+            [
+                0 => $invId,
+            ]
+        );
 
         $connection->rollBack();
 
-        $all = $connection
-            ->fetchOne(
-                'select * from co_invoices WHERE inv_id = ?',
-                [
-                    0 => $invId,
-                ]
-            )
-        ;
+        $all = $connection->fetchOne(
+            'select * from co_invoices WHERE inv_id = ?',
+            [
+                0 => $invId,
+            ]
+        );
 
         $this->assertIsArray($all);
         $this->assertEmpty($all);

@@ -22,7 +22,7 @@ final class UnderscoreCallTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __call() - exception
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionUnderscoreCallException(): void
@@ -32,7 +32,6 @@ final class UnderscoreCallTest extends AbstractDatabaseTestCase
             "Class 'Phalcon\DataMapper\Pdo\Connection' does not have a method 'unknown'"
         );
 
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
         $connection->unknown();

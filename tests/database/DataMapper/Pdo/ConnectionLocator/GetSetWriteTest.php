@@ -25,7 +25,7 @@ final class GetSetWriteTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator ::
      * getWrite()/setWrite()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorGetSetWrite(): void
@@ -60,7 +60,7 @@ final class GetSetWriteTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator :: getWrite() -
      * empty
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorGetWriteEmpty(): void
@@ -81,7 +81,7 @@ final class GetSetWriteTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator :: getWrite() -
      * exception
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorGetWriteException(): void
@@ -110,7 +110,7 @@ final class GetSetWriteTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator :: getWrite() -
      * random
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorGetWriteRandom(): void
@@ -139,6 +139,9 @@ final class GetSetWriteTest extends AbstractDatabaseTestCase
         ];
 
         $actual = $locator->getWrite();
-        $this->assertTrue(in_array(spl_object_hash($actual), $hashes));
+
+        $hash = spl_object_hash($actual);
+
+        $this->assertContains($hash, $hashes);
     }
 }

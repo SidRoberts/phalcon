@@ -23,12 +23,11 @@ final class ConstructTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __construct()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionConstruct(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
         $this->assertInstanceOf(Connection::class, $connection);
@@ -38,7 +37,7 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __construct() -
      * exception
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmPdoConnectionConstructException(): void
@@ -52,7 +51,7 @@ final class ConstructTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: factory
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmPdoConnectionFactory(): void
@@ -72,7 +71,7 @@ final class ConstructTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: new
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmPdoConnectionNew(): void
@@ -90,7 +89,7 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __construct() -
      * exception
      *
-     * @since  2020-01-20
+     * @since 2020-01-20
      */
     #[Group('mysql')]
     public function testDmPdoConnectionNewException(): void
@@ -105,7 +104,7 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __construct() with
      * PDO
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionWithPdo(): void
@@ -118,8 +117,17 @@ final class ConstructTest extends AbstractDatabaseTestCase
 
         $newConnection = Connection::new($connection);
 
-        $this->assertTrue($newConnection->isConnected());
-        $this->assertNull($newConnection->getProfiler());
-        $this->assertSame($connection, $newConnection->getAdapter());
+        $this->assertTrue(
+            $newConnection->isConnected()
+        );
+
+        $this->assertNull(
+            $newConnection->getProfiler()
+        );
+
+        $this->assertSame(
+            $connection,
+            $newConnection->getAdapter()
+        );
     }
 }

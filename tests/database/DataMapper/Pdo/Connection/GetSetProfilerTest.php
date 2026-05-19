@@ -21,22 +21,24 @@ final class GetSetProfilerTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: getProfiler()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionGetProfiler(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
 
-        $actual = $connection->getProfiler();
-        $this->assertNull($actual);
+        $this->assertNull(
+            $connection->getProfiler()
+        );
 
         $profiler = new Profiler();
+
         $connection->setProfiler($profiler);
 
-        $expected = $profiler;
-        $actual   = $connection->getProfiler();
-        $this->assertSame($expected, $actual);
+        $this->assertSame(
+            $profiler,
+            $connection->getProfiler()
+        );
     }
 }

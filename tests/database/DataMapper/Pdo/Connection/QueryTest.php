@@ -21,18 +21,19 @@ final class QueryTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: query()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionQuery(): void
     {
-        /** @var Connection $connection */
         $connection = self::getDataMapperConnection();
         $migration  = new InvoicesMigration(self::getConnection());
         $migration->clear();
 
-        $result = $migration->insert(1);
-        $this->assertSame(1, $result);
+        $this->assertSame(
+            1,
+            $migration->insert(1)
+        );
 
         $all = $connection
             ->query('select * from co_invoices WHERE inv_id = 1')

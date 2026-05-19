@@ -21,7 +21,7 @@ final class GetSetLogFormatTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler ::
      * getLogFormat()/setLogFormat()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoProfilerProfilerGetSetLogFormat(): void
@@ -35,14 +35,12 @@ final class GetSetLogFormatTest extends AbstractDatabaseTestCase
             . "V: {values}"
             . PHP_EOL
             . "B: {backtrace}";
-        $actual   = $profiler->getLogFormat();
-        $this->assertSame($expected, $actual);
+
+        $this->assertSame($expected, $profiler->getLogFormat());
 
         $format = "{method} ({duration}s): {statement}";
         $profiler->setLogFormat($format);
 
-        $expected = $format;
-        $actual   = $profiler->getLogFormat();
-        $this->assertSame($expected, $actual);
+        $this->assertSame($format, $profiler->getLogFormat());
     }
 }

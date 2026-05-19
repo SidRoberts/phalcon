@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Tests\Database\DataMapper\Pdo\ConnectionLocator;
 
+use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\DataMapper\Pdo\ConnectionLocator;
 use Phalcon\DataMapper\Pdo\Exception\ConnectionNotFound;
 use Phalcon\Tests\AbstractDatabaseTestCase;
@@ -25,14 +26,15 @@ final class GetSetReadTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator :: getRead() -
      * empty
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorGetReadEmpty(): void
     {
-        $master  = self::getDataMapperConnection();
+        $master = self::getDataMapperConnection();
+
         $locator = new ConnectionLocator(
-            function () use ($master) {
+            function () use ($master): Connection {
                 return $master;
             }
         );
@@ -46,7 +48,7 @@ final class GetSetReadTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator :: getRead() -
      * exception
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorGetReadException(): void
@@ -56,13 +58,14 @@ final class GetSetReadTest extends AbstractDatabaseTestCase
             "Connection not found: read:unknown"
         );
 
-        $read1   = self::getDataMapperConnection();
+        $read1 = self::getDataMapperConnection();
+
         $locator = new ConnectionLocator(
-            function () {
+            function (): Connection {
                 return self::getDataMapperConnection();
             },
             [
-                "read1" => function () use ($read1) {
+                "read1" => function () use ($read1): Connection {
                     return $read1;
                 },
             ]
@@ -75,22 +78,23 @@ final class GetSetReadTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator :: getRead() -
      * random
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorGetReadRandom(): void
     {
-        $read1   = self::getDataMapperConnection();
-        $read2   = self::getDataMapperConnection();
+        $read1 = self::getDataMapperConnection();
+        $read2 = self::getDataMapperConnection();
+
         $locator = new ConnectionLocator(
-            function () {
+            function (): Connection {
                 return self::getDataMapperConnection();
             },
             [
-                "read1" => function () use ($read1) {
+                "read1" => function () use ($read1): Connection {
                     return $read1;
                 },
-                "read2" => function () use ($read2) {
+                "read2" => function () use ($read2): Connection {
                     return $read2;
                 },
             ]
@@ -102,30 +106,34 @@ final class GetSetReadTest extends AbstractDatabaseTestCase
         ];
 
         $actual = $locator->getRead();
-        $this->assertTrue(in_array(spl_object_hash($actual), $hashes));
+
+        $hash = spl_object_hash($actual);
+
+        $this->assertContains($hash, $hashes);
     }
 
     /**
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator ::
      * getRead()/setRead()
      *
-     * @since  2020-01-25
+     * @since 2020-01-25
      */
     #[Group('mysql')]
     public function testDmPdoConnectionLocatorGetSetRead(): void
     {
-        $master  = self::getDataMapperConnection();
-        $read1   = self::getDataMapperConnection();
-        $read2   = self::getDataMapperConnection();
+        $master = self::getDataMapperConnection();
+        $read1  = self::getDataMapperConnection();
+        $read2  = self::getDataMapperConnection();
+
         $locator = new ConnectionLocator(
-            function () use ($master) {
+            function () use ($master): Connection {
                 return $master;
             },
             [
-                "read1" => function () use ($read1) {
+                "read1" => function () use ($read1): Connection {
                     return $read1;
                 },
-                "read2" => function () use ($read2) {
+                "read2" => function () use ($read2): Connection {
                     return $read2;
                 },
             ]
