@@ -18,6 +18,7 @@ use Phalcon\DataMapper\Query\Delete;
 use Phalcon\DataMapper\Query\Select;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
+use PHPUnit\Framework\Attributes\Group;
 
 use function uniqid;
 
@@ -27,9 +28,8 @@ final class DeleteTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Query\Delete :: delete()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmQueryDelete(): void
     {
         $connection = self::getDataMapperConnection();

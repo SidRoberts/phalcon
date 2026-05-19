@@ -17,6 +17,7 @@ use PDOStatement;
 use Phalcon\DataMapper\Query\Insert;
 use Phalcon\DataMapper\Query\Select;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function uniqid;
 
@@ -26,9 +27,8 @@ final class InsertTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Query\Insert :: insert()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmQueryInsert(): void
     {
         $title = uniqid('tit-');

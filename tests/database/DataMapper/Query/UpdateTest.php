@@ -18,6 +18,7 @@ use Phalcon\DataMapper\Query\Select;
 use Phalcon\DataMapper\Query\Update;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
+use PHPUnit\Framework\Attributes\Group;
 
 use function uniqid;
 
@@ -27,9 +28,8 @@ final class UpdateTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Query\Update :: update
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmQueryUpdate(): void
     {
         $connection = self::getDataMapperConnection();

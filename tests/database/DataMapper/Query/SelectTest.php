@@ -18,6 +18,7 @@ use PDOStatement;
 use Phalcon\DataMapper\Query\Select;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
+use PHPUnit\Framework\Attributes\Group;
 
 use function uniqid;
 
@@ -27,9 +28,8 @@ final class SelectTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Query\Select :: select()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmQuerySelect(): void
     {
         $connection = self::getDataMapperConnection();
@@ -73,9 +73,8 @@ final class SelectTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Query\Select :: __call exception
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmQuerySelectCallException(): void
     {
         $this->expectException(BadMethodCallException::class);
