@@ -21,6 +21,7 @@ use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\SelectMigration;
 use Phalcon\Tests\Support\Models\Select as SelectModel;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\Group;
 
 final class SelectTest extends AbstractDatabaseTestCase
 {
@@ -47,11 +48,10 @@ final class SelectTest extends AbstractDatabaseTestCase
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-05-09
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
      */
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testSelectRenderWithResultset(): void
     {
         $resultset = SelectModel::find();
@@ -72,11 +72,10 @@ final class SelectTest extends AbstractDatabaseTestCase
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-05-09
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
      */
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testSelectRenderWithResultsetThrowsWithoutUsing(): void
     {
         $resultset = SelectModel::find();
