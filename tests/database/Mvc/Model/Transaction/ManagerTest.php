@@ -20,11 +20,9 @@ use Phalcon\Tests\Support\Migrations\SelectMigration;
 use Phalcon\Tests\Support\Models\Personas;
 use Phalcon\Tests\Support\Models\Select;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\Group;
 
-/**
- *
- * @group phql
- */
+#[Group('phql')]
 final class ManagerTest extends AbstractDatabaseTestCase
 {
     use DiTrait;
@@ -47,12 +45,10 @@ final class ManagerTest extends AbstractDatabaseTestCase
     /**
      * @author Phalcon Team <team@phalcon.io>
      * @since  2012-08-07
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
-     * @group pgsql
      */
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testMvcModelTransactionManagerCommitNewInserts(): void
     {
         $tm  = $this->container->getShared('transactionManager');
@@ -93,12 +89,10 @@ final class ManagerTest extends AbstractDatabaseTestCase
     /**
      * @author Phalcon Team <team@phalcon.io>
      * @since  2012-08-07
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
-     * @group pgsql
      */
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testMvcModelTransactionManagerTransactionRemovedOnCommit(): void
     {
         $tm = $this->container->getShared('transactionManager');
@@ -217,12 +211,10 @@ final class ManagerTest extends AbstractDatabaseTestCase
     /**
      * @author Phalcon Team <team@phalcon.io>
      * @since  2012-08-07
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
-     * @group pgsql
      */
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testMvcModelTransactionManagerTransactionRemovedOnRollback(): void
     {
         $tm = $this->container->getShared('transactionManager');
