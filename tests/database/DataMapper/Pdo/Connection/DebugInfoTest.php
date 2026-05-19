@@ -14,6 +14,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Connection;
 use PDO;
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class DebugInfoTest extends AbstractDatabaseTestCase
 {
@@ -21,9 +22,8 @@ final class DebugInfoTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __debugInfo()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionDebugInfo(): void
     {
         /** @var Connection $connection */

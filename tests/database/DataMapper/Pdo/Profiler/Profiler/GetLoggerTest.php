@@ -14,6 +14,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Profiler\Profiler;
 use Phalcon\DataMapper\Pdo\Profiler\MemoryLogger;
 use Phalcon\DataMapper\Pdo\Profiler\Profiler;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class GetLoggerTest extends AbstractDatabaseTestCase
 {
@@ -21,9 +22,8 @@ final class GetLoggerTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler :: getLogger()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoProfilerProfilerGetLogger(): void
     {
         $profile = new Profiler();

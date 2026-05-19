@@ -13,6 +13,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Profiler\Profiler;
 
 use Phalcon\DataMapper\Pdo\Profiler\Profiler;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class ConstructTest extends AbstractDatabaseTestCase
 {
@@ -20,9 +21,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\Profiler :: __construct()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoProfilerProfilerConstruct(): void
     {
         $profiler = new Profiler();

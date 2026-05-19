@@ -13,6 +13,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Profiler\Profiler;
 
 use Phalcon\DataMapper\Pdo\Profiler\Profiler;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class IsSetActiveTest extends AbstractDatabaseTestCase
 {
@@ -21,9 +22,8 @@ final class IsSetActiveTest extends AbstractDatabaseTestCase
      * isActive()/setActive()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoProfilerProfilerIsSetActive(): void
     {
         $profiler = new Profiler();

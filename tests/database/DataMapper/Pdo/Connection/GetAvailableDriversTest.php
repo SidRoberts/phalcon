@@ -14,6 +14,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Connection;
 use PDO;
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function explode;
 
@@ -23,9 +24,8 @@ final class GetAvailableDriversTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: getAvailableDrivers()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionGetAvailableDrivers(): void
     {
         /** @var Connection $connection */
@@ -41,9 +41,8 @@ final class GetAvailableDriversTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: getDriverName()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionGetDriverName(): void
     {
         /** @var Connection $connection */

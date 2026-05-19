@@ -16,6 +16,7 @@ use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 final class FetchOneTest extends AbstractDatabaseTestCase
 {
@@ -71,10 +72,9 @@ final class FetchOneTest extends AbstractDatabaseTestCase
     /**
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: fetchOne()
      *
-     * @since  2020-01-25
-     *
-     * @group mysql
+     * @since 2020-01-25
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionFetchOne(): void
     {
         /** @var Connection $connection */
@@ -105,13 +105,12 @@ final class FetchOneTest extends AbstractDatabaseTestCase
     /**
      * Tests Phalcon\DataMapper\Pdo\Connection :: fetchOne() - bind types
      *
-     * @since        2020-01-25
-     *
-     * @group pgsql
-     * @group mysql
-     * @group sqlite
+     * @since 2020-01-25
      */
     #[DataProvider('getBindTypes')]
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testDmPdoConnectionFetchOneBindTypes(
         string $where,
         array $params
@@ -137,9 +136,8 @@ final class FetchOneTest extends AbstractDatabaseTestCase
      * Tests Phalcon\DataMapper\Pdo\Connection :: fetchOne() - no result
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionFetchOneNoResult(): void
     {
         /** @var Connection $connection */

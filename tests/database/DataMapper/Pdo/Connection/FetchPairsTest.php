@@ -14,6 +14,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Connection;
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
+use PHPUnit\Framework\Attributes\Group;
 
 final class FetchPairsTest extends AbstractDatabaseTestCase
 {
@@ -21,9 +22,8 @@ final class FetchPairsTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: fetchPairs()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionFetchPairs(): void
     {
         /** @var Connection $connection */

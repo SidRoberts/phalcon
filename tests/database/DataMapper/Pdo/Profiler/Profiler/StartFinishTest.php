@@ -16,6 +16,7 @@ use Phalcon\DataMapper\Pdo\Profiler\MemoryLogger;
 use Phalcon\DataMapper\Pdo\Profiler\Profiler;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\DataMapper\Pdo\ProfilerJsonEncodeFixture;
+use PHPUnit\Framework\Attributes\Group;
 
 use function sleep;
 
@@ -26,9 +27,8 @@ final class StartFinishTest extends AbstractDatabaseTestCase
      * start()/finish()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoProfilerProfilerStartFinish(): void
     {
         $profiler = new Profiler(new MemoryLogger());
@@ -59,9 +59,8 @@ final class StartFinishTest extends AbstractDatabaseTestCase
      * start()/finish()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoProfilerProfilerStartFinishEmptyValues(): void
     {
         $profiler = new Profiler(new MemoryLogger());
@@ -89,9 +88,8 @@ final class StartFinishTest extends AbstractDatabaseTestCase
      * start()/finish()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoProfilerProfilerStartFinishEncodeException(): void
     {
         /**

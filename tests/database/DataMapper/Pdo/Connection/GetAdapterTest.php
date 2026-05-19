@@ -13,6 +13,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Connection;
 
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class GetAdapterTest extends AbstractDatabaseTestCase
 {
@@ -20,9 +21,8 @@ final class GetAdapterTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: getAdapter()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionGetAdapter(): void
     {
         /** @var Connection $connection */

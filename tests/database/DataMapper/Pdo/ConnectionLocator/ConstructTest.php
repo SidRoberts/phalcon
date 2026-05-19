@@ -14,6 +14,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\ConnectionLocator;
 use Phalcon\DataMapper\Pdo\ConnectionLocator;
 use Phalcon\DataMapper\Pdo\Exception\ConnectionNotFound;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class ConstructTest extends AbstractDatabaseTestCase
 {
@@ -21,9 +22,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\ConnectionLocator :: __construct()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionLocatorConstruct(): void
     {
         $connection = function () {
@@ -39,9 +39,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * with object
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionLocatorConstructWithObject(): void
     {
         $connection = self::getDataMapperConnection();
@@ -59,9 +58,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * exception
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionLocatorConstructReadException(): void
     {
         $this->expectException(ConnectionNotFound::class);
@@ -78,9 +76,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * exception
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionLocatorConstructWriteException(): void
     {
         $this->expectException(ConnectionNotFound::class);

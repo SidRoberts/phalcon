@@ -15,6 +15,7 @@ use Phalcon\DataMapper\Pdo\Profiler\Profiler;
 use Phalcon\Logger\Enum;
 use Phalcon\Logger\LogLevel;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class GetSetLogLevelTest extends AbstractDatabaseTestCase
 {
@@ -23,9 +24,8 @@ final class GetSetLogLevelTest extends AbstractDatabaseTestCase
      * getLogLevel()/setLogLevel()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoProfilerProfilerGetSetLogLevel(): void
     {
         $profiler = new Profiler();

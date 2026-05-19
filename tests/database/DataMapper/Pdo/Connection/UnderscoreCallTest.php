@@ -15,6 +15,7 @@ use BadMethodCallException;
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\DataMapper\Pdo\ConnectionFixture;
+use PHPUnit\Framework\Attributes\Group;
 
 final class UnderscoreCallTest extends AbstractDatabaseTestCase
 {
@@ -22,9 +23,8 @@ final class UnderscoreCallTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __call() - exception
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionUnderscoreCallException(): void
     {
         $this->expectException(BadMethodCallException::class);

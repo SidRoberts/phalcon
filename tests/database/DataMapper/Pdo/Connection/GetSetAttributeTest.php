@@ -14,6 +14,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Connection;
 use PDO;
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class GetSetAttributeTest extends AbstractDatabaseTestCase
 {
@@ -22,9 +23,8 @@ final class GetSetAttributeTest extends AbstractDatabaseTestCase
      * getAttribute()/setAttribute()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionGetSetAttribute(): void
     {
         /** @var Connection $connection */

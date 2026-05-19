@@ -14,6 +14,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Connection;
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
+use PHPUnit\Framework\Attributes\Group;
 
 use function date;
 use function str_replace;
@@ -25,9 +26,8 @@ final class LastInsertIdTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: lastInsertId()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionLastInsertId(): void
     {
         /** @var Connection $connection */

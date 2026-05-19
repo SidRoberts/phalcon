@@ -16,6 +16,7 @@ use InvalidArgumentException;
 use PDO;
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class ConstructTest extends AbstractDatabaseTestCase
 {
@@ -23,9 +24,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: __construct()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionConstruct(): void
     {
         /** @var Connection $connection */
@@ -39,9 +39,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * exception
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionConstructException(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -54,9 +53,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: factory
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionFactory(): void
     {
         $factory = Connection::factory(
@@ -75,9 +73,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: new
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionNew(): void
     {
         $connection = Connection::new(
@@ -94,9 +91,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * exception
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionNewException(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -110,9 +106,8 @@ final class ConstructTest extends AbstractDatabaseTestCase
      * PDO
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionWithPdo(): void
     {
         $connection = new PDO(

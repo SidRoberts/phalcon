@@ -13,6 +13,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\ConnectionLocator;
 
 use Phalcon\DataMapper\Pdo\ConnectionLocator;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function spl_object_hash;
 
@@ -23,9 +24,8 @@ final class GetSetMasterTest extends AbstractDatabaseTestCase
      * getMaster()/setMaster()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionLocatorGetSetMaster(): void
     {
         $connection1 = function () {

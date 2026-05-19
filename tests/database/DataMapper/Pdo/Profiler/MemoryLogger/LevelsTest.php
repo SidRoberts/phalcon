@@ -14,6 +14,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Profiler\MemoryLogger;
 use Phalcon\DataMapper\Pdo\Profiler\MemoryLogger;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 final class LevelsTest extends AbstractDatabaseTestCase
 {
@@ -54,12 +55,11 @@ final class LevelsTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\MemoryLogger ::
      *
      * @since        2020-01-25
-     *
-     * @group pgsql
-     * @group mysql
-     * @group sqlite
      */
     #[DataProvider('getExamples')]
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testDmPdoProfilerMemoryLoggerLevels(
         string $level
     ): void {

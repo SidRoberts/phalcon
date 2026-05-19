@@ -16,6 +16,7 @@ use Phalcon\DataMapper\Pdo\Profiler\MemoryLogger;
 use Phalcon\DataMapper\Pdo\Profiler\Profiler;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
+use PHPUnit\Framework\Attributes\Group;
 
 final class ExecTest extends AbstractDatabaseTestCase
 {
@@ -23,9 +24,8 @@ final class ExecTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: exec()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionExec(): void
     {
         /** @var Connection $connection */
@@ -53,9 +53,8 @@ final class ExecTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: exec() with profiler
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionExecWithProfiler(): void
     {
         $logger   = new MemoryLogger();

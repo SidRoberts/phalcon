@@ -13,6 +13,7 @@ namespace Phalcon\Tests\Database\DataMapper\Pdo\Connection;
 
 use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class ErrorInfoTest extends AbstractDatabaseTestCase
 {
@@ -20,9 +21,8 @@ final class ErrorInfoTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: errorInfo()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionErrorInfo(): void
     {
         /** @var Connection $connection */

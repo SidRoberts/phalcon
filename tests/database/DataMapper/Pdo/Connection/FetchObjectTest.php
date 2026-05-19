@@ -15,6 +15,7 @@ use Phalcon\DataMapper\Pdo\Connection;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Resultset;
+use PHPUnit\Framework\Attributes\Group;
 use stdClass;
 
 final class FetchObjectTest extends AbstractDatabaseTestCase
@@ -55,9 +56,8 @@ final class FetchObjectTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Connection :: fetchObject()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoConnectionFetchObject(): void
     {
         /** @var Connection $connection */

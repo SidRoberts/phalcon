@@ -15,6 +15,7 @@ use Phalcon\DataMapper\Pdo\Profiler\MemoryLogger;
 use Phalcon\Logger\Adapter\Noop;
 use Phalcon\Logger\Enum;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class LogTest extends AbstractDatabaseTestCase
 {
@@ -22,9 +23,8 @@ final class LogTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Pdo\Profiler\MemoryLogger :: log()
      *
      * @since  2020-01-25
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmPdoProfilerMemoryLoggerLog(): void
     {
         $logger = new MemoryLogger();
