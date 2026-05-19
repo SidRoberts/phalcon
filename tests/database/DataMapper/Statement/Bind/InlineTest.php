@@ -17,6 +17,7 @@ use PDO;
 use Phalcon\DataMapper\Statement\Bind;
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -26,9 +27,8 @@ final class InlineTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Bind :: bindInline()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementBindBindInline(): void
     {
         $bind = new Bind();

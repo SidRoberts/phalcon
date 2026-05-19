@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Select;
 
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class QuoteIdentifierTest extends AbstractStatementTestCase
 {
@@ -22,9 +23,8 @@ final class QuoteIdentifierTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: quoteIdentifier()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectQuoteIdentifier(): void
     {
         $select = Select::new('mysql');
@@ -40,9 +40,8 @@ final class QuoteIdentifierTest extends AbstractStatementTestCase
      * Sqlite
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectQuoteIdentifierSqlite(): void
     {
         $select = Select::new('sqlite');
@@ -58,9 +57,8 @@ final class QuoteIdentifierTest extends AbstractStatementTestCase
      * MSSQL
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectQuoteIdentifierSqlsrv(): void
     {
         $select = Select::new('sqlsrv');

@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Update;
 use PDO;
 use Phalcon\DataMapper\Statement\Update;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -25,9 +26,8 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Query\Update :: getBindValues()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementUpdateGetBindValues(): void
     {
         $driver = env('driver');

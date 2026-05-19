@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Select;
 
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -24,9 +25,8 @@ final class WhereTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: orWhere() - bind values
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectOrWhereBind(): void
     {
         $driver = env('driver');
@@ -57,9 +57,8 @@ final class WhereTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: where()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectWhere(): void
     {
         $driver = env('driver');
@@ -85,9 +84,8 @@ final class WhereTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: where() - bind values
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectWhereBind(): void
     {
         $driver = env('driver');
@@ -124,9 +122,8 @@ final class WhereTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: where() subselect
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectWhereSubSelect(): void
     {
         $driver = env('driver');

@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Select;
 
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -24,9 +25,8 @@ final class FromTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: from()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectFrom(): void
     {
         $driver = env('driver');
@@ -46,9 +46,8 @@ final class FromTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: from() - empty
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectFromEmpty(): void
     {
         $driver = env('driver');

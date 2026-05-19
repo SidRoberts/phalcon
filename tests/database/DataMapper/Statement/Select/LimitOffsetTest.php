@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Select;
 
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -24,9 +25,8 @@ final class LimitOffsetTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: limit()/offset()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectLimitOffset(): void
     {
         $driver = env('driver');
@@ -53,9 +53,8 @@ final class LimitOffsetTest extends AbstractStatementTestCase
      * MSSSQL
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectLimitOffsetMssql(): void
     {
         $select = Select::new('sqlsrv');
@@ -81,9 +80,8 @@ final class LimitOffsetTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: page()/perPage()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectPage(): void
     {
         $driver = env('driver');
@@ -132,9 +130,8 @@ final class LimitOffsetTest extends AbstractStatementTestCase
      * calculations
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectPageCalculations(): void
     {
         $driver = env('driver');

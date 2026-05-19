@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Select;
 
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -24,9 +25,8 @@ final class UnionTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: union()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectUnion(): void
     {
         $driver = env('driver');

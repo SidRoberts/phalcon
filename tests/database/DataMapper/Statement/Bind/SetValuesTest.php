@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Bind;
 
 use Phalcon\DataMapper\Statement\Bind;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class SetValuesTest extends AbstractStatementTestCase
 {
@@ -22,9 +23,8 @@ final class SetValuesTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Bind :: setValues()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementBindSetValues(): void
     {
         $bind = new Bind();

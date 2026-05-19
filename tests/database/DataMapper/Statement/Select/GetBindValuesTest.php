@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Select;
 use PDO;
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -25,9 +26,8 @@ final class GetBindValuesTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: getBindValues()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectGetBindValues(): void
     {
         $driver = env('driver');

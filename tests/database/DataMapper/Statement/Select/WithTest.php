@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Select;
 
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -24,9 +25,8 @@ final class WithTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: with() - bind values
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectOrWhereBind(): void
     {
         $driver = env('driver');
@@ -59,9 +59,8 @@ final class WithTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: with() object
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectWithObject(): void
     {
         $driver = env('driver');
@@ -115,9 +114,8 @@ final class WithTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: with() recursive
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectWithRecursive(): void
     {
         $driver = env('driver');

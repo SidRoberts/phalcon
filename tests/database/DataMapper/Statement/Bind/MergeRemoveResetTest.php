@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Bind;
 use PDO;
 use Phalcon\DataMapper\Statement\Bind;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 final class MergeRemoveResetTest extends AbstractStatementTestCase
 {
@@ -23,9 +24,8 @@ final class MergeRemoveResetTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Bind :: merge()/remove()/reset()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementBindMergeRemoveReset(): void
     {
         $bind = new Bind();

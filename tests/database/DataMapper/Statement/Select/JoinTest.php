@@ -17,6 +17,7 @@ use PDO;
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -39,10 +40,9 @@ final class JoinTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: join() - inner
      *
      * @since        2020-01-20
-     *
-     * @group mysql
      */
     #[DataProvider('getJoinNames')]
+    #[Group('mysql')]
     public function testDmStatementSelectJoin(string $join): void
     {
         $driver = env('driver');
@@ -64,9 +64,8 @@ final class JoinTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: join() - subselect
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectJoinSubSelect(): void
     {
         $driver = env('driver');
@@ -108,9 +107,8 @@ final class JoinTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: join() - with bind
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectJoinWithBind(): void
     {
         $driver = env('driver');
@@ -145,9 +143,8 @@ final class JoinTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: join() - with using
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectJoinWithUsing(): void
     {
         $driver = env('driver');

@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Delete;
 use PDO;
 use Phalcon\DataMapper\Statement\Delete;
 use Phalcon\Tests\AbstractDatabaseTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -25,9 +26,8 @@ final class GetBindValuesTest extends AbstractDatabaseTestCase
      * Database Tests Phalcon\DataMapper\Statement\Delete :: getBindValues()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementDeleteGetBindValues(): void
     {
         $driver = env('driver');

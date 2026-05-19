@@ -15,6 +15,7 @@ namespace Phalcon\Tests\Database\DataMapper\Statement\Select;
 
 use Phalcon\DataMapper\Statement\Select;
 use Phalcon\Tests\AbstractStatementTestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 use function env;
 
@@ -24,9 +25,8 @@ final class DistinctTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: distinct()
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectDistinct(): void
     {
         $driver = env('driver');
@@ -47,9 +47,8 @@ final class DistinctTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: distinct() - twice
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectDistinctTwice(): void
     {
         $driver = env('driver');
@@ -71,9 +70,8 @@ final class DistinctTest extends AbstractStatementTestCase
      * Database Tests Phalcon\DataMapper\Statement\Select :: distinct() - unset
      *
      * @since  2020-01-20
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testDmStatementSelectDistinctUnset(): void
     {
         $driver = env('driver');
