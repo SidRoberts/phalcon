@@ -82,10 +82,12 @@ final class ModelTest extends AbstractUnitTestCase
 
     public function testRetrieveByCredentialsIgnoresPasswordField(): void
     {
-        $user = $this->adapter->retrieveByCredentials([
-            'email'    => 'bob@example.com',
-            'password' => 'whatever',
-        ]);
+        $user = $this->adapter->retrieveByCredentials(
+            [
+                'email'    => 'bob@example.com',
+                'password' => 'whatever',
+            ]
+        );
 
         $this->assertNotNull($user);
         $this->assertSame(2, $user->getAuthIdentifier());
@@ -179,7 +181,10 @@ final class ModelTest extends AbstractUnitTestCase
     {
         // Re-bind adapter to a model class that does NOT implement AuthRemember.
         FakeAuthUserNoRemember::$rows = [
-            ['id' => 1, 'email' => 'alice@example.com'],
+            [
+                'id'    => 1,
+                'email' => 'alice@example.com',
+            ],
         ];
 
         $adapter = new Model(

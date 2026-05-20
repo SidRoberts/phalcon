@@ -183,19 +183,22 @@ final class ManagerFactoryTest extends AbstractUnitTestCase
     public function testLoadWithStreamAdapter(): void
     {
         $factory = new ManagerFactory($this->security, $this->container);
-        $manager = $factory->load([
-            'guards' => [
-                'web' => [
-                    'type'    => 'session',
-                    'default' => true,
-                    'adapter' => [
-                        'name'    => 'stream',
-                        'options' => ['file' => '/tmp/users.json'],
+
+        $manager = $factory->load(
+            [
+                'guards' => [
+                    'web' => [
+                        'type'    => 'session',
+                        'default' => true,
+                        'adapter' => [
+                            'name'    => 'stream',
+                            'options' => ['file' => '/tmp/users.json'],
+                        ],
+                        'options' => [],
                     ],
-                    'options' => [],
                 ],
-            ],
-        ]);
+            ]
+        );
 
         $this->assertInstanceOf(Session::class, $manager->getDefaultGuard());
     }
@@ -203,19 +206,22 @@ final class ManagerFactoryTest extends AbstractUnitTestCase
     public function testLoadWithModelAdapter(): void
     {
         $factory = new ManagerFactory($this->security, $this->container);
-        $manager = $factory->load([
-            'guards' => [
-                'web' => [
-                    'type'    => 'session',
-                    'default' => true,
-                    'adapter' => [
-                        'name'    => 'model',
-                        'options' => ['model' => 'App\\Models\\User'],
+
+        $manager = $factory->load(
+            [
+                'guards' => [
+                    'web' => [
+                        'type'    => 'session',
+                        'default' => true,
+                        'adapter' => [
+                            'name'    => 'model',
+                            'options' => ['model' => 'App\\Models\\User'],
+                        ],
+                        'options' => [],
                     ],
-                    'options' => [],
                 ],
-            ],
-        ]);
+            ]
+        );
 
         $this->assertInstanceOf(Session::class, $manager->getDefaultGuard());
     }
@@ -223,22 +229,25 @@ final class ManagerFactoryTest extends AbstractUnitTestCase
     public function testLoadWithTokenGuard(): void
     {
         $factory = new ManagerFactory($this->security, $this->container);
-        $manager = $factory->load([
-            'guards' => [
-                'api' => [
-                    'type'    => 'token',
-                    'default' => true,
-                    'adapter' => [
-                        'name'    => 'memory',
-                        'options' => ['users' => []],
-                    ],
-                    'options' => [
-                        'inputKey'   => 'api_token',
-                        'storageKey' => 'api_token',
+
+        $manager = $factory->load(
+            [
+                'guards' => [
+                    'api' => [
+                        'type'    => 'token',
+                        'default' => true,
+                        'adapter' => [
+                            'name'    => 'memory',
+                            'options' => ['users' => []],
+                        ],
+                        'options' => [
+                            'inputKey'   => 'api_token',
+                            'storageKey' => 'api_token',
+                        ],
                     ],
                 ],
-            ],
-        ]);
+            ]
+        );
 
         $this->assertInstanceOf(Token::class, $manager->getDefaultGuard());
     }

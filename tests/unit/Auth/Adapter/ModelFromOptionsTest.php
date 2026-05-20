@@ -47,7 +47,9 @@ final class ModelFromOptionsTest extends AbstractUnitTestCase
     {
         $adapter = Model::fromOptions(
             $this->security,
-            ['model' => 'App\\Models\\User']
+            [
+                'model' => 'App\\Models\\User',
+            ]
         );
 
         $this->assertInstanceOf(Model::class, $adapter);

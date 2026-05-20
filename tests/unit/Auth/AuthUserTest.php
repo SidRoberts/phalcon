@@ -59,21 +59,36 @@ final class AuthUserTest extends AbstractUnitTestCase
 
     public function testGetAuthPasswordReturnsEmptyWhenNonString(): void
     {
-        $user = new AuthUser(['id' => 1, 'password' => 12345]);
+        $user = new AuthUser(
+            [
+                'id'       => 1,
+                'password' => 12345,
+            ]
+        );
 
         $this->assertSame('', $user->getAuthPassword());
     }
 
     public function testGetAuthPasswordReturnsString(): void
     {
-        $user = new AuthUser(['id' => 1, 'password' => 'hashed-secret']);
+        $user = new AuthUser(
+            [
+                'id'       => 1,
+                'password' => 'hashed-secret',
+            ]
+        );
 
         $this->assertSame('hashed-secret', $user->getAuthPassword());
     }
 
     public function testToArrayReturnsUnderlyingData(): void
     {
-        $data = ['id' => 1, 'email' => 'a@b', 'role' => 'admin'];
+        $data = [
+            'id'    => 1,
+            'email' => 'a@b',
+            'role'  => 'admin',
+        ];
+
         $user = new AuthUser($data);
 
         $this->assertSame($data, $user->toArray());

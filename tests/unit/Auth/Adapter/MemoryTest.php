@@ -38,13 +38,15 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->hashedPassword,
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->hashedPassword,
+                    ],
+                ]
+            )
         );
 
         $user = $adapter->retrieveByCredentials(['email' => 'alice@example.com']);
@@ -57,13 +59,15 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->hashedPassword,
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->hashedPassword,
+                    ],
+                ]
+            )
         );
 
         $user = $adapter->retrieveByCredentials(['email' => 'nobody@example.com']);
@@ -75,13 +79,15 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->hashedPassword,
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->hashedPassword,
+                    ],
+                ]
+            )
         );
 
         $user = $adapter->retrieveByCredentials(
@@ -99,13 +105,15 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 42,
-                    'email'    => 'bob@example.com',
-                    'password' => $this->hashedPassword,
-                ],
-            ])
+                    [
+                        'id'       => 42,
+                        'email'    => 'bob@example.com',
+                        'password' => $this->hashedPassword,
+                    ],
+                ]
+            )
         );
 
         $user = $adapter->retrieveById(42);
@@ -118,13 +126,15 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->hashedPassword,
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->hashedPassword,
+                    ],
+                ]
+            )
         );
 
         $user = $adapter->retrieveById(999);
@@ -136,13 +146,15 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->hashedPassword,
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->hashedPassword,
+                    ],
+                ]
+            )
         );
 
         $user = $adapter->retrieveById(1);
@@ -158,13 +170,15 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->hashedPassword,
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->hashedPassword,
+                    ],
+                ]
+            )
         );
 
         $user = $adapter->retrieveById(1);
@@ -180,13 +194,15 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->hashedPassword,
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->hashedPassword,
+                    ],
+                ]
+            )
         );
 
         $user = $adapter->retrieveById(1);
@@ -202,13 +218,15 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->hashedPassword,
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->hashedPassword,
+                    ],
+                ]
+            )
         );
 
         $user = $adapter->retrieveByCredentials(['password' => 'whatever']);
@@ -220,13 +238,15 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->hashedPassword,
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->hashedPassword,
+                    ],
+                ]
+            )
         );
 
         $this->assertNull(
@@ -238,10 +258,19 @@ final class MemoryTest extends AbstractUnitTestCase
     {
         $adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
-                ['id' => 1, 'password' => 'x'],
-                ['id' => 2, 'email' => 'alice@example.com', 'password' => 'y'],
-            ])
+            new MemoryAdapterConfig(
+                [
+                    [
+                        'id'       => 1,
+                        'password' => 'x',
+                    ],
+                    [
+                        'id'       => 2,
+                        'email'    => 'alice@example.com',
+                        'password' => 'y',
+                    ],
+                ]
+            )
         );
 
         $user = $adapter->retrieveByCredentials(['email' => 'alice@example.com']);

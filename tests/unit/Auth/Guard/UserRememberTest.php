@@ -23,11 +23,13 @@ final class UserRememberTest extends AbstractUnitTestCase
 {
     public function testParsesArrayPayload(): void
     {
-        $remember = new UserRemember([
-            'id'         => 42,
-            'token'      => 'abc',
-            'user_agent' => 'phpunit',
-        ]);
+        $remember = new UserRemember(
+            [
+                'id'         => 42,
+                'token'      => 'abc',
+                'user_agent' => 'phpunit',
+            ]
+        );
 
         $this->assertSame(42, $remember->getId());
         $this->assertSame('abc', $remember->getToken());
@@ -36,11 +38,14 @@ final class UserRememberTest extends AbstractUnitTestCase
 
     public function testParsesJsonStringPayload(): void
     {
-        $payload  = json_encode([
-            'id'         => 'user-7',
-            'token'      => 'xyz',
-            'user_agent' => 'agent',
-        ]);
+        $payload = json_encode(
+            [
+                'id'         => 'user-7',
+                'token'      => 'xyz',
+                'user_agent' => 'agent',
+            ]
+        );
+
         $remember = new UserRemember((string) $payload);
 
         $this->assertSame('user-7', $remember->getId());

@@ -34,7 +34,9 @@ final class StreamFromOptionsTest extends AbstractUnitTestCase
     {
         $adapter = Stream::fromOptions(
             $this->security,
-            ['file' => '/some/path/users.json']
+            [
+                'file' => '/some/path/users.json',
+            ]
         );
 
         $this->assertInstanceOf(Stream::class, $adapter);

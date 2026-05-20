@@ -42,13 +42,15 @@ final class SessionTest extends AbstractUnitTestCase
 
         $this->adapter = new Memory(
             $this->security,
-            new MemoryAdapterConfig([
+            new MemoryAdapterConfig(
                 [
-                    'id'       => 1,
-                    'email'    => 'alice@example.com',
-                    'password' => $this->security->hash('secret'),
-                ],
-            ])
+                    [
+                        'id'       => 1,
+                        'email'    => 'alice@example.com',
+                        'password' => $this->security->hash('secret'),
+                    ],
+                ]
+            )
         );
 
         $this->session = new FakeSessionManager();
@@ -153,10 +155,12 @@ final class SessionTest extends AbstractUnitTestCase
     {
         $guard = $this->buildGuard();
 
-        $result = $guard->once([
-            'email'    => 'alice@example.com',
-            'password' => 'secret',
-        ]);
+        $result = $guard->once(
+            [
+                'email'    => 'alice@example.com',
+                'password' => 'secret',
+            ]
+        );
 
         $this->assertTrue($result);
         $this->assertTrue($guard->check());
@@ -231,10 +235,12 @@ final class SessionTest extends AbstractUnitTestCase
     {
         $guard = $this->buildGuard();
 
-        $result = $guard->validate([
-            'email'    => 'alice@example.com',
-            'password' => 'secret',
-        ]);
+        $result = $guard->validate(
+            [
+                'email'    => 'alice@example.com',
+                'password' => 'secret',
+            ]
+        );
 
         $this->assertTrue($result);
         $this->assertFalse($guard->check());
@@ -289,7 +295,12 @@ final class SessionTest extends AbstractUnitTestCase
     {
         $guard = $this->buildGuard();
 
-        $guard->validate(['email' => 'alice@example.com', 'password' => 'secret']);
+        $guard->validate(
+            [
+                'email'    => 'alice@example.com',
+                'password' => 'secret',
+            ]
+        );
 
         $user = $guard->getLastUserAttempted();
 
@@ -406,10 +417,13 @@ final class SessionTest extends AbstractUnitTestCase
     public function testBasicAttemptsFromHttpHeader(): void
     {
         $guard = $this->buildGuard();
-        $this->request->setBasicAuthFake([
-            'username' => 'alice@example.com',
-            'password' => 'secret',
-        ]);
+
+        $this->request->setBasicAuthFake(
+            [
+                'username' => 'alice@example.com',
+                'password' => 'secret',
+            ]
+        );
 
         $this->assertTrue($guard->basic());
         $this->assertTrue($guard->check());
@@ -426,10 +440,13 @@ final class SessionTest extends AbstractUnitTestCase
     public function testOnceBasicSucceeds(): void
     {
         $guard = $this->buildGuard();
-        $this->request->setBasicAuthFake([
-            'username' => 'alice@example.com',
-            'password' => 'secret',
-        ]);
+
+        $this->request->setBasicAuthFake(
+            [
+                'username' => 'alice@example.com',
+                'password' => 'secret',
+            ]
+        );
 
         $result = $guard->onceBasic();
 
@@ -448,10 +465,13 @@ final class SessionTest extends AbstractUnitTestCase
     public function testOnceBasicReturnsFalseOnInvalidCredentials(): void
     {
         $guard = $this->buildGuard();
-        $this->request->setBasicAuthFake([
-            'username' => 'alice@example.com',
-            'password' => 'wrong-password',
-        ]);
+
+        $this->request->setBasicAuthFake(
+            [
+                'username' => 'alice@example.com',
+                'password' => 'wrong-password',
+            ]
+        );
 
         $this->assertFalse($guard->onceBasic());
     }
