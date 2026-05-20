@@ -22,6 +22,7 @@ use Phalcon\Tests\Support\Models\InvoicesWithSetters;
 use Phalcon\Tests\Support\Models\InvoicesWithTypedSetters;
 use Phalcon\Tests\Support\Traits\DiTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 final class CloneResultMapTest extends AbstractDatabaseTestCase
 {
@@ -65,12 +66,11 @@ final class CloneResultMapTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-10-05
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
      */
     #[DataProvider('modelDataProvider')]
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testMvcModelCloneResultMap(
         int | string $invId,
         int | string $invCstId,
@@ -160,11 +160,10 @@ final class CloneResultMapTest extends AbstractDatabaseTestCase
      * @issue  https://github.com/phalcon/cphalcon/issues/16956
      * @author Phalcon Team <team@phalcon.io>
      * @since  2026-04-30
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
      */
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testMvcModelCloneResultMapSetterTypeErrorFallback(): void
     {
         /** @var InvoicesWithTypedSetters $invoice */
@@ -189,13 +188,11 @@ final class CloneResultMapTest extends AbstractDatabaseTestCase
     /**
      * @author       Phalcon Team <team@phalcon.io>
      * @since        2020-10-05
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
-     * @group pgsql
      */
     #[DataProvider('modelDataProvider')]
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testMvcModelCloneResultMapWithCasting(
         int | string $invId,
         int | string $invCstId,

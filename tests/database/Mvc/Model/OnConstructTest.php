@@ -16,6 +16,7 @@ namespace Phalcon\Tests\Database\Mvc\Model;
 use Phalcon\Tests\AbstractDatabaseTestCase;
 use Phalcon\Tests\Support\Traits\DiTrait;
 use Phalcon\Tests\Support\Models\OnConstructModel;
+use PHPUnit\Framework\Attributes\Group;
 
 final class OnConstructTest extends AbstractDatabaseTestCase
 {
@@ -26,9 +27,8 @@ final class OnConstructTest extends AbstractDatabaseTestCase
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2025-09-12
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testMvcModelConstruct(): void
     {
         $this->setNewFactoryDefault();

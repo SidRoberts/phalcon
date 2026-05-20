@@ -20,6 +20,7 @@ use Phalcon\Tests\Support\Migrations\InvoicesMigration;
 use Phalcon\Tests\Support\Models\Invoices;
 use Phalcon\Tests\Support\Models\Products;
 use Phalcon\Tests\Support\Traits\DiTrait;
+use PHPUnit\Framework\Attributes\Group;
 
 use function date;
 use function uniqid;
@@ -39,11 +40,10 @@ final class UnserializeTest extends AbstractDatabaseTestCase
     /**
      * @author Phalcon Team <team@phalcon.io>
      * @since  2020-01-31
-     *
-     * @group mysql
-     * @group pgsql
-     * @group sqlite
      */
+    #[Group('mysql')]
+    #[Group('pgsql')]
+    #[Group('sqlite')]
     public function testMvcModelUnserialize(): void
     {
         $title = uniqid('inv-');
@@ -79,9 +79,8 @@ final class UnserializeTest extends AbstractDatabaseTestCase
      *
      * @author Phalcon Team <team@phalcon.io>
      * @since  2025-09-12
-     *
-     * @group mysql
      */
+    #[Group('mysql')]
     public function testMvcModelUnserializeWithoutADI(): void
     {
         $this->expectException(Exception::class);
