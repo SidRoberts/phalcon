@@ -66,9 +66,8 @@ final class PrepareVirtualPathTest extends AbstractUnitTestCase
             use FilePathTrait;
         };
 
-        $actual   = $object->prepareVirtualPath('/some/path');
-        $expected = '_some_path';
+        $actual = $object->prepareVirtualPath('/some/path');
 
-        $this->assertSame($expected, $actual);
+        $this->assertSame('_some_path', $actual);
     }
 }
