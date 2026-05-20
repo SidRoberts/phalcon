@@ -20,7 +20,8 @@ final class ListColumnsTest extends AbstractDatabaseTestCase
 {
     /**
      * @throws Exception
-     * @since  2025-01-14
+     *
+     * @since 2025-01-14
      */
     #[Group('pgsql')]
     public function testDmInfoAdapterPgsqlListTables(): void
