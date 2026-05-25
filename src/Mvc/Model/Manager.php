@@ -1871,9 +1871,11 @@ class Manager implements ManagerInterface, InjectionAwareInterface, EventsAwareI
             $publicProperties     = [];
             $classReflection      = new ReflectionClass($className);
             $reflectionProperties = $classReflection->getProperties(ReflectionProperty::IS_PUBLIC);
+
             foreach ($reflectionProperties as $reflectionProperty) {
                 $publicProperties[$reflectionProperty->name] = true;
             }
+
             $this->modelVisibility[$className] = $publicProperties;
         }
 
