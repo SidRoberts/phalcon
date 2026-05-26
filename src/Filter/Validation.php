@@ -191,7 +191,7 @@ class Validation extends Injectable implements ValidationInterface
 
         // if data is not an array / object, entity is null, or data is empty, then no need to proceed further
         if (
-            (gettype($data) != "array" && gettype($data) != "object") ||
+            (!is_array($data) && !is_object($data)) ||
             null === $entity ||
             empty($data)
         ) {
