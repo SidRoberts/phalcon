@@ -347,20 +347,18 @@ class Filter implements FilterInterface
         bool $noRecursive
     ) {
         if ($noRecursive) {
-            $value = $this->sanitizer(
-                $value,
-                $sanitizerName,
-                $sanitizerParams
-            );
-        } else {
-            $value = $this->processArrayValues(
+            return $this->sanitizer(
                 $value,
                 $sanitizerName,
                 $sanitizerParams
             );
         }
 
-        return $value;
+        return $this->processArrayValues(
+            $value,
+            $sanitizerName,
+            $sanitizerParams
+        );
     }
 
     /**
