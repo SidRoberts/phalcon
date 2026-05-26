@@ -81,18 +81,19 @@ class Alnum extends AbstractValidator
     public function validate(Validation $validation, string $field): bool
     {
         $value = $validation->getValue($field);
+
         if (true === $this->allowEmpty($field, $value)) {
             return true;
         }
 
-        if (!ctype_alnum((string)$value)) {
-            $validation->appendMessage(
-                $this->messageFactory($validation, $field)
-            );
-
-            return false;
+        if (ctype_alnum((string)$value)) {
+            return true;
         }
 
-        return true;
+        $validation->appendMessage(
+            $this->messageFactory($validation, $field)
+        );
+
+        return false;
     }
 }
