@@ -97,23 +97,25 @@ class Email extends AbstractValidator
     public function validate(Validation $validation, string $field): bool
     {
         $value = $validation->getValue($field);
+
         if (true === $this->allowEmpty($field, $value)) {
             return true;
         }
 
         $flags = FILTER_DEFAULT;
+
         if ($this->getOption("allowUTF8")) {
             $flags = FILTER_FLAG_EMAIL_UNICODE;
         }
 
-        if (!filter_var($value, FILTER_VALIDATE_EMAIL, $flags)) {
-            $validation->appendMessage(
-                $this->messageFactory($validation, $field)
-            );
-
-            return false;
+        if (filter_var($value, FILTER_VALIDATE_EMAIL, $flags)) {
+            return true;
         }
 
-        return true;
+        $validation->appendMessage(
+            $this->messageFactory($validation, $field)
+        );
+
+        return false;
     }
 }
