@@ -80,6 +80,7 @@ class Alpha extends AbstractValidator
     public function validate(Validation $validation, string $field): bool
     {
         $value = $validation->getValue($field);
+
         if ($this->allowEmpty($field, $value)) {
             return true;
         }
