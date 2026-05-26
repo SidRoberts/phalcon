@@ -77,14 +77,14 @@ class PresenceOf extends AbstractValidator
             return true;
         }
 
-        if (null === $value || "" === $value) {
-            $validation->appendMessage(
-                $this->messageFactory($validation, $field)
-            );
-
-            return false;
+        if (null !== $value && "" !== $value) {
+            return true;
         }
 
-        return true;
+        $validation->appendMessage(
+            $this->messageFactory($validation, $field)
+        );
+
+        return false;
     }
 }
