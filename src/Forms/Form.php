@@ -457,7 +457,7 @@ class Form extends Injectable implements Countable, Iterator, AttributesInterfac
         /**
          * Use the element's name as label if the label is not available
          */
-        return !$label ? $name : $label;
+        return $label ?: $name;
     }
 
     /**
