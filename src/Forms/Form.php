@@ -683,6 +683,7 @@ class Form extends Injectable implements Countable, Iterator, AttributesInterfac
         if (empty($this->elements)) {
             return true;
         }
+
         $whitelist = empty($whitelist) ? $this->whitelist : $whitelist;
         $data      = empty($data) ? $this->data : $data;
         $entity    = null === $entity ? $this->entity : $entity;
@@ -745,6 +746,7 @@ class Form extends Injectable implements Countable, Iterator, AttributesInterfac
          */
         $validation->validate($data, $entity);
         $messages = $validation->getMessages();
+
         if ($messages->count() > 0) {
             // Add validation messages to relevant elements
             foreach ($messages as $elementMessage) {
