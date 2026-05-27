@@ -143,6 +143,7 @@ class Form extends Injectable implements Countable, Iterator, AttributesInterfac
          * Link the element to the form
          */
         $element->setForm($this);
+
         if (
             true === method_exists($element, "setTagFactory") &&
             null !== $this->tagFactory
