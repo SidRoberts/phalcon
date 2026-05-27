@@ -346,6 +346,7 @@ abstract class AbstractFlash implements FlashInterface, InjectionAwareInterface
 
         if (!empty($cssClasses)) {
             $divString = " class=\"%cssClass%\"";
+
             if (!empty($cssIconClasses)) {
                 $iconString = "<i class=\"%cssIconClass%\"></i> ";
             }
