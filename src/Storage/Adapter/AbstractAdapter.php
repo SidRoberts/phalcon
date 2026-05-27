@@ -26,8 +26,6 @@ use function mb_strtolower;
 
 /**
  * Class AbstractAdapter
- *
- * @package Phalcon\Storage\Adapter
  */
 abstract class AbstractAdapter implements AdapterInterface, EventsAwareInterface
 {

@@ -15,8 +15,6 @@ namespace Phalcon\Flash;
 
 /**
  * Class Direct
- *
- * @package Phalcon\Flash
  */
 class Direct extends AbstractFlash
 {

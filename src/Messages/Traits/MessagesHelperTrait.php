@@ -19,8 +19,6 @@ use Phalcon\Messages\MessageInterface;
 
 /**
  * Trait MessagesHelperTrait
- *
- * @package Phalcon\Messages\Traits
  */
 trait MessagesHelperTrait
 {

@@ -15,8 +15,6 @@ namespace Phalcon\Tests\Support\Models;
 
 /**
  * Class InvoicesValidationFails
- *
- * @package Phalcon\Tests\Support\Models
  */
 class InvoicesValidationFails extends Invoices
 {

@@ -19,8 +19,6 @@ use Phalcon\Assets\Asset as AssetBase;
  * Represents JavaScript assets
  *
  * Class Js
- *
- * @package Phalcon\Assets\Asset
  */
 class Js extends AssetBase
 {

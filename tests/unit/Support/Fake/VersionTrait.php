@@ -15,8 +15,6 @@ namespace Phalcon\Tests\Unit\Support\Fake;
 
 /**
  * Trait VersionTrait
- *
- * @package Phalcon\Tests\Fixtures\Traits
  */
 trait VersionTrait
 {

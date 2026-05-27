@@ -17,8 +17,6 @@ use Phalcon\Di\AbstractInjectionAware;
 
 /**
  * Class InjectionAwareComponent
- *
- * @package Phalcon\Tests\Fixtures\Di
  */
 class InjectionAwareComponent extends AbstractInjectionAware
 {

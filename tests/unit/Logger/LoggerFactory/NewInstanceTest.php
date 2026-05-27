@@ -25,8 +25,6 @@ use function logsDir;
 
 /**
  * Class NewInstanceTest extends AbstractUnitTestCase
- *
- * @package Phalcon\Tests\Unit\Logger\LoggerFactory
  */
 final class NewInstanceTest extends AbstractUnitTestCase
 {

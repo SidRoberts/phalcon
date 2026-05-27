@@ -26,8 +26,6 @@ use Phalcon\Assets\FilterInterface;
  * removes last semicolon from last property
  *
  * Class CssMin
- *
- * @package Phalcon\Assets\Filters
  */
 class CssMin implements FilterInterface
 {

@@ -19,8 +19,6 @@ use Phalcon\Assets\Asset as AssetBase;
  * Represents CSS assets
  *
  * Class Css
- *
- * @package Phalcon\Assets\Asset
  */
 class Css extends AssetBase
 {

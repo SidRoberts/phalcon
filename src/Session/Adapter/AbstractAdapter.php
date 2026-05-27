@@ -18,8 +18,6 @@ use SessionHandlerInterface;
 
 /**
  * Class AbstractAdapter
- *
- * @package Phalcon\Session\Adapter
  */
 abstract class AbstractAdapter implements SessionHandlerInterface
 {

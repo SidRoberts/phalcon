@@ -38,8 +38,6 @@ use Phalcon\Filter\Sanitize\Url;
 
 /**
  * Class FilterFactory
- *
- * @package Phalcon\Filter
  */
 class FilterFactory
 {

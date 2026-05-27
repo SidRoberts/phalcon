@@ -19,8 +19,6 @@ use Phalcon\Tests\Support\Traits\DiTrait;
 
 /**
  * Class ToJsonTest extends AbstractUnitTestCase
- *
- * @package Phalcon\Tests\Unit\Session\Bag
  */
 final class ToJsonTest extends AbstractUnitTestCase
 {

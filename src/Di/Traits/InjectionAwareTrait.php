@@ -18,8 +18,6 @@ namespace Phalcon\Di\Traits;
  *
  * Class AbstractInjectionAware
  *
- * @package Phalcon\Di
- *
  * @property object $container
  */
 trait InjectionAwareTrait

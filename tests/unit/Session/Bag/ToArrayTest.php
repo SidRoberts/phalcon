@@ -19,8 +19,6 @@ use Phalcon\Tests\Support\Traits\DiTrait;
 
 /**
  * Class ToArrayTest extends AbstractUnitTestCase
- *
- * @package Phalcon\Tests\Unit\Session\Bag
  */
 final class ToArrayTest extends AbstractUnitTestCase
 {

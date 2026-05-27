@@ -19,8 +19,6 @@ use Phalcon\Assets\FilterInterface;
  * Returns the content without make any modification to the original source
  *
  * Class None
- *
- * @package Phalcon\Assets\Filters
  */
 class None implements FilterInterface
 {

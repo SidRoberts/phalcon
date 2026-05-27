@@ -18,8 +18,6 @@ use Phalcon\Tests\AbstractUnitTestCase;
 
 /**
  * Class GetCssSourcesTest extends AbstractUnitTestCase
- *
- * @package Phalcon\Tests\Unit\Support\Debug
  */
 final class GetCssSourcesTest extends AbstractUnitTestCase
 {

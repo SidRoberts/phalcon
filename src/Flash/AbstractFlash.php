@@ -38,8 +38,6 @@ use const PHP_EOL;
  *```
  *
  * Class AbstractFlash
- *
- * @package Phalcon\Flash
  */
 abstract class AbstractFlash implements FlashInterface, InjectionAwareInterface
 {

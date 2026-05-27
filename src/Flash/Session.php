@@ -22,8 +22,6 @@ use Phalcon\Session\ManagerInterface;
  * the next request.
  *
  * Class Session
- *
- * @package Phalcon\Flash
  */
 class Session extends AbstractFlash
 {

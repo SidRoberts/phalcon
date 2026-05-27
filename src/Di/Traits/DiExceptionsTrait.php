@@ -22,8 +22,6 @@ use function is_object;
 
 /**
  * Trait DiExceptionsTrait
- *
- * @package Phalcon\Di\Traits
  */
 trait DiExceptionsTrait
 {

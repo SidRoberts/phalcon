@@ -19,8 +19,6 @@ use Phalcon\Config\ConfigInterface;
 
 /**
  * Trait DiLoadTrait
- *
- * @package Phalcon\Di\Traits
  */
 trait DiLoadTrait
 {

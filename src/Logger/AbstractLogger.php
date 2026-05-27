@@ -36,8 +36,6 @@ use function strtolower;
  * the built in AdapterFactory. A LoggerFactory is also available that allows
  * developers to create new instances of the Logger or load them from config
  * files (see Phalcon\Config\Config object).
- *
- * @package Phalcon\Logger
  */
 abstract class AbstractLogger
 {

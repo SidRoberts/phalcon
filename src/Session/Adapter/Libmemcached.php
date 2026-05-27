@@ -18,8 +18,6 @@ use Phalcon\Storage\AdapterFactory;
 
 /**
  * Class Libmemcached
- *
- * @package Phalcon\Session\Adapter
  */
 class Libmemcached extends AbstractAdapter
 {

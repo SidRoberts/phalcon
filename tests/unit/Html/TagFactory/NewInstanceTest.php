@@ -42,8 +42,6 @@ use function uniqid;
 
 /**
  * Class NewInstanceTest extends AbstractUnitTestCase
- *
- * @package Phalcon\Tests\Unit\Html\TagFactory
  */
 final class NewInstanceTest extends AbstractUnitTestCase
 {

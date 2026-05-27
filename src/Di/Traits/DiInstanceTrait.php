@@ -18,8 +18,6 @@ use function call_user_func_array;
 
 /**
  * Trait DiInstanceTrait
- *
- * @package Phalcon\Di\Traits
  */
 trait DiInstanceTrait
 {

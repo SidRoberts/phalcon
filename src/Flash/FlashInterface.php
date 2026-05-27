@@ -15,8 +15,6 @@ namespace Phalcon\Flash;
 
 /**
  * Interface FlashInterface
- *
- * @package Phalcon\Flash
  */
 interface FlashInterface
 {

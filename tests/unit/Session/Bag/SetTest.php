@@ -19,8 +19,6 @@ use Phalcon\Tests\Support\Traits\DiTrait;
 
 /**
  * Class SetTest extends AbstractUnitTestCase
- *
- * @package Phalcon\Tests\Unit\Session\Bag
  */
 final class SetTest extends AbstractUnitTestCase
 {

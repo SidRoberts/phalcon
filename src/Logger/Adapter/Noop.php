@@ -17,8 +17,6 @@ use Phalcon\Logger\Item;
 
 /**
  * Class Noop
- *
- * @package Phalcon\Logger\Adapter
  */
 class Noop extends AbstractAdapter
 {
